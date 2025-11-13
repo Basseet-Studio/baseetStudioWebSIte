@@ -369,8 +369,8 @@
         opacity: 0;
         transform: translate3d(0, 80vh, 0);
         will-change: transform, opacity;
-        transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1),
-            transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+            transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     /* Revealing state - cross-fade begins */
@@ -383,8 +383,8 @@
     body.revealing .baseet-loader {
         opacity: 0;
         transform: translateY(-5vh);
-        transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1),
-            transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+            transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     /* Final loaded state */
@@ -473,8 +473,8 @@
 
             const scrollY = window.scrollY || window.pageYOffset;
 
-            // Animation completes at 100% (600px - faster)
-            if (scrollY >= 600 && !animationComplete) {
+            // Animation completes at 100% (350px - faster)
+            if (scrollY >= 350 && !animationComplete) {
                 animationComplete = true;
                 scrolled = true;
 
@@ -519,8 +519,8 @@
                         if (mainContent) {
                             mainContent.style.willChange = 'auto';
                         }
-                    }, 1500);
-                }, 300);
+                    }, 800);
+                }, 10);
             }
         }
 
@@ -529,8 +529,8 @@
             if (scrolled) return;
 
             const scrollY = window.scrollY || window.pageYOffset;
-            // Faster animation range (0 to 600px)
-            const scrollPercent = Math.min(scrollY / 600, 1);
+            // Faster animation range (0 to 350px)
+            const scrollPercent = Math.min(scrollY / 350, 1);
 
             // Smooth easing function for better animation
             const easeOut = 1 - Math.pow(1 - scrollPercent, 3);
