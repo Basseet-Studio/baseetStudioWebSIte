@@ -362,6 +362,53 @@
     body.loaded .baseet-loader {
         display: none;
     }
+
+    /* Main content wrapper - optimized for performance */
+    .main-content {
+        position: relative;
+        opacity: 0;
+        transform: translate3d(0, 80vh, 0);
+        will-change: transform, opacity;
+        transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1),
+            transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Revealing state - cross-fade begins */
+    body.revealing .main-content {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+
+    /* Loader fade-out during cross-fade */
+    body.revealing .baseet-loader {
+        opacity: 0;
+        transform: translateY(-5vh);
+        transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1),
+            transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Final loaded state */
+    body.loaded .main-content {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+        will-change: auto;
+    }
+
+    /* Performance optimizations */
+    @media (prefers-reduced-motion: reduce) {
+
+        .main-content,
+        body.revealing .baseet-loader {
+            transition-duration: 0.3s;
+        }
+    }
+
+    /* Mobile optimization */
+    @media (max-width: 768px) {
+        .main-content {
+            transform: translate3d(0, 50vh, 0);
+        }
+    }
 </style>
 
 <!-- Full Screen Loading Animation with Clouds -->
@@ -392,10 +439,20 @@
     </div>
 </div>
 
+<!-- Main content wrapper for slide-up animation -->
+<div class="main-content">
+    {{ with site.Data.home.hero }}{{ if .enable }}{{ partial "blocks/home/hero" . }}{{ end }}{{ end }}
+    {{ with site.Data.home.features }}{{ if .enable }}{{ partial "blocks/home/features" . }}{{ end }}{{ end }}
+    {{ with site.Data.home.team }}{{ if .enable }}{{ partial "blocks/home/team" . }}{{ end }}{{ end }}
+    {{ with site.Data.home.highlights }}{{ if .enable }}{{ partial "blocks/home/highlights" . }}{{ end }}{{ end }}
+    {{ with site.Data.home.clients }}{{ if .enable }}{{ partial "blocks/home/clients" . }}{{ end }}{{ end }}
+</div>
+
 <script>
     // Baseet Studio Loader - Cloud Animation on Scroll
     (function () {
         const loader = document.getElementById('baseet-loader');
+        const mainContent = document.querySelector('.main-content');
         const title = document.querySelector('.baseet-title h1');
         const cloudBack = document.querySelector('.cloud-back');
         const cloudFront = document.querySelector('.cloud-front');
@@ -435,24 +492,35 @@
                     title.style.transform = 'scale(1.2)';
                 }
 
-                // Wait for final reveal, then fade out WITHOUT jumping
+                // Wait for final reveal, then start cinematic cross-fade
                 setTimeout(() => {
-                    loader.classList.add('scrolled');
+                    // Trigger cross-fade transition
+                    document.body.classList.add('revealing');
 
+                    // Use requestAnimationFrame for smooth 60fps animation
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(() => {
+                            // Instantly reset scroll during transition (invisible under fade)
+                            window.scrollTo({ top: 0, behavior: 'instant' });
+                        });
+                    });
+
+                    // Complete transition after animation finishes
                     setTimeout(() => {
-                        // Instantly reset scroll BEFORE removing anything
-                        window.scrollTo({ top: 0, behavior: 'instant' });
-
-                        // Then clean up
                         document.body.classList.add('loaded');
+
+                        // Clean up spacer
                         if (spacer && spacer.parentNode) {
                             spacer.parentNode.removeChild(spacer);
                         }
 
-                        // Re-enable body scroll
+                        // Re-enable body scroll and remove will-change
                         document.body.style.overflow = 'auto';
-                    }, 800);
-                }, 400);
+                        if (mainContent) {
+                            mainContent.style.willChange = 'auto';
+                        }
+                    }, 1500);
+                }, 300);
             }
         }
 
@@ -555,9 +623,4 @@
     })();
 </script>
 
-{{ with site.Data.home.hero }}{{ if .enable }}{{ partial "blocks/home/hero" . }}{{ end }}{{ end }}
-{{ with site.Data.home.features }}{{ if .enable }}{{ partial "blocks/home/features" . }}{{ end }}{{ end }}
-{{ with site.Data.home.team }}{{ if .enable }}{{ partial "blocks/home/team" . }}{{ end }}{{ end }}
-{{ with site.Data.home.highlights }}{{ if .enable }}{{ partial "blocks/home/highlights" . }}{{ end }}{{ end }}
-{{ with site.Data.home.clients }}{{ if .enable }}{{ partial "blocks/home/clients" . }}{{ end }}{{ end }}
 {{ end }}
