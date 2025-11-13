@@ -403,9 +403,9 @@
         let scrolled = false;
         let animationComplete = false;
 
-        // Add spacer to allow scrolling - increased for longer animation
+        // Add spacer to allow scrolling - shorter for faster animation
         const spacer = document.createElement('div');
-        spacer.style.height = '200vh';
+        spacer.style.height = '120vh';
         spacer.style.pointerEvents = 'none';
         spacer.id = 'animation-spacer';
         document.body.appendChild(spacer);
@@ -416,8 +416,8 @@
 
             const scrollY = window.scrollY || window.pageYOffset;
 
-            // Animation completes at 100% (1200px)
-            if (scrollY >= 1200 && !animationComplete) {
+            // Animation completes at 100% (600px - faster)
+            if (scrollY >= 600 && !animationComplete) {
                 animationComplete = true;
                 scrolled = true;
 
@@ -435,25 +435,24 @@
                     title.style.transform = 'scale(1.2)';
                 }
 
-                // Wait for final reveal, then fade out and reset scroll
+                // Wait for final reveal, then fade out WITHOUT jumping
                 setTimeout(() => {
                     loader.classList.add('scrolled');
 
                     setTimeout(() => {
-                        document.body.classList.add('loaded');
+                        // Instantly reset scroll BEFORE removing anything
+                        window.scrollTo({ top: 0, behavior: 'instant' });
 
-                        // Remove spacer and reset scroll to top
+                        // Then clean up
+                        document.body.classList.add('loaded');
                         if (spacer && spacer.parentNode) {
                             spacer.parentNode.removeChild(spacer);
                         }
 
-                        // Smoothly scroll back to top
-                        window.scrollTo({ top: 0, behavior: 'instant' });
-
                         // Re-enable body scroll
                         document.body.style.overflow = 'auto';
                     }, 800);
-                }, 500);
+                }, 400);
             }
         }
 
@@ -462,8 +461,8 @@
             if (scrolled) return;
 
             const scrollY = window.scrollY || window.pageYOffset;
-            // Longer animation range (0 to 1200px)
-            const scrollPercent = Math.min(scrollY / 1200, 1);
+            // Faster animation range (0 to 600px)
+            const scrollPercent = Math.min(scrollY / 600, 1);
 
             // Smooth easing function for better animation
             const easeOut = 1 - Math.pow(1 - scrollPercent, 3);
