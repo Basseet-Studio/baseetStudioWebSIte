@@ -629,5 +629,11 @@
 <script src="{{ $animations.Permalink }}" defer></script>
 {{- end -}}
 
+<!-- AJAX Form Handler -->
+{{- $formHandler := resources.Get "js/form-handler.js" -}}
+{{- if $formHandler -}}
+<script src="{{ $formHandler.Permalink }}" defer></script>
+{{- end -}}
+
 
 {{ end }}

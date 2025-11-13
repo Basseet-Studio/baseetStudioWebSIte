@@ -781,65 +781,65 @@ body.loaded .baseet-loader {
 
 Welcome to Baseet Studio, your premier digital innovation partner.
 
-/* Professional Navbar Hover Effects */
+/_ Professional Navbar Hover Effects _/
 nav a, nav button {
-  position: relative;
-  transition: all 0.3s ease;
+position: relative;
+transition: all 0.3s ease;
 }
 
 nav a::before {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #496BC1 0%, #FBCD37 100%);
-  transform: translateX(-50%);
-  transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+content: '';
+position: absolute;
+bottom: -2px;
+left: 50%;
+width: 0;
+height: 2px;
+background: linear-gradient(90deg, #496BC1 0%, #FBCD37 100%);
+transform: translateX(-50%);
+transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 nav a:hover::before {
-  width: 100%;
+width: 100%;
 }
 
 nav a:hover {
-  color: #496BC1;
-  transform: translateY(-2px);
+color: #496BC1;
+transform: translateY(-2px);
 }
 
 nav button:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 8px 25px rgba(73, 107, 193, 0.4);
+transform: translateY(-3px) scale(1.05);
+box-shadow: 0 8px 25px rgba(73, 107, 193, 0.4);
 }
 
-/* Standardized Feature Image Hover Effects */
+/_ Standardized Feature Image Hover Effects _/
 #features .group:hover img {
-  transform: scale(1.08) rotate(2deg);
-  filter: brightness(1.1) saturate(1.2);
+transform: scale(1.08) rotate(2deg);
+filter: brightness(1.1) saturate(1.2);
 }
 
 #features .group img {
-  transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 #features .group .absolute {
-  transition: all 0.7s ease;
+transition: all 0.7s ease;
 }
 
 #features .group:hover .absolute {
-  opacity: 1;
-  filter: blur(25px);
+opacity: 1;
+filter: blur(25px);
 }
 
-/* Smooth Scroll Behavior */
+/_ Smooth Scroll Behavior _/
 html {
-  scroll-behavior: smooth;
+scroll-behavior: smooth;
 }
 
-/* Enhanced smooth scroll with offset for fixed headers */
+/_ Enhanced smooth scroll with offset for fixed headers _/
 @media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-padding-top: 80px; /* Adjust based on navbar height */
-  }
+html {
+scroll-padding-top: 80px; /_ Adjust based on navbar height _/
+}
 }
