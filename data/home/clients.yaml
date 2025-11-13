@@ -3,14 +3,14 @@ enable: true
 title: 'Trusted by Leading Brands'
 
 items:
-  - name: 'Beneoshop'
-    image: 'images/home/clients/beneoshop.png'
+  - name: 'Apple'
+    image: 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg'
 
-  - name: 'Caspio'
-    image: 'images/home/clients/caspio.png'
+  - name: 'Microsoft'
+    image: 'https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg'
 
-  - name: 'Hypergrid'
-    image: 'images/home/clients/hypergrid.png'
+  - name: 'Intel'
+    image: 'https://upload.wikimedia.org/wikipedia/commons/7/7d/Intel_logo_%282006-2020%29.svg'
 
-  - name: 'Leo Trippi'
-    image: 'images/home/clients/leo-trippi.png'
+  - name: 'Google'
+    image: 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg'

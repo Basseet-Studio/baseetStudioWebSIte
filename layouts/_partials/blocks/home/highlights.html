@@ -1,0 +1,26 @@
+{{- if .enable -}}
+<section id="highlights" class="highlights relative py-8 xl:py-16 overflow-hidden">
+    <div class="container mx-auto px-4 grid xl:grid-cols-2 gap-12">
+        {{- range $index, $item := .items -}}
+        <div
+            class="flex flex-col gap-9 px-8 xl:px-14 py-14 rounded-3xl {{ if (mod $index 2) }}bg-primary{{ else }}bg-[#F4F4F4]{{ end }}">
+            <h1
+                class="xl:max-w-1/2 mx-auto text-2xl font-semibold leading-relaxed text-center {{ if (mod $index 2) }}text-white{{ else }}text-[#252525]{{ end }}">
+                {{ $item.title }}
+            </h1>
+            <p class="leading-relaxed text-center {{ if (mod $index 2) }}text-white{{ else }}text-[#545454]{{ end }}">
+                {{ $item.text }}
+            </p>
+            {{- if $item.button -}}
+            <div class="flex items-center justify-center">
+                <a class="{{ if (mod $index 2) }}bg-white hover:bg-primary border border-primary text-primary hover:text-white{{ else }}bg-primary hover:bg-primary/90 text-white{{ end }} rounded-lg px-14 py-2 duration-500 transition-all hover:scale-105 hover:shadow-xl"
+                    href="{{ $item.button.link }}">
+                    {{ $item.button.label }}
+                </a>
+            </div>
+            {{- end -}}
+        </div>
+        {{- end -}}
+    </div>
+</section>
+{{- end -}}

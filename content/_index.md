@@ -119,6 +119,44 @@ sections:
   }
 }
 
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(73, 107, 193, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(73, 107, 193, 0.8), 0 0 60px rgba(251, 205, 55, 0.4);
+  }
+}
+
 /* Apply animations to elements */
 .animate-fade-in {
   animation: fadeIn 0.8s ease-out;
@@ -142,27 +180,42 @@ sections:
 
 /* Hover Effects */
 .hover-lift {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+  will-change: transform;
 }
 
 .hover-lift:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(73, 107, 193, 0.15), 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .hover-scale {
-  transition: transform 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  will-change: transform;
 }
 
 .hover-scale:hover {
-  transform: scale(1.05);
+  transform: scale(1.08) rotate(2deg);
+}
+
+.hover-3d {
+  transition: all 0.4s ease;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.hover-3d:hover {
+  transform: rotateY(5deg) rotateX(5deg) translateZ(10px);
+  box-shadow: 0 20px 60px rgba(73, 107, 193, 0.3);
 }
 
 /* Button Animations */
 a.bg-primary, button.bg-primary {
   position: relative;
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background: linear-gradient(135deg, #496BC1 0%, #5779d4 100%);
+  background-size: 200% 200%;
 }
 
 a.bg-primary::before, button.bg-primary::before {
@@ -173,26 +226,32 @@ a.bg-primary::before, button.bg-primary::before {
   width: 0;
   height: 0;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.4);
   transform: translate(-50%, -50%);
-  transition: width 0.6s, height 0.6s;
+  transition: width 0.6s ease-out, height 0.6s ease-out;
 }
 
 a.bg-primary:hover::before, button.bg-primary:hover::before {
-  width: 300px;
-  height: 300px;
+  width: 400px;
+  height: 400px;
 }
 
 a.bg-primary:hover, button.bg-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(73, 107, 193, 0.4);
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 12px 35px rgba(73, 107, 193, 0.5), 0 0 20px rgba(251, 205, 55, 0.3);
+  background-position: 100% 0;
+}
+
+a.bg-primary:active, button.bg-primary:active {
+  transform: translateY(-2px) scale(1.02);
+  transition: all 0.1s ease;
 }
 
 /* Scroll-triggered animations */
 .scroll-animate {
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(60px);
+  transition: opacity 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .scroll-animate.visible {
@@ -200,19 +259,53 @@ a.bg-primary:hover, button.bg-primary:hover {
   transform: translateY(0);
 }
 
+.scroll-animate-left {
+  opacity: 0;
+  transform: translateX(-80px);
+  transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.scroll-animate-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scroll-animate-right {
+  opacity: 0;
+  transform: translateX(80px);
+  transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.scroll-animate-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scroll-animate-scale {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.scroll-animate-scale.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
 /* Image hover effects */
 img {
-  transition: transform 0.4s ease, filter 0.4s ease;
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.6s ease;
 }
 
 img:hover {
-  transform: scale(1.03);
-  filter: brightness(1.1);
+  transform: scale(1.05) rotate(1deg);
+  filter: brightness(1.1) saturate(1.2);
 }
 
 /* Card hover effects */
 .team-card, .feature-card {
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d;
 }
 
 /* Responsive adjustments */
@@ -228,24 +321,35 @@ img:hover {
 </style>
 
 <script>
-// Scroll animation observer
+// Enhanced scroll animation observer with stagger effects
 document.addEventListener('DOMContentLoaded', function() {
   const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+    threshold: 0.15,
+    rootMargin: '0px 0px -80px 0px'
   };
 
   const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
+    entries.forEach((entry, index) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, index * 100); // Stagger effect
       }
     });
   }, observerOptions);
 
   // Observe all scroll-animate elements
-  document.querySelectorAll('.scroll-animate').forEach(el => {
-    observer.observe(el);
+  const animateSelectors = [
+    '.scroll-animate',
+    '.scroll-animate-left',
+    '.scroll-animate-right',
+    '.scroll-animate-scale'
+  ];
+  
+  animateSelectors.forEach(selector => {
+    document.querySelectorAll(selector).forEach(el => {
+      observer.observe(el);
+    });
   });
 
 
@@ -676,3 +780,66 @@ body.loaded .baseet-loader {
 # Baseet Studio
 
 Welcome to Baseet Studio, your premier digital innovation partner.
+
+/* Professional Navbar Hover Effects */
+nav a, nav button {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+nav a::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #496BC1 0%, #FBCD37 100%);
+  transform: translateX(-50%);
+  transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+nav a:hover::before {
+  width: 100%;
+}
+
+nav a:hover {
+  color: #496BC1;
+  transform: translateY(-2px);
+}
+
+nav button:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(73, 107, 193, 0.4);
+}
+
+/* Standardized Feature Image Hover Effects */
+#features .group:hover img {
+  transform: scale(1.08) rotate(2deg);
+  filter: brightness(1.1) saturate(1.2);
+}
+
+#features .group img {
+  transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#features .group .absolute {
+  transition: all 0.7s ease;
+}
+
+#features .group:hover .absolute {
+  opacity: 1;
+  filter: blur(25px);
+}
+
+/* Smooth Scroll Behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced smooth scroll with offset for fixed headers */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-padding-top: 80px; /* Adjust based on navbar height */
+  }
+}

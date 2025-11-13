@@ -1,7 +1,7 @@
 enable: true
 
 title: 'Ready to Start Your Project?'
-method: ''
-action: ''
+method: 'POST'
+action: 'https://formspree.io/f/mwpapydq'
 placeholder: 'Enter your email'
 label: 'Get in Touch'

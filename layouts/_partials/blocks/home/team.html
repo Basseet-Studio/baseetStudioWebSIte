@@ -6,7 +6,7 @@
 
     <div class="container mx-auto px-4">
         <!-- Section Header -->
-        <div class="text-center mb-16 animate-fade-in">
+        <div class="text-center mb-16 scroll-animate">
             <h2 class="text-4xl xl:text-5xl font-bold text-stroke mb-4">
                 {{ .title }}
             </h2>
@@ -18,8 +18,8 @@
         <!-- Team Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
             {{- range $index, $member := .members -}}
-            <div
-                class="group team-card bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+            <div class="group team-card hover-3d bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 transform hover:-translate-y-3 scroll-animate-scale"
+                style="animation-delay: {{ mul $index 0.15 }}s;">
                 <!-- Image Container -->
                 <div class="relative overflow-hidden bg-gradient-to-br from-primary/10 to-tertiary/10 aspect-square">
                     <img src="{{ $member.image | relURL }}" alt="{{ $member.name }}"
@@ -44,21 +44,21 @@
                     <div class="flex gap-3">
                         {{- if $member.social.github -}}
                         <a href="{{ $member.social.github }}"
-                            class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110"
+                            class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-all duration-400 hover:scale-125 hover:-rotate-12 magnetic-button"
                             aria-label="GitHub">
                             <i class="fab fa-github"></i>
                         </a>
                         {{- end -}}
                         {{- if $member.social.linkedin -}}
                         <a href="{{ $member.social.linkedin }}"
-                            class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110"
+                            class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-all duration-400 hover:scale-125 hover:-rotate-12 magnetic-button"
                             aria-label="LinkedIn">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
                         {{- end -}}
                         {{- if $member.social.twitter -}}
                         <a href="{{ $member.social.twitter }}"
-                            class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110"
+                            class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-all duration-400 hover:scale-125 hover:-rotate-12 magnetic-button"
                             aria-label="Twitter">
                             <i class="fab fa-twitter"></i>
                         </a>

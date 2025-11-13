@@ -5,10 +5,10 @@ items:
     text: "We're more than just developers – we're your technology partners. With a proven track record of delivering high-quality digital solutions, we combine innovative thinking with technical excellence to bring your vision to life."
     button:
       label: 'Get Started'
-      link: '#contact'
+      link: '#subscribe'
 
   - title: 'Results-Driven Approach'
     text: 'From initial concept to final deployment, we focus on delivering measurable results. Our agile methodology ensures transparency, flexibility, and on-time delivery while maintaining the highest quality standards.'
     button:
       label: 'Learn More'
-      link: '#services'
+      link: '#features'

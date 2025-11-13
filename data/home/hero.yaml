@@ -5,10 +5,10 @@ text: 'Baseet Studio is a leading tech agency specializing in innovative web and
 
 buttons:
   - label: 'Contact Us'
-    link: '#contact'
+    link: '#subscribe'
 
   - label: 'Our Services'
-    link: '#services'
+    link: '#features'
 
 image: 'images/home/hero/bill-sitting.png'
 
