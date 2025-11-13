@@ -1,0 +1,29 @@
+enable: true
+
+title: '<span class="gradient-heading">Comprehensive Digital Solutions</span> for Your Business'
+text: 'At Baseet Studio, we combine creativity with technical expertise to deliver outstanding results that drive your business forward.'
+
+items:
+  - icon: 'fas fa-code'
+    color: '#496BC1'
+    pretitle: 'Custom Development'
+    pretext: 'Tailored Solutions'
+    title: '**Full-Stack** Web Development'
+    text: 'We create powerful, scalable web applications using modern frameworks and best practices. From e-commerce platforms to enterprise solutions, we build digital experiences that perform flawlessly across all devices.'
+    image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=600&fit=crop'
+
+  - icon: 'fas fa-mobile-screen'
+    color: '#FBCD37'
+    pretitle: 'Native & Cross-Platform'
+    pretext: 'Mobile First'
+    title: '**Mobile App** Development'
+    text: 'Transform your ideas into engaging mobile experiences. We develop high-performance iOS and Android applications with intuitive interfaces and seamless functionality that keep users coming back.'
+    image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=600&fit=crop'
+
+  - icon: 'fas fa-lightbulb'
+    color: '#496BC1'
+    pretitle: 'Innovation & Strategy'
+    pretext: 'End-to-End Service'
+    title: '**Digital Transformation** Consulting'
+    text: 'Partner with us to modernize your business processes. We provide strategic consulting, UI/UX design, cloud solutions, and ongoing support to ensure your digital success in a competitive market.'
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop'

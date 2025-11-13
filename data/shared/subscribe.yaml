@@ -1,0 +1,7 @@
+enable: true
+
+title: 'Ready to Start Your Project?'
+method: ''
+action: ''
+placeholder: 'Enter your email'
+label: 'Get in Touch'

@@ -1,0 +1,41 @@
+enable: true
+
+title: 'Meet Our Expert Team'
+subtitle: 'The talented developers behind your digital success'
+
+members:
+  - name: 'Alex Rodriguez'
+    role: 'Senior Full-Stack Developer'
+    bio: 'Specialized in React, Node.js, and cloud architecture with 8+ years of experience building scalable applications.'
+    image: 'https://randomuser.me/api/portraits/men/32.jpg'
+    social:
+      github: '#'
+      linkedin: '#'
+      twitter: '#'
+
+  - name: 'Sarah Chen'
+    role: 'Lead Mobile Developer'
+    bio: 'Expert in iOS and Android development, passionate about creating seamless user experiences across platforms.'
+    image: 'https://randomuser.me/api/portraits/women/44.jpg'
+    social:
+      github: '#'
+      linkedin: '#'
+      twitter: '#'
+
+  - name: 'Marcus Johnson'
+    role: 'UI/UX Designer & Frontend Dev'
+    bio: 'Combines design thinking with coding expertise to craft beautiful, intuitive interfaces that users love.'
+    image: 'https://randomuser.me/api/portraits/men/46.jpg'
+    social:
+      github: '#'
+      linkedin: '#'
+      twitter: '#'
+
+  - name: 'Priya Patel'
+    role: 'DevOps Engineer'
+    bio: 'Ensures smooth deployment and maintains robust infrastructure with expertise in AWS, Docker, and CI/CD.'
+    image: 'https://randomuser.me/api/portraits/women/68.jpg'
+    social:
+      github: '#'
+      linkedin: '#'
+      twitter: '#'

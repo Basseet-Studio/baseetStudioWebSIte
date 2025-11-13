@@ -1,0 +1,15 @@
+baseURL: '/'
+title: 'Baseet Studio'
+summaryLength: 20
+
+# SEO optimizations
+enableRobotsTXT: true
+canonifyURLs: true
+
+# Performance
+timeout: 30000
+enableInlineShortcodes: true
+# services:
+#   googleAnalytics:
+#     id: G-MEASUREMENT_ID
+

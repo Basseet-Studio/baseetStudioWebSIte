@@ -1,0 +1,34 @@
+enable: true
+
+title: 'Transforming Ideas into **Digital Excellence**'
+text: 'Baseet Studio is a leading tech agency specializing in innovative web and mobile solutions. We deliver cutting-edge applications and websites that drive business growth and exceed expectations.'
+
+buttons:
+  - label: 'Contact Us'
+    link: '#contact'
+
+  - label: 'Our Services'
+    link: '#services'
+
+image: 'images/home/hero/bill-sitting.png'
+
+items:
+  - icon: 'fas fa-laptop-code'
+    color: '#496BC1'
+    title: 'Web Development'
+    text: 'Modern, responsive websites built with latest technologies'
+
+  - icon: 'fas fa-mobile-alt'
+    color: '#FBCD37'
+    title: 'Mobile Apps'
+    text: 'Native iOS & Android applications that users love'
+
+  - icon: 'fas fa-paint-brush'
+    color: '#496BC1'
+    title: 'UI/UX Design'
+    text: 'Beautiful, intuitive interfaces that enhance user experience'
+
+  - icon: 'fas fa-rocket'
+    color: '#FBCD37'
+    title: 'Digital Strategy'
+    text: 'Complete solutions from concept to deployment'

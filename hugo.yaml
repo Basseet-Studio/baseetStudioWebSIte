@@ -1,0 +1,59 @@
+theme: 'github.com/writeonlycode/hugo-agency-web'
+languageCode: 'en-us'
+
+# Performance optimizations
+enableRobotsTXT: true
+enableGitInfo: false
+enableEmoji: true
+
+build:
+  buildStats:
+    enable: true
+
+  cachebusters:
+    - source: "assets/notwatching/hugo_stats\\.json"
+      target: 'css'
+
+    - source: "(postcss|tailwind)\\.config\\.js"
+      target: 'css'
+
+# Minification for production
+minify:
+  tdewolff:
+    html:
+      keepWhitespace: false
+    css:
+      version: 3
+      precision: 1
+    js:
+      keepVarNames: false
+      precision: 1
+
+# Image processing
+imaging:
+  quality: 85
+  resampleFilter: 'Lanczos'
+
+module:
+  hugo_version:
+    min: '0.147.8'
+
+  imports:
+    - path: github.com/writeonlycode/hugo-agency-web
+
+  mounts:
+    - source: 'hugo_stats.json'
+      target: 'assets/notwatching/hugo_stats.json'
+      disableWatch: true
+
+    - source: 'assets'
+      target: 'assets'
+
+    - source: 'assets/css/main.css'
+      target: 'assets/css/main.css'
+
+# Disable taxonomies for single-page site
+disableKinds: ['taxonomy', 'term', 'RSS']
+
+# Suppress raw HTML warning for custom styles
+ignoreLogs: ['warning-goldmark-raw-html']

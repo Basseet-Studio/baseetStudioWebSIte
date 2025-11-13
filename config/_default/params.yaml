@@ -1,0 +1,23 @@
+title: 'Baseet Studio'
+description: 'Your trusted partner in digital innovation, creating exceptional web and mobile solutions.'
+images:
+  - 'images/home/hero/bill-sitting.png'
+
+# logo: "images/shared/logo.png"
+
+favicons:
+  themeColor: '#496BC1'
+  backgroundColor: '#EBEBEB'
+  faviconColor: '#171D1C'
+
+contact:
+  - 'info@baseetstudio.com'
+  - '+1 (555) 123-4567'
+
+social:
+  dribbble: '#'
+  instagram: '#'
+  facebook: '#'
+  twitter: '#'
+
+copyright: '© 2025 Baseet Studio. All Rights Reserved'

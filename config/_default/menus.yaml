@@ -1,0 +1,42 @@
+main:
+  - name: 'Home'
+    url: '#hero'
+    weight: 1
+
+  - name: 'About'
+    url: '#highlights'
+    weight: 2
+
+  - name: 'Services'
+    url: '#features'
+    weight: 3
+
+  - name: 'Clients'
+    url: '#clients'
+    weight: 4
+
+buttons:
+  - name: 'Contact Us'
+    url: '#subscribe'
+    weight: 5
+
+footer:
+  - name: 'Home'
+    url: '#hero'
+    weight: 1
+
+  - name: 'About'
+    url: '#highlights'
+    weight: 2
+
+  - name: 'Services'
+    url: '#features'
+    weight: 3
+
+  - name: 'Clients'
+    url: '#clients'
+    weight: 4
+
+  - name: 'Contact'
+    url: '#subscribe'
+    weight: 5

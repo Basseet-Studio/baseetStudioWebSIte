@@ -1,0 +1,28 @@
+{
+  "name": "baseet-studio-website",
+  "version": "1.0.0",
+  "description": "Baseet Studio - Digital Innovation Agency",
+  "scripts": {
+    "dev": "hugo server",
+    "build": "hugo --minify --cleanDestinationDir",
+    "preview": "hugo server --buildFuture --buildDrafts",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.1.17",
+    "@tailwindcss/cli": "^4.1.17",
+    "@tailwindcss/typography": "^0.5.19",
+    "autoprefixer": "^10.4.20",
+    "prettier": "^3.6.2",
+    "prettier-plugin-go-template": "^0.0.15",
+    "prettier-plugin-tailwindcss": "^0.7.1"
+  },
+  "keywords": [
+    "hugo",
+    "website",
+    "tech-agency",
+    "baseet-studio"
+  ],
+  "author": "Baseet Studio",
+  "license": "MIT"
+}

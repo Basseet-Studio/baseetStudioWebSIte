@@ -1,0 +1,26 @@
+enable: true
+
+contact:
+  title: 'Contact'
+  items:
+    - label: 'info@baseetstudio.com'
+      link: 'mailto:info@baseetstudio.com'
+
+    - label: '+1 (555) 123-4567'
+      link: 'tel:+15551234567'
+
+social:
+  - title: 'Facebook'
+    icon: 'fa-brands fa-facebook'
+    link: '#'
+  - title: 'Twitter'
+    icon: 'fa-brands fa-twitter'
+    link: '#'
+  - title: 'Instagram'
+    icon: 'fa-brands fa-instagram'
+    link: '#'
+  - title: 'LinkedIn'
+    icon: 'fa-brands fa-linkedin'
+    link: '#'
+
+copyright: 'Copyright © 2025 Baseet Studio. All Rights Reserved'
