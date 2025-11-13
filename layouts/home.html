@@ -473,7 +473,7 @@
 
             const scrollY = window.scrollY || window.pageYOffset;
 
-            // Animation completes at 100% (350px - faster)
+            // Animation completes at 350px scroll distance
             if (scrollY >= 350 && !animationComplete) {
                 animationComplete = true;
                 scrolled = true;
@@ -492,7 +492,7 @@
                     title.style.transform = 'scale(1.2)';
                 }
 
-                // Wait for final reveal, then start cinematic cross-fade
+                // 10ms pause before cinematic cross-fade begins
                 setTimeout(() => {
                     // Trigger cross-fade transition
                     document.body.classList.add('revealing');
@@ -505,7 +505,7 @@
                         });
                     });
 
-                    // Complete transition after animation finishes
+                    // Complete transition after 800ms (800ms duration + cleanup)
                     setTimeout(() => {
                         document.body.classList.add('loaded');
 
@@ -524,12 +524,12 @@
             }
         }
 
-        // Parallax effect on scroll before fully scrolled
+        // Parallax effect on scroll before animation completes
         function parallaxClouds() {
             if (scrolled) return;
 
             const scrollY = window.scrollY || window.pageYOffset;
-            // Faster animation range (0 to 350px)
+            // Animation range: 0px to 350px scroll distance
             const scrollPercent = Math.min(scrollY / 350, 1);
 
             // Smooth easing function for better animation
