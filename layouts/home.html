@@ -473,8 +473,8 @@
 
             const scrollY = window.scrollY || window.pageYOffset;
 
-            // Animation completes at 350px scroll distance
-            if (scrollY >= 350 && !animationComplete) {
+            // Animation completes at 400px scroll distance
+            if (scrollY >= 400 && !animationComplete) {
                 animationComplete = true;
                 scrolled = true;
 
@@ -520,7 +520,7 @@
                             mainContent.style.willChange = 'auto';
                         }
                     }, 800);
-                }, 10);
+                }, 15);
             }
         }
 
@@ -529,8 +529,8 @@
             if (scrolled) return;
 
             const scrollY = window.scrollY || window.pageYOffset;
-            // Animation range: 0px to 350px scroll distance
-            const scrollPercent = Math.min(scrollY / 350, 1);
+            // Animation range: 0px to 400px scroll distance
+            const scrollPercent = Math.min(scrollY / 400, 1);
 
             // Smooth easing function for better animation
             const easeOut = 1 - Math.pow(1 - scrollPercent, 3);
