@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "Baseet Studio - Digital Innovation Agency",
   "scripts": {
-    "dev": "hugo server",
-    "build": "hugo --minify --cleanDestinationDir",
-    "preview": "hugo server --buildFuture --buildDrafts",
-    "format": "prettier --write ."
+    "dev": "node ./scripts/generate-jsconfig.js && hugo server",
+    "build": "node ./scripts/generate-jsconfig.js && hugo --minify --cleanDestinationDir",
+    "preview": "node ./scripts/generate-jsconfig.js && hugo server --buildFuture --buildDrafts",
+    "format": "prettier --write .",
+    "generate-jsconfig": "node ./scripts/generate-jsconfig.js",
+    "postinstall": "node ./scripts/generate-jsconfig.js"
   },
   "devDependencies": {
     "tailwindcss": "^4.1.17",
