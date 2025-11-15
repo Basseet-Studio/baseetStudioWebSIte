@@ -3,12 +3,12 @@ main:
     url: '#hero'
     weight: 1
 
-  - name: 'About'
-    url: '#highlights'
-    weight: 2
-
   - name: 'Services'
     url: '#features'
+    weight: 2
+
+  - name: 'About'
+    url: '#highlights'
     weight: 3
 
   - name: 'Clients'
@@ -25,12 +25,12 @@ footer:
     url: '#hero'
     weight: 1
 
-  - name: 'About'
-    url: '#highlights'
-    weight: 2
-
   - name: 'Services'
     url: '#features'
+    weight: 2
+
+  - name: 'About'
+    url: '#highlights'
     weight: 3
 
   - name: 'Clients'
