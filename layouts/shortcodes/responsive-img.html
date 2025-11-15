@@ -1,0 +1,34 @@
+{{/*
+Responsive image shortcode
+Usage: {{
+< responsive-img src="images/foo.jpg" alt="Alt text" class="mx-auto" />}}
+*/}}
+{{ $src := .Get "src" }}
+{{ $alt := .Get "alt" | default "" }}
+{{ $class := .Get "class" | default "" }}
+{{ $sizes := .Get "sizes" | default "(max-width: 768px) 100vw, 50vw" }}
+
+{{ $isExternal := or (strings.HasPrefix $src "http://") (strings.HasPrefix $src "https://") }}
+
+{{ if $isExternal }}
+<picture class="{{ $class }}">
+    <img src="{{ $src }}" alt="{{ $alt }}" loading="lazy" decoding="async" sizes="{{ $sizes }}" class="w-full h-auto" />
+</picture>
+{{ else }}
+{{ $image := resources.Get $src }}
+{{ if not $image }}
+<img src="{{ $src | relURL }}" alt="{{ $alt }}" class="{{ $class }}" loading="lazy" decoding="async" />
+{{ else }}
+{{ $small := $image.Fit "480x" | resources.Convert "image/webp" }}
+{{ $medium := $image.Fit "800x" | resources.Convert "image/webp" }}
+{{ $large := $image.Fit "1200x" | resources.Convert "image/webp" }}
+{{ $fallback := $image.Fit "800x" }}
+<picture class="{{ $class }}">
+    <source type="image/webp"
+        srcset="{{ $small.Permalink }} 480w, {{ $medium.Permalink }} 800w, {{ $large.Permalink }} 1200w"
+        sizes="{{ $sizes }}">
+    <img src="{{ $fallback.Permalink }}" alt="{{ $alt }}" loading="lazy" decoding="async" sizes="{{ $sizes }}"
+        class="w-full h-auto" width="{{ $fallback.Width }}" height="{{ $fallback.Height }}">
+</picture>
+{{ end }}
+{{ end }}

@@ -1,649 +1,655 @@
 {{ define "main" }}
 
-<style>
-    /* ==========================================
+<!-- Skip to content for keyboard users -->
+<a class="sr-only focus:not-sr-only inline-block p-3 bg-white text-primary rounded-md shadow-lg z-50"
+    href="#mainContent">Skip to content</a>
+<main id="mainContent">
+
+    <style>
+        /* ==========================================
    BASEET STUDIO LOADER WITH CLOUDS
    ========================================== */
 
-    .baseet-loader {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 9999;
-        overflow: hidden;
-        transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-
-    .baseet-loader.scrolled {
-        opacity: 0;
-        transform: translateY(-100%);
-        pointer-events: none;
-    }
-
-    /* Main Title */
-    .baseet-title {
-        position: relative;
-        z-index: 2;
-        text-align: center;
-        perspective: 1000px;
-    }
-
-    .baseet-title h1 {
-        font-size: clamp(3rem, 8vw, 8rem);
-        font-weight: 900;
-        letter-spacing: 0.1em;
-        background: linear-gradient(135deg, #ffffff 0%, #496BC1 50%, #FBCD37 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-shadow: 0 0 80px rgba(73, 107, 193, 0.5);
-        animation: titlePulse 3s ease-in-out infinite;
-        filter: blur(8px);
-        transition: filter 0.6s ease, transform 0.6s ease;
-    }
-
-    .baseet-loader.reveal .baseet-title h1 {
-        filter: blur(0px);
-        transform: scale(1.05);
-    }
-
-    @keyframes titlePulse {
-
-        0%,
-        100% {
-            text-shadow: 0 0 80px rgba(73, 107, 193, 0.5),
-                0 0 40px rgba(251, 205, 55, 0.3);
+        .baseet-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            overflow: hidden;
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
-        50% {
-            text-shadow: 0 0 120px rgba(73, 107, 193, 0.8),
-                0 0 60px rgba(251, 205, 55, 0.5);
-        }
-    }
-
-    /* Cloud Layers */
-    .cloud-layer {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-    }
-
-    .cloud-back {
-        z-index: 1;
-    }
-
-    .cloud-front {
-        z-index: 3;
-    }
-
-    /* Individual Clouds - 3D-style with shadows and gradients */
-    .cloud {
-        position: absolute;
-        background: linear-gradient(135deg,
-                rgba(255, 255, 255, 0.9) 0%,
-                rgba(255, 255, 255, 0.6) 50%,
-                rgba(200, 220, 255, 0.4) 100%);
-        border-radius: 100px;
-        filter: blur(2px);
-        box-shadow:
-            0 10px 50px rgba(255, 255, 255, 0.3),
-            inset 0 -20px 40px rgba(150, 180, 255, 0.2);
-        animation: cloudFloat 20s ease-in-out infinite;
-        transition: transform 0.3s ease-out, opacity 0.5s ease-out;
-    }
-
-    .cloud::before,
-    .cloud::after {
-        content: '';
-        position: absolute;
-        background: inherit;
-        border-radius: 100px;
-        filter: blur(1px);
-    }
-
-    /* Cloud 1 - Large back cloud */
-    .cloud-1 {
-        width: 350px;
-        height: 120px;
-        top: 15%;
-        left: 10%;
-        animation-delay: 0s;
-        animation-duration: 25s;
-    }
-
-    .cloud-1::before {
-        width: 180px;
-        height: 180px;
-        top: -80px;
-        left: 50px;
-    }
-
-    .cloud-1::after {
-        width: 200px;
-        height: 150px;
-        top: -60px;
-        right: 40px;
-    }
-
-    /* Cloud 2 - Medium back cloud */
-    .cloud-2 {
-        width: 280px;
-        height: 100px;
-        top: 60%;
-        right: 15%;
-        animation-delay: -5s;
-        animation-duration: 30s;
-    }
-
-    .cloud-2::before {
-        width: 140px;
-        height: 140px;
-        top: -60px;
-        left: 40px;
-    }
-
-    .cloud-2::after {
-        width: 160px;
-        height: 120px;
-        top: -50px;
-        right: 30px;
-    }
-
-    /* Cloud 3 - Small back cloud */
-    .cloud-3 {
-        width: 220px;
-        height: 80px;
-        bottom: 20%;
-        left: 25%;
-        animation-delay: -10s;
-        animation-duration: 22s;
-    }
-
-    .cloud-3::before {
-        width: 110px;
-        height: 110px;
-        top: -50px;
-        left: 30px;
-    }
-
-    .cloud-3::after {
-        width: 120px;
-        height: 90px;
-        top: -40px;
-        right: 25px;
-    }
-
-    /* Cloud 4 - Large front cloud (covers title) */
-    .cloud-4 {
-        width: 400px;
-        height: 140px;
-        top: 30%;
-        left: -5%;
-        opacity: 0.95;
-        animation-delay: -3s;
-        animation-duration: 28s;
-        filter: blur(3px);
-    }
-
-    .cloud-4::before {
-        width: 200px;
-        height: 200px;
-        top: -90px;
-        left: 60px;
-    }
-
-    .cloud-4::after {
-        width: 220px;
-        height: 170px;
-        top: -70px;
-        right: 50px;
-    }
-
-    /* Cloud 5 - Medium front cloud */
-    .cloud-5 {
-        width: 320px;
-        height: 110px;
-        top: 50%;
-        right: 10%;
-        opacity: 0.9;
-        animation-delay: -8s;
-        animation-duration: 26s;
-        filter: blur(2.5px);
-    }
-
-    .cloud-5::before {
-        width: 160px;
-        height: 160px;
-        top: -70px;
-        left: 50px;
-    }
-
-    .cloud-5::after {
-        width: 180px;
-        height: 140px;
-        top: -60px;
-        right: 40px;
-    }
-
-    /* Cloud 6 - Small front cloud */
-    .cloud-6 {
-        width: 260px;
-        height: 90px;
-        bottom: 25%;
-        right: 20%;
-        opacity: 0.85;
-        animation-delay: -12s;
-        animation-duration: 24s;
-        filter: blur(2px);
-    }
-
-    .cloud-6::before {
-        width: 130px;
-        height: 130px;
-        top: -60px;
-        left: 35px;
-    }
-
-    .cloud-6::after {
-        width: 140px;
-        height: 110px;
-        top: -50px;
-        right: 30px;
-    }
-
-    /* Cloud floating animation */
-    @keyframes cloudFloat {
-
-        0%,
-        100% {
-            transform: translateX(0) translateY(0) scale(1);
+        .baseet-loader.scrolled {
+            opacity: 0;
+            transform: translateY(-100%);
+            pointer-events: none;
         }
 
-        25% {
-            transform: translateX(30px) translateY(-20px) scale(1.05);
+        /* Main Title */
+        .baseet-title {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            perspective: 1000px;
         }
 
-        50% {
-            transform: translateX(0) translateY(-40px) scale(1);
+        .baseet-title h1 {
+            font-size: clamp(3rem, 8vw, 8rem);
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            background: linear-gradient(135deg, #ffffff 0%, #496BC1 50%, #FBCD37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 80px rgba(73, 107, 193, 0.5);
+            animation: titlePulse 3s ease-in-out infinite;
+            filter: blur(8px);
+            transition: filter 0.6s ease, transform 0.6s ease;
         }
 
-        75% {
-            transform: translateX(-30px) translateY(-20px) scale(0.95);
-        }
-    }
-
-    /* Scroll Indicator */
-    .scroll-indicator {
-        position: absolute;
-        bottom: 40px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 4;
-        text-align: center;
-        color: rgba(255, 255, 255, 0.8);
-        font-size: 0.9rem;
-        font-weight: 500;
-        letter-spacing: 0.1em;
-        animation: scrollBounce 2s ease-in-out infinite;
-        opacity: 1;
-        transition: opacity 0.5s ease;
-    }
-
-    .baseet-loader.scrolled .scroll-indicator {
-        opacity: 0;
-    }
-
-    .scroll-indicator i {
-        display: block;
-        margin-top: 10px;
-        font-size: 1.5rem;
-        color: #FBCD37;
-    }
-
-    @keyframes scrollBounce {
-
-        0%,
-        100% {
-            transform: translateX(-50%) translateY(0);
+        .baseet-loader.reveal .baseet-title h1 {
+            filter: blur(0px);
+            transform: scale(1.05);
         }
 
-        50% {
-            transform: translateX(-50%) translateY(-15px);
-        }
-    }
+        @keyframes titlePulse {
 
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
+            0%,
+            100% {
+                text-shadow: 0 0 80px rgba(73, 107, 193, 0.5),
+                    0 0 40px rgba(251, 205, 55, 0.3);
+            }
+
+            50% {
+                text-shadow: 0 0 120px rgba(73, 107, 193, 0.8),
+                    0 0 60px rgba(251, 205, 55, 0.5);
+            }
+        }
+
+        /* Cloud Layers */
+        .cloud-layer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+        }
+
+        .cloud-back {
+            z-index: 1;
+        }
+
+        .cloud-front {
+            z-index: 3;
+        }
+
+        /* Individual Clouds - 3D-style with shadows and gradients */
         .cloud {
-            transform: scale(0.7);
+            position: absolute;
+            background: linear-gradient(135deg,
+                    rgba(255, 255, 255, 0.9) 0%,
+                    rgba(255, 255, 255, 0.6) 50%,
+                    rgba(200, 220, 255, 0.4) 100%);
+            border-radius: 100px;
+            filter: blur(2px);
+            box-shadow:
+                0 10px 50px rgba(255, 255, 255, 0.3),
+                inset 0 -20px 40px rgba(150, 180, 255, 0.2);
+            animation: cloudFloat 20s ease-in-out infinite;
+            transition: transform 0.3s ease-out, opacity 0.5s ease-out;
         }
 
+        .cloud::before,
+        .cloud::after {
+            content: '';
+            position: absolute;
+            background: inherit;
+            border-radius: 100px;
+            filter: blur(1px);
+        }
+
+        /* Cloud 1 - Large back cloud */
         .cloud-1 {
-            top: 10%;
-            left: -10%;
+            width: 350px;
+            height: 120px;
+            top: 15%;
+            left: 10%;
+            animation-delay: 0s;
+            animation-duration: 25s;
         }
 
+        .cloud-1::before {
+            width: 180px;
+            height: 180px;
+            top: -80px;
+            left: 50px;
+        }
+
+        .cloud-1::after {
+            width: 200px;
+            height: 150px;
+            top: -60px;
+            right: 40px;
+        }
+
+        /* Cloud 2 - Medium back cloud */
         .cloud-2 {
-            top: 55%;
-            right: -10%;
+            width: 280px;
+            height: 100px;
+            top: 60%;
+            right: 15%;
+            animation-delay: -5s;
+            animation-duration: 30s;
         }
 
+        .cloud-2::before {
+            width: 140px;
+            height: 140px;
+            top: -60px;
+            left: 40px;
+        }
+
+        .cloud-2::after {
+            width: 160px;
+            height: 120px;
+            top: -50px;
+            right: 30px;
+        }
+
+        /* Cloud 3 - Small back cloud */
         .cloud-3 {
-            bottom: 15%;
-            left: 15%;
-        }
-
-        .cloud-4 {
-            top: 25%;
-            left: -15%;
-        }
-
-        .cloud-5 {
-            top: 45%;
-            right: -5%;
-        }
-
-        .cloud-6 {
+            width: 220px;
+            height: 80px;
             bottom: 20%;
+            left: 25%;
+            animation-delay: -10s;
+            animation-duration: 22s;
+        }
+
+        .cloud-3::before {
+            width: 110px;
+            height: 110px;
+            top: -50px;
+            left: 30px;
+        }
+
+        .cloud-3::after {
+            width: 120px;
+            height: 90px;
+            top: -40px;
+            right: 25px;
+        }
+
+        /* Cloud 4 - Large front cloud (covers title) */
+        .cloud-4 {
+            width: 400px;
+            height: 140px;
+            top: 30%;
+            left: -5%;
+            opacity: 0.95;
+            animation-delay: -3s;
+            animation-duration: 28s;
+            filter: blur(3px);
+        }
+
+        .cloud-4::before {
+            width: 200px;
+            height: 200px;
+            top: -90px;
+            left: 60px;
+        }
+
+        .cloud-4::after {
+            width: 220px;
+            height: 170px;
+            top: -70px;
+            right: 50px;
+        }
+
+        /* Cloud 5 - Medium front cloud */
+        .cloud-5 {
+            width: 320px;
+            height: 110px;
+            top: 50%;
             right: 10%;
+            opacity: 0.9;
+            animation-delay: -8s;
+            animation-duration: 26s;
+            filter: blur(2.5px);
         }
-    }
 
-    /* Hide loader after scrolling */
-    body.loaded .baseet-loader {
-        display: none;
-    }
-
-    /* Main content wrapper - optimized for performance */
-    .main-content {
-        position: relative;
-        opacity: 0;
-        transform: translate3d(0, 80vh, 0);
-        will-change: transform, opacity;
-        transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-            transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    /* Revealing state - cross-fade begins */
-    body.revealing .main-content {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-    }
-
-    /* Loader fade-out during cross-fade */
-    body.revealing .baseet-loader {
-        opacity: 0;
-        transform: translateY(-5vh);
-        transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-            transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    /* Final loaded state */
-    body.loaded .main-content {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-        will-change: auto;
-    }
-
-    /* Performance optimizations */
-    @media (prefers-reduced-motion: reduce) {
-
-        .main-content,
-        body.revealing .baseet-loader {
-            transition-duration: 0.3s;
+        .cloud-5::before {
+            width: 160px;
+            height: 160px;
+            top: -70px;
+            left: 50px;
         }
-    }
 
-    /* Mobile optimization */
-    @media (max-width: 768px) {
+        .cloud-5::after {
+            width: 180px;
+            height: 140px;
+            top: -60px;
+            right: 40px;
+        }
+
+        /* Cloud 6 - Small front cloud */
+        .cloud-6 {
+            width: 260px;
+            height: 90px;
+            bottom: 25%;
+            right: 20%;
+            opacity: 0.85;
+            animation-delay: -12s;
+            animation-duration: 24s;
+            filter: blur(2px);
+        }
+
+        .cloud-6::before {
+            width: 130px;
+            height: 130px;
+            top: -60px;
+            left: 35px;
+        }
+
+        .cloud-6::after {
+            width: 140px;
+            height: 110px;
+            top: -50px;
+            right: 30px;
+        }
+
+        /* Cloud floating animation */
+        @keyframes cloudFloat {
+
+            0%,
+            100% {
+                transform: translateX(0) translateY(0) scale(1);
+            }
+
+            25% {
+                transform: translateX(30px) translateY(-20px) scale(1.05);
+            }
+
+            50% {
+                transform: translateX(0) translateY(-40px) scale(1);
+            }
+
+            75% {
+                transform: translateX(-30px) translateY(-20px) scale(0.95);
+            }
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 4;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            animation: scrollBounce 2s ease-in-out infinite;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        .baseet-loader.scrolled .scroll-indicator {
+            opacity: 0;
+        }
+
+        .scroll-indicator i {
+            display: block;
+            margin-top: 10px;
+            font-size: 1.5rem;
+            color: #FBCD37;
+        }
+
+        @keyframes scrollBounce {
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(-15px);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .cloud {
+                transform: scale(0.7);
+            }
+
+            .cloud-1 {
+                top: 10%;
+                left: -10%;
+            }
+
+            .cloud-2 {
+                top: 55%;
+                right: -10%;
+            }
+
+            .cloud-3 {
+                bottom: 15%;
+                left: 15%;
+            }
+
+            .cloud-4 {
+                top: 25%;
+                left: -15%;
+            }
+
+            .cloud-5 {
+                top: 45%;
+                right: -5%;
+            }
+
+            .cloud-6 {
+                bottom: 20%;
+                right: 10%;
+            }
+        }
+
+        /* Hide loader after scrolling */
+        body.loaded .baseet-loader {
+            display: none;
+        }
+
+        /* Main content wrapper - optimized for performance */
         .main-content {
-            transform: translate3d(0, 50vh, 0);
+            position: relative;
+            opacity: 0;
+            transform: translate3d(0, 80vh, 0);
+            will-change: transform, opacity;
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
-    }
-</style>
 
-<!-- Full Screen Loading Animation with Clouds -->
-<div id="baseet-loader" class="baseet-loader">
-    <!-- Background clouds (behind text) -->
-    <div class="cloud-layer cloud-back">
-        <div class="cloud cloud-1"></div>
-        <div class="cloud cloud-2"></div>
-        <div class="cloud cloud-3"></div>
+        /* Revealing state - cross-fade begins */
+        body.revealing .main-content {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+
+        /* Loader fade-out during cross-fade */
+        body.revealing .baseet-loader {
+            opacity: 0;
+            transform: translateY(-5vh);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Final loaded state */
+        body.loaded .main-content {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+            will-change: auto;
+        }
+
+        /* Performance optimizations */
+        @media (prefers-reduced-motion: reduce) {
+
+            .main-content,
+            body.revealing .baseet-loader {
+                transition-duration: 0.3s;
+            }
+        }
+
+        /* Mobile optimization */
+        @media (max-width: 768px) {
+            .main-content {
+                transform: translate3d(0, 50vh, 0);
+            }
+        }
+    </style>
+
+    <!-- Full Screen Loading Animation with Clouds -->
+    <div id="baseet-loader" class="baseet-loader">
+        <!-- Background clouds (behind text) -->
+        <div class="cloud-layer cloud-back">
+            <div class="cloud cloud-1"></div>
+            <div class="cloud cloud-2"></div>
+            <div class="cloud cloud-3"></div>
+        </div>
+
+        <!-- Main title -->
+        <div class="baseet-title">
+            <h1>BASEET STUDIO</h1>
+        </div>
+
+        <!-- Foreground clouds (in front of text) -->
+        <div class="cloud-layer cloud-front">
+            <div class="cloud cloud-4"></div>
+            <div class="cloud cloud-5"></div>
+            <div class="cloud cloud-6"></div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="scroll-indicator">
+            <span>Scroll to explore</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
     </div>
 
-    <!-- Main title -->
-    <div class="baseet-title">
-        <h1>BASEET STUDIO</h1>
+    <!-- Main content wrapper for slide-up animation -->
+    <div class="main-content">
+        {{ with site.Data.home.hero }}{{ if .enable }}{{ partial "blocks/home/hero" . }}{{ end }}{{ end }}
+        {{ with site.Data.home.features }}{{ if .enable }}{{ partial "blocks/home/features" . }}{{ end }}{{ end }}
+        {{ with site.Data.home.team }}{{ if .enable }}{{ partial "blocks/home/team" . }}{{ end }}{{ end }}
+        {{ with site.Data.home.highlights }}{{ if .enable }}{{ partial "blocks/home/highlights" . }}{{ end }}{{ end }}
+        {{ with site.Data.home.clients }}{{ if .enable }}{{ partial "blocks/home/clients" . }}{{ end }}{{ end }}
     </div>
 
-    <!-- Foreground clouds (in front of text) -->
-    <div class="cloud-layer cloud-front">
-        <div class="cloud cloud-4"></div>
-        <div class="cloud cloud-5"></div>
-        <div class="cloud cloud-6"></div>
-    </div>
+    <script>
+        // Baseet Studio Loader - Cloud Animation on Scroll
+        (function () {
+            const loader = document.getElementById('baseet-loader');
+            const mainContent = document.querySelector('.main-content');
+            const title = document.querySelector('.baseet-title h1');
+            const cloudBack = document.querySelector('.cloud-back');
+            const cloudFront = document.querySelector('.cloud-front');
 
-    <!-- Scroll indicator -->
-    <div class="scroll-indicator">
-        <span>Scroll to explore</span>
-        <i class="fas fa-chevron-down"></i>
-    </div>
-</div>
+            let scrolled = false;
+            let animationComplete = false;
 
-<!-- Main content wrapper for slide-up animation -->
-<div class="main-content">
-    {{ with site.Data.home.hero }}{{ if .enable }}{{ partial "blocks/home/hero" . }}{{ end }}{{ end }}
-    {{ with site.Data.home.features }}{{ if .enable }}{{ partial "blocks/home/features" . }}{{ end }}{{ end }}
-    {{ with site.Data.home.team }}{{ if .enable }}{{ partial "blocks/home/team" . }}{{ end }}{{ end }}
-    {{ with site.Data.home.highlights }}{{ if .enable }}{{ partial "blocks/home/highlights" . }}{{ end }}{{ end }}
-    {{ with site.Data.home.clients }}{{ if .enable }}{{ partial "blocks/home/clients" . }}{{ end }}{{ end }}
-</div>
+            // Add spacer to allow scrolling - shorter for faster animation
+            const spacer = document.createElement('div');
+            spacer.style.height = '120vh';
+            spacer.style.pointerEvents = 'none';
+            spacer.id = 'animation-spacer';
+            document.body.appendChild(spacer);
 
-<script>
-    // Baseet Studio Loader - Cloud Animation on Scroll
-    (function () {
-        const loader = document.getElementById('baseet-loader');
-        const mainContent = document.querySelector('.main-content');
-        const title = document.querySelector('.baseet-title h1');
-        const cloudBack = document.querySelector('.cloud-back');
-        const cloudFront = document.querySelector('.cloud-front');
+            // Handle scroll to animate clouds away
+            function handleScroll() {
+                if (scrolled) return;
 
-        let scrolled = false;
-        let animationComplete = false;
+                const scrollY = window.scrollY || window.pageYOffset;
 
-        // Add spacer to allow scrolling - shorter for faster animation
-        const spacer = document.createElement('div');
-        spacer.style.height = '120vh';
-        spacer.style.pointerEvents = 'none';
-        spacer.id = 'animation-spacer';
-        document.body.appendChild(spacer);
+                // Animation completes at 400px scroll distance
+                if (scrollY >= 400 && !animationComplete) {
+                    animationComplete = true;
+                    scrolled = true;
 
-        // Handle scroll to animate clouds away
-        function handleScroll() {
-            if (scrolled) return;
+                    // Ensure final state is reached
+                    if (cloudBack) {
+                        cloudBack.style.transform = 'translateY(-300px) scale(0.3)';
+                        cloudBack.style.opacity = '0';
+                    }
+                    if (cloudFront) {
+                        cloudFront.style.transform = 'translateY(500px) scale(2)';
+                        cloudFront.style.opacity = '0';
+                    }
+                    if (title) {
+                        title.style.filter = 'blur(0px)';
+                        title.style.transform = 'scale(1.2)';
+                    }
 
-            const scrollY = window.scrollY || window.pageYOffset;
-
-            // Animation completes at 400px scroll distance
-            if (scrollY >= 400 && !animationComplete) {
-                animationComplete = true;
-                scrolled = true;
-
-                // Ensure final state is reached
-                if (cloudBack) {
-                    cloudBack.style.transform = 'translateY(-300px) scale(0.3)';
-                    cloudBack.style.opacity = '0';
-                }
-                if (cloudFront) {
-                    cloudFront.style.transform = 'translateY(500px) scale(2)';
-                    cloudFront.style.opacity = '0';
-                }
-                if (title) {
-                    title.style.filter = 'blur(0px)';
-                    title.style.transform = 'scale(1.2)';
-                }
-
-                // 10ms pause before cinematic cross-fade begins
-                setTimeout(() => {
-                    // Trigger cross-fade transition
-                    document.body.classList.add('revealing');
-
-                    // Use requestAnimationFrame for smooth 60fps animation
-                    requestAnimationFrame(() => {
-                        requestAnimationFrame(() => {
-                            // Instantly reset scroll during transition (invisible under fade)
-                            window.scrollTo({ top: 0, behavior: 'instant' });
-                        });
-                    });
-
-                    // Complete transition after 800ms (800ms duration + cleanup)
+                    // 10ms pause before cinematic cross-fade begins
                     setTimeout(() => {
-                        document.body.classList.add('loaded');
+                        // Trigger cross-fade transition
+                        document.body.classList.add('revealing');
 
-                        // Clean up spacer
-                        if (spacer && spacer.parentNode) {
-                            spacer.parentNode.removeChild(spacer);
-                        }
+                        // Use requestAnimationFrame for smooth 60fps animation
+                        requestAnimationFrame(() => {
+                            requestAnimationFrame(() => {
+                                // Instantly reset scroll during transition (invisible under fade)
+                                window.scrollTo({ top: 0, behavior: 'instant' });
+                            });
+                        });
 
-                        // Re-enable body scroll and remove will-change
-                        document.body.style.overflow = 'auto';
-                        if (mainContent) {
-                            mainContent.style.willChange = 'auto';
-                        }
-                    }, 800);
-                }, 15);
-            }
-        }
+                        // Complete transition after 800ms (800ms duration + cleanup)
+                        setTimeout(() => {
+                            document.body.classList.add('loaded');
 
-        // Parallax effect on scroll before animation completes
-        function parallaxClouds() {
-            if (scrolled) return;
+                            // Clean up spacer
+                            if (spacer && spacer.parentNode) {
+                                spacer.parentNode.removeChild(spacer);
+                            }
 
-            const scrollY = window.scrollY || window.pageYOffset;
-            // Animation range: 0px to 400px scroll distance
-            const scrollPercent = Math.min(scrollY / 400, 1);
-
-            // Smooth easing function for better animation
-            const easeOut = 1 - Math.pow(1 - scrollPercent, 3);
-
-            // Move back clouds slower (away from screen) - enhanced movement
-            if (cloudBack) {
-                const translateY = easeOut * -300;
-                const scale = 1 - easeOut * 0.7;
-                const opacity = Math.max(0, 1 - easeOut * 1.5);
-                cloudBack.style.transform = `translateY(${translateY}px) scale(${scale})`;
-                cloudBack.style.opacity = opacity;
-                cloudBack.style.transition = 'none';
+                            // Re-enable body scroll and remove will-change
+                            document.body.style.overflow = 'auto';
+                            if (mainContent) {
+                                mainContent.style.willChange = 'auto';
+                            }
+                        }, 800);
+                    }, 15);
+                }
             }
 
-            // Move front clouds faster (toward viewer then away) - enhanced movement
-            if (cloudFront) {
-                const translateY = easeOut * 500;
-                const scale = 1 + easeOut * 1;
-                const opacity = Math.max(0, 1 - easeOut * 1.8);
-                cloudFront.style.transform = `translateY(${translateY}px) scale(${scale})`;
-                cloudFront.style.opacity = opacity;
-                cloudFront.style.transition = 'none';
-            }
+            // Parallax effect on scroll before animation completes
+            function parallaxClouds() {
+                if (scrolled) return;
 
-            // Clear title blur as clouds move - gradual clarity
-            if (title) {
-                const blurAmount = Math.max(0, 8 - easeOut * 8);
-                const scale = 1 + easeOut * 0.2;
-                title.style.filter = `blur(${blurAmount}px)`;
-                title.style.transform = `scale(${scale})`;
-                title.style.transition = 'none';
+                const scrollY = window.scrollY || window.pageYOffset;
+                // Animation range: 0px to 400px scroll distance
+                const scrollPercent = Math.min(scrollY / 400, 1);
 
-                // Add glow effect as it becomes clearer
-                const glowIntensity = easeOut * 150;
-                title.style.textShadow = `0 0 ${glowIntensity}px rgba(73, 107, 193, ${easeOut * 0.8}),
+                // Smooth easing function for better animation
+                const easeOut = 1 - Math.pow(1 - scrollPercent, 3);
+
+                // Move back clouds slower (away from screen) - enhanced movement
+                if (cloudBack) {
+                    const translateY = easeOut * -300;
+                    const scale = 1 - easeOut * 0.7;
+                    const opacity = Math.max(0, 1 - easeOut * 1.5);
+                    cloudBack.style.transform = `translateY(${translateY}px) scale(${scale})`;
+                    cloudBack.style.opacity = opacity;
+                    cloudBack.style.transition = 'none';
+                }
+
+                // Move front clouds faster (toward viewer then away) - enhanced movement
+                if (cloudFront) {
+                    const translateY = easeOut * 500;
+                    const scale = 1 + easeOut * 1;
+                    const opacity = Math.max(0, 1 - easeOut * 1.8);
+                    cloudFront.style.transform = `translateY(${translateY}px) scale(${scale})`;
+                    cloudFront.style.opacity = opacity;
+                    cloudFront.style.transition = 'none';
+                }
+
+                // Clear title blur as clouds move - gradual clarity
+                if (title) {
+                    const blurAmount = Math.max(0, 8 - easeOut * 8);
+                    const scale = 1 + easeOut * 0.2;
+                    title.style.filter = `blur(${blurAmount}px)`;
+                    title.style.transform = `scale(${scale})`;
+                    title.style.transition = 'none';
+
+                    // Add glow effect as it becomes clearer
+                    const glowIntensity = easeOut * 150;
+                    title.style.textShadow = `0 0 ${glowIntensity}px rgba(73, 107, 193, ${easeOut * 0.8}),
                                           0 0 ${glowIntensity / 2}px rgba(251, 205, 55, ${easeOut * 0.6})`;
+                }
+
+                // Add reveal class when partially scrolled
+                if (scrollPercent > 0.3 && !loader.classList.contains('reveal')) {
+                    loader.classList.add('reveal');
+                }
             }
 
-            // Add reveal class when partially scrolled
-            if (scrollPercent > 0.3 && !loader.classList.contains('reveal')) {
-                loader.classList.add('reveal');
-            }
-        }
+            // Smooth scroll handling with requestAnimationFrame
+            let ticking = false;
+            window.addEventListener('scroll', function () {
+                if (!ticking) {
+                    window.requestAnimationFrame(function () {
+                        parallaxClouds();
+                        handleScroll();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }, { passive: true });
 
-        // Smooth scroll handling with requestAnimationFrame
-        let ticking = false;
-        window.addEventListener('scroll', function () {
-            if (!ticking) {
-                window.requestAnimationFrame(function () {
-                    parallaxClouds();
-                    handleScroll();
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        }, { passive: true });
+            // Allow manual start with click or touch
+            loader.addEventListener('click', function () {
+                if (!scrolled) {
+                    window.scrollTo({ top: 600, behavior: 'smooth' });
+                }
+            });
 
-        // Allow manual start with click or touch
-        loader.addEventListener('click', function () {
-            if (!scrolled) {
-                window.scrollTo({ top: 600, behavior: 'smooth' });
-            }
-        });
-
-        // Also allow wheel events to trigger scroll
-        loader.addEventListener('wheel', function (e) {
-            if (e.deltaY > 0 && !scrolled) {
-                e.preventDefault();
-                const currentScroll = window.scrollY || window.pageYOffset;
-                window.scrollTo({ top: currentScroll + 100, behavior: 'smooth' });
-            }
-        }, { passive: false });
-
-        // Touch support for mobile
-        let touchStartY = 0;
-        loader.addEventListener('touchstart', function (e) {
-            touchStartY = e.touches[0].clientY;
-        }, { passive: true });
-
-        loader.addEventListener('touchmove', function (e) {
-            if (!scrolled) {
-                const touchY = e.touches[0].clientY;
-                const deltaY = touchStartY - touchY;
-                if (deltaY > 50) {
+            // Also allow wheel events to trigger scroll
+            loader.addEventListener('wheel', function (e) {
+                if (e.deltaY > 0 && !scrolled) {
+                    e.preventDefault();
                     const currentScroll = window.scrollY || window.pageYOffset;
                     window.scrollTo({ top: currentScroll + 100, behavior: 'smooth' });
                 }
-            }
-        }, { passive: true });
-    })();
-</script>
+            }, { passive: false });
 
-<!-- Performance Optimization Script -->
-{{- $performance := resources.Get "js/performance.js" -}}
-{{- if $performance -}}
-<script src="{{ $performance.Permalink }}" defer fetchpriority="high"></script>
-{{- end -}}
+            // Touch support for mobile
+            let touchStartY = 0;
+            loader.addEventListener('touchstart', function (e) {
+                touchStartY = e.touches[0].clientY;
+            }, { passive: true });
 
-<!-- Enhanced Animations Script -->
-{{- $animations := resources.Get "js/animations.js" -}}
-{{- if $animations -}}
-<script src="{{ $animations.Permalink }}" defer fetchpriority="high"></script>
-{{- end -}}
+            loader.addEventListener('touchmove', function (e) {
+                if (!scrolled) {
+                    const touchY = e.touches[0].clientY;
+                    const deltaY = touchStartY - touchY;
+                    if (deltaY > 50) {
+                        const currentScroll = window.scrollY || window.pageYOffset;
+                        window.scrollTo({ top: currentScroll + 100, behavior: 'smooth' });
+                    }
+                }
+            }, { passive: true });
+        })();
+    </script>
 
-<!-- AJAX Form Handler -->
-{{- $formHandler := resources.Get "js/form-handler.js" -}}
-{{- if $formHandler -}}
-<script src="{{ $formHandler.Permalink }}" defer fetchpriority="low"></script>
-{{- end -}}
+    <!-- Performance Optimization Script -->
+    {{- $performance := resources.Get "js/performance.js" -}}
+    {{- if $performance -}}
+    <script src="{{ $performance.Permalink }}" defer fetchpriority="high"></script>
+    {{- end -}}
 
-<!-- Preconnect to external domains for faster loading -->
-<link rel="preconnect" href="https://images.unsplash.com" crossorigin>
-<link rel="dns-prefetch" href="https://formspree.io">
+    <!-- Enhanced Animations Script -->
+    {{- $animations := resources.Get "js/animations.js" -}}
+    {{- if $animations -}}
+    <script src="{{ $animations.Permalink }}" defer fetchpriority="high"></script>
+    {{- end -}}
+
+    <!-- AJAX Form Handler -->
+    {{- $formHandler := resources.Get "js/form-handler.js" -}}
+    {{- if $formHandler -}}
+    <script src="{{ $formHandler.Permalink }}" defer fetchpriority="low"></script>
+    {{- end -}}
+
+    <!-- Preconnect to external domains for faster loading -->
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+    <link rel="dns-prefetch" href="https://formspree.io">
 
 
+</main>
 {{ end }}
