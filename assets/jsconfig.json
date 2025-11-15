@@ -1,10 +1,12 @@
 {
- "compilerOptions": {
-  "baseUrl": ".",
-  "paths": {
-   "*": [
-    "../../../../../Library/Caches/hugo_cache/modules/filecache/modules/pkg/mod/github.com/writeonlycode/hugo-agency-web@v0.0.0-20250709134630-9b263db5d8f2/assets/*"
-   ]
-  }
- }
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "*": ["./*"]
+    },
+    "lib": ["ES2019", "DOM"],
+    "allowJs": true,
+    "checkJs": false
+  },
+  "exclude": ["node_modules", "public", "resources", ".hugo_build.lock"]
 }

@@ -7,7 +7,12 @@ const content = {
     paths: {
       '*': ['./*'],
     },
+    // Ensure JS runtime globals (Promise, Map, etc) are available in editor
+    lib: ['ES2019', 'DOM'],
+    allowJs: true,
+    checkJs: false,
   },
+  exclude: ['node_modules', 'public', 'resources', '.hugo_build.lock'],
 }
 
 const destDir = path.join(__dirname, '..', 'assets')
