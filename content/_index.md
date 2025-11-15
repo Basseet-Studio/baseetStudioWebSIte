@@ -843,3 +843,54 @@ html {
 scroll-padding-top: 80px; /_ Adjust based on navbar height _/
 }
 }
+
+/_ Performance: Hardware acceleration for animations _/
+.scroll-animate, .hover-3d, .magnetic-button, .group {
+will-change: transform;
+transform: translateZ(0);
+backface-visibility: hidden;
+}
+
+/_ Professional Button Hover Effects _/
+button, a[class_="bg-"] {
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button:hover, a[class_="bg-"]:hover {
+transform: translateY(-2px);
+box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+button:active, a[class*="bg-"]:active {
+transform: translateY(0);
+box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/_ Enhanced Image Loading States _/
+img {
+image-rendering: -webkit-optimize-contrast;
+image-rendering: crisp-edges;
+}
+
+img[loading="lazy"] {
+background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+background-size: 200% 100%;
+}
+
+/_ Accessibility: Focus visible states _/
+\*:focus-visible {
+outline: 2px solid #496BC1;
+outline-offset: 3px;
+border-radius: 4px;
+}
+
+/_ Text Selection Styling _/
+::selection {
+background-color: #496BC1;
+color: white;
+}
+
+::-moz-selection {
+background-color: #496BC1;
+color: white;
+}

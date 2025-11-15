@@ -24,6 +24,9 @@ Thumbs.db
 .idea/
 *.sw?
 
+# Ignore IDE generated jsconfig in assets if theme or Hugo regenerates it
+assets/jsconfig.json
+
 # Optional: if you use Netlify or Vercel, ignore their local folders
 .netlify/
 .vercel/

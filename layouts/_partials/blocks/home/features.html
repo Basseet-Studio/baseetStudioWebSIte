@@ -51,10 +51,11 @@
                             class="absolute -inset-4 bg-gradient-to-r from-primary/30 to-tertiary/30 rounded-2xl blur-2xl transition-all duration-700 opacity-0 group-hover:opacity-100 group-hover:blur-3xl">
                         </div>
                         <!-- Image container with overlay -->
-                        <div class="relative overflow-hidden rounded-2xl shadow-2xl">
-                            <img src="{{ $item.image | relURL }}" width="1476" height="1022"
+                        <div class="relative overflow-hidden rounded-2xl shadow-2xl bg-gray-100">
+                            <img src="{{ $item.image | relURL }}" width="800" height="600"
                                 class="relative aspect-square object-cover object-center w-[85%] xl:w-[75%] mx-auto transform transition-all duration-700 ease-out group-hover:scale-110 group-hover:rotate-1"
-                                alt="{{ $item.title }}" loading="lazy">
+                                alt="{{ $item.title | plainify }}" loading="lazy" decoding="async"
+                                fetchpriority="{{ if eq $index 0 }}high{{ else }}low{{ end }}">
                             <!-- Overlay gradient on hover -->
                             <div
                                 class="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700">

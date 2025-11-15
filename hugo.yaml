@@ -38,8 +38,8 @@ module:
   hugo_version:
     min: '0.147.8'
 
-  imports:
-    - path: github.com/writeonlycode/hugo-agency-web
+  # Module imports are intentionally omitted for the theme since the `theme:` field
+  # handles the site theme configuration. Add additional module imports here if needed.
 
   mounts:
     - source: 'hugo_stats.json'

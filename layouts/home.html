@@ -623,17 +623,27 @@
     })();
 </script>
 
+<!-- Performance Optimization Script -->
+{{- $performance := resources.Get "js/performance.js" -}}
+{{- if $performance -}}
+<script src="{{ $performance.Permalink }}" defer fetchpriority="high"></script>
+{{- end -}}
+
 <!-- Enhanced Animations Script -->
 {{- $animations := resources.Get "js/animations.js" -}}
 {{- if $animations -}}
-<script src="{{ $animations.Permalink }}" defer></script>
+<script src="{{ $animations.Permalink }}" defer fetchpriority="high"></script>
 {{- end -}}
 
 <!-- AJAX Form Handler -->
 {{- $formHandler := resources.Get "js/form-handler.js" -}}
 {{- if $formHandler -}}
-<script src="{{ $formHandler.Permalink }}" defer></script>
+<script src="{{ $formHandler.Permalink }}" defer fetchpriority="low"></script>
 {{- end -}}
+
+<!-- Preconnect to external domains for faster loading -->
+<link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+<link rel="dns-prefetch" href="https://formspree.io">
 
 
 {{ end }}

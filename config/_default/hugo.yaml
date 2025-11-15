@@ -1,14 +1,28 @@
 baseURL: '/'
-title: 'Baseet Studio'
+title: 'BASEET STUDIO'
 summaryLength: 20
 
 # SEO optimizations
 enableRobotsTXT: true
 canonifyURLs: true
+disableKinds: ['taxonomy', 'term']
 
 # Performance
 timeout: 30000
 enableInlineShortcodes: true
+
+# Image processing
+imaging:
+  quality: 85
+  resampleFilter: 'Lanczos'
+  anchor: 'Smart'
+
+# Caching
+caches:
+  images:
+    maxAge: '24h'
+  assets:
+    maxAge: '24h'
 # services:
 #   googleAnalytics:
 #     id: G-MEASUREMENT_ID
