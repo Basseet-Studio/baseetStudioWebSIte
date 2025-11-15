@@ -1,4 +1,0 @@
-# CI workflow safely disabled: The team requested removing the CI workflow.
-# This file is a disabled copy retained for history. To re-enable, rename to `ci.yml` (not recommended if you don't want CI).
-
-# Original content was a Hugo build + Lighthouse CI job; intentionally removed per request.
