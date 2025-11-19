@@ -40,34 +40,30 @@ uniform sampler3D map;
 uniform float threshold;
 uniform float opacity;
 uniform float steps;
+uniform float time;
 
 varying vec3 vOrigin;
 varying vec3 vDirection;
 
+// Random function for jitter
+float random(vec3 co) {
+    return fract(sin(dot(co.xyz ,vec3(12.9898,78.233, 45.5432))) * 43758.5453);
+}
+
 /**
  * Ray-Box Intersection Function
- * Calculates the near and far intersection points of a ray with a unit box
- * centered at origin with bounds [-0.5, 0.5]
- * 
- * @param origin - Ray origin in object space
- * @param direction - Ray direction (normalized)
- * @return vec2 - (tNear, tFar) intersection distances along ray
  */
 vec2 hitBox(vec3 origin, vec3 direction) {
-    // Box bounds: -0.5 to 0.5 in all dimensions
     const vec3 boxMin = vec3(-0.5);
     const vec3 boxMax = vec3(0.5);
     
-    // Calculate intersection distances for all three axes
     vec3 invDir = 1.0 / direction;
     vec3 tMin = (boxMin - origin) * invDir;
     vec3 tMax = (boxMax - origin) * invDir;
     
-    // Swap tMin and tMax if direction is negative
     vec3 t1 = min(tMin, tMax);
     vec3 t2 = max(tMin, tMax);
     
-    // Find the largest tNear and smallest tFar
     float tNear = max(max(t1.x, t1.y), t1.z);
     float tFar = min(min(t2.x, t2.y), t2.z);
     
@@ -75,58 +71,68 @@ vec2 hitBox(vec3 origin, vec3 direction) {
 }
 
 void main() {
-    // Normalize ray direction
     vec3 rayDir = normalize(vDirection);
-    
-    // Calculate ray-box intersection
     vec2 bounds = hitBox(vOrigin, rayDir);
     
-    // If ray misses the box, discard fragment
     if (bounds.x > bounds.y) {
         discard;
     }
     
-    // Ensure we start from the box surface (not behind camera)
     bounds.x = max(bounds.x, 0.0);
     
-    // Calculate step size for raymarching
     float distance = bounds.y - bounds.x;
     float stepSize = distance / steps;
     
-    // Initialize raymarching variables
-    vec3 pos = vOrigin + bounds.x * rayDir;
+    // Add jitter to start position to reduce banding
+    float jitter = random(gl_FragCoord.xyz + time) * stepSize;
+    vec3 pos = vOrigin + (bounds.x + jitter) * rayDir;
+    
     vec4 accumColor = vec4(0.0);
     
-    // Raymarching loop
+    // Soft edge fade factors
+    float fadeDistance = 0.1; // Distance from box edge to start fading
+    
     for (float i = 0.0; i < steps; i++) {
-        // Sample 3D texture at current position
-        // Transform from object space [-0.5, 0.5] to texture space [0, 1]
+        // Check if we've marched out of the box
+        if (pos.x < -0.5 || pos.x > 0.5 || pos.y < -0.5 || pos.y > 0.5 || pos.z < -0.5 || pos.z > 0.5) {
+            break;
+        }
+
         vec3 texCoord = pos + 0.5;
+        
+        // Sample noise
         float density = texture(map, texCoord).r;
         
-        // Apply threshold with smoothstep for soft cloud edges
-        // smoothstep creates a smooth transition between 0 and 1
-        float cloudDensity = smoothstep(threshold - 0.1, threshold + 0.1, density);
+        // Calculate distance to nearest box edge for soft fading
+        vec3 distToEdge = 0.5 - abs(pos);
+        float minEdgeDist = min(min(distToEdge.x, distToEdge.y), distToEdge.z);
+        float edgeFade = smoothstep(0.0, fadeDistance, minEdgeDist);
         
-        // Calculate color contribution for this step
-        // White clouds with density-based opacity
-        vec4 color = vec4(1.0, 1.0, 1.0, cloudDensity * opacity);
+        // Apply threshold and edge fade
+        // Use a softer smoothstep range for fluffier look
+        float cloudDensity = smoothstep(threshold - 0.15, threshold + 0.15, density);
+        cloudDensity *= edgeFade;
         
-        // Front-to-back alpha blending
-        // Accumulate color weighted by current alpha and remaining transparency
-        accumColor.rgb += (1.0 - accumColor.a) * color.rgb * color.a;
-        accumColor.a += (1.0 - accumColor.a) * color.a;
+        if (cloudDensity > 0.001) {
+            // Color calculation
+            vec4 color = vec4(1.0, 1.0, 1.0, cloudDensity * opacity);
+            
+            // Lighting approximation (simple density-based shading)
+            // Denser parts are darker (self-shadowing)
+            float shadow = exp(-cloudDensity * 2.0);
+            color.rgb *= mix(0.8, 1.0, shadow);
+            
+            accumColor.rgb += (1.0 - accumColor.a) * color.rgb * color.a;
+            accumColor.a += (1.0 - accumColor.a) * color.a;
+        }
         
-        // Early exit if opacity is high enough (optimization)
-        if (accumColor.a >= 0.95) {
+        if (accumColor.a >= 0.98) {
             break;
         }
         
-        // March along ray
         pos += rayDir * stepSize;
     }
     
-    // Output final color
     gl_FragColor = accumColor;
 }
 `;
