@@ -13,6 +13,12 @@ import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 import { generate3DTexture } from './texture-generator.js';
 import { vertexShader, fragmentShader } from './shaders.js';
 
+// Helper function for smooth interpolation
+function smoothstep(min, max, value) {
+    var x = Math.max(0, Math.min(1, (value - min) / (max - min)));
+    return x * x * (3 - 2 * x);
+}
+
 class OptimizedCloudScene {
     constructor(canvasId, options = {}) {
         this.canvas = document.getElementById(canvasId);
@@ -23,7 +29,8 @@ class OptimizedCloudScene {
 
         // Configuration
         this.config = {
-            cloudCount: options.cloudCount || 25,
+            cloudCount: options.cloudCount || 40,
+
             cloudDensity: options.cloudDensity || 0.6,
             scrollDistance: options.scrollDistance || 600, // Pixels to scroll through clouds
             textContent: options.textContent || 'BASEET STUDIO',
@@ -115,22 +122,96 @@ class OptimizedCloudScene {
         const texture = generate3DTexture(128);
 
         for (let i = 0; i < this.config.cloudCount; i++) {
-            // Use BoxGeometry to match raymarching volume
-            // Scale it to be slightly flattened
-            const width = 3 + Math.random() * 2;
-            const height = 2 + Math.random() * 1.5;
-            const depth = 2 + Math.random() * 2;
-            const geometry = new THREE.BoxGeometry(1, 1, 1);
+            // Create a cluster of spheres for a "cloudy" shape
+            const clusterGroup = new THREE.Group();
+            const puffs = 3 + Math.floor(Math.random() * 3); // 3-5 puffs per cloud
 
-            // Create cloud material
+            for (let j = 0; j < puffs; j++) {
+                const geometry = new THREE.SphereGeometry(1, 32, 32);
+
+                // Create cloud material
+                const material = new THREE.ShaderMaterial({
+                    vertexShader: vertexShader,
+                    fragmentShader: fragmentShader,
+                    uniforms: {
+                        map: { value: texture },
+                        threshold: { value: 0.25 + Math.random() * 0.1 },
+                        opacity: { value: this.config.cloudDensity * (0.3 + Math.random() * 0.5) },
+                        steps: { value: 40.0 + Math.random() * 20.0 },
+                        time: { value: Math.random() * 100 }
+                    },
+                    side: THREE.BackSide,
+                    transparent: true,
+                    depthWrite: false,
+                    blending: THREE.NormalBlending
+                });
+
+                const puff = new THREE.Mesh(geometry, material);
+
+                // Randomize puff size and offset within cluster
+                const pScale = 1.5 + Math.random() * 1.5;
+                puff.scale.set(pScale, pScale * 0.8, pScale);
+
+                puff.position.set(
+                    (Math.random() - 0.5) * 2.0,
+                    (Math.random() - 0.5) * 1.0,
+                    (Math.random() - 0.5) * 1.5
+                );
+
+                // Store rotation speed on individual puffs for internal turbulence
+                puff.userData = {
+                    rotationSpeed: {
+                        x: (Math.random() - 0.5) * 0.001,
+                        y: (Math.random() - 0.5) * 0.002,
+                        z: (Math.random() - 0.5) * 0.001
+                    }
+                };
+
+                clusterGroup.add(puff);
+            }
+
+            // Position the entire cluster
+            const xPos = (Math.random() - 0.5) * 15;
+            const yPos = -20 + Math.random() * 40;
+            const zPos = (Math.random() * 12) - 2;
+
+            clusterGroup.position.set(xPos, yPos, zPos);
+
+            // Store movement data on the group
+            clusterGroup.userData = {
+                originalY: yPos,
+                speed: 0.5 + Math.random() * 0.8,
+                zDepth: zPos
+            };
+
+            this.cloudGroup.add(clusterGroup);
+        }
+
+
+        this.scene.add(this.cloudGroup);
+
+        // Create background cloud layer (larger, further back)
+        this.createBackgroundClouds(texture);
+    }
+
+    /**
+     * Create background layer of large clouds
+     */
+    createBackgroundClouds(texture) {
+        const bgCount = 20; // Increased background clouds
+
+
+        for (let i = 0; i < bgCount; i++) {
+            const geometry = new THREE.SphereGeometry(1, 24, 24); // Lower poly for background
+
             const material = new THREE.ShaderMaterial({
                 vertexShader: vertexShader,
                 fragmentShader: fragmentShader,
                 uniforms: {
                     map: { value: texture },
-                    threshold: { value: 0.25 + Math.random() * 0.1 },
-                    opacity: { value: this.config.cloudDensity * (0.3 + Math.random() * 0.5) },
-                    steps: { value: 50.0 + Math.random() * 20.0 },
+                    threshold: { value: 0.3 + Math.random() * 0.1 },
+                    opacity: { value: this.config.cloudDensity * 0.4 }, // More transparent
+                    steps: { value: 30.0 }, // Lower quality for background
                     time: { value: Math.random() * 100 }
                 },
                 side: THREE.BackSide,
@@ -140,42 +221,32 @@ class OptimizedCloudScene {
             });
 
             const cloud = new THREE.Mesh(geometry, material);
-            cloud.scale.set(width, height, depth);
 
-            // Position clouds for falling effect
-            // Spread widely on Y axis (vertical)
-            // Z axis: some behind text (Z<5), some in front (Z>5)
+            // Make them huge
+            const scale = 8 + Math.random() * 5;
+            cloud.scale.set(scale, scale * 0.6, scale);
 
-            const xPos = (Math.random() - 0.5) * 15;
-
-            // Initial Y position: spread from far below to far above
-            // We will move them UP as we scroll
-            const yPos = -20 + Math.random() * 40;
-
-            // Z position: Layered depth
-            // Text is at Z=5. Camera is at Z=12.
-            // Clouds should be between Z=0 and Z=10 mostly
-            const zPos = (Math.random() * 12) - 2;
+            // Position far back
+            const xPos = (Math.random() - 0.5) * 40;
+            const yPos = -10 + Math.random() * 30;
+            const zPos = -15 - Math.random() * 10; // Behind everything
 
             cloud.position.set(xPos, yPos, zPos);
 
-            // Store original position and speed
             cloud.userData = {
                 originalY: yPos,
-                speed: 0.5 + Math.random() * 0.8, // Vertical speed
+                speed: 0.2, // Slower movement
                 rotationSpeed: {
-                    x: (Math.random() - 0.5) * 0.0005,
-                    y: (Math.random() - 0.5) * 0.001,
-                    z: (Math.random() - 0.5) * 0.0005
-                },
-                zDepth: zPos
+                    x: (Math.random() - 0.5) * 0.0002,
+                    y: (Math.random() - 0.5) * 0.0005,
+                    z: 0
+                }
             };
 
             this.cloudGroup.add(cloud);
         }
-
-        this.scene.add(this.cloudGroup);
     }
+
 
     /**
      * Create 3D text using TextGeometry
@@ -268,6 +339,8 @@ class OptimizedCloudScene {
     onScroll() {
         const scrollY = window.scrollY || window.pageYOffset;
         this.scrollProgress = Math.min(scrollY / this.config.scrollDistance, 1);
+        console.log(`Cloud Scroll Progress: ${Math.round(this.scrollProgress * 100)}%`);
+
     }
 
     /**
@@ -288,45 +361,61 @@ class OptimizedCloudScene {
 
         // Update clouds - The Core "Falling" Effect
         if (this.cloudGroup) {
-            this.cloudGroup.children.forEach((cloud, index) => {
-                // 1. Vertical Movement (Falling Effect)
-                // Clouds move UP (positive Y) as scroll increases
-                // Add base speed + scroll influence
-                const scrollSpeed = 25; // How fast clouds rush up
-                const baseMovement = time * cloud.userData.speed * 0.5; // Idle drift
+            this.cloudGroup.children.forEach((item, index) => {
+                // Handle both single meshes (background) and clusters (foreground)
+                const isCluster = item.type === 'Group';
 
-                let newY = cloud.userData.originalY + (this.scrollProgress * scrollSpeed) + baseMovement;
+                // 1. Vertical Movement (Falling Effect) - Applied to the parent object (cluster or mesh)
+                const scrollSpeed = 25;
+                const baseMovement = time * item.userData.speed * 0.5;
 
-                // Loop clouds: if they go too high, wrap them to bottom
-                // This creates infinite falling illusion if needed, though we have a finite scroll
+                let newY = item.userData.originalY + (this.scrollProgress * scrollSpeed) + baseMovement;
+
                 if (newY > 20) {
                     newY = -20 + (newY % 40);
                 }
 
-                cloud.position.y = newY;
+                item.position.y = newY;
 
-                // 2. Rotation
-                if (cloud.userData.rotationSpeed) {
-                    cloud.rotation.x += cloud.userData.rotationSpeed.x;
-                    cloud.rotation.y += cloud.userData.rotationSpeed.y;
-                    cloud.rotation.z += cloud.userData.rotationSpeed.z;
-                }
+                // Helper to update a single cloud mesh
+                const updateCloudMesh = (mesh, idx) => {
+                    // Rotation
+                    if (mesh.userData.rotationSpeed) {
+                        mesh.rotation.x += mesh.userData.rotationSpeed.x;
+                        mesh.rotation.y += mesh.userData.rotationSpeed.y;
+                        mesh.rotation.z += mesh.userData.rotationSpeed.z;
+                    }
 
-                // 3. Shader Time Update
-                if (cloud.material.uniforms.time) {
-                    cloud.material.uniforms.time.value = time + index;
-                }
+                    // Shader Time
+                    if (mesh.material.uniforms.time) {
+                        mesh.material.uniforms.time.value = time + idx;
+                    }
 
-                // 4. Opacity/Fade based on proximity to camera
-                // Fade out if too close to camera to avoid clipping artifacts
-                const distToCam = cloud.position.distanceTo(this.camera.position);
-                if (cloud.material.uniforms.opacity) {
-                    const baseOpacity = this.config.cloudDensity * (0.3 + Math.random() * 0.1); // reduced flicker
-                    let fade = 1.0;
-                    if (distToCam < 2.0) fade = smoothstep(0.0, 2.0, distToCam);
-                    cloud.material.uniforms.opacity.value = baseOpacity * fade;
+                    // Opacity Fade
+                    // Calculate distance from camera to the mesh's world position
+                    const worldPos = new THREE.Vector3();
+                    mesh.getWorldPosition(worldPos);
+                    const distToCam = worldPos.distanceTo(this.camera.position);
+
+                    if (mesh.material.uniforms.opacity) {
+                        const baseOpacity = this.config.cloudDensity * (0.3 + Math.random() * 0.1);
+                        let fade = 1.0;
+                        if (distToCam < 2.0) fade = smoothstep(0.0, 2.0, distToCam);
+                        mesh.material.uniforms.opacity.value = baseOpacity * fade;
+                    }
+                };
+
+                if (isCluster) {
+                    // Update all puffs in the cluster
+                    item.children.forEach((puff, pIdx) => {
+                        updateCloudMesh(puff, index + pIdx);
+                    });
+                } else {
+                    // It's a single mesh (background cloud)
+                    updateCloudMesh(item, index);
                 }
             });
+
         }
 
         // Animate text

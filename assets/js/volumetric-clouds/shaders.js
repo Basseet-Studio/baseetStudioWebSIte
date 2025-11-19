@@ -51,28 +51,25 @@ float random(vec3 co) {
 }
 
 /**
- * Ray-Box Intersection Function
+ * Ray-Sphere Intersection Function
  */
-vec2 hitBox(vec3 origin, vec3 direction) {
-    const vec3 boxMin = vec3(-0.5);
-    const vec3 boxMax = vec3(0.5);
+vec2 hitSphere(vec3 origin, vec3 direction) {
+    float radius = 0.5;
+    float b = dot(origin, direction);
+    float c = dot(origin, origin) - radius * radius;
+    float h = b * b - c;
     
-    vec3 invDir = 1.0 / direction;
-    vec3 tMin = (boxMin - origin) * invDir;
-    vec3 tMax = (boxMax - origin) * invDir;
+    if (h < 0.0) return vec2(-1.0); // No intersection
     
-    vec3 t1 = min(tMin, tMax);
-    vec3 t2 = max(tMin, tMax);
-    
-    float tNear = max(max(t1.x, t1.y), t1.z);
-    float tFar = min(min(t2.x, t2.y), t2.z);
-    
-    return vec2(tNear, tFar);
+    h = sqrt(h);
+    return vec2(-b - h, -b + h);
 }
+
 
 void main() {
     vec3 rayDir = normalize(vDirection);
-    vec2 bounds = hitBox(vOrigin, rayDir);
+    vec2 bounds = hitSphere(vOrigin, rayDir);
+
     
     if (bounds.x > bounds.y) {
         discard;
@@ -93,20 +90,22 @@ void main() {
     float fadeDistance = 0.1; // Distance from box edge to start fading
     
     for (float i = 0.0; i < steps; i++) {
-        // Check if we've marched out of the box
-        if (pos.x < -0.5 || pos.x > 0.5 || pos.y < -0.5 || pos.y > 0.5 || pos.z < -0.5 || pos.z > 0.5) {
+        // Check if we've marched out of the sphere (radius 0.5)
+        if (length(pos) > 0.5) {
             break;
         }
+
 
         vec3 texCoord = pos + 0.5;
         
         // Sample noise
         float density = texture(map, texCoord).r;
         
-        // Calculate distance to nearest box edge for soft fading
-        vec3 distToEdge = 0.5 - abs(pos);
-        float minEdgeDist = min(min(distToEdge.x, distToEdge.y), distToEdge.z);
-        float edgeFade = smoothstep(0.0, fadeDistance, minEdgeDist);
+        // Calculate distance to sphere edge for soft fading
+        float distFromCenter = length(pos);
+        float distToEdge = 0.5 - distFromCenter;
+        float edgeFade = smoothstep(0.0, fadeDistance, distToEdge);
+
         
         // Apply threshold and edge fade
         // Use a softer smoothstep range for fluffier look

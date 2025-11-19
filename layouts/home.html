@@ -3,14 +3,14 @@
 <!-- App Bar CSS -->
 {{- $appBarCSS := resources.Get "css/app-bar.css" -}}
 {{- if $appBarCSS -}}
-    {{- if hugo.IsProduction -}}
-        {{- $appBarCSS = $appBarCSS | minify | fingerprint -}}
-    {{- end -}}
-    <link rel="stylesheet" href="{{ $appBarCSS.RelPermalink }}">
+{{- if hugo.IsProduction -}}
+{{- $appBarCSS = $appBarCSS | minify | fingerprint -}}
+{{- end -}}
+<link rel="stylesheet" href="{{ $appBarCSS.RelPermalink }}">
 {{- end -}}
 
 <!-- Volumetric Cloud Scroll CSS -->
-<link rel="stylesheet" href="{{ "css/volumetric-cloud-scroll.css" | relURL }}">
+<link rel="stylesheet" href="{{ " css/volumetric-cloud-scroll.css" | relURL }}">
 
 <!-- Skip to content for keyboard users -->
 <a class="sr-only focus:not-sr-only inline-block p-3 bg-white text-primary rounded-md shadow-lg z-50"
@@ -47,7 +47,10 @@
             z-index: 9999;
             overflow: hidden;
             transition: opacity 0.8s ease, transform 0.8s ease;
+            /* Ensure scrollable area exists before content loads */
+            min-height: 150vh;
         }
+
 
         .baseet-loader.scrolled {
             opacity: 0;
@@ -150,13 +153,17 @@
         /* Hide loader after scrolling */
         body.loaded .baseet-loader {
             display: none;
+            min-height: 0;
+            /* Reset min-height */
         }
+
 
         /* Main content wrapper - optimized for performance */
         .main-content {
             position: relative;
             opacity: 0;
-            transform: translate3d(0, 0, 0); /* Start at normal position */
+            transform: translate3d(0, 0, 0);
+            /* Start at normal position */
             will-change: transform, opacity;
             transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
                 transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
@@ -183,7 +190,8 @@
             opacity: 1;
             transform: translate3d(0, 0, 0);
             will-change: auto;
-            padding-top: 0; /* Remove padding when clouds are hidden */
+            padding-top: 0;
+            /* Remove padding when clouds are hidden */
         }
 
         /* Performance optimizations */
@@ -245,7 +253,6 @@
             const mainContent = document.querySelector('.main-content');
             const cloudCanvas = document.getElementById('heroCloudCanvas');
 
-            let cloudScene = null;
             let transitionComplete = false;
             let lastScrollY = 0;
 
@@ -253,21 +260,23 @@
 
             // Handle scroll events
             function handleScroll() {
-                if (!cloudScene) return;
+                // Check global instance
+                if (!window.cloudScene) return;
 
                 const scrollY = window.scrollY || window.pageYOffset;
-                
+
                 // Reset if scrolled back to top
                 if (transitionComplete && scrollY < 50) {
                     transitionComplete = false;
                     document.body.classList.remove('loaded', 'revealing');
                     loader.style.display = 'flex';
-                    cloudScene.reset();
+                    window.cloudScene.reset();
                     return;
                 }
 
                 // Check if cloud scene is complete
-                if (cloudScene.isComplete() && !transitionComplete) {
+                if (window.cloudScene && window.cloudScene.isComplete() && !transitionComplete) {
+
                     transitionComplete = true;
 
                     // Trigger cross-fade transition
@@ -278,7 +287,7 @@
                         document.body.classList.add('loaded');
                         loader.style.display = 'none';
                         document.body.style.overflow = 'auto';
-                        
+
                         if (mainContent) {
                             mainContent.style.willChange = 'auto';
                         }
@@ -330,7 +339,7 @@
     <!-- Preconnect to external domains for faster loading -->
     <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
     <link rel="dns-prefetch" href="https://formspree.io">
-    
+
     <!-- THREE.js Library - ES Module (modern approach) -->
     <script type="importmap">
     {
@@ -340,42 +349,43 @@
         }
     }
     </script>
-    
+
     <!-- WebGL Volumetric Cloud Scene (ES Module) -->
     {{- $optimizedScene := resources.Get "js/volumetric-clouds/optimized-cloud-scene.js" -}}
     {{- if $optimizedScene -}}
     <script type="module">
         import { OptimizedCloudScene } from '{{ $optimizedScene.Permalink }}';
-        
+
         // Wait for DOM and initialize
         function initCloudScene() {
             const canvas = document.getElementById('heroCloudCanvas');
-            
+
             if (!canvas) {
                 console.error('Canvas element not found');
                 return;
             }
-            
+
             const rect = canvas.getBoundingClientRect();
             if (rect.width === 0 || rect.height === 0) {
                 console.warn('Canvas has no dimensions, waiting for layout...');
                 requestAnimationFrame(initCloudScene);
                 return;
             }
-            
+
             console.log('✅ Initializing OptimizedCloudScene...');
             console.log('Canvas dimensions:', rect.width, 'x', rect.height);
-            
+
             // Initialize cloud scene
             window.cloudScene = new OptimizedCloudScene('heroCloudCanvas', {
                 cloudCount: 20,
                 cloudDensity: 0.7,
                 scrollDistance: 600,
                 textContent: 'BASEET STUDIO',
-                fontSize: 1.2
+                fontSize: 0.8
             });
+
         }
-        
+
         // Start when DOM is ready
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', initCloudScene);
