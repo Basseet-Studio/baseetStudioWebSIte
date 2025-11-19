@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automated App Bar Tests</title>
+    <link rel="stylesheet" href="/css/app-bar.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 80px auto 0;
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #1a1a2e;
+            margin-bottom: 1rem;
+        }
+
+        .status {
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .status.running {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status.complete {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        button {
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            background: #496BC1;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 2rem;
+        }
+
+        button:hover {
+            background: #3a5aa0;
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        #console-output {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+            max-height: 600px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .test-result {
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            border-left: 4px solid;
+        }
+
+        .test-result.pass {
+            border-color: #28a745;
+            background: rgba(40, 167, 69, 0.1);
+        }
+
+        .test-result.fail {
+            border-color: #dc3545;
+            background: rgba(220, 53, 69, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- App Bar -->
+    <header id="app-bar" class="app-bar app-bar-cloud" role="banner">
+        <div class="progress-indicator" aria-hidden="true"></div>
+        
+        <div class="app-bar-container">
+            <a href="/" class="app-bar-logo" aria-label="Baseet Studio Home">
+                <span class="logo-text">Baseet Studio</span>
+            </a>
+            
+            <nav class="app-bar-nav" aria-label="Main navigation">
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#clients">Clients</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <button class="mobile-menu-toggle" 
+                    aria-label="Toggle navigation menu"
+                    aria-expanded="false">
+                <span class="hamburger-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </button>
+        </div>
+        
+        <div class="mobile-menu" aria-hidden="true">
+            <nav aria-label="Mobile navigation">
+                <ul class="mobile-nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#clients">Clients</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>🧪 Automated App Bar Test Suite</h1>
+        <p>Task 7: Test app bar visibility and transitions</p>
+
+        <div id="status" class="status running">Ready to run tests...</div>
+
+        <button id="run-tests" onclick="runTests()">Run All Tests</button>
+
+        <div id="console-output"></div>
+    </div>
+
+    <script type="module">
+        const consoleOutput = document.getElementById('console-output');
+        const statusDiv = document.getElementById('status');
+        const runButton = document.getElementById('run-tests');
+
+        // Capture console.log
+        const originalLog = console.log;
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            const message = args.join(' ');
+            consoleOutput.textContent += message + '\n';
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        };
+
+        // App Bar Tester (inline for simplicity)
+        class AppBarTester {
+            constructor() {
+                this.appBar = document.getElementById('app-bar');
+                this.results = {
+                    cloudMode: [],
+                    siteMode: [],
+                    transitions: []
+                };
+            }
+
+            getStyles(element) {
+                return window.getComputedStyle(element);
+            }
+
+            parseOpacity(value) {
+                return parseFloat(value);
+            }
+
+            isWhiteColor(color) {
+                const rgb = color.match(/\d+/g);
+                if (rgb) {
+                    return rgb[0] === '255' && rgb[1] === '255' && rgb[2] === '255';
+                }
+                return false;
+            }
+
+            isTransparent(bg) {
+                return bg === 'rgba(0, 0, 0, 0)' || bg === 'transparent';
+            }
+
+            hasShadow(shadow) {
+                return shadow !== 'none' && shadow !== '';
+            }
+
+            isBrandPrimary(color) {
+                const rgb = color.match(/\d+/g);
+                if (rgb) {
+                    return rgb[0] === '73' && rgb[1] === '107' && rgb[2] === '193';
+                }
+                return false;
+            }
+
+            async testCloudMode() {
+                console.log('🧪 Testing Cloud Mode Styling (Task 7.1)...');
+                
+                this.appBar.classList.remove('app-bar-site');
+                this.appBar.classList.add('app-bar-cloud');
+
+                await new Promise(resolve => setTimeout(resolve, 100));
+
+                const styles = this.getStyles(this.appBar);
+                const logoText = this.appBar.querySelector('.logo-text');
+                const logoStyles = this.getStyles(logoText);
+                const navLink = this.appBar.querySelector('.nav-links a');
+                const navStyles = this.getStyles(navLink);
+
+                const opacity = this.parseOpacity(styles.opacity);
+                const bgColor = styles.backgroundColor;
+                const shadow = styles.boxShadow;
+                const logoColor = logoStyles.color;
+                const navColor = navStyles.color;
+
+                this.results.cloudMode = [
+                    {
+                        test: 'Opacity is 0.3 (30%)',
+                        requirement: '1.1',
+                        pass: Math.abs(opacity - 0.3) < 0.01,
+                        actual: opacity.toFixed(2)
+                    },
+                    {
+                        test: 'Logo text is white',
+                        requirement: '1.2',
+                        pass: this.isWhiteColor(logoColor),
+                        actual: logoColor
+                    },
+                    {
+                        test: 'Nav links are white',
+                        requirement: '1.2',
+                        pass: this.isWhiteColor(navColor),
+                        actual: navColor
+                    },
+                    {
+                        test: 'Background is transparent',
+                        requirement: '1.3',
+                        pass: this.isTransparent(bgColor),
+                        actual: bgColor
+                    },
+                    {
+                        test: 'No shadow',
+                        requirement: '1.3',
+                        pass: !this.hasShadow(shadow),
+                        actual: shadow
+                    }
+                ];
+
+                console.log('✅ Cloud Mode tests complete');
+            }
+
+            async testSiteMode() {
+                console.log('🧪 Testing Site Mode Styling (Task 7.2)...');
+                
+                this.appBar.classList.remove('app-bar-cloud');
+                this.appBar.classList.add('app-bar-site');
+
+                await new Promise(resolve => setTimeout(resolve, 100));
+
+                const styles = this.getStyles(this.appBar);
+                const logoText = this.appBar.querySelector('.logo-text');
+                const logoStyles = this.getStyles(logoText);
+                const navLink = this.appBar.querySelector('.nav-links a');
+                const navStyles = this.getStyles(navLink);
+
+                const opacity = this.parseOpacity(styles.opacity);
+                const bgColor = styles.backgroundColor;
+                const shadow = styles.boxShadow;
+                const logoColor = logoStyles.color;
+                const backdropFilter = styles.backdropFilter || styles.webkitBackdropFilter;
+
+                this.results.siteMode = [
+                    {
+                        test: 'Opacity is 1.0 (100%)',
+                        requirement: '1.4',
+                        pass: Math.abs(opacity - 1.0) < 0.01,
+                        actual: opacity.toFixed(2)
+                    },
+                    {
+                        test: 'Logo has brand color',
+                        requirement: '1.5',
+                        pass: this.isBrandPrimary(logoColor),
+                        actual: logoColor
+                    },
+                    {
+                        test: 'Background is white',
+                        requirement: '2.4',
+                        pass: bgColor.includes('255'),
+                        actual: bgColor
+                    },
+                    {
+                        test: 'Has backdrop blur',
+                        requirement: '2.4',
+                        pass: backdropFilter && backdropFilter !== 'none',
+                        actual: backdropFilter || 'none'
+                    },
+                    {
+                        test: 'Has shadow',
+                        requirement: '2.4',
+                        pass: this.hasShadow(shadow),
+                        actual: shadow.substring(0, 30) + '...'
+                    }
+                ];
+
+                console.log('✅ Site Mode tests complete');
+            }
+
+            async testTransitions() {
+                console.log('🧪 Testing Transition Smoothness (Task 7.3)...');
+                
+                const styles = this.getStyles(this.appBar);
+                const transition = styles.transition;
+
+                this.results.transitions = [
+                    {
+                        test: 'Has 600ms duration',
+                        requirement: '2.1, 3.1',
+                        pass: transition.includes('600ms'),
+                        actual: transition.match(/\d+ms/g)?.join(', ') || 'none'
+                    },
+                    {
+                        test: 'Uses cubic-bezier easing',
+                        requirement: '2.5, 3.2',
+                        pass: transition.includes('cubic-bezier'),
+                        actual: transition.match(/cubic-bezier\([^)]+\)/)?.[0] || 'none'
+                    },
+                    {
+                        test: 'Transitions opacity',
+                        requirement: '2.1, 3.3',
+                        pass: transition.includes('opacity'),
+                        actual: transition.includes('opacity') ? 'yes' : 'no'
+                    },
+                    {
+                        test: 'Transitions background',
+                        requirement: '2.2, 3.3',
+                        pass: transition.includes('background'),
+                        actual: transition.includes('background') ? 'yes' : 'no'
+                    }
+                ];
+
+                // Test FPS
+                let frames = [];
+                let lastTime = performance.now();
+                let isMonitoring = true;
+
+                const measureFrame = () => {
+                    if (!isMonitoring) return;
+                    const now = performance.now();
+                    frames.push(now - lastTime);
+                    lastTime = now;
+                    requestAnimationFrame(measureFrame);
+                };
+
+                measureFrame();
+
+                // Trigger transitions
+                this.appBar.classList.remove('app-bar-cloud');
+                this.appBar.classList.add('app-bar-site');
+                await new Promise(resolve => setTimeout(resolve, 100));
+                
+                this.appBar.classList.remove('app-bar-site');
+                this.appBar.classList.add('app-bar-cloud');
+                await new Promise(resolve => setTimeout(resolve, 700));
+
+                isMonitoring = false;
+                const avgFrameTime = frames.reduce((a, b) => a + b, 0) / frames.length;
+                const avgFPS = Math.round(1000 / avgFrameTime);
+
+                this.results.transitions.push({
+                    test: 'Maintains 60fps',
+                    requirement: '10.1',
+                    pass: avgFPS >= 55,
+                    actual: `${avgFPS} fps`
+                });
+
+                console.log('✅ Transition tests complete');
+            }
+
+            printResults() {
+                console.log('\n📊 Test Results Summary\n');
+                console.log('='.repeat(80));
+
+                let totalTests = 0;
+                let passedTests = 0;
+
+                const printCategory = (title, results) => {
+                    console.log(`\n${title}`);
+                    console.log('-'.repeat(80));
+                    results.forEach(result => {
+                        totalTests++;
+                        if (result.pass) passedTests++;
+                        const icon = result.pass ? '✅' : '❌';
+                        console.log(`${icon} ${result.test} (Req: ${result.requirement})`);
+                        console.log(`   Actual: ${result.actual}`);
+                    });
+                };
+
+                printCategory('🌥️  Task 7.1: Cloud Mode Styling', this.results.cloudMode);
+                printCategory('🏢 Task 7.2: Site Mode Styling', this.results.siteMode);
+                printCategory('⚡ Task 7.3: Transition Smoothness', this.results.transitions);
+
+                console.log('\n' + '='.repeat(80));
+                const percentage = Math.round((passedTests / totalTests) * 100);
+                console.log(`\n📈 Overall: ${passedTests}/${totalTests} tests passed (${percentage}%)\n`);
+
+                if (passedTests === totalTests) {
+                    console.log('🎉 All tests passed!');
+                } else {
+                    console.log('⚠️  Some tests failed.');
+                }
+
+                return { totalTests, passedTests, percentage };
+            }
+
+            async runAllTests() {
+                console.log('🚀 Starting App Bar Test Suite...\n');
+                
+                await this.testCloudMode();
+                await this.testSiteMode();
+                await this.testTransitions();
+
+                return this.printResults();
+            }
+        }
+
+        window.runTests = async function() {
+            runButton.disabled = true;
+            statusDiv.textContent = 'Running tests...';
+            statusDiv.className = 'status running';
+            consoleOutput.textContent = '';
+
+            const tester = new AppBarTester();
+            const summary = await tester.runAllTests();
+
+            statusDiv.textContent = `Tests complete: ${summary.passedTests}/${summary.totalTests} passed (${summary.percentage}%)`;
+            statusDiv.className = summary.percentage === 100 ? 'status complete' : 'status running';
+            runButton.disabled = false;
+        };
+    </script>
+</body>
+</html>

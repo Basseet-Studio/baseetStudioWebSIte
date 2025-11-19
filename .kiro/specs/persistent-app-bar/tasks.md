@@ -211,7 +211,7 @@
   - Ensure app bar initializes before scroll manager
   - _Requirements: 12.1_
 
-- [-] 7. Test app bar visibility and transitions
+- [ ] 7. Test app bar visibility and transitions
   - Verify app bar visible at 30% opacity in cloud mode
   - Verify app bar transitions to 100% opacity in site mode
   - Test color transitions for logo and navigation links
@@ -219,21 +219,21 @@
   - Verify smooth 60fps transitions on desktop
   - _Requirements: 1.1, 1.2, 1.3, 1.4, 1.5, 2.1, 2.2, 2.3, 2.4, 2.5, 3.1, 3.2, 3.3, 3.4, 3.5, 10.1_
 
-- [-] 7.1 Test cloud mode styling
+- [x] 7.1 Test cloud mode styling
   - Verify 30% opacity
   - Verify white text color
   - Verify transparent background
   - Verify no shadow
   - _Requirements: 1.1, 1.2, 1.3_
 
-- [ ] 7.2 Test site mode styling
+- [x] 7.2 Test site mode styling
   - Verify 100% opacity
   - Verify brand colors
   - Verify white background with blur
   - Verify subtle shadow
   - _Requirements: 1.4, 1.5, 2.4_
 
-- [ ] 7.3 Test transition smoothness
+- [x] 7.3 Test transition smoothness
   - Verify 600ms transition duration
   - Verify cubic-bezier easing
   - Monitor FPS during transitions (target: 60fps)
