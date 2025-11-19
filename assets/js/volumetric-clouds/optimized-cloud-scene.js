@@ -29,7 +29,7 @@ class OptimizedCloudScene {
 
         // Configuration
         this.config = {
-            cloudCount: options.cloudCount || 40,
+            cloudCount: options.cloudCount || 80, // Increased from 40
 
             cloudDensity: options.cloudDensity || 0.6,
             scrollDistance: options.scrollDistance || 600, // Pixels to scroll through clouds
@@ -124,10 +124,12 @@ class OptimizedCloudScene {
         for (let i = 0; i < this.config.cloudCount; i++) {
             // Create a cluster of spheres for a "cloudy" shape
             const clusterGroup = new THREE.Group();
-            const puffs = 3 + Math.floor(Math.random() * 3); // 3-5 puffs per cloud
+            const puffs = 7 + Math.floor(Math.random() * 6); // 7-12 puffs per cloud for blobbier look
 
             for (let j = 0; j < puffs; j++) {
-                const geometry = new THREE.SphereGeometry(1, 32, 32);
+                // Use BoxGeometry as container (shader does sphere intersection internally)
+                // Size of 1.0 matches the shader's sphere intersection math
+                const geometry = new THREE.BoxGeometry(1, 1, 1);
 
                 // Create cloud material
                 const material = new THREE.ShaderMaterial({
@@ -135,9 +137,9 @@ class OptimizedCloudScene {
                     fragmentShader: fragmentShader,
                     uniforms: {
                         map: { value: texture },
-                        threshold: { value: 0.25 + Math.random() * 0.1 },
-                        opacity: { value: this.config.cloudDensity * (0.3 + Math.random() * 0.5) },
-                        steps: { value: 40.0 + Math.random() * 20.0 },
+                        threshold: { value: 0.25 + Math.random() * 0.15 },
+                        opacity: { value: this.config.cloudDensity * (0.35 + Math.random() * 0.4) },
+                        steps: { value: 50.0 + Math.random() * 20.0 },
                         time: { value: Math.random() * 100 }
                     },
                     side: THREE.BackSide,
@@ -148,14 +150,14 @@ class OptimizedCloudScene {
 
                 const puff = new THREE.Mesh(geometry, material);
 
-                // Randomize puff size and offset within cluster
-                const pScale = 1.5 + Math.random() * 1.5;
-                puff.scale.set(pScale, pScale * 0.8, pScale);
+                // Randomize puff size and offset within cluster for organic blob appearance
+                const pScale = 1.0 + Math.random() * 1.5; // Varied scale for irregular blobs
+                puff.scale.set(pScale, pScale * 0.85, pScale * 0.95); // Slightly squashed for natural look
 
                 puff.position.set(
-                    (Math.random() - 0.5) * 2.0,
-                    (Math.random() - 0.5) * 1.0,
-                    (Math.random() - 0.5) * 1.5
+                    (Math.random() - 0.5) * 2.5,
+                    (Math.random() - 0.5) * 1.5,
+                    (Math.random() - 0.5) * 2.0
                 );
 
                 // Store rotation speed on individual puffs for internal turbulence
@@ -171,8 +173,8 @@ class OptimizedCloudScene {
             }
 
             // Position the entire cluster
-            const xPos = (Math.random() - 0.5) * 15;
-            const yPos = -20 + Math.random() * 40;
+            const xPos = (Math.random() - 0.5) * 25; // Wider spread
+            const yPos = -30 + Math.random() * 60; // Wider vertical spread
             const zPos = (Math.random() * 12) - 2;
 
             clusterGroup.position.set(xPos, yPos, zPos);
@@ -198,20 +200,20 @@ class OptimizedCloudScene {
      * Create background layer of large clouds
      */
     createBackgroundClouds(texture) {
-        const bgCount = 20; // Increased background clouds
+        const bgCount = 40; // Increased background clouds
 
 
         for (let i = 0; i < bgCount; i++) {
-            const geometry = new THREE.SphereGeometry(1, 24, 24); // Lower poly for background
+            const geometry = new THREE.BoxGeometry(1, 1, 1); // Box container for sphere raymarching
 
             const material = new THREE.ShaderMaterial({
                 vertexShader: vertexShader,
                 fragmentShader: fragmentShader,
                 uniforms: {
                     map: { value: texture },
-                    threshold: { value: 0.3 + Math.random() * 0.1 },
-                    opacity: { value: this.config.cloudDensity * 0.4 }, // More transparent
-                    steps: { value: 30.0 }, // Lower quality for background
+                    threshold: { value: 0.3 + Math.random() * 0.15 },
+                    opacity: { value: this.config.cloudDensity * 0.35 }, // More transparent
+                    steps: { value: 35.0 }, // Lower quality for background
                     time: { value: Math.random() * 100 }
                 },
                 side: THREE.BackSide,
@@ -222,13 +224,13 @@ class OptimizedCloudScene {
 
             const cloud = new THREE.Mesh(geometry, material);
 
-            // Make them huge
-            const scale = 8 + Math.random() * 5;
-            cloud.scale.set(scale, scale * 0.6, scale);
+            // Make them huge and slightly squashed for natural blob shapes
+            const scale = 8 + Math.random() * 6;
+            cloud.scale.set(scale, scale * 0.65, scale * 0.9);
 
             // Position far back
-            const xPos = (Math.random() - 0.5) * 40;
-            const yPos = -10 + Math.random() * 30;
+            const xPos = (Math.random() - 0.5) * 60; // Wider background
+            const yPos = -20 + Math.random() * 50;
             const zPos = -15 - Math.random() * 10; // Behind everything
 
             cloud.position.set(xPos, yPos, zPos);
@@ -373,8 +375,17 @@ class OptimizedCloudScene {
 
                 let newY = item.userData.originalY + (this.scrollProgress * scrollSpeed) + baseMovement;
 
-                if (newY > 20) {
-                    newY = -20 + (newY % 40);
+                // Loop logic with fade
+                const loopHeight = 60; // Total vertical space before looping
+                const resetThreshold = 30; // Y position where it resets
+
+                // Calculate wrapped Y
+                // We want continuous scrolling without hard pops
+                // We'll use a modulo but hide the wrap with opacity
+
+                // Simple modulo for position
+                if (newY > resetThreshold) {
+                    newY = -30 + (newY % loopHeight);
                 }
 
                 item.position.y = newY;
@@ -393,16 +404,26 @@ class OptimizedCloudScene {
                         mesh.material.uniforms.time.value = time + idx;
                     }
 
-                    // Opacity Fade
-                    // Calculate distance from camera to the mesh's world position
-                    const worldPos = new THREE.Vector3();
-                    mesh.getWorldPosition(worldPos);
-                    const distToCam = worldPos.distanceTo(this.camera.position);
-
+                    // Opacity Fade Logic
                     if (mesh.material.uniforms.opacity) {
                         const baseOpacity = this.config.cloudDensity * (0.3 + Math.random() * 0.1);
                         let fade = 1.0;
-                        if (distToCam < 2.0) fade = smoothstep(0.0, 2.0, distToCam);
+
+                        // Distance fade (close to camera)
+                        const worldPos = new THREE.Vector3();
+                        mesh.getWorldPosition(worldPos);
+                        const distToCam = worldPos.distanceTo(this.camera.position);
+                        if (distToCam < 3.0) fade *= smoothstep(0.0, 3.0, distToCam);
+
+                        // Edge fade (top/bottom of scene) to prevent popping
+                        // Fade out as it reaches the top reset point
+                        const distToTop = resetThreshold - item.position.y;
+                        if (distToTop < 10.0) fade *= smoothstep(0.0, 10.0, distToTop);
+
+                        // Fade in at the bottom
+                        const distToBottom = item.position.y - (-30);
+                        if (distToBottom < 10.0) fade *= smoothstep(0.0, 10.0, distToBottom);
+
                         mesh.material.uniforms.opacity.value = baseOpacity * fade;
                     }
                 };

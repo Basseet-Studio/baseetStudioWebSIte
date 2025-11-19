@@ -51,30 +51,34 @@ float random(vec3 co) {
 }
 
 /**
- * Ray-Sphere Intersection Function
+ * Ray-Box Intersection Function (AABB)
+ * Professional implementation matching Three.js BoxGeometry bounds
+ * Returns the near and far intersection distances
  */
-vec2 hitSphere(vec3 origin, vec3 direction) {
-    float radius = 0.5;
-    float b = dot(origin, direction);
-    float c = dot(origin, origin) - radius * radius;
-    float h = b * b - c;
-    
-    if (h < 0.0) return vec2(-1.0); // No intersection
-    
-    h = sqrt(h);
-    return vec2(-b - h, -b + h);
+vec2 hitBox(vec3 orig, vec3 dir) {
+    const vec3 box_min = vec3(-0.5);
+    const vec3 box_max = vec3(0.5);
+    vec3 inv_dir = 1.0 / dir;
+    vec3 tmin_tmp = (box_min - orig) * inv_dir;
+    vec3 tmax_tmp = (box_max - orig) * inv_dir;
+    vec3 tmin = min(tmin_tmp, tmax_tmp);
+    vec3 tmax = max(tmin_tmp, tmax_tmp);
+    float t0 = max(tmin.x, max(tmin.y, tmin.z));
+    float t1 = min(tmax.x, min(tmax.y, tmax.z));
+    return vec2(t0, t1);
 }
 
 
 void main() {
     vec3 rayDir = normalize(vDirection);
-    vec2 bounds = hitSphere(vOrigin, rayDir);
+    vec2 bounds = hitBox(vOrigin, rayDir);
 
-    
+    // Discard if no intersection with box
     if (bounds.x > bounds.y) {
         discard;
     }
     
+    // Ensure we start from a valid position
     bounds.x = max(bounds.x, 0.0);
     
     float distance = bounds.y - bounds.x;
@@ -87,39 +91,30 @@ void main() {
     vec4 accumColor = vec4(0.0);
     
     // Soft edge fade factors
-    float fadeDistance = 0.1; // Distance from box edge to start fading
+    float fadeDistance = 0.3; // Very soft edges
     
     for (float i = 0.0; i < steps; i++) {
-        // Check if we've marched out of the sphere (radius 0.5)
-        if (length(pos) > 0.5) {
-            break;
-        }
-
-
+        // Map position to texture coordinates [0, 1]
+        // pos is in range [-0.5, 0.5] within the box
         vec3 texCoord = pos + 0.5;
         
-        // Sample noise
+        // Sample noise density from texture
         float density = texture(map, texCoord).r;
         
-        // Calculate distance to sphere edge for soft fading
-        float distFromCenter = length(pos);
-        float distToEdge = 0.5 - distFromCenter;
-        float edgeFade = smoothstep(0.0, fadeDistance, distToEdge);
-
+        // Apply threshold with soft smoothstep (Three.js approach)
+        // Wider range for fluffier clouds
+        density = smoothstep(threshold - 0.15, threshold + 0.15, density) * opacity;
         
-        // Apply threshold and edge fade
-        // Use a softer smoothstep range for fluffier look
-        float cloudDensity = smoothstep(threshold - 0.15, threshold + 0.15, density);
-        cloudDensity *= edgeFade;
+        // Optional: Simple gradient shading for depth
+        float shading = texture(map, texCoord + vec3(-0.01)).r - texture(map, texCoord + vec3(0.01)).r;
+        float shadingFactor = shading * 3.0 + ((texCoord.x + texCoord.y) * 0.25) + 0.2;
         
-        if (cloudDensity > 0.001) {
-            // Color calculation
-            vec4 color = vec4(1.0, 1.0, 1.0, cloudDensity * opacity);
+        if (density > 0.001) {
+            // Accumulate color with front-to-back alpha compositing
+            vec4 color = vec4(1.0, 1.0, 1.0, density);
             
-            // Lighting approximation (simple density-based shading)
-            // Denser parts are darker (self-shadowing)
-            float shadow = exp(-cloudDensity * 2.0);
-            color.rgb *= mix(0.8, 1.0, shadow);
+            // Apply shading for variation
+            color.rgb *= shadingFactor;
             
             accumColor.rgb += (1.0 - accumColor.a) * color.rgb * color.a;
             accumColor.a += (1.0 - accumColor.a) * color.a;
