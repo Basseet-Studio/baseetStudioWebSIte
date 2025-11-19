@@ -2,7 +2,7 @@
  * ImprovedNoise - 3D Perlin Noise Implementation
  * Based on Ken Perlin's improved noise algorithm
  */
-export class ImprovedNoise {
+class ImprovedNoise {
     constructor() {
         // Initialize permutation table with 256 values
         const p = [];
@@ -103,7 +103,5 @@ export class ImprovedNoise {
     }
 }
 
-// Make class globally available for non-module usage
-if (typeof window !== 'undefined') {
-    window.ImprovedNoise = ImprovedNoise;
-}
+// Make class globally available
+window.ImprovedNoise = ImprovedNoise;

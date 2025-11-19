@@ -55,13 +55,14 @@
             pointer-events: none;
         }
 
-        /* WebGL Cloud Canvas */
+        /* WebGL Cloud Canvas - Fixed sizing for WebGL rendering */
         #heroCloudCanvas {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            display: block;
             z-index: 1;
             pointer-events: none;
         }
@@ -226,6 +227,20 @@
             body.revealing .baseet-loader {
                 transition-duration: 0.3s;
             }
+
+            /* Disable cloud animations for accessibility */
+            #heroCloudCanvas {
+                opacity: 0.5;
+            }
+
+            .baseet-title h1 {
+                animation: none !important;
+                text-shadow: 0 0 80px rgba(73, 107, 193, 0.5) !important;
+            }
+
+            .scroll-indicator {
+                animation: none !important;
+            }
         }
 
         /* Mobile optimization */
@@ -263,7 +278,7 @@
     </div>
 
     <script>
-        // Baseet Studio Loader - WebGL Cloud Animation on Scroll (Bidirectional)
+        // Baseet Studio Loader - WebGL Cloud Animation with Intersection Observer
         (function () {
             const loader = document.getElementById('baseet-loader');
             const mainContent = document.querySelector('.main-content');
@@ -272,23 +287,53 @@
 
             let animationComplete = false;
             let transitionComplete = false;
+            let currentScrollProgress = 0;
+            let lastScrollY = 0;
+            let scrollDirection = 'down'; // Track scroll direction
 
-            // Add spacer to allow scrolling
-            const spacer = document.createElement('div');
-            spacer.style.height = '120vh';
-            spacer.style.pointerEvents = 'none';
-            spacer.id = 'animation-spacer';
-            document.body.appendChild(spacer);
+            // Check for reduced motion preference
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-            // Handle scroll to animate clouds (bidirectional)
+            // Asymmetric scroll behavior constants
+            const SCROLL_DOWN_THRESHOLD = prefersReducedMotion ? 100 : 400; // More space for transition
+            const SCROLL_UP_THRESHOLD = prefersReducedMotion ? 150 : 600;   // More space going back
+            const STAGING_ZONE = prefersReducedMotion ? 50 : 150;
+
+            /**
+             * Calculate scroll progress with asymmetric behavior
+             * DOWN: Smooth transition (400px) - more space between clouds and hero
+             * UP: Slow with staging area (600px with resistance)
+             */
+            function getScrollProgress(scrollY, direction) {
+                if (direction === 'down') {
+                    // Fast transition when scrolling down
+                    return Math.min(scrollY / SCROLL_DOWN_THRESHOLD, 1);
+                } else {
+                    // Slow with staging resistance when scrolling up
+                    if (scrollY < STAGING_ZONE) {
+                        // Resistance zone - exponential curve
+                        return Math.pow(scrollY / STAGING_ZONE, 3) * 0.2;
+                    } else {
+                        // Normal zone
+                        return 0.2 + ((scrollY - STAGING_ZONE) / (SCROLL_UP_THRESHOLD - STAGING_ZONE)) * 0.8;
+                    }
+                }
+            }
+
+            // Handle scroll to animate clouds (bidirectional with asymmetric speed)
             function handleScroll() {
                 const scrollY = window.scrollY || window.pageYOffset;
                 
-                // If transition is complete, allow scroll back up to reset
+                // Detect scroll direction
+                scrollDirection = scrollY > lastScrollY ? 'down' : 'up';
+                lastScrollY = scrollY;
+                
+                // If transition is complete and user scrolls back to top
                 if (transitionComplete && scrollY < 50) {
                     // Reset animation state when scrolling back to top
                     animationComplete = false;
                     transitionComplete = false;
+                    currentScrollProgress = 0;
                     document.body.classList.remove('loaded', 'revealing');
                     loader.style.display = 'flex';
                     
@@ -303,10 +348,14 @@
                     if (window.heroCloudRenderer) {
                         window.heroCloudRenderer.resetAnimation();
                     }
+                    return;
                 }
 
-                // Animation completes at 400px scroll distance
-                if (scrollY >= 400 && !animationComplete) {
+                // Calculate progress based on scroll direction
+                const threshold = scrollDirection === 'down' ? SCROLL_DOWN_THRESHOLD : SCROLL_UP_THRESHOLD;
+
+                // Animation completes when threshold is reached
+                if (scrollY >= threshold && !animationComplete) {
                     animationComplete = true;
 
                     // Ensure final state is reached
@@ -320,23 +369,18 @@
                         window.heroCloudRenderer.setAnimationProgress(1);
                     }
 
-                    // 10ms pause before cinematic cross-fade begins
+                    // Brief pause before transition
                     setTimeout(() => {
                         // Trigger cross-fade transition
                         document.body.classList.add('revealing');
-
-                        // Use requestAnimationFrame for smooth 60fps animation
-                        requestAnimationFrame(() => {
-                            requestAnimationFrame(() => {
-                                // Instantly reset scroll during transition (invisible under fade)
-                                window.scrollTo({ top: 0, behavior: 'instant' });
-                            });
-                        });
 
                         // Complete transition after 800ms
                         setTimeout(() => {
                             document.body.classList.add('loaded');
                             transitionComplete = true;
+                            
+                            // Hide loader completely
+                            loader.style.display = 'none';
 
                             // Re-enable body scroll and remove will-change
                             document.body.style.overflow = 'auto';
@@ -348,13 +392,15 @@
                 }
             }
 
-            // Parallax effect on scroll before animation completes (bidirectional)
+            // Parallax effect on scroll with asymmetric speed (bidirectional)
             function parallaxClouds() {
                 if (animationComplete) return;
 
                 const scrollY = window.scrollY || window.pageYOffset;
-                // Animation range: 0px to 400px scroll distance
-                const scrollPercent = Math.min(scrollY / 400, 1);
+                
+                // Calculate progress based on scroll direction (asymmetric)
+                const scrollPercent = getScrollProgress(scrollY, scrollDirection);
+                currentScrollProgress = scrollPercent;
 
                 // Smooth easing function for better animation
                 const easeOut = 1 - Math.pow(1 - scrollPercent, 3);
@@ -399,43 +445,13 @@
                 }
             }, { passive: true });
 
-            // Allow manual start with click or touch
+            // Optional: Allow manual start with click (only trigger scroll if user wants)
             loader.addEventListener('click', function () {
-                if (!animationComplete) {
-                    window.scrollTo({ top: 600, behavior: 'smooth' });
+                if (!animationComplete && !transitionComplete) {
+                    // Gentle scroll to start animation
+                    window.scrollBy({ top: 300, behavior: 'smooth' });
                 }
             });
-
-            // Also allow wheel events to trigger scroll
-            loader.addEventListener('wheel', function (e) {
-                if (e.deltaY > 0 && !animationComplete) {
-                    e.preventDefault();
-                    const currentScroll = window.scrollY || window.pageYOffset;
-                    window.scrollTo({ top: currentScroll + 100, behavior: 'smooth' });
-                } else if (e.deltaY < 0 && transitionComplete) {
-                    // Allow scrolling up when on main content
-                    e.preventDefault();
-                    const currentScroll = window.scrollY || window.pageYOffset;
-                    window.scrollTo({ top: Math.max(0, currentScroll - 100), behavior: 'smooth' });
-                }
-            }, { passive: false });
-
-            // Touch support for mobile
-            let touchStartY = 0;
-            loader.addEventListener('touchstart', function (e) {
-                touchStartY = e.touches[0].clientY;
-            }, { passive: true });
-
-            loader.addEventListener('touchmove', function (e) {
-                if (!animationComplete) {
-                    const touchY = e.touches[0].clientY;
-                    const deltaY = touchStartY - touchY;
-                    if (deltaY > 50) {
-                        const currentScroll = window.scrollY || window.pageYOffset;
-                        window.scrollTo({ top: currentScroll + 100, behavior: 'smooth' });
-                    }
-                }
-            }, { passive: true });
         })();
     </script>
 
@@ -493,17 +509,58 @@
 
     <!-- Initialize Hero Clouds -->
     <script>
-        window.addEventListener('DOMContentLoaded', function() {
+        // Wait for all dependencies to load before initializing
+        function initHeroClouds() {
             const canvas = document.getElementById('heroCloudCanvas');
-            if (canvas && window.CloudRenderer) {
+            
+            // Check all dependencies are loaded
+            if (!canvas) {
+                console.error('Canvas element not found');
+                return;
+            }
+            
+            if (!window.THREE) {
+                console.error('THREE.js not loaded yet, retrying...');
+                setTimeout(initHeroClouds, 100);
+                return;
+            }
+            
+            if (!window.CloudRenderer) {
+                console.error('CloudRenderer not loaded yet, retrying...');
+                setTimeout(initHeroClouds, 100);
+                return;
+            }
+            
+            // Verify canvas has dimensions
+            const rect = canvas.getBoundingClientRect();
+            if (rect.width === 0 || rect.height === 0) {
+                console.warn('Canvas has no dimensions, waiting for layout...');
+                requestAnimationFrame(initHeroClouds);
+                return;
+            }
+            
+            console.log('Initializing CloudRenderer with canvas dimensions:', rect.width, 'x', rect.height);
+            
+            // Initialize renderer
+            try {
                 window.heroCloudRenderer = new CloudRenderer(canvas, {
                     density: 0.8,
                     scale: 1.5,
                     scrollEnabled: false // We'll control it manually
                 });
                 window.heroCloudRenderer.init();
+                console.log('CloudRenderer initialized successfully');
+            } catch (error) {
+                console.error('Failed to initialize CloudRenderer:', error);
             }
-        });
+        }
+        
+        // Start initialization when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initHeroClouds);
+        } else {
+            initHeroClouds();
+        }
     </script>
 
 </main>

@@ -8,7 +8,7 @@
  * Calculates ray origin (camera position in object space) and ray direction
  * for each vertex, passing them to the fragment shader as varyings
  */
-export const vertexShader = `
+const vertexShader = `
 varying vec3 vOrigin;
 varying vec3 vDirection;
 
@@ -32,7 +32,10 @@ void main() {
  * Implements raymarching algorithm with box intersection
  * Samples 3D texture along ray and accumulates color/opacity
  */
-export const fragmentShader = `
+const fragmentShader = `
+precision highp float;
+precision highp sampler3D;
+
 uniform sampler3D map;
 uniform float threshold;
 uniform float opacity;
@@ -128,8 +131,10 @@ void main() {
 }
 `;
 
-// Make shaders globally available for non-module usage
-if (typeof window !== 'undefined') {
+// Make shaders globally available (avoid duplicate declaration)
+if (!window.vertexShader) {
     window.vertexShader = vertexShader;
+}
+if (!window.fragmentShader) {
     window.fragmentShader = fragmentShader;
 }

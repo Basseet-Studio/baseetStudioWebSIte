@@ -1,14 +1,12 @@
-import * as THREE from 'three';
-import { ImprovedNoise } from './improved-noise.js';
-
 /**
  * Generate a 3D Perlin noise texture for volumetric clouds
  * @param {number} size - Texture dimension (64 or 128 for size³ voxels)
  * @returns {THREE.Data3DTexture} - 3D texture with Perlin noise data
  */
-export function generate3DTexture(size = 128) {
+function generate3DTexture(size = 128) {
+    const THREE = window.THREE;
     const data = new Uint8Array(size * size * size);
-    const perlin = new ImprovedNoise();
+    const perlin = new window.ImprovedNoise();
     
     // Scale factor for noise sampling
     const scale = 0.05;
@@ -52,7 +50,5 @@ export function generate3DTexture(size = 128) {
     return texture;
 }
 
-// Make function globally available for non-module usage
-if (typeof window !== 'undefined') {
-    window.generate3DTexture = generate3DTexture;
-}
+// Make function globally available
+window.generate3DTexture = generate3DTexture;
