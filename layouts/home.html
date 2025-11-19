@@ -193,16 +193,16 @@
         .main-content {
             position: relative;
             opacity: 0;
-            transform: translate3d(0, 80vh, 0);
+            transform: translate3d(0, 100vh, 0);
             will-change: transform, opacity;
             transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
                 transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Revealing state - cross-fade begins */
+        /* Revealing state - keep content hidden during fade */
         body.revealing .main-content {
-            opacity: 1;
-            transform: translate3d(0, 0, 0);
+            opacity: 0;
+            transform: translate3d(0, 100vh, 0);
         }
 
         /* Loader fade-out during cross-fade */
@@ -213,7 +213,7 @@
                 transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Final loaded state */
+        /* Final loaded state - now show content */
         body.loaded .main-content {
             opacity: 1;
             transform: translate3d(0, 0, 0);
