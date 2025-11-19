@@ -258,6 +258,28 @@
 
             const SCROLL_THRESHOLD = 600; // Distance to scroll through clouds before showing hero
 
+            /**
+             * CRITICAL SCROLL LOGIC DOCUMENTATION
+             * -----------------------------------
+             * The transition from the 3D cloud scene to the main HTML content relies on a delicate balance
+             * between the scroll position and the content's padding.
+             * 
+             * 1. Initial State:
+             *    - Body has 'overflow: hidden' (set in CSS/JS init).
+             *    - User scrolls, but it's hijacked/controlled to drive the cloud animation.
+             *    - Main content has 'padding-top: 100vh' to push it below the fold initially.
+             * 
+             * 2. Transition Trigger (at 100% cloud progress):
+             *    - We fade in the main content.
+             *    - We MUST handle the layout shift that occurs when the 'padding-top' is eventually removed/reduced.
+             * 
+             * 3. The "Skip" Fix:
+             *    - We DO NOT use window.scrollTo(0,0) because that triggers the "Reset" logic (see below).
+             *    - Instead, we set 'padding-top' to SCROLL_THRESHOLD (600px).
+             *    - This keeps the content visually at the top, while keeping window.scrollY at 600px.
+             *    - This prevents the auto-reset from firing immediately.
+             */
+
             // Handle scroll events
             function handleScroll() {
                 // Check global instance
@@ -266,6 +288,9 @@
                 const scrollY = window.scrollY || window.pageYOffset;
 
                 // Reset if scrolled back to top
+                // LOGIC: If the user scrolls back up to the very top (< 50px), we assume they want to
+                // restart the cloud experience. We reset the state and show the loader again.
+                // IMPORTANT: This is why we cannot use scrollTo(0,0) during the forward transition.
                 if (transitionComplete && scrollY < 50) {
                     transitionComplete = false;
                     document.body.classList.remove('loaded', 'revealing');
@@ -280,17 +305,28 @@
                     transitionComplete = true;
 
                     // Trigger cross-fade transition
+                    console.log('🚀 Transition triggered. ScrollY:', window.scrollY);
                     document.body.classList.add('revealing');
 
                     // Complete transition after 800ms
                     setTimeout(() => {
+                        console.log('✅ Transition complete. Applying loaded state.');
+                        console.log('Before reset - ScrollY:', window.scrollY);
+
                         document.body.classList.add('loaded');
                         loader.style.display = 'none';
                         document.body.style.overflow = 'auto';
 
+                        // Fix for skip issue: Maintain scroll position by adjusting padding
+                        // instead of scrolling to top (which triggers auto-reset)
+                        // CRITICAL: Do not change this to scrollTo(0,0) or remove this padding logic.
+                        // If you remove padding without this, the content jumps up 600px.
+                        // If you scroll to 0, the 'scrollY < 50' check above triggers and resets the scene.
                         if (mainContent) {
+                            mainContent.style.paddingTop = SCROLL_THRESHOLD + 'px';
                             mainContent.style.willChange = 'auto';
                         }
+                        console.log('After fix - ScrollY:', window.scrollY);
                     }, 800);
                 }
 

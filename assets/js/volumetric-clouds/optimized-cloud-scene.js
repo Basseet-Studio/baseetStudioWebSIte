@@ -341,6 +341,8 @@ class OptimizedCloudScene {
         this.scrollProgress = Math.min(scrollY / this.config.scrollDistance, 1);
         console.log(`Cloud Scroll Progress: ${Math.round(this.scrollProgress * 100)}%`);
 
+        // NOTE: The transition to the hero section is NOT handled here.
+        // It is handled in layouts/home.html which watches window.cloudScene.isComplete().
     }
 
     /**
