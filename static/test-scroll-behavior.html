@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll Behavior Test Page</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 10px;
+        }
+        .test-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-left: 4px solid #007bff;
+            border-radius: 4px;
+        }
+        .test-section h2 {
+            margin-top: 0;
+            color: #007bff;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            margin: 10px 10px 10px 0;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+        }
+        .button:hover {
+            background: #0056b3;
+        }
+        .button.secondary {
+            background: #6c757d;
+        }
+        .button.secondary:hover {
+            background: #545b62;
+        }
+        .status {
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.warning {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+        .checklist li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .checklist li:before {
+            content: "☐ ";
+            margin-right: 8px;
+            color: #007bff;
+        }
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Volumetric Clouds - Scroll Behavior Test Page</h1>
+        
+        <div class="status info">
+            <strong>ℹ️ Test Environment:</strong> This page helps you test the scroll behavior of the volumetric clouds feature.
+        </div>
+
+        <div class="test-section">
+            <h2>Quick Start</h2>
+            <p>Choose how you want to test:</p>
+            <a href="/" class="button">🌥️ Go to Main Site (Manual Testing)</a>
+            <button onclick="openConsoleInstructions()" class="button secondary">📋 Show Console Test Instructions</button>
+        </div>
+
+        <div class="test-section">
+            <h2>Automated Testing (Browser Console)</h2>
+            <p>Run automated tests in the browser console:</p>
+            <ol>
+                <li>Open the <a href="/">main site</a> in a new tab</li>
+                <li>Open Developer Tools (F12 or Cmd+Option+I)</li>
+                <li>Go to the Console tab</li>
+                <li>Copy and paste the test script from <code>assets/js/volumetric-clouds/test-scroll-behavior.js</code></li>
+                <li>Run: <code>runAllTests()</code></li>
+            </ol>
+            <p><strong>Or use this shortcut:</strong></p>
+            <pre>// Copy this into the console on the main site
+fetch('/js/volumetric-clouds/test-scroll-behavior.js')
+  .then(r => r.text())
+  .then(code => {
+    eval(code);
+    runAllTests();
+  });</pre>
+        </div>
+
+        <div class="test-section">
+            <h2>Manual Testing Checklist</h2>
+            
+            <h3>Desktop Scroll Behavior (14.1)</h3>
+            <ul class="checklist">
+                <li>Scroll down accumulation works (150px threshold)</li>
+                <li>Scroll up stagger delay works (300ms)</li>
+                <li>Quick scroll up is ignored (&lt; 300ms)</li>
+                <li>Scroll indicator shows progress correctly</li>
+                <li>Transitions are smooth (no jank)</li>
+                <li>No console errors</li>
+            </ul>
+
+            <h3>Mobile Touch Behavior (14.2)</h3>
+            <ul class="checklist">
+                <li>Swipe up transitions to site (150px)</li>
+                <li>Swipe down at top returns to clouds (300ms delay)</li>
+                <li>Touch gestures feel responsive</li>
+                <li>Performance is acceptable (&gt;45 FPS)</li>
+                <li>Tested on iOS device</li>
+                <li>Tested on Android device</li>
+                <li>No touch event conflicts</li>
+            </ul>
+
+            <h3>Keyboard Navigation (14.3)</h3>
+            <ul class="checklist">
+                <li>Arrow Down works in CLOUD_MODE</li>
+                <li>Page Down works in CLOUD_MODE</li>
+                <li>Space works in CLOUD_MODE</li>
+                <li>Arrow Up works at top in SITE_MODE</li>
+                <li>No keyboard traps</li>
+                <li>Focus management is correct</li>
+                <li>Can navigate freely between modes</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h2>Test Scenarios</h2>
+            
+            <h3>Scenario 1: First-time Visitor</h3>
+            <ol>
+                <li>Open the main site</li>
+                <li>Verify clouds appear immediately</li>
+                <li>Scroll down to explore the site</li>
+                <li>Verify smooth transition to site content</li>
+            </ol>
+
+            <h3>Scenario 2: Returning to Clouds</h3>
+            <ol>
+                <li>From site content, scroll to the top</li>
+                <li>Continue scrolling up for 300ms</li>
+                <li>Verify clouds reappear</li>
+                <li>Verify smooth transition</li>
+            </ol>
+
+            <h3>Scenario 3: Keyboard User</h3>
+            <ol>
+                <li>Start at clouds</li>
+                <li>Press Arrow Down to enter site</li>
+                <li>Use Tab to navigate content</li>
+                <li>Press Arrow Up at top to return to clouds</li>
+                <li>Verify no keyboard traps</li>
+            </ol>
+
+            <h3>Scenario 4: Mobile User</h3>
+            <ol>
+                <li>Open site on mobile device</li>
+                <li>Swipe up to enter site</li>
+                <li>Swipe down at top to return to clouds</li>
+                <li>Verify smooth performance</li>
+            </ol>
+        </div>
+
+        <div class="test-section">
+            <h2>Debugging Tools</h2>
+            <p>Use these commands in the browser console on the main site:</p>
+            <pre>// Check current state
+console.log('State:', window.scrollManager.state)
+console.log('Scroll Y:', window.scrollY)
+console.log('Accumulator:', window.scrollManager.scrollAccumulator)
+
+// Force state changes
+window.scrollManager.transitionToCloud()
+window.scrollManager.transitionToSite()
+
+// Monitor events
+window.addEventListener('wheel', (e) => {
+    console.log('Wheel:', e.deltaY, 'State:', window.scrollManager.state)
+})</pre>
+        </div>
+
+        <div class="test-section">
+            <h2>Expected Results</h2>
+            <div class="status success">
+                <strong>✅ All tests should pass:</strong>
+                <ul style="margin: 10px 0 0 20px;">
+                    <li>Desktop scroll behavior works correctly</li>
+                    <li>Mobile touch behavior works correctly</li>
+                    <li>Keyboard navigation works correctly</li>
+                    <li>No keyboard traps</li>
+                    <li>Smooth transitions in all cases</li>
+                    <li>No console errors</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>Documentation</h2>
+            <p>For detailed testing instructions, see:</p>
+            <ul>
+                <li><code>assets/js/volumetric-clouds/TEST_INSTRUCTIONS.md</code></li>
+                <li><code>assets/js/volumetric-clouds/test-scroll-behavior.js</code></li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #e0e0e0; text-align: center; color: #666;">
+            <p>Baseet Studio - Volumetric Clouds Feature Testing</p>
+            <p><small>Task 14: Test scroll behavior across devices</small></p>
+        </div>
+    </div>
+
+    <script>
+        function openConsoleInstructions() {
+            alert('Console Test Instructions:\n\n' +
+                  '1. Open the main site (/) in a new tab\n' +
+                  '2. Open Developer Tools (F12)\n' +
+                  '3. Go to Console tab\n' +
+                  '4. Run: runAllTests()\n\n' +
+                  'The test script is already loaded on localhost!');
+        }
+    </script>
+</body>
+</html>

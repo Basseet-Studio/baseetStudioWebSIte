@@ -10,6 +10,9 @@
     "generate-jsconfig": "node ./scripts/generate-jsconfig.js",
     "postinstall": "node ./scripts/generate-jsconfig.js"
   },
+  "dependencies": {
+    "three": "0.160.0"
+  },
   "devDependencies": {
     "tailwindcss": "^4.1.17",
     "@tailwindcss/cli": "^4.1.17",

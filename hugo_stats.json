@@ -197,6 +197,7 @@
       "mb-2",
       "mb-20",
       "mb-24",
+      "mb-28",
       "mb-4",
       "mb-6",
       "md:grid-cols-2",
@@ -216,6 +217,8 @@
       "p-3",
       "p-6",
       "pb-8",
+      "prose",
+      "prose-lg",
       "pt-20",
       "pt-8",
       "px-11",
@@ -359,10 +362,13 @@
       "highlights",
       "mainContent",
       "navbarContent",
+      "scroll-indicator",
       "submit-button",
       "subscribe",
       "subscribe-email",
-      "team"
+      "team",
+      "test-output",
+      "volumetric-cloud-canvas"
     ]
   }
 }

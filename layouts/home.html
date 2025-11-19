@@ -1,8 +1,20 @@
 {{ define "main" }}
 
+<!-- Volumetric Cloud Scroll CSS -->
+<link rel="stylesheet" href="{{ "css/volumetric-cloud-scroll.css" | relURL }}">
+
 <!-- Skip to content for keyboard users -->
 <a class="sr-only focus:not-sr-only inline-block p-3 bg-white text-primary rounded-md shadow-lg z-50"
     href="#mainContent">Skip to content</a>
+
+<!-- Volumetric Cloud Canvas Container -->
+<div id="volumetric-cloud-canvas" role="img" aria-label="Volumetric cloud background animation">
+    <span class="sr-only">Decorative cloud background. Scroll down to view content.</span>
+</div>
+
+<!-- Scroll Progress Indicator -->
+<div id="scroll-indicator" aria-hidden="true"></div>
+
 <main id="mainContent">
 
     <style>
@@ -454,7 +466,7 @@
     </div>
 
     <script>
-        // Baseet Studio Loader - Cloud Animation on Scroll
+        // Baseet Studio Loader - Cloud Animation on Scroll (Bidirectional)
         (function () {
             const loader = document.getElementById('baseet-loader');
             const mainContent = document.querySelector('.main-content');
@@ -462,26 +474,47 @@
             const cloudBack = document.querySelector('.cloud-back');
             const cloudFront = document.querySelector('.cloud-front');
 
-            let scrolled = false;
             let animationComplete = false;
+            let transitionComplete = false;
 
-            // Add spacer to allow scrolling - shorter for faster animation
+            // Add spacer to allow scrolling
             const spacer = document.createElement('div');
             spacer.style.height = '120vh';
             spacer.style.pointerEvents = 'none';
             spacer.id = 'animation-spacer';
             document.body.appendChild(spacer);
 
-            // Handle scroll to animate clouds away
+            // Handle scroll to animate clouds (bidirectional)
             function handleScroll() {
-                if (scrolled) return;
-
                 const scrollY = window.scrollY || window.pageYOffset;
+                
+                // If transition is complete, allow scroll back up to reset
+                if (transitionComplete && scrollY < 50) {
+                    // Reset animation state when scrolling back to top
+                    animationComplete = false;
+                    transitionComplete = false;
+                    document.body.classList.remove('loaded', 'revealing');
+                    loader.style.display = 'flex';
+                    
+                    // Reset transforms
+                    if (cloudBack) {
+                        cloudBack.style.transform = '';
+                        cloudBack.style.opacity = '';
+                    }
+                    if (cloudFront) {
+                        cloudFront.style.transform = '';
+                        cloudFront.style.opacity = '';
+                    }
+                    if (title) {
+                        title.style.filter = '';
+                        title.style.transform = '';
+                        title.style.textShadow = '';
+                    }
+                }
 
                 // Animation completes at 400px scroll distance
                 if (scrollY >= 400 && !animationComplete) {
                     animationComplete = true;
-                    scrolled = true;
 
                     // Ensure final state is reached
                     if (cloudBack) {
@@ -510,14 +543,10 @@
                             });
                         });
 
-                        // Complete transition after 800ms (800ms duration + cleanup)
+                        // Complete transition after 800ms
                         setTimeout(() => {
                             document.body.classList.add('loaded');
-
-                            // Clean up spacer
-                            if (spacer && spacer.parentNode) {
-                                spacer.parentNode.removeChild(spacer);
-                            }
+                            transitionComplete = true;
 
                             // Re-enable body scroll and remove will-change
                             document.body.style.overflow = 'auto';
@@ -529,9 +558,9 @@
                 }
             }
 
-            // Parallax effect on scroll before animation completes
+            // Parallax effect on scroll before animation completes (bidirectional)
             function parallaxClouds() {
-                if (scrolled) return;
+                if (animationComplete) return;
 
                 const scrollY = window.scrollY || window.pageYOffset;
                 // Animation range: 0px to 400px scroll distance
@@ -577,6 +606,8 @@
                 // Add reveal class when partially scrolled
                 if (scrollPercent > 0.3 && !loader.classList.contains('reveal')) {
                     loader.classList.add('reveal');
+                } else if (scrollPercent <= 0.3 && loader.classList.contains('reveal')) {
+                    loader.classList.remove('reveal');
                 }
             }
 
@@ -595,17 +626,22 @@
 
             // Allow manual start with click or touch
             loader.addEventListener('click', function () {
-                if (!scrolled) {
+                if (!animationComplete) {
                     window.scrollTo({ top: 600, behavior: 'smooth' });
                 }
             });
 
             // Also allow wheel events to trigger scroll
             loader.addEventListener('wheel', function (e) {
-                if (e.deltaY > 0 && !scrolled) {
+                if (e.deltaY > 0 && !animationComplete) {
                     e.preventDefault();
                     const currentScroll = window.scrollY || window.pageYOffset;
                     window.scrollTo({ top: currentScroll + 100, behavior: 'smooth' });
+                } else if (e.deltaY < 0 && transitionComplete) {
+                    // Allow scrolling up when on main content
+                    e.preventDefault();
+                    const currentScroll = window.scrollY || window.pageYOffset;
+                    window.scrollTo({ top: Math.max(0, currentScroll - 100), behavior: 'smooth' });
                 }
             }, { passive: false });
 
@@ -616,7 +652,7 @@
             }, { passive: true });
 
             loader.addEventListener('touchmove', function (e) {
-                if (!scrolled) {
+                if (!animationComplete) {
                     const touchY = e.touches[0].clientY;
                     const deltaY = touchStartY - touchY;
                     if (deltaY > 50) {
@@ -650,6 +686,15 @@
     <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
     <link rel="dns-prefetch" href="https://formspree.io">
 
+    <!-- Volumetric Cloud System -->
+    {{- $cloudScript := resources.Get "js/volumetric-clouds/main-cloud.js" -}}
+    {{- if $cloudScript -}}
+        {{- $cloudBundle := $cloudScript | js.Build (dict "format" "esm" "target" "es2020") -}}
+        {{- if hugo.IsProduction -}}
+            {{- $cloudBundle = $cloudBundle | minify | fingerprint -}}
+        {{- end -}}
+        <script type="module" src="{{ $cloudBundle.RelPermalink }}" defer></script>
+    {{- end -}}
 
 </main>
 {{ end }}
