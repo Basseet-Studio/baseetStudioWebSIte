@@ -68,44 +68,7 @@
         }
 
         /* Main Title */
-        .baseet-title {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            perspective: 1000px;
-        }
-
-        .baseet-title h1 {
-            font-size: clamp(3rem, 8vw, 8rem);
-            font-weight: 900;
-            letter-spacing: 0.1em;
-            background: linear-gradient(135deg, #ffffff 0%, #496BC1 50%, #FBCD37 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 0 80px rgba(73, 107, 193, 0.5);
-            animation: titlePulse 3s ease-in-out infinite;
-            transition: filter 0.6s ease, transform 0.6s ease;
-        }
-
-        .baseet-loader.reveal .baseet-title h1 {
-            filter: blur(0px);
-            transform: scale(1.05);
-        }
-
-        @keyframes titlePulse {
-
-            0%,
-            100% {
-                text-shadow: 0 0 80px rgba(73, 107, 193, 0.5),
-                    0 0 40px rgba(251, 205, 55, 0.3);
-            }
-
-            50% {
-                text-shadow: 0 0 120px rgba(73, 107, 193, 0.8),
-                    0 0 60px rgba(251, 205, 55, 0.5);
-            }
-        }
+        /* 3D text is now rendered in WebGL, no CSS text needed */
 
         /* Scroll Indicator */
         .scroll-indicator {
@@ -193,31 +156,34 @@
         .main-content {
             position: relative;
             opacity: 0;
-            transform: translate3d(0, 100vh, 0);
+            transform: translate3d(0, 0, 0); /* Start at normal position */
             will-change: transform, opacity;
             transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
                 transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            /* Add padding-top to account for cloud section */
+            padding-top: 100vh;
+            min-height: 100vh;
         }
 
-        /* Revealing state - keep content hidden during fade */
+        /* Revealing state - begin fade in */
         body.revealing .main-content {
-            opacity: 0;
-            transform: translate3d(0, 100vh, 0);
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
         }
 
         /* Loader fade-out during cross-fade */
         body.revealing .baseet-loader {
             opacity: 0;
-            transform: translateY(-5vh);
-            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(0);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Final loaded state - now show content */
+        /* Final loaded state */
         body.loaded .main-content {
             opacity: 1;
             transform: translate3d(0, 0, 0);
             will-change: auto;
+            padding-top: 0; /* Remove padding when clouds are hidden */
         }
 
         /* Performance optimizations */
@@ -251,15 +217,10 @@
         }
     </style>
 
-    <!-- Full Screen Loading Animation with WebGL Volumetric Clouds -->
+    <!-- Full Screen 3D Cloud Scene with WebGL -->
     <div id="baseet-loader" class="baseet-loader">
         <!-- WebGL Volumetric Cloud Canvas -->
         <canvas id="heroCloudCanvas"></canvas>
-
-        <!-- Main title -->
-        <div class="baseet-title">
-            <h1>BASEET STUDIO</h1>
-        </div>
 
         <!-- Scroll indicator -->
         <div class="scroll-indicator">
@@ -278,158 +239,53 @@
     </div>
 
     <script>
-        // Baseet Studio Loader - WebGL Cloud Animation with Intersection Observer
+        // Optimized 3D Cloud Scene Controller
         (function () {
             const loader = document.getElementById('baseet-loader');
             const mainContent = document.querySelector('.main-content');
-            const title = document.querySelector('.baseet-title h1');
             const cloudCanvas = document.getElementById('heroCloudCanvas');
 
-            let animationComplete = false;
+            let cloudScene = null;
             let transitionComplete = false;
-            let currentScrollProgress = 0;
             let lastScrollY = 0;
-            let scrollDirection = 'down'; // Track scroll direction
 
-            // Check for reduced motion preference
-            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const SCROLL_THRESHOLD = 600; // Distance to scroll through clouds before showing hero
 
-            // Asymmetric scroll behavior constants
-            const SCROLL_DOWN_THRESHOLD = prefersReducedMotion ? 100 : 400; // More space for transition
-            const SCROLL_UP_THRESHOLD = prefersReducedMotion ? 150 : 600;   // More space going back
-            const STAGING_ZONE = prefersReducedMotion ? 50 : 150;
-
-            /**
-             * Calculate scroll progress with asymmetric behavior
-             * DOWN: Smooth transition (400px) - more space between clouds and hero
-             * UP: Slow with staging area (600px with resistance)
-             */
-            function getScrollProgress(scrollY, direction) {
-                if (direction === 'down') {
-                    // Fast transition when scrolling down
-                    return Math.min(scrollY / SCROLL_DOWN_THRESHOLD, 1);
-                } else {
-                    // Slow with staging resistance when scrolling up
-                    if (scrollY < STAGING_ZONE) {
-                        // Resistance zone - exponential curve
-                        return Math.pow(scrollY / STAGING_ZONE, 3) * 0.2;
-                    } else {
-                        // Normal zone
-                        return 0.2 + ((scrollY - STAGING_ZONE) / (SCROLL_UP_THRESHOLD - STAGING_ZONE)) * 0.8;
-                    }
-                }
-            }
-
-            // Handle scroll to animate clouds (bidirectional with asymmetric speed)
+            // Handle scroll events
             function handleScroll() {
+                if (!cloudScene) return;
+
                 const scrollY = window.scrollY || window.pageYOffset;
                 
-                // Detect scroll direction
-                scrollDirection = scrollY > lastScrollY ? 'down' : 'up';
-                lastScrollY = scrollY;
-                
-                // If transition is complete and user scrolls back to top
+                // Reset if scrolled back to top
                 if (transitionComplete && scrollY < 50) {
-                    // Reset animation state when scrolling back to top
-                    animationComplete = false;
                     transitionComplete = false;
-                    currentScrollProgress = 0;
                     document.body.classList.remove('loaded', 'revealing');
                     loader.style.display = 'flex';
-                    
-                    // Reset title transforms
-                    if (title) {
-                        title.style.filter = '';
-                        title.style.transform = '';
-                        title.style.textShadow = '';
-                    }
-                    
-                    // Notify WebGL clouds to reset (if available)
-                    if (window.heroCloudRenderer) {
-                        window.heroCloudRenderer.resetAnimation();
-                    }
+                    cloudScene.reset();
                     return;
                 }
 
-                // Calculate progress based on scroll direction
-                const threshold = scrollDirection === 'down' ? SCROLL_DOWN_THRESHOLD : SCROLL_UP_THRESHOLD;
+                // Check if cloud scene is complete
+                if (cloudScene.isComplete() && !transitionComplete) {
+                    transitionComplete = true;
 
-                // Animation completes when threshold is reached
-                if (scrollY >= threshold && !animationComplete) {
-                    animationComplete = true;
+                    // Trigger cross-fade transition
+                    document.body.classList.add('revealing');
 
-                    // Ensure final state is reached
-                    if (title) {
-                        title.style.filter = 'blur(0px)';
-                        title.style.transform = 'scale(1.2)';
-                    }
-                    
-                    // Notify WebGL clouds animation is complete
-                    if (window.heroCloudRenderer) {
-                        window.heroCloudRenderer.setAnimationProgress(1);
-                    }
-
-                    // Brief pause before transition
+                    // Complete transition after 800ms
                     setTimeout(() => {
-                        // Trigger cross-fade transition
-                        document.body.classList.add('revealing');
-
-                        // Complete transition after 800ms
-                        setTimeout(() => {
-                            document.body.classList.add('loaded');
-                            transitionComplete = true;
-                            
-                            // Hide loader completely
-                            loader.style.display = 'none';
-
-                            // Re-enable body scroll and remove will-change
-                            document.body.style.overflow = 'auto';
-                            if (mainContent) {
-                                mainContent.style.willChange = 'auto';
-                            }
-                        }, 800);
-                    }, 15);
-                }
-            }
-
-            // Parallax effect on scroll with asymmetric speed (bidirectional)
-            function parallaxClouds() {
-                if (animationComplete) return;
-
-                const scrollY = window.scrollY || window.pageYOffset;
-                
-                // Calculate progress based on scroll direction (asymmetric)
-                const scrollPercent = getScrollProgress(scrollY, scrollDirection);
-                currentScrollProgress = scrollPercent;
-
-                // Smooth easing function for better animation
-                const easeOut = 1 - Math.pow(1 - scrollPercent, 3);
-
-                // Update WebGL cloud renderer with scroll progress
-                if (window.heroCloudRenderer) {
-                    window.heroCloudRenderer.setAnimationProgress(easeOut);
+                        document.body.classList.add('loaded');
+                        loader.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                        
+                        if (mainContent) {
+                            mainContent.style.willChange = 'auto';
+                        }
+                    }, 800);
                 }
 
-                // Clear title blur as clouds move - gradual clarity
-                if (title) {
-                    const blurAmount = Math.max(0, 8 - easeOut * 8);
-                    const scale = 1 + easeOut * 0.2;
-                    title.style.filter = `blur(${blurAmount}px)`;
-                    title.style.transform = `scale(${scale})`;
-                    title.style.transition = 'none';
-
-                    // Add glow effect as it becomes clearer
-                    const glowIntensity = easeOut * 150;
-                    title.style.textShadow = `0 0 ${glowIntensity}px rgba(73, 107, 193, ${easeOut * 0.8}),
-                                          0 0 ${glowIntensity / 2}px rgba(251, 205, 55, ${easeOut * 0.6})`;
-                }
-
-                // Add reveal class when partially scrolled
-                if (scrollPercent > 0.3 && !loader.classList.contains('reveal')) {
-                    loader.classList.add('reveal');
-                } else if (scrollPercent <= 0.3 && loader.classList.contains('reveal')) {
-                    loader.classList.remove('reveal');
-                }
+                lastScrollY = scrollY;
             }
 
             // Smooth scroll handling with requestAnimationFrame
@@ -437,7 +293,6 @@
             window.addEventListener('scroll', function () {
                 if (!ticking) {
                     window.requestAnimationFrame(function () {
-                        parallaxClouds();
                         handleScroll();
                         ticking = false;
                     });
@@ -445,11 +300,10 @@
                 }
             }, { passive: true });
 
-            // Optional: Allow manual start with click (only trigger scroll if user wants)
+            // Allow manual scroll trigger on click
             loader.addEventListener('click', function () {
-                if (!animationComplete && !transitionComplete) {
-                    // Gentle scroll to start animation
-                    window.scrollBy({ top: 300, behavior: 'smooth' });
+                if (!transitionComplete) {
+                    window.scrollBy({ top: 200, behavior: 'smooth' });
                 }
             });
         })();
@@ -476,92 +330,60 @@
     <!-- Preconnect to external domains for faster loading -->
     <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
     <link rel="dns-prefetch" href="https://formspree.io">
-
-    <!-- WebGL Volumetric Cloud Scripts -->
-    {{- $shaders := resources.Get "js/volumetric-clouds/shaders.js" -}}
-    {{- if $shaders -}}
-    <script src="{{ $shaders.Permalink }}"></script>
-    {{- end -}}
     
-    <!-- THREE.js Library (CDN for WebGL support) -->
-    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <!-- THREE.js Library - ES Module (modern approach) -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
     
-    <!-- WebGL Volumetric Cloud Scripts (in dependency order) -->
-    {{- $improvedNoise := resources.Get "js/volumetric-clouds/improved-noise.js" -}}
-    {{- if $improvedNoise -}}
-    <script src="{{ $improvedNoise.Permalink }}"></script>
-    {{- end -}}
-    
-    {{- $shaders := resources.Get "js/volumetric-clouds/shaders.js" -}}
-    {{- if $shaders -}}
-    <script src="{{ $shaders.Permalink }}"></script>
-    {{- end -}}
-    
-    {{- $textureGen := resources.Get "js/volumetric-clouds/texture-generator.js" -}}
-    {{- if $textureGen -}}
-    <script src="{{ $textureGen.Permalink }}"></script>
-    {{- end -}}
-    
-    {{- $heroAdapter := resources.Get "js/volumetric-clouds/hero-cloud-adapter.js" -}}
-    {{- if $heroAdapter -}}
-    <script src="{{ $heroAdapter.Permalink }}"></script>
-    {{- end -}}
-
-    <!-- Initialize Hero Clouds -->
-    <script>
-        // Wait for all dependencies to load before initializing
-        function initHeroClouds() {
+    <!-- WebGL Volumetric Cloud Scene (ES Module) -->
+    {{- $optimizedScene := resources.Get "js/volumetric-clouds/optimized-cloud-scene.js" -}}
+    {{- if $optimizedScene -}}
+    <script type="module">
+        import { OptimizedCloudScene } from '{{ $optimizedScene.Permalink }}';
+        
+        // Wait for DOM and initialize
+        function initCloudScene() {
             const canvas = document.getElementById('heroCloudCanvas');
             
-            // Check all dependencies are loaded
             if (!canvas) {
                 console.error('Canvas element not found');
                 return;
             }
             
-            if (!window.THREE) {
-                console.error('THREE.js not loaded yet, retrying...');
-                setTimeout(initHeroClouds, 100);
-                return;
-            }
-            
-            if (!window.CloudRenderer) {
-                console.error('CloudRenderer not loaded yet, retrying...');
-                setTimeout(initHeroClouds, 100);
-                return;
-            }
-            
-            // Verify canvas has dimensions
             const rect = canvas.getBoundingClientRect();
             if (rect.width === 0 || rect.height === 0) {
                 console.warn('Canvas has no dimensions, waiting for layout...');
-                requestAnimationFrame(initHeroClouds);
+                requestAnimationFrame(initCloudScene);
                 return;
             }
             
-            console.log('Initializing CloudRenderer with canvas dimensions:', rect.width, 'x', rect.height);
+            console.log('✅ Initializing OptimizedCloudScene...');
+            console.log('Canvas dimensions:', rect.width, 'x', rect.height);
             
-            // Initialize renderer
-            try {
-                window.heroCloudRenderer = new CloudRenderer(canvas, {
-                    density: 0.8,
-                    scale: 1.5,
-                    scrollEnabled: false // We'll control it manually
-                });
-                window.heroCloudRenderer.init();
-                console.log('CloudRenderer initialized successfully');
-            } catch (error) {
-                console.error('Failed to initialize CloudRenderer:', error);
-            }
+            // Initialize cloud scene
+            window.cloudScene = new OptimizedCloudScene('heroCloudCanvas', {
+                cloudCount: 20,
+                cloudDensity: 0.7,
+                scrollDistance: 600,
+                textContent: 'BASEET STUDIO',
+                fontSize: 1.2
+            });
         }
         
-        // Start initialization when DOM is ready
+        // Start when DOM is ready
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initHeroClouds);
+            document.addEventListener('DOMContentLoaded', initCloudScene);
         } else {
-            initHeroClouds();
+            initCloudScene();
         }
     </script>
+    {{- end -}}
 
 </main>
 {{ end }}
