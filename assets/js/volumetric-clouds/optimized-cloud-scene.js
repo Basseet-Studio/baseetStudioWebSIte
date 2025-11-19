@@ -122,64 +122,95 @@ class OptimizedCloudScene {
         const texture = generate3DTexture(128);
 
         for (let i = 0; i < this.config.cloudCount; i++) {
-            // SPHERE GEOMETRY - truly organic container!
-            // Low poly count (16, 12) for performance - shader does the smoothness
-            const geometry = new THREE.SphereGeometry(0.5, 16, 12);
-
-            // Vary cloud density parameters for diversity
-            const material = new THREE.ShaderMaterial({
-                vertexShader: vertexShader,
-                fragmentShader: fragmentShader,
-                uniforms: {
-                    map: { value: texture },
-                    threshold: { value: 0.2 + Math.random() * 0.2 }, // 0.2-0.4 range
-                    opacity: { value: this.config.cloudDensity * (0.3 + Math.random() * 0.5) },
-                    steps: { value: 40.0 + Math.random() * 30.0 },
-                    time: { value: Math.random() * 100 }
-                },
-                side: THREE.BackSide,
-                transparent: true,
-                depthWrite: false,
-                blending: THREE.NormalBlending
-            });
-
-            const cloud = new THREE.Mesh(geometry, material);
-
-            // EXTREME NON-UNIFORM SCALING = ORGANIC BLOB SHAPES
-            // Each axis gets different random scale for deformed sphere
-            const scaleX = 3 + Math.random() * 4;  // 3-7 units
-            const scaleY = 2 + Math.random() * 3;  // 2-5 units (flatter)
-            const scaleZ = 3 + Math.random() * 4;  // 3-7 units
+            // CREATE CLUSTER of deformed spheres for maximum organic variation!
+            const clusterGroup = new THREE.Group();
             
-            cloud.scale.set(scaleX, scaleY, scaleZ);
+            // Random number of puffs per cloud (3-8 for variety)
+            const puffCount = 3 + Math.floor(Math.random() * 6);
+            
+            for (let j = 0; j < puffCount; j++) {
+                // SPHERE GEOMETRY - low poly for performance
+                const geometry = new THREE.SphereGeometry(0.5, 16, 12);
 
-            // Random rotation for more variety
-            cloud.rotation.set(
+                // Vary cloud density parameters for each puff
+                const material = new THREE.ShaderMaterial({
+                    vertexShader: vertexShader,
+                    fragmentShader: fragmentShader,
+                    uniforms: {
+                        map: { value: texture },
+                        threshold: { value: 0.15 + Math.random() * 0.25 }, // Wide range
+                        opacity: { value: this.config.cloudDensity * (0.25 + Math.random() * 0.6) }, // Big variation
+                        steps: { value: 35.0 + Math.random() * 30.0 },
+                        time: { value: Math.random() * 100 }
+                    },
+                    side: THREE.BackSide,
+                    transparent: true,
+                    depthWrite: false,
+                    blending: THREE.NormalBlending
+                });
+
+                const puff = new THREE.Mesh(geometry, material);
+
+                // EXTREME RANDOM DEFORMATION - each puff unique!
+                const scaleX = 2 + Math.random() * 5;  // 2-7
+                const scaleY = 1.5 + Math.random() * 4; // 1.5-5.5 (some very flat)
+                const scaleZ = 2 + Math.random() * 5;  // 2-7
+                
+                puff.scale.set(scaleX, scaleY, scaleZ);
+
+                // Random rotation per puff
+                puff.rotation.set(
+                    Math.random() * Math.PI * 2,
+                    Math.random() * Math.PI * 2,
+                    Math.random() * Math.PI * 2
+                );
+
+                // Position within cluster - some overlap, some cut off!
+                const offsetX = (Math.random() - 0.5) * 3.5; // Wider spread
+                const offsetY = (Math.random() - 0.5) * 2.5;
+                const offsetZ = (Math.random() - 0.5) * 3.5;
+                
+                puff.position.set(offsetX, offsetY, offsetZ);
+
+                // Store rotation speed for animation
+                puff.userData = {
+                    rotationSpeed: {
+                        x: (Math.random() - 0.5) * 0.0008,
+                        y: (Math.random() - 0.5) * 0.0015,
+                        z: (Math.random() - 0.5) * 0.0008
+                    }
+                };
+
+                clusterGroup.add(puff);
+            }
+
+            // Position the entire cluster in 3D space
+            const xPos = (Math.random() - 0.5) * 35; // Wide spread
+            const yPos = -30 + Math.random() * 60;   // Vertical range
+            const zPos = -5 + Math.random() * 15;    // Depth layers
+
+            clusterGroup.position.set(xPos, yPos, zPos);
+            
+            // Random rotation for entire cluster - more chaos!
+            clusterGroup.rotation.set(
                 Math.random() * Math.PI,
                 Math.random() * Math.PI,
                 Math.random() * Math.PI
             );
 
-            // Position in 3D space
-            const xPos = (Math.random() - 0.5) * 30; // Wide spread
-            const yPos = -30 + Math.random() * 60;   // Vertical range
-            const zPos = -5 + Math.random() * 15;    // Depth layers
-
-            cloud.position.set(xPos, yPos, zPos);
-
             // Store movement data
-            cloud.userData = {
+            clusterGroup.userData = {
                 originalY: yPos,
-                speed: 0.3 + Math.random() * 0.7,
+                speed: 0.3 + Math.random() * 0.8,
                 zDepth: zPos,
                 rotationSpeed: {
-                    x: (Math.random() - 0.5) * 0.0005,
-                    y: (Math.random() - 0.5) * 0.001,
-                    z: (Math.random() - 0.5) * 0.0005
+                    x: (Math.random() - 0.5) * 0.0003,
+                    y: (Math.random() - 0.5) * 0.0005,
+                    z: (Math.random() - 0.5) * 0.0003
                 }
             };
 
-            this.cloudGroup.add(cloud);
+            this.cloudGroup.add(clusterGroup);
         }
 
 
@@ -190,65 +221,94 @@ class OptimizedCloudScene {
     }
 
     /**
-     * Create background layer of large clouds
+     * Create background layer of large cloud clusters
      */
     createBackgroundClouds(texture) {
-        const bgCount = 30; // Background clouds
+        const bgClusterCount = 20; // Background cluster count
 
-        for (let i = 0; i < bgCount; i++) {
-            // SPHERE GEOMETRY for background
-            const geometry = new THREE.SphereGeometry(0.5, 16, 12);
-
-            const material = new THREE.ShaderMaterial({
-                vertexShader: vertexShader,
-                fragmentShader: fragmentShader,
-                uniforms: {
-                    map: { value: texture },
-                    threshold: { value: 0.25 + Math.random() * 0.2 },
-                    opacity: { value: this.config.cloudDensity * 0.25 }, // Very transparent
-                    steps: { value: 30.0 }, // Lower quality for performance
-                    time: { value: Math.random() * 100 }
-                },
-                side: THREE.BackSide,
-                transparent: true,
-                depthWrite: false,
-                blending: THREE.NormalBlending
-            });
-
-            const cloud = new THREE.Mesh(geometry, material);
-
-            // HUGE irregular blobs for background
-            const scaleX = 10 + Math.random() * 8;   // 10-18 units
-            const scaleY = 6 + Math.random() * 4;    // 6-10 units (flatter)
-            const scaleZ = 10 + Math.random() * 8;   // 10-18 units
+        for (let i = 0; i < bgClusterCount; i++) {
+            const clusterGroup = new THREE.Group();
             
-            cloud.scale.set(scaleX, scaleY, scaleZ);
+            // Fewer, larger puffs for background (2-5)
+            const puffCount = 2 + Math.floor(Math.random() * 4);
+            
+            for (let j = 0; j < puffCount; j++) {
+                const geometry = new THREE.SphereGeometry(0.5, 16, 12);
 
-            // Random rotation
-            cloud.rotation.set(
+                const material = new THREE.ShaderMaterial({
+                    vertexShader: vertexShader,
+                    fragmentShader: fragmentShader,
+                    uniforms: {
+                        map: { value: texture },
+                        threshold: { value: 0.2 + Math.random() * 0.25 },
+                        opacity: { value: this.config.cloudDensity * (0.15 + Math.random() * 0.3) }, // Very transparent
+                        steps: { value: 25.0 }, // Lower quality for performance
+                        time: { value: Math.random() * 100 }
+                    },
+                    side: THREE.BackSide,
+                    transparent: true,
+                    depthWrite: false,
+                    blending: THREE.NormalBlending
+                });
+
+                const puff = new THREE.Mesh(geometry, material);
+
+                // HUGE deformations for background
+                const scaleX = 8 + Math.random() * 10;   // 8-18
+                const scaleY = 5 + Math.random() * 6;    // 5-11 (flatter)
+                const scaleZ = 8 + Math.random() * 10;   // 8-18
+                
+                puff.scale.set(scaleX, scaleY, scaleZ);
+
+                // Random rotation
+                puff.rotation.set(
+                    Math.random() * Math.PI * 2,
+                    Math.random() * Math.PI * 2,
+                    Math.random() * Math.PI * 2
+                );
+
+                // Position within cluster - lots of overlap
+                puff.position.set(
+                    (Math.random() - 0.5) * 5,
+                    (Math.random() - 0.5) * 3,
+                    (Math.random() - 0.5) * 5
+                );
+
+                puff.userData = {
+                    rotationSpeed: {
+                        x: (Math.random() - 0.5) * 0.0002,
+                        y: (Math.random() - 0.5) * 0.0004,
+                        z: 0
+                    }
+                };
+
+                clusterGroup.add(puff);
+            }
+
+            // Position far back
+            const xPos = (Math.random() - 0.5) * 90;  // Very wide
+            const yPos = -20 + Math.random() * 50;
+            const zPos = -15 - Math.random() * 12;    // Behind everything
+
+            clusterGroup.position.set(xPos, yPos, zPos);
+            
+            clusterGroup.rotation.set(
                 Math.random() * Math.PI,
                 Math.random() * Math.PI,
                 Math.random() * Math.PI
             );
 
-            // Position far back
-            const xPos = (Math.random() - 0.5) * 80;  // Very wide
-            const yPos = -20 + Math.random() * 50;
-            const zPos = -15 - Math.random() * 10;    // Behind everything
-
-            cloud.position.set(xPos, yPos, zPos);
-
-            cloud.userData = {
+            clusterGroup.userData = {
                 originalY: yPos,
-                speed: 0.15, // Slower movement
+                speed: 0.1 + Math.random() * 0.15, // Slower
                 rotationSpeed: {
-                    x: (Math.random() - 0.5) * 0.0002,
-                    y: (Math.random() - 0.5) * 0.0005,
+                    x: (Math.random() - 0.5) * 0.0001,
+                    y: (Math.random() - 0.5) * 0.0003,
                     z: 0
                 }
             };
 
-            this.cloudGroup.add(cloud);
+            this.cloudGroup.add(clusterGroup);
         }
     }
 
@@ -368,14 +428,14 @@ class OptimizedCloudScene {
 
         // Update clouds - The Core "Falling" Effect
         if (this.cloudGroup) {
-            this.cloudGroup.children.forEach((cloud, index) => {
-                // All clouds are now single meshes (no more clusters!)
+            this.cloudGroup.children.forEach((cluster, index) => {
+                // Each cloud is now a cluster group containing multiple puffs
                 
-                // 1. Vertical Movement (Falling Effect)
+                // 1. Vertical Movement (Falling Effect) - move entire cluster
                 const scrollSpeed = 25;
-                const baseMovement = time * cloud.userData.speed * 0.5;
+                const baseMovement = time * cluster.userData.speed * 0.5;
 
-                let newY = cloud.userData.originalY + (this.scrollProgress * scrollSpeed) + baseMovement;
+                let newY = cluster.userData.originalY + (this.scrollProgress * scrollSpeed) + baseMovement;
 
                 // Loop logic
                 const loopHeight = 60;
@@ -385,40 +445,50 @@ class OptimizedCloudScene {
                     newY = -30 + (newY % loopHeight);
                 }
 
-                cloud.position.y = newY;
+                cluster.position.y = newY;
 
-                // 2. Rotation for organic movement
-                if (cloud.userData.rotationSpeed) {
-                    cloud.rotation.x += cloud.userData.rotationSpeed.x;
-                    cloud.rotation.y += cloud.userData.rotationSpeed.y;
-                    cloud.rotation.z += cloud.userData.rotationSpeed.z;
+                // 2. Rotation of entire cluster
+                if (cluster.userData.rotationSpeed) {
+                    cluster.rotation.x += cluster.userData.rotationSpeed.x;
+                    cluster.rotation.y += cluster.userData.rotationSpeed.y;
+                    cluster.rotation.z += cluster.userData.rotationSpeed.z;
                 }
 
-                // 3. Update shader time
-                if (cloud.material.uniforms.time) {
-                    cloud.material.uniforms.time.value = time + index;
-                }
+                // 3. Update each puff in the cluster
+                cluster.children.forEach((puff, puffIndex) => {
+                    // Individual puff rotation
+                    if (puff.userData.rotationSpeed) {
+                        puff.rotation.x += puff.userData.rotationSpeed.x;
+                        puff.rotation.y += puff.userData.rotationSpeed.y;
+                        puff.rotation.z += puff.userData.rotationSpeed.z;
+                    }
 
-                // 4. Opacity fade for smooth appearance/disappearance
-                if (cloud.material.uniforms.opacity) {
-                    const baseOpacity = this.config.cloudDensity * (0.3 + Math.random() * 0.2);
-                    let fade = 1.0;
+                    // Update shader time
+                    if (puff.material && puff.material.uniforms && puff.material.uniforms.time) {
+                        puff.material.uniforms.time.value = time + index + puffIndex * 0.1;
+                    }
 
-                    // Distance fade (close to camera)
-                    const worldPos = new THREE.Vector3();
-                    cloud.getWorldPosition(worldPos);
-                    const distToCam = worldPos.distanceTo(this.camera.position);
-                    if (distToCam < 3.0) fade *= smoothstep(0.0, 3.0, distToCam);
+                    // 4. Opacity fade for smooth appearance/disappearance
+                    if (puff.material && puff.material.uniforms && puff.material.uniforms.opacity) {
+                        const baseOpacity = this.config.cloudDensity * (0.3 + Math.random() * 0.2);
+                        let fade = 1.0;
 
-                    // Edge fade (top/bottom of scene)
-                    const distToTop = resetThreshold - cloud.position.y;
-                    if (distToTop < 10.0) fade *= smoothstep(0.0, 10.0, distToTop);
+                        // Distance fade (close to camera)
+                        const worldPos = new THREE.Vector3();
+                        puff.getWorldPosition(worldPos);
+                        const distToCam = worldPos.distanceTo(this.camera.position);
+                        if (distToCam < 3.0) fade *= smoothstep(0.0, 3.0, distToCam);
 
-                    const distToBottom = cloud.position.y - (-30);
-                    if (distToBottom < 10.0) fade *= smoothstep(0.0, 10.0, distToBottom);
+                        // Edge fade (top/bottom of scene)
+                        const distToTop = resetThreshold - cluster.position.y;
+                        if (distToTop < 10.0) fade *= smoothstep(0.0, 10.0, distToTop);
 
-                    cloud.material.uniforms.opacity.value = baseOpacity * fade;
-                }
+                        const distToBottom = cluster.position.y - (-30);
+                        if (distToBottom < 10.0) fade *= smoothstep(0.0, 10.0, distToBottom);
+
+                        puff.material.uniforms.opacity.value = baseOpacity * fade;
+                    }
+                });
             });
 
         }
