@@ -51,3 +51,8 @@ export function generate3DTexture(size = 128) {
     
     return texture;
 }
+
+// Make function globally available for non-module usage
+if (typeof window !== 'undefined') {
+    window.generate3DTexture = generate3DTexture;
+}

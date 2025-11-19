@@ -127,3 +127,9 @@ void main() {
     gl_FragColor = accumColor;
 }
 `;
+
+// Make shaders globally available for non-module usage
+if (typeof window !== 'undefined') {
+    window.vertexShader = vertexShader;
+    window.fragmentShader = fragmentShader;
+}

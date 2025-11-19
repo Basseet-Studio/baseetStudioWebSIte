@@ -102,3 +102,8 @@ export class ImprovedNoise {
         );
     }
 }
+
+// Make class globally available for non-module usage
+if (typeof window !== 'undefined') {
+    window.ImprovedNoise = ImprovedNoise;
+}

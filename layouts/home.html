@@ -31,7 +31,7 @@
 
     <style>
         /* ==========================================
-   BASEET STUDIO LOADER WITH CLOUDS
+   BASEET STUDIO LOADER WITH WEBGL VOLUMETRIC CLOUDS
    ========================================== */
 
         .baseet-loader {
@@ -55,6 +55,17 @@
             pointer-events: none;
         }
 
+        /* WebGL Cloud Canvas */
+        #heroCloudCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
         /* Main Title */
         .baseet-title {
             position: relative;
@@ -73,7 +84,6 @@
             background-clip: text;
             text-shadow: 0 0 80px rgba(73, 107, 193, 0.5);
             animation: titlePulse 3s ease-in-out infinite;
-            filter: blur(8px);
             transition: filter 0.6s ease, transform 0.6s ease;
         }
 
@@ -93,220 +103,6 @@
             50% {
                 text-shadow: 0 0 120px rgba(73, 107, 193, 0.8),
                     0 0 60px rgba(251, 205, 55, 0.5);
-            }
-        }
-
-        /* Cloud Layers */
-        .cloud-layer {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-        }
-
-        .cloud-back {
-            z-index: 1;
-        }
-
-        .cloud-front {
-            z-index: 3;
-        }
-
-        /* Individual Clouds - 3D-style with shadows and gradients */
-        .cloud {
-            position: absolute;
-            background: linear-gradient(135deg,
-                    rgba(255, 255, 255, 0.9) 0%,
-                    rgba(255, 255, 255, 0.6) 50%,
-                    rgba(200, 220, 255, 0.4) 100%);
-            border-radius: 100px;
-            filter: blur(2px);
-            box-shadow:
-                0 10px 50px rgba(255, 255, 255, 0.3),
-                inset 0 -20px 40px rgba(150, 180, 255, 0.2);
-            animation: cloudFloat 20s ease-in-out infinite;
-            transition: transform 0.3s ease-out, opacity 0.5s ease-out;
-        }
-
-        .cloud::before,
-        .cloud::after {
-            content: '';
-            position: absolute;
-            background: inherit;
-            border-radius: 100px;
-            filter: blur(1px);
-        }
-
-        /* Cloud 1 - Large back cloud */
-        .cloud-1 {
-            width: 350px;
-            height: 120px;
-            top: 15%;
-            left: 10%;
-            animation-delay: 0s;
-            animation-duration: 25s;
-        }
-
-        .cloud-1::before {
-            width: 180px;
-            height: 180px;
-            top: -80px;
-            left: 50px;
-        }
-
-        .cloud-1::after {
-            width: 200px;
-            height: 150px;
-            top: -60px;
-            right: 40px;
-        }
-
-        /* Cloud 2 - Medium back cloud */
-        .cloud-2 {
-            width: 280px;
-            height: 100px;
-            top: 60%;
-            right: 15%;
-            animation-delay: -5s;
-            animation-duration: 30s;
-        }
-
-        .cloud-2::before {
-            width: 140px;
-            height: 140px;
-            top: -60px;
-            left: 40px;
-        }
-
-        .cloud-2::after {
-            width: 160px;
-            height: 120px;
-            top: -50px;
-            right: 30px;
-        }
-
-        /* Cloud 3 - Small back cloud */
-        .cloud-3 {
-            width: 220px;
-            height: 80px;
-            bottom: 20%;
-            left: 25%;
-            animation-delay: -10s;
-            animation-duration: 22s;
-        }
-
-        .cloud-3::before {
-            width: 110px;
-            height: 110px;
-            top: -50px;
-            left: 30px;
-        }
-
-        .cloud-3::after {
-            width: 120px;
-            height: 90px;
-            top: -40px;
-            right: 25px;
-        }
-
-        /* Cloud 4 - Large front cloud (covers title) */
-        .cloud-4 {
-            width: 400px;
-            height: 140px;
-            top: 30%;
-            left: -5%;
-            opacity: 0.95;
-            animation-delay: -3s;
-            animation-duration: 28s;
-            filter: blur(3px);
-        }
-
-        .cloud-4::before {
-            width: 200px;
-            height: 200px;
-            top: -90px;
-            left: 60px;
-        }
-
-        .cloud-4::after {
-            width: 220px;
-            height: 170px;
-            top: -70px;
-            right: 50px;
-        }
-
-        /* Cloud 5 - Medium front cloud */
-        .cloud-5 {
-            width: 320px;
-            height: 110px;
-            top: 50%;
-            right: 10%;
-            opacity: 0.9;
-            animation-delay: -8s;
-            animation-duration: 26s;
-            filter: blur(2.5px);
-        }
-
-        .cloud-5::before {
-            width: 160px;
-            height: 160px;
-            top: -70px;
-            left: 50px;
-        }
-
-        .cloud-5::after {
-            width: 180px;
-            height: 140px;
-            top: -60px;
-            right: 40px;
-        }
-
-        /* Cloud 6 - Small front cloud */
-        .cloud-6 {
-            width: 260px;
-            height: 90px;
-            bottom: 25%;
-            right: 20%;
-            opacity: 0.85;
-            animation-delay: -12s;
-            animation-duration: 24s;
-            filter: blur(2px);
-        }
-
-        .cloud-6::before {
-            width: 130px;
-            height: 130px;
-            top: -60px;
-            left: 35px;
-        }
-
-        .cloud-6::after {
-            width: 140px;
-            height: 110px;
-            top: -50px;
-            right: 30px;
-        }
-
-        /* Cloud floating animation */
-        @keyframes cloudFloat {
-
-            0%,
-            100% {
-                transform: translateX(0) translateY(0) scale(1);
-            }
-
-            25% {
-                transform: translateX(30px) translateY(-20px) scale(1.05);
-            }
-
-            50% {
-                transform: translateX(0) translateY(-40px) scale(1);
-            }
-
-            75% {
-                transform: translateX(-30px) translateY(-20px) scale(0.95);
             }
         }
 
@@ -440,25 +236,14 @@
         }
     </style>
 
-    <!-- Full Screen Loading Animation with Clouds -->
+    <!-- Full Screen Loading Animation with WebGL Volumetric Clouds -->
     <div id="baseet-loader" class="baseet-loader">
-        <!-- Background clouds (behind text) -->
-        <div class="cloud-layer cloud-back">
-            <div class="cloud cloud-1"></div>
-            <div class="cloud cloud-2"></div>
-            <div class="cloud cloud-3"></div>
-        </div>
+        <!-- WebGL Volumetric Cloud Canvas -->
+        <canvas id="heroCloudCanvas"></canvas>
 
         <!-- Main title -->
         <div class="baseet-title">
             <h1>BASEET STUDIO</h1>
-        </div>
-
-        <!-- Foreground clouds (in front of text) -->
-        <div class="cloud-layer cloud-front">
-            <div class="cloud cloud-4"></div>
-            <div class="cloud cloud-5"></div>
-            <div class="cloud cloud-6"></div>
         </div>
 
         <!-- Scroll indicator -->
@@ -478,13 +263,12 @@
     </div>
 
     <script>
-        // Baseet Studio Loader - Cloud Animation on Scroll (Bidirectional)
+        // Baseet Studio Loader - WebGL Cloud Animation on Scroll (Bidirectional)
         (function () {
             const loader = document.getElementById('baseet-loader');
             const mainContent = document.querySelector('.main-content');
             const title = document.querySelector('.baseet-title h1');
-            const cloudBack = document.querySelector('.cloud-back');
-            const cloudFront = document.querySelector('.cloud-front');
+            const cloudCanvas = document.getElementById('heroCloudCanvas');
 
             let animationComplete = false;
             let transitionComplete = false;
@@ -508,19 +292,16 @@
                     document.body.classList.remove('loaded', 'revealing');
                     loader.style.display = 'flex';
                     
-                    // Reset transforms
-                    if (cloudBack) {
-                        cloudBack.style.transform = '';
-                        cloudBack.style.opacity = '';
-                    }
-                    if (cloudFront) {
-                        cloudFront.style.transform = '';
-                        cloudFront.style.opacity = '';
-                    }
+                    // Reset title transforms
                     if (title) {
                         title.style.filter = '';
                         title.style.transform = '';
                         title.style.textShadow = '';
+                    }
+                    
+                    // Notify WebGL clouds to reset (if available)
+                    if (window.heroCloudRenderer) {
+                        window.heroCloudRenderer.resetAnimation();
                     }
                 }
 
@@ -529,17 +310,14 @@
                     animationComplete = true;
 
                     // Ensure final state is reached
-                    if (cloudBack) {
-                        cloudBack.style.transform = 'translateY(-300px) scale(0.3)';
-                        cloudBack.style.opacity = '0';
-                    }
-                    if (cloudFront) {
-                        cloudFront.style.transform = 'translateY(500px) scale(2)';
-                        cloudFront.style.opacity = '0';
-                    }
                     if (title) {
                         title.style.filter = 'blur(0px)';
                         title.style.transform = 'scale(1.2)';
+                    }
+                    
+                    // Notify WebGL clouds animation is complete
+                    if (window.heroCloudRenderer) {
+                        window.heroCloudRenderer.setAnimationProgress(1);
                     }
 
                     // 10ms pause before cinematic cross-fade begins
@@ -581,24 +359,9 @@
                 // Smooth easing function for better animation
                 const easeOut = 1 - Math.pow(1 - scrollPercent, 3);
 
-                // Move back clouds slower (away from screen) - enhanced movement
-                if (cloudBack) {
-                    const translateY = easeOut * -300;
-                    const scale = 1 - easeOut * 0.7;
-                    const opacity = Math.max(0, 1 - easeOut * 1.5);
-                    cloudBack.style.transform = `translateY(${translateY}px) scale(${scale})`;
-                    cloudBack.style.opacity = opacity;
-                    cloudBack.style.transition = 'none';
-                }
-
-                // Move front clouds faster (toward viewer then away) - enhanced movement
-                if (cloudFront) {
-                    const translateY = easeOut * 500;
-                    const scale = 1 + easeOut * 1;
-                    const opacity = Math.max(0, 1 - easeOut * 1.8);
-                    cloudFront.style.transform = `translateY(${translateY}px) scale(${scale})`;
-                    cloudFront.style.opacity = opacity;
-                    cloudFront.style.transition = 'none';
+                // Update WebGL cloud renderer with scroll progress
+                if (window.heroCloudRenderer) {
+                    window.heroCloudRenderer.setAnimationProgress(easeOut);
                 }
 
                 // Clear title blur as clouds move - gradual clarity
@@ -698,15 +461,50 @@
     <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
     <link rel="dns-prefetch" href="https://formspree.io">
 
-    <!-- Volumetric Cloud System -->
-    {{- $cloudScript := resources.Get "js/volumetric-clouds/main-cloud.js" -}}
-    {{- if $cloudScript -}}
-        {{- $cloudBundle := $cloudScript | js.Build (dict "format" "esm" "target" "es2020") -}}
-        {{- if hugo.IsProduction -}}
-            {{- $cloudBundle = $cloudBundle | minify | fingerprint -}}
-        {{- end -}}
-        <script type="module" src="{{ $cloudBundle.RelPermalink }}" defer></script>
+    <!-- WebGL Volumetric Cloud Scripts -->
+    {{- $shaders := resources.Get "js/volumetric-clouds/shaders.js" -}}
+    {{- if $shaders -}}
+    <script src="{{ $shaders.Permalink }}"></script>
     {{- end -}}
+    
+    <!-- THREE.js Library (CDN for WebGL support) -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    
+    <!-- WebGL Volumetric Cloud Scripts (in dependency order) -->
+    {{- $improvedNoise := resources.Get "js/volumetric-clouds/improved-noise.js" -}}
+    {{- if $improvedNoise -}}
+    <script src="{{ $improvedNoise.Permalink }}"></script>
+    {{- end -}}
+    
+    {{- $shaders := resources.Get "js/volumetric-clouds/shaders.js" -}}
+    {{- if $shaders -}}
+    <script src="{{ $shaders.Permalink }}"></script>
+    {{- end -}}
+    
+    {{- $textureGen := resources.Get "js/volumetric-clouds/texture-generator.js" -}}
+    {{- if $textureGen -}}
+    <script src="{{ $textureGen.Permalink }}"></script>
+    {{- end -}}
+    
+    {{- $heroAdapter := resources.Get "js/volumetric-clouds/hero-cloud-adapter.js" -}}
+    {{- if $heroAdapter -}}
+    <script src="{{ $heroAdapter.Permalink }}"></script>
+    {{- end -}}
+
+    <!-- Initialize Hero Clouds -->
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            const canvas = document.getElementById('heroCloudCanvas');
+            if (canvas && window.CloudRenderer) {
+                window.heroCloudRenderer = new CloudRenderer(canvas, {
+                    density: 0.8,
+                    scale: 1.5,
+                    scrollEnabled: false // We'll control it manually
+                });
+                window.heroCloudRenderer.init();
+            }
+        });
+    </script>
 
 </main>
 {{ end }}
