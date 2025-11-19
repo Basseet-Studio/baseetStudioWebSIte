@@ -122,9 +122,9 @@ class OptimizedCloudScene {
         const texture = generate3DTexture(128);
 
         for (let i = 0; i < this.config.cloudCount; i++) {
-            // SINGLE LARGE BLOB - not a cluster!
-            // Box is just raymarching container, sphere shape comes from texture
-            const geometry = new THREE.BoxGeometry(1, 1, 1);
+            // SPHERE GEOMETRY - truly organic container!
+            // Low poly count (16, 12) for performance - shader does the smoothness
+            const geometry = new THREE.SphereGeometry(0.5, 16, 12);
 
             // Vary cloud density parameters for diversity
             const material = new THREE.ShaderMaterial({
@@ -196,7 +196,8 @@ class OptimizedCloudScene {
         const bgCount = 30; // Background clouds
 
         for (let i = 0; i < bgCount; i++) {
-            const geometry = new THREE.BoxGeometry(1, 1, 1);
+            // SPHERE GEOMETRY for background
+            const geometry = new THREE.SphereGeometry(0.5, 16, 12);
 
             const material = new THREE.ShaderMaterial({
                 vertexShader: vertexShader,

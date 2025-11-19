@@ -51,30 +51,30 @@ float random(vec3 co) {
 }
 
 /**
- * Ray-Box Intersection Function (AABB)
- * Professional implementation matching Three.js BoxGeometry bounds
+ * Ray-Sphere Intersection Function
+ * Natural pairing with SphereGeometry - no boxes!
  * Returns the near and far intersection distances
  */
-vec2 hitBox(vec3 orig, vec3 dir) {
-    const vec3 box_min = vec3(-0.5);
-    const vec3 box_max = vec3(0.5);
-    vec3 inv_dir = 1.0 / dir;
-    vec3 tmin_tmp = (box_min - orig) * inv_dir;
-    vec3 tmax_tmp = (box_max - orig) * inv_dir;
-    vec3 tmin = min(tmin_tmp, tmax_tmp);
-    vec3 tmax = max(tmin_tmp, tmax_tmp);
-    float t0 = max(tmin.x, max(tmin.y, tmin.z));
-    float t1 = min(tmax.x, min(tmax.y, tmax.z));
-    return vec2(t0, t1);
+vec2 hitSphere(vec3 orig, vec3 dir) {
+    // Sphere radius 0.5 to match SphereGeometry(0.5)
+    float radius = 0.5;
+    float b = dot(orig, dir);
+    float c = dot(orig, orig) - radius * radius;
+    float discriminant = b * b - c;
+    
+    if (discriminant < 0.0) return vec2(-1.0); // No intersection
+    
+    float sqrtDisc = sqrt(discriminant);
+    return vec2(-b - sqrtDisc, -b + sqrtDisc);
 }
 
 
 void main() {
     vec3 rayDir = normalize(vDirection);
-    vec2 bounds = hitBox(vOrigin, rayDir);
+    vec2 bounds = hitSphere(vOrigin, rayDir);
 
-    // Discard if no intersection with box
-    if (bounds.x > bounds.y) {
+    // Discard if no intersection with sphere
+    if (bounds.x < 0.0 && bounds.y < 0.0) {
         discard;
     }
     
