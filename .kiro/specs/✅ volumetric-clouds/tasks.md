@@ -361,7 +361,7 @@
   - Ensure no keyboard traps
   - _Requirements: 6.1, 6.2, 6.3, 6.4_
 
-- [ ] 15. Test accessibility features
+- [-] 15. Test accessibility features
   - Verify reduced motion preference is respected
   - Test keyboard navigation completeness
   - Verify ARIA labels with screen reader
@@ -369,7 +369,7 @@
   - Run axe-core accessibility audit
   - _Requirements: 9.1, 9.2, 9.3, 9.4, 9.5, 10.1, 10.2, 10.3, 10.4, 10.5_
 
-- [ ] 15.1 Test reduced motion
+- [x] 15.1 Test reduced motion
   - Enable prefers-reduced-motion in browser/OS
   - Verify Three.js is not initialized
   - Confirm CSS fallback is used

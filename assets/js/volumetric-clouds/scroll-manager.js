@@ -22,7 +22,7 @@ export class ScrollManager {
         // Configuration
         this.config = {
             scrollThreshold: 150,        // pixels to scroll down before transitioning
-            staggerDelay: 300,            // ms to hold scroll up before returning to clouds
+            staggerDelay: 800,            // ms to hold scroll up before returning to clouds
             transitionDuration: 600       // ms for transition animations
         };
         
@@ -142,7 +142,12 @@ export class ScrollManager {
             const progress = Math.min(timeHeld / this.config.staggerDelay, 1);
             this.updateScrollIndicator(progress);
             
-            // Trigger transitionToCloud() after 300ms of continuous upward scroll
+            // Dispatch stagger progress event for app bar
+            window.dispatchEvent(new CustomEvent('staggerProgress', {
+                detail: { progress }
+            }));
+            
+            // Trigger transitionToCloud() after stagger delay of continuous upward scroll
             if (timeHeld >= this.config.staggerDelay) {
                 this.transitionToCloud();
             }
@@ -150,6 +155,11 @@ export class ScrollManager {
             // Reset timer if user stops or scrolls down
             this.scrollUpStartTime = null;
             this.updateScrollIndicator(0);
+            
+            // Dispatch progress reset event
+            window.dispatchEvent(new CustomEvent('staggerProgress', {
+                detail: { progress: 0 }
+            }));
         }
     }
 
@@ -160,6 +170,11 @@ export class ScrollManager {
     transitionToSite() {
         // Set state to TRANSITIONING
         this.state = this.STATES.TRANSITIONING;
+        
+        // Dispatch transition start event
+        window.dispatchEvent(new CustomEvent('transitionStart', {
+            detail: { from: 'cloud', to: 'site' }
+        }));
         
         // Reset scroll accumulator
         this.scrollAccumulator = 0;
@@ -185,6 +200,9 @@ export class ScrollManager {
             
             // Reset scroll indicator
             this.updateScrollIndicator(0);
+            
+            // Dispatch site mode enter event
+            window.dispatchEvent(new CustomEvent('siteModeEnter'));
         }, this.config.transitionDuration);
     }
 
@@ -195,6 +213,11 @@ export class ScrollManager {
     transitionToCloud() {
         // Set state to TRANSITIONING
         this.state = this.STATES.TRANSITIONING;
+        
+        // Dispatch transition start event
+        window.dispatchEvent(new CustomEvent('transitionStart', {
+            detail: { from: 'site', to: 'cloud' }
+        }));
         
         // Reset scroll up timer
         this.scrollUpStartTime = null;
@@ -225,6 +248,9 @@ export class ScrollManager {
             
             // Reset scroll indicator
             this.updateScrollIndicator(0);
+            
+            // Dispatch cloud mode enter event
+            window.dispatchEvent(new CustomEvent('cloudModeEnter'));
         }, 300);
     }
 

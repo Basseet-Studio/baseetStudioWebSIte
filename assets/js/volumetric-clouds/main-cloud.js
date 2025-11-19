@@ -6,6 +6,7 @@
 
 import { VolumetricCloudRenderer } from './cloud-renderer.js';
 import { ScrollManager } from './scroll-manager.js';
+import AppBarManager from '../app-bar-manager.js';
 
 /**
  * Check if user prefers reduced motion
@@ -64,11 +65,26 @@ function initializeCloudSystem() {
     // Create ScrollManager instance with cloudRenderer
     const scrollManager = new ScrollManager(cloudRenderer);
     
+    // Initialize AppBarManager
+    const appBarElement = document.getElementById('app-bar');
+    let appBarManager = null;
+    
+    if (appBarElement) {
+        appBarManager = new AppBarManager(appBarElement);
+        // Initialize in cloud mode
+        appBarManager.setCloudMode();
+    } else {
+        console.warn('App bar element not found. AppBarManager not initialized.');
+    }
+    
     // Expose to window object on localhost for debugging
     if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
         window.cloudRenderer = cloudRenderer;
         window.scrollManager = scrollManager;
-        console.log('Debug mode: cloudRenderer and scrollManager exposed to window object');
+        if (appBarManager) {
+            window.appBarManager = appBarManager;
+        }
+        console.log('Debug mode: cloudRenderer, scrollManager, and appBarManager exposed to window object');
     }
 }
 
