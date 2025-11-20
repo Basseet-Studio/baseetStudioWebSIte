@@ -8,19 +8,23 @@
     "preview": "node ./scripts/generate-jsconfig.js && hugo server --buildFuture --buildDrafts",
     "format": "prettier --write .",
     "generate-jsconfig": "node ./scripts/generate-jsconfig.js",
-    "postinstall": "node ./scripts/generate-jsconfig.js"
+    "postinstall": "node ./scripts/generate-jsconfig.js",
+    "lint": "eslint ."
   },
   "dependencies": {
     "three": "0.160.0"
   },
   "devDependencies": {
-    "tailwindcss": "^4.1.17",
     "@tailwindcss/cli": "^4.1.17",
     "@tailwindcss/typography": "^0.5.19",
     "autoprefixer": "^10.4.20",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^16.5.0",
     "prettier": "^3.6.2",
     "prettier-plugin-go-template": "^0.0.15",
-    "prettier-plugin-tailwindcss": "^0.7.1"
+    "prettier-plugin-tailwindcss": "^0.7.1",
+    "tailwindcss": "^4.1.17"
   },
   "keywords": [
     "hugo",
