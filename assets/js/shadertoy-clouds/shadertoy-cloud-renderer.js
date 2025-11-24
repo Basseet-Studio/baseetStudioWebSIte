@@ -69,6 +69,12 @@ export class ShadertoyCloudRenderer {
         this.animationId = null;
         this.startTime = Date.now();
 
+        // Detect prefers-reduced-motion
+        this.prefersReducedMotion = this.detectReducedMotionPreference();
+        if (this.prefersReducedMotion) {
+            console.log('Reduced motion preference detected, adjusting animation settings');
+        }
+
         // Three.js objects (will be initialized in init())
         this.scene = null;
         this.camera = null;
@@ -121,10 +127,38 @@ export class ShadertoyCloudRenderer {
     }
 
     /**
+     * Detect if the user prefers reduced motion
+     * 
+     * @returns {boolean} True if user prefers reduced motion, false otherwise
+     */
+    detectReducedMotionPreference() {
+        // Check for prefers-reduced-motion media query
+        if (window.matchMedia) {
+            const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+            return mediaQuery.matches;
+        }
+        return false;
+    }
+
+    /**
      * Initialize Three.js scene, camera, and renderer
      * This is called in the constructor to set up the basic Three.js objects
      */
     initializeThreeJS() {
+        // Add ARIA labels to canvas for accessibility
+        this.canvas.setAttribute('aria-label', 'Volumetric cloud animation with BASEET STUDIO text');
+        this.canvas.setAttribute('role', 'img');
+        
+        // Add screen reader description
+        const srDescription = document.createElement('span');
+        srDescription.className = 'sr-only';
+        srDescription.textContent = 'An animated 3D scene showing volumetric clouds floating in the sky with BASEET STUDIO text. Scroll down to navigate through the clouds and access the main content.';
+        
+        // Insert description before canvas
+        if (this.canvas.parentNode) {
+            this.canvas.parentNode.insertBefore(srDescription, this.canvas);
+        }
+
         // Create scene
         this.scene = new THREE.Scene();
         this.scene.fog = new THREE.Fog(0x4584b4, 10, 50);
@@ -150,7 +184,8 @@ export class ShadertoyCloudRenderer {
             scene: !!this.scene,
             camera: !!this.camera,
             renderer: !!this.renderer,
-            isMobile: this.isMobile
+            isMobile: this.isMobile,
+            ariaLabel: this.canvas.getAttribute('aria-label')
         });
     }
 
@@ -373,9 +408,12 @@ export class ShadertoyCloudRenderer {
         this.animationId = requestAnimationFrame(() => this.animate());
 
         // Update time uniform (in seconds)
+        // Apply reduced animation speed if user prefers reduced motion
         const currentTime = (Date.now() - this.startTime) / 1000.0;
+        const animationSpeed = this.prefersReducedMotion ? 0.1 : 1.0;
+        
         if (this.cloudMaterial && this.cloudMaterial.uniforms.uTime) {
-            this.cloudMaterial.uniforms.uTime.value = currentTime;
+            this.cloudMaterial.uniforms.uTime.value = currentTime * animationSpeed;
         }
 
         // Render scene

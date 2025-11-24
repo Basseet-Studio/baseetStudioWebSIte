@@ -8,212 +8,42 @@
     <link rel="stylesheet" href="{{ $appBarCSS.RelPermalink }}" />
   {{- end -}}
 
+  <!-- Shadertoy Clouds CSS -->
+  {{- $cloudCSS := resources.Get "css/shadertoy-clouds.css" -}}
+  {{- if $cloudCSS -}}
+    {{- if hugo.IsProduction -}}
+      {{- $cloudCSS = $cloudCSS | minify | fingerprint -}}
+    {{- end -}}
+    <link rel="stylesheet" href="{{ $cloudCSS.RelPermalink }}" />
+  {{- end -}}
+
   <!-- Skip to content for keyboard users -->
   <a
-    class="text-primary sr-only z-50 inline-block rounded-md bg-white p-3 shadow-lg focus:not-sr-only"
+    class="skip-to-content"
     href="#mainContent"
     >Skip to content</a
   >
 
+  <!-- Screen reader description for cloud scene -->
+  <div class="sr-only" role="region" aria-label="Animated cloud scene">
+    An animated 3D cloud scene with the text "BASEET STUDIO". Scroll down to navigate through the clouds and reach the main content.
+  </div>
+
+  <!-- Cloud Canvas Container -->
+  <div class="cloud-canvas-container" id="cloudCanvasContainer">
+    <canvas id="cloudCanvas" aria-label="3D volumetric cloud animation"></canvas>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="scroll-indicator" id="scrollIndicator">
+    <span>Scroll to explore</span>
+    <div class="scroll-indicator-icon"></div>
+  </div>
+
   <!-- App Bar Header -->
   {{ partial "header.html" . }}
 
-  <main id="mainContent">
-    <style>
-      /* ==========================================
-   BASEET STUDIO LOADER WITH WEBGL VOLUMETRIC CLOUDS
-   ========================================== */
-
-      .baseet-loader {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 9999;
-        overflow: hidden;
-        transition:
-          opacity 0.8s ease,
-          transform 0.8s ease;
-        /* Ensure scrollable area exists before content loads */
-        min-height: 150vh;
-      }
-
-      .baseet-loader.scrolled {
-        opacity: 0;
-        transform: translateY(-100%);
-        pointer-events: none;
-      }
-
-      /* WebGL Cloud Canvas - Fixed sizing for WebGL rendering */
-      #heroCloudCanvas {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: block;
-        z-index: 1;
-        pointer-events: none;
-      }
-
-      /* Main Title */
-      /* 3D text is now rendered in WebGL, no CSS text needed */
-
-      /* Scroll Indicator */
-      .scroll-indicator {
-        position: absolute;
-        bottom: 40px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 4;
-        text-align: center;
-        color: rgba(255, 255, 255, 0.8);
-        font-size: 0.9rem;
-        font-weight: 500;
-        letter-spacing: 0.1em;
-        animation: scrollBounce 2s ease-in-out infinite;
-        opacity: 1;
-        transition: opacity 0.5s ease;
-      }
-
-      .baseet-loader.scrolled .scroll-indicator {
-        opacity: 0;
-      }
-
-      .scroll-indicator i {
-        display: block;
-        margin-top: 10px;
-        font-size: 1.5rem;
-        color: #fbcd37;
-      }
-
-      @keyframes scrollBounce {
-        0%,
-        100% {
-          transform: translateX(-50%) translateY(0);
-        }
-
-        50% {
-          transform: translateX(-50%) translateY(-15px);
-        }
-      }
-
-      /* Responsive adjustments */
-      @media (max-width: 768px) {
-        .cloud {
-          transform: scale(0.7);
-        }
-
-        .cloud-1 {
-          top: 10%;
-          left: -10%;
-        }
-
-        .cloud-2 {
-          top: 55%;
-          right: -10%;
-        }
-
-        .cloud-3 {
-          bottom: 15%;
-          left: 15%;
-        }
-
-        .cloud-4 {
-          top: 25%;
-          left: -15%;
-        }
-
-        .cloud-5 {
-          top: 45%;
-          right: -5%;
-        }
-
-        .cloud-6 {
-          bottom: 20%;
-          right: 10%;
-        }
-      }
-
-      /* Hide loader after scrolling */
-      body.loaded .baseet-loader {
-        display: none;
-        min-height: 0;
-        /* Reset min-height */
-      }
-
-      /* Main content wrapper - optimized for performance */
-      .main-content {
-        position: relative;
-        opacity: 0;
-        transform: translate3d(0, 0, 0);
-        /* Start at normal position */
-        will-change: transform, opacity;
-        transition:
-          opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-          transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        /* Add padding-top to account for cloud section */
-        padding-top: 100vh;
-        min-height: 100vh;
-      }
-
-      /* Revealing state - begin fade in */
-      body.revealing .main-content {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-      }
-
-      /* Loader fade-out during cross-fade */
-      body.revealing .baseet-loader {
-        opacity: 0;
-        transform: translateY(0);
-        transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      /* Final loaded state */
-      body.loaded .main-content {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-        will-change: auto;
-        padding-top: 0;
-        /* Remove padding when clouds are hidden */
-      }
-
-      /* Performance optimizations */
-      @media (prefers-reduced-motion: reduce) {
-        .main-content,
-        body.revealing .baseet-loader {
-          transition-duration: 0.3s;
-        }
-
-        /* Disable cloud animations for accessibility */
-        #heroCloudCanvas {
-          opacity: 0.5;
-        }
-
-        .baseet-title h1 {
-          animation: none !important;
-          text-shadow: 0 0 80px rgba(73, 107, 193, 0.5) !important;
-        }
-
-        .scroll-indicator {
-          animation: none !important;
-        }
-      }
-
-      /* Mobile optimization */
-      @media (max-width: 768px) {
-        .main-content {
-          transform: translate3d(0, 50vh, 0);
-        }
-      }
-    </style>
-
+  <main id="mainContent" class="main-content-wrapper">
     <!-- Main content -->
     {{ with site.Data.home.hero }}{{ if .enable }}{{ partial "blocks/home/hero" . }}{{ end }}{{ end }}
     {{ with site.Data.home.features }}{{ if .enable }}{{ partial "blocks/home/features" . }}{{ end }}{{ end }}
@@ -246,7 +76,147 @@
     <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
     <link rel="dns-prefetch" href="https://formspree.io" />
 
+    <!-- Shadertoy Cloud System -->
+    <script type="module">
+      import { ShadertoyCloudRenderer } from '/js/shadertoy-clouds/shadertoy-cloud-renderer.js';
+      import { ScrollController } from '/js/shadertoy-clouds/scroll-controller.js';
 
+      // Initialize cloud renderer when DOM is ready
+      async function initCloudSystem() {
+        try {
+          console.log('Initializing Shadertoy cloud system...');
+
+          // Create renderer instance
+          const renderer = new ShadertoyCloudRenderer('cloudCanvas', {
+            scrollDistance: 600,
+            textContent: 'BASEET STUDIO',
+            fontSize: 0.8,
+            cloudDensity: 0.7,
+            lookMode: 1,
+            noiseMethod: 1,
+            useLOD: true
+          });
+
+          // Initialize renderer (loads textures, creates scene)
+          await renderer.init();
+          console.log('Cloud renderer initialized');
+
+          // Start animation
+          renderer.start();
+
+          // Create scroll controller
+          const scrollController = new ScrollController(renderer, {
+            scrollDistance: 600,
+            resetThreshold: 50,
+            onComplete: () => {
+              console.log('Scroll complete - triggering transition');
+              handleTransitionComplete();
+            },
+            onReset: () => {
+              console.log('Scroll reset - returning to initial state');
+              handleTransitionReset();
+            }
+          });
+
+          // Enable scroll controller
+          scrollController.enable();
+
+          // Store references globally for debugging
+          window.cloudRenderer = renderer;
+          window.cloudScrollController = scrollController;
+
+          console.log('Cloud system ready');
+
+        } catch (error) {
+          console.error('Failed to initialize cloud system:', error);
+          // Fallback: hide cloud canvas and show content immediately
+          handleWebGLFallback();
+        }
+      }
+
+      // Handle transition complete (scroll reached 100%)
+      function handleTransitionComplete() {
+        const body = document.body;
+        const mainContent = document.querySelector('.main-content-wrapper');
+        const cloudContainer = document.getElementById('cloudCanvasContainer');
+        const scrollIndicator = document.getElementById('scrollIndicator');
+
+        // Add revealing class to start transition
+        body.classList.add('revealing');
+        if (mainContent) {
+          mainContent.classList.add('revealing');
+        }
+
+        // Hide scroll indicator
+        if (scrollIndicator) {
+          scrollIndicator.classList.add('hidden');
+        }
+
+        // After transition, add loaded class and hide clouds
+        setTimeout(() => {
+          body.classList.add('loaded');
+          if (mainContent) {
+            mainContent.classList.add('loaded');
+          }
+          if (cloudContainer) {
+            cloudContainer.classList.add('fade-out');
+          }
+        }, 800);
+      }
+
+      // Handle transition reset (scrolled back to top)
+      function handleTransitionReset() {
+        const body = document.body;
+        const mainContent = document.querySelector('.main-content-wrapper');
+        const cloudContainer = document.getElementById('cloudCanvasContainer');
+        const scrollIndicator = document.getElementById('scrollIndicator');
+
+        // Remove all transition classes
+        body.classList.remove('revealing', 'loaded');
+        if (mainContent) {
+          mainContent.classList.remove('revealing', 'loaded');
+        }
+        if (cloudContainer) {
+          cloudContainer.classList.remove('fade-out');
+        }
+
+        // Show scroll indicator again
+        if (scrollIndicator) {
+          scrollIndicator.classList.remove('hidden');
+        }
+      }
+
+      // Handle WebGL fallback (no WebGL support)
+      function handleWebGLFallback() {
+        console.warn('WebGL not supported, showing content immediately');
+        const body = document.body;
+        const mainContent = document.querySelector('.main-content-wrapper');
+        const cloudContainer = document.getElementById('cloudCanvasContainer');
+        const scrollIndicator = document.getElementById('scrollIndicator');
+
+        // Hide cloud elements
+        if (cloudContainer) {
+          cloudContainer.style.display = 'none';
+        }
+        if (scrollIndicator) {
+          scrollIndicator.style.display = 'none';
+        }
+
+        // Show content immediately
+        body.classList.add('loaded');
+        if (mainContent) {
+          mainContent.classList.add('loaded');
+          mainContent.style.paddingTop = '0';
+        }
+      }
+
+      // Initialize when DOM is ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initCloudSystem);
+      } else {
+        initCloudSystem();
+      }
+    </script>
 
   </main>
 {{ end }}

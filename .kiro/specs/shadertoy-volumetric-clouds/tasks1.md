@@ -91,56 +91,56 @@
     - Test init() loads textures and creates scene
     - _Requirements: 1.1, 3.1, 3.5_
 
-- [-] 6. Implement scroll-based camera control
-  - [ ] 6.1 Implement updateScroll(progress) method
+- [x] 6. Implement scroll-based camera control
+  - [x] 6.1 Implement updateScroll(progress) method
     - Calculate camera position based on scroll progress (0-1)
     - Interpolate camera z-position from 15 (far) to 2 (near)
     - Update uScroll shader uniform
     - Store scroll progress in state
     - _Requirements: 2.1, 2.2_
 
-  - [ ] 6.2 Implement isComplete() and reset() methods
+  - [x] 6.2 Implement isComplete() and reset() methods
     - isComplete() returns true when scrollProgress >= 1.0
     - reset() returns camera to initial position and resets state
     - _Requirements: 2.3, 2.5_
 
-  - [ ] 6.3 Write property test for scroll updates camera
+  - [x] 6.3 Write property test for scroll updates camera
     - **Property 2: Scroll progress updates camera position**
     - **Validates: Requirements 2.1**
 
-  - [ ] 6.4 Write property test for camera distance decreases
+  - [x] 6.4 Write property test for camera distance decreases
     - **Property 3: Camera distance to text decreases with scroll progress**
     - **Validates: Requirements 2.2**
 
-  - [ ] 6.5 Write property test for backwards scroll
+  - [x] 6.5 Write property test for backwards scroll
     - **Property 4: Scroll backwards moves camera backwards**
     - **Validates: Requirements 2.4**
 
-  - [ ] 6.6 Write property test for text size increases
+  - [x] 6.6 Write property test for text size increases
     - **Property 8: Text size increases with scroll progress**
     - **Validates: Requirements 6.4**
 
-  - [ ] 6.7 Write unit tests for scroll methods
+  - [x] 6.7 Write unit tests for scroll methods
     - Test updateScroll() with various progress values
     - Test isComplete() returns correct boolean
     - Test reset() returns to initial state
     - _Requirements: 2.1, 2.2, 2.3, 2.5_
 
-- [ ] 7. Implement lifecycle and event handling
-  - [ ] 7.1 Implement visibility change handling
+- [x] 7. Implement lifecycle and event handling
+  - [x] 7.1 Implement visibility change handling
     - Add visibilitychange event listener
     - Pause animation when tab is hidden
     - Resume animation when tab becomes visible
     - _Requirements: 3.2, 3.3_
 
-  - [ ] 7.2 Implement window resize handling
+  - [x] 7.2 Implement window resize handling
     - Add resize event listener
     - Update camera aspect ratio on resize
     - Update renderer size on resize
     - Update uResolution uniform
     - _Requirements: 3.4_
 
-  - [ ] 7.3 Implement destroy() method
+  - [x] 7.3 Implement destroy() method
     - Stop animation loop
     - Remove event listeners
     - Dispose Three.js geometries, materials, textures
@@ -148,22 +148,22 @@
     - Clear object references
     - _Requirements: (cleanup/memory management)_
 
-  - [ ] 7.4 Write property test for visibility toggle
+  - [x] 7.4 Write property test for visibility toggle
     - **Property 5: Visibility change pauses and resumes animation**
     - **Validates: Requirements 3.2, 3.3**
 
-  - [ ] 7.5 Write property test for resize updates
+  - [x] 7.5 Write property test for resize updates
     - **Property 6: Window resize updates canvas and camera**
     - **Validates: Requirements 3.4**
 
-  - [ ] 7.6 Write unit tests for lifecycle methods
+  - [x] 7.6 Write unit tests for lifecycle methods
     - Test start() begins animation
     - Test stop() cancels animation
     - Test destroy() cleans up resources
     - _Requirements: 3.2, 3.3_
 
-- [ ] 8. Create scroll controller integration
-  - [ ] 8.1 Implement ScrollController class
+- [x] 8. Create scroll controller integration
+  - [x] 8.1 Implement ScrollController class
     - Track window.scrollY with throttling
     - Calculate scroll progress (scrollY / scrollDistance)
     - Call renderer.updateScroll() on scroll events
@@ -172,35 +172,35 @@
     - Use requestAnimationFrame for throttling
     - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5_
 
-  - [ ] 8.2 Write unit tests for scroll controller
+  - [x] 8.2 Write unit tests for scroll controller
     - Test scroll progress calculation
     - Test transition trigger at 100%
     - Test reset trigger at top
     - Test throttling behavior
     - _Requirements: 2.1, 2.3, 2.5_
 
-- [ ] 9. Implement accessibility features
-  - [ ] 9.1 Add prefers-reduced-motion support
+- [x] 9. Implement accessibility features
+  - [x] 9.1 Add prefers-reduced-motion support
     - Detect prefers-reduced-motion media query
     - Disable/reduce automatic rotation when active
     - Reduce animation speed when active
     - Keep scroll-based movement enabled
     - _Requirements: 7.1, 7.2, 7.3_
 
-  - [ ] 9.2 Add ARIA labels and skip link
+  - [x] 9.2 Add ARIA labels and skip link
     - Add aria-label to canvas element
     - Add sr-only description for screen readers
     - Ensure skip link exists and functions
     - _Requirements: 7.4, 7.5_
 
-  - [ ] 9.3 Write unit tests for accessibility
+  - [x] 9.3 Write unit tests for accessibility
     - Test reduced motion detection
     - Test ARIA labels exist
     - Test skip link exists
     - _Requirements: 7.1, 7.4, 7.5_
 
-- [ ] 10. Create CSS styling
-  - [ ] 10.1 Create shadertoy-clouds.css
+- [x] 10. Create CSS styling
+  - [x] 10.1 Create shadertoy-clouds.css
     - Style canvas container (fixed, full viewport)
     - Style scroll indicator
     - Style main content wrapper with padding-top
@@ -208,14 +208,14 @@
     - Add reduced motion media query styles
     - _Requirements: (styling/layout)_
 
-- [ ] 11. Update home.html template
-  - [ ] 11.1 Remove old cloud system references
+- [x] 11. Update home.html template
+  - [x] 11.1 Remove old cloud system references
     - Remove old cloud canvas elements
     - Remove old CSS links
     - Remove old script imports
     - _Requirements: 4.3_
 
-  - [ ] 11.2 Add new cloud system integration
+  - [x] 11.2 Add new cloud system integration
     - Add new canvas element with proper ID
     - Add new CSS link for shadertoy-clouds.css
     - Add script imports for new modules
@@ -225,14 +225,14 @@
     - Set up scroll controller
     - _Requirements: 1.1, 1.3, 7.4, 7.5_
 
-  - [ ] 11.3 Implement transition logic
+  - [x] 11.3 Implement transition logic
     - Add revealing class on scroll complete
     - Add loaded class after transition
     - Hide loader and show main content
     - Adjust padding-top to prevent jump
     - _Requirements: 2.3_
 
-- [ ] 12. Checkpoint - Ensure all tests pass
+- [-] 12. Checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
 - [ ] 13. Integration testing and polish
