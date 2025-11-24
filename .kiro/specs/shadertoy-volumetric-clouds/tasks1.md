@@ -232,10 +232,10 @@
     - Adjust padding-top to prevent jump
     - _Requirements: 2.3_
 
-- [-] 12. Checkpoint - Ensure all tests pass
+- [x] 12. Checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 13. Integration testing and polish
+- [-] 13. Integration testing and polish
   - [ ] 13.1 Test full scroll journey
     - Test loading to scroll to transition
     - Test scroll back reset
