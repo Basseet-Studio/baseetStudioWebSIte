@@ -162,43 +162,24 @@ void main() {
     float noise = hash(dot(gl_FragCoord.xy, vec2(12.9898, 78.233)) + time);
     vec3 pos = vOrigin + (tStart + noise * stepSize) * rayDir;
     
-    vec4 sum = vec4(0.0);
-    vec3 lightDir = normalize(lightDirection);
+    float accumDensity = 0.0;
     
-    // IQ's Raymarch Loop Structure
     for (float i = 0.0; i < 128.0; i++) {
         if (i >= steps) break;
-        if (sum.a > 0.99) break;
+        if (accumDensity > 1.0) break;
         
         // Check bounds
         if (max(abs(pos.x), max(abs(pos.y), abs(pos.z))) > 0.5) break;
         
         float den = mapDensity(pos);
         
-        if (den > 0.01) {
-            // Lighting
-            // Calculate diffuse based on directional derivative
-            float denSun = mapDensity(pos + 0.05 * lightDir); // smaller step for derivative
-            float dif = clamp((den - denSun) / 0.1, 0.0, 1.0);
-            
-            // Colors from IQ (adapted)
-            vec3 lin = vec3(0.65, 0.65, 0.75) * 1.1 + 0.8 * vec3(1.0, 0.6, 0.3) * dif;
-            
-            // Mix density into color
-            vec4 col = vec4(mix(vec3(1.0, 0.95, 0.8), vec3(0.25, 0.3, 0.35), den), den);
-            col.xyz *= lin;
-            
-            // Fog (distance based)
-            // col.xyz = mix(col.xyz, vec3(0.76, 0.75, 0.95), 1.0 - exp(-0.1 * distance));
-            
-            col.a *= 0.4; // Scale opacity
-            col.rgb *= col.a;
-            sum += col * (1.0 - sum.a);
-        }
+        // Simple accumulation for debug
+        accumDensity += den * 0.5; // Scale for visibility
         
         pos += rayDir * stepSize;
     }
     
-    gl_FragColor = clamp(sum, 0.0, 1.0);
+    // DEBUG: Show density as white cloud on black background
+    gl_FragColor = vec4(vec3(accumDensity), accumDensity);
 }
 `;
