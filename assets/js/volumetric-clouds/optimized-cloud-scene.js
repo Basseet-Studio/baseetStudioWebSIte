@@ -29,7 +29,7 @@ class OptimizedCloudScene {
 
         // Configuration
         this.config = {
-            cloudCount: options.cloudCount || 80, // Increased from 40
+            cloudCount: options.cloudCount || 120, // Increased for more frequent clouds
 
             cloudDensity: options.cloudDensity || 0.6,
             scrollDistance: options.scrollDistance || 600, // Pixels to scroll through clouds
@@ -125,8 +125,8 @@ class OptimizedCloudScene {
             // CREATE CLUSTER of deformed spheres for maximum organic variation!
             const clusterGroup = new THREE.Group();
             
-            // Random number of puffs per cloud (3-8 for variety)
-            const puffCount = 3 + Math.floor(Math.random() * 6);
+            // Random number of puffs per cloud - SMALLER, MORE VARIED CLUSTERS (2-8)
+            const puffCount = 2 + Math.floor(Math.random() * 7);
             
             for (let j = 0; j < puffCount; j++) {
                 // SPHERE GEOMETRY - low poly for performance
@@ -138,9 +138,9 @@ class OptimizedCloudScene {
                     fragmentShader: fragmentShader,
                     uniforms: {
                         map: { value: texture },
-                        threshold: { value: 0.15 + Math.random() * 0.25 }, // Wide range
-                        opacity: { value: this.config.cloudDensity * (0.25 + Math.random() * 0.6) }, // Big variation
-                        steps: { value: 35.0 + Math.random() * 30.0 },
+                        threshold: { value: 0.1 + Math.random() * 0.5 }, // Wider range for "hollow" vs "dense"
+                        opacity: { value: this.config.cloudDensity * (0.1 + Math.random() * 0.8) }, // Big variation, some very faint
+                        steps: { value: 25.0 + Math.random() * 40.0 }, // Varied quality/roughness
                         time: { value: Math.random() * 100 }
                     },
                     side: THREE.BackSide,
@@ -152,9 +152,30 @@ class OptimizedCloudScene {
                 const puff = new THREE.Mesh(geometry, material);
 
                 // EXTREME RANDOM DEFORMATION - each puff unique!
-                const scaleX = 2 + Math.random() * 5;  // 2-7
-                const scaleY = 1.5 + Math.random() * 4; // 1.5-5.5 (some very flat)
-                const scaleZ = 2 + Math.random() * 5;  // 2-7
+                // Occasional "demofred" (deformed/stretched) clouds
+                const isDeformed = Math.random() > 0.7;
+                
+                let scaleX, scaleY, scaleZ;
+                
+                if (isDeformed) {
+                    // Weird shapes: very flat or very stretched - SMALLER SIZES
+                    if (Math.random() > 0.5) {
+                         // Flat and wide
+                        scaleX = 2 + Math.random() * 4;  // Reduced from 4-12 to 2-6
+                        scaleY = 0.3 + Math.random() * 1;  // Reduced
+                        scaleZ = 2 + Math.random() * 4;  // Reduced from 4-12 to 2-6
+                    } else {
+                        // Tall and thin
+                        scaleX = 0.5 + Math.random() * 1.5;  // Reduced from 1-3 to 0.5-2
+                        scaleY = 2 + Math.random() * 5;  // Reduced from 4-12 to 2-7
+                        scaleZ = 0.5 + Math.random() * 1.5;  // Reduced from 1-3 to 0.5-2
+                    }
+                } else {
+                    // Normal blobby shapes - SMALLER SIZES
+                    scaleX = 1 + Math.random() * 3;  // Reduced from 2-7 to 1-4
+                    scaleY = 0.8 + Math.random() * 2.5;  // Reduced from 1.5-5.5 to 0.8-3.3
+                    scaleZ = 1 + Math.random() * 3;  // Reduced from 2-7 to 1-4
+                }
                 
                 puff.scale.set(scaleX, scaleY, scaleZ);
 
@@ -165,10 +186,10 @@ class OptimizedCloudScene {
                     Math.random() * Math.PI * 2
                 );
 
-                // Position within cluster - some overlap, some cut off!
-                const offsetX = (Math.random() - 0.5) * 3.5; // Wider spread
-                const offsetY = (Math.random() - 0.5) * 2.5;
-                const offsetZ = (Math.random() - 0.5) * 3.5;
+                // Position within cluster - MORE RANDOM, TIGHTER CLUSTERS
+                const offsetX = (Math.random() - 0.5) * (1.5 + Math.random() * 3);  // Random spread: 1.5-4.5
+                const offsetY = (Math.random() - 0.5) * (1 + Math.random() * 2.5);  // Random spread: 1-3.5
+                const offsetZ = (Math.random() - 0.5) * (1.5 + Math.random() * 3);  // Random spread: 1.5-4.5
                 
                 puff.position.set(offsetX, offsetY, offsetZ);
 
@@ -184,10 +205,10 @@ class OptimizedCloudScene {
                 clusterGroup.add(puff);
             }
 
-            // Position the entire cluster in 3D space
-            const xPos = (Math.random() - 0.5) * 35; // Wide spread
-            const yPos = -30 + Math.random() * 60;   // Vertical range
-            const zPos = -5 + Math.random() * 15;    // Depth layers
+            // Position the entire cluster in 3D space - MORE RANDOM DISTRIBUTION
+            const xPos = (Math.random() - 0.5) * (25 + Math.random() * 20);  // Random spread: 25-45
+            const yPos = -30 + Math.random() * 60;   // Vertical range (SAME)
+            const zPos = -10 + Math.random() * 20;    // Depth layers (-10 to 10) - KEEP SAME
 
             clusterGroup.position.set(xPos, yPos, zPos);
             
@@ -224,7 +245,7 @@ class OptimizedCloudScene {
      * Create background layer of large cloud clusters
      */
     createBackgroundClouds(texture) {
-        const bgClusterCount = 20; // Background cluster count
+        const bgClusterCount = 24; // Quadrupled from 6
 
         for (let i = 0; i < bgClusterCount; i++) {
             const clusterGroup = new THREE.Group();
@@ -253,10 +274,10 @@ class OptimizedCloudScene {
 
                 const puff = new THREE.Mesh(geometry, material);
 
-                // HUGE deformations for background
-                const scaleX = 8 + Math.random() * 10;   // 8-18
-                const scaleY = 5 + Math.random() * 6;    // 5-11 (flatter)
-                const scaleZ = 8 + Math.random() * 10;   // 8-18
+                // HUGE deformations for background - make them MASSIVE
+                const scaleX = 40 + Math.random() * 40;   // 40-80 units wide
+                const scaleY = 20 + Math.random() * 20;   // 20-40 units tall
+                const scaleZ = 40 + Math.random() * 40;   // 40-80 units deep
                 
                 puff.scale.set(scaleX, scaleY, scaleZ);
 
@@ -285,10 +306,10 @@ class OptimizedCloudScene {
                 clusterGroup.add(puff);
             }
 
-            // Position far back
-            const xPos = (Math.random() - 0.5) * 90;  // Very wide
-            const yPos = -20 + Math.random() * 50;
-            const zPos = -15 - Math.random() * 12;    // Behind everything
+            // Position MUCH FURTHER BACK for clear distinction
+            const xPos = (Math.random() - 0.5) * 250;  // Even wider spread
+            const yPos = -60 + Math.random() * 120;     // Bigger vertical range
+            const zPos = -100 - Math.random() * 150;    // MUCH FURTHER: -100 to -250
 
             clusterGroup.position.set(xPos, yPos, zPos);
             
@@ -300,7 +321,7 @@ class OptimizedCloudScene {
 
             clusterGroup.userData = {
                 originalY: yPos,
-                speed: 0.1 + Math.random() * 0.15, // Slower
+                speed: 0.02 + Math.random() * 0.05, // Very slow (parallax)
                 rotationSpeed: {
                     x: (Math.random() - 0.5) * 0.0001,
                     y: (Math.random() - 0.5) * 0.0003,
