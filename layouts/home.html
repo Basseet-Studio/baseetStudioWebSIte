@@ -8,10 +8,6 @@
     <link rel="stylesheet" href="{{ $appBarCSS.RelPermalink }}" />
   {{- end -}}
 
-
-  <!-- Volumetric Cloud Scroll CSS -->
-  <link rel="stylesheet" href="{{ " css/volumetric-cloud-scroll.css" | relURL }}" />
-
   <!-- Skip to content for keyboard users -->
   <a
     class="text-primary sr-only z-50 inline-block rounded-md bg-white p-3 shadow-lg focus:not-sr-only"
@@ -21,15 +17,6 @@
 
   <!-- App Bar Header -->
   {{ partial "header.html" . }}
-
-
-  <!-- Volumetric Cloud Canvas Container -->
-  <div id="volumetric-cloud-canvas" role="img" aria-label="Volumetric cloud background animation">
-    <span class="sr-only">Decorative cloud background. Scroll down to view content.</span>
-  </div>
-
-  <!-- Scroll Progress Indicator -->
-  <div id="scroll-indicator" aria-hidden="true"></div>
 
   <main id="mainContent">
     <style>
@@ -227,137 +214,12 @@
       }
     </style>
 
-    <!-- Full Screen 3D Cloud Scene with WebGL -->
-    <div id="baseet-loader" class="baseet-loader">
-      <!-- WebGL Volumetric Cloud Canvas -->
-      <canvas id="heroCloudCanvas"></canvas>
-
-      <!-- Scroll indicator -->
-      <div class="scroll-indicator">
-        <span>Scroll to explore</span>
-        <i class="fas fa-chevron-down"></i>
-      </div>
-    </div>
-
-    <!-- Main content wrapper for slide-up animation -->
-    <div class="main-content">
-      {{ with site.Data.home.hero }}{{ if .enable }}{{ partial "blocks/home/hero" . }}{{ end }}{{ end }}
-      {{ with site.Data.home.features }}{{ if .enable }}{{ partial "blocks/home/features" . }}{{ end }}{{ end }}
-      {{ with site.Data.home.team }}{{ if .enable }}{{ partial "blocks/home/team" . }}{{ end }}{{ end }}
-      {{ with site.Data.home.highlights }}{{ if .enable }}{{ partial "blocks/home/highlights" . }}{{ end }}{{ end }}
-      {{ with site.Data.home.clients }}{{ if .enable }}{{ partial "blocks/home/clients" . }}{{ end }}{{ end }}
-    </div>
-
-    <script>
-      // Optimized 3D Cloud Scene Controller
-      ;(function () {
-        const loader = document.getElementById('baseet-loader')
-        const mainContent = document.querySelector('.main-content')
-        const cloudCanvas = document.getElementById('heroCloudCanvas')
-
-        let transitionComplete = false
-        let lastScrollY = 0
-
-        const SCROLL_THRESHOLD = 600 // Distance to scroll through clouds before showing hero
-
-        /**
-         * CRITICAL SCROLL LOGIC DOCUMENTATION
-         * -----------------------------------
-         * The transition from the 3D cloud scene to the main HTML content relies on a delicate balance
-         * between the scroll position and the content's padding.
-         *
-         * 1. Initial State:
-         *    - Body has 'overflow: hidden' (set in CSS/JS init).
-         *    - User scrolls, but it's hijacked/controlled to drive the cloud animation.
-         *    - Main content has 'padding-top: 100vh' to push it below the fold initially.
-         *
-         * 2. Transition Trigger (at 100% cloud progress):
-         *    - We fade in the main content.
-         *    - We MUST handle the layout shift that occurs when the 'padding-top' is eventually removed/reduced.
-         *
-         * 3. The "Skip" Fix:
-         *    - We DO NOT use window.scrollTo(0,0) because that triggers the "Reset" logic (see below).
-         *    - Instead, we set 'padding-top' to SCROLL_THRESHOLD (600px).
-         *    - This keeps the content visually at the top, while keeping window.scrollY at 600px.
-         *    - This prevents the auto-reset from firing immediately.
-         */
-
-        // Handle scroll events
-        function handleScroll() {
-          // Check global instance
-          if (!window.cloudScene) return
-
-          const scrollY = window.scrollY || window.pageYOffset
-
-          // Reset if scrolled back to top
-          // LOGIC: If the user scrolls back up to the very top (< 50px), we assume they want to
-          // restart the cloud experience. We reset the state and show the loader again.
-          // IMPORTANT: This is why we cannot use scrollTo(0,0) during the forward transition.
-          if (transitionComplete && scrollY < 50) {
-            transitionComplete = false
-            document.body.classList.remove('loaded', 'revealing')
-            loader.style.display = 'flex'
-            window.cloudScene.reset()
-            return
-          }
-
-          // Check if cloud scene is complete
-          if (window.cloudScene && window.cloudScene.isComplete() && !transitionComplete) {
-            transitionComplete = true
-
-            // Trigger cross-fade transition
-            console.log('🚀 Transition triggered. ScrollY:', window.scrollY)
-            document.body.classList.add('revealing')
-
-            // Complete transition after 800ms
-            setTimeout(() => {
-              console.log('✅ Transition complete. Applying loaded state.')
-              console.log('Before reset - ScrollY:', window.scrollY)
-
-              document.body.classList.add('loaded')
-              loader.style.display = 'none'
-              document.body.style.overflow = 'auto'
-
-              // Fix for skip issue: Maintain scroll position by adjusting padding
-              // instead of scrolling to top (which triggers auto-reset)
-              // CRITICAL: Do not change this to scrollTo(0,0) or remove this padding logic.
-              // If you remove padding without this, the content jumps up 600px.
-              // If you scroll to 0, the 'scrollY < 50' check above triggers and resets the scene.
-              if (mainContent) {
-                mainContent.style.paddingTop = SCROLL_THRESHOLD + 'px'
-                mainContent.style.willChange = 'auto'
-              }
-              console.log('After fix - ScrollY:', window.scrollY)
-            }, 800)
-          }
-
-          lastScrollY = scrollY
-        }
-
-        // Smooth scroll handling with requestAnimationFrame
-        let ticking = false
-        window.addEventListener(
-          'scroll',
-          function () {
-            if (!ticking) {
-              window.requestAnimationFrame(function () {
-                handleScroll()
-                ticking = false
-              })
-              ticking = true
-            }
-          },
-          { passive: true }
-        )
-
-        // Allow manual scroll trigger on click
-        loader.addEventListener('click', function () {
-          if (!transitionComplete) {
-            window.scrollBy({ top: 200, behavior: 'smooth' })
-          }
-        })
-      })()
-    </script>
+    <!-- Main content -->
+    {{ with site.Data.home.hero }}{{ if .enable }}{{ partial "blocks/home/hero" . }}{{ end }}{{ end }}
+    {{ with site.Data.home.features }}{{ if .enable }}{{ partial "blocks/home/features" . }}{{ end }}{{ end }}
+    {{ with site.Data.home.team }}{{ if .enable }}{{ partial "blocks/home/team" . }}{{ end }}{{ end }}
+    {{ with site.Data.home.highlights }}{{ if .enable }}{{ partial "blocks/home/highlights" . }}{{ end }}{{ end }}
+    {{ with site.Data.home.clients }}{{ if .enable }}{{ partial "blocks/home/clients" . }}{{ end }}{{ end }}
 
     <!-- Performance Optimization Script -->
     {{- $performance := resources.Get "js/performance.js" -}}
@@ -384,57 +246,7 @@
     <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
     <link rel="dns-prefetch" href="https://formspree.io" />
 
-    <!-- THREE.js Library - ES Module (modern approach) -->
-    <script type="importmap">
-      {
-        "imports": {
-          "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
-          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
-        }
-      }
-    </script>
 
-    <!-- WebGL Volumetric Cloud Scene (ES Module) -->
-    <script type="module">
-        import { OptimizedCloudScene } from '/js/volumetric-clouds/optimized-cloud-scene.js';
-
-        // Wait for DOM and initialize
-        function initCloudScene() {
-            const canvas = document.getElementById('heroCloudCanvas');
-
-            if (!canvas) {
-                console.error('Canvas element not found');
-                return;
-            }
-
-            const rect = canvas.getBoundingClientRect();
-            if (rect.width === 0 || rect.height === 0) {
-                console.warn('Canvas has no dimensions, waiting for layout...');
-                requestAnimationFrame(initCloudScene);
-                return;
-            }
-
-            console.log('✅ Initializing OptimizedCloudScene...');
-            console.log('Canvas dimensions:', rect.width, 'x', rect.height);
-
-            // Initialize cloud scene
-            window.cloudScene = new OptimizedCloudScene('heroCloudCanvas', {
-                cloudCount: 20,
-                cloudDensity: 0.7,
-                scrollDistance: 600,
-                textContent: 'BASEET STUDIO',
-                fontSize: 0.8
-            });
-
-        }
-
-        // Start when DOM is ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initCloudScene);
-        } else {
-            initCloudScene();
-        }
-    </script>
 
   </main>
 {{ end }}

@@ -9,7 +9,10 @@
     "format": "prettier --write .",
     "generate-jsconfig": "node ./scripts/generate-jsconfig.js",
     "postinstall": "node ./scripts/generate-jsconfig.js",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test": "vitest --run",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui"
   },
   "dependencies": {
     "three": "0.160.0"
@@ -17,14 +20,19 @@
   "devDependencies": {
     "@tailwindcss/cli": "^4.1.17",
     "@tailwindcss/typography": "^0.5.19",
+    "@vitest/ui": "^3.2.4",
     "autoprefixer": "^10.4.20",
     "eslint": "^9.39.1",
     "eslint-config-prettier": "^10.1.8",
+    "fast-check": "^4.3.0",
     "globals": "^16.5.0",
+    "happy-dom": "^20.0.10",
+    "jsdom": "^27.0.1",
     "prettier": "^3.6.2",
     "prettier-plugin-go-template": "^0.0.15",
     "prettier-plugin-tailwindcss": "^0.7.1",
-    "tailwindcss": "^4.1.17"
+    "tailwindcss": "^4.1.17",
+    "vitest": "^3.2.4"
   },
   "keywords": [
     "hugo",
