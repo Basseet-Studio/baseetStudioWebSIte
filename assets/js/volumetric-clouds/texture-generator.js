@@ -2,16 +2,8 @@ import * as THREE from 'three';
 import { ImprovedNoise } from './improved-noise.js';
 
 /**
- * Smooth interpolation function (same as GLSL smoothstep)
- */
-function smoothstep(edge0, edge1, x) {
-    const t = Math.max(0, Math.min(1, (x - edge0) / (edge1 - edge0)));
-    return t * t * (3 - 2 * t);
-}
-
-/**
  * Simple 3D Worley (Cellular) Noise
- * Returns distance to closest feature point
+ * Returns distance to closest feature point (inverted)
  */
 function worley3D(x, y, z, cells) {
     const px = x * cells;
@@ -32,17 +24,15 @@ function worley3D(x, y, z, cells) {
     for (let k = -1; k <= 1; k++) {
         for (let j = -1; j <= 1; j++) {
             for (let i = -1; i <= 1; i++) {
-                // Hash function to get random point in cell
+                // Hash function
                 const n = (ix + i) * 137 + (iy + j) * 149 + (iz + k) * 167;
                 const h = (Math.sin(n) * 43758.5453123) % 1;
                 
-                // Random point position in cell (0-1)
-                // We use simple pseudo-random based on cell index
-                const rx = 0.5 + 0.5 * Math.sin(h * 6.28 + 0.0);
+                // Random point in cell
+                const rx = 0.5 + 0.5 * Math.sin(h * 6.28);
                 const ry = 0.5 + 0.5 * Math.sin(h * 6.28 + 2.0);
                 const rz = 0.5 + 0.5 * Math.sin(h * 6.28 + 4.0);
 
-                // Vector from current point to feature point
                 const dx = (i + rx) - fx;
                 const dy = (j + ry) - fy;
                 const dz = (k + rz) - fz;
@@ -53,89 +43,74 @@ function worley3D(x, y, z, cells) {
         }
     }
 
-    return 1.0 - minDist; // Invert so 1 is center of cell, 0 is edge
+    return 1.0 - minDist; // 1.0 = center, 0.0 = edge
 }
 
 /**
- * Generate a 3D Perlin-Worley noise texture for volumetric clouds
- * @param {number} size - Texture dimension (64 or 128 for size³ voxels)
- * @returns {THREE.Data3DTexture} - 3D texture with Perlin-Worley noise data
+ * Generate a 3D Perlin-Worley noise texture
+ * @param {number} size - Texture dimension (default 128)
  */
 export function generate3DTexture(size = 128) {
     const data = new Uint8Array(size * size * size);
     const perlin = new ImprovedNoise();
-
+    
     // Scale factors
-    const perlinScale = 0.06;
-    const worleyScale = 4.0; // Cells per unit
+    const perlinScale = 0.08; // Base cloud shape frequency
 
     let i = 0;
-
     for (let z = 0; z < size; z++) {
         for (let y = 0; y < size; y++) {
             for (let x = 0; x < size; x++) {
-                // Normalized coordinates
+                // Normalized coordinates [0, 1]
+                const u = x / size;
+                const v = y / size;
+                const w = z / size;
+
+                // 1. Perlin Noise (Base Shape)
+                // We use the integer-tiling property of ImprovedNoise
                 const nx = x * perlinScale;
                 const ny = y * perlinScale;
                 const nz = z * perlinScale;
 
-                // 1. Perlin Noise Base (Low Frequency)
                 let p = 0;
                 p += perlin.noise(nx, ny, nz) * 1.0;
                 p += perlin.noise(nx * 2, ny * 2, nz * 2) * 0.5;
                 p += perlin.noise(nx * 4, ny * 4, nz * 4) * 0.25;
-                
-                // Remap Perlin to [0, 1]
-                p = (p + 1.0) * 0.5;
+                p = (p + 1.0) * 0.5; // Remap to 0-1
 
-                // 2. Worley Noise (High Frequency Detail)
-                // We use normalized coordinates [0, 1] for Worley
-                const u = x / size;
-                const v = y / size;
-                const w = z / size;
-                
+                // 2. Worley Noise (Erosion/Detail)
                 let worley = 0;
                 worley += worley3D(u, v, w, 4) * 0.625;
                 worley += worley3D(u, v, w, 8) * 0.25;
                 worley += worley3D(u, v, w, 16) * 0.125;
+                
+                // 3. Combine: Perlin eroded by Worley
+                // "Remap" Perlin using Worley
+                // A simple approach: Perlin * (Worley + constant)
+                let finalNoise = p * (worley + 0.2);
+                
+                // 4. Edge fade (Box) - prevent hard cuts at volume edges
+                // Fade out at the very edges of the texture cube
+                const edgeFade = Math.min(
+                    Math.min(u, 1.0 - u),
+                    Math.min(v, 1.0 - v),
+                    Math.min(w, 1.0 - w)
+                ) * 2.0; // Steep fade at edges
+                
+                finalNoise *= Math.min(1.0, edgeFade * 5.0); // Only fade very close to edge
 
-                // 3. Perlin-Worley Mix
-                // "Dilate" the Perlin noise using Worley noise
-                // This creates the "cauliflower" shapes
-                let finalNoise = p;
-                
-                // Remap: map(value, min, max, newMin, newMax)
-                // We want to erode the Perlin noise with the Worley noise
-                // Simple approach: Perlin * Worley
-                // Better approach (Horizon Zero Dawn): Remap Perlin using Worley
-                
-                // Let's stick to a simpler "Cloud Shape" formula for this single channel texture
-                // Cloud = Perlin * (Worley + offset)
-                
-                finalNoise = p * (worley + 0.2);
-
-                // 4. Distance Falloff (Spherical) - Keep clouds contained in the box/sphere
-                const dx = (x / size) - 0.5;
-                const dy = (y / size) - 0.5;
-                const dz = (z / size) - 0.5;
-                const d = 1.0 - Math.sqrt(dx * dx + dy * dy + dz * dz) / 0.5;
-                
-                finalNoise *= Math.max(0, d);
-
-                // Map to [0, 255]
                 data[i] = Math.floor(Math.max(0, Math.min(255, finalNoise * 255)));
                 i++;
             }
         }
     }
 
-    // Create Three.js Data3DTexture
     const texture = new THREE.Data3DTexture(data, size, size, size);
     texture.format = THREE.RedFormat;
     texture.type = THREE.UnsignedByteType;
     texture.minFilter = THREE.LinearFilter;
     texture.magFilter = THREE.LinearFilter;
-    texture.wrapS = THREE.RepeatWrapping; // Changed to Repeat for tiling if needed
+    texture.wrapS = THREE.RepeatWrapping;
     texture.wrapT = THREE.RepeatWrapping;
     texture.wrapR = THREE.RepeatWrapping;
     texture.needsUpdate = true;
