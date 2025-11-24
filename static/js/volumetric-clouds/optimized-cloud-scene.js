@@ -82,8 +82,9 @@ export class OptimizedCloudScene {
 
     createCloudVolume() {
         // A single HUGE box that covers the entire scroll path
-        // Width: 60, Height: 40, Depth: 120
-        const geometry = new THREE.BoxGeometry(60, 40, 120);
+        // We use BoxGeometry(1, 1, 1) and SCALE it.
+        // This is critical because the shader expects the volume to be a unit cube [-0.5, 0.5] in object space.
+        const geometry = new THREE.BoxGeometry(1, 1, 1);
         
         // Generate texture
         const texture = generate3DTexture(128);
@@ -93,9 +94,10 @@ export class OptimizedCloudScene {
             fragmentShader: fragmentShader,
             uniforms: {
                 map: { value: texture },
-                threshold: { value: 0.45 }, // Higher threshold = fewer clouds (more empty space)
-                opacity: { value: this.config.cloudDensity },
-                steps: { value: 64.0 }, // High quality steps
+                uScale: { value: new THREE.Vector3(60, 40, 120) }, // Pass box dimensions
+                threshold: { value: 0.1 }, // Very low threshold to ensure visibility
+                opacity: { value: 0.5 },
+                steps: { value: 64.0 },
                 time: { value: 0 },
                 lightDirection: { value: new THREE.Vector3(0.5, 1.0, 0.5).normalize() },
                 cloudColor: { value: new THREE.Vector3(1.0, 1.0, 1.0) }
@@ -107,6 +109,9 @@ export class OptimizedCloudScene {
         });
 
         this.cloudMesh = new THREE.Mesh(geometry, material);
+        // Scale the box to the desired dimensions
+        this.cloudMesh.scale.set(60, 40, 120);
+        
         // Position box so it covers Z=20 to Z=-100
         // Center at Z = -40
         this.cloudMesh.position.set(0, 0, -40);

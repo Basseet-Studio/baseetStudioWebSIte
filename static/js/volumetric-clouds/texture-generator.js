@@ -55,7 +55,7 @@ export function generate3DTexture(size = 128) {
     const perlin = new ImprovedNoise();
     
     // Scale factors
-    const perlinScale = 0.08; // Base cloud shape frequency
+    const perlinScale = 0.15; // Higher frequency for more clouds
 
     let i = 0;
     for (let z = 0; z < size; z++) {

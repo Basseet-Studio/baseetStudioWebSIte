@@ -61,19 +61,27 @@ vec2 hitBox(vec3 orig, vec3 dir) {
 // Sample density with animation
 float sampleDensity(vec3 p) {
     // p is in object space [-0.5, 0.5]
+    // We need to ensure we don't sample outside the texture
+    if(abs(p.x) > 0.5 || abs(p.y) > 0.5 || abs(p.z) > 0.5) return 0.0;
+
+    // DEBUG: Removed sphere. Back to texture.
+    
     vec3 texCoord = p + 0.5; // [0, 1]
     
     // Animate texture coordinates
-    // Move texture opposite to "wind"
-    vec3 wind = vec3(0.0, 0.0, time * 0.05); 
+    vec3 wind = vec3(0.0, 0.0, time * 0.02); 
     vec3 samplePos = texCoord + wind;
     
     float d = texture(map, samplePos).r;
     
+    // DEBUG: Return raw density to check if texture has data
+    // return d * 2.0; 
+    
     // Noise shaping
     // Smoothstep for soft clouds
+    // Use a wider range for softer edges
     float t = threshold;
-    return smoothstep(t - 0.1, t + 0.1, d) * opacity;
+    return smoothstep(t - 0.2, t + 0.2, d) * opacity;
 }
 
 // Lighting: Beer's Law + Powder Effect + Phase Function
@@ -115,6 +123,9 @@ void main() {
     // No intersection
     if (bounds.x > bounds.y) discard;
     
+    // DEBUG: Output solid red if we hit the box
+    // gl_FragColor = vec4(1.0, 0.0, 0.0, 0.5); return;
+
     // Handle camera inside box
     // If tNear < 0, we are inside. Start at 0.
     float tStart = max(bounds.x, 0.0);

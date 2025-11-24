@@ -1,396 +1,402 @@
 {{ define "main" }}
+  <!-- App Bar CSS -->
+  {{- $appBarCSS := resources.Get "css/app-bar.css" -}}
+  {{- if $appBarCSS -}}
+    {{- if hugo.IsProduction -}}
+      {{- $appBarCSS = $appBarCSS | minify | fingerprint -}}
+    {{- end -}}
+    <link rel="stylesheet" href="{{ $appBarCSS.RelPermalink }}" />
+  {{- end -}}
 
-<!-- App Bar CSS -->
-{{- $appBarCSS := resources.Get "css/app-bar.css" -}}
-{{- if $appBarCSS -}}
-{{- if hugo.IsProduction -}}
-{{- $appBarCSS = $appBarCSS | minify | fingerprint -}}
-{{- end -}}
-<link rel="stylesheet" href="{{ $appBarCSS.RelPermalink }}">
-{{- end -}}
 
-<!-- Volumetric Cloud Scroll CSS -->
-<link rel="stylesheet" href="{{ " css/volumetric-cloud-scroll.css" | relURL }}">
+  <!-- Volumetric Cloud Scroll CSS -->
+  <link rel="stylesheet" href="{{ " css/volumetric-cloud-scroll.css" | relURL }}" />
 
-<!-- Skip to content for keyboard users -->
-<a class="sr-only focus:not-sr-only inline-block p-3 bg-white text-primary rounded-md shadow-lg z-50"
-    href="#mainContent">Skip to content</a>
+  <!-- Skip to content for keyboard users -->
+  <a
+    class="text-primary sr-only z-50 inline-block rounded-md bg-white p-3 shadow-lg focus:not-sr-only"
+    href="#mainContent"
+    >Skip to content</a
+  >
 
-<!-- App Bar Header -->
-{{ partial "header.html" . }}
+  <!-- App Bar Header -->
+  {{ partial "header.html" . }}
 
-<!-- Volumetric Cloud Canvas Container -->
-<div id="volumetric-cloud-canvas" role="img" aria-label="Volumetric cloud background animation">
+
+  <!-- Volumetric Cloud Canvas Container -->
+  <div id="volumetric-cloud-canvas" role="img" aria-label="Volumetric cloud background animation">
     <span class="sr-only">Decorative cloud background. Scroll down to view content.</span>
-</div>
+  </div>
 
-<!-- Scroll Progress Indicator -->
-<div id="scroll-indicator" aria-hidden="true"></div>
+  <!-- Scroll Progress Indicator -->
+  <div id="scroll-indicator" aria-hidden="true"></div>
 
-<main id="mainContent">
-
+  <main id="mainContent">
     <style>
-        /* ==========================================
+      /* ==========================================
    BASEET STUDIO LOADER WITH WEBGL VOLUMETRIC CLOUDS
    ========================================== */
 
-        .baseet-loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            overflow: hidden;
-            transition: opacity 0.8s ease, transform 0.8s ease;
-            /* Ensure scrollable area exists before content loads */
-            min-height: 150vh;
+      .baseet-loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        overflow: hidden;
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+        /* Ensure scrollable area exists before content loads */
+        min-height: 150vh;
+      }
+
+      .baseet-loader.scrolled {
+        opacity: 0;
+        transform: translateY(-100%);
+        pointer-events: none;
+      }
+
+      /* WebGL Cloud Canvas - Fixed sizing for WebGL rendering */
+      #heroCloudCanvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      /* Main Title */
+      /* 3D text is now rendered in WebGL, no CSS text needed */
+
+      /* Scroll Indicator */
+      .scroll-indicator {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 4;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.9rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        animation: scrollBounce 2s ease-in-out infinite;
+        opacity: 1;
+        transition: opacity 0.5s ease;
+      }
+
+      .baseet-loader.scrolled .scroll-indicator {
+        opacity: 0;
+      }
+
+      .scroll-indicator i {
+        display: block;
+        margin-top: 10px;
+        font-size: 1.5rem;
+        color: #fbcd37;
+      }
+
+      @keyframes scrollBounce {
+        0%,
+        100% {
+          transform: translateX(-50%) translateY(0);
         }
 
+        50% {
+          transform: translateX(-50%) translateY(-15px);
+        }
+      }
 
-        .baseet-loader.scrolled {
-            opacity: 0;
-            transform: translateY(-100%);
-            pointer-events: none;
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .cloud {
+          transform: scale(0.7);
         }
 
-        /* WebGL Cloud Canvas - Fixed sizing for WebGL rendering */
-        #heroCloudCanvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: block;
-            z-index: 1;
-            pointer-events: none;
+        .cloud-1 {
+          top: 10%;
+          left: -10%;
         }
 
-        /* Main Title */
-        /* 3D text is now rendered in WebGL, no CSS text needed */
-
-        /* Scroll Indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 4;
-            text-align: center;
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.9rem;
-            font-weight: 500;
-            letter-spacing: 0.1em;
-            animation: scrollBounce 2s ease-in-out infinite;
-            opacity: 1;
-            transition: opacity 0.5s ease;
+        .cloud-2 {
+          top: 55%;
+          right: -10%;
         }
 
-        .baseet-loader.scrolled .scroll-indicator {
-            opacity: 0;
+        .cloud-3 {
+          bottom: 15%;
+          left: 15%;
         }
 
-        .scroll-indicator i {
-            display: block;
-            margin-top: 10px;
-            font-size: 1.5rem;
-            color: #FBCD37;
+        .cloud-4 {
+          top: 25%;
+          left: -15%;
         }
 
-        @keyframes scrollBounce {
-
-            0%,
-            100% {
-                transform: translateX(-50%) translateY(0);
-            }
-
-            50% {
-                transform: translateX(-50%) translateY(-15px);
-            }
+        .cloud-5 {
+          top: 45%;
+          right: -5%;
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .cloud {
-                transform: scale(0.7);
-            }
-
-            .cloud-1 {
-                top: 10%;
-                left: -10%;
-            }
-
-            .cloud-2 {
-                top: 55%;
-                right: -10%;
-            }
-
-            .cloud-3 {
-                bottom: 15%;
-                left: 15%;
-            }
-
-            .cloud-4 {
-                top: 25%;
-                left: -15%;
-            }
-
-            .cloud-5 {
-                top: 45%;
-                right: -5%;
-            }
-
-            .cloud-6 {
-                bottom: 20%;
-                right: 10%;
-            }
+        .cloud-6 {
+          bottom: 20%;
+          right: 10%;
         }
+      }
 
-        /* Hide loader after scrolling */
-        body.loaded .baseet-loader {
-            display: none;
-            min-height: 0;
-            /* Reset min-height */
-        }
+      /* Hide loader after scrolling */
+      body.loaded .baseet-loader {
+        display: none;
+        min-height: 0;
+        /* Reset min-height */
+      }
 
+      /* Main content wrapper - optimized for performance */
+      .main-content {
+        position: relative;
+        opacity: 0;
+        transform: translate3d(0, 0, 0);
+        /* Start at normal position */
+        will-change: transform, opacity;
+        transition:
+          opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+          transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        /* Add padding-top to account for cloud section */
+        padding-top: 100vh;
+        min-height: 100vh;
+      }
 
-        /* Main content wrapper - optimized for performance */
-        .main-content {
-            position: relative;
-            opacity: 0;
-            transform: translate3d(0, 0, 0);
-            /* Start at normal position */
-            will-change: transform, opacity;
-            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            /* Add padding-top to account for cloud section */
-            padding-top: 100vh;
-            min-height: 100vh;
-        }
+      /* Revealing state - begin fade in */
+      body.revealing .main-content {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+      }
 
-        /* Revealing state - begin fade in */
-        body.revealing .main-content {
-            opacity: 1;
-            transform: translate3d(0, 0, 0);
-        }
+      /* Loader fade-out during cross-fade */
+      body.revealing .baseet-loader {
+        opacity: 0;
+        transform: translateY(0);
+        transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
 
-        /* Loader fade-out during cross-fade */
+      /* Final loaded state */
+      body.loaded .main-content {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+        will-change: auto;
+        padding-top: 0;
+        /* Remove padding when clouds are hidden */
+      }
+
+      /* Performance optimizations */
+      @media (prefers-reduced-motion: reduce) {
+        .main-content,
         body.revealing .baseet-loader {
-            opacity: 0;
-            transform: translateY(0);
-            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+          transition-duration: 0.3s;
         }
 
-        /* Final loaded state */
-        body.loaded .main-content {
-            opacity: 1;
-            transform: translate3d(0, 0, 0);
-            will-change: auto;
-            padding-top: 0;
-            /* Remove padding when clouds are hidden */
+        /* Disable cloud animations for accessibility */
+        #heroCloudCanvas {
+          opacity: 0.5;
         }
 
-        /* Performance optimizations */
-        @media (prefers-reduced-motion: reduce) {
-
-            .main-content,
-            body.revealing .baseet-loader {
-                transition-duration: 0.3s;
-            }
-
-            /* Disable cloud animations for accessibility */
-            #heroCloudCanvas {
-                opacity: 0.5;
-            }
-
-            .baseet-title h1 {
-                animation: none !important;
-                text-shadow: 0 0 80px rgba(73, 107, 193, 0.5) !important;
-            }
-
-            .scroll-indicator {
-                animation: none !important;
-            }
+        .baseet-title h1 {
+          animation: none !important;
+          text-shadow: 0 0 80px rgba(73, 107, 193, 0.5) !important;
         }
 
-        /* Mobile optimization */
-        @media (max-width: 768px) {
-            .main-content {
-                transform: translate3d(0, 50vh, 0);
-            }
+        .scroll-indicator {
+          animation: none !important;
         }
+      }
+
+      /* Mobile optimization */
+      @media (max-width: 768px) {
+        .main-content {
+          transform: translate3d(0, 50vh, 0);
+        }
+      }
     </style>
 
     <!-- Full Screen 3D Cloud Scene with WebGL -->
     <div id="baseet-loader" class="baseet-loader">
-        <!-- WebGL Volumetric Cloud Canvas -->
-        <canvas id="heroCloudCanvas"></canvas>
+      <!-- WebGL Volumetric Cloud Canvas -->
+      <canvas id="heroCloudCanvas"></canvas>
 
-        <!-- Scroll indicator -->
-        <div class="scroll-indicator">
-            <span>Scroll to explore</span>
-            <i class="fas fa-chevron-down"></i>
-        </div>
+      <!-- Scroll indicator -->
+      <div class="scroll-indicator">
+        <span>Scroll to explore</span>
+        <i class="fas fa-chevron-down"></i>
+      </div>
     </div>
 
     <!-- Main content wrapper for slide-up animation -->
     <div class="main-content">
-        {{ with site.Data.home.hero }}{{ if .enable }}{{ partial "blocks/home/hero" . }}{{ end }}{{ end }}
-        {{ with site.Data.home.features }}{{ if .enable }}{{ partial "blocks/home/features" . }}{{ end }}{{ end }}
-        {{ with site.Data.home.team }}{{ if .enable }}{{ partial "blocks/home/team" . }}{{ end }}{{ end }}
-        {{ with site.Data.home.highlights }}{{ if .enable }}{{ partial "blocks/home/highlights" . }}{{ end }}{{ end }}
-        {{ with site.Data.home.clients }}{{ if .enable }}{{ partial "blocks/home/clients" . }}{{ end }}{{ end }}
+      {{ with site.Data.home.hero }}{{ if .enable }}{{ partial "blocks/home/hero" . }}{{ end }}{{ end }}
+      {{ with site.Data.home.features }}{{ if .enable }}{{ partial "blocks/home/features" . }}{{ end }}{{ end }}
+      {{ with site.Data.home.team }}{{ if .enable }}{{ partial "blocks/home/team" . }}{{ end }}{{ end }}
+      {{ with site.Data.home.highlights }}{{ if .enable }}{{ partial "blocks/home/highlights" . }}{{ end }}{{ end }}
+      {{ with site.Data.home.clients }}{{ if .enable }}{{ partial "blocks/home/clients" . }}{{ end }}{{ end }}
     </div>
 
     <script>
-        // Optimized 3D Cloud Scene Controller
-        (function () {
-            const loader = document.getElementById('baseet-loader');
-            const mainContent = document.querySelector('.main-content');
-            const cloudCanvas = document.getElementById('heroCloudCanvas');
+      // Optimized 3D Cloud Scene Controller
+      ;(function () {
+        const loader = document.getElementById('baseet-loader')
+        const mainContent = document.querySelector('.main-content')
+        const cloudCanvas = document.getElementById('heroCloudCanvas')
 
-            let transitionComplete = false;
-            let lastScrollY = 0;
+        let transitionComplete = false
+        let lastScrollY = 0
 
-            const SCROLL_THRESHOLD = 600; // Distance to scroll through clouds before showing hero
+        const SCROLL_THRESHOLD = 600 // Distance to scroll through clouds before showing hero
 
-            /**
-             * CRITICAL SCROLL LOGIC DOCUMENTATION
-             * -----------------------------------
-             * The transition from the 3D cloud scene to the main HTML content relies on a delicate balance
-             * between the scroll position and the content's padding.
-             * 
-             * 1. Initial State:
-             *    - Body has 'overflow: hidden' (set in CSS/JS init).
-             *    - User scrolls, but it's hijacked/controlled to drive the cloud animation.
-             *    - Main content has 'padding-top: 100vh' to push it below the fold initially.
-             * 
-             * 2. Transition Trigger (at 100% cloud progress):
-             *    - We fade in the main content.
-             *    - We MUST handle the layout shift that occurs when the 'padding-top' is eventually removed/reduced.
-             * 
-             * 3. The "Skip" Fix:
-             *    - We DO NOT use window.scrollTo(0,0) because that triggers the "Reset" logic (see below).
-             *    - Instead, we set 'padding-top' to SCROLL_THRESHOLD (600px).
-             *    - This keeps the content visually at the top, while keeping window.scrollY at 600px.
-             *    - This prevents the auto-reset from firing immediately.
-             */
+        /**
+         * CRITICAL SCROLL LOGIC DOCUMENTATION
+         * -----------------------------------
+         * The transition from the 3D cloud scene to the main HTML content relies on a delicate balance
+         * between the scroll position and the content's padding.
+         *
+         * 1. Initial State:
+         *    - Body has 'overflow: hidden' (set in CSS/JS init).
+         *    - User scrolls, but it's hijacked/controlled to drive the cloud animation.
+         *    - Main content has 'padding-top: 100vh' to push it below the fold initially.
+         *
+         * 2. Transition Trigger (at 100% cloud progress):
+         *    - We fade in the main content.
+         *    - We MUST handle the layout shift that occurs when the 'padding-top' is eventually removed/reduced.
+         *
+         * 3. The "Skip" Fix:
+         *    - We DO NOT use window.scrollTo(0,0) because that triggers the "Reset" logic (see below).
+         *    - Instead, we set 'padding-top' to SCROLL_THRESHOLD (600px).
+         *    - This keeps the content visually at the top, while keeping window.scrollY at 600px.
+         *    - This prevents the auto-reset from firing immediately.
+         */
 
-            // Handle scroll events
-            function handleScroll() {
-                // Check global instance
-                if (!window.cloudScene) return;
+        // Handle scroll events
+        function handleScroll() {
+          // Check global instance
+          if (!window.cloudScene) return
 
-                const scrollY = window.scrollY || window.pageYOffset;
+          const scrollY = window.scrollY || window.pageYOffset
 
-                // Reset if scrolled back to top
-                // LOGIC: If the user scrolls back up to the very top (< 50px), we assume they want to
-                // restart the cloud experience. We reset the state and show the loader again.
-                // IMPORTANT: This is why we cannot use scrollTo(0,0) during the forward transition.
-                if (transitionComplete && scrollY < 50) {
-                    transitionComplete = false;
-                    document.body.classList.remove('loaded', 'revealing');
-                    loader.style.display = 'flex';
-                    window.cloudScene.reset();
-                    return;
-                }
+          // Reset if scrolled back to top
+          // LOGIC: If the user scrolls back up to the very top (< 50px), we assume they want to
+          // restart the cloud experience. We reset the state and show the loader again.
+          // IMPORTANT: This is why we cannot use scrollTo(0,0) during the forward transition.
+          if (transitionComplete && scrollY < 50) {
+            transitionComplete = false
+            document.body.classList.remove('loaded', 'revealing')
+            loader.style.display = 'flex'
+            window.cloudScene.reset()
+            return
+          }
 
-                // Check if cloud scene is complete
-                if (window.cloudScene && window.cloudScene.isComplete() && !transitionComplete) {
+          // Check if cloud scene is complete
+          if (window.cloudScene && window.cloudScene.isComplete() && !transitionComplete) {
+            transitionComplete = true
 
-                    transitionComplete = true;
+            // Trigger cross-fade transition
+            console.log('🚀 Transition triggered. ScrollY:', window.scrollY)
+            document.body.classList.add('revealing')
 
-                    // Trigger cross-fade transition
-                    console.log('🚀 Transition triggered. ScrollY:', window.scrollY);
-                    document.body.classList.add('revealing');
+            // Complete transition after 800ms
+            setTimeout(() => {
+              console.log('✅ Transition complete. Applying loaded state.')
+              console.log('Before reset - ScrollY:', window.scrollY)
 
-                    // Complete transition after 800ms
-                    setTimeout(() => {
-                        console.log('✅ Transition complete. Applying loaded state.');
-                        console.log('Before reset - ScrollY:', window.scrollY);
+              document.body.classList.add('loaded')
+              loader.style.display = 'none'
+              document.body.style.overflow = 'auto'
 
-                        document.body.classList.add('loaded');
-                        loader.style.display = 'none';
-                        document.body.style.overflow = 'auto';
+              // Fix for skip issue: Maintain scroll position by adjusting padding
+              // instead of scrolling to top (which triggers auto-reset)
+              // CRITICAL: Do not change this to scrollTo(0,0) or remove this padding logic.
+              // If you remove padding without this, the content jumps up 600px.
+              // If you scroll to 0, the 'scrollY < 50' check above triggers and resets the scene.
+              if (mainContent) {
+                mainContent.style.paddingTop = SCROLL_THRESHOLD + 'px'
+                mainContent.style.willChange = 'auto'
+              }
+              console.log('After fix - ScrollY:', window.scrollY)
+            }, 800)
+          }
 
-                        // Fix for skip issue: Maintain scroll position by adjusting padding
-                        // instead of scrolling to top (which triggers auto-reset)
-                        // CRITICAL: Do not change this to scrollTo(0,0) or remove this padding logic.
-                        // If you remove padding without this, the content jumps up 600px.
-                        // If you scroll to 0, the 'scrollY < 50' check above triggers and resets the scene.
-                        if (mainContent) {
-                            mainContent.style.paddingTop = SCROLL_THRESHOLD + 'px';
-                            mainContent.style.willChange = 'auto';
-                        }
-                        console.log('After fix - ScrollY:', window.scrollY);
-                    }, 800);
-                }
+          lastScrollY = scrollY
+        }
 
-                lastScrollY = scrollY;
+        // Smooth scroll handling with requestAnimationFrame
+        let ticking = false
+        window.addEventListener(
+          'scroll',
+          function () {
+            if (!ticking) {
+              window.requestAnimationFrame(function () {
+                handleScroll()
+                ticking = false
+              })
+              ticking = true
             }
+          },
+          { passive: true }
+        )
 
-            // Smooth scroll handling with requestAnimationFrame
-            let ticking = false;
-            window.addEventListener('scroll', function () {
-                if (!ticking) {
-                    window.requestAnimationFrame(function () {
-                        handleScroll();
-                        ticking = false;
-                    });
-                    ticking = true;
-                }
-            }, { passive: true });
-
-            // Allow manual scroll trigger on click
-            loader.addEventListener('click', function () {
-                if (!transitionComplete) {
-                    window.scrollBy({ top: 200, behavior: 'smooth' });
-                }
-            });
-        })();
+        // Allow manual scroll trigger on click
+        loader.addEventListener('click', function () {
+          if (!transitionComplete) {
+            window.scrollBy({ top: 200, behavior: 'smooth' })
+          }
+        })
+      })()
     </script>
 
     <!-- Performance Optimization Script -->
     {{- $performance := resources.Get "js/performance.js" -}}
     {{- if $performance -}}
-    <script src="{{ $performance.Permalink }}" defer fetchpriority="high"></script>
+      <script src="{{ $performance.Permalink }}" defer fetchpriority="high"></script>
     {{- end -}}
+
 
     <!-- Enhanced Animations Script -->
     {{- $animations := resources.Get "js/animations.js" -}}
     {{- if $animations -}}
-    <script src="{{ $animations.Permalink }}" defer fetchpriority="high"></script>
+      <script src="{{ $animations.Permalink }}" defer fetchpriority="high"></script>
     {{- end -}}
+
 
     <!-- AJAX Form Handler -->
     {{- $formHandler := resources.Get "js/form-handler.js" -}}
     {{- if $formHandler -}}
-    <script src="{{ $formHandler.Permalink }}" defer fetchpriority="low"></script>
+      <script src="{{ $formHandler.Permalink }}" defer fetchpriority="low"></script>
     {{- end -}}
 
+
     <!-- Preconnect to external domains for faster loading -->
-    <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
-    <link rel="dns-prefetch" href="https://formspree.io">
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
+    <link rel="dns-prefetch" href="https://formspree.io" />
 
     <!-- THREE.js Library - ES Module (modern approach) -->
     <script type="importmap">
-    {
+      {
         "imports": {
-            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
-            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+          "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
         }
-    }
+      }
     </script>
 
     <!-- WebGL Volumetric Cloud Scene (ES Module) -->
-    {{- $optimizedScene := resources.Get "js/volumetric-clouds/optimized-cloud-scene.js" -}}
-    {{- if $optimizedScene -}}
     <script type="module">
-        import { OptimizedCloudScene } from '{{ $optimizedScene.Permalink }}';
+        import { OptimizedCloudScene } from '/js/volumetric-clouds/optimized-cloud-scene.js';
 
         // Wait for DOM and initialize
         function initCloudScene() {
@@ -429,7 +435,6 @@
             initCloudScene();
         }
     </script>
-    {{- end -}}
 
-</main>
+  </main>
 {{ end }}
