@@ -8,7 +8,6 @@
 import * as THREE from 'three';
 import { FontLoader } from 'three/addons/loaders/FontLoader.js';
 import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
-import { generate3DTexture } from './texture-generator.js';
 import { vertexShader, fragmentShader } from './shaders.js';
 
 export class OptimizedCloudScene {
@@ -83,37 +82,37 @@ export class OptimizedCloudScene {
     createCloudVolume() {
         // A single HUGE box that covers the entire scroll path
         // We use BoxGeometry(1, 1, 1) and SCALE it.
-        // This is critical because the shader expects the volume to be a unit cube [-0.5, 0.5] in object space.
         const geometry = new THREE.BoxGeometry(1, 1, 1);
         
-        // Generate texture
-        const texture = generate3DTexture(128);
+        // Load 2D Noise Texture
+        const loader = new THREE.TextureLoader();
+        const texture = loader.load('/assets/noise.png');
+        texture.wrapS = THREE.RepeatWrapping;
+        texture.wrapT = THREE.RepeatWrapping;
+        texture.minFilter = THREE.LinearMipMapLinearFilter;
+        texture.magFilter = THREE.LinearFilter;
 
         const material = new THREE.ShaderMaterial({
             vertexShader: vertexShader,
             fragmentShader: fragmentShader,
             uniforms: {
                 map: { value: texture },
-                uScale: { value: new THREE.Vector3(60, 40, 120) }, // Pass box dimensions
-                threshold: { value: 0.1 }, // Very low threshold to ensure visibility
-                opacity: { value: 0.5 },
+                uScale: { value: new THREE.Vector3(60, 40, 120) }, 
+                threshold: { value: 0.25 }, 
+                opacity: { value: 0.6 },
                 steps: { value: 64.0 },
                 time: { value: 0 },
                 lightDirection: { value: new THREE.Vector3(0.5, 1.0, 0.5).normalize() },
                 cloudColor: { value: new THREE.Vector3(1.0, 1.0, 1.0) }
             },
-            side: THREE.BackSide, // Render on inside of box
+            side: THREE.BackSide, 
             transparent: true,
             depthWrite: false,
             blending: THREE.NormalBlending
         });
 
         this.cloudMesh = new THREE.Mesh(geometry, material);
-        // Scale the box to the desired dimensions
         this.cloudMesh.scale.set(60, 40, 120);
-        
-        // Position box so it covers Z=20 to Z=-100
-        // Center at Z = -40
         this.cloudMesh.position.set(0, 0, -40);
         this.scene.add(this.cloudMesh);
     }

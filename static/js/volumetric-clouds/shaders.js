@@ -21,9 +21,10 @@ void main() {
 
 export const fragmentShader = `
 precision highp float;
-precision highp sampler3D;
+precision highp sampler2D; // Changed to sampler2D
 
-uniform sampler3D map;
+uniform sampler2D map;
+uniform vec3 uScale;
 uniform float threshold;
 uniform float opacity;
 uniform float steps;
@@ -34,104 +35,124 @@ uniform vec3 cloudColor;
 varying vec3 vOrigin;
 varying vec3 vDirection;
 
-// Blue Noise / Dithering
+// Blue Noise / Dithering (Approximation)
 float hash(float n) {
     return fract(sin(n) * 43758.5453);
 }
 
 // Ray-Box Intersection
-// Returns vec2(near, far). if near > far, no intersection.
 vec2 hitBox(vec3 orig, vec3 dir) {
     vec3 boxMin = vec3(-0.5);
     vec3 boxMax = vec3( 0.5);
     vec3 invDir = 1.0 / dir;
-    
     vec3 tmin = (boxMin - orig) * invDir;
     vec3 tmax = (boxMax - orig) * invDir;
-    
     vec3 t1 = min(tmin, tmax);
     vec3 t2 = max(tmin, tmax);
-    
     float tNear = max(max(t1.x, t1.y), t1.z);
     float tFar = min(min(t2.x, t2.y), t2.z);
-    
     return vec2(tNear, tFar);
 }
 
-// Sample density with animation
-float sampleDensity(vec3 p) {
-    // p is in object space [-0.5, 0.5]
-    // We need to ensure we don't sample outside the texture
-    if(abs(p.x) > 0.5 || abs(p.y) > 0.5 || abs(p.z) > 0.5) return 0.0;
-
-    // DEBUG: Removed sphere. Back to texture.
+// IQ's Noise Function (adapted for single texture channel)
+float noise( in vec3 x )
+{
+    vec3 p = floor(x);
+    vec3 f = fract(x);
+    f = f*f*(3.0-2.0*f);
     
-    vec3 texCoord = p + 0.5; // [0, 1]
+    // IQ's magic UV calculation for 3D noise from 2D texture
+    vec2 uv = (p.xy+vec2(37.0,239.0)*p.z) + f.xy;
     
-    // Animate texture coordinates
-    vec3 wind = vec3(0.0, 0.0, time * 0.02); 
-    vec3 samplePos = texCoord + wind;
+    // Sample texture. We assume texture is 256x256 repeating.
+    // We use .x (red channel) since our noise is greyscale.
+    vec2 rg = vec2(
+        texture(map, (uv + 0.5)/256.0).x,
+        texture(map, (uv + 0.5 + vec2(1.0, 0.0))/256.0).x // Offset sample for interpolation? No, IQ uses textureLod with specific offsets.
+    );
     
-    float d = texture(map, samplePos).r;
+    // Actually, let's simplify to standard 3D noise emulation if we can't match IQ exactly without his specific texture packing.
+    // But let's try to match the logic:
+    // "vec2 rg = textureLod(iChannel0,(uv+0.5)/256.0,0.0).yx;"
+    // This implies the texture has specific data in R and G channels.
+    // Our texture is likely just greyscale noise.
+    // So we will just sample it twice with an offset to simulate the "next layer" in Z?
+    // Or just use the standard "tileable noise" approach.
     
-    // DEBUG: Return raw density to check if texture has data
-    // return d * 2.0; 
+    // Let's use a simpler approach for standard noise texture:
+    // Blend two samples based on Z
+    vec2 uv1 = (p.xy + vec2(37.0, 17.0) * p.z) + f.xy;
+    vec2 uv2 = (p.xy + vec2(37.0, 17.0) * (p.z + 1.0)) + f.xy;
     
-    // Noise shaping
-    // Smoothstep for soft clouds
-    // Use a wider range for softer edges
-    float t = threshold;
-    return smoothstep(t - 0.2, t + 0.2, d) * opacity;
+    float v1 = texture(map, (uv1 + 0.5)/256.0).x;
+    float v2 = texture(map, (uv2 + 0.5)/256.0).x;
+    
+    return mix(v1, v2, f.z);
 }
 
-// Lighting: Beer's Law + Powder Effect + Phase Function
-float getLight(vec3 p, vec3 lightDir, vec3 viewDir) {
-    float stepSize = 0.05;
-    float density = 0.0;
-    vec3 q = p;
-    
-    // March towards light
-    for(int i=0; i<4; i++) {
-        q += lightDir * stepSize;
-        // Simple bounds check (approximate)
-        if(max(abs(q.x), max(abs(q.y), abs(q.z))) > 0.5) break;
-        
-        density += sampleDensity(q);
-    }
-    
-    // Beer's Law
-    float transmittance = exp(-density * 2.0);
-    
-    // Powder Effect (dark edges)
-    float powder = 1.0 - exp(-density * 4.0);
-    
-    // Phase Function (Henyey-Greenstein) - directional scattering
-    // float g = 0.4; // forward scattering
-    // float cosTheta = dot(normalize(viewDir), lightDir);
-    // float phase = (1.0 - g*g) / pow(1.0 + g*g - 2.0*g*cosTheta, 1.5) / 12.56; // Normalized
-    
-    // Simplified phase for performance/aesthetics
-    float phase = 1.0; 
+// FBM using the noise function
+float mapDensity(vec3 p) {
+    // Keep p within box bounds
+    if(max(abs(p.x), max(abs(p.y), abs(p.z))) > 0.5) return 0.0;
 
-    return transmittance * (0.5 + 0.5 * powder) * phase;
+    vec3 q = p * uScale * 0.1; // Scale coordinate
+    
+    // Wind
+    q += vec3(0.0, 0.0, time * 0.5);
+
+    float f;
+    f  = 0.50000*noise( q ); q = q*2.02;
+    f += 0.25000*noise( q ); q = q*2.03;
+    f += 0.12500*noise( q ); q = q*2.01;
+    f += 0.06250*noise( q );
+    
+    // Shaping
+    float den = clamp( 1.5 - p.y*2.0 - 2.0 + 1.75*f, 0.0, 1.0 ); // IQ's shaping logic adapted
+    
+    // Apply threshold/opacity
+    // IQ's shader handles density differently, but we need to integrate with our loop
+    // "den = clamp((den - map(pos+0.3*sundir))/0.25, 0.0, 1.0 );" is for lighting.
+    // Here we just return density.
+    
+    // Additional shaping to keep it inside box
+    float distFromCenterY = abs(p.y) * 2.0;
+    den *= smoothstep(1.0, 0.8, distFromCenterY);
+
+    return den * opacity;
+}
+
+// IQ's Lighting Calculation
+// "lighting is done with only one extra sample per raymarch step... directional derivative"
+float getLight(vec3 p, vec3 lightDir, float den) {
+    vec3 sundir = normalize(lightDir);
+    
+    // Directional derivative: sample towards the sun
+    float denSun = mapDensity(p + 0.1 * sundir);
+    
+    // "dif = clamp((den - map(pos+0.3*sundir))/0.25, 0.0, 1.0 );"
+    float dif = clamp((den - denSun) / 0.25, 0.0, 1.0);
+    
+    // "lin = vec3(0.65,0.65,0.75)*1.1 + 0.8*vec3(1.0,0.6,0.3)*dif;"
+    // We can adjust these colors to match our theme (Blue/White)
+    // Shadow/Ambient color
+    vec3 amb = vec3(0.65, 0.7, 0.8); 
+    // Sun/Highlight color
+    vec3 sun = vec3(1.0, 0.9, 0.8); 
+    
+    float light = 0.5 + 0.5 * dif;
+    
+    return light; // Simplified return for integration
 }
 
 void main() {
     vec3 rayDir = normalize(vDirection);
     vec2 bounds = hitBox(vOrigin, rayDir);
     
-    // No intersection
     if (bounds.x > bounds.y) discard;
     
-    // DEBUG: Output solid red if we hit the box
-    // gl_FragColor = vec4(1.0, 0.0, 0.0, 0.5); return;
-
-    // Handle camera inside box
-    // If tNear < 0, we are inside. Start at 0.
     float tStart = max(bounds.x, 0.0);
     float tEnd = bounds.y;
     
-    // If tEnd < 0, box is behind us
     if (tEnd < 0.0) discard;
     
     float distance = tEnd - tStart;
@@ -141,35 +162,43 @@ void main() {
     float noise = hash(dot(gl_FragCoord.xy, vec2(12.9898, 78.233)) + time);
     vec3 pos = vOrigin + (tStart + noise * stepSize) * rayDir;
     
-    vec4 accumColor = vec4(0.0);
+    vec4 sum = vec4(0.0);
     vec3 lightDir = normalize(lightDirection);
     
-    for (float i = 0.0; i < 64.0; i++) {
+    // IQ's Raymarch Loop Structure
+    for (float i = 0.0; i < 128.0; i++) {
         if (i >= steps) break;
+        if (sum.a > 0.99) break;
         
-        // Check if we left the box (redundant with tEnd but safe)
-        if (max(abs(pos.x), max(abs(pos.y), abs(pos.z))) > 0.501) break;
+        // Check bounds
+        if (max(abs(pos.x), max(abs(pos.y), abs(pos.z))) > 0.5) break;
         
-        float density = sampleDensity(pos);
+        float den = mapDensity(pos);
         
-        if (density > 0.001) {
-            float light = getLight(pos, lightDir, rayDir);
+        if (den > 0.01) {
+            // Lighting
+            // Calculate diffuse based on directional derivative
+            float denSun = mapDensity(pos + 0.05 * lightDir); // smaller step for derivative
+            float dif = clamp((den - denSun) / 0.1, 0.0, 1.0);
             
-            vec3 col = cloudColor * light;
+            // Colors from IQ (adapted)
+            vec3 lin = vec3(0.65, 0.65, 0.75) * 1.1 + 0.8 * vec3(1.0, 0.6, 0.3) * dif;
             
-            // Ambient
-            col += vec3(0.05, 0.1, 0.2) * 0.3;
+            // Mix density into color
+            vec4 col = vec4(mix(vec3(1.0, 0.95, 0.8), vec3(0.25, 0.3, 0.35), den), den);
+            col.xyz *= lin;
             
-            vec4 src = vec4(col, density);
-            src.rgb *= src.a;
-            accumColor = accumColor + src * (1.0 - accumColor.a);
+            // Fog (distance based)
+            // col.xyz = mix(col.xyz, vec3(0.76, 0.75, 0.95), 1.0 - exp(-0.1 * distance));
+            
+            col.a *= 0.4; // Scale opacity
+            col.rgb *= col.a;
+            sum += col * (1.0 - sum.a);
         }
-        
-        if (accumColor.a >= 0.99) break;
         
         pos += rayDir * stepSize;
     }
     
-    gl_FragColor = accumColor;
+    gl_FragColor = clamp(sum, 0.0, 1.0);
 }
 `;
