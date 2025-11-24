@@ -32,6 +32,11 @@ void main() {
  * Implements raymarching algorithm with box intersection
  * Samples 3D texture along ray and accumulates color/opacity
  */
+/**
+ * Fragment Shader
+ * Implements raymarching algorithm with box intersection
+ * Samples 3D texture along ray and accumulates color/opacity
+ */
 export const fragmentShader = `
 precision highp float;
 precision highp sampler3D;
@@ -41,88 +46,108 @@ uniform float threshold;
 uniform float opacity;
 uniform float steps;
 uniform float time;
+uniform vec3 lightDirection;
+uniform vec3 cloudColor;
 
 varying vec3 vOrigin;
 varying vec3 vDirection;
 
-// Random function for jitter
-float random(vec3 co) {
-    return fract(sin(dot(co.xyz ,vec3(12.9898,78.233, 45.5432))) * 43758.5453);
+// Blue Noise Dithering
+// Simple hash function to generate pseudo-blue noise
+float hash(float n) {
+    return fract(sin(n) * 43758.5453);
 }
 
-/**
- * Ray-Sphere Intersection Function
- * Natural pairing with SphereGeometry - no boxes!
- * Returns the near and far intersection distances
- */
+// Ray-Sphere Intersection
 vec2 hitSphere(vec3 orig, vec3 dir) {
-    // Sphere radius 0.5 to match SphereGeometry(0.5)
     float radius = 0.5;
     float b = dot(orig, dir);
     float c = dot(orig, orig) - radius * radius;
     float discriminant = b * b - c;
     
-    if (discriminant < 0.0) return vec2(-1.0); // No intersection
+    if (discriminant < 0.0) return vec2(-1.0);
     
     float sqrtDisc = sqrt(discriminant);
     return vec2(-b - sqrtDisc, -b + sqrtDisc);
 }
 
+// Sample density from texture
+float sampleDensity(vec3 p) {
+    vec3 texCoord = p + 0.5;
+    // Animate texture lookup slightly for "flowing" clouds
+    vec3 offset = vec3(time * 0.02, 0.0, 0.0); 
+    float d = texture(map, texCoord + offset).r;
+    
+    // Apply threshold
+    return smoothstep(threshold - 0.1, threshold + 0.1, d) * opacity;
+}
+
+// Lighting calculation (Beer's Law + Directional Derivative)
+float getLight(vec3 p, vec3 lightDir) {
+    float stepSize = 0.05;
+    float density = 0.0;
+    vec3 q = p;
+    
+    // Short march towards light
+    for(int i=0; i<4; i++) {
+        q += lightDir * stepSize;
+        // Check if outside unit sphere (approx)
+        if(length(q) > 0.5) break;
+        
+        float d = sampleDensity(q);
+        density += d;
+    }
+    
+    // Beer's Law: exp(-density * absorption)
+    float transmittance = exp(-density * 2.0);
+    
+    // Powder effect (dark edges, bright center) - optional, but adds realism
+    float powder = 1.0 - exp(-density * 4.0);
+    
+    // Combine
+    return transmittance * (0.5 + 0.5 * powder); // Mix for artistic control
+}
 
 void main() {
     vec3 rayDir = normalize(vDirection);
     vec2 bounds = hitSphere(vOrigin, rayDir);
 
-    // Discard if no intersection with sphere
-    if (bounds.x < 0.0 && bounds.y < 0.0) {
-        discard;
-    }
+    if (bounds.x < 0.0 && bounds.y < 0.0) discard;
     
-    // Ensure we start from a valid position
     bounds.x = max(bounds.x, 0.0);
     
     float distance = bounds.y - bounds.x;
     float stepSize = distance / steps;
     
-    // Add jitter to start position to reduce banding
-    float jitter = random(gl_FragCoord.xyz + time) * stepSize;
-    vec3 pos = vOrigin + (bounds.x + jitter) * rayDir;
+    // Blue Noise Jitter
+    float noise = hash(dot(gl_FragCoord.xy, vec2(12.9898, 78.233)) + time);
+    vec3 pos = vOrigin + (bounds.x + noise * stepSize) * rayDir;
     
     vec4 accumColor = vec4(0.0);
+    vec3 lightDir = normalize(lightDirection); // Use uniform
     
-    // Soft edge fade factors
-    float fadeDistance = 0.3; // Very soft edges
-    
-    for (float i = 0.0; i < steps; i++) {
-        // Map position to texture coordinates [0, 1]
-        // pos is in range [-0.5, 0.5] within the box
-        vec3 texCoord = pos + 0.5;
+    for (float i = 0.0; i < 64.0; i++) {
+        if(i >= steps) break;
         
-        // Sample noise density from texture
-        float density = texture(map, texCoord).r;
-        
-        // Apply threshold with soft smoothstep (Three.js approach)
-        // Wider range for fluffier clouds
-        density = smoothstep(threshold - 0.15, threshold + 0.15, density) * opacity;
-        
-        // Optional: Simple gradient shading for depth
-        float shading = texture(map, texCoord + vec3(-0.01)).r - texture(map, texCoord + vec3(0.01)).r;
-        float shadingFactor = shading * 3.0 + ((texCoord.x + texCoord.y) * 0.25) + 0.2;
+        float density = sampleDensity(pos);
         
         if (density > 0.001) {
-            // Accumulate color with front-to-back alpha compositing
-            vec4 color = vec4(1.0, 1.0, 1.0, density);
+            // Calculate lighting
+            float light = getLight(pos, lightDir);
             
-            // Apply shading for variation
-            color.rgb *= shadingFactor;
+            // Color with lighting
+            vec3 col = cloudColor * light;
             
-            accumColor.rgb += (1.0 - accumColor.a) * color.rgb * color.a;
-            accumColor.a += (1.0 - accumColor.a) * color.a;
+            // Ambient light (shadows aren't pitch black)
+            col += vec3(0.1, 0.15, 0.2) * 0.2; 
+            
+            // Alpha blending (Front-to-back)
+            vec4 src = vec4(col, density);
+            src.rgb *= src.a;
+            accumColor = accumColor + src * (1.0 - accumColor.a);
         }
         
-        if (accumColor.a >= 0.98) {
-            break;
-        }
+        if (accumColor.a >= 0.99) break;
         
         pos += rayDir * stepSize;
     }
