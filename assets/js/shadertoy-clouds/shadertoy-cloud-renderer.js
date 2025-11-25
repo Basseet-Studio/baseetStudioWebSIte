@@ -165,9 +165,9 @@ export class ShadertoyCloudRenderer {
 
         // Create camera - use OrthographicCamera for full-screen shader effect
         // This ensures the shader plane fills the entire screen
-        this.camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 10);
-        this.camera.position.set(0, 0, 1);
-        this.camera.lookAt(0, 0, 0);
+        // IMPORTANT: near=-1, far=1 so the plane at z=0 is within the view frustum
+        this.camera = new THREE.OrthographicCamera(-1, 1, 1, -1, -1, 1);
+        this.camera.position.set(0, 0, 0);
         
         console.log('DEBUG - Camera setup:', {
             type: 'OrthographicCamera',
@@ -540,8 +540,7 @@ export class ShadertoyCloudRenderer {
         
         // Reset camera position
         if (this.camera) {
-            this.camera.position.set(0, 0, 1);
-            this.camera.lookAt(0, 0, 0);
+            this.camera.position.set(0, 0, 0);
         }
 
         // Reset shader uniforms
@@ -560,9 +559,9 @@ export class ShadertoyCloudRenderer {
      */
     setDebugMode(mode) {
         if (this.cloudMaterial && this.cloudMaterial.uniforms.uDebugMode) {
-            this.cloudMaterial.uniforms.uDebugMode.value = mode;
+            this.cloudMaterial.uniforms.uDebugMode.value = parseFloat(mode);
             console.log(`DEBUG - Set debug mode to ${mode}`);
-            console.log('Debug modes: 0=normal, 1=UV, 2=normalized coords, 3=ray direction, 4=noise texture, 5=density');
+            console.log('Debug modes: 0=normal, 1=UV, 2=coords, 3=ray dir, 4=noise, 5=solid blue');
         }
     }
 

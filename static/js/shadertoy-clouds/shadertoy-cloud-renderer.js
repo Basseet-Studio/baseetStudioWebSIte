@@ -163,11 +163,18 @@ export class ShadertoyCloudRenderer {
         this.scene = new THREE.Scene();
         this.scene.fog = new THREE.Fog(0x4584b4, 10, 50);
 
-        // Create camera
-        const aspect = window.innerWidth / window.innerHeight;
-        this.camera = new THREE.PerspectiveCamera(75, aspect, 0.1, 1000);
-        this.camera.position.set(0, 0, 15); // Initial position (far from text)
-        this.camera.lookAt(0, 0, 0);
+        // Create camera - use OrthographicCamera for full-screen shader effect
+        // This ensures the shader plane fills the entire screen
+        // IMPORTANT: near=-1, far=1 so the plane at z=0 is within the view frustum
+        this.camera = new THREE.OrthographicCamera(-1, 1, 1, -1, -1, 1);
+        this.camera.position.set(0, 0, 0);
+        
+        console.log('DEBUG - Camera setup:', {
+            type: 'OrthographicCamera',
+            position: this.camera.position.toArray(),
+            near: this.camera.near,
+            far: this.camera.far
+        });
 
         // Create renderer
         this.renderer = new THREE.WebGLRenderer({
@@ -234,6 +241,22 @@ export class ShadertoyCloudRenderer {
             console.log('Loading textures...');
             const textures = await TextureLoader.loadChannelTextures();
             console.log('Textures loaded successfully');
+            
+            // DEBUG: Log texture details
+            console.log('DEBUG - Texture details:', {
+                channel0: textures.channel0 ? {
+                    image: textures.channel0.image ? 'loaded' : 'missing',
+                    width: textures.channel0.image?.width,
+                    height: textures.channel0.image?.height
+                } : 'null',
+                channel1: textures.channel1 ? {
+                    image: textures.channel1.image ? 'loaded' : 'missing',
+                    width: textures.channel1.image?.width,
+                    height: textures.channel1.image?.height
+                } : 'null',
+                channel2: textures.channel2 ? 'present' : 'null',
+                channel3: textures.channel3 ? 'present' : 'null'
+            });
 
             // Create shader material with Shadertoy shaders
             console.log('Creating shader material...');
@@ -242,7 +265,19 @@ export class ShadertoyCloudRenderer {
                 mouse: new THREE.Vector2(0.5, 0.5),
                 lookMode: this.config.lookMode,
                 noiseMethod: this.config.noiseMethod,
-                useLOD: this.config.useLOD ? 1 : 0
+                useLOD: this.config.useLOD ? 1 : 0,
+                debugMode: this.config.debugMode || 0
+            });
+            
+            // DEBUG: Log shader config
+            console.log('DEBUG - Shader config:', {
+                resolution: shaderConfig.uniforms.uResolution.value,
+                mouse: shaderConfig.uniforms.uMouse.value,
+                lookMode: shaderConfig.uniforms.uLookMode.value,
+                noiseMethod: shaderConfig.uniforms.uNoiseMethod.value,
+                debugMode: shaderConfig.uniforms.uDebugMode.value,
+                hasChannel0: !!shaderConfig.uniforms.uChannel0.value,
+                hasChannel1: !!shaderConfig.uniforms.uChannel1.value
             });
 
             this.cloudMaterial = new THREE.ShaderMaterial({
@@ -254,13 +289,34 @@ export class ShadertoyCloudRenderer {
                 side: THREE.DoubleSide
             });
             console.log('Shader material created');
+            
+            // DEBUG: Check for shader compilation errors
+            console.log('DEBUG - ShaderMaterial:', {
+                program: this.cloudMaterial.program,
+                needsUpdate: this.cloudMaterial.needsUpdate
+            });
 
             // Create cloud plane/volume mesh
-            const planeGeometry = new THREE.PlaneGeometry(50, 50, 1, 1);
+            // Make it a full-screen quad that fills the viewport
+            const planeGeometry = new THREE.PlaneGeometry(2, 2, 1, 1);
             this.cloudMesh = new THREE.Mesh(planeGeometry, this.cloudMaterial);
-            this.cloudMesh.position.z = -10;
+            // Position it in front of the camera as a screen-space quad
+            this.cloudMesh.frustumCulled = false; // Ensure it's always rendered
             this.scene.add(this.cloudMesh);
-            console.log('Cloud mesh added to scene');
+            
+            console.log('DEBUG - Cloud mesh added to scene:', {
+                geometry: {
+                    type: planeGeometry.type,
+                    width: 2,
+                    height: 2,
+                    vertices: planeGeometry.attributes.position?.count
+                },
+                mesh: {
+                    position: this.cloudMesh.position.toArray(),
+                    visible: this.cloudMesh.visible,
+                    frustumCulled: this.cloudMesh.frustumCulled
+                }
+            });
 
             // Load and create 3D text mesh
             console.log('Loading 3D text...');
@@ -342,8 +398,8 @@ export class ShadertoyCloudRenderer {
             return;
         }
 
-        // Update camera aspect ratio
-        this.camera.aspect = window.innerWidth / window.innerHeight;
+        // OrthographicCamera doesn't need aspect ratio update
+        // Just update the projection matrix
         this.camera.updateProjectionMatrix();
 
         // Update renderer size
@@ -416,9 +472,32 @@ export class ShadertoyCloudRenderer {
             this.cloudMaterial.uniforms.uTime.value = currentTime * animationSpeed;
         }
 
+        // DEBUG: Log first few frames
+        if (!this._frameCount) this._frameCount = 0;
+        this._frameCount++;
+        if (this._frameCount <= 5) {
+            console.log(`DEBUG - Frame ${this._frameCount}:`, {
+                time: currentTime * animationSpeed,
+                cameraPos: this.camera?.position?.toArray(),
+                meshVisible: this.cloudMesh?.visible,
+                meshPosition: this.cloudMesh?.position?.toArray(),
+                sceneChildren: this.scene?.children?.length,
+                rendererInfo: this.renderer?.info?.render
+            });
+        }
+
         // Render scene
         if (this.renderer && this.scene && this.camera) {
             this.renderer.render(this.scene, this.camera);
+            
+            // DEBUG: Check for WebGL errors on first frame
+            if (this._frameCount === 1) {
+                const gl = this.renderer.getContext();
+                const error = gl.getError();
+                if (error !== gl.NO_ERROR) {
+                    console.error('DEBUG - WebGL error:', error);
+                }
+            }
         }
     }
 
@@ -432,12 +511,7 @@ export class ShadertoyCloudRenderer {
         progress = Math.max(0.0, Math.min(1.0, progress));
         this.scrollProgress = progress;
 
-        // Update camera position (interpolate from far to near)
-        const startZ = 15;
-        const endZ = 2;
-        this.camera.position.z = startZ + (endZ - startZ) * progress;
-
-        // Update shader uniform
+        // Update shader uniform - the shader handles the camera movement internally
         if (this.cloudMaterial && this.cloudMaterial.uniforms.uScroll) {
             this.cloudMaterial.uniforms.uScroll.value = progress;
         }
@@ -466,8 +540,7 @@ export class ShadertoyCloudRenderer {
         
         // Reset camera position
         if (this.camera) {
-            this.camera.position.set(0, 0, 15);
-            this.camera.lookAt(0, 0, 0);
+            this.camera.position.set(0, 0, 0);
         }
 
         // Reset shader uniforms
@@ -478,6 +551,61 @@ export class ShadertoyCloudRenderer {
         }
 
         console.log('Renderer reset to initial state');
+    }
+
+    /**
+     * Set debug mode for shader visualization
+     * @param {number} mode - 0: normal, 1: UV, 2: normalized coords, 3: ray direction, 4: noise texture, 5: density
+     */
+    setDebugMode(mode) {
+        if (this.cloudMaterial && this.cloudMaterial.uniforms.uDebugMode) {
+            this.cloudMaterial.uniforms.uDebugMode.value = parseFloat(mode);
+            console.log(`DEBUG - Set debug mode to ${mode}`);
+            console.log('Debug modes: 0=normal, 1=UV, 2=coords, 3=ray dir, 4=noise, 5=solid blue');
+        }
+    }
+
+    /**
+     * Get debug info about the current state
+     */
+    getDebugInfo() {
+        const info = {
+            isInitialized: this.isInitialized,
+            isAnimating: this.isAnimating,
+            frameCount: this._frameCount || 0,
+            camera: this.camera ? {
+                position: this.camera.position.toArray(),
+                fov: this.camera.fov,
+                aspect: this.camera.aspect
+            } : null,
+            cloudMesh: this.cloudMesh ? {
+                visible: this.cloudMesh.visible,
+                position: this.cloudMesh.position.toArray(),
+                scale: this.cloudMesh.scale.toArray()
+            } : null,
+            material: this.cloudMaterial ? {
+                visible: this.cloudMaterial.visible,
+                transparent: this.cloudMaterial.transparent,
+                uniforms: {
+                    time: this.cloudMaterial.uniforms.uTime?.value,
+                    resolution: this.cloudMaterial.uniforms.uResolution?.value,
+                    debugMode: this.cloudMaterial.uniforms.uDebugMode?.value,
+                    hasChannel0: !!this.cloudMaterial.uniforms.uChannel0?.value,
+                    hasChannel1: !!this.cloudMaterial.uniforms.uChannel1?.value
+                }
+            } : null,
+            renderer: this.renderer ? {
+                size: { width: this.renderer.domElement.width, height: this.renderer.domElement.height },
+                pixelRatio: this.renderer.getPixelRatio(),
+                info: this.renderer.info.render
+            } : null,
+            scene: this.scene ? {
+                childCount: this.scene.children.length,
+                children: this.scene.children.map(c => c.type)
+            } : null
+        };
+        console.log('DEBUG INFO:', info);
+        return info;
     }
 
     /**
