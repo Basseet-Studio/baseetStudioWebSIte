@@ -18,6 +18,15 @@
     <link rel="stylesheet" href="{{ $cloudCSS.RelPermalink }}" />
   {{- end -}}
 
+  <!-- Custom Overrides CSS to fix theme conflicts -->
+  {{- $overridesCSS := resources.Get "css/custom-overrides.css" -}}
+  {{- if $overridesCSS -}}
+    {{- if hugo.IsProduction -}}
+      {{- $overridesCSS = $overridesCSS | minify | fingerprint -}}
+    {{- end -}}
+    <link rel="stylesheet" href="{{ $overridesCSS.RelPermalink }}" />
+  {{- end -}}
+
 
   <!-- Skip to content for keyboard users -->
   <a class="skip-to-content" href="#mainContent">Skip to content</a>
