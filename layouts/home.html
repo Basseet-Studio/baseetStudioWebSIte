@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="{{ $appBarCSS.RelPermalink }}" />
   {{- end -}}
 
-
-  <!-- Shadertoy Clouds CSS -->
+  <!-- Cloud CSS -->
   {{- $cloudCSS := resources.Get "css/shadertoy-clouds.css" -}}
   {{- if $cloudCSS -}}
     {{- if hugo.IsProduction -}}
@@ -18,7 +17,7 @@
     <link rel="stylesheet" href="{{ $cloudCSS.RelPermalink }}" />
   {{- end -}}
 
-  <!-- Custom Overrides CSS to fix theme conflicts -->
+  <!-- Custom Overrides CSS -->
   {{- $overridesCSS := resources.Get "css/custom-overrides.css" -}}
   {{- if $overridesCSS -}}
     {{- if hugo.IsProduction -}}
@@ -27,20 +26,11 @@
     <link rel="stylesheet" href="{{ $overridesCSS.RelPermalink }}" />
   {{- end -}}
 
-
   <!-- Skip to content for keyboard users -->
   <a class="skip-to-content" href="#mainContent">Skip to content</a>
 
-  <!-- Screen reader description for cloud scene -->
-  <div class="sr-only" role="region" aria-label="Animated cloud scene">
-    An animated 3D cloud scene with the text "BASEET STUDIO". Scroll down to navigate through the clouds and reach the
-    main content.
-  </div>
-
-  <!-- Cloud Canvas Container -->
-  <div class="cloud-canvas-container" id="cloudCanvasContainer">
-    <canvas id="cloudCanvas" aria-label="3D volumetric cloud animation"></canvas>
-  </div>
+  <!-- Cloud Canvas -->
+  <canvas id="cloudCanvas" aria-label="3D volumetric cloud animation"></canvas>
 
   <!-- Scroll Indicator -->
   <div class="scroll-indicator" id="scrollIndicator">
@@ -51,42 +41,30 @@
   <!-- App Bar Header -->
   {{ partial "header.html" . }}
 
-
   <main id="mainContent" class="main-content-wrapper">
-    <!-- Main content -->
     {{ with site.Data.home.hero }}{{ if .enable }}{{ partial "blocks/home/hero" . }}{{ end }}{{ end }}
     {{ with site.Data.home.features }}{{ if .enable }}{{ partial "blocks/home/features" . }}{{ end }}{{ end }}
     {{ with site.Data.home.team }}{{ if .enable }}{{ partial "blocks/home/team" . }}{{ end }}{{ end }}
     {{ with site.Data.home.highlights }}{{ if .enable }}{{ partial "blocks/home/highlights" . }}{{ end }}{{ end }}
     {{ with site.Data.home.clients }}{{ if .enable }}{{ partial "blocks/home/clients" . }}{{ end }}{{ end }}
 
-
-    <!-- Performance Optimization Script -->
+    <!-- Scripts -->
     {{- $performance := resources.Get "js/performance.js" -}}
     {{- if $performance -}}
-      <script src="{{ $performance.Permalink }}" defer fetchpriority="high"></script>
+      <script src="{{ $performance.Permalink }}" defer></script>
     {{- end -}}
 
-
-    <!-- Enhanced Animations Script -->
     {{- $animations := resources.Get "js/animations.js" -}}
     {{- if $animations -}}
-      <script src="{{ $animations.Permalink }}" defer fetchpriority="high"></script>
+      <script src="{{ $animations.Permalink }}" defer></script>
     {{- end -}}
 
-
-    <!-- AJAX Form Handler -->
     {{- $formHandler := resources.Get "js/form-handler.js" -}}
     {{- if $formHandler -}}
-      <script src="{{ $formHandler.Permalink }}" defer fetchpriority="low"></script>
+      <script src="{{ $formHandler.Permalink }}" defer></script>
     {{- end -}}
 
-
-    <!-- Preconnect to external domains for faster loading -->
-    <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
-    <link rel="dns-prefetch" href="https://formspree.io" />
-
-    <!-- Import map for Three.js modules -->
+    <!-- Three.js Import Map -->
     <script type="importmap">
       {
         "imports": {
@@ -96,40 +74,35 @@
       }
     </script>
 
-    <!-- Shadertoy Cloud System - Inline version -->
+    <!-- Cloud Shader System - Same as working test-shader.html -->
     <script type="module">
       import * as THREE from 'three';
-
-      // Initialize cloud renderer when DOM is ready
-      async function initCloudSystem() {
+      
+      let renderer, cloudMaterial, animationId;
+      
+      async function init() {
         try {
-          console.log('Initializing inline cloud system...');
-
           const canvas = document.getElementById('cloudCanvas');
           if (!canvas) {
-            console.error('Canvas not found!');
+            console.error('Cloud canvas not found');
             return;
           }
-          console.log('Canvas found');
-
+          
           // Create scene
           const scene = new THREE.Scene();
-          console.log('Scene created');
-
+          
           // Create orthographic camera for full-screen shader
           const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, -1, 1);
-          console.log('Camera created');
-
+          
           // Create renderer
-          const renderer = new THREE.WebGLRenderer({
+          renderer = new THREE.WebGLRenderer({
             canvas: canvas,
             alpha: false,
             antialias: false
           });
           renderer.setSize(window.innerWidth, window.innerHeight);
           renderer.setClearColor(0x000000, 1);
-          console.log('Renderer created');
-
+          
           // Create noise texture
           const size = 256;
           const data = new Uint8Array(size * size * 4);
@@ -151,16 +124,16 @@
           noiseTexture.minFilter = THREE.LinearFilter;
           noiseTexture.magFilter = THREE.LinearFilter;
           noiseTexture.needsUpdate = true;
-          console.log('Noise texture created');
-
+          
           // Create shader material
-          const cloudMaterial = new THREE.ShaderMaterial({
+          cloudMaterial = new THREE.ShaderMaterial({
             uniforms: {
               uTime: { value: 0.0 },
               uResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
               uMouse: { value: new THREE.Vector2(0.5, 0.5) },
               uChannel0: { value: noiseTexture },
-              uChannel1: { value: noiseTexture }
+              uChannel1: { value: noiseTexture },
+              uScrollProgress: { value: 0.0 }
             },
             vertexShader: `
               varying vec2 vUv;
@@ -176,8 +149,10 @@
               uniform vec2 uMouse;
               uniform sampler2D uChannel0;
               uniform sampler2D uChannel1;
+              uniform float uScrollProgress;
               varying vec2 vUv;
-
+              
+              // 3D noise function
               float noise(in vec3 x) {
                 vec3 p = floor(x);
                 vec3 f = fract(x);
@@ -186,7 +161,8 @@
                 vec2 rg = texture2D(uChannel0, (uv + 0.5) / 256.0).yx;
                 return mix(rg.x, rg.y, f.z) * 2.0 - 1.0;
               }
-
+              
+              // Simple cloud density
               float map(in vec3 p) {
                 vec3 q = p - vec3(0.0, 0.1, 1.0) * uTime * 0.1;
                 float f = 0.5 * noise(q);
@@ -196,27 +172,31 @@
                 f += 0.125 * noise(q);
                 return clamp(1.5 - p.y - 2.0 + 1.75 * f, 0.0, 1.0);
               }
-
+              
               void main() {
                 vec2 fragCoord = vUv * uResolution;
                 vec2 p = (2.0 * fragCoord - uResolution) / uResolution.y;
-
+                
+                // Camera with scroll-based movement
                 float an = 0.5 * uTime * 0.1 + uMouse.x * 3.0;
-                vec3 ro = vec3(4.0 * sin(an), 0.5, 4.0 * cos(an));
-                vec3 ta = vec3(0.0, -1.0, 0.0);
+                float scrollOffset = uScrollProgress * 4.0;
+                vec3 ro = vec3(4.0 * sin(an), 0.5 - scrollOffset, 4.0 * cos(an));
+                vec3 ta = vec3(0.0, -1.0 - scrollOffset, 0.0);
                 vec3 ww = normalize(ta - ro);
                 vec3 uu = normalize(cross(ww, vec3(0.0, 1.0, 0.0)));
                 vec3 vv = cross(uu, ww);
                 vec3 rd = normalize(p.x * uu + p.y * vv + 1.5 * ww);
-
+                
+                // Sky background
                 vec3 col = vec3(0.6, 0.71, 0.75) - rd.y * 0.2 * vec3(1.0, 0.5, 1.0) + 0.15;
-
+                
+                // Simple raymarch
                 float t = 0.0;
                 vec4 sum = vec4(0.0);
                 for (int i = 0; i < 64; i++) {
                   vec3 pos = ro + t * rd;
                   if (sum.a > 0.99 || pos.y < -3.0 || pos.y > 2.0) break;
-
+                  
                   float den = map(pos);
                   if (den > 0.01) {
                     vec4 c = vec4(mix(vec3(1.0, 0.95, 0.8), vec3(0.25, 0.3, 0.35), den), den);
@@ -227,7 +207,7 @@
                   }
                   t += max(0.06, 0.02 * t);
                 }
-
+                
                 col = col * (1.0 - sum.w) + sum.xyz;
                 gl_FragColor = vec4(col, 1.0);
               }
@@ -236,136 +216,69 @@
             depthWrite: false,
             side: THREE.DoubleSide
           });
-          console.log('Shader material created');
-
+          
           // Create plane
           const geometry = new THREE.PlaneGeometry(2, 2);
           const mesh = new THREE.Mesh(geometry, cloudMaterial);
           mesh.frustumCulled = false;
           scene.add(mesh);
-          console.log('Mesh added to scene');
-
-          // Store for scroll control
-          window.cloudRenderer = { 
-            material: cloudMaterial,
-            updateScroll: (p) => {},
-            reset: () => {}
-          };
-
+          
           // Animate
           const startTime = Date.now();
           function animate() {
-            requestAnimationFrame(animate);
+            animationId = requestAnimationFrame(animate);
             cloudMaterial.uniforms.uTime.value = (Date.now() - startTime) / 1000.0;
             renderer.render(scene, camera);
           }
           animate();
-          console.log('Animation started - clouds should be visible!');
-
+          
+          console.log('Cloud shader initialized successfully');
+          
           // Resize handler
           window.addEventListener('resize', () => {
             renderer.setSize(window.innerWidth, window.innerHeight);
             cloudMaterial.uniforms.uResolution.value.set(window.innerWidth, window.innerHeight);
           });
-
-          // Handle scroll transition
-          let scrollProgress = 0;
+          
+          // Scroll handler
+          const canvas_el = document.getElementById('cloudCanvas');
+          const scrollIndicator = document.getElementById('scrollIndicator');
+          
           window.addEventListener('scroll', () => {
             const scrollY = window.scrollY || window.pageYOffset;
-            scrollProgress = Math.min(scrollY / 600, 1.0);
+            const scrollProgress = Math.min(scrollY / 600, 1.0);
             
+            // Update shader scroll uniform
+            cloudMaterial.uniforms.uScrollProgress.value = scrollProgress;
+            
+            // Fade out canvas and indicator when scrolled past threshold
             if (scrollProgress >= 1.0) {
-              handleTransitionComplete();
+              canvas_el.classList.add('fade-out');
+              if (scrollIndicator) scrollIndicator.classList.add('hidden');
+            } else {
+              canvas_el.classList.remove('fade-out');
+              if (scrollIndicator) scrollIndicator.classList.remove('hidden');
             }
           });
-
+          
         } catch (error) {
           console.error('Failed to initialize cloud system:', error);
-          handleWebGLFallback();
+          // Fallback: hide canvas and show content
+          const canvas = document.getElementById('cloudCanvas');
+          const scrollIndicator = document.getElementById('scrollIndicator');
+          const mainContent = document.querySelector('.main-content-wrapper');
+          
+          if (canvas) canvas.style.display = 'none';
+          if (scrollIndicator) scrollIndicator.style.display = 'none';
+          if (mainContent) mainContent.style.paddingTop = '0';
         }
       }
-
-      // Handle transition complete (scroll reached 100%)
-      function handleTransitionComplete() {
-        const body = document.body;
-        const mainContent = document.querySelector('.main-content-wrapper');
-        const cloudContainer = document.getElementById('cloudCanvasContainer');
-        const scrollIndicator = document.getElementById('scrollIndicator');
-
-        // Add revealing class to start transition
-        body.classList.add('revealing');
-        if (mainContent) {
-          mainContent.classList.add('revealing');
-        }
-
-        // Hide scroll indicator
-        if (scrollIndicator) {
-          scrollIndicator.classList.add('hidden');
-        }
-
-        // After transition, add loaded class and hide clouds
-        setTimeout(() => {
-          body.classList.add('loaded');
-          if (mainContent) {
-            mainContent.classList.add('loaded');
-          }
-          if (cloudContainer) {
-            cloudContainer.classList.add('fade-out');
-          }
-        }, 800);
-      }
-
-      // Handle transition reset (scrolled back to top)
-      function handleTransitionReset() {
-        const body = document.body;
-        const mainContent = document.querySelector('.main-content-wrapper');
-        const cloudContainer = document.getElementById('cloudCanvasContainer');
-        const scrollIndicator = document.getElementById('scrollIndicator');
-
-        // Remove all transition classes
-        body.classList.remove('revealing', 'loaded');
-        if (mainContent) {
-          mainContent.classList.remove('revealing', 'loaded');
-        }
-        if (cloudContainer) {
-          cloudContainer.classList.remove('fade-out');
-        }
-
-        // Show scroll indicator again
-        if (scrollIndicator) {
-          scrollIndicator.classList.remove('hidden');
-        }
-      }
-
-      // Handle WebGL fallback (no WebGL support)
-      function handleWebGLFallback() {
-        console.warn('WebGL not supported, showing content immediately');
-        const body = document.body;
-        const mainContent = document.querySelector('.main-content-wrapper');
-        const cloudContainer = document.getElementById('cloudCanvasContainer');
-        const scrollIndicator = document.getElementById('scrollIndicator');
-
-        // Hide cloud elements
-        if (cloudContainer) {
-          cloudContainer.style.display = 'none';
-        }
-        if (scrollIndicator) {
-          scrollIndicator.style.display = 'none';
-        }
-
-        // Show content immediately
-        body.classList.add('loaded');
-        if (mainContent) {
-          mainContent.classList.add('loaded');
-          mainContent.style.paddingTop = '0';
-        }
-      }
-
+      
       // Initialize when DOM is ready
       if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initCloudSystem);
+        document.addEventListener('DOMContentLoaded', init);
       } else {
-        initCloudSystem();
+        init();
       }
     </script>
   </main>
