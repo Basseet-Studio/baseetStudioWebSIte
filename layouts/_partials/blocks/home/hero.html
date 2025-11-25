@@ -1,0 +1,144 @@
+{{- if .enable -}}
+<section id="hero" class="hero relative py-16 xl:py-28 overflow-hidden">
+    <!-- Premium background elements -->
+    <div class="absolute inset-0 -z-10">
+        <div
+            class="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-radial from-primary/10 via-primary/5 to-transparent rounded-full translate-x-1/3 -translate-y-1/4">
+        </div>
+        <div
+            class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gradient-radial from-tertiary/10 via-tertiary/5 to-transparent rounded-full -translate-x-1/3 translate-y-1/4">
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4">
+        <div class="grid xl:grid-cols-2 gap-12 xl:gap-20 items-center mb-24">
+            <!-- Text Content -->
+            <div class="flex flex-col gap-6 scroll-animate">
+                <!-- Badge -->
+                <div class="flex justify-center xl:justify-start">
+                    <span
+                        class="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary text-sm font-semibold rounded-full">
+                        <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+                        Available for new projects
+                    </span>
+                </div>
+
+                {{ with .title }}
+                <h1
+                    class="text-center xl:text-start text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight">
+                    {{ . | markdownify }}
+                </h1>
+                {{ end }}
+
+                {{ with .text }}
+                <p class="text-lg xl:text-xl text-gray-600 text-center xl:text-start leading-relaxed max-w-xl">
+                    {{ . }}
+                </p>
+                {{ end }}
+
+                {{ if .buttons }}
+                <div class="flex items-center flex-col xl:flex-row gap-4 mt-4">
+                    {{ range $i, $e := .buttons }}
+                    {{ if (eq $i 0) }}
+                    <a href="{{ .link }}"
+                        class="group relative inline-flex items-center gap-2 bg-primary text-white px-8 py-4 rounded-xl font-semibold overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-primary/25 hover:-translate-y-0.5">
+                        <span class="relative z-10">{{ .label }}</span>
+                        <svg class="relative z-10 w-5 h-5 transition-transform group-hover:translate-x-1" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-primary to-primary/80 opacity-0 group-hover:opacity-100 transition-opacity">
+                        </div>
+                    </a>
+                    {{ else }}
+                    <a href="{{ .link }}"
+                        class="group inline-flex items-center gap-2 border-2 border-gray-200 text-gray-700 px-8 py-4 rounded-xl font-semibold transition-all duration-300 hover:border-primary hover:text-primary hover:bg-primary/5">
+                        {{ .label }}
+                        <svg class="w-5 h-5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </a>
+                    {{ end }}
+                    {{ end }}
+                </div>
+                {{ end }}
+
+                <!-- Trust indicators -->
+                <div class="flex flex-col xl:flex-row items-center gap-4 mt-6 pt-6 border-t border-gray-100">
+                    <div class="flex -space-x-3">
+                        <img src="https://i.pravatar.cc/100?img=1" alt="Client"
+                            class="w-10 h-10 rounded-full border-2 border-white shadow-sm">
+                        <img src="https://i.pravatar.cc/100?img=2" alt="Client"
+                            class="w-10 h-10 rounded-full border-2 border-white shadow-sm">
+                        <img src="https://i.pravatar.cc/100?img=3" alt="Client"
+                            class="w-10 h-10 rounded-full border-2 border-white shadow-sm">
+                        <img src="https://i.pravatar.cc/100?img=4" alt="Client"
+                            class="w-10 h-10 rounded-full border-2 border-white shadow-sm">
+                    </div>
+                    <div class="text-center xl:text-left">
+                        <div class="flex items-center justify-center xl:justify-start gap-1 text-yellow-400">
+                            <i class="fas fa-star text-sm"></i>
+                            <i class="fas fa-star text-sm"></i>
+                            <i class="fas fa-star text-sm"></i>
+                            <i class="fas fa-star text-sm"></i>
+                            <i class="fas fa-star text-sm"></i>
+                        </div>
+                        <p class="text-sm text-gray-600">Trusted by <strong>50+</strong> businesses worldwide</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Image -->
+            <div class="relative flex flex-col justify-center items-center scroll-animate-scale">
+                <!-- Decorative elements -->
+                <div
+                    class="absolute -top-8 -right-8 w-24 h-24 border-2 border-primary/20 rounded-2xl rotate-12 hidden xl:block">
+                </div>
+                <div
+                    class="absolute -bottom-8 -left-8 w-32 h-32 border-2 border-tertiary/20 rounded-full hidden xl:block">
+                </div>
+
+                {{ with .image }}
+                {{ $imgPath := . }}
+                {{ with resources.Get $imgPath }}
+                <img src="{{ .RelPermalink }}" alt="Hero illustration"
+                    class="relative w-full max-w-lg object-contain drop-shadow-2xl" loading="eager" decoding="async">
+                {{ else }}
+                <img src="{{ $imgPath | relURL }}" alt="Hero illustration"
+                    class="relative w-full max-w-lg object-contain drop-shadow-2xl" loading="eager" decoding="async">
+                {{ end }}
+                {{ end }}
+            </div>
+        </div>
+
+        <!-- Feature Cards Row - Premium glassmorphism style -->
+        {{ if .items }}
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+            {{ range $i, $item := .items }}
+            <div class="group relative p-6 bg-white/80 backdrop-blur-sm rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-gray-200/50 hover:border-primary/20 transition-all duration-300 hover:-translate-y-1 scroll-animate-scale"
+                style="animation-delay: {{ mul $i 0.1 }}s;">
+                <!-- Gradient overlay on hover -->
+                <div
+                    class="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 to-tertiary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                </div>
+
+                <div class="relative flex items-start gap-4">
+                    <div
+                        class="flex items-center justify-center text-2xl text-white bg-gradient-to-br from-[{{ .color }}] to-[{{ .color }}]/80 w-14 h-14 rounded-xl shadow-lg shadow-[{{ .color }}]/25 shrink-0">
+                        <i class="{{ .icon }}"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <h3 class="text-lg font-bold text-gray-900 mb-1">{{ .title }}</h3>
+                        <p class="text-sm text-gray-500 leading-relaxed">{{ .text }}</p>
+                    </div>
+                </div>
+            </div>
+            {{ end }}
+        </div>
+        {{ end }}
+    </div>
+</section>
+{{- end -}}

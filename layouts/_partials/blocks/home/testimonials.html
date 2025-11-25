@@ -1,0 +1,59 @@
+{{- if .enable -}}
+<section id="testimonials" class="testimonials relative py-20 xl:py-32 bg-white overflow-hidden">
+    <!-- Background decoration -->
+    <div class="absolute top-0 left-0 w-full h-full opacity-50">
+        <div class="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full filter blur-3xl"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-tertiary/5 rounded-full filter blur-3xl"></div>
+    </div>
+
+    <div class="container mx-auto px-4 relative z-10">
+        <!-- Section Header -->
+        <div class="text-center mb-16 scroll-animate">
+            <span class="inline-block px-4 py-1.5 bg-primary/10 text-primary text-sm font-semibold rounded-full mb-4">
+                TESTIMONIALS
+            </span>
+            <h2 class="text-3xl xl:text-5xl font-bold text-gray-900 mb-4">
+                {{ .title }}
+            </h2>
+            <p class="text-lg text-gray-600 max-w-xl mx-auto">
+                {{ .subtitle }}
+            </p>
+        </div>
+
+        <!-- Testimonials Grid -->
+        <div class="grid grid-cols-1 xl:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {{- range $index, $item := .items -}}
+            <div class="group relative scroll-animate-scale" style="animation-delay: {{ mul $index 0.15 }}s;">
+                <!-- Card - Fixed height -->
+                <div
+                    class="relative bg-gray-50 rounded-2xl p-8 xl:p-10 transition-all duration-500 hover:bg-white hover:shadow-2xl hover:shadow-primary/10 border border-transparent hover:border-gray-100 h-[320px] flex flex-col">
+                    <!-- Quote icon -->
+                    <div
+                        class="absolute -top-4 left-8 w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/30">
+                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                        </svg>
+                    </div>
+
+                    <!-- Quote text - flex-grow to take available space -->
+                    <p class="text-gray-700 text-base leading-relaxed pt-4 flex-grow line-clamp-4">
+                        "{{ $item.quote }}"
+                    </p>
+
+                    <!-- Author - always at bottom -->
+                    <div class="flex items-center gap-4 mt-auto pt-6 border-t border-gray-100">
+                        <img src="{{ $item.avatar }}" alt="{{ $item.author }}"
+                            class="w-12 h-12 rounded-full object-cover ring-2 ring-white shadow-md">
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-sm">{{ $item.author }}</h4>
+                            <p class="text-xs text-gray-500">{{ $item.role }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{- end -}}
+        </div>
+    </div>
+</section>
+{{- end -}}

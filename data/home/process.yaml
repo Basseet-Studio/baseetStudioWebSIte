@@ -1,0 +1,30 @@
+enable: true
+
+title: 'Our Process'
+subtitle: 'How we bring your ideas to life'
+
+items:
+  - step: '01'
+    title: 'Discovery'
+    text: 'We dive deep into understanding your business, goals, and target audience to create a solid foundation.'
+    icon: 'fas fa-lightbulb'
+
+  - step: '02'
+    title: 'Strategy'
+    text: 'Our team crafts a comprehensive roadmap with clear milestones and deliverables tailored to your needs.'
+    icon: 'fas fa-chess'
+
+  - step: '03'
+    title: 'Design'
+    text: 'We create stunning, user-centric designs that perfectly blend aesthetics with functionality.'
+    icon: 'fas fa-palette'
+
+  - step: '04'
+    title: 'Development'
+    text: 'Our engineers build robust, scalable solutions using cutting-edge technologies and best practices.'
+    icon: 'fas fa-code'
+
+  - step: '05'
+    title: 'Launch'
+    text: 'We ensure a smooth deployment and provide ongoing support to guarantee your success.'
+    icon: 'fas fa-rocket'

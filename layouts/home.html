@@ -1,71 +1,75 @@
 {{ define "main" }}
-  <!-- App Bar CSS -->
-  {{- $appBarCSS := resources.Get "css/app-bar.css" -}}
-  {{- if $appBarCSS -}}
-    {{- if hugo.IsProduction -}}
-      {{- $appBarCSS = $appBarCSS | minify | fingerprint -}}
-    {{- end -}}
-    <link rel="stylesheet" href="{{ $appBarCSS.RelPermalink }}" />
+<!-- App Bar CSS -->
+{{- $appBarCSS := resources.Get "css/app-bar.css" -}}
+{{- if $appBarCSS -}}
+{{- if hugo.IsProduction -}}
+{{- $appBarCSS = $appBarCSS | minify | fingerprint -}}
+{{- end -}}
+<link rel="stylesheet" href="{{ $appBarCSS.RelPermalink }}" />
+{{- end -}}
+
+<!-- Cloud CSS -->
+{{- $cloudCSS := resources.Get "css/shadertoy-clouds.css" -}}
+{{- if $cloudCSS -}}
+{{- if hugo.IsProduction -}}
+{{- $cloudCSS = $cloudCSS | minify | fingerprint -}}
+{{- end -}}
+<link rel="stylesheet" href="{{ $cloudCSS.RelPermalink }}" />
+{{- end -}}
+
+<!-- Custom Overrides CSS -->
+{{- $overridesCSS := resources.Get "css/custom-overrides.css" -}}
+{{- if $overridesCSS -}}
+{{- if hugo.IsProduction -}}
+{{- $overridesCSS = $overridesCSS | minify | fingerprint -}}
+{{- end -}}
+<link rel="stylesheet" href="{{ $overridesCSS.RelPermalink }}" />
+{{- end -}}
+
+<!-- Skip to content for keyboard users -->
+<a class="skip-to-content" href="#mainContent">Skip to content</a>
+
+<!-- Cloud Canvas -->
+<canvas id="cloudCanvas" aria-label="3D volumetric cloud animation"></canvas>
+
+<!-- Scroll Indicator -->
+<div class="scroll-indicator" id="scrollIndicator">
+  <span>Scroll to explore</span>
+  <div class="scroll-indicator-icon"></div>
+</div>
+
+<!-- App Bar Header -->
+{{ partial "header.html" . }}
+
+<main id="mainContent" class="main-content-wrapper">
+  {{ with site.Data.home.hero }}{{ if .enable }}{{ partial "blocks/home/hero" . }}{{ end }}{{ end }}
+  {{ with site.Data.home.stats }}{{ if .enable }}{{ partial "blocks/home/stats" . }}{{ end }}{{ end }}
+  {{ with site.Data.home.features }}{{ if .enable }}{{ partial "blocks/home/features" . }}{{ end }}{{ end }}
+  {{ with site.Data.home.process }}{{ if .enable }}{{ partial "blocks/home/process" . }}{{ end }}{{ end }}
+  {{ with site.Data.home.team }}{{ if .enable }}{{ partial "blocks/home/team" . }}{{ end }}{{ end }}
+  {{ with site.Data.home.testimonials }}{{ if .enable }}{{ partial "blocks/home/testimonials" . }}{{ end }}{{ end }}
+  {{ with site.Data.home.highlights }}{{ if .enable }}{{ partial "blocks/home/highlights" . }}{{ end }}{{ end }}
+  {{ with site.Data.home.clients }}{{ if .enable }}{{ partial "blocks/home/clients" . }}{{ end }}{{ end }}
+  {{/* Subscribe section is included via footer in baseof.html - no need to duplicate */}}
+
+  <!-- Scripts -->
+  {{- $performance := resources.Get "js/performance.js" -}}
+  {{- if $performance -}}
+  <script src="{{ $performance.Permalink }}" defer></script>
   {{- end -}}
 
-  <!-- Cloud CSS -->
-  {{- $cloudCSS := resources.Get "css/shadertoy-clouds.css" -}}
-  {{- if $cloudCSS -}}
-    {{- if hugo.IsProduction -}}
-      {{- $cloudCSS = $cloudCSS | minify | fingerprint -}}
-    {{- end -}}
-    <link rel="stylesheet" href="{{ $cloudCSS.RelPermalink }}" />
+  {{- $animations := resources.Get "js/animations.js" -}}
+  {{- if $animations -}}
+  <script src="{{ $animations.Permalink }}" defer></script>
   {{- end -}}
 
-  <!-- Custom Overrides CSS -->
-  {{- $overridesCSS := resources.Get "css/custom-overrides.css" -}}
-  {{- if $overridesCSS -}}
-    {{- if hugo.IsProduction -}}
-      {{- $overridesCSS = $overridesCSS | minify | fingerprint -}}
-    {{- end -}}
-    <link rel="stylesheet" href="{{ $overridesCSS.RelPermalink }}" />
+  {{- $formHandler := resources.Get "js/form-handler.js" -}}
+  {{- if $formHandler -}}
+  <script src="{{ $formHandler.Permalink }}" defer></script>
   {{- end -}}
 
-  <!-- Skip to content for keyboard users -->
-  <a class="skip-to-content" href="#mainContent">Skip to content</a>
-
-  <!-- Cloud Canvas -->
-  <canvas id="cloudCanvas" aria-label="3D volumetric cloud animation"></canvas>
-
-  <!-- Scroll Indicator -->
-  <div class="scroll-indicator" id="scrollIndicator">
-    <span>Scroll to explore</span>
-    <div class="scroll-indicator-icon"></div>
-  </div>
-
-  <!-- App Bar Header -->
-  {{ partial "header.html" . }}
-
-  <main id="mainContent" class="main-content-wrapper">
-    {{ with site.Data.home.hero }}{{ if .enable }}{{ partial "blocks/home/hero" . }}{{ end }}{{ end }}
-    {{ with site.Data.home.features }}{{ if .enable }}{{ partial "blocks/home/features" . }}{{ end }}{{ end }}
-    {{ with site.Data.home.team }}{{ if .enable }}{{ partial "blocks/home/team" . }}{{ end }}{{ end }}
-    {{ with site.Data.home.highlights }}{{ if .enable }}{{ partial "blocks/home/highlights" . }}{{ end }}{{ end }}
-    {{ with site.Data.home.clients }}{{ if .enable }}{{ partial "blocks/home/clients" . }}{{ end }}{{ end }}
-
-    <!-- Scripts -->
-    {{- $performance := resources.Get "js/performance.js" -}}
-    {{- if $performance -}}
-      <script src="{{ $performance.Permalink }}" defer></script>
-    {{- end -}}
-
-    {{- $animations := resources.Get "js/animations.js" -}}
-    {{- if $animations -}}
-      <script src="{{ $animations.Permalink }}" defer></script>
-    {{- end -}}
-
-    {{- $formHandler := resources.Get "js/form-handler.js" -}}
-    {{- if $formHandler -}}
-      <script src="{{ $formHandler.Permalink }}" defer></script>
-    {{- end -}}
-
-    <!-- Three.js Import Map -->
-    <script type="importmap">
+  <!-- Three.js Import Map -->
+  <script type="importmap">
       {
         "imports": {
           "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
@@ -74,75 +78,75 @@
       }
     </script>
 
-    <!-- Cloud Shader System - Same as working test-shader.html -->
-    <script type="module">
-      import * as THREE from 'three';
-      
-      let renderer, cloudMaterial, animationId;
-      
-      async function init() {
-        try {
-          const canvas = document.getElementById('cloudCanvas');
-          if (!canvas) {
-            console.error('Cloud canvas not found');
-            return;
-          }
-          
-          // Create scene
-          const scene = new THREE.Scene();
-          
-          // Create orthographic camera for full-screen shader
-          const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, -1, 1);
-          
-          // Create renderer
-          renderer = new THREE.WebGLRenderer({
-            canvas: canvas,
-            alpha: false,
-            antialias: false
-          });
-          renderer.setSize(window.innerWidth, window.innerHeight);
-          renderer.setClearColor(0x000000, 1);
-          
-          // Create noise texture
-          const size = 256;
-          const data = new Uint8Array(size * size * 4);
-          let seed = 12345;
-          const seededRandom = () => {
-            seed = (seed * 1103515245 + 12345) & 0x7fffffff;
-            return seed / 0x7fffffff;
-          };
-          for (let i = 0; i < size * size; i++) {
-            const idx = i * 4;
-            data[idx] = Math.floor(seededRandom() * 256);
-            data[idx + 1] = Math.floor(seededRandom() * 256);
-            data[idx + 2] = Math.floor(seededRandom() * 256);
-            data[idx + 3] = 255;
-          }
-          const noiseTexture = new THREE.DataTexture(data, size, size, THREE.RGBAFormat);
-          noiseTexture.wrapS = THREE.RepeatWrapping;
-          noiseTexture.wrapT = THREE.RepeatWrapping;
-          noiseTexture.minFilter = THREE.LinearFilter;
-          noiseTexture.magFilter = THREE.LinearFilter;
-          noiseTexture.needsUpdate = true;
-          
-          // Create shader material
-          cloudMaterial = new THREE.ShaderMaterial({
-            uniforms: {
-              uTime: { value: 0.0 },
-              uResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
-              uMouse: { value: new THREE.Vector2(0.5, 0.5) },
-              uChannel0: { value: noiseTexture },
-              uChannel1: { value: noiseTexture },
-              uScrollProgress: { value: 0.0 }
-            },
-            vertexShader: `
+  <!-- Cloud Shader System - Same as working test-shader.html -->
+  <script type="module">
+    import * as THREE from 'three';
+
+    let renderer, cloudMaterial, animationId;
+
+    async function init() {
+      try {
+        const canvas = document.getElementById('cloudCanvas');
+        if (!canvas) {
+          console.error('Cloud canvas not found');
+          return;
+        }
+
+        // Create scene
+        const scene = new THREE.Scene();
+
+        // Create orthographic camera for full-screen shader
+        const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, -1, 1);
+
+        // Create renderer
+        renderer = new THREE.WebGLRenderer({
+          canvas: canvas,
+          alpha: false,
+          antialias: false
+        });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0x000000, 1);
+
+        // Create noise texture
+        const size = 256;
+        const data = new Uint8Array(size * size * 4);
+        let seed = 12345;
+        const seededRandom = () => {
+          seed = (seed * 1103515245 + 12345) & 0x7fffffff;
+          return seed / 0x7fffffff;
+        };
+        for (let i = 0; i < size * size; i++) {
+          const idx = i * 4;
+          data[idx] = Math.floor(seededRandom() * 256);
+          data[idx + 1] = Math.floor(seededRandom() * 256);
+          data[idx + 2] = Math.floor(seededRandom() * 256);
+          data[idx + 3] = 255;
+        }
+        const noiseTexture = new THREE.DataTexture(data, size, size, THREE.RGBAFormat);
+        noiseTexture.wrapS = THREE.RepeatWrapping;
+        noiseTexture.wrapT = THREE.RepeatWrapping;
+        noiseTexture.minFilter = THREE.LinearFilter;
+        noiseTexture.magFilter = THREE.LinearFilter;
+        noiseTexture.needsUpdate = true;
+
+        // Create shader material
+        cloudMaterial = new THREE.ShaderMaterial({
+          uniforms: {
+            uTime: { value: 0.0 },
+            uResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+            uMouse: { value: new THREE.Vector2(0.5, 0.5) },
+            uChannel0: { value: noiseTexture },
+            uChannel1: { value: noiseTexture },
+            uScrollProgress: { value: 0.0 }
+          },
+          vertexShader: `
               varying vec2 vUv;
               void main() {
                 vUv = uv;
                 gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
               }
             `,
-            fragmentShader: `
+          fragmentShader: `
               precision highp float;
               uniform float uTime;
               uniform vec2 uResolution;
@@ -212,74 +216,74 @@
                 gl_FragColor = vec4(col, 1.0);
               }
             `,
-            transparent: false,
-            depthWrite: false,
-            side: THREE.DoubleSide
-          });
-          
-          // Create plane
-          const geometry = new THREE.PlaneGeometry(2, 2);
-          const mesh = new THREE.Mesh(geometry, cloudMaterial);
-          mesh.frustumCulled = false;
-          scene.add(mesh);
-          
-          // Animate
-          const startTime = Date.now();
-          function animate() {
-            animationId = requestAnimationFrame(animate);
-            cloudMaterial.uniforms.uTime.value = (Date.now() - startTime) / 1000.0;
-            renderer.render(scene, camera);
-          }
-          animate();
-          
-          console.log('Cloud shader initialized successfully');
-          
-          // Resize handler
-          window.addEventListener('resize', () => {
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            cloudMaterial.uniforms.uResolution.value.set(window.innerWidth, window.innerHeight);
-          });
-          
-          // Scroll handler
-          const canvas_el = document.getElementById('cloudCanvas');
-          const scrollIndicator = document.getElementById('scrollIndicator');
-          
-          window.addEventListener('scroll', () => {
-            const scrollY = window.scrollY || window.pageYOffset;
-            const scrollProgress = Math.min(scrollY / 600, 1.0);
-            
-            // Update shader scroll uniform
-            cloudMaterial.uniforms.uScrollProgress.value = scrollProgress;
-            
-            // Fade out canvas and indicator when scrolled past threshold
-            if (scrollProgress >= 1.0) {
-              canvas_el.classList.add('fade-out');
-              if (scrollIndicator) scrollIndicator.classList.add('hidden');
-            } else {
-              canvas_el.classList.remove('fade-out');
-              if (scrollIndicator) scrollIndicator.classList.remove('hidden');
-            }
-          });
-          
-        } catch (error) {
-          console.error('Failed to initialize cloud system:', error);
-          // Fallback: hide canvas and show content
-          const canvas = document.getElementById('cloudCanvas');
-          const scrollIndicator = document.getElementById('scrollIndicator');
-          const mainContent = document.querySelector('.main-content-wrapper');
-          
-          if (canvas) canvas.style.display = 'none';
-          if (scrollIndicator) scrollIndicator.style.display = 'none';
-          if (mainContent) mainContent.style.paddingTop = '0';
+          transparent: false,
+          depthWrite: false,
+          side: THREE.DoubleSide
+        });
+
+        // Create plane
+        const geometry = new THREE.PlaneGeometry(2, 2);
+        const mesh = new THREE.Mesh(geometry, cloudMaterial);
+        mesh.frustumCulled = false;
+        scene.add(mesh);
+
+        // Animate
+        const startTime = Date.now();
+        function animate() {
+          animationId = requestAnimationFrame(animate);
+          cloudMaterial.uniforms.uTime.value = (Date.now() - startTime) / 1000.0;
+          renderer.render(scene, camera);
         }
+        animate();
+
+        console.log('Cloud shader initialized successfully');
+
+        // Resize handler
+        window.addEventListener('resize', () => {
+          renderer.setSize(window.innerWidth, window.innerHeight);
+          cloudMaterial.uniforms.uResolution.value.set(window.innerWidth, window.innerHeight);
+        });
+
+        // Scroll handler
+        const canvas_el = document.getElementById('cloudCanvas');
+        const scrollIndicator = document.getElementById('scrollIndicator');
+
+        window.addEventListener('scroll', () => {
+          const scrollY = window.scrollY || window.pageYOffset;
+          const scrollProgress = Math.min(scrollY / 600, 1.0);
+
+          // Update shader scroll uniform
+          cloudMaterial.uniforms.uScrollProgress.value = scrollProgress;
+
+          // Fade out canvas and indicator when scrolled past threshold
+          if (scrollProgress >= 1.0) {
+            canvas_el.classList.add('fade-out');
+            if (scrollIndicator) scrollIndicator.classList.add('hidden');
+          } else {
+            canvas_el.classList.remove('fade-out');
+            if (scrollIndicator) scrollIndicator.classList.remove('hidden');
+          }
+        });
+
+      } catch (error) {
+        console.error('Failed to initialize cloud system:', error);
+        // Fallback: hide canvas and show content
+        const canvas = document.getElementById('cloudCanvas');
+        const scrollIndicator = document.getElementById('scrollIndicator');
+        const mainContent = document.querySelector('.main-content-wrapper');
+
+        if (canvas) canvas.style.display = 'none';
+        if (scrollIndicator) scrollIndicator.style.display = 'none';
+        if (mainContent) mainContent.style.paddingTop = '0';
       }
-      
-      // Initialize when DOM is ready
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init);
-      } else {
-        init();
-      }
-    </script>
-  </main>
+    }
+
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  </script>
+</main>
 {{ end }}

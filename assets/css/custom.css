@@ -1,12 +1,249 @@
-/* Custom gradient text styling for Baseet Studio */
-#features h1 strong {
-  background: linear-gradient(135deg, #496BC1 0%, #FBCD37 100%);
+/* ============================================
+   Premium Custom Styles for Baseet Studio
+   Inspired by hatom.com - Premium Tech Agency
+   ============================================ */
+
+/* Gradient text styling */
+#features h1 strong,
+.gradient-text {
+  background: linear-gradient(135deg, #496bc1 0%, #fbcd37 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
   display: inline-block;
+}
+
+/* Premium headings with bold emphasis */
+h1 strong,
+h2 strong {
+  background: linear-gradient(135deg, #496bc1 0%, #fbcd37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Gradient radial background helper */
+.bg-gradient-radial {
+  background: radial-gradient(circle, var(--tw-gradient-stops));
+}
+
+/* Slow pulse animation for background elements */
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+/* Smooth scroll animations */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-animate.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-animate-scale {
+  opacity: 0;
+  transform: scale(0.95) translateY(20px);
+  transition:
+    opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-animate-scale.visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.scroll-animate-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition:
+    opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-animate-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scroll-animate-right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition:
+    opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-animate-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scroll-animate-fade {
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-animate-fade.visible {
+  opacity: 1;
+}
+
+.scroll-animate-slide-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-animate-slide-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Premium card hover effects */
+.premium-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.premium-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -15px rgba(73, 107, 193, 0.15);
+}
+
+/* Glassmorphism effect */
+.glass {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Counter number animation */
+.counter-number {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Line clamp utilities for text truncation */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Premium button with shine effect */
+.btn-premium {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-premium::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-premium:hover::before {
+  left: 100%;
+}
+
+/* Section divider gradient */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #496bc1, transparent);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #496bc1, #fbcd37);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #496bc1;
+}
+
+/* Floating animation for decorative elements */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Text stroke effect for headings */
+.text-stroke {
+  color: transparent;
+  -webkit-text-stroke: 1px currentColor;
+  text-stroke: 1px currentColor;
+}
+
+/* Premium selection color */
+::selection {
+  background: #496bc1;
+  color: white;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-animate,
+  .scroll-animate-scale,
+  .scroll-animate-left,
+  .scroll-animate-right {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .animate-pulse-slow,
+  .animate-float {
+    animation: none;
+  }
 }

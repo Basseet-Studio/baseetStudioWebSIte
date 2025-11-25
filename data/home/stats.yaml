@@ -1,0 +1,21 @@
+enable: true
+
+title: 'Numbers That Speak'
+subtitle: 'Our track record of delivering excellence'
+
+items:
+  - number: '50+'
+    label: 'Projects Delivered'
+    suffix: ''
+
+  - number: '98'
+    label: 'Client Satisfaction'
+    suffix: '%'
+
+  - number: '5+'
+    label: 'Years Experience'
+    suffix: ''
+
+  - number: '24/7'
+    label: 'Support Available'
+    suffix: ''

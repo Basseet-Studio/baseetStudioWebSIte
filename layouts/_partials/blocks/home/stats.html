@@ -1,0 +1,51 @@
+{{- if .enable -}}
+<section id="stats"
+    class="stats relative py-20 xl:py-32 bg-gradient-to-br from-[#171D1C] via-primary to-[#171D1C] overflow-hidden">
+    <!-- Animated background elements -->
+    <div class="absolute inset-0 opacity-30">
+        <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/20 rounded-full filter blur-3xl animate-pulse-slow">
+        </div>
+        <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-tertiary/20 rounded-full filter blur-3xl animate-pulse-slow"
+            style="animation-delay: 1s;"></div>
+    </div>
+
+    <!-- Grid pattern overlay -->
+    <div class="absolute inset-0 opacity-5"
+        style="background-image: url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%22%23ffffff%22 fill-opacity=%221%22%3E%3Cpath d=%22M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');">
+    </div>
+
+    <div class="container mx-auto px-4 relative z-10">
+        <!-- Section Header -->
+        <div class="text-center mb-16 scroll-animate">
+            <h2 class="text-3xl xl:text-5xl font-bold text-white mb-4">
+                {{ .title }}
+            </h2>
+            <p class="text-lg text-gray-400 max-w-xl mx-auto">
+                {{ .subtitle }}
+            </p>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-2 xl:grid-cols-4 gap-8 xl:gap-12">
+            {{- range $index, $stat := .items -}}
+            <div class="text-center scroll-animate-scale group" style="animation-delay: {{ mul $index 0.1 }}s;">
+                <div class="relative inline-block mb-4">
+                    <!-- Glow effect on hover -->
+                    <div
+                        class="absolute inset-0 bg-primary/20 rounded-full filter blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 scale-150">
+                    </div>
+                    <span
+                        class="counter-number relative text-5xl xl:text-7xl font-bold bg-gradient-to-r from-white via-primary to-tertiary bg-clip-text text-transparent"
+                        data-target="{{ $stat.number }}">
+                        {{ $stat.number }}{{ $stat.suffix }}
+                    </span>
+                </div>
+                <p class="text-gray-400 text-sm xl:text-base font-medium uppercase tracking-wider">
+                    {{ $stat.label }}
+                </p>
+            </div>
+            {{- end -}}
+        </div>
+    </div>
+</section>
+{{- end -}}

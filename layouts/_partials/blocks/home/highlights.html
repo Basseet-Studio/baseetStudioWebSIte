@@ -1,26 +1,59 @@
 {{- if .enable -}}
-<section id="highlights" class="highlights relative py-8 xl:py-16 overflow-hidden">
-    <div class="container mx-auto px-4 grid xl:grid-cols-2 gap-12">
-        {{- range $index, $item := .items -}}
-        <div
-            class="flex flex-col gap-9 px-8 xl:px-14 py-14 rounded-3xl {{ if (mod $index 2) }}bg-primary{{ else }}bg-[#F4F4F4]{{ end }}">
-            <h1
-                class="xl:max-w-1/2 mx-auto text-2xl font-semibold leading-relaxed text-center {{ if (mod $index 2) }}text-white{{ else }}text-[#252525]{{ end }}">
-                {{ $item.title }}
-            </h1>
-            <p class="leading-relaxed text-center {{ if (mod $index 2) }}text-white{{ else }}text-[#545454]{{ end }}">
-                {{ $item.text }}
-            </p>
-            {{- if $item.button -}}
-            <div class="flex items-center justify-center">
-                <a class="{{ if (mod $index 2) }}bg-white hover:bg-primary border border-primary text-primary hover:text-white{{ else }}bg-primary hover:bg-primary/90 text-white{{ end }} rounded-lg px-14 py-2 duration-500 transition-all hover:scale-105 hover:shadow-xl"
-                    href="{{ $item.button.link }}">
-                    {{ $item.button.label }}
-                </a>
+<section id="highlights" class="highlights relative py-20 xl:py-32 overflow-hidden bg-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="grid xl:grid-cols-2 gap-8">
+            {{- range $index, $item := .items -}}
+            <div class="group relative scroll-animate-scale" style="animation-delay: {{ mul $index 0.15 }}s;">
+                <div
+                    class="relative rounded-3xl overflow-hidden {{ if (mod $index 2) }}bg-gradient-to-br from-primary via-primary/95 to-primary/90{{ else }}bg-gradient-to-br from-gray-100 to-gray-50{{ end }} p-10 xl:p-14 transition-all duration-500 hover:shadow-2xl {{ if (mod $index 2) }}hover:shadow-primary/20{{ else }}hover:shadow-gray-300/50{{ end }}">
+                    <!-- Background pattern -->
+                    <div class="absolute inset-0 opacity-10">
+                        <div
+                            class="absolute top-0 right-0 w-64 h-64 rounded-full {{ if (mod $index 2) }}bg-white{{ else }}bg-primary{{ end }} filter blur-3xl translate-x-1/2 -translate-y-1/2">
+                        </div>
+                    </div>
+
+                    <div class="relative z-10">
+                        <!-- Icon -->
+                        <div
+                            class="inline-flex items-center justify-center w-14 h-14 rounded-2xl {{ if (mod $index 2) }}bg-white/20{{ else }}bg-primary/10{{ end }} mb-8">
+                            <svg class="w-7 h-7 {{ if (mod $index 2) }}text-white{{ else }}text-primary{{ end }}"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                {{ if (mod $index 2) }}
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                {{ else }}
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                                {{ end }}
+                            </svg>
+                        </div>
+
+                        <!-- Content -->
+                        <h3
+                            class="text-2xl xl:text-3xl font-bold {{ if (mod $index 2) }}text-white{{ else }}text-gray-900{{ end }} mb-4">
+                            {{ $item.title }}
+                        </h3>
+                        <p
+                            class="text-lg leading-relaxed {{ if (mod $index 2) }}text-white/80{{ else }}text-gray-600{{ end }} mb-8">
+                            {{ $item.text }}
+                        </p>
+
+                        {{- if $item.button -}}
+                        <a href="{{ $item.button.link }}"
+                            class="group/btn inline-flex items-center gap-2 {{ if (mod $index 2) }}text-white font-semibold{{ else }}text-primary font-semibold{{ end }} transition-all duration-300 hover:gap-3">
+                            {{ $item.button.label }}
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </a>
+                        {{- end -}}
+                    </div>
+                </div>
             </div>
             {{- end -}}
         </div>
-        {{- end -}}
     </div>
 </section>
 {{- end -}}

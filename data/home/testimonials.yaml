@@ -1,0 +1,20 @@
+enable: true
+
+title: 'What Our Clients Say'
+subtitle: 'Real feedback from businesses we have helped grow'
+
+items:
+  - quote: 'Baseet Studio transformed our digital presence completely. Their attention to detail and technical expertise is unmatched. The team delivered beyond our expectations.'
+    author: 'Sarah Chen'
+    role: 'CEO, TechFlow Inc'
+    avatar: 'https://i.pravatar.cc/150?img=1'
+
+  - quote: 'Working with Baseet was a game-changer for our startup. They understood our vision from day one and delivered a product that our users absolutely love.'
+    author: 'Michael Roberts'
+    role: 'Founder, InnovateLab'
+    avatar: 'https://i.pravatar.cc/150?img=3'
+
+  - quote: 'The mobile app they built for us has been instrumental in our growth. Professional, responsive, and incredibly talented team.'
+    author: 'Emily Watson'
+    role: 'Product Manager, DataSync'
+    avatar: 'https://i.pravatar.cc/150?img=5'
