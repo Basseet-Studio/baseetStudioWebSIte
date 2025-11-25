@@ -1,0 +1,421 @@
+/* ============================================
+   Shadertoy Volumetric Clouds Styles
+   ============================================ */
+
+/* ============================================
+   Canvas Container - Fixed Full Viewport
+   ============================================ */
+
+.cloud-canvas-container {
+    /* Fixed positioning covering full viewport */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    
+    /* Ensure canvas is behind app bar but above background */
+    pointer-events: none;
+    
+    /* Smooth transitions for fade effects */
+    transition: opacity 800ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cloud-canvas-container canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    /* Add background so we can see if canvas is visible */
+    background: linear-gradient(135deg, #4584b4 0%, #2a4a8f 100%);
+}
+
+/* ============================================
+   Scroll Indicator Styles
+   ============================================ */
+
+.scroll-indicator {
+    /* Fixed positioning at bottom center */
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    
+    /* Styling */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    
+    /* Text styling */
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    
+    /* Transitions */
+    opacity: 1;
+    transition: opacity 400ms ease;
+}
+
+.scroll-indicator-icon {
+    /* Animated arrow or mouse icon */
+    width: 24px;
+    height: 36px;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+    position: relative;
+    
+    /* Animation for scroll hint */
+    animation: scroll-bounce 2s infinite;
+}
+
+.scroll-indicator-icon::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 2px;
+    
+    /* Scroll animation */
+    animation: scroll-wheel 2s infinite;
+}
+
+@keyframes scroll-bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(8px);
+    }
+}
+
+@keyframes scroll-wheel {
+    0% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(12px);
+    }
+}
+
+/* Hide scroll indicator when scrolling or complete */
+.scroll-indicator.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ============================================
+   Main Content Wrapper with Padding
+   ============================================ */
+
+.main-content-wrapper {
+    /* Position relative for z-index stacking */
+    position: relative;
+    z-index: 2;
+    
+    /* Padding top to create scroll space for cloud scene */
+    padding-top: 100vh;
+    
+    /* Background to cover clouds when scrolled */
+    background: #ffffff;
+    
+    /* Ensure content is above clouds */
+    min-height: 100vh;
+}
+
+/* Alternative: Cloud scene as hero section */
+.cloud-hero-section {
+    /* Full viewport height for initial view */
+    height: 100vh;
+    position: relative;
+    z-index: 1;
+    
+    /* Flex container for centering content if needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ============================================
+   Transition Classes for Fade Effects
+   ============================================ */
+
+/* Fade out cloud canvas when transition complete */
+.cloud-canvas-container.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Fade in main content */
+.main-content-wrapper.fade-in {
+    animation: fadeInContent 800ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeInContent {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Revealing state - content becoming visible */
+.main-content-wrapper.revealing {
+    opacity: 1;
+    transition: opacity 600ms ease;
+}
+
+/* Loaded state - everything ready */
+.main-content-wrapper.loaded {
+    opacity: 1;
+}
+
+/* Cloud scene transitioning out */
+.cloud-canvas-container.transitioning {
+    transition: opacity 1000ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================
+   Loading State Styles
+   ============================================ */
+
+.cloud-loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+    
+    /* Background */
+    background: linear-gradient(135deg, #496BC1 0%, #2a4a8f 100%);
+    
+    /* Center loading indicator */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1.5rem;
+    
+    /* Transitions */
+    opacity: 1;
+    transition: opacity 600ms ease;
+}
+
+.cloud-loading.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.cloud-loading-spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid rgba(255, 255, 255, 0.2);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.cloud-loading-text {
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+}
+
+/* ============================================
+   Screen Reader Only Content
+   ============================================ */
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* ============================================
+   Accessibility - Skip Link
+   ============================================ */
+
+.skip-to-content {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #496BC1;
+    color: #ffffff;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    z-index: 201;
+    font-weight: 600;
+    border-radius: 0 0 4px 0;
+    transition: top 200ms ease;
+}
+
+.skip-to-content:focus {
+    top: 0;
+    outline: 2px solid #FBCD37;
+    outline-offset: 2px;
+}
+
+/* ============================================
+   Mobile Responsive Styles
+   ============================================ */
+
+@media (max-width: 768px) {
+    /* Adjust scroll indicator for mobile */
+    .scroll-indicator {
+        bottom: 1.5rem;
+        font-size: 0.75rem;
+    }
+    
+    .scroll-indicator-icon {
+        width: 20px;
+        height: 32px;
+    }
+    
+    /* Reduce padding for mobile */
+    .main-content-wrapper {
+        padding-top: 100vh;
+    }
+}
+
+@media (max-width: 480px) {
+    .scroll-indicator {
+        bottom: 1rem;
+    }
+}
+
+/* ============================================
+   Reduced Motion Media Query Styles
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    /* Disable all animations */
+    .cloud-canvas-container,
+    .scroll-indicator,
+    .main-content-wrapper,
+    .cloud-loading,
+    .cloud-loading-spinner {
+        animation: none !important;
+        transition: none !important;
+    }
+    
+    /* Remove scroll indicator animations */
+    .scroll-indicator-icon {
+        animation: none;
+    }
+    
+    .scroll-indicator-icon::before {
+        animation: none;
+        opacity: 1;
+    }
+    
+    /* Instant transitions instead of animated */
+    .cloud-canvas-container.fade-out {
+        transition: none;
+    }
+    
+    .main-content-wrapper.fade-in {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+    
+    /* Loading spinner - static or simple */
+    .cloud-loading-spinner {
+        animation: none;
+        border-top-color: rgba(255, 255, 255, 0.5);
+    }
+    
+    /* Reduce motion but keep scroll-based camera movement */
+    /* (handled in JavaScript, not CSS) */
+}
+
+/* ============================================
+   High Contrast Mode Support
+   ============================================ */
+
+@media (prefers-contrast: high) {
+    .scroll-indicator {
+        color: #ffffff;
+        text-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
+    }
+    
+    .scroll-indicator-icon {
+        border-color: #ffffff;
+        background: rgba(0, 0, 0, 0.3);
+    }
+    
+    .scroll-indicator-icon::before {
+        background: #ffffff;
+    }
+    
+    .skip-to-content {
+        background: #000000;
+        color: #ffffff;
+        border: 2px solid #ffffff;
+    }
+}
+
+/* ============================================
+   Performance Optimizations
+   ============================================ */
+
+/* Use GPU acceleration for transforms */
+.cloud-canvas-container,
+.scroll-indicator,
+.main-content-wrapper {
+    will-change: opacity;
+}
+
+.cloud-canvas-container.transitioning {
+    will-change: opacity, transform;
+}
+
+/* Remove will-change after transitions complete */
+.cloud-canvas-container:not(.transitioning),
+.main-content-wrapper.loaded {
+    will-change: auto;
+}
+
+/* ============================================
+   Print Styles
+   ============================================ */
+
+@media print {
+    /* Hide cloud canvas and scroll indicator when printing */
+    .cloud-canvas-container,
+    .scroll-indicator,
+    .cloud-loading {
+        display: none !important;
+    }
+    
+    /* Remove padding from main content */
+    .main-content-wrapper {
+        padding-top: 0 !important;
+    }
+}
