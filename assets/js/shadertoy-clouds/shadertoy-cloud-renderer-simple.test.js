@@ -502,10 +502,45 @@ describe('ShadertoyCloudRenderer - Simplified Tests', () => {
         });
 
         /**
-         * Feature: shadertoy-volumetric-clouds, Property 5: Visibility change pauses and resumes animation
+         * Feature: cloud-hero-appbar-refactor, Property 5: Camera Position Updates with Scroll
+         * Validates: Requirements 4.1
+         * 
+         * For any two scroll progress values where p2 > p1, the camera z-position at p2 
+         * SHALL be less than (closer to text) the camera z-position at p1.
+         */
+        it('Property 5: Camera Position Updates with Scroll', () => {
+            fc.assert(
+                fc.property(
+                    fc.tuple(
+                        fc.float({ min: 0.0, max: 1.0, noNaN: true }),
+                        fc.float({ min: 0.0, max: 1.0, noNaN: true })
+                    ).filter(([p1, p2]) => p2 > p1 && p2 - p1 > 0.01), // Ensure p2 > p1 with meaningful difference
+                    ([progress1, progress2]) => {
+                        // Reset renderer to initial state
+                        renderer.reset();
+                        
+                        // Update to first progress
+                        renderer.updateScroll(progress1);
+                        const cameraZ1 = renderer.camera.position.z;
+                        
+                        // Update to second progress (higher)
+                        renderer.updateScroll(progress2);
+                        const cameraZ2 = renderer.camera.position.z;
+                        
+                        // Camera z-position at progress2 should be less than at progress1
+                        // (closer to the text which is at z = -8)
+                        return cameraZ2 < cameraZ1;
+                    }
+                ),
+                { numRuns: 100 }
+            );
+        });
+
+        /**
+         * Feature: shadertoy-volumetric-clouds, Property: Visibility change pauses and resumes animation
          * Validates: Requirements 3.2, 3.3
          */
-        it('Property 5: Visibility change pauses and resumes animation', () => {
+        it('Visibility change pauses and resumes animation', () => {
             fc.assert(
                 fc.property(
                     fc.array(fc.boolean(), { minLength: 2, maxLength: 10 }),

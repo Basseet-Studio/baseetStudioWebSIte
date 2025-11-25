@@ -1,11 +1,11 @@
 # Implementation Plan
 
 - [-] 1. Fix cloud rendering issues
-  - [-] 1.1 Debug why clouds stopped rendering by checking browser console for errors
+  - [x] 1.1 Debug why clouds stopped rendering by checking browser console for errors
     - Check for WebGL errors, texture loading failures, shader compilation issues
     - Verify Three.js is loading correctly from CDN
     - _Requirements: 1.1, 1.4, 1.5_
-  - [ ] 1.2 Fix any identified rendering issues in shadertoy-cloud-renderer.js
+  - [x] 1.2 Fix any identified rendering issues in shadertoy-cloud-renderer.js
     - Ensure canvas is properly sized and visible
     - Verify shader uniforms are being set correctly
     - _Requirements: 1.1, 1.2_
@@ -13,7 +13,7 @@
     - **Property 5: Camera Position Updates with Scroll**
     - **Validates: Requirements 4.1**
 
-- [ ] 2. Refactor app bar CSS to use CSS custom properties
+- [-] 2. Refactor app bar CSS to use CSS custom properties
   - [ ] 2.1 Update app-bar.css to use --scroll-progress variable
     - Remove .app-bar-cloud and .app-bar-site classes
     - Use calc() with --scroll-progress for background, opacity, colors
@@ -63,7 +63,7 @@
     - **Property 1: Single App Bar Element**
     - **Validates: Requirements 2.1, 5.1**
 
-- [ ] 6. Update cloud canvas CSS for fade transition
+- [-] 6. Update cloud canvas CSS for fade transition
   - [ ] 6.1 Update shadertoy-clouds.css to use --scroll-progress for canvas opacity
     - Canvas opacity = 1 - progress
     - Remove .fade-out class logic, use CSS variable instead

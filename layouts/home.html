@@ -146,6 +146,10 @@
           window.cloudScrollController = scrollController;
 
           console.log('Cloud system ready');
+          console.log('DEBUG COMMANDS AVAILABLE:');
+          console.log('  cloudRenderer.setDebugMode(n) - Set debug visualization (0-5)');
+          console.log('  cloudRenderer.getDebugInfo() - Get current state info');
+          console.log('  Debug modes: 0=normal, 1=UV, 2=coords, 3=ray dir, 4=noise, 5=density');
 
         } catch (error) {
           console.error('Failed to initialize cloud system:', error);
