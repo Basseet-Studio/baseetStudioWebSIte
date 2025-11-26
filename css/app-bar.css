@@ -1,12 +1,23 @@
 /* ============================================
    App Bar Styles - Persistent Navigation
+   Using CSS Custom Properties for scroll-driven transitions
    ============================================ */
+
+/* ============================================
+   CSS Custom Property Defaults
+   ============================================ */
+:root {
+    --scroll-progress: 0;
+}
 
 /* ============================================
    3.1 Base App Bar Styles
    ============================================ */
 
 .app-bar {
+    /* Local reference to scroll progress */
+    --progress: var(--scroll-progress, 0);
+    
     /* Fixed positioning at top with z-index 200 */
     position: fixed;
     top: 0;
@@ -14,11 +25,25 @@
     width: 100%;
     z-index: 200;
     
-    /* Transition properties for opacity, background, and box-shadow */
+    /* Fallback for browsers without custom property support */
+    background-color: rgba(255, 255, 255, 0.95);
+    
+    /* Transition properties for smooth updates */
     transition: 
-        opacity 600ms cubic-bezier(0.4, 0, 0.2, 1),
-        background-color 600ms cubic-bezier(0.4, 0, 0.2, 1),
-        box-shadow 600ms cubic-bezier(0.4, 0, 0.2, 1);
+        background-color 100ms ease,
+        backdrop-filter 100ms ease,
+        box-shadow 100ms ease;
+}
+
+/* Modern browsers: use CSS custom properties for scroll-driven transitions */
+@supports (--css: variables) {
+    .app-bar {
+        /* Background transitions from transparent to white based on scroll progress */
+        background-color: rgba(255, 255, 255, calc(var(--progress) * 0.95));
+        backdrop-filter: blur(calc(var(--progress) * 10px));
+        -webkit-backdrop-filter: blur(calc(var(--progress) * 10px));
+        box-shadow: 0 2px 10px rgba(0, 0, 0, calc(var(--progress) * 0.1));
+    }
 }
 
 .app-bar-container {
@@ -35,12 +60,46 @@
     text-decoration: none;
     font-size: 1.5rem;
     font-weight: 700;
-    transition: color 600ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color 100ms ease;
 }
 
+
+/* ============================================
+   3.2 Logo Styles - Always Solid, Color Transitions
+   ============================================ */
+
 .logo-text {
-    transition: color 600ms cubic-bezier(0.4, 0, 0.2, 1);
+    /* Logo always has opacity 1 (solid) */
+    opacity: 1;
+    
+    /* Fallback color */
+    color: #ffffff;
+    
+    transition: color 100ms ease;
 }
+
+/* Modern browsers: color interpolates from white to brand color based on progress */
+@supports (color: color-mix(in srgb, red, blue)) {
+    .logo-text {
+        color: color-mix(in srgb, #ffffff calc((1 - var(--scroll-progress, 0)) * 100%), #496BC1);
+    }
+}
+
+/* Fallback for browsers without color-mix support */
+@supports not (color: color-mix(in srgb, red, blue)) {
+    .logo-text {
+        color: #ffffff;
+    }
+    
+    /* When scroll progress is high (site mode), use brand color */
+    .app-bar[data-mode="site"] .logo-text {
+        color: #496BC1;
+    }
+}
+
+/* ============================================
+   3.3 Navigation Styles - Progressive Opacity
+   ============================================ */
 
 .app-bar-nav {
     display: flex;
@@ -62,129 +121,48 @@
     text-decoration: none;
     font-size: 1rem;
     font-weight: 500;
+    
+    /* Fallback styles */
+    color: #ffffff;
+    opacity: 1;
+    
     transition: 
-        color 600ms cubic-bezier(0.4, 0, 0.2, 1),
-        opacity 300ms ease;
+        color 100ms ease,
+        opacity 100ms ease;
 }
 
-/* ============================================
-   3.2 Cloud Mode Styles
-   ============================================ */
-
-.app-bar-cloud {
-    /* Opacity 0.3, transparent background, no shadow */
-    opacity: 0.3;
-    background-color: transparent;
-    box-shadow: none;
+/* Modern browsers: nav links start at 0.3 opacity, increase to 1.0 as scroll progress increases */
+@supports (--css: variables) {
+    .nav-links a {
+        /* Opacity interpolates from 0.3 to 1.0 based on scroll progress */
+        opacity: calc(0.3 + var(--scroll-progress, 0) * 0.7);
+    }
 }
 
-/* White text color for logo and links */
-.app-bar-cloud .logo-text {
-    color: #ffffff;
+/* Color interpolation from white to dark based on progress */
+@supports (color: color-mix(in srgb, red, blue)) {
+    .nav-links a {
+        color: color-mix(in srgb, #ffffff calc((1 - var(--scroll-progress, 0)) * 100%), #1a1a2e);
+    }
 }
 
-.app-bar-cloud .nav-links a {
-    color: #ffffff;
-    /* Link opacity 0.8 with hover to 1.0 */
-    opacity: 0.8;
-}
-
-.app-bar-cloud .nav-links a:hover,
-.app-bar-cloud .nav-links a:focus {
+/* Hover state - always full opacity */
+.nav-links a:hover,
+.nav-links a:focus {
     opacity: 1;
 }
 
-.app-bar-cloud .mobile-menu-toggle {
-    color: #ffffff;
+/* Brand color on hover when in site mode (high scroll progress) */
+@supports (color: color-mix(in srgb, red, blue)) {
+    .nav-links a:hover,
+    .nav-links a:focus {
+        color: color-mix(in srgb, #ffffff calc((1 - var(--scroll-progress, 0)) * 100%), #496BC1);
+    }
 }
 
-.app-bar-cloud .hamburger-icon span {
-    background-color: #ffffff;
-}
 
 /* ============================================
-   3.3 Site Mode Styles
-   ============================================ */
-
-.app-bar-site {
-    /* Opacity 1.0, white background with backdrop blur, subtle shadow */
-    opacity: 1;
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Brand primary color for logo */
-.app-bar-site .logo-text {
-    color: #496BC1;
-}
-
-/* Dark text for links, full opacity */
-.app-bar-site .nav-links a {
-    color: #1a1a2e;
-    opacity: 1;
-}
-
-/* Brand color on hover */
-.app-bar-site .nav-links a:hover,
-.app-bar-site .nav-links a:focus {
-    color: #496BC1;
-}
-
-.app-bar-site .mobile-menu-toggle {
-    color: #1a1a2e;
-}
-
-.app-bar-site .hamburger-icon span {
-    background-color: #1a1a2e;
-}
-
-/* ============================================
-   3.4 Transition Styles
-   ============================================ */
-
-/* 600ms cubic-bezier transitions for all properties */
-.app-bar {
-    /* will-change properties for performance */
-    will-change: opacity, background-color;
-}
-
-.app-bar.transitioning {
-    will-change: opacity, background-color, box-shadow;
-}
-
-.app-bar:not(.transitioning) {
-    will-change: auto;
-}
-
-/* ============================================
-   3.5 Progress Indicator Styles
-   ============================================ */
-
-.progress-indicator {
-    /* Absolute positioning at bottom, 3px height */
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 3px;
-    width: 0%;
-    
-    /* Gradient background from brand primary to accent */
-    background: linear-gradient(90deg, #496BC1 0%, #FBCD37 100%);
-    
-    /* Width and opacity transitions */
-    opacity: 0;
-    transition: 
-        width 100ms linear,
-        opacity 200ms ease;
-    
-    pointer-events: none;
-    z-index: 1;
-}
-
-/* ============================================
-   3.6 Mobile Responsive Styles
+   3.4 Mobile Menu Styles
    ============================================ */
 
 /* Mobile menu toggle - hidden by default on desktop */
@@ -194,7 +172,18 @@
     border: none;
     cursor: pointer;
     padding: 0.5rem;
-    transition: color 600ms cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Fallback color */
+    color: #ffffff;
+    
+    transition: color 100ms ease;
+}
+
+/* Color interpolation for mobile toggle */
+@supports (color: color-mix(in srgb, red, blue)) {
+    .mobile-menu-toggle {
+        color: color-mix(in srgb, #ffffff calc((1 - var(--scroll-progress, 0)) * 100%), #1a1a2e);
+    }
 }
 
 .hamburger-icon {
@@ -208,7 +197,18 @@
     display: block;
     width: 100%;
     height: 2px;
-    transition: background-color 600ms cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Fallback color */
+    background-color: #ffffff;
+    
+    transition: background-color 100ms ease;
+}
+
+/* Color interpolation for hamburger lines */
+@supports (color: color-mix(in srgb, red, blue)) {
+    .hamburger-icon span {
+        background-color: color-mix(in srgb, #ffffff calc((1 - var(--scroll-progress, 0)) * 100%), #1a1a2e);
+    }
 }
 
 /* Mobile menu - hidden by default */
@@ -276,93 +276,3 @@
     }
 }
 
-/* ============================================
-   3.7 Accessibility Styles
-   ============================================ */
-
-/* Focus indicators for keyboard navigation */
-.app-bar-logo:focus,
-.nav-links a:focus,
-.mobile-menu-toggle:focus,
-.mobile-nav-links a:focus {
-    outline: 2px solid #496BC1;
-    outline-offset: 2px;
-}
-
-/* Ensure focus is visible in cloud mode */
-.app-bar-cloud .app-bar-logo:focus,
-.app-bar-cloud .nav-links a:focus,
-.app-bar-cloud .mobile-menu-toggle:focus {
-    outline: 2px solid #ffffff;
-    outline-offset: 2px;
-}
-
-/* Skip to main content link for screen readers */
-.skip-to-main {
-    position: absolute;
-    top: -40px;
-    left: 0;
-    background: #496BC1;
-    color: #ffffff;
-    padding: 0.5rem 1rem;
-    text-decoration: none;
-    z-index: 201;
-}
-
-.skip-to-main:focus {
-    top: 0;
-}
-
-/* Ensure contrast ratios meet WCAG 2.1 AA */
-/* Cloud mode: white (#ffffff) on transparent - relies on dark background */
-/* Site mode: dark (#1a1a2e) on white (rgba(255, 255, 255, 0.95)) - 15.8:1 ratio */
-/* Brand primary (#496BC1) on white - 4.54:1 ratio (meets AA) */
-
-/* ============================================
-   3.8 Reduced Motion Styles
-   ============================================ */
-
-/* Disable transitions when prefers-reduced-motion is set */
-@media (prefers-reduced-motion: reduce) {
-    .app-bar,
-    .app-bar-logo,
-    .logo-text,
-    .nav-links a,
-    .mobile-menu-toggle,
-    .hamburger-icon span,
-    .progress-indicator,
-    .mobile-menu,
-    .mobile-nav-links a {
-        transition: none !important;
-        animation: none !important;
-    }
-    
-    /* Maintain full opacity in both modes for reduced motion */
-    .app-bar-cloud {
-        opacity: 1;
-    }
-    
-    /* Hide progress indicator for reduced motion */
-    .progress-indicator {
-        display: none;
-    }
-    
-    /* Remove will-change for reduced motion */
-    .app-bar {
-        will-change: auto !important;
-    }
-}
-
-/* ============================================
-   Additional Utility Styles
-   ============================================ */
-
-/* Prevent body scroll when mobile menu is open */
-body.mobile-menu-open {
-    overflow: hidden;
-}
-
-/* Ensure app bar doesn't cause layout shift */
-.app-bar-spacer {
-    height: 60px;
-}

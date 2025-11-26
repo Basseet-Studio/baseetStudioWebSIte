@@ -1,14 +1,14 @@
 /**
  * TextureLoader - Handles loading and configuration of iChannel textures for Shadertoy shaders
  * 
- * This module provides functionality to generate the four iChannel textures used in the
- * Shadertoy volumetric cloud shader. Since Shadertoy's original textures are not easily
- * accessible, we generate compatible noise textures procedurally.
+ * This module loads real noise texture images for the volumetric cloud shader.
+ * Using real textures instead of procedural generation produces much better results
+ * without artifacts like straight lines or grid patterns.
  * 
- * Channel 0: 256x256 RGBA noise texture (for 3D noise via 2D lookup)
- * Channel 1: 256x256 blue noise texture (for dithering)
- * Channel 2: Not used in NOISE_METHOD 1 (optional 3D texture)
- * Channel 3: Not used (optional additional texture)
+ * Channel 0: Gray noise texture (for 3D noise via 2D lookup) - smooth cloud-like noise
+ * Channel 1: Blue/white noise texture (for dithering) - TV static style
+ * Channel 2: Optional additional texture
+ * Channel 3: Optional additional texture
  */
 
 import * as THREE from 'three';
@@ -18,35 +18,126 @@ import * as THREE from 'three';
  */
 export class TextureLoader {
     /**
-     * Generate all four iChannel textures
+     * Load all four iChannel textures from image files
      * 
      * @returns {Promise<Object>} Object containing channel0, channel1, channel2, channel3 textures
      */
     static async loadChannelTextures() {
-        console.log('Generating procedural noise textures...');
+        console.log('Loading noise textures from image files...');
         
-        // Generate noise textures procedurally (matches Shadertoy's built-in textures)
-        const channel0 = this.createGrayNoiseTexture(256);
-        const channel1 = this.createBlueNoiseTexture(256);
-        const channel2 = this.createGrayNoiseTexture(256); // Fallback for 3D noise
-        const channel3 = this.createGrayNoiseTexture(256); // Optional
+        const loader = new THREE.TextureLoader();
         
-        console.log('Procedural noise textures generated');
-        
-        return {
-            channel0: channel0,
-            channel1: channel1,
-            channel2: channel2,
-            channel3: channel3
+        // Define texture paths - using real noise images
+        const texturePaths = {
+            // Gray noise (smooth bubbles) - for cloud volume noise
+            channel0: '/baseetStudioWebSIte/textures/gray-noise-256.png',
+            // Blue/white noise (TV static) - for dithering
+            channel1: '/baseetStudioWebSIte/textures/blue-noise-256.png',
+            // Fallbacks use the same textures
+            channel2: '/baseetStudioWebSIte/textures/gray-noise-256.png',
+            channel3: '/baseetStudioWebSIte/textures/blue-noise-256.png'
         };
+        
+        try {
+            // Load all textures in parallel
+            const [channel0, channel1, channel2, channel3] = await Promise.all([
+                this.loadTexture(loader, texturePaths.channel0, {
+                    wrapS: THREE.RepeatWrapping,
+                    wrapT: THREE.RepeatWrapping,
+                    minFilter: THREE.LinearMipMapLinearFilter,
+                    magFilter: THREE.LinearFilter,
+                    generateMipmaps: true
+                }),
+                this.loadTexture(loader, texturePaths.channel1, {
+                    wrapS: THREE.RepeatWrapping,
+                    wrapT: THREE.RepeatWrapping,
+                    minFilter: THREE.LinearFilter,
+                    magFilter: THREE.LinearFilter,
+                    generateMipmaps: false
+                }),
+                this.loadTexture(loader, texturePaths.channel2, {
+                    wrapS: THREE.RepeatWrapping,
+                    wrapT: THREE.RepeatWrapping,
+                    minFilter: THREE.LinearFilter,
+                    magFilter: THREE.LinearFilter,
+                    generateMipmaps: false
+                }),
+                this.loadTexture(loader, texturePaths.channel3, {
+                    wrapS: THREE.RepeatWrapping,
+                    wrapT: THREE.RepeatWrapping,
+                    minFilter: THREE.LinearFilter,
+                    magFilter: THREE.LinearFilter,
+                    generateMipmaps: false
+                })
+            ]);
+            
+            console.log('All noise textures loaded successfully');
+            
+            return {
+                channel0,
+                channel1,
+                channel2,
+                channel3
+            };
+        } catch (error) {
+            console.warn('Failed to load texture images, falling back to procedural generation:', error);
+            // Fall back to procedural generation if images fail to load
+            return this.generateProceduralTextures();
+        }
+    }
+    
+    /**
+     * Load a single texture with configuration
+     * 
+     * @param {THREE.TextureLoader} loader - The texture loader instance
+     * @param {string} path - Path to the texture file
+     * @param {Object} options - Texture configuration options
+     * @returns {Promise<THREE.Texture>} Loaded and configured texture
+     */
+    static loadTexture(loader, path, options = {}) {
+        return new Promise((resolve, reject) => {
+            loader.load(
+                path,
+                (texture) => {
+                    // Apply configuration
+                    texture.wrapS = options.wrapS || THREE.RepeatWrapping;
+                    texture.wrapT = options.wrapT || THREE.RepeatWrapping;
+                    texture.minFilter = options.minFilter || THREE.LinearFilter;
+                    texture.magFilter = options.magFilter || THREE.LinearFilter;
+                    texture.generateMipmaps = options.generateMipmaps !== false;
+                    texture.needsUpdate = true;
+                    
+                    console.log(`Loaded texture: ${path} (${texture.image.width}x${texture.image.height})`);
+                    resolve(texture);
+                },
+                undefined, // onProgress
+                (error) => {
+                    console.error(`Failed to load texture: ${path}`, error);
+                    reject(error);
+                }
+            );
+        });
+    }
+    
+    /**
+     * Fallback: Generate procedural textures if image loading fails
+     * 
+     * @returns {Object} Object containing procedurally generated textures
+     */
+    static generateProceduralTextures() {
+        console.log('Generating fallback procedural noise textures...');
+        
+        const channel0 = this.createGrayNoiseTexture(256);
+        const channel1 = this.createWhiteNoiseTexture(256);
+        const channel2 = this.createGrayNoiseTexture(256);
+        const channel3 = this.createWhiteNoiseTexture(256);
+        
+        return { channel0, channel1, channel2, channel3 };
     }
 
     /**
-     * Create a 256x256 gray noise texture compatible with Shadertoy's iChannel0
-     * This texture is used for 3D noise lookups via 2D texture sampling
-     * 
-     * The noise function uses: texture2D(iChannel0, (uv + 0.5) / 256.0).yx
-     * So we need RGBA where R and G contain independent noise values
+     * Create a gray noise texture (fallback)
+     * Uses simple white noise - not as good as real textures but works
      * 
      * @param {number} size - Texture size (default 256)
      * @returns {THREE.DataTexture} Gray noise texture
@@ -54,29 +145,19 @@ export class TextureLoader {
     static createGrayNoiseTexture(size = 256) {
         const data = new Uint8Array(size * size * 4);
         
-        // Use a seeded random for reproducible noise
         let seed = 12345;
         const seededRandom = () => {
             seed = (seed * 1103515245 + 12345) & 0x7fffffff;
             return seed / 0x7fffffff;
         };
         
-        for (let y = 0; y < size; y++) {
-            for (let x = 0; x < size; x++) {
-                const index = (y * size + x) * 4;
-                
-                // Generate independent noise values for R and G channels
-                // These are used by the shader's noise() function
-                const r = Math.floor(seededRandom() * 256);
-                const g = Math.floor(seededRandom() * 256);
-                const b = Math.floor(seededRandom() * 256);
-                const a = 255;
-                
-                data[index] = r;
-                data[index + 1] = g;
-                data[index + 2] = b;
-                data[index + 3] = a;
-            }
+        for (let i = 0; i < size * size; i++) {
+            const idx = i * 4;
+            // Independent random values for R, G, B channels
+            data[idx] = Math.floor(seededRandom() * 256);
+            data[idx + 1] = Math.floor(seededRandom() * 256);
+            data[idx + 2] = Math.floor(seededRandom() * 256);
+            data[idx + 3] = 255;
         }
         
         const texture = new THREE.DataTexture(data, size, size, THREE.RGBAFormat);
@@ -90,23 +171,14 @@ export class TextureLoader {
     }
 
     /**
-     * Create a blue noise texture for dithering (iChannel1)
-     * Blue noise provides better visual quality for dithering than white noise
-     * 
-     * The shader uses: texture2D(iChannel1, fragCoord & 255 / 256.0).x
+     * Create a white noise texture for dithering (fallback)
      * 
      * @param {number} size - Texture size (default 256)
-     * @returns {THREE.DataTexture} Blue noise texture
+     * @returns {THREE.DataTexture} White noise texture
      */
-    static createBlueNoiseTexture(size = 256) {
+    static createWhiteNoiseTexture(size = 256) {
         const data = new Uint8Array(size * size * 4);
         
-        // Generate blue noise using a simple void-and-cluster approximation
-        // For better quality, you would use a proper blue noise algorithm
-        // This is a simplified version that provides reasonable dithering
-        
-        // Start with white noise
-        const values = new Float32Array(size * size);
         let seed = 54321;
         const seededRandom = () => {
             seed = (seed * 1103515245 + 12345) & 0x7fffffff;
@@ -114,39 +186,7 @@ export class TextureLoader {
         };
         
         for (let i = 0; i < size * size; i++) {
-            values[i] = seededRandom();
-        }
-        
-        // Simple blue noise approximation using high-pass filtered noise
-        // This isn't true blue noise but provides better dithering than white noise
-        const blueNoise = new Float32Array(size * size);
-        for (let y = 0; y < size; y++) {
-            for (let x = 0; x < size; x++) {
-                const idx = y * size + x;
-                let sum = 0;
-                let count = 0;
-                
-                // Sample neighbors
-                for (let dy = -2; dy <= 2; dy++) {
-                    for (let dx = -2; dx <= 2; dx++) {
-                        if (dx === 0 && dy === 0) continue;
-                        const nx = (x + dx + size) % size;
-                        const ny = (y + dy + size) % size;
-                        sum += values[ny * size + nx];
-                        count++;
-                    }
-                }
-                
-                // High-pass filter: original - low-pass
-                const avg = sum / count;
-                blueNoise[idx] = values[idx] - avg * 0.5 + 0.5;
-                blueNoise[idx] = Math.max(0, Math.min(1, blueNoise[idx]));
-            }
-        }
-        
-        // Convert to texture data
-        for (let i = 0; i < size * size; i++) {
-            const value = Math.floor(blueNoise[i] * 255);
+            const value = Math.floor(seededRandom() * 256);
             const idx = i * 4;
             data[idx] = value;
             data[idx + 1] = value;
@@ -157,8 +197,8 @@ export class TextureLoader {
         const texture = new THREE.DataTexture(data, size, size, THREE.RGBAFormat);
         texture.wrapS = THREE.RepeatWrapping;
         texture.wrapT = THREE.RepeatWrapping;
-        texture.minFilter = THREE.NearestFilter; // Use nearest for dithering
-        texture.magFilter = THREE.NearestFilter;
+        texture.minFilter = THREE.LinearFilter;
+        texture.magFilter = THREE.LinearFilter;
         texture.needsUpdate = true;
         
         return texture;

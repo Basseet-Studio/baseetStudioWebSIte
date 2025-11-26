@@ -1,1 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Baseet Studio on BASEET STUDIO</title><link>https://ariyangd.github.io/baseetStudioWebSIte/</link><description>Recent content in Baseet Studio on BASEET STUDIO</description><generator>Hugo</generator><language>en-us</language><atom:link href="https://ariyangd.github.io/baseetStudioWebSIte/index.xml" rel="self" type="application/rss+xml"/></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Baseet Studio on BASEET STUDIO</title>
+    <link>http://localhost:62770/baseetStudioWebSIte/</link>
+    <description>Recent content in Baseet Studio on BASEET STUDIO</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:62770/baseetStudioWebSIte/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>
