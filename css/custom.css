@@ -1,0 +1,12 @@
+/* Custom gradient text styling for Baseet Studio */
+#features h1 strong {
+  background: linear-gradient(135deg, #496BC1 0%, #FBCD37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  display: inline-block;
+}
