@@ -44,6 +44,7 @@
   <main id="mainContent" class="main-content-wrapper">
     {{ with site.Data.home.hero }}{{ if .enable }}{{ partial "blocks/home/hero" . }}{{ end }}{{ end }}
     {{ with site.Data.home.features }}{{ if .enable }}{{ partial "blocks/home/features" . }}{{ end }}{{ end }}
+    {{ with site.Data.home.projects }}{{ if .enable }}{{ partial "blocks/home/projects" . }}{{ end }}{{ end }}
     {{ with site.Data.home.team }}{{ if .enable }}{{ partial "blocks/home/team" . }}{{ end }}{{ end }}
     {{ with site.Data.home.highlights }}{{ if .enable }}{{ partial "blocks/home/highlights" . }}{{ end }}{{ end }}
     {{ with site.Data.home.clients }}{{ if .enable }}{{ partial "blocks/home/clients" . }}{{ end }}{{ end }}
@@ -74,11 +75,13 @@
       }
     </script>
 
-    <!-- Cloud Shader System - Same as working test-shader.html -->
+    <!-- Cloud Shader System with 4D BASEET Text - Fixed smooth noise + text rendering -->
     <script type="module">
       import * as THREE from 'three';
+      import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
+      import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
       
-      let renderer, cloudMaterial, animationId;
+      let renderer, scene, camera, cloudMaterial, textMaterial, textMesh, animationId;
       
       async function init() {
         try {
@@ -89,158 +92,439 @@
           }
           
           // Create scene
-          const scene = new THREE.Scene();
+          scene = new THREE.Scene();
           
-          // Create orthographic camera for full-screen shader
-          const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, -1, 1);
+          // Create perspective camera
+          camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
+          camera.position.set(0, 0, 6);
           
           // Create renderer
           renderer = new THREE.WebGLRenderer({
             canvas: canvas,
             alpha: false,
-            antialias: false
+            antialias: true
           });
           renderer.setSize(window.innerWidth, window.innerHeight);
-          renderer.setClearColor(0x000000, 1);
+          renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+          renderer.setClearColor(0x4a6b8a, 1);
           
-          // Create noise texture
+          // === HIGH QUALITY NOISE TEXTURE using proper value noise ===
+          // Based on Inigo Quilez's recommendations for smooth noise
           const size = 256;
-          const data = new Uint8Array(size * size * 4);
-          let seed = 12345;
-          const seededRandom = () => {
-            seed = (seed * 1103515245 + 12345) & 0x7fffffff;
-            return seed / 0x7fffffff;
-          };
-          for (let i = 0; i < size * size; i++) {
-            const idx = i * 4;
-            data[idx] = Math.floor(seededRandom() * 256);
-            data[idx + 1] = Math.floor(seededRandom() * 256);
-            data[idx + 2] = Math.floor(seededRandom() * 256);
-            data[idx + 3] = 255;
+          const data = new Float32Array(size * size * 4);
+          
+          // Hash function for value noise
+          function hash(x, y, seed) {
+            let n = x + y * 57 + seed * 131;
+            n = (n << 13) ^ n;
+            return ((n * (n * n * 15731 + 789221) + 1376312589) & 0x7fffffff) / 2147483647.0;
           }
-          const noiseTexture = new THREE.DataTexture(data, size, size, THREE.RGBAFormat);
+          
+          // Smooth interpolated value noise with quintic curve
+          function valueNoise(x, y, seed) {
+            const ix = Math.floor(x);
+            const iy = Math.floor(y);
+            let fx = x - ix;
+            let fy = y - iy;
+            
+            // Quintic interpolation curve: 6t^5 - 15t^4 + 10t^3
+            // This gives C2 continuity (smooth first AND second derivatives)
+            fx = fx * fx * fx * (fx * (fx * 6.0 - 15.0) + 10.0);
+            fy = fy * fy * fy * (fy * (fy * 6.0 - 15.0) + 10.0);
+            
+            const a = hash(ix, iy, seed);
+            const b = hash(ix + 1, iy, seed);
+            const c = hash(ix, iy + 1, seed);
+            const d = hash(ix + 1, iy + 1, seed);
+            
+            return a * (1 - fx) * (1 - fy) + b * fx * (1 - fy) + c * (1 - fx) * fy + d * fx * fy;
+          }
+          
+          // FBM with gain 0.5 (H=1, yellow noise - best for clouds)
+          function fbm(x, y, octaves, seed) {
+            let value = 0;
+            let amplitude = 1.0;
+            let frequency = 1.0;
+            let maxValue = 0;
+            
+            for (let i = 0; i < octaves; i++) {
+              // Slightly detune frequency to prevent alignment artifacts
+              const freqMult = (i === 0) ? 1.0 : 2.0 + (i % 3) * 0.01;
+              value += amplitude * valueNoise(x * frequency, y * frequency, seed + i * 43);
+              maxValue += amplitude;
+              amplitude *= 0.5; // G=0.5 for natural cloud/terrain look
+              frequency *= freqMult;
+            }
+            
+            return value / maxValue;
+          }
+          
+          // Generate 4-channel noise texture (each channel independent)
+          for (let y = 0; y < size; y++) {
+            for (let x = 0; x < size; x++) {
+              const idx = (y * size + x) * 4;
+              const scale = 8.0; // Lower = larger features
+              
+              // Each channel uses different seed for independent values
+              data[idx] = fbm(x / scale, y / scale, 6, 0);
+              data[idx + 1] = fbm(x / scale, y / scale, 6, 100);
+              data[idx + 2] = fbm(x / scale, y / scale, 6, 200);
+              data[idx + 3] = fbm(x / scale, y / scale, 4, 300);
+            }
+          }
+          
+          // Convert to Uint8 for texture
+          const data8 = new Uint8Array(size * size * 4);
+          for (let i = 0; i < data.length; i++) {
+            data8[i] = Math.floor(data[i] * 255);
+          }
+          
+          const noiseTexture = new THREE.DataTexture(data8, size, size, THREE.RGBAFormat);
           noiseTexture.wrapS = THREE.RepeatWrapping;
           noiseTexture.wrapT = THREE.RepeatWrapping;
-          noiseTexture.minFilter = THREE.LinearFilter;
+          noiseTexture.minFilter = THREE.LinearMipmapLinearFilter;
           noiseTexture.magFilter = THREE.LinearFilter;
+          noiseTexture.generateMipmaps = true;
           noiseTexture.needsUpdate = true;
           
-          // Create shader material
+          console.log('High-quality noise texture generated');
+          
+          // === IMPROVED CLOUD SHADER - IQ's technique with manual bilinear filtering ===
           cloudMaterial = new THREE.ShaderMaterial({
             uniforms: {
               uTime: { value: 0.0 },
               uResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
-              uMouse: { value: new THREE.Vector2(0.5, 0.5) },
               uChannel0: { value: noiseTexture },
-              uChannel1: { value: noiseTexture },
               uScrollProgress: { value: 0.0 }
             },
             vertexShader: `
               varying vec2 vUv;
               void main() {
                 vUv = uv;
-                gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                gl_Position = vec4(position.xy, 0.0, 1.0);
               }
             `,
             fragmentShader: `
               precision highp float;
               uniform float uTime;
               uniform vec2 uResolution;
-              uniform vec2 uMouse;
               uniform sampler2D uChannel0;
-              uniform sampler2D uChannel1;
               uniform float uScrollProgress;
               varying vec2 vUv;
               
-              // 3D noise function
-              float noise(in vec3 x) {
-                vec3 p = floor(x);
-                vec3 f = fract(x);
-                f = f * f * (3.0 - 2.0 * f);
-                vec2 uv = (p.xy + vec2(37.0, 239.0) * p.z) + f.xy;
-                vec2 rg = texture2D(uChannel0, (uv + 0.5) / 256.0).yx;
-                return mix(rg.x, rg.y, f.z) * 2.0 - 1.0;
+              // === PROPER TEXTURE SAMPLING WITH MANUAL BILINEAR (IQ's method) ===
+              // Fixes 8-bit precision artifacts from hardware interpolation
+              vec4 textureGood(sampler2D sam, vec2 uv) {
+                vec2 res = vec2(256.0);
+                vec2 st = uv * res - 0.5;
+                vec2 i = floor(st);
+                vec2 f = fract(st);
+                
+                // Quintic interpolation for C2 continuity
+                f = f * f * f * (f * (f * 6.0 - 15.0) + 10.0);
+                
+                vec4 a = texture2D(sam, (i + vec2(0.5, 0.5)) / res);
+                vec4 b = texture2D(sam, (i + vec2(1.5, 0.5)) / res);
+                vec4 c = texture2D(sam, (i + vec2(0.5, 1.5)) / res);
+                vec4 d = texture2D(sam, (i + vec2(1.5, 1.5)) / res);
+                
+                return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
               }
               
-              // Simple cloud density
-              float map(in vec3 p) {
-                vec3 q = p - vec3(0.0, 0.1, 1.0) * uTime * 0.1;
-                float f = 0.5 * noise(q);
-                q *= 2.0;
-                f += 0.25 * noise(q);
-                q *= 2.0;
-                f += 0.125 * noise(q);
-                return clamp(1.5 - p.y - 2.0 + 1.75 * f, 0.0, 1.0);
+              // === SMOOTH 3D NOISE (no grid artifacts) ===
+              float noise(vec3 x) {
+                vec3 p = floor(x);
+                vec3 f = fract(x);
+                
+                // Quintic interpolation - critical for smooth results
+                f = f * f * f * (f * (f * 6.0 - 15.0) + 10.0);
+                
+                vec2 uv = (p.xy + vec2(37.0, 239.0) * p.z);
+                
+                // Manual bilinear sampling to avoid 8-bit artifacts
+                vec2 st = (uv + f.xy) / 256.0;
+                vec4 tex = textureGood(uChannel0, st);
+                
+                return mix(tex.x, tex.y, f.z) * 2.0 - 1.0;
+              }
+              
+              // === FBM with domain warping for organic clouds ===
+              float fbm(vec3 p) {
+                // Domain warping - makes clouds more natural
+                vec3 warp = vec3(
+                  noise(p * 0.5),
+                  noise(p * 0.5 + 43.0),
+                  noise(p * 0.5 + 137.0)
+                );
+                p += warp * 0.35;
+                
+                float f = 0.0;
+                float a = 0.5;
+                float freq = 1.0;
+                
+                for (int i = 0; i < 5; i++) {
+                  f += a * noise(p * freq);
+                  a *= 0.5;
+                  freq *= 2.02; // Slightly off to prevent alignment
+                  // Rotate domain each octave
+                  p = vec3(p.y * 1.01 + 0.03, p.z * 1.01, p.x * 1.01);
+                }
+                
+                return f;
+              }
+              
+              // Cloud density
+              float cloudMap(vec3 p) {
+                vec3 q = p - vec3(0.0, 0.1, 1.0) * uTime * 0.08;
+                float f = fbm(q * 0.4);
+                float density = 1.5 - p.y - 2.0 + 1.75 * f;
+                return smoothstep(-0.1, 0.5, density) * clamp(density, 0.0, 1.0);
               }
               
               void main() {
                 vec2 fragCoord = vUv * uResolution;
                 vec2 p = (2.0 * fragCoord - uResolution) / uResolution.y;
                 
-                // Camera with scroll-based movement
-                float an = 0.5 * uTime * 0.1 + uMouse.x * 3.0;
-                float scrollOffset = uScrollProgress * 4.0;
-                vec3 ro = vec3(4.0 * sin(an), 0.5 - scrollOffset, 4.0 * cos(an));
-                vec3 ta = vec3(0.0, -1.0 - scrollOffset, 0.0);
+                // Camera
+                float scrollY = uScrollProgress * 3.0;
+                vec3 ro = vec3(4.5 * sin(uTime * 0.03), 0.3 - scrollY * 0.4, 4.5 * cos(uTime * 0.03));
+                vec3 ta = vec3(0.0, -0.8 - scrollY * 0.2, 0.0);
                 vec3 ww = normalize(ta - ro);
                 vec3 uu = normalize(cross(ww, vec3(0.0, 1.0, 0.0)));
                 vec3 vv = cross(uu, ww);
                 vec3 rd = normalize(p.x * uu + p.y * vv + 1.5 * ww);
                 
-                // Sky background
-                vec3 col = vec3(0.6, 0.71, 0.75) - rd.y * 0.2 * vec3(1.0, 0.5, 1.0) + 0.15;
+                // Sky
+                vec3 sunDir = normalize(vec3(-0.7, 0.3, -0.7));
+                float sun = clamp(dot(sunDir, rd), 0.0, 1.0);
+                vec3 skyCol = vec3(0.5, 0.65, 0.78) - rd.y * 0.12 * vec3(1.0, 0.3, 0.6);
+                skyCol += 0.2 * vec3(1.0, 0.7, 0.4) * pow(sun, 8.0);
                 
-                // Simple raymarch
-                float t = 0.0;
+                vec3 col = skyCol;
+                
+                // Raymarch with dithering
+                float dither = fract(sin(dot(fragCoord, vec2(12.9898, 78.233))) * 43758.5453) * 0.05;
+                float t = dither;
                 vec4 sum = vec4(0.0);
+                
                 for (int i = 0; i < 64; i++) {
                   vec3 pos = ro + t * rd;
-                  if (sum.a > 0.99 || pos.y < -3.0 || pos.y > 2.0) break;
+                  if (sum.a > 0.99 || pos.y < -3.0 || pos.y > 2.5) break;
                   
-                  float den = map(pos);
+                  float den = cloudMap(pos);
+                  
                   if (den > 0.01) {
-                    vec4 c = vec4(mix(vec3(1.0, 0.95, 0.8), vec3(0.25, 0.3, 0.35), den), den);
-                    c.xyz = mix(c.xyz, col, 1.0 - exp(-0.003 * t * t));
-                    c.w *= 0.4;
+                    // Lighting
+                    float dif = clamp((den - cloudMap(pos + 0.35 * sunDir)) / 0.5, 0.0, 1.0);
+                    dif = smoothstep(0.0, 1.0, dif);
+                    vec3 lin = vec3(1.0, 0.8, 0.55) * dif + vec3(0.65, 0.75, 0.9) * 0.7;
+                    
+                    vec4 c = vec4(mix(vec3(1.0, 0.97, 0.92), vec3(0.35, 0.4, 0.5), smoothstep(0.0, 0.6, den)), den);
+                    c.xyz *= lin;
+                    c.xyz = mix(c.xyz, skyCol, 1.0 - exp(-0.002 * t * t));
+                    c.w *= 0.35;
                     c.rgb *= c.a;
                     sum += c * (1.0 - sum.a);
                   }
-                  t += max(0.06, 0.02 * t);
+                  t += max(0.05, 0.04 * t);
                 }
                 
                 col = col * (1.0 - sum.w) + sum.xyz;
+                col += vec3(0.2, 0.1, 0.05) * pow(sun, 3.0);
+                
+                // Vignette
+                vec2 q = fragCoord / uResolution;
+                col *= 0.5 + 0.5 * pow(16.0 * q.x * q.y * (1.0 - q.x) * (1.0 - q.y), 0.12);
+                
                 gl_FragColor = vec4(col, 1.0);
               }
             `,
             transparent: false,
-            depthWrite: false,
+            depthWrite: false
+          });
+          
+          // Background cloud plane (rendered first)
+          const bgGeometry = new THREE.PlaneGeometry(2, 2);
+          const bgMesh = new THREE.Mesh(bgGeometry, cloudMaterial);
+          bgMesh.frustumCulled = false;
+          bgMesh.renderOrder = -1;
+          scene.add(bgMesh);
+          
+          // === 4D "BASEET" TEXT ===
+          textMaterial = new THREE.ShaderMaterial({
+            uniforms: {
+              uTime: { value: 0.0 },
+              uColor: { value: new THREE.Color('#ffffff') },
+              uGlowColor: { value: new THREE.Color('#4a90d9') }
+            },
+            vertexShader: `
+              uniform float uTime;
+              varying vec3 vNormal;
+              varying vec3 vPosition;
+              
+              // 4D noise
+              float noise4D(vec4 v) {
+                vec4 i = floor(v);
+                vec4 f = fract(v);
+                f = f * f * (3.0 - 2.0 * f);
+                float n = dot(i, vec4(1.0, 57.0, 113.0, 1009.0));
+                return mix(
+                  mix(fract(sin(n) * 43758.5453), fract(sin(n + 1.0) * 43758.5453), f.x),
+                  mix(fract(sin(n + 57.0) * 43758.5453), fract(sin(n + 58.0) * 43758.5453), f.x),
+                  f.y
+                );
+              }
+              
+              void main() {
+                vNormal = normalMatrix * normal;
+                
+                // 4D displacement (x,y,z + time)
+                vec4 p4 = vec4(position * 0.5, uTime * 0.5);
+                float disp = noise4D(p4) * 0.12 + noise4D(p4 * 2.0) * 0.06;
+                vec3 newPos = position + normal * disp;
+                newPos *= 1.0 + sin(uTime * 1.5) * 0.02;
+                
+                vPosition = (modelMatrix * vec4(newPos, 1.0)).xyz;
+                gl_Position = projectionMatrix * modelViewMatrix * vec4(newPos, 1.0);
+              }
+            `,
+            fragmentShader: `
+              uniform float uTime;
+              uniform vec3 uColor;
+              uniform vec3 uGlowColor;
+              varying vec3 vNormal;
+              varying vec3 vPosition;
+              
+              void main() {
+                vec3 viewDir = normalize(cameraPosition - vPosition);
+                float fresnel = pow(1.0 - max(dot(viewDir, normalize(vNormal)), 0.0), 2.0);
+                
+                vec3 col = uColor;
+                col += uGlowColor * fresnel * 1.5;
+                col += uGlowColor * 0.2;
+                col *= 0.85 + sin(uTime * 2.0) * 0.15;
+                
+                gl_FragColor = vec4(col, 1.0);
+              }
+            `,
             side: THREE.DoubleSide
           });
           
-          // Create plane
-          const geometry = new THREE.PlaneGeometry(2, 2);
-          const mesh = new THREE.Mesh(geometry, cloudMaterial);
-          mesh.frustumCulled = false;
-          scene.add(mesh);
+          // Load font and create text
+          console.log('Loading font...');
+          const fontLoader = new FontLoader();
           
-          // Animate
+          // Try multiple font sources
+          const fontUrls = [
+            'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/fonts/helvetiker_bold.typeface.json',
+            'https://unpkg.com/three@0.160.0/examples/fonts/helvetiker_bold.typeface.json',
+            'https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/fonts/helvetiker_bold.typeface.json'
+          ];
+          
+          async function loadFontFromUrls(urls) {
+            for (const url of urls) {
+              try {
+                console.log('Trying font URL:', url);
+                const response = await fetch(url);
+                if (response.ok) {
+                  const fontData = await response.json();
+                  return fontData;
+                }
+              } catch (e) {
+                console.log('Font URL failed:', url);
+              }
+            }
+            throw new Error('All font URLs failed');
+          }
+          
+          try {
+            const fontData = await loadFontFromUrls(fontUrls);
+            const font = fontLoader.parse(fontData);
+            
+            const textGeometry = new TextGeometry('BASEET', {
+              font: font,
+              size: 1.0,
+              height: 0.35,
+              curveSegments: 8,
+              bevelEnabled: true,
+              bevelThickness: 0.06,
+              bevelSize: 0.03,
+              bevelSegments: 4
+            });
+            
+            textGeometry.center();
+            textGeometry.computeVertexNormals();
+            
+            textMesh = new THREE.Mesh(textGeometry, textMaterial);
+            textMesh.position.set(0, 0, 0);
+            textMesh.renderOrder = 10;
+            scene.add(textMesh);
+            
+            console.log('BASEET text mesh created and added to scene!');
+          } catch (error) {
+            console.error('Font loading failed, creating fallback text:', error);
+            
+            // Fallback: create simple 3D box letters
+            const letterGroup = new THREE.Group();
+            const letters = 'BASEET';
+            const letterWidth = 0.8;
+            const startX = -((letters.length - 1) * letterWidth) / 2;
+            
+            for (let i = 0; i < letters.length; i++) {
+              const boxGeo = new THREE.BoxGeometry(0.6, 1.0, 0.3);
+              const box = new THREE.Mesh(boxGeo, textMaterial);
+              box.position.x = startX + i * letterWidth;
+              letterGroup.add(box);
+            }
+            
+            letterGroup.renderOrder = 10;
+            scene.add(letterGroup);
+            textMesh = letterGroup;
+            console.log('Fallback text boxes created');
+          }
+          
+          // Lighting
+          const ambientLight = new THREE.AmbientLight(0x6080a0, 0.6);
+          scene.add(ambientLight);
+          
+          const directionalLight = new THREE.DirectionalLight(0xffffff, 1.0);
+          directionalLight.position.set(-3, 4, 5);
+          scene.add(directionalLight);
+          
+          const backLight = new THREE.DirectionalLight(0x4a90d9, 0.5);
+          backLight.position.set(3, -2, -4);
+          scene.add(backLight);
+          
+          // Animation
           const startTime = Date.now();
+          
           function animate() {
             animationId = requestAnimationFrame(animate);
-            cloudMaterial.uniforms.uTime.value = (Date.now() - startTime) / 1000.0;
+            const time = (Date.now() - startTime) / 1000.0;
+            
+            cloudMaterial.uniforms.uTime.value = time;
+            textMaterial.uniforms.uTime.value = time;
+            
+            // Rotate text slowly
+            if (textMesh) {
+              textMesh.rotation.y = Math.sin(time * 0.2) * 0.1;
+            }
+            
             renderer.render(scene, camera);
           }
           animate();
           
-          console.log('Cloud shader initialized successfully');
+          console.log('Cloud + Text system initialized successfully');
           
-          // Resize handler
+          // Resize
           window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
             cloudMaterial.uniforms.uResolution.value.set(window.innerWidth, window.innerHeight);
           });
           
-          // Scroll handler
+          // Scroll
           const canvas_el = document.getElementById('cloudCanvas');
           const scrollIndicator = document.getElementById('scrollIndicator');
           
@@ -248,10 +532,11 @@
             const scrollY = window.scrollY || window.pageYOffset;
             const scrollProgress = Math.min(scrollY / 600, 1.0);
             
-            // Update shader scroll uniform
             cloudMaterial.uniforms.uScrollProgress.value = scrollProgress;
             
-            // Fade out canvas and indicator when scrolled past threshold
+            camera.position.y = -scrollProgress * 2;
+            camera.position.z = 6 - scrollProgress * 1.5;
+            
             if (scrollProgress >= 1.0) {
               canvas_el.classList.add('fade-out');
               if (scrollIndicator) scrollIndicator.classList.add('hidden');
@@ -262,19 +547,14 @@
           });
           
         } catch (error) {
-          console.error('Failed to initialize cloud system:', error);
-          // Fallback: hide canvas and show content
+          console.error('Failed to initialize:', error);
           const canvas = document.getElementById('cloudCanvas');
           const scrollIndicator = document.getElementById('scrollIndicator');
-          const mainContent = document.querySelector('.main-content-wrapper');
-          
           if (canvas) canvas.style.display = 'none';
           if (scrollIndicator) scrollIndicator.style.display = 'none';
-          if (mainContent) mainContent.style.paddingTop = '0';
         }
       }
       
-      // Initialize when DOM is ready
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
       } else {

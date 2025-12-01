@@ -1,0 +1,140 @@
+{{ define "main" }}
+<!-- App Bar CSS -->
+{{- $appBarCSS := resources.Get "css/app-bar.css" -}}
+{{- if $appBarCSS -}}
+  {{- if hugo.IsProduction -}}
+    {{- $appBarCSS = $appBarCSS | minify | fingerprint -}}
+  {{- end -}}
+  <link rel="stylesheet" href="{{ $appBarCSS.RelPermalink }}" />
+{{- end -}}
+
+<!-- Custom Overrides CSS -->
+{{- $overridesCSS := resources.Get "css/custom-overrides.css" -}}
+{{- if $overridesCSS -}}
+  {{- if hugo.IsProduction -}}
+    {{- $overridesCSS = $overridesCSS | minify | fingerprint -}}
+  {{- end -}}
+  <link rel="stylesheet" href="{{ $overridesCSS.RelPermalink }}" />
+{{- end -}}
+
+<!-- Skip to content for keyboard users -->
+<a class="skip-to-content" href="#mainContent">Skip to content</a>
+
+<!-- App Bar Header -->
+{{ partial "header.html" . }}
+
+<main id="mainContent" class="pt-24">
+  <!-- Hero Section -->
+  <section class="py-16 xl:py-24 bg-gradient-to-b from-primary/5 to-white">
+    <div class="container mx-auto px-4 text-center">
+      <a href="/" class="inline-flex items-center gap-2 text-[#545454] hover:text-primary mb-6 transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+        </svg>
+        Back to Home
+      </a>
+      <h1 class="text-4xl xl:text-5xl font-bold text-[#252525] mb-4">{{ .Title }}</h1>
+      <p class="text-xl text-[#545454] max-w-2xl mx-auto">{{ .Description }}</p>
+    </div>
+  </section>
+
+  <!-- Projects Grid -->
+  <section class="py-16 xl:py-24">
+    <div class="container mx-auto px-4">
+      {{- $projects := site.Data.home.projects -}}
+      {{- if $projects.items -}}
+      <div class="grid md:grid-cols-2 gap-8 xl:gap-12 max-w-5xl mx-auto">
+        {{- range $projects.items -}}
+        <article class="group relative bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2 border border-gray-100">
+          <!-- Gradient Top Border -->
+          <div class="absolute top-0 left-0 right-0 h-1.5" style="background: {{ .gradient }};"></div>
+          
+          <div class="p-8 xl:p-10">
+            <!-- App Icon -->
+            <div class="flex items-start justify-between mb-6">
+              <div class="w-20 h-20 rounded-2xl flex items-center justify-center text-white text-3xl font-bold shadow-lg transform group-hover:scale-110 transition-transform duration-300"
+                   style="background: {{ .gradient }};">
+                {{ substr .name 0 1 }}
+              </div>
+              {{- if .status -}}
+              <span class="px-4 py-1.5 text-sm font-semibold rounded-full"
+                    style="background: {{ .color }}20; color: {{ .color }};">
+                {{ .status }}
+              </span>
+              {{- end -}}
+            </div>
+
+            <!-- App Name & Tagline -->
+            <h2 class="text-2xl xl:text-3xl font-bold text-[#252525] mb-2 group-hover:text-primary transition-colors">
+              {{ .name }}
+            </h2>
+            <p class="text-lg font-medium mb-4" style="color: {{ .color }};">
+              {{ .tagline }}
+            </p>
+
+            <!-- Description -->
+            <p class="text-[#545454] leading-relaxed mb-6">
+              {{ .description }}
+            </p>
+
+            <!-- Features -->
+            {{- if .features -}}
+            <ul class="grid grid-cols-2 gap-2 mb-6">
+              {{- $projectColor := .color -}}
+              {{- range .features -}}
+              <li class="flex items-center text-sm text-[#545454]">
+                <svg class="w-4 h-4 mr-2 flex-shrink-0" style="color: {{ $projectColor }};" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                {{ . }}
+              </li>
+              {{- end -}}
+            </ul>
+            {{- end -}}
+
+            <!-- CTA -->
+            <a href="/projects/{{ .slug }}/" 
+               class="inline-flex items-center gap-2 font-semibold transition-all duration-300 group/link"
+               style="color: {{ .color }};">
+              View Project
+              <svg class="w-5 h-5 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+        {{- end -}}
+      </div>
+      {{- end -}}
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <section class="py-8 bg-[#252525]">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <a href="/" class="text-white font-semibold text-lg">Baseet Studio</a>
+        <nav class="flex items-center gap-6">
+          <a href="/#features" class="text-white/70 hover:text-white transition-colors">Services</a>
+          <a href="/#projects" class="text-white/70 hover:text-white transition-colors">Projects</a>
+          <a href="/#clients" class="text-white/70 hover:text-white transition-colors">Clients</a>
+          <a href="/#subscribe" class="text-white/70 hover:text-white transition-colors">Contact</a>
+        </nav>
+        <p class="text-white/50 text-sm">© {{ now.Year }} Baseet Studio</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Scripts -->
+{{- $performance := resources.Get "js/performance.js" -}}
+{{- if $performance -}}
+  <script src="{{ $performance.Permalink }}" defer></script>
+{{- end -}}
+
+{{- $animations := resources.Get "js/animations.js" -}}
+{{- if $animations -}}
+  <script src="{{ $animations.Permalink }}" defer></script>
+{{- end -}}
+
+{{ end }}

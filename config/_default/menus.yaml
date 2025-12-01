@@ -7,18 +7,22 @@ main:
     url: '#features'
     weight: 2
 
+  - name: 'Projects'
+    url: '#projects'
+    weight: 3
+
   - name: 'About'
     url: '#highlights'
-    weight: 3
+    weight: 4
 
   - name: 'Clients'
     url: '#clients'
-    weight: 4
+    weight: 5
 
 buttons:
   - name: 'Contact Us'
     url: '#subscribe'
-    weight: 5
+    weight: 6
 
 footer:
   - name: 'Home'
@@ -29,14 +33,18 @@ footer:
     url: '#features'
     weight: 2
 
+  - name: 'Projects'
+    url: '#projects'
+    weight: 3
+
   - name: 'About'
     url: '#highlights'
-    weight: 3
+    weight: 4
 
   - name: 'Clients'
     url: '#clients'
-    weight: 4
+    weight: 5
 
   - name: 'Contact'
     url: '#subscribe'
-    weight: 5
+    weight: 6
