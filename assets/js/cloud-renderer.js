@@ -134,7 +134,7 @@ const fragmentShader = `
    * Scene Function
    * 
    * Defines the volumetric density of the cloud at any point in 3D space.
-   * Combines a spherical SDF with FBM noise to create organic cloud shapes.
+   * Creates multiple scattered cloud blobs using repeating space and noise.
    * 
    * Returns negative distance for volumetric rendering - areas with negative
    * values are considered "inside" the cloud volume and will accumulate density
@@ -144,15 +144,17 @@ const fragmentShader = `
    * @return float - Density value (negative = inside cloud volume)
    */
   float scene(vec3 p) {
-    // Create a base spherical volume centered at origin with radius 1.0
-    float distance = sdSphere(p, 1.0);
+    // Sample FBM noise to create organic cloud patterns
+    float f = fbm(p * 0.8);
     
-    // Sample FBM noise to add organic variation to the cloud shape
-    float f = fbm(p);
+    // Create a larger bounding volume to contain the clouds
+    float boundingSphere = sdSphere(p, 3.5);
     
-    // Combine sphere SDF with noise (from the article)
-    // Return negative distance plus noise for volumetric rendering
-    return -distance + f;
+    // Combine bounding sphere with noise to create scattered cloud blobs
+    // The noise creates natural variation and multiple cloud formations
+    float density = -boundingSphere + f * 1.5;
+    
+    return density;
   }
   
   /**
