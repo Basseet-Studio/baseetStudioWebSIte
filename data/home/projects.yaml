@@ -1,0 +1,48 @@
+enable: true
+
+title: '<span class="gradient-heading">Our Products</span>'
+subtitle: 'In-House Apps Built with Love'
+text: 'We practice what we preach. These are our own products, crafted with the same passion and attention to detail we bring to every client project.'
+
+items:
+  - name: 'Money Box'
+    slug: 'money-box'
+    tagline: 'Smart Savings Made Simple'
+    description: 'Take control of your finances with Money Box. Track your savings goals, monitor spending habits, and watch your money grow with our intuitive money management app for iOS and Android.'
+    icon: '/images/projects/money-box-icon.png'
+    platforms:
+      - name: 'iOS'
+        icon: 'fab fa-apple'
+        link: '#'
+      - name: 'Android'
+        icon: 'fab fa-android'
+        link: '#'
+    features:
+      - 'Smart savings goals'
+      - 'Expense tracking'
+      - 'Visual progress charts'
+      - 'Daily reminders'
+    color: '#34C759'
+    gradient: 'linear-gradient(135deg, #34C759 0%, #30D158 100%)'
+    status: 'Coming Soon'
+
+  - name: 'Numu'
+    slug: 'numu'
+    tagline: 'Build Better Habits'
+    description: 'Transform your daily routine with Numu. Our beautiful habit tracking app helps you build positive habits, break bad ones, and become the best version of yourself.'
+    icon: '/images/projects/numu-icon.png'
+    platforms:
+      - name: 'iOS'
+        icon: 'fab fa-apple'
+        link: '#'
+      - name: 'Android'
+        icon: 'fab fa-android'
+        link: '#'
+    features:
+      - 'Habit streaks'
+      - 'Daily check-ins'
+      - 'Progress analytics'
+      - 'Custom reminders'
+    color: '#AF52DE'
+    gradient: 'linear-gradient(135deg, #AF52DE 0%, #BF5AF2 100%)'
+    status: 'Coming Soon'
