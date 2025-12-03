@@ -22,5 +22,12 @@
       <guid>http://localhost:1313/baseetStudioWebSIte/projects/money-box/</guid>
       <description>&lt;h2 id=&#34;about-money-box&#34;&gt;About Money Box&lt;/h2&gt;&#xA;&lt;p&gt;Money Box was born from a simple idea: managing your money shouldn&amp;rsquo;t be complicated. We&amp;rsquo;ve created an intuitive app that makes saving money feel effortless and even enjoyable.&lt;/p&gt;</description>
     </item>
+    <item>
+      <title>Volumetric Clouds</title>
+      <link>http://localhost:1313/baseetStudioWebSIte/clouds/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/baseetStudioWebSIte/clouds/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>
