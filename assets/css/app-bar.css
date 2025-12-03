@@ -1,53 +1,28 @@
 /* ============================================
-   App Bar Styles - Persistent Navigation
-   Using CSS Custom Properties for scroll-driven transitions
-   ============================================ */
-
-/* ============================================
-   CSS Custom Property Defaults
-   ============================================ */
-:root {
-    --scroll-progress: 0;
-}
-
-/* ============================================
-   3.1 Base App Bar Styles
+   App Bar Styles - Normal Site Navigation
    ============================================ */
 
 .app-bar {
-    /* Local reference to scroll progress */
-    --progress: var(--scroll-progress, 0);
-    
-    /* Fixed positioning at top with z-index 200 */
+    /* Fixed positioning at top */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 200;
     
-    /* Fallback for browsers without custom property support */
-    background-color: rgba(255, 255, 255, 0.95);
+    /* Solid white background with shadow */
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     
-    /* Transition properties for smooth updates */
-    transition: 
-        background-color 100ms ease,
-        backdrop-filter 100ms ease,
-        box-shadow 100ms ease;
+    /* Smooth transitions */
+    transition: box-shadow 300ms ease;
 }
 
-/* Modern browsers: use CSS custom properties for scroll-driven transitions */
-@supports (--css: variables) {
-    .app-bar {
-        /* Background transitions from transparent to white based on scroll progress */
-        background-color: rgba(255, 255, 255, calc(var(--progress) * 0.95));
-        backdrop-filter: blur(calc(var(--progress) * 10px));
-        -webkit-backdrop-filter: blur(calc(var(--progress) * 10px));
-        box-shadow: 0 2px 10px rgba(0, 0, 0, calc(var(--progress) * 0.1));
-    }
+.app-bar:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .app-bar-container {
-    /* Base layout with flexbox for logo and navigation */
     max-width: 1280px;
     margin: 0 auto;
     padding: 1rem 2rem;
@@ -60,47 +35,20 @@
     text-decoration: none;
     font-size: 1.5rem;
     font-weight: 700;
-    transition: color 100ms ease;
+    transition: color 300ms ease;
 }
 
-
-/* ============================================
-   3.2 Logo Styles - Always Solid, Color Transitions
-   ============================================ */
-
+/* Logo - Brand color */
 .logo-text {
-    /* Logo always has opacity 1 (solid) */
-    opacity: 1;
-    
-    /* Fallback color */
-    color: #ffffff;
-    
-    transition: color 100ms ease;
+    color: #496BC1;
+    transition: color 300ms ease;
 }
 
-/* Modern browsers: color interpolates from white to brand color based on progress */
-@supports (color: color-mix(in srgb, red, blue)) {
-    .logo-text {
-        color: color-mix(in srgb, #ffffff calc((1 - var(--scroll-progress, 0)) * 100%), #496BC1);
-    }
+.app-bar-logo:hover .logo-text {
+    color: #FBCD37;
 }
 
-/* Fallback for browsers without color-mix support */
-@supports not (color: color-mix(in srgb, red, blue)) {
-    .logo-text {
-        color: #ffffff;
-    }
-    
-    /* When scroll progress is high (site mode), use brand color */
-    .app-bar[data-mode="site"] .logo-text {
-        color: #496BC1;
-    }
-}
-
-/* ============================================
-   3.3 Navigation Styles - Progressive Opacity
-   ============================================ */
-
+/* Navigation Styles */
 .app-bar-nav {
     display: flex;
 }
@@ -121,69 +69,29 @@
     text-decoration: none;
     font-size: 1rem;
     font-weight: 500;
-    
-    /* Fallback styles */
-    color: #ffffff;
+    color: #171D1C;
     opacity: 1;
-    
-    transition: 
-        color 100ms ease,
-        opacity 100ms ease;
+    transition: color 300ms ease;
 }
 
-/* Modern browsers: nav links start at 0.3 opacity, increase to 1.0 as scroll progress increases */
-@supports (--css: variables) {
-    .nav-links a {
-        /* Opacity interpolates from 0.3 to 1.0 based on scroll progress */
-        opacity: calc(0.3 + var(--scroll-progress, 0) * 0.7);
-    }
-}
-
-/* Color interpolation from white to dark based on progress */
-@supports (color: color-mix(in srgb, red, blue)) {
-    .nav-links a {
-        color: color-mix(in srgb, #ffffff calc((1 - var(--scroll-progress, 0)) * 100%), #1a1a2e);
-    }
-}
-
-/* Hover state - always full opacity */
 .nav-links a:hover,
 .nav-links a:focus {
-    opacity: 1;
+    color: #496BC1;
 }
 
-/* Brand color on hover when in site mode (high scroll progress) */
-@supports (color: color-mix(in srgb, red, blue)) {
-    .nav-links a:hover,
-    .nav-links a:focus {
-        color: color-mix(in srgb, #ffffff calc((1 - var(--scroll-progress, 0)) * 100%), #496BC1);
-    }
-}
-
-
-/* ============================================
-   3.4 Mobile Menu Styles
-   ============================================ */
-
-/* Mobile menu toggle - hidden by default on desktop */
+/* Mobile Menu Styles */
 .mobile-menu-toggle {
     display: none;
     background: none;
     border: none;
     cursor: pointer;
     padding: 0.5rem;
-    
-    /* Fallback color */
-    color: #ffffff;
-    
-    transition: color 100ms ease;
+    color: #171D1C;
+    transition: color 300ms ease;
 }
 
-/* Color interpolation for mobile toggle */
-@supports (color: color-mix(in srgb, red, blue)) {
-    .mobile-menu-toggle {
-        color: color-mix(in srgb, #ffffff calc((1 - var(--scroll-progress, 0)) * 100%), #1a1a2e);
-    }
+.mobile-menu-toggle:hover {
+    color: #496BC1;
 }
 
 .hamburger-icon {
@@ -197,21 +105,28 @@
     display: block;
     width: 100%;
     height: 2px;
-    
-    /* Fallback color */
-    background-color: #ffffff;
-    
-    transition: background-color 100ms ease;
+    background-color: #171D1C;
+    transition: background-color 300ms ease, transform 300ms ease;
 }
 
-/* Color interpolation for hamburger lines */
-@supports (color: color-mix(in srgb, red, blue)) {
-    .hamburger-icon span {
-        background-color: color-mix(in srgb, #ffffff calc((1 - var(--scroll-progress, 0)) * 100%), #1a1a2e);
-    }
+.mobile-menu-toggle:hover .hamburger-icon span {
+    background-color: #496BC1;
 }
 
-/* Mobile menu - hidden by default */
+/* Animate hamburger to X when open */
+.mobile-menu-toggle[aria-expanded="true"] .hamburger-icon span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+}
+
+.mobile-menu-toggle[aria-expanded="true"] .hamburger-icon span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-toggle[aria-expanded="true"] .hamburger-icon span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+}
+
+/* Mobile menu */
 .mobile-menu {
     position: fixed;
     top: 60px;
@@ -249,19 +164,20 @@
     text-decoration: none;
     font-size: 1.25rem;
     font-weight: 500;
-    color: #1a1a2e;
-    /* Adequate touch targets */
+    color: #171D1C;
     padding: 1rem;
     min-height: 44px;
-    transition: color 300ms ease;
+    transition: color 300ms ease, background-color 300ms ease;
+    border-radius: 0.5rem;
 }
 
 .mobile-nav-links a:hover,
 .mobile-nav-links a:focus {
     color: #496BC1;
+    background-color: rgba(73, 107, 193, 0.1);
 }
 
-/* Hide desktop nav, show hamburger on screens < 768px */
+/* Responsive */
 @media (max-width: 768px) {
     .app-bar-nav {
         display: none;
@@ -275,4 +191,3 @@
         padding: 1rem 1.5rem;
     }
 }
-

@@ -1,7 +1,4 @@
-<header id="app-bar" class="app-bar app-bar-cloud" role="banner">
-    <!-- Progress Indicator for Cloud Return -->
-    <div class="progress-indicator" aria-hidden="true"></div>
-    
+<header id="app-bar" class="app-bar" role="banner">
     <div class="app-bar-container">
         <!-- Logo -->
         <a href="/" class="app-bar-logo" aria-label="Baseet Studio Home">
@@ -12,6 +9,7 @@
         <nav class="app-bar-nav" aria-label="Main navigation">
             <ul class="nav-links">
                 <li><a href="#features">Features</a></li>
+                <li><a href="#projects">Projects</a></li>
                 <li><a href="#team">Team</a></li>
                 <li><a href="#clients">Clients</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -35,6 +33,7 @@
         <nav aria-label="Mobile navigation">
             <ul class="mobile-nav-links">
                 <li><a href="#features">Features</a></li>
+                <li><a href="#projects">Projects</a></li>
                 <li><a href="#team">Team</a></li>
                 <li><a href="#clients">Clients</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -42,3 +41,32 @@
         </nav>
     </div>
 </header>
+
+<script>
+// Mobile menu toggle functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileToggle = document.querySelector('.mobile-menu-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    
+    if (mobileToggle && mobileMenu) {
+        mobileToggle.addEventListener('click', function() {
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            
+            // Toggle states
+            this.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.setAttribute('aria-hidden', isExpanded);
+            mobileMenu.classList.toggle('open');
+        });
+        
+        // Close menu when clicking a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileToggle.setAttribute('aria-expanded', 'false');
+                mobileMenu.setAttribute('aria-hidden', 'true');
+                mobileMenu.classList.remove('open');
+            });
+        });
+    }
+});
+</script>

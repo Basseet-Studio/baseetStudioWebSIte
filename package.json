@@ -14,9 +14,6 @@
     "test:watch": "vitest",
     "test:ui": "vitest --ui"
   },
-  "dependencies": {
-    "three": "0.160.0"
-  },
   "devDependencies": {
     "@tailwindcss/cli": "^4.1.17",
     "@tailwindcss/typography": "^0.5.19",
