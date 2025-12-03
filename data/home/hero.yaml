@@ -10,6 +10,9 @@ buttons:
   - label: 'Our Services'
     link: '#features'
 
+  - label: 'View Clouds Demo'
+    link: '/clouds'
+
 image: 'images/home/hero/bill-sitting.png'
 
 items:
