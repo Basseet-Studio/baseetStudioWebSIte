@@ -1,5 +1,8 @@
 // Enhanced animations and interactions for Baseet Studio
 
+// Import CloudRenderer for volumetric cloud rendering
+import { CloudRenderer } from './cloud-renderer.js';
+
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize all enhancements
   initScrollAnimations();
@@ -8,7 +11,41 @@ document.addEventListener('DOMContentLoaded', function() {
   initCardTiltEffect();
   initImageHoverEffects();
   initStaggeredGridAnimations();
+  
+  // Initialize volumetric clouds
+  initCloudRenderer();
 });
+
+/**
+ * Initialize the CloudRenderer for volumetric cloud background
+ * Creates and initializes the cloud rendering system if the container exists
+ */
+async function initCloudRenderer() {
+  try {
+    // Check if cloud container exists on the page
+    const cloudContainer = document.querySelector('#cloud-container');
+    if (!cloudContainer) {
+      // Cloud container not found, skip initialization
+      // This is normal for pages that don't have the hero section
+      return;
+    }
+
+    // Create CloudRenderer instance
+    const cloudRenderer = new CloudRenderer('#cloud-container');
+    
+    // Initialize the renderer
+    await cloudRenderer.init();
+    
+    // Store reference globally for debugging (optional)
+    if (typeof window !== 'undefined') {
+      window.cloudRenderer = cloudRenderer;
+    }
+  } catch (error) {
+    // Handle initialization errors gracefully
+    // Log error but don't break page functionality
+    console.error('Failed to initialize CloudRenderer:', error);
+  }
+}
 
 // Scroll animations with intersection observer
 function initScrollAnimations() {
