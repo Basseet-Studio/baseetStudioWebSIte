@@ -144,20 +144,15 @@ const fragmentShader = `
    * @return float - Density value (negative = inside cloud volume)
    */
   float scene(vec3 p) {
-    // Create a base spherical volume centered at origin with radius 2.5 (increased for thicker clouds)
-    float sphere = sdSphere(p, 2.5);
+    // Create a base spherical volume centered at origin with radius 1.0
+    float distance = sdSphere(p, 1.0);
     
     // Sample FBM noise to add organic variation to the cloud shape
-    float noise = fbm(p);
+    float f = fbm(p);
     
-    // Combine sphere SDF with noise
-    // Subtract noise to create fluffy, irregular cloud boundaries
-    // The 1.2 factor creates much more substantial, voluminous clouds
-    float density = sphere - noise * 1.2;
-    
-    // Return negative distance for volumetric rendering
-    // This inverts the SDF so that negative values represent cloud density
-    return -density;
+    // Combine sphere SDF with noise (from the article)
+    // Return negative distance plus noise for volumetric rendering
+    return -distance + f;
   }
   
   /**
@@ -242,22 +237,20 @@ const fragmentShader = `
    * @return vec4 - Accumulated color and alpha (rgb, a)
    */
   vec4 raymarch(vec3 ro, vec3 rd) {
-    vec3 color = vec3(0.0);   // Accumulated color
-    float alpha = 0.0;         // Accumulated opacity
+    float depth = 0.0;
+    vec3 p = ro + depth * rd;
+    
+    vec4 res = vec4(0.0);
     
     // Color palette for clouds
     const vec3 ambientColor = vec3(0.60, 0.60, 0.75);  // Cool blue-gray for shadowed areas
-    const vec3 sunColor = vec3(1.0, 0.5, 0.3);         // Warm orange-yellow for lit areas
+    const vec3 sunColor = vec3(1.0, 0.6, 0.3);         // Warm orange-yellow for lit areas
     
     // Test sphere color (bright magenta for visibility)
     const vec3 sphereColor = vec3(1.0, 0.2, 0.8);
     
     // March along the ray for MAX_STEPS iterations
     for (int i = 0; i < MAX_STEPS; i++) {
-      // Calculate current position along the ray
-      // Position = origin + direction * distance
-      vec3 p = ro + rd * float(i) * MARCH_SIZE;
-      
       // Check for solid test sphere first
       float sphereDist = testSphere(p);
       if (sphereDist < 0.01) {
@@ -273,24 +266,24 @@ const fragmentShader = `
         // Calculate lighting at this point using directional derivative
         float diffuse = calculateLighting(p);
         
-        // Blend ambient and sun colors based on diffuse lighting
-        // diffuse = 0 (shadowed) -> use ambient color
-        // diffuse = 1 (lit) -> use sun color
-        vec3 lightColor = mix(ambientColor, sunColor, diffuse);
+        // Blend ambient and sun colors based on diffuse lighting (from article)
+        vec3 lin = vec3(0.60, 0.60, 0.75) * 1.1 + 0.8 * vec3(1.0, 0.6, 0.3) * diffuse;
         
-        // Accumulate color weighted by density (balanced for thick but visible clouds)
-        color += lightColor * density * 0.03;
+        // Create color with density-based mixing (from the article)
+        vec4 color = vec4(mix(vec3(1.0, 1.0, 1.0), vec3(0.0, 0.0, 0.0), density), density);
+        color.rgb *= lin;
+        color.rgb *= color.a;
         
-        // Accumulate opacity (balanced for substantial clouds with depth)
-        alpha += density * 0.04;
-        
-        // Clamp alpha to prevent over-saturation
-        alpha = min(alpha, 1.0);
+        // Accumulate using alpha blending (from article)
+        res += color * (1.0 - res.a);
       }
+      
+      depth += MARCH_SIZE;
+      p = ro + depth * rd;
     }
     
-    // Return accumulated color and alpha
-    return vec4(color, alpha);
+    // Return accumulated result
+    return res;
   }
   
   /**
@@ -310,7 +303,7 @@ const fragmentShader = `
     uv.x *= uResolution.x / uResolution.y;
     
     // Set up ray for raymarching
-    vec3 rayOrigin = vec3(0.0, 0.0, 8.0);      // Camera position (pushed back to see full clouds)
+    vec3 rayOrigin = vec3(0.0, 0.0, 5.0);      // Camera position
     vec3 rayDirection = normalize(vec3(uv, -1.0));  // Ray direction through this pixel
     
     // === Sky Background Rendering ===
