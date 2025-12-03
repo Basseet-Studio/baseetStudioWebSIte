@@ -6,6 +6,21 @@
     <description>Recent content in Baseet Studio on BASEET STUDIO</description>
     <generator>Hugo</generator>
     <language>en-us</language>
+    <lastBuildDate>Tue, 02 Jan 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/baseetStudioWebSIte/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Numu</title>
+      <link>http://localhost:1313/baseetStudioWebSIte/projects/numu/</link>
+      <pubDate>Tue, 02 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/baseetStudioWebSIte/projects/numu/</guid>
+      <description>&lt;h2 id=&#34;about-numu&#34;&gt;About Numu&lt;/h2&gt;&#xA;&lt;p&gt;Numu (meaning &amp;ldquo;growth&amp;rdquo; in our vision) is more than a habit tracker—it&amp;rsquo;s your companion on the journey to self-improvement. We&amp;rsquo;ve designed every detail to make building habits feel natural and rewarding.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Money Box</title>
+      <link>http://localhost:1313/baseetStudioWebSIte/projects/money-box/</link>
+      <pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/baseetStudioWebSIte/projects/money-box/</guid>
+      <description>&lt;h2 id=&#34;about-money-box&#34;&gt;About Money Box&lt;/h2&gt;&#xA;&lt;p&gt;Money Box was born from a simple idea: managing your money shouldn&amp;rsquo;t be complicated. We&amp;rsquo;ve created an intuitive app that makes saving money feel effortless and even enjoyable.&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>

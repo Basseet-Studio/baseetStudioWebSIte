@@ -31,6 +31,8 @@
     
   <meta itemprop="name" content="Baseet Studio">
   <meta itemprop="description" content="Your trusted partner in digital innovation, creating exceptional web and mobile solutions.">
+  <meta itemprop="datePublished" content="2024-01-02T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-01-02T00:00:00+00:00">
   <meta itemprop="wordCount" content="301">
   <meta itemprop="image" content="http://localhost:1313/baseetStudioWebSIte/images/home/hero/bill-sitting.png">
     
@@ -73,8 +75,8 @@
           
             <link
               rel="stylesheet"
-              href="/baseetStudioWebSIte/css/styles.14e400233657b1e132ea9e23b9a145c9261536c46ad8c535d39a69b3231858ef.css"
-              integrity="sha256-FOQAIzZXseEy6p4juaFFySYVNsRq2MU105ppsyMYWO8="
+              href="/baseetStudioWebSIte/css/styles.4a2377f462ffc836e2a25fc477999661d6887a1a1445cc564dea3cf5d8414cec.css"
+              integrity="sha256-SiN39GL/yDbiol/Ed5mWYdaIehoURcxWTeo89dhBTOw="
               crossorigin="anonymous"
             />
           
@@ -208,7 +210,889 @@
 </nav>
 
       <div class="grow">
-  <link rel="stylesheet" href="http://localhost:1313/baseetStudioWebSIte/css/app-bar.css" /></main>
+  <link rel="stylesheet" href="http://localhost:1313/baseetStudioWebSIte/css/app-bar.css" /><link rel="stylesheet" href="http://localhost:1313/baseetStudioWebSIte/css/custom-overrides.css" />
+  <header id="app-bar" class="app-bar" role="banner">
+    <div class="app-bar-container">
+        
+        <a href="http://localhost:1313/baseetStudioWebSIte/" class="app-bar-logo" aria-label="Baseet Studio Home">
+            <span class="logo-text">Baseet Studio</span>
+        </a>
+        
+        
+        <nav class="app-bar-nav" aria-label="Main navigation">
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#clients">Clients</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        
+        
+        <button class="mobile-menu-toggle" 
+                aria-label="Toggle navigation menu"
+                aria-expanded="false">
+            <span class="hamburger-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+        </button>
+    </div>
+    
+    
+    <div class="mobile-menu" aria-hidden="true">
+        <nav aria-label="Mobile navigation">
+            <ul class="mobile-nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#clients">Clients</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileToggle = document.querySelector('.mobile-menu-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    
+    if (mobileToggle && mobileMenu) {
+        mobileToggle.addEventListener('click', function() {
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            
+            
+            this.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.setAttribute('aria-hidden', isExpanded);
+            mobileMenu.classList.toggle('open');
+        });
+        
+        
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileToggle.setAttribute('aria-expanded', 'false');
+                mobileMenu.setAttribute('aria-hidden', 'true');
+                mobileMenu.classList.remove('open');
+            });
+        });
+    }
+});
+</script>
+
+
+  <main id="mainContent" class="main-content-wrapper">
+    
+<section id="hero" class="relative overflow-hidden bg-surface pt-32 pb-16 lg:pt-48 lg:pb-32">
+  <div class="container mx-auto px-4">
+    <div class="flex flex-wrap items-center -mx-4">
+      <div class="w-full lg:w-1/2 px-4 mb-12 lg:mb-0">
+        <div class="max-w-lg">
+          <h1 class="text-4xl lg:text-6xl font-bold text-stroke mb-6 leading-tight">
+            Transforming Ideas into <strong>Digital Excellence</strong>
+          </h1>
+          <p class="text-lg text-stroke/80 mb-8 leading-relaxed">
+            Baseet Studio is a leading tech agency specializing in innovative web and mobile solutions. We deliver cutting-edge applications and websites that drive business growth and exceed expectations.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            
+            <a href="#subscribe" class="px-8 py-3 text-base font-medium text-white bg-primary rounded-full hover:bg-primary/90 transition-colors duration-300 shadow-lg hover:shadow-xl">
+              Contact Us
+            </a>
+            
+            <a href="#features" class="px-8 py-3 text-base font-medium text-white bg-primary rounded-full hover:bg-primary/90 transition-colors duration-300 shadow-lg hover:shadow-xl">
+              Our Services
+            </a>
+            
+          </div>
+        </div>
+      </div>
+      <div class="w-full lg:w-1/2 px-4">
+        <div class="relative z-10">
+          
+          <img src="http://localhost:1313/baseetStudioWebSIte/images/home/hero/bill-sitting.png" alt="Hero Image" class="w-full h-auto max-w-md mx-auto lg:max-w-full drop-shadow-2xl animate-float">
+          
+          
+          <div class="absolute -top-10 -right-10 w-40 h-40 bg-tertiary rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+          <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-primary rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-20">
+      
+      <div class="p-6 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-secondary/20">
+        <div class="w-12 h-12 flex items-center justify-center rounded-xl mb-4" style="background-color: #496BC120; color: #496BC1">
+          <i class="fas fa-laptop-code text-xl"></i>
+        </div>
+        <h3 class="text-xl font-bold text-stroke mb-2">Web Development</h3>
+        <p class="text-stroke/60 text-sm">Modern, responsive websites built with latest technologies</p>
+      </div>
+      
+      <div class="p-6 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-secondary/20">
+        <div class="w-12 h-12 flex items-center justify-center rounded-xl mb-4" style="background-color: #FBCD3720; color: #FBCD37">
+          <i class="fas fa-mobile-alt text-xl"></i>
+        </div>
+        <h3 class="text-xl font-bold text-stroke mb-2">Mobile Apps</h3>
+        <p class="text-stroke/60 text-sm">Native iOS &amp; Android applications that users love</p>
+      </div>
+      
+      <div class="p-6 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-secondary/20">
+        <div class="w-12 h-12 flex items-center justify-center rounded-xl mb-4" style="background-color: #496BC120; color: #496BC1">
+          <i class="fas fa-paint-brush text-xl"></i>
+        </div>
+        <h3 class="text-xl font-bold text-stroke mb-2">UI/UX Design</h3>
+        <p class="text-stroke/60 text-sm">Beautiful, intuitive interfaces that enhance user experience</p>
+      </div>
+      
+      <div class="p-6 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-secondary/20">
+        <div class="w-12 h-12 flex items-center justify-center rounded-xl mb-4" style="background-color: #FBCD3720; color: #FBCD37">
+          <i class="fas fa-rocket text-xl"></i>
+        </div>
+        <h3 class="text-xl font-bold text-stroke mb-2">Digital Strategy</h3>
+        <p class="text-stroke/60 text-sm">Complete solutions from concept to deployment</p>
+      </div>
+      
+    </div>
+    
+  </div>
+</section>
+
+<style>
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  @keyframes blob {
+    0% { transform: translate(0px, 0px) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+    100% { transform: translate(0px, 0px) scale(1); }
+  }
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+</style>
+
+    <section id="features" class="features relative py-8 xl:py-32 overflow-hidden">
+    
+    <div class="absolute top-20 right-0 w-72 h-72 bg-primary/5 rounded-full filter blur-3xl -z-10"></div>
+    <div class="absolute bottom-20 left-0 w-72 h-72 bg-tertiary/5 rounded-full filter blur-3xl -z-10"></div>
+
+    <div class="container mx-auto px-4">
+        <h1
+            class="xl:max-w-2/3 mx-auto text-center text-[#252525] font-semibold text-4xl xl:text-5xl leading-tight mb-6 scroll-animate">
+            <span class="gradient-heading">Comprehensive Digital Solutions</span> for Your Business
+        </h1>
+        <p class="xl:max-w-2xl mx-auto text-center text-[#868686] text-lg mb-16 scroll-animate"
+            style="animation-delay: 0.2s;">
+            At Baseet Studio, we combine creativity with technical expertise to deliver outstanding results that drive your business forward.
+        </p>
+    </div>
+
+    <div class="flex flex-col relative gap-20"><div class="container mx-auto px-4 scroll-animate-right"
+            style="animation-delay: 0s;">
+            <div class="grid xl:grid-cols-12 gap-8 xl:gap-12 items-center">
+
+                
+                <div
+                    class="xl:col-span-5 flex flex-col justify-center gap-6 order-1 xl:order-1">
+                    <div class="flex flex-col xl:flex-row items-center xl:items-start justify-start gap-4">
+                        <div
+                            class="flex items-center justify-center shrink-0 text-xl text-white bg-[#496BC1] size-16 rounded-2xl shadow-lg transform transition-all duration-500 hover:scale-125 hover:rotate-12 hover:shadow-2xl magnetic-button">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="inline-flex flex-col text-center xl:text-start">
+                            <h2 class="text-lg font-semibold text-stroke">Custom Development</h2>
+                            <p class="text-sm text-[#868686]">Tailored Solutions</p>
+                        </div>
+                    </div>
+                    <h1 class="text-[#252525] font-bold text-3xl xl:text-4xl leading-tight text-center xl:text-start">
+                        <strong>Full-Stack</strong> Web Development
+                    </h1>
+                    <p class="text-[#545454] text-base xl:text-lg leading-relaxed text-center xl:text-start">
+                        We create powerful, scalable web applications using modern frameworks and best practices. From e-commerce platforms to enterprise solutions, we build digital experiences that perform flawlessly across all devices.
+                    </p>
+                </div>
+
+                
+                <div
+                    class="xl:col-span-7 flex items-center justify-center order-2 xl:order-1">
+                    <div class="relative group hover-3d overflow-hidden rounded-2xl">
+                        
+                        <div
+                            class="absolute -inset-4 bg-gradient-to-r from-primary/30 to-tertiary/30 rounded-2xl blur-2xl transition-all duration-700 opacity-0 group-hover:opacity-100 group-hover:blur-3xl">
+                        </div>
+                        
+                        <div class="relative overflow-hidden rounded-2xl shadow-2xl bg-gray-100">
+                            
+                            
+
+
+
+
+
+
+
+
+<picture class="w-[85%] xl:w-[75%] mx-auto">
+    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&amp;h=600&amp;fit=crop" alt="**Full-Stack** Web Development" loading="lazy" decoding="async" sizes="(max-width: 768px) 100vw, 50vw" class="w-full h-auto" />
+</picture>
+
+                            
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div><div class="container mx-auto px-4 scroll-animate-left"
+            style="animation-delay: 0.2s;">
+            <div class="grid xl:grid-cols-12 gap-8 xl:gap-12 items-center">
+
+                
+                <div
+                    class="xl:col-span-5 flex flex-col justify-center gap-6 order-1 xl:order-1">
+                    <div class="flex flex-col xl:flex-row items-center xl:items-start justify-start gap-4">
+                        <div
+                            class="flex items-center justify-center shrink-0 text-xl text-white bg-[#FBCD37] size-16 rounded-2xl shadow-lg transform transition-all duration-500 hover:scale-125 hover:rotate-12 hover:shadow-2xl magnetic-button">
+                            <i class="fas fa-mobile-screen"></i>
+                        </div>
+                        <div class="inline-flex flex-col text-center xl:text-start">
+                            <h2 class="text-lg font-semibold text-stroke">Native &amp; Cross-Platform</h2>
+                            <p class="text-sm text-[#868686]">Mobile First</p>
+                        </div>
+                    </div>
+                    <h1 class="text-[#252525] font-bold text-3xl xl:text-4xl leading-tight text-center xl:text-start">
+                        <strong>Mobile App</strong> Development
+                    </h1>
+                    <p class="text-[#545454] text-base xl:text-lg leading-relaxed text-center xl:text-start">
+                        Transform your ideas into engaging mobile experiences. We develop high-performance iOS and Android applications with intuitive interfaces and seamless functionality that keep users coming back.
+                    </p>
+                </div>
+
+                
+                <div
+                    class="xl:col-span-7 flex items-center justify-center order-2 xl:order-2">
+                    <div class="relative group hover-3d overflow-hidden rounded-2xl">
+                        
+                        <div
+                            class="absolute -inset-4 bg-gradient-to-r from-primary/30 to-tertiary/30 rounded-2xl blur-2xl transition-all duration-700 opacity-0 group-hover:opacity-100 group-hover:blur-3xl">
+                        </div>
+                        
+                        <div class="relative overflow-hidden rounded-2xl shadow-2xl bg-gray-100">
+                            
+                            
+
+
+
+
+
+
+
+
+<picture class="w-[85%] xl:w-[75%] mx-auto">
+    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&amp;h=600&amp;fit=crop" alt="**Mobile App** Development" loading="lazy" decoding="async" sizes="(max-width: 768px) 100vw, 50vw" class="w-full h-auto" />
+</picture>
+
+                            
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div><div class="container mx-auto px-4 scroll-animate-right"
+            style="animation-delay: 0.4s;">
+            <div class="grid xl:grid-cols-12 gap-8 xl:gap-12 items-center">
+
+                
+                <div
+                    class="xl:col-span-5 flex flex-col justify-center gap-6 order-1 xl:order-1">
+                    <div class="flex flex-col xl:flex-row items-center xl:items-start justify-start gap-4">
+                        <div
+                            class="flex items-center justify-center shrink-0 text-xl text-white bg-[#496BC1] size-16 rounded-2xl shadow-lg transform transition-all duration-500 hover:scale-125 hover:rotate-12 hover:shadow-2xl magnetic-button">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div class="inline-flex flex-col text-center xl:text-start">
+                            <h2 class="text-lg font-semibold text-stroke">Innovation &amp; Strategy</h2>
+                            <p class="text-sm text-[#868686]">End-to-End Service</p>
+                        </div>
+                    </div>
+                    <h1 class="text-[#252525] font-bold text-3xl xl:text-4xl leading-tight text-center xl:text-start">
+                        <strong>Digital Transformation</strong> Consulting
+                    </h1>
+                    <p class="text-[#545454] text-base xl:text-lg leading-relaxed text-center xl:text-start">
+                        Partner with us to modernize your business processes. We provide strategic consulting, UI/UX design, cloud solutions, and ongoing support to ensure your digital success in a competitive market.
+                    </p>
+                </div>
+
+                
+                <div
+                    class="xl:col-span-7 flex items-center justify-center order-2 xl:order-1">
+                    <div class="relative group hover-3d overflow-hidden rounded-2xl">
+                        
+                        <div
+                            class="absolute -inset-4 bg-gradient-to-r from-primary/30 to-tertiary/30 rounded-2xl blur-2xl transition-all duration-700 opacity-0 group-hover:opacity-100 group-hover:blur-3xl">
+                        </div>
+                        
+                        <div class="relative overflow-hidden rounded-2xl shadow-2xl bg-gray-100">
+                            
+                            
+
+
+
+
+
+
+
+
+<picture class="w-[85%] xl:w-[75%] mx-auto">
+    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&amp;h=600&amp;fit=crop" alt="**Digital Transformation** Consulting" loading="lazy" decoding="async" sizes="(max-width: 768px) 100vw, 50vw" class="w-full h-auto" />
+</picture>
+
+                            
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div></div>
+</section>
+    <section id="projects" class="projects relative py-16 xl:py-24 overflow-hidden bg-gradient-to-b from-white to-[#F8F9FA]">
+    <div class="container mx-auto px-4">
+        
+        <div class="text-center mb-16">
+            <h2 class="text-3xl xl:text-5xl font-bold text-[#252525] mb-4">
+                <span class="gradient-heading">Our Products</span>
+            </h2><p class="text-xl text-primary font-semibold mb-4">In-House Apps Built with Love</p><p class="max-w-2xl mx-auto text-[#545454] text-lg leading-relaxed">We practice what we preach. These are our own products, crafted with the same passion and attention to detail we bring to every client project.</p></div>
+
+        
+        <div class="grid md:grid-cols-2 gap-8 xl:gap-12 max-w-5xl mx-auto"><article class="project-card group relative bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2">
+                
+                <div class="absolute top-0 left-0 right-0 h-1.5" style="background: ZgotmplZ;"></div>
+                
+                
+                <div class="p-8 xl:p-10">
+                    
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="relative">
+                            
+                            <div class="w-20 h-20 rounded-2xl flex items-center justify-center text-white text-3xl font-bold shadow-lg transform group-hover:scale-110 transition-transform duration-300"
+                                 style="background: ZgotmplZ;">
+                                M
+                            </div>
+                            
+                            <div class="absolute inset-0 w-20 h-20 rounded-2xl opacity-0 group-hover:opacity-50 blur-xl transition-opacity duration-300"
+                                 style="background: #34C759;"></div>
+                        </div><span class="px-4 py-1.5 text-sm font-semibold rounded-full"
+                              style="background: #34C75920; color: #34C759;">
+                            Coming Soon
+                        </span></div>
+
+                    
+                    <h3 class="text-2xl xl:text-3xl font-bold text-[#252525] mb-2 group-hover:text-primary transition-colors">
+                        Money Box
+                    </h3>
+                    <p class="text-lg font-medium mb-4" style="color: #34C759;">
+                        Smart Savings Made Simple
+                    </p>
+
+                    
+                    <p class="text-[#545454] leading-relaxed mb-6">
+                        Take control of your finances with Money Box. Track your savings goals, monitor spending habits, and watch your money grow with our intuitive money management app for iOS and Android.
+                    </p>
+
+                    <div class="mb-6">
+                        <ul class="grid grid-cols-2 gap-2"><li class="flex items-center text-sm text-[#545454]">
+                                <svg class="w-4 h-4 mr-2 flex-shrink-0" style="color: #34C759;" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                Smart savings goals
+                            </li><li class="flex items-center text-sm text-[#545454]">
+                                <svg class="w-4 h-4 mr-2 flex-shrink-0" style="color: #34C759;" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                Expense tracking
+                            </li><li class="flex items-center text-sm text-[#545454]">
+                                <svg class="w-4 h-4 mr-2 flex-shrink-0" style="color: #34C759;" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                Visual progress charts
+                            </li><li class="flex items-center text-sm text-[#545454]">
+                                <svg class="w-4 h-4 mr-2 flex-shrink-0" style="color: #34C759;" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                Daily reminders
+                            </li></ul>
+                    </div>
+                    <div class="flex items-center justify-between pt-6 border-t border-gray-100">
+                        
+                        <div class="flex items-center gap-4"><a href="#" class="flex items-center gap-2 text-[#545454] hover:text-primary transition-colors" title="Available on iOS">
+                                <i class="fab fa-apple text-xl"></i>
+                                <span class="text-sm font-medium hidden sm:inline">iOS</span>
+                            </a><a href="#" class="flex items-center gap-2 text-[#545454] hover:text-primary transition-colors" title="Available on Android">
+                                <i class="fab fa-android text-xl"></i>
+                                <span class="text-sm font-medium hidden sm:inline">Android</span>
+                            </a></div>
+
+                        
+                        <a href="http://localhost:1313/baseetStudioWebSIte/projects/money-box/" 
+                           class="inline-flex items-center gap-2 font-semibold transition-all duration-300 group/link"
+                           style="color: #34C759;">
+                            Learn More
+                            <svg class="w-5 h-5 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </article><article class="project-card group relative bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2">
+                
+                <div class="absolute top-0 left-0 right-0 h-1.5" style="background: ZgotmplZ;"></div>
+                
+                
+                <div class="p-8 xl:p-10">
+                    
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="relative">
+                            
+                            <div class="w-20 h-20 rounded-2xl flex items-center justify-center text-white text-3xl font-bold shadow-lg transform group-hover:scale-110 transition-transform duration-300"
+                                 style="background: ZgotmplZ;">
+                                N
+                            </div>
+                            
+                            <div class="absolute inset-0 w-20 h-20 rounded-2xl opacity-0 group-hover:opacity-50 blur-xl transition-opacity duration-300"
+                                 style="background: #AF52DE;"></div>
+                        </div><span class="px-4 py-1.5 text-sm font-semibold rounded-full"
+                              style="background: #AF52DE20; color: #AF52DE;">
+                            Coming Soon
+                        </span></div>
+
+                    
+                    <h3 class="text-2xl xl:text-3xl font-bold text-[#252525] mb-2 group-hover:text-primary transition-colors">
+                        Numu
+                    </h3>
+                    <p class="text-lg font-medium mb-4" style="color: #AF52DE;">
+                        Build Better Habits
+                    </p>
+
+                    
+                    <p class="text-[#545454] leading-relaxed mb-6">
+                        Transform your daily routine with Numu. Our beautiful habit tracking app helps you build positive habits, break bad ones, and become the best version of yourself.
+                    </p>
+
+                    <div class="mb-6">
+                        <ul class="grid grid-cols-2 gap-2"><li class="flex items-center text-sm text-[#545454]">
+                                <svg class="w-4 h-4 mr-2 flex-shrink-0" style="color: #AF52DE;" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                Habit streaks
+                            </li><li class="flex items-center text-sm text-[#545454]">
+                                <svg class="w-4 h-4 mr-2 flex-shrink-0" style="color: #AF52DE;" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                Daily check-ins
+                            </li><li class="flex items-center text-sm text-[#545454]">
+                                <svg class="w-4 h-4 mr-2 flex-shrink-0" style="color: #AF52DE;" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                Progress analytics
+                            </li><li class="flex items-center text-sm text-[#545454]">
+                                <svg class="w-4 h-4 mr-2 flex-shrink-0" style="color: #AF52DE;" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                Custom reminders
+                            </li></ul>
+                    </div>
+                    <div class="flex items-center justify-between pt-6 border-t border-gray-100">
+                        
+                        <div class="flex items-center gap-4"><a href="#" class="flex items-center gap-2 text-[#545454] hover:text-primary transition-colors" title="Available on iOS">
+                                <i class="fab fa-apple text-xl"></i>
+                                <span class="text-sm font-medium hidden sm:inline">iOS</span>
+                            </a><a href="#" class="flex items-center gap-2 text-[#545454] hover:text-primary transition-colors" title="Available on Android">
+                                <i class="fab fa-android text-xl"></i>
+                                <span class="text-sm font-medium hidden sm:inline">Android</span>
+                            </a></div>
+
+                        
+                        <a href="http://localhost:1313/baseetStudioWebSIte/projects/numu/" 
+                           class="inline-flex items-center gap-2 font-semibold transition-all duration-300 group/link"
+                           style="color: #AF52DE;">
+                            Learn More
+                            <svg class="w-5 h-5 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </article></div>
+    </div>
+</section>
+    <section id="team" class="team relative py-16 xl:py-32 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
+    
+    <div class="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full filter blur-3xl -z-10"></div>
+    <div class="absolute bottom-0 left-0 w-96 h-96 bg-tertiary/5 rounded-full filter blur-3xl -z-10"></div>
+
+    <div class="container mx-auto px-4">
+        
+        <div class="text-center mb-16 scroll-animate">
+            <h2 class="text-4xl xl:text-5xl font-bold text-stroke mb-4">
+                Meet Our Expert Team
+            </h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                The talented developers behind your digital success
+            </p>
+        </div>
+
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8"><div class="group team-card hover-3d bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 transform hover:-translate-y-3 scroll-animate-scale"
+                style="animation-delay: 0s;">
+                
+                <div class="relative overflow-hidden bg-gradient-to-br from-primary/10 to-tertiary/10 aspect-square">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <img src="http://localhost:1313/baseetStudioWebSIte/images/home/team/mohamed-abdallah_hu_ad66ab8d0efccc39.jpg" srcset="http://localhost:1313/baseetStudioWebSIte/images/home/team/mohamed-abdallah_hu_941e604852572de3.jpg 320w , http://localhost:1313/baseetStudioWebSIte/images/home/team/mohamed-abdallah_hu_4b2d62d9a458ff8a.jpg 480w , http://localhost:1313/baseetStudioWebSIte/images/home/team/mohamed-abdallah_hu_98f12cdf206c0bf0.jpg 768w , http://localhost:1313/baseetStudioWebSIte/images/home/team/mohamed-abdallah_hu_ad66ab8d0efccc39.jpg 1024w"
+                        sizes="(max-width: 640px) 320px, (max-width: 1024px) 768px, 1024px" alt="Mohamed Abdallah"
+                        loading="lazy" decoding="async" width="400" height="400"
+                        class="w-full h-full object-cover  object-center transition-transform duration-700 group-hover:scale-110"
+                        onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect width=%22400%22 height=%22400%22 fill=%22%23496BC1%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2280%22 fill=%22white%22%3EM%3C/text%3E%3C/svg%3E'">
+                    
+                    
+                    
+                    
+                    
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end p-6">
+                        <p
+                            class="text-white text-sm font-medium leading-relaxed transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 drop-shadow-lg">
+                            Founder and product lead combining deep engineering expertise with product strategy to shape high-quality software products.
+                        </p>
+                    </div>
+                </div>
+
+                
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-stroke mb-1">Mohamed Abdallah</h3>
+                    <p class="text-primary font-medium mb-4">Founder / Product Lead / PM / Senior Engineer</p>
+
+                    
+                    <div class="flex gap-3"><a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-all duration-400 hover:scale-125 hover:-rotate-12 magnetic-button"
+                            aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a><a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-all duration-400 hover:scale-125 hover:-rotate-12 magnetic-button"
+                            aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a><a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-all duration-400 hover:scale-125 hover:-rotate-12 magnetic-button"
+                            aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a></div>
+                </div>
+            </div><div class="group team-card hover-3d bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 transform hover:-translate-y-3 scroll-animate-scale"
+                style="animation-delay: 0.15s;">
+                
+                <div class="relative overflow-hidden bg-gradient-to-br from-primary/10 to-tertiary/10 aspect-square">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <img src="http://localhost:1313/baseetStudioWebSIte/images/home/team/asadur-rahman_hu_716d472d2abc6a80.png" srcset="http://localhost:1313/baseetStudioWebSIte/images/home/team/asadur-rahman_hu_b078189856f939a5.png 320w , http://localhost:1313/baseetStudioWebSIte/images/home/team/asadur-rahman_hu_7bed9ff700028160.png 480w , http://localhost:1313/baseetStudioWebSIte/images/home/team/asadur-rahman_hu_b31e675ed02455bf.png 768w , http://localhost:1313/baseetStudioWebSIte/images/home/team/asadur-rahman_hu_716d472d2abc6a80.png 1024w"
+                        sizes="(max-width: 640px) 320px, (max-width: 1024px) 768px, 1024px" alt="Asadur Rahman"
+                        loading="lazy" decoding="async" width="400" height="400"
+                        class="w-full h-full object-cover  object-center transition-transform duration-700 group-hover:scale-110"
+                        onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect width=%22400%22 height=%22400%22 fill=%22%23496BC1%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2280%22 fill=%22white%22%3EA%3C/text%3E%3C/svg%3E'">
+                    
+                    
+                    
+                    
+                    
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end p-6">
+                        <p
+                            class="text-white text-sm font-medium leading-relaxed transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 drop-shadow-lg">
+                            Tech lead and systems architect focused on designing scalable distributed systems and robust cloud infrastructure.
+                        </p>
+                    </div>
+                </div>
+
+                
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-stroke mb-1">Asadur Rahman</h3>
+                    <p class="text-primary font-medium mb-4">Tech Lead / System Architect</p>
+
+                    
+                    <div class="flex gap-3"><a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-all duration-400 hover:scale-125 hover:-rotate-12 magnetic-button"
+                            aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a><a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-all duration-400 hover:scale-125 hover:-rotate-12 magnetic-button"
+                            aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a><a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-all duration-400 hover:scale-125 hover:-rotate-12 magnetic-button"
+                            aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a></div>
+                </div>
+            </div><div class="group team-card hover-3d bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 transform hover:-translate-y-3 scroll-animate-scale"
+                style="animation-delay: 0.3s;">
+                
+                <div class="relative overflow-hidden bg-gradient-to-br from-primary/10 to-tertiary/10 aspect-square">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <img src="http://localhost:1313/baseetStudioWebSIte/images/home/team/ariyan-rehman_hu_606154a7f194db2f.jpg" srcset="http://localhost:1313/baseetStudioWebSIte/images/home/team/ariyan-rehman_hu_adcba25ee6f53ad3.jpg 320w , http://localhost:1313/baseetStudioWebSIte/images/home/team/ariyan-rehman_hu_aa44abc10f75ee78.jpg 480w , http://localhost:1313/baseetStudioWebSIte/images/home/team/ariyan-rehman_hu_d336e79470b98c99.jpg 768w , http://localhost:1313/baseetStudioWebSIte/images/home/team/ariyan-rehman_hu_606154a7f194db2f.jpg 1024w"
+                        sizes="(max-width: 640px) 320px, (max-width: 1024px) 768px, 1024px" alt="Ariyan Rehman"
+                        loading="lazy" decoding="async" width="400" height="400"
+                        class="w-full h-full object-cover  object-right transition-transform duration-700 group-hover:scale-110 scale-200 group-hover:scale-220"
+                        onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect width=%22400%22 height=%22400%22 fill=%22%23496BC1%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2280%22 fill=%22white%22%3EA%3C/text%3E%3C/svg%3E'">
+                    
+                    
+                    
+                    
+                    
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end p-6">
+                        <p
+                            class="text-white text-sm font-medium leading-relaxed transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 drop-shadow-lg">
+                            Ensures product experience and documentation excellence by focusing on UX, developer docs, and content-driven workflows.
+                        </p>
+                    </div>
+                </div>
+
+                
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-stroke mb-1">Ariyan Rehman</h3>
+                    <p class="text-primary font-medium mb-4">Product Experience &amp; Docs Engineer</p>
+
+                    
+                    <div class="flex gap-3"><a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-all duration-400 hover:scale-125 hover:-rotate-12 magnetic-button"
+                            aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a><a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-all duration-400 hover:scale-125 hover:-rotate-12 magnetic-button"
+                            aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a><a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-all duration-400 hover:scale-125 hover:-rotate-12 magnetic-button"
+                            aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a></div>
+                </div>
+            </div><div class="group team-card hover-3d bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 transform hover:-translate-y-3 scroll-animate-scale"
+                style="animation-delay: 0.44999999999999996s;">
+                
+                <div class="relative overflow-hidden bg-gradient-to-br from-primary/10 to-tertiary/10 aspect-square">
+                    
+                    
+                    
+                    
+                    
+                    <img src="#ZgotmplZ" alt="Mohammad Elobaid"
+                        class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
+                        onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect width=%22400%22 height=%22400%22 fill=%22%23496BC1%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2280%22 fill=%22white%22%3EM%3C/text%3E%3C/svg%3E'">
+                    
+                    
+                    
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end p-6">
+                        <p
+                            class="text-white text-sm font-medium leading-relaxed transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 drop-shadow-lg">
+                            Marketing specialist driving brand awareness and customer engagement through strategic campaigns and digital marketing.
+                        </p>
+                    </div>
+                </div>
+
+                
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-stroke mb-1">Mohammad Elobaid</h3>
+                    <p class="text-primary font-medium mb-4">Marketing</p>
+
+                    
+                    <div class="flex gap-3"><a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-all duration-400 hover:scale-125 hover:-rotate-12 magnetic-button"
+                            aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a><a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-all duration-400 hover:scale-125 hover:-rotate-12 magnetic-button"
+                            aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a><a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-all duration-400 hover:scale-125 hover:-rotate-12 magnetic-button"
+                            aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a></div>
+                </div>
+            </div></div>
+    </div>
+</section>
+    <section id="highlights" class="highlights relative py-8 xl:py-16 overflow-hidden">
+    <div class="container mx-auto px-4 grid xl:grid-cols-2 gap-12"><div
+            class="flex flex-col gap-9 px-8 xl:px-14 py-14 rounded-3xl bg-[#F4F4F4]">
+            <h1
+                class="xl:max-w-1/2 mx-auto text-2xl font-semibold leading-relaxed text-center text-[#252525]">
+                Why Choose Baseet Studio?
+            </h1>
+            <p class="leading-relaxed text-center text-[#545454]">
+                We&#39;re more than just developers – we&#39;re your technology partners. With a proven track record of delivering high-quality digital solutions, we combine innovative thinking with technical excellence to bring your vision to life.
+            </p><div class="flex items-center justify-center">
+                <a class="bg-primary hover:bg-primary/90 text-white rounded-lg px-14 py-2 duration-500 transition-all hover:scale-105 hover:shadow-xl"
+                    href="#subscribe">
+                    Get Started
+                </a>
+            </div></div><div
+            class="flex flex-col gap-9 px-8 xl:px-14 py-14 rounded-3xl bg-primary">
+            <h1
+                class="xl:max-w-1/2 mx-auto text-2xl font-semibold leading-relaxed text-center text-white">
+                Results-Driven Approach
+            </h1>
+            <p class="leading-relaxed text-center text-white">
+                From initial concept to final deployment, we focus on delivering measurable results. Our agile methodology ensures transparency, flexibility, and on-time delivery while maintaining the highest quality standards.
+            </p><div class="flex items-center justify-center">
+                <a class="bg-white hover:bg-primary border border-primary text-primary hover:text-white rounded-lg px-14 py-2 duration-500 transition-all hover:scale-105 hover:shadow-xl"
+                    href="#features">
+                    Learn More
+                </a>
+            </div></div></div>
+</section>
+    <section id="clients" class="clients relative py-32 overflow-hidden">
+    <div class="container mx-auto px-4">
+        <h1 class="text-2xl font-medium leading-relaxed text-center xl:max-w-1/2 mx-auto mb-16 scroll-animate">
+            Trusted by Leading Brands
+        </h1>
+        <div class="flex flex-col xl:flex-row items-center justify-around flex-wrap gap-12 scroll-animate-scale"
+            style="animation-delay: 0.2s;"><div class="transition-all duration-500 hover:scale-125 hover:-rotate-3 hover:drop-shadow-2xl">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple" class="h-14 w-auto object-contain"
+                    loading="lazy">
+            </div><div class="transition-all duration-500 hover:scale-125 hover:-rotate-3 hover:drop-shadow-2xl">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft" class="h-14 w-auto object-contain"
+                    loading="lazy">
+            </div><div class="transition-all duration-500 hover:scale-125 hover:-rotate-3 hover:drop-shadow-2xl">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Intel_logo_%282006-2020%29.svg" alt="Intel" class="h-14 w-auto object-contain"
+                    loading="lazy">
+            </div><div class="transition-all duration-500 hover:scale-125 hover:-rotate-3 hover:drop-shadow-2xl">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" class="h-14 w-auto object-contain"
+                    loading="lazy">
+            </div></div>
+    </div>
+</section>
+
+    <script src="http://localhost:1313/baseetStudioWebSIte/js/performance.js" defer></script><script src="http://localhost:1313/baseetStudioWebSIte/js/animations.js" defer></script><script src="http://localhost:1313/baseetStudioWebSIte/js/form-handler.js" defer></script></main>
 </div>
       
 <section id="subscribe" class="subscribe relative py-36 overflow-hidden bg-primary/10">
