@@ -177,6 +177,47 @@
     background-color: rgba(73, 107, 193, 0.1);
 }
 
+/* ============================================
+   Keyboard Focus Styles - Accessibility
+   ============================================ */
+
+/* Global focus visible for keyboard users */
+*:focus-visible {
+    outline: 2px solid #496BC1;
+    outline-offset: 2px;
+}
+
+/* Remove focus ring for mouse users */
+*:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* Enhanced focus for interactive elements */
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid #496BC1;
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+/* Skip to content link for screen readers */
+.skip-to-content {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 9999;
+    padding: 1rem 1.5rem;
+    background: #496BC1;
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 0 0 0.5rem 0;
+}
+
+.skip-to-content:focus {
+    left: 0;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .app-bar-nav {

@@ -5,10 +5,10 @@
     <div class="absolute bottom-20 left-0 w-72 h-72 bg-tertiary/5 rounded-full filter blur-3xl -z-10"></div>
 
     <div class="container mx-auto px-4">
-        <h1
+        <h2
             class="feature-title-premium xl:max-w-2/3 mx-auto text-center text-[#252525] font-semibold text-4xl xl:text-5xl leading-tight mb-6 scroll-animate">
             {{ .title | safeHTML }}
-        </h1>
+        </h2>
         <p class="feature-text-premium xl:max-w-2xl mx-auto text-center text-[#868686] text-lg mb-16 scroll-animate"
             style="animation-delay: 0.2s;">
             {{ .text }}
@@ -34,10 +34,10 @@
                             <p class="text-sm text-[#868686]">{{ $item.pretext }}</p>
                         </div>
                     </div>
-                    <h1
+                    <h3
                         class="feature-title-premium text-[#252525] font-bold text-3xl xl:text-4xl leading-tight text-center xl:text-start">
                         {{ $item.title | markdownify }}
-                    </h1>
+                    </h3>
                     <p
                         class="feature-text-premium text-[#545454] text-base xl:text-lg leading-relaxed text-center xl:text-start">
                         {{ $item.text }}
