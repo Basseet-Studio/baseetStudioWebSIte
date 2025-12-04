@@ -39,7 +39,7 @@
                             style="--project-color: {{ $project.color }};">
                             <!-- Gradient Top Border -->
                             <div class="project-gradient-bar absolute top-0 left-0 right-0 h-1.5"
-                                style="background: {{ $project.gradient }};"></div>
+                                style="background: {{ $project.gradient | safeCSS }};"></div>
 
                             <!-- Card Content -->
                             <div class="p-6 xl:p-8 relative z-10 flex flex-col h-full">
@@ -48,7 +48,7 @@
                                     <div class="project-icon-container relative">
                                         <!-- App Icon with Font Awesome -->
                                         <div class="w-16 h-16 rounded-xl flex items-center justify-center text-white text-2xl shadow-lg transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3"
-                                            style="background: {{ $project.gradient }};">
+                                            style="background: {{ $project.gradient | safeCSS }};">
                                             {{- if $project.iconClass -}}
                                             <i class="{{ $project.iconClass }}"></i>
                                             {{- else -}}
