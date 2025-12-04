@@ -1811,6 +1811,215 @@
 }
 
 /* ============================================
+   Projects Carousel - Premium Effects
+   ============================================ */
+
+.projects-carousel-wrapper {
+  position: relative;
+  padding: 0 60px;
+}
+
+@media (max-width: 768px) {
+  .projects-carousel-wrapper {
+    padding: 0 20px;
+  }
+}
+
+.projects-carousel-viewport {
+  border-radius: 1.5rem;
+}
+
+.projects-carousel-track {
+  will-change: transform;
+}
+
+.projects-carousel-slide {
+  padding: 0.5rem;
+}
+
+/* Make cards equal height */
+.projects-carousel-slide .project-card-premium {
+  min-height: 420px;
+}
+
+@media (min-width: 1280px) {
+  .projects-carousel-slide .project-card-premium {
+    min-height: 380px;
+  }
+}
+
+/* Feature tags */
+.project-feature-tag {
+  transition: all 0.3s ease;
+}
+
+.project-card-premium:hover .project-feature-tag {
+  background: linear-gradient(135deg, rgba(73, 107, 193, 0.1), rgba(251, 205, 55, 0.1));
+}
+
+/* Line clamp for description */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Carousel Navigation Arrows */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #ffffff, #f0f0f0);
+  border: none;
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.1),
+    0 2px 6px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #252525;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.carousel-arrow-left {
+  left: 0;
+}
+
+.carousel-arrow-right {
+  right: 0;
+}
+
+.carousel-arrow::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #496bc1, #fbcd37);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+
+.carousel-arrow:hover {
+  transform: translateY(-50%) scale(1.1);
+  box-shadow:
+    0 8px 25px rgba(73, 107, 193, 0.25),
+    0 4px 12px rgba(0, 0, 0, 0.1);
+  color: #496bc1;
+}
+
+.carousel-arrow:hover::before {
+  opacity: 1;
+}
+
+.carousel-arrow:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+@media (max-width: 768px) {
+  .carousel-arrow {
+    width: 40px;
+    height: 40px;
+  }
+
+  .carousel-arrow-left {
+    left: -5px;
+  }
+
+  .carousel-arrow-right {
+    right: -5px;
+  }
+}
+
+/* Carousel Dots */
+.carousel-dots {
+  margin-top: 2rem;
+}
+
+.carousel-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+}
+
+.carousel-dot::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #496bc1, #fbcd37);
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.3s ease;
+}
+
+.carousel-dot:hover {
+  background: #bbb;
+  transform: scale(1.2);
+}
+
+.carousel-dot.active {
+  background: linear-gradient(135deg, #496bc1, #fbcd37);
+  transform: scale(1.3);
+}
+
+.carousel-dot.active::before {
+  opacity: 0.3;
+  transform: scale(1.5);
+  animation: dot-pulse 2s ease-in-out infinite;
+}
+
+@keyframes dot-pulse {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1.5);
+  }
+  50% {
+    opacity: 0.1;
+    transform: scale(2);
+  }
+}
+
+/* Progress Bar */
+.carousel-progress-container {
+  display: flex;
+  justify-content: center;
+}
+
+.carousel-progress-bar {
+  width: 200px;
+  height: 4px;
+  background: #e0e0e0;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.carousel-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #496bc1, #fbcd37);
+  border-radius: 2px;
+  width: 33.33%;
+  transition: width 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Carousel hover state - pause indicator */
+.projects-carousel-wrapper:hover .carousel-progress-fill {
+  animation-play-state: paused;
+}
+
+/* ============================================
    Clients Section - Center Fix & Enhancements
    ============================================ */
 
