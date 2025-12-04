@@ -129,14 +129,8 @@
                 </div>
             </div>
 
-            <!-- Carousel Dots -->
+            <!-- Carousel Dots - Generated dynamically by JS based on slidesPerView -->
             <div class="carousel-dots flex justify-center gap-2 mt-8">
-                {{- $totalSlides := len .items -}}
-                {{- range $index, $project := .items -}}
-                <button class="carousel-dot {{ if eq $index 0 }}active{{ end }}" data-index="{{ $index }}"
-                    aria-label="Go to project {{ add $index 1 }}">
-                </button>
-                {{- end -}}
             </div>
 
             <!-- Progress Bar -->
@@ -156,7 +150,7 @@
 
         const track = carousel.querySelector('.projects-carousel-track');
         const slides = carousel.querySelectorAll('.projects-carousel-slide');
-        const dots = carousel.querySelectorAll('.carousel-dot');
+        const dotsContainer = carousel.querySelector('.carousel-dots');
         const leftArrow = carousel.querySelector('.carousel-arrow-left');
         const rightArrow = carousel.querySelector('.carousel-arrow-right');
         const progressFill = carousel.querySelector('.carousel-progress-fill');
@@ -165,6 +159,7 @@
         let slidesPerView = 3;
         let autoplayInterval;
         const totalSlides = slides.length;
+        let maxIndex = 0;
 
         // Calculate slides per view based on screen size
         function updateSlidesPerView() {
@@ -175,12 +170,32 @@
             } else {
                 slidesPerView = 3;
             }
+            maxIndex = Math.max(0, totalSlides - slidesPerView);
+        }
+
+        // Generate dots based on actual carousel positions
+        function generateDots() {
+            dotsContainer.innerHTML = '';
+            const numDots = maxIndex + 1; // Number of positions
+
+            for (let i = 0; i <= maxIndex; i++) {
+                const dot = document.createElement('button');
+                dot.className = 'carousel-dot' + (i === currentIndex ? ' active' : '');
+                dot.setAttribute('data-index', i);
+                dot.setAttribute('aria-label', `Go to slide group ${i + 1}`);
+                dot.addEventListener('click', () => goToSlide(i));
+                dotsContainer.appendChild(dot);
+            }
         }
 
         // Update carousel position
         function updateCarousel(animate = true) {
-            const maxIndex = Math.max(0, totalSlides - slidesPerView);
-            currentIndex = Math.max(0, Math.min(currentIndex, maxIndex));
+            // Wrap around for infinite loop
+            if (currentIndex > maxIndex) {
+                currentIndex = 0;
+            } else if (currentIndex < 0) {
+                currentIndex = maxIndex;
+            }
 
             const slideWidth = 100 / slidesPerView;
             const offset = currentIndex * slideWidth;
@@ -189,6 +204,7 @@
             track.style.transform = `translateX(-${offset}%)`;
 
             // Update dots
+            const dots = dotsContainer.querySelectorAll('.carousel-dot');
             dots.forEach((dot, index) => {
                 dot.classList.toggle('active', index === currentIndex);
             });
@@ -197,11 +213,11 @@
             const progress = ((currentIndex + 1) / (maxIndex + 1)) * 100;
             progressFill.style.width = `${progress}%`;
 
-            // Update arrows
-            leftArrow.style.opacity = currentIndex === 0 ? '0.3' : '1';
-            leftArrow.style.pointerEvents = currentIndex === 0 ? 'none' : 'auto';
-            rightArrow.style.opacity = currentIndex >= maxIndex ? '0.3' : '1';
-            rightArrow.style.pointerEvents = currentIndex >= maxIndex ? 'none' : 'auto';
+            // Update arrows visibility (always enabled for infinite loop)
+            leftArrow.style.opacity = '1';
+            leftArrow.style.pointerEvents = 'auto';
+            rightArrow.style.opacity = '1';
+            rightArrow.style.pointerEvents = 'auto';
         }
 
         // Navigation handlers
@@ -212,31 +228,26 @@
         }
 
         function nextSlide() {
-            const maxIndex = Math.max(0, totalSlides - slidesPerView);
-            if (currentIndex < maxIndex) {
-                currentIndex++;
-                updateCarousel();
+            currentIndex++;
+            if (currentIndex > maxIndex) {
+                currentIndex = 0; // Loop back to start
             }
+            updateCarousel();
         }
 
         function prevSlide() {
-            if (currentIndex > 0) {
-                currentIndex--;
-                updateCarousel();
+            currentIndex--;
+            if (currentIndex < 0) {
+                currentIndex = maxIndex; // Loop to end
             }
+            updateCarousel();
         }
 
-        // Autoplay
+        // Autoplay - continuous infinite loop
         function startAutoplay() {
             autoplayInterval = setInterval(() => {
-                const maxIndex = Math.max(0, totalSlides - slidesPerView);
-                if (currentIndex >= maxIndex) {
-                    currentIndex = 0;
-                } else {
-                    currentIndex++;
-                }
-                updateCarousel();
-            }, 5000);
+                nextSlide();
+            }, 4000);
         }
 
         function resetAutoplay() {
@@ -247,10 +258,6 @@
         // Event listeners
         leftArrow.addEventListener('click', () => { prevSlide(); resetAutoplay(); });
         rightArrow.addEventListener('click', () => { nextSlide(); resetAutoplay(); });
-
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => goToSlide(index));
-        });
 
         // Touch/swipe support
         let touchStartX = 0;
@@ -300,12 +307,14 @@
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(() => {
                 updateSlidesPerView();
+                generateDots();
                 updateCarousel(false);
             }, 100);
         });
 
         // Initialize
         updateSlidesPerView();
+        generateDots();
         updateCarousel(false);
         startAutoplay();
     });
