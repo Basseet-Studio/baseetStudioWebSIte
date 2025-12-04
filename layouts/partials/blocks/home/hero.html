@@ -4,17 +4,18 @@
     <div class="flex flex-wrap items-center -mx-4">
       <div class="w-full lg:w-1/2 px-4 mb-12 lg:mb-0">
         <div class="max-w-lg">
-          <h1 class="text-4xl lg:text-6xl font-bold text-stroke mb-6 leading-tight">
+          <h1 class="hero-title-premium text-4xl lg:text-6xl font-bold text-stroke mb-6 leading-tight">
             {{ $data.title | markdownify }}
           </h1>
-          <p class="text-lg text-stroke/80 mb-8 leading-relaxed">
+          <p class="hero-text-premium text-lg text-stroke/80 mb-8 leading-relaxed">
             {{ $data.text | markdownify }}
           </p>
           <div class="flex flex-wrap gap-4">
-            {{ range $data.buttons }}
-            <a href="{{ .link }}"
-              class="px-8 py-3 text-base font-medium text-white bg-primary rounded-full hover:bg-primary/90 transition-colors duration-300 shadow-lg hover:shadow-xl">
-              {{ .label }}
+            {{ range $index, $btn := $data.buttons }}
+            <a href="{{ $btn.link }}"
+              class="hero-btn-premium px-8 py-3 text-base font-medium text-white bg-primary rounded-full transition-colors duration-300"
+              style="--btn-color: #496bc1;">
+              {{ $btn.label }}
             </a>
             {{ end }}
           </div>

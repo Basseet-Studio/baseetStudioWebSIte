@@ -1,15 +1,17 @@
 {{- if .enable -}}
-<section id="clients" class="clients relative py-32 overflow-hidden">
+<section id="clients" class="clients clients-section relative py-32 overflow-hidden">
     <div class="container mx-auto px-4">
-        <h1 class="text-2xl font-medium leading-relaxed text-center xl:max-w-1/2 mx-auto mb-16 scroll-animate">
+        <h1
+            class="clients-title text-2xl font-medium leading-relaxed text-center xl:max-w-1/2 mx-auto mb-16 scroll-animate">
             {{ .title }}
         </h1>
-        <div class="flex flex-col xl:flex-row items-center justify-around flex-wrap gap-12 scroll-animate-scale"
+        <div class="flex flex-col xl:flex-row items-center justify-around flex-wrap gap-8 xl:gap-12 scroll-animate-scale"
             style="animation-delay: 0.2s;">
             {{- range $index, $client := .items -}}
-            <div class="transition-all duration-500 hover:scale-125 hover:-rotate-3 hover:drop-shadow-2xl">
-                <img src="{{ $client.image | relURL }}" alt="{{ $client.name }}" class="h-14 w-auto object-contain"
-                    loading="lazy">
+            <div class="client-logo-wrapper">
+                <div class="shine-effect"></div>
+                <img src="{{ $client.image | relURL }}" alt="{{ $client.name }}"
+                    class="client-logo h-14 w-auto object-contain" loading="lazy">
             </div>
             {{- end -}}
         </div>

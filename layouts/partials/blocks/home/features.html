@@ -6,10 +6,10 @@
 
     <div class="container mx-auto px-4">
         <h1
-            class="xl:max-w-2/3 mx-auto text-center text-[#252525] font-semibold text-4xl xl:text-5xl leading-tight mb-6 scroll-animate">
+            class="feature-title-premium xl:max-w-2/3 mx-auto text-center text-[#252525] font-semibold text-4xl xl:text-5xl leading-tight mb-6 scroll-animate">
             {{ .title | safeHTML }}
         </h1>
-        <p class="xl:max-w-2xl mx-auto text-center text-[#868686] text-lg mb-16 scroll-animate"
+        <p class="feature-text-premium xl:max-w-2xl mx-auto text-center text-[#868686] text-lg mb-16 scroll-animate"
             style="animation-delay: 0.2s;">
             {{ .text }}
         </p>
@@ -26,18 +26,20 @@
                     class="xl:col-span-5 flex flex-col justify-center gap-6 order-1 {{ if (mod $index 2) }}xl:order-1{{ else }}xl:order-1{{ end }}">
                     <div class="flex flex-col xl:flex-row items-center xl:items-start justify-start gap-4">
                         <div
-                            class="flex items-center justify-center shrink-0 text-xl text-white bg-[{{ $item.color }}] size-16 rounded-2xl shadow-lg transform transition-all duration-500 hover:scale-125 hover:rotate-12 hover:shadow-2xl magnetic-button">
+                            class="feature-icon-premium flex items-center justify-center shrink-0 text-xl text-white bg-[{{ $item.color }}] size-16 rounded-2xl shadow-lg magnetic-button">
                             <i class="{{ $item.icon }}"></i>
                         </div>
                         <div class="inline-flex flex-col text-center xl:text-start">
-                            <h2 class="text-lg font-semibold text-stroke">{{ $item.pretitle }}</h2>
+                            <h2 class="feature-pretitle text-lg font-semibold text-stroke">{{ $item.pretitle }}</h2>
                             <p class="text-sm text-[#868686]">{{ $item.pretext }}</p>
                         </div>
                     </div>
-                    <h1 class="text-[#252525] font-bold text-3xl xl:text-4xl leading-tight text-center xl:text-start">
+                    <h1
+                        class="feature-title-premium text-[#252525] font-bold text-3xl xl:text-4xl leading-tight text-center xl:text-start">
                         {{ $item.title | markdownify }}
                     </h1>
-                    <p class="text-[#545454] text-base xl:text-lg leading-relaxed text-center xl:text-start">
+                    <p
+                        class="feature-text-premium text-[#545454] text-base xl:text-lg leading-relaxed text-center xl:text-start">
                         {{ $item.text }}
                     </p>
                 </div>
