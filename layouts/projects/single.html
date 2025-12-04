@@ -2,249 +2,188 @@
 {{- $project := .Params.project -}}
 
 <!-- Font Awesome CDN -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-  integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-  crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <!-- App Bar CSS -->
 {{- $appBarCSS := resources.Get "css/app-bar.css" -}}
 {{- if $appBarCSS -}}
-{{- if hugo.IsProduction -}}
-{{- $appBarCSS = $appBarCSS | minify | fingerprint -}}
-{{- end -}}
 <link rel="stylesheet" href="{{ $appBarCSS.RelPermalink }}" />
+{{- end -}}
+
+<!-- Premium Effects CSS -->
+{{- $premiumCSS := resources.Get "css/premium-effects.css" -}}
+{{- if $premiumCSS -}}
+<link rel="stylesheet" href="{{ $premiumCSS.RelPermalink }}" />
 {{- end -}}
 
 <!-- Custom Overrides CSS -->
 {{- $overridesCSS := resources.Get "css/custom-overrides.css" -}}
 {{- if $overridesCSS -}}
-{{- if hugo.IsProduction -}}
-{{- $overridesCSS = $overridesCSS | minify | fingerprint -}}
-{{- end -}}
 <link rel="stylesheet" href="{{ $overridesCSS.RelPermalink }}" />
 {{- end -}}
 
 <style>
-  .project-page { --project-color: {{ $project.color }}; }
+  .project-page { --project-color: {{ $project.color }}; --project-gradient: {{ $project.gradient | safeCSS }}; }
   .project-gradient { background: {{ $project.gradient | safeCSS }}; }
   .text-project { color: {{ $project.color }}; }
   .bg-project { background-color: {{ $project.color }}; }
   .bg-project-light { background-color: {{ $project.color }}15; }
   .border-project { border-color: {{ $project.color }}; }
+  .hover\:bg-project:hover { background-color: {{ $project.color }}; }
+  .hover\:text-project:hover { color: {{ $project.color }}; }
+  .shadow-project { box-shadow: 0 10px 40px -10px {{ $project.color }}50; }
+  @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  .animate-fade-in-up { animation: fadeInUp 0.6s ease-out forwards; }
+  .animate-float { animation: float 3s ease-in-out infinite; }
 </style>
-
-<!-- Skip to content for keyboard users -->
-<a class="skip-to-content" href="#mainContent">Skip to content</a>
 
 <!-- App Bar Header -->
 {{ partial "header.html" . }}
 
-<main id="mainContent" class="project-page">
+<div class="project-page pt-20">
   <!-- Hero Section -->
-  <section class="relative min-h-[70vh] flex items-center overflow-hidden pt-24">
-    <!-- Background Gradient -->
-    <div class="absolute inset-0 project-gradient opacity-10"></div>
-    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-white/50 to-white"></div>
-
-    <div class="container mx-auto px-4 relative z-10">
-      <div class="grid lg:grid-cols-2 gap-12 items-center">
-        <!-- Left: Content -->
+  <section class="relative min-h-[80vh] flex items-center overflow-hidden">
+    <div class="absolute inset-0 project-gradient opacity-5"></div>
+    <div class="absolute top-0 right-0 w-1/2 h-full project-gradient opacity-10 blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 w-96 h-96 project-gradient opacity-20 blur-3xl rounded-full"></div>
+    
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-16">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         <div class="text-center lg:text-left">
-          <!-- Back Link -->
-          <a href="/#projects"
-            class="inline-flex items-center gap-2 text-[#545454] hover:text-project mb-6 transition-colors">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-            </svg>
-            Back to Projects
+          <a href="{{ "/#projects" | relURL }}" class="inline-flex items-center gap-2 text-[#545454] hover:text-project mb-8 transition-colors group">
+            <svg class="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            <span class="font-medium">Back to Projects</span>
           </a>
-
-          <!-- App Icon & Name -->
-          <div class="flex items-center gap-4 justify-center lg:justify-start mb-6">
-            <div
-              class="w-20 h-20 rounded-2xl project-gradient flex items-center justify-center text-white text-3xl font-bold shadow-lg">
-              {{ substr $project.name 0 1 }}
+          
+          <div class="flex items-center gap-5 justify-center lg:justify-start mb-8 animate-fade-in-up">
+            <div class="w-24 h-24 rounded-3xl project-gradient flex items-center justify-center text-white shadow-2xl shadow-project animate-float">
+              {{- if $project.iconClass -}}<i class="{{ $project.iconClass }} text-4xl"></i>{{- else -}}<span class="text-4xl font-bold">{{ substr $project.name 0 1 }}</span>{{- end -}}
             </div>
             <div>
-              <h1 class="text-4xl xl:text-5xl font-bold text-[#252525]">{{ $project.name }}</h1>
-              <p class="text-xl font-medium text-project">{{ $project.tagline }}</p>
+              <h1 class="text-4xl lg:text-5xl xl:text-6xl font-extrabold text-[#252525] tracking-tight">{{ $project.name }}</h1>
+              <p class="text-xl lg:text-2xl font-semibold text-project mt-1">{{ $project.tagline }}</p>
             </div>
           </div>
-
-          <!-- Hero Text -->
-          <h2 class="text-3xl xl:text-4xl font-bold text-[#252525] mb-4">
-            {{ $project.hero.title }}
-          </h2>
-          <p class="text-lg text-[#545454] mb-8 max-w-xl mx-auto lg:mx-0">
-            {{ $project.hero.subtitle }}
-          </p>
-
-          <!-- Status Badge -->
-          {{- if $project.status -}}
-          <span class="inline-block px-4 py-2 text-sm font-semibold rounded-full bg-project-light text-project mb-8">
-            {{ $project.status }}
-          </span>
-          {{- end -}}
-
-          <!-- CTA Buttons -->
+          
+          <h2 class="text-2xl lg:text-3xl xl:text-4xl font-bold text-[#252525] mb-6 leading-tight">{{ $project.hero.title }}</h2>
+          <p class="text-lg lg:text-xl text-[#545454] mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed">{{ $project.hero.subtitle }}</p>
+          
           <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
-            <a href="#early-access"
-              class="px-8 py-3 rounded-lg bg-project text-white font-semibold hover:opacity-90 transition-all hover:scale-105 shadow-lg">
-              {{ $project.hero.cta_primary }}
+            <a href="#" class="bg-project text-white hover:shadow-project shadow-lg px-8 py-4 rounded-2xl font-bold transition-all duration-300 transform hover:-translate-y-1">
+              {{ $project.hero.cta_primary | default "Get Started" }}
             </a>
-            <a href="#features"
-              class="px-8 py-3 rounded-lg border-2 border-project text-project font-semibold hover:bg-project hover:text-white transition-all">
-              {{ $project.hero.cta_secondary }}
+            <a href="#features" class="bg-white text-project border-2 border-project hover:bg-project-light px-8 py-4 rounded-2xl font-bold transition-all duration-300 transform hover:-translate-y-1">
+              {{ $project.hero.cta_secondary | default "Learn More" }}
             </a>
-          </div>
-
-          <!-- Platforms -->
-          <div class="flex items-center gap-6 mt-8 justify-center lg:justify-start">
-            {{- range $project.platforms -}}
-            <div class="flex items-center gap-2 text-[#545454]">
-              <i class="{{ .icon }} text-2xl"></i>
-              <div>
-                <div class="font-medium">{{ .name }}</div>
-                <div class="text-xs">{{ .version }}</div>
-              </div>
-            </div>
-            {{- end -}}
           </div>
         </div>
-
-        <!-- Right: App Preview Placeholder -->
-        <div class="relative">
-          <div class="relative mx-auto w-64 h-[500px] bg-gray-900 rounded-[3rem] shadow-2xl p-3">
-            <div
-              class="w-full h-full rounded-[2.5rem] project-gradient flex items-center justify-center overflow-hidden">
-              <div class="text-center text-white p-8">
-                <div
-                  class="w-24 h-24 mx-auto mb-6 bg-white/20 rounded-2xl flex items-center justify-center text-4xl font-bold">
-                  {{ substr $project.name 0 1 }}
-                </div>
-                <h3 class="text-2xl font-bold mb-2">{{ $project.name }}</h3>
-                <p class="opacity-80">Preview Coming Soon</p>
-              </div>
-            </div>
-            <!-- Notch -->
-            <div class="absolute top-3 left-1/2 -translate-x-1/2 w-24 h-6 bg-gray-900 rounded-b-2xl"></div>
+        
+        <div class="relative hidden lg:block">
+          {{ with $project.hero.image }}
+          <div class="relative z-10 rounded-3xl overflow-hidden shadow-2xl shadow-project transform hover:scale-[1.02] transition-transform duration-500">
+            <img src="{{ . | relURL }}" alt="{{ $project.name }}" class="w-full h-auto">
           </div>
-          <!-- Decorative Blur -->
-          <div class="absolute inset-0 project-gradient blur-3xl opacity-20 -z-10 scale-150"></div>
+          {{ else }}
+          <div class="relative z-10 rounded-3xl overflow-hidden shadow-2xl shadow-project transform hover:scale-[1.02] transition-transform duration-500 bg-gray-100 h-96 flex items-center justify-center">
+            <div class="w-32 h-32 rounded-2xl project-gradient flex items-center justify-center text-white">
+              {{- if $project.iconClass -}}<i class="{{ $project.iconClass }} text-5xl"></i>{{- else -}}<span class="text-5xl font-bold">{{ substr $project.name 0 1 }}</span>{{- end -}}
+            </div>
+          </div>
+          {{ end }}
+          <div class="absolute -bottom-10 -right-10 w-64 h-64 project-gradient opacity-30 rounded-full blur-3xl"></div>
+          <div class="absolute -top-10 -left-10 w-48 h-48 project-gradient opacity-20 rounded-full blur-2xl"></div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Features Section -->
-  <section id="features" class="py-16 xl:py-24 bg-white">
-    <div class="container mx-auto px-4">
+  {{ with $project.features }}
+  <section id="features" class="py-24 bg-gradient-to-b from-white to-gray-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
-        <h2 class="text-3xl xl:text-4xl font-bold text-[#252525] mb-4">Powerful Features</h2>
-        <p class="text-lg text-[#545454] max-w-2xl mx-auto">Everything you need to {{ if eq $project.name "Money Box"
-          }}manage your finances{{ else }}build lasting habits{{ end }}</p>
+        <span class="inline-block px-4 py-2 rounded-full bg-project-light text-project font-semibold text-sm mb-4">Features</span>
+        <h2 class="text-3xl lg:text-4xl font-bold text-[#252525]">Key Features</h2>
+        <p class="text-lg text-[#545454] mt-4 max-w-2xl mx-auto">Everything you need to get the most out of {{ $project.name }}</p>
       </div>
-
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        {{- range $project.features -}}
-        <div class="group p-8 rounded-2xl bg-[#F8F9FA] hover:bg-white hover:shadow-xl transition-all duration-300">
-          <div
-            class="w-14 h-14 rounded-xl bg-project-light flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-            <i class="{{ .icon }} text-2xl text-project"></i>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {{ range . }}
+        <div class="group bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+          <div class="w-16 h-16 rounded-2xl project-gradient flex items-center justify-center mb-6 text-white text-2xl group-hover:scale-110 transition-transform">
+            <i class="{{ .icon }}"></i>
           </div>
           <h3 class="text-xl font-bold text-[#252525] mb-3">{{ .title }}</h3>
           <p class="text-[#545454] leading-relaxed">{{ .description }}</p>
         </div>
-        {{- end -}}
+        {{ end }}
       </div>
     </div>
   </section>
+  {{ end }}
 
-  <!-- About Section (from markdown content) -->
-  <section class="py-16 xl:py-24 bg-[#F8F9FA]">
-    <div class="container mx-auto px-4">
-      <div class="max-w-3xl mx-auto prose prose-lg">
-        {{ .Content }}
+  <!-- Content Section -->
+  {{ if .Content }}
+  <section class="py-24">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <div class="prose prose-lg max-w-none prose-headings:text-[#252525] prose-p:text-[#545454] prose-a:text-project prose-strong:text-[#252525]">
+          {{ .Content }}
+        </div>
       </div>
     </div>
   </section>
+  {{ end }}
 
   <!-- FAQ Section -->
-  {{- if $project.faq -}}
-  <section class="py-16 xl:py-24 bg-white">
-    <div class="container mx-auto px-4">
+  {{ with $project.faq }}
+  <section class="py-24 bg-gray-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
-        <h2 class="text-3xl xl:text-4xl font-bold text-[#252525] mb-4">Frequently Asked Questions</h2>
+        <span class="inline-block px-4 py-2 rounded-full bg-project-light text-project font-semibold text-sm mb-4">FAQ</span>
+        <h2 class="text-3xl lg:text-4xl font-bold text-[#252525]">Frequently Asked Questions</h2>
       </div>
-
-      <div class="max-w-3xl mx-auto space-y-6">
-        {{- range $project.faq -}}
-        <details class="group bg-[#F8F9FA] rounded-xl overflow-hidden">
-          <summary
-            class="flex items-center justify-between p-6 cursor-pointer font-semibold text-[#252525] hover:text-project transition-colors">
+      
+      <div class="max-w-3xl mx-auto space-y-4">
+        {{ range . }}
+        <details class="group bg-white rounded-2xl shadow-md overflow-hidden">
+          <summary class="flex justify-between items-center p-6 cursor-pointer list-none font-semibold text-[#252525] hover:text-project transition-colors">
             {{ .question }}
-            <svg class="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor"
-              viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
+            <svg class="w-5 h-5 text-project transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </summary>
-          <div class="px-6 pb-6 text-[#545454]">
-            {{ .answer }}
-          </div>
+          <div class="px-6 pb-6 text-[#545454]">{{ .answer }}</div>
         </details>
-        {{- end -}}
+        {{ end }}
       </div>
     </div>
   </section>
-  {{- end -}}
+  {{ end }}
 
-  <!-- Early Access CTA -->
-  <section id="early-access" class="py-16 xl:py-24 project-gradient">
-    <div class="container mx-auto px-4 text-center">
-      <h2 class="text-3xl xl:text-4xl font-bold text-white mb-4">Get Early Access</h2>
-      <p class="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
-        Be among the first to experience {{ $project.name }}. Sign up now and we'll notify you as soon as we launch.
-      </p>
-
-      <form class="max-w-md mx-auto flex flex-col sm:flex-row gap-4">
-        <input type="email" placeholder="Enter your email"
-          class="flex-1 px-6 py-3 rounded-lg text-[#252525] focus:outline-none focus:ring-2 focus:ring-white">
-        <button type="submit"
-          class="px-8 py-3 bg-white text-project font-semibold rounded-lg hover:bg-opacity-90 transition-all hover:scale-105">
-          Notify Me
-        </button>
-      </form>
-
-      <p class="text-white/60 text-sm mt-4">No spam. We'll only email you about {{ $project.name }} updates.</p>
-    </div>
-  </section>
-
-  <!-- Footer Navigation -->
-  <section class="py-8 bg-[#252525]">
-    <div class="container mx-auto px-4">
-      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
-        <a href="/" class="text-white font-semibold text-lg">Baseet Studio</a>
-        <nav class="flex items-center gap-6">
-          <a href="/#features" class="text-white/70 hover:text-white transition-colors">Services</a>
-          <a href="/#projects" class="text-white/70 hover:text-white transition-colors">Projects</a>
-          <a href="/#clients" class="text-white/70 hover:text-white transition-colors">Clients</a>
-          <a href="/#subscribe" class="text-white/70 hover:text-white transition-colors">Contact</a>
-        </nav>
-        <p class="text-white/50 text-sm">© {{ now.Year }} Baseet Studio</p>
+  <!-- CTA Section -->
+  <section class="py-24">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="relative rounded-3xl overflow-hidden project-gradient p-12 lg:p-20 text-center text-white">
+        <div class="absolute inset-0 bg-black/10"></div>
+        <div class="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-2xl"></div>
+        
+        <div class="relative z-10">
+          <h2 class="text-3xl lg:text-4xl xl:text-5xl font-bold mb-6">Ready to Get Started?</h2>
+          <p class="text-xl lg:text-2xl mb-10 opacity-90 max-w-2xl mx-auto">Experience {{ $project.name }} today and see the difference.</p>
+          
+          <div class="flex flex-wrap gap-4 justify-center">
+            <a href="#" class="bg-white text-project hover:bg-gray-100 px-8 py-4 rounded-2xl font-bold transition-all duration-300 transform hover:-translate-y-1">
+              {{ $project.hero.cta_primary | default "Get Started" }}
+            </a>
+            <a href="#features" class="bg-white/20 text-white border-2 border-white/40 hover:bg-white/30 px-8 py-4 rounded-2xl font-bold transition-all duration-300 transform hover:-translate-y-1">
+              {{ $project.hero.cta_secondary | default "Learn More" }}
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
-</main>
-
-<!-- Scripts -->
-{{- $performance := resources.Get "js/performance.js" -}}
-{{- if $performance -}}
-<script src="{{ $performance.Permalink }}" defer></script>
-{{- end -}}
-
-{{- $animations := resources.Get "js/animations.js" -}}
-{{- if $animations -}}
-<script src="{{ $animations.Permalink }}" defer></script>
-{{- end -}}
+</div>
 
 {{ end }}
