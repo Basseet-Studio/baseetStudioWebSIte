@@ -1,25 +1,23 @@
 <header id="app-bar" class="app-bar" role="banner">
     <div class="app-bar-container">
         <!-- Logo -->
-        <a href="/" class="app-bar-logo" aria-label="Baseet Studio Home">
+        <a href="/" class="app-bar-logo logo-premium" aria-label="Baseet Studio Home">
             <span class="logo-text">Baseet Studio</span>
         </a>
-        
+
         <!-- Desktop Navigation -->
         <nav class="app-bar-nav" aria-label="Main navigation">
             <ul class="nav-links">
-                <li><a href="#features">Features</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#team">Team</a></li>
-                <li><a href="#clients">Clients</a></li>
-                <li><a href="#subscribe">Contact</a></li>
+                <li><a href="#features" class="nav-link-premium">Features</a></li>
+                <li><a href="#projects" class="nav-link-premium">Projects</a></li>
+                <li><a href="#team" class="nav-link-premium">Team</a></li>
+                <li><a href="#clients" class="nav-link-premium">Clients</a></li>
+                <li><a href="#subscribe" class="nav-link-premium">Contact</a></li>
             </ul>
         </nav>
-        
+
         <!-- Mobile Menu Toggle -->
-        <button class="mobile-menu-toggle" 
-                aria-label="Toggle navigation menu"
-                aria-expanded="false">
+        <button class="mobile-menu-toggle hamburger-premium" aria-label="Toggle navigation menu" aria-expanded="false">
             <span class="hamburger-icon">
                 <span></span>
                 <span></span>
@@ -27,46 +25,46 @@
             </span>
         </button>
     </div>
-    
+
     <!-- Mobile Menu -->
     <div class="mobile-menu" aria-hidden="true">
         <nav aria-label="Mobile navigation">
             <ul class="mobile-nav-links">
-                <li><a href="#features">Features</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#team">Team</a></li>
-                <li><a href="#clients">Clients</a></li>
-                <li><a href="#subscribe">Contact</a></li>
+                <li><a href="#features" class="mobile-nav-link-premium">Features</a></li>
+                <li><a href="#projects" class="mobile-nav-link-premium">Projects</a></li>
+                <li><a href="#team" class="mobile-nav-link-premium">Team</a></li>
+                <li><a href="#clients" class="mobile-nav-link-premium">Clients</a></li>
+                <li><a href="#subscribe" class="mobile-nav-link-premium">Contact</a></li>
             </ul>
         </nav>
     </div>
 </header>
 
 <script>
-// Mobile menu toggle functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const mobileToggle = document.querySelector('.mobile-menu-toggle');
-    const mobileMenu = document.querySelector('.mobile-menu');
-    
-    if (mobileToggle && mobileMenu) {
-        mobileToggle.addEventListener('click', function() {
-            const isExpanded = this.getAttribute('aria-expanded') === 'true';
-            
-            // Toggle states
-            this.setAttribute('aria-expanded', !isExpanded);
-            mobileMenu.setAttribute('aria-hidden', isExpanded);
-            mobileMenu.classList.toggle('open');
-        });
-        
-        // Close menu when clicking a link
-        const mobileLinks = mobileMenu.querySelectorAll('a');
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                mobileToggle.setAttribute('aria-expanded', 'false');
-                mobileMenu.setAttribute('aria-hidden', 'true');
-                mobileMenu.classList.remove('open');
+    // Mobile menu toggle functionality
+    document.addEventListener('DOMContentLoaded', function () {
+        const mobileToggle = document.querySelector('.mobile-menu-toggle');
+        const mobileMenu = document.querySelector('.mobile-menu');
+
+        if (mobileToggle && mobileMenu) {
+            mobileToggle.addEventListener('click', function () {
+                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+
+                // Toggle states
+                this.setAttribute('aria-expanded', !isExpanded);
+                mobileMenu.setAttribute('aria-hidden', isExpanded);
+                mobileMenu.classList.toggle('open');
             });
-        });
-    }
-});
+
+            // Close menu when clicking a link
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    mobileToggle.setAttribute('aria-expanded', 'false');
+                    mobileMenu.setAttribute('aria-hidden', 'true');
+                    mobileMenu.classList.remove('open');
+                });
+            });
+        }
+    });
 </script>

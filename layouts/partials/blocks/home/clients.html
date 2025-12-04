@@ -1,12 +1,10 @@
 {{- if .enable -}}
 <section id="clients" class="clients clients-section relative py-32 overflow-hidden">
     <div class="container mx-auto px-4">
-        <h1
-            class="clients-title text-2xl font-medium leading-relaxed text-center xl:max-w-1/2 mx-auto mb-16 scroll-animate">
+        <h1 class="clients-title text-2xl font-medium leading-relaxed text-center mb-16 scroll-animate">
             {{ .title }}
         </h1>
-        <div class="flex flex-col xl:flex-row items-center justify-around flex-wrap gap-8 xl:gap-12 scroll-animate-scale"
-            style="animation-delay: 0.2s;">
+        <div class="clients-logos-wrapper scroll-animate-scale" style="animation-delay: 0.2s;">
             {{- range $index, $client := .items -}}
             <div class="client-logo-wrapper">
                 <div class="shine-effect"></div>

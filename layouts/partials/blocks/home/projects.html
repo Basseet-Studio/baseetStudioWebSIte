@@ -1,9 +1,10 @@
 {{- if .enable -}}
-<section id="projects" class="projects relative py-16 xl:py-24 overflow-hidden bg-gradient-to-b from-white to-[#F8F9FA]">
+<section id="projects"
+    class="projects projects-section relative py-16 xl:py-24 overflow-hidden bg-gradient-to-b from-white to-[#F8F9FA]">
     <div class="container mx-auto px-4">
         <!-- Section Header -->
         <div class="text-center mb-16">
-            <h2 class="text-3xl xl:text-5xl font-bold text-[#252525] mb-4">
+            <h2 class="projects-title text-3xl xl:text-5xl font-bold text-[#252525] mb-4">
                 {{ .title | safeHTML }}
             </h2>
             {{- if .subtitle -}}
@@ -17,37 +18,37 @@
         <!-- Projects Grid -->
         <div class="grid md:grid-cols-2 gap-8 xl:gap-12 max-w-5xl mx-auto">
             {{- range $index, $project := .items -}}
-            <article class="project-card group relative bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2">
+            <article class="project-card-premium group relative bg-white rounded-3xl shadow-lg overflow-hidden"
+                style="--project-color: {{ $project.color }};">
                 <!-- Gradient Top Border -->
-                <div class="absolute top-0 left-0 right-0 h-1.5" style="background: {{ $project.gradient }};"></div>
-                
+                <div class="project-gradient-bar absolute top-0 left-0 right-0 h-1.5"
+                    style="background: {{ $project.gradient }};"></div>
+
                 <!-- Card Content -->
-                <div class="p-8 xl:p-10">
+                <div class="p-8 xl:p-10 relative z-10">
                     <!-- App Icon & Status -->
                     <div class="flex items-start justify-between mb-6">
-                        <div class="relative">
+                        <div class="project-icon-container relative">
                             <!-- Placeholder App Icon -->
-                            <div class="w-20 h-20 rounded-2xl flex items-center justify-center text-white text-3xl font-bold shadow-lg transform group-hover:scale-110 transition-transform duration-300"
-                                 style="background: {{ $project.gradient }};">
+                            <div class="w-20 h-20 rounded-2xl flex items-center justify-center text-white text-3xl font-bold shadow-lg transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3"
+                                style="background: {{ $project.gradient }};">
                                 {{ substr $project.name 0 1 }}
                             </div>
-                            <!-- Glow Effect -->
-                            <div class="absolute inset-0 w-20 h-20 rounded-2xl opacity-0 group-hover:opacity-50 blur-xl transition-opacity duration-300"
-                                 style="background: {{ $project.color }};"></div>
                         </div>
                         {{- if $project.status -}}
-                        <span class="px-4 py-1.5 text-sm font-semibold rounded-full"
-                              style="background: {{ $project.color }}20; color: {{ $project.color }};">
+                        <span class="project-status-badge px-4 py-1.5 text-sm font-semibold rounded-full"
+                            style="background: {{ $project.color }}20; color: {{ $project.color }};">
                             {{ $project.status }}
                         </span>
                         {{- end -}}
                     </div>
 
                     <!-- App Name & Tagline -->
-                    <h3 class="text-2xl xl:text-3xl font-bold text-[#252525] mb-2 group-hover:text-primary transition-colors">
+                    <h3 class="project-name-premium text-2xl xl:text-3xl font-bold text-[#252525] mb-2">
                         {{ $project.name }}
                     </h3>
-                    <p class="text-lg font-medium mb-4" style="color: {{ $project.color }};">
+                    <p class="text-lg font-medium mb-4 transition-colors duration-300"
+                        style="color: {{ $project.color }};">
                         {{ $project.tagline }}
                     </p>
 
@@ -61,9 +62,12 @@
                     <div class="mb-6">
                         <ul class="grid grid-cols-2 gap-2">
                             {{- range $project.features -}}
-                            <li class="flex items-center text-sm text-[#545454]">
-                                <svg class="w-4 h-4 mr-2 flex-shrink-0" style="color: {{ $project.color }};" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            <li class="project-feature-item flex items-center text-sm text-[#545454]">
+                                <svg class="w-4 h-4 mr-2 flex-shrink-0" style="color: {{ $project.color }};"
+                                    fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd" />
                                 </svg>
                                 {{ . }}
                             </li>
@@ -77,7 +81,8 @@
                         <!-- Platform Icons -->
                         <div class="flex items-center gap-4">
                             {{- range $project.platforms -}}
-                            <a href="{{ .link }}" class="flex items-center gap-2 text-[#545454] hover:text-primary transition-colors" title="Available on {{ .name }}">
+                            <a href="{{ .link }}" class="project-platform-link flex items-center gap-2 text-[#545454]"
+                                title="Available on {{ .name }}">
                                 <i class="{{ .icon }} text-xl"></i>
                                 <span class="text-sm font-medium hidden sm:inline">{{ .name }}</span>
                             </a>
@@ -85,12 +90,13 @@
                         </div>
 
                         <!-- Learn More Link -->
-                        <a href="/projects/{{ $project.slug }}/" 
-                           class="inline-flex items-center gap-2 font-semibold transition-all duration-300 group/link"
-                           style="color: {{ $project.color }};">
+                        <a href="/projects/{{ $project.slug }}/"
+                            class="project-learn-more inline-flex items-center gap-2 font-semibold"
+                            style="color: {{ $project.color }};">
                             Learn More
-                            <svg class="w-5 h-5 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3" />
                             </svg>
                         </a>
                     </div>
