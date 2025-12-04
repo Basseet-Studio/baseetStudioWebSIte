@@ -1,43 +1,36 @@
 {{ define "main" }}
 {{- $project := .Params.project -}}
 
+<!-- Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 <!-- App Bar CSS -->
 {{- $appBarCSS := resources.Get "css/app-bar.css" -}}
 {{- if $appBarCSS -}}
-  {{- if hugo.IsProduction -}}
-    {{- $appBarCSS = $appBarCSS | minify | fingerprint -}}
-  {{- end -}}
-  <link rel="stylesheet" href="{{ $appBarCSS.RelPermalink }}" />
+{{- if hugo.IsProduction -}}
+{{- $appBarCSS = $appBarCSS | minify | fingerprint -}}
+{{- end -}}
+<link rel="stylesheet" href="{{ $appBarCSS.RelPermalink }}" />
 {{- end -}}
 
 <!-- Custom Overrides CSS -->
 {{- $overridesCSS := resources.Get "css/custom-overrides.css" -}}
 {{- if $overridesCSS -}}
-  {{- if hugo.IsProduction -}}
-    {{- $overridesCSS = $overridesCSS | minify | fingerprint -}}
-  {{- end -}}
-  <link rel="stylesheet" href="{{ $overridesCSS.RelPermalink }}" />
+{{- if hugo.IsProduction -}}
+{{- $overridesCSS = $overridesCSS | minify | fingerprint -}}
+{{- end -}}
+<link rel="stylesheet" href="{{ $overridesCSS.RelPermalink }}" />
 {{- end -}}
 
 <style>
-  .project-page {
-    --project-color: {{ $project.color }};
-  }
-  .project-gradient {
-    background: {{ $project.gradient }};
-  }
-  .text-project {
-    color: {{ $project.color }};
-  }
-  .bg-project {
-    background-color: {{ $project.color }};
-  }
-  .bg-project-light {
-    background-color: {{ $project.color }}15;
-  }
-  .border-project {
-    border-color: {{ $project.color }};
-  }
+  .project-page { --project-color: {{ $project.color }}; }
+  .project-gradient { background: {{ $project.gradient | safeCSS }}; }
+  .text-project { color: {{ $project.color }}; }
+  .bg-project { background-color: {{ $project.color }}; }
+  .bg-project-light { background-color: {{ $project.color }}15; }
+  .border-project { border-color: {{ $project.color }}; }
 </style>
 
 <!-- Skip to content for keyboard users -->
@@ -52,22 +45,24 @@
     <!-- Background Gradient -->
     <div class="absolute inset-0 project-gradient opacity-10"></div>
     <div class="absolute inset-0 bg-gradient-to-b from-transparent via-white/50 to-white"></div>
-    
+
     <div class="container mx-auto px-4 relative z-10">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <!-- Left: Content -->
         <div class="text-center lg:text-left">
           <!-- Back Link -->
-          <a href="/#projects" class="inline-flex items-center gap-2 text-[#545454] hover:text-project mb-6 transition-colors">
+          <a href="/#projects"
+            class="inline-flex items-center gap-2 text-[#545454] hover:text-project mb-6 transition-colors">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
             </svg>
             Back to Projects
           </a>
-          
+
           <!-- App Icon & Name -->
           <div class="flex items-center gap-4 justify-center lg:justify-start mb-6">
-            <div class="w-20 h-20 rounded-2xl project-gradient flex items-center justify-center text-white text-3xl font-bold shadow-lg">
+            <div
+              class="w-20 h-20 rounded-2xl project-gradient flex items-center justify-center text-white text-3xl font-bold shadow-lg">
               {{ substr $project.name 0 1 }}
             </div>
             <div>
@@ -75,7 +70,7 @@
               <p class="text-xl font-medium text-project">{{ $project.tagline }}</p>
             </div>
           </div>
-          
+
           <!-- Hero Text -->
           <h2 class="text-3xl xl:text-4xl font-bold text-[#252525] mb-4">
             {{ $project.hero.title }}
@@ -83,24 +78,26 @@
           <p class="text-lg text-[#545454] mb-8 max-w-xl mx-auto lg:mx-0">
             {{ $project.hero.subtitle }}
           </p>
-          
+
           <!-- Status Badge -->
           {{- if $project.status -}}
           <span class="inline-block px-4 py-2 text-sm font-semibold rounded-full bg-project-light text-project mb-8">
             {{ $project.status }}
           </span>
           {{- end -}}
-          
+
           <!-- CTA Buttons -->
           <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
-            <a href="#early-access" class="px-8 py-3 rounded-lg bg-project text-white font-semibold hover:opacity-90 transition-all hover:scale-105 shadow-lg">
+            <a href="#early-access"
+              class="px-8 py-3 rounded-lg bg-project text-white font-semibold hover:opacity-90 transition-all hover:scale-105 shadow-lg">
               {{ $project.hero.cta_primary }}
             </a>
-            <a href="#features" class="px-8 py-3 rounded-lg border-2 border-project text-project font-semibold hover:bg-project hover:text-white transition-all">
+            <a href="#features"
+              class="px-8 py-3 rounded-lg border-2 border-project text-project font-semibold hover:bg-project hover:text-white transition-all">
               {{ $project.hero.cta_secondary }}
             </a>
           </div>
-          
+
           <!-- Platforms -->
           <div class="flex items-center gap-6 mt-8 justify-center lg:justify-start">
             {{- range $project.platforms -}}
@@ -114,13 +111,15 @@
             {{- end -}}
           </div>
         </div>
-        
+
         <!-- Right: App Preview Placeholder -->
         <div class="relative">
           <div class="relative mx-auto w-64 h-[500px] bg-gray-900 rounded-[3rem] shadow-2xl p-3">
-            <div class="w-full h-full rounded-[2.5rem] project-gradient flex items-center justify-center overflow-hidden">
+            <div
+              class="w-full h-full rounded-[2.5rem] project-gradient flex items-center justify-center overflow-hidden">
               <div class="text-center text-white p-8">
-                <div class="w-24 h-24 mx-auto mb-6 bg-white/20 rounded-2xl flex items-center justify-center text-4xl font-bold">
+                <div
+                  class="w-24 h-24 mx-auto mb-6 bg-white/20 rounded-2xl flex items-center justify-center text-4xl font-bold">
                   {{ substr $project.name 0 1 }}
                 </div>
                 <h3 class="text-2xl font-bold mb-2">{{ $project.name }}</h3>
@@ -142,13 +141,15 @@
     <div class="container mx-auto px-4">
       <div class="text-center mb-16">
         <h2 class="text-3xl xl:text-4xl font-bold text-[#252525] mb-4">Powerful Features</h2>
-        <p class="text-lg text-[#545454] max-w-2xl mx-auto">Everything you need to {{ if eq $project.name "Money Box" }}manage your finances{{ else }}build lasting habits{{ end }}</p>
+        <p class="text-lg text-[#545454] max-w-2xl mx-auto">Everything you need to {{ if eq $project.name "Money Box"
+          }}manage your finances{{ else }}build lasting habits{{ end }}</p>
       </div>
-      
+
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
         {{- range $project.features -}}
         <div class="group p-8 rounded-2xl bg-[#F8F9FA] hover:bg-white hover:shadow-xl transition-all duration-300">
-          <div class="w-14 h-14 rounded-xl bg-project-light flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+          <div
+            class="w-14 h-14 rounded-xl bg-project-light flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
             <i class="{{ .icon }} text-2xl text-project"></i>
           </div>
           <h3 class="text-xl font-bold text-[#252525] mb-3">{{ .title }}</h3>
@@ -175,14 +176,16 @@
       <div class="text-center mb-16">
         <h2 class="text-3xl xl:text-4xl font-bold text-[#252525] mb-4">Frequently Asked Questions</h2>
       </div>
-      
+
       <div class="max-w-3xl mx-auto space-y-6">
         {{- range $project.faq -}}
         <details class="group bg-[#F8F9FA] rounded-xl overflow-hidden">
-          <summary class="flex items-center justify-between p-6 cursor-pointer font-semibold text-[#252525] hover:text-project transition-colors">
+          <summary
+            class="flex items-center justify-between p-6 cursor-pointer font-semibold text-[#252525] hover:text-project transition-colors">
             {{ .question }}
-            <svg class="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            <svg class="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor"
+              viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </summary>
           <div class="px-6 pb-6 text-[#545454]">
@@ -202,15 +205,16 @@
       <p class="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
         Be among the first to experience {{ $project.name }}. Sign up now and we'll notify you as soon as we launch.
       </p>
-      
+
       <form class="max-w-md mx-auto flex flex-col sm:flex-row gap-4">
-        <input type="email" placeholder="Enter your email" 
-               class="flex-1 px-6 py-3 rounded-lg text-[#252525] focus:outline-none focus:ring-2 focus:ring-white">
-        <button type="submit" class="px-8 py-3 bg-white text-project font-semibold rounded-lg hover:bg-opacity-90 transition-all hover:scale-105">
+        <input type="email" placeholder="Enter your email"
+          class="flex-1 px-6 py-3 rounded-lg text-[#252525] focus:outline-none focus:ring-2 focus:ring-white">
+        <button type="submit"
+          class="px-8 py-3 bg-white text-project font-semibold rounded-lg hover:bg-opacity-90 transition-all hover:scale-105">
           Notify Me
         </button>
       </form>
-      
+
       <p class="text-white/60 text-sm mt-4">No spam. We'll only email you about {{ $project.name }} updates.</p>
     </div>
   </section>
@@ -235,12 +239,12 @@
 <!-- Scripts -->
 {{- $performance := resources.Get "js/performance.js" -}}
 {{- if $performance -}}
-  <script src="{{ $performance.Permalink }}" defer></script>
+<script src="{{ $performance.Permalink }}" defer></script>
 {{- end -}}
 
 {{- $animations := resources.Get "js/animations.js" -}}
 {{- if $animations -}}
-  <script src="{{ $animations.Permalink }}" defer></script>
+<script src="{{ $animations.Permalink }}" defer></script>
 {{- end -}}
 
 {{ end }}
