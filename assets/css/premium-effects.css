@@ -1,0 +1,456 @@
+/* ============================================
+   Premium Elite Hover Effects
+   Professional $500/hr Quality Animations
+   ============================================ */
+
+/* ============================================
+   Team Card Premium Effects
+   ============================================ */
+
+.team-card-premium {
+  position: relative;
+  background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 1.5rem;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+/* Glassmorphism border effect */
+.team-card-premium::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 1.5rem;
+  padding: 2px;
+  background: linear-gradient(
+    135deg,
+    rgba(73, 107, 193, 0.3) 0%,
+    rgba(251, 205, 55, 0.3) 50%,
+    rgba(73, 107, 193, 0.3) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.team-card-premium:hover::before {
+  opacity: 1;
+}
+
+/* Premium shadow on hover */
+.team-card-premium:hover {
+  transform: translateY(-12px) rotateX(2deg);
+  box-shadow:
+    0 25px 50px -12px rgba(73, 107, 193, 0.25),
+    0 12px 24px -8px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(73, 107, 193, 0.1);
+}
+
+/* Image container with shine effect */
+.team-image-container {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1;
+}
+
+/* Animated gradient shine sweep */
+.team-image-container::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 60%,
+    transparent 100%
+  );
+  transform: rotate(25deg) translateX(-100%);
+  transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  pointer-events: none;
+}
+
+.team-card-premium:hover .team-image-container::after {
+  transform: rotate(25deg) translateX(100%);
+}
+
+/* Premium image zoom with smooth easing */
+.team-image-zoom {
+  transition:
+    transform 0.8s cubic-bezier(0.23, 1, 0.32, 1),
+    filter 0.5s ease;
+}
+
+.team-card-premium:hover .team-image-zoom {
+  transform: scale(1.12);
+  filter: brightness(1.05) contrast(1.02);
+}
+
+/* Bio overlay with blur backdrop */
+.team-bio-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.6) 40%,
+    rgba(0, 0, 0, 0.2) 70%,
+    transparent 100%
+  );
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: flex-end;
+  padding: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.team-card-premium:hover .team-bio-overlay {
+  opacity: 1;
+}
+
+.team-bio-text {
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.6;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) 0.1s;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.team-card-premium:hover .team-bio-text {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Info section with animated underline */
+.team-info-section {
+  padding: 1.5rem;
+  position: relative;
+}
+
+.team-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #252525;
+  margin-bottom: 0.25rem;
+  position: relative;
+  display: inline-block;
+}
+
+.team-name::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #496bc1, #fbcd37);
+  transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.team-card-premium:hover .team-name::after {
+  width: 100%;
+}
+
+.team-role {
+  color: #496bc1;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+/* Premium social buttons */
+.social-btn-premium {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #f0f0f0, #ffffff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.social-btn-premium::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #496bc1, #fbcd37);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 50%;
+}
+
+.social-btn-premium:hover {
+  transform: translateY(-4px) scale(1.15) rotate(-8deg);
+  box-shadow: 0 8px 20px rgba(73, 107, 193, 0.35);
+}
+
+.social-btn-premium:hover::before {
+  opacity: 1;
+}
+
+.social-btn-premium i {
+  position: relative;
+  z-index: 1;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.social-btn-premium:hover i {
+  color: white;
+  transform: scale(1.1);
+}
+
+/* ============================================
+   Feature Image Premium Effects
+   ============================================ */
+
+.feature-image-wrapper {
+  position: relative;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+/* Multi-layer glow effect */
+.feature-glow-layer {
+  position: absolute;
+  inset: -20px;
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    rgba(73, 107, 193, 0.4) 0deg,
+    rgba(251, 205, 55, 0.4) 120deg,
+    rgba(73, 107, 193, 0.4) 240deg,
+    rgba(73, 107, 193, 0.4) 360deg
+  );
+  border-radius: 2rem;
+  filter: blur(30px);
+  opacity: 0;
+  transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+  animation: glow-rotate 8s linear infinite paused;
+}
+
+.feature-image-wrapper:hover .feature-glow-layer {
+  opacity: 0.7;
+  animation-play-state: running;
+}
+
+@keyframes glow-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Image container with premium effects */
+.feature-image-container {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: linear-gradient(145deg, #f8f9fa, #ffffff);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.1),
+    0 8px 16px rgba(0, 0, 0, 0.06);
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.feature-image-wrapper:hover .feature-image-container {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow:
+    0 30px 60px rgba(73, 107, 193, 0.2),
+    0 15px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Premium image with parallax-like effect */
+.feature-image-premium {
+  width: 100%;
+  height: auto;
+  transition:
+    transform 0.8s cubic-bezier(0.23, 1, 0.32, 1),
+    filter 0.5s ease;
+}
+
+.feature-image-wrapper:hover .feature-image-premium {
+  transform: scale(1.08);
+  filter: brightness(1.03) saturate(1.1);
+}
+
+/* Gradient overlay with animated reveal */
+.feature-overlay-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(73, 107, 193, 0.15) 0%, transparent 50%, rgba(251, 205, 55, 0.15) 100%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.feature-image-wrapper:hover .feature-overlay-gradient {
+  opacity: 1;
+}
+
+/* Floating particles effect */
+.feature-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.feature-particles::before,
+.feature-particles::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: rgba(251, 205, 55, 0.8);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.feature-particles::before {
+  top: 20%;
+  left: 15%;
+  animation: float-particle 3s ease-in-out infinite;
+}
+
+.feature-particles::after {
+  bottom: 30%;
+  right: 20%;
+  background: rgba(73, 107, 193, 0.8);
+  animation: float-particle 3s ease-in-out infinite 1.5s;
+}
+
+.feature-image-wrapper:hover .feature-particles::before,
+.feature-image-wrapper:hover .feature-particles::after {
+  opacity: 1;
+}
+
+@keyframes float-particle {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-15px) scale(1.2);
+  }
+}
+
+/* Corner accent decorations */
+.feature-corner-accent {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border: 3px solid transparent;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  opacity: 0;
+}
+
+.feature-corner-accent.top-left {
+  top: -10px;
+  left: -10px;
+  border-top-color: #496bc1;
+  border-left-color: #496bc1;
+  border-radius: 12px 0 0 0;
+}
+
+.feature-corner-accent.bottom-right {
+  bottom: -10px;
+  right: -10px;
+  border-bottom-color: #fbcd37;
+  border-right-color: #fbcd37;
+  border-radius: 0 0 12px 0;
+}
+
+.feature-image-wrapper:hover .feature-corner-accent {
+  opacity: 1;
+}
+
+.feature-image-wrapper:hover .feature-corner-accent.top-left {
+  transform: translate(-5px, -5px);
+}
+
+.feature-image-wrapper:hover .feature-corner-accent.bottom-right {
+  transform: translate(5px, 5px);
+}
+
+/* ============================================
+   Magnetic Button Effect Enhancement
+   ============================================ */
+
+.magnetic-button-premium {
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.magnetic-button-premium:hover {
+  transform: scale(1.1);
+}
+
+/* ============================================
+   Scroll Reveal Enhancements
+   ============================================ */
+
+.reveal-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.reveal-up.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   Loading shimmer for images
+   ============================================ */
+
+.shimmer-loading {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(145deg, #f0f0f0, #e0e0e0);
+}
+
+.shimmer-loading::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.5) 50%, transparent 100%);
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}

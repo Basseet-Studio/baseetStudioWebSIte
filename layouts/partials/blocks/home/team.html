@@ -18,10 +18,11 @@
         <!-- Team Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 justify-items-center max-w-5xl mx-auto">
             {{- range $index, $member := .members -}}
-            <div class="group team-card hover-3d bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 transform hover:-translate-y-3 scroll-animate-scale"
+            <div class="group team-card-premium w-full max-w-sm scroll-animate-scale"
                 style="animation-delay: {{ mul $index 0.15 }}s;">
                 <!-- Image Container -->
-                <div class="relative overflow-hidden bg-gradient-to-br from-primary/10 to-tertiary/10 aspect-square">
+                <div
+                    class="team-image-container relative overflow-hidden bg-gradient-to-br from-primary/10 to-tertiary/10 aspect-square">
                     {{ $imgVal := $member.image }}
                     {{ $zoomClass := cond (eq $member.name "Ariyan Rehman") " scale-200 group-hover:scale-220" "" }}
                     {{ $positionClass := cond (eq $member.name "Ariyan Rehman") " object-right" " object-center" }}
@@ -29,7 +30,7 @@
                     assets/images/home/team/ */ -}}
                     {{ if or (hasPrefix $imgVal "http") (hasPrefix $imgVal "/") }}
                     <img src="{{ $imgVal | relURL }}" alt="{{ $member.name }}"
-                        class="w-full h-full object-cover {{ $positionClass }} transition-transform duration-700 group-hover:scale-110{{ $zoomClass }}"
+                        class="team-image-zoom w-full h-full object-cover {{ $positionClass }}{{ $zoomClass }}"
                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect width=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2280%22 fill=%22white%22%3E{{ substr $member.name 0 1 }}%3C/text%3E%3C/svg%3E'">
                     {{ else }}
                     {{ $imgPath := printf "images/home/team/%s" $imgVal }}
@@ -39,7 +40,7 @@
                     {{ if or (eq $imgRes.MediaType.SubType "svg+xml") (eq $imgRes.MediaType.SubType "svg") }}
                     <img src="{{ $imgRes.Permalink }}" alt="{{ $member.name }}" loading="lazy" decoding="async"
                         width="400" height="400"
-                        class="w-full h-full object-contain {{ $positionClass }} transition-transform duration-700 group-hover:scale-110{{ $zoomClass }}"
+                        class="team-image-zoom w-full h-full object-contain {{ $positionClass }}{{ $zoomClass }}"
                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect width=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2280%22 fill=%22white%22%3E{{ substr $member.name 0 1 }}%3C/text%3E%3C/svg%3E'">
                     {{ else }}
                     {{ $sizes := slice 320 480 768 1024 }}
@@ -55,56 +56,48 @@
                     <img src="{{ $largest.RelPermalink }}" srcset="{{ delimit $srcset " , " }}"
                         sizes="(max-width: 640px) 320px, (max-width: 1024px) 768px, 1024px" alt="{{ $member.name }}"
                         loading="lazy" decoding="async" width="400" height="400"
-                        class="w-full h-full object-cover {{ $positionClass }} transition-transform duration-700 group-hover:scale-110{{ $zoomClass }}"
+                        class="team-image-zoom w-full h-full object-cover {{ $positionClass }}{{ $zoomClass }}"
                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect width=%22400%22 height=%22400%22 fill=%22%23496BC1%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2280%22 fill=%22white%22%3E{{ substr $member.name 0 1 }}%3C/text%3E%3C/svg%3E'">
                     {{ else }}
                     <img src="{{ $imgRes.RelPermalink }}" alt="{{ $member.name }}" loading="lazy" decoding="async"
                         width="400" height="400"
-                        class="w-full h-full object-cover {{ $positionClass }} transition-transform duration-700 group-hover:scale-110{{ $zoomClass }}"
+                        class="team-image-zoom w-full h-full object-cover {{ $positionClass }}{{ $zoomClass }}"
                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect width=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2280%22 fill=%22white%22%3E{{ substr $member.name 0 1 }}%3C/text%3E%3C/svg%3E'">
                     {{ end }}
                     {{ end }}
                     {{ else }}
                     <img src="{{ $imgVal | relURL }}" alt="{{ $member.name }}"
-                        class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
+                        class="team-image-zoom w-full h-full object-cover object-center"
                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect width=%22400%22 height=%22400%22 fill=%22%23496BC1%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2280%22 fill=%22white%22%3E{{ substr $member.name 0 1 }}%3C/text%3E%3C/svg%3E'">
                     {{ end }}
                     {{ end }}
-                    <!-- Overlay on hover -->
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end p-6">
-                        <p
-                            class="text-white text-sm font-medium leading-relaxed transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 drop-shadow-lg">
+                    <!-- Premium Bio Overlay -->
+                    <div class="team-bio-overlay">
+                        <p class="team-bio-text">
                             {{ $member.bio }}
                         </p>
                     </div>
                 </div>
 
                 <!-- Info Container -->
-                <div class="p-6">
-                    <h3 class="text-xl font-bold text-stroke mb-1">{{ $member.name }}</h3>
-                    <p class="text-primary font-medium mb-4">{{ $member.role }}</p>
+                <div class="team-info-section">
+                    <h3 class="team-name">{{ $member.name }}</h3>
+                    <p class="team-role">{{ $member.role }}</p>
 
                     <!-- Social Links -->
                     <div class="flex gap-3">
                         {{- if $member.social.github -}}
-                        <a href="{{ $member.social.github }}"
-                            class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-all duration-400 hover:scale-125 hover:-rotate-12 magnetic-button"
-                            aria-label="GitHub">
+                        <a href="{{ $member.social.github }}" class="social-btn-premium" aria-label="GitHub">
                             <i class="fab fa-github"></i>
                         </a>
                         {{- end -}}
                         {{- if $member.social.linkedin -}}
-                        <a href="{{ $member.social.linkedin }}"
-                            class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-all duration-400 hover:scale-125 hover:-rotate-12 magnetic-button"
-                            aria-label="LinkedIn">
+                        <a href="{{ $member.social.linkedin }}" class="social-btn-premium" aria-label="LinkedIn">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
                         {{- end -}}
                         {{- if $member.social.twitter -}}
-                        <a href="{{ $member.social.twitter }}"
-                            class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-all duration-400 hover:scale-125 hover:-rotate-12 magnetic-button"
-                            aria-label="Twitter">
+                        <a href="{{ $member.social.twitter }}" class="social-btn-premium" aria-label="Twitter">
                             <i class="fab fa-twitter"></i>
                         </a>
                         {{- end -}}
