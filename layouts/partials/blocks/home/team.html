@@ -16,7 +16,7 @@
         </div>
 
         <!-- Team Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 justify-items-center max-w-5xl mx-auto">
             {{- range $index, $member := .members -}}
             <div class="group team-card hover-3d bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 transform hover:-translate-y-3 scroll-animate-scale"
                 style="animation-delay: {{ mul $index 0.15 }}s;">
