@@ -40,7 +40,7 @@
   {{ with site.Data.home.projects }}{{ if .enable }}{{ partial "blocks/home/projects" . }}{{ end }}{{ end }}
   {{ with site.Data.home.team }}{{ if .enable }}{{ partial "blocks/home/team" . }}{{ end }}{{ end }}
   {{ with site.Data.home.highlights }}{{ if .enable }}{{ partial "blocks/home/highlights" . }}{{ end }}{{ end }}
-  {{ with site.Data.home.clients }}{{ if .enable }}{{ partial "blocks/home/clients" . }}{{ end }}{{ end }}
+  {{/* {{ with site.Data.home.clients }}{{ if .enable }}{{ partial "blocks/home/clients" . }}{{ end }}{{ end }} */}}
 
   <!-- Scripts -->
   {{- $performance := resources.Get "js/performance.js" -}}
