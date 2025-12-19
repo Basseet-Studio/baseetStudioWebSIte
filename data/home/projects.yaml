@@ -126,3 +126,23 @@ items:
     color: '#F59E0B'
     gradient: 'linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%)'
     status: 'Completed'
+
+  - name: 'DeshiKitchen'
+    slug: 'deshikitchen'
+    tagline: 'Authentic Bangladeshi Cuisine Platform'
+    description: 'A modern, full-stack restaurant ordering platform with stunning 3D hero, real-time order management, social proof elements, Stripe payments, and comprehensive admin dashboard.'
+    iconClass: 'fas fa-utensils'
+    platforms:
+      - name: 'Web'
+        icon: 'fas fa-globe'
+        link: '#'
+    features:
+      - '3D hero with React Three Fiber'
+      - 'Real-time order tracking'
+      - 'Live social proof notifications'
+      - 'Stripe payments (Apple/Google Pay)'
+      - 'Comprehensive admin dashboard'
+      - 'Firebase Auth + Firestore'
+    color: '#F97316'
+    gradient: 'linear-gradient(135deg, #F97316 0%, #FB923C 100%)'
+    status: 'Live'

@@ -8,6 +8,7 @@ layout: 'single'
 # Project Details
 project:
   name: 'Money Box'
+  slug: 'money-box'
   tagline: 'Smart Savings Made Simple'
   icon: '/images/projects/money-box-icon.png'
   color: '#34C759'
@@ -56,11 +57,15 @@ project:
       description: 'Your financial data stays on your device. We use industry-standard encryption to keep your information safe and private.'
       icon: 'fas fa-shield-alt'
   
-  # Screenshots (placeholders)
+  # Screenshots
+  gallery_type: 'mobile'  # mobile = vertical aspect ratio, web = horizontal
   screenshots:
-    - '/images/projects/money-box/screenshot-1.png'
-    - '/images/projects/money-box/screenshot-2.png'
-    - '/images/projects/money-box/screenshot-3.png'
+    - '1.jpeg'
+    - '2.jpeg'
+    - '3.jpeg'
+    - '4.jpeg'
+    - '5.jpeg'
+    - '6.jpeg'
   
   # Testimonials (placeholder)
   testimonials:

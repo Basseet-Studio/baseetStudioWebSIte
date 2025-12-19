@@ -8,6 +8,7 @@ layout: 'single'
 # Project Details
 project:
   name: 'PhotoRestore AI'
+  slug: 'photorestore-ai'
   tagline: 'Restore Old Photos with AI'
   icon: '/images/projects/photorestore-ai-icon.png'
   iconClass: 'fas fa-wand-magic-sparkles'
@@ -62,11 +63,15 @@ project:
     - 'SSLCommerz'
     - 'Cloud Processing'
 
-  # Screenshots (placeholders)
+  # Screenshots
+  gallery_type: 'mobile'  # mobile = vertical aspect ratio, web = horizontal
   screenshots:
-    - '/images/projects/photorestore-ai/screenshot-1.png'
-    - '/images/projects/photorestore-ai/screenshot-2.png'
-    - '/images/projects/photorestore-ai/screenshot-3.png'
+    - '1.png'
+    - '2.png'
+    - '3.png'
+    - '4.png'
+    - '5.png'
+    - '6.png'
 
   # Testimonials
   testimonials:

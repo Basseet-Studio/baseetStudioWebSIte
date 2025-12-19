@@ -2046,3 +2046,71 @@
     gap: 3rem;
   }
 }
+
+/* ============================================
+   Gallery Carousel - Screenshot Section
+   ============================================ */
+
+.gallery-carousel-wrapper {
+  position: relative;
+  padding: 0 60px;
+}
+
+@media (max-width: 768px) {
+  .gallery-carousel-wrapper {
+    padding: 0 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-carousel-wrapper {
+    padding: 0 40px;
+  }
+}
+
+.gallery-carousel-viewport {
+  overflow: hidden;
+  border-radius: 1rem;
+}
+
+.gallery-carousel-track {
+  display: flex;
+  will-change: transform;
+}
+
+.gallery-carousel-slide {
+  flex-shrink: 0;
+  padding: 0.5rem;
+}
+
+/* Gallery item hover effects */
+.gallery-item {
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.gallery-item:hover {
+  z-index: 10;
+}
+
+/* Gallery dots container */
+.gallery-carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+/* Reposition arrows for gallery */
+.gallery-carousel-wrapper .carousel-arrow-left {
+  left: 0;
+}
+
+.gallery-carousel-wrapper .carousel-arrow-right {
+  right: 0;
+}
+
+/* Gallery progress fill */
+.gallery-progress-fill {
+  transition: width 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}

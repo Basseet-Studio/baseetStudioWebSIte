@@ -1,0 +1,2 @@
+# Ignore Hugo layout files to prevent breaking template syntax
+layouts/

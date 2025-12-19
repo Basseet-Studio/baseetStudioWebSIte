@@ -8,6 +8,7 @@ layout: 'single'
 # Project Details
 project:
   name: 'Numu'
+  slug: 'numu'
   tagline: 'Build Better Habits'
   icon: '/images/projects/numu-icon.png'
   color: '#AF52DE'
@@ -56,11 +57,15 @@ project:
       description: 'Choose from a variety of beautiful themes to make Numu feel like yours. Dark mode included for late-night check-ins.'
       icon: 'fas fa-palette'
   
-  # Screenshots (placeholders)
+  # Screenshots
+  gallery_type: 'mobile'  # mobile = vertical aspect ratio, web = horizontal
   screenshots:
-    - '/images/projects/numu/screenshot-1.png'
-    - '/images/projects/numu/screenshot-2.png'
-    - '/images/projects/numu/screenshot-3.png'
+    - '1.png'
+    - '2.png'
+    - '3.png'
+    - '4.png'
+    - '5.png'
+    - '6.png'
   
   # Testimonials (placeholder)
   testimonials:
