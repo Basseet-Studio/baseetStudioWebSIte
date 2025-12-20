@@ -202,34 +202,100 @@ setTimeout(initSectionReveal, 100);
 
 // Enhanced smooth scroll for anchor links
 document.addEventListener('DOMContentLoaded', function() {
-  // Smooth scroll for all anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  // Smooth scroll for all anchor links (handles both #anchor and /#anchor formats)
+  document.querySelectorAll('a[href*="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       const href = this.getAttribute('href');
       
-      // Skip if it's just "#" or empty
+      // Skip if it's just "#" or empty or invalid
       if (!href || href === '#' || href === '#ZgotmplZ') {
         e.preventDefault();
         return;
       }
       
-      const targetId = href.substring(1);
+      // Extract the hash part (works for both "#section" and "/#section" formats)
+      let targetId;
+      if (href.startsWith('/#')) {
+        // Format: /#section - check if we're on homepage
+        const currentPath = window.location.pathname.replace(/\/$/, '');
+        const basePath = document.querySelector('base')?.href || '';
+        const isHomepage = currentPath === '' || currentPath === '/' || 
+                          currentPath.endsWith('/baseetStudioWebSIte') ||
+                          currentPath === basePath.replace(/\/$/, '');
+        
+        if (!isHomepage) {
+          // Not on homepage, let the link navigate normally
+          return;
+        }
+        targetId = href.substring(2);
+      } else if (href.startsWith('#')) {
+        targetId = href.substring(1);
+      } else {
+        // Not a hash link on this page
+        return;
+      }
+      
       const targetElement = document.getElementById(targetId);
       
       if (targetElement) {
         e.preventDefault();
         
-        // Smooth scroll to target
-        targetElement.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
+        // Get header height for offset
+        const header = document.querySelector('.app-bar');
+        const headerHeight = header ? header.offsetHeight : 0;
+        const offset = headerHeight + 20; // Extra padding
+        
+        // Calculate target position
+        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - offset;
+        
+        // Smooth scroll with custom easing
+        smoothScrollTo(targetPosition, 800);
         
         // Update URL without page jump
         if (history.pushState) {
-          history.pushState(null, null, href);
+          history.pushState(null, null, '#' + targetId);
         }
       }
     });
   });
+  
+  // Custom smooth scroll function with easing
+  function smoothScrollTo(targetPosition, duration) {
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    let startTime = null;
+    
+    function animation(currentTime) {
+      if (startTime === null) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const progress = Math.min(timeElapsed / duration, 1);
+      
+      // Ease-out-cubic easing function
+      const ease = 1 - Math.pow(1 - progress, 3);
+      
+      window.scrollTo(0, startPosition + distance * ease);
+      
+      if (timeElapsed < duration) {
+        requestAnimationFrame(animation);
+      }
+    }
+    
+    requestAnimationFrame(animation);
+  }
+  
+  // Handle hash in URL on page load (smooth scroll to section)
+  if (window.location.hash) {
+    setTimeout(() => {
+      const targetId = window.location.hash.substring(1);
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        const header = document.querySelector('.app-bar');
+        const headerHeight = header ? header.offsetHeight : 0;
+        const offset = headerHeight + 20;
+        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - offset;
+        smoothScrollTo(targetPosition, 800);
+      }
+    }, 100);
+  }
 });
+

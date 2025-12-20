@@ -1,3 +1,8 @@
+/* Native smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
 /* Custom overrides to fix theme conflicts */
 
 /* Hide the theme's default navigation - we use custom app-bar instead */
