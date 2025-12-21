@@ -1,4 +1,65 @@
 /* ============================================
+   Unified Scroll Animation System
+   Consistent animations across all components
+   ============================================ */
+
+/* Animation variables for consistency */
+:root {
+  --anim-duration: 0.7s;
+  --anim-easing: cubic-bezier(0.23, 1, 0.32, 1);
+  --anim-stagger: 0.1s;
+}
+
+/* Base scroll reveal states - elements hidden initially */
+.scroll-animate,
+.scroll-animate-left,
+.scroll-animate-right,
+.scroll-animate-scale {
+  opacity: 0;
+  transition: 
+    opacity var(--anim-duration) var(--anim-easing),
+    transform var(--anim-duration) var(--anim-easing);
+  transition-delay: var(--anim-delay, 0s);
+}
+
+.scroll-animate {
+  transform: translateY(30px);
+}
+
+.scroll-animate-left {
+  transform: translateX(-50px);
+}
+
+.scroll-animate-right {
+  transform: translateX(50px);
+}
+
+.scroll-animate-scale {
+  transform: scale(0.95) translateY(20px);
+}
+
+/* Revealed state - triggered by IntersectionObserver in animations.js */
+.scroll-animate.visible,
+.scroll-animate-left.visible,
+.scroll-animate-right.visible,
+.scroll-animate-scale.visible {
+  opacity: 1;
+  transform: translate(0) scale(1);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-animate,
+  .scroll-animate-left,
+  .scroll-animate-right,
+  .scroll-animate-scale {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ============================================
    Premium Elite Hover Effects
    Professional $500/hr Quality Animations
    ============================================ */
@@ -1861,6 +1922,7 @@
 .line-clamp-3 {
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }

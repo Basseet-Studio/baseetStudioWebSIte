@@ -851,9 +851,14 @@ html.dark .bg-gradient-to-br.from-tertiary.to-tertiary\/80 {
   color: #ffffff !important;
 }
 
-/* Ensure icons in tertiary backgrounds stay white */
+/* Ensure icons in tertiary backgrounds stay white in dark mode */
 html.dark .from-tertiary.to-tertiary\/80 i,
 html.dark .bg-gradient-to-br.from-tertiary.to-tertiary\/80 i {
+  color: #ffffff !important;
+}
+
+/* Override dark text for tertiary backgrounds in dark mode */
+html.dark .bg-gradient-to-br.from-tertiary.to-tertiary\/80.text-\[\#252525\] {
   color: #ffffff !important;
 }
 

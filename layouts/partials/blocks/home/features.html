@@ -18,7 +18,7 @@
     <div class="flex flex-col relative gap-20">
         {{- range $index, $item := .items -}}
         <div class="container mx-auto px-4 {{ if (mod $index 2) }}scroll-animate-left{{ else }}scroll-animate-right{{ end }}"
-            style="animation-delay: {{ mul $index 0.2 }}s;">
+            style="--anim-delay: {{ mul $index 0.15 }}s;">
             <div class="grid xl:grid-cols-12 gap-8 xl:gap-12 items-center">
 
                 <!-- Text Content - Always First on Mobile -->

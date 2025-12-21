@@ -19,11 +19,41 @@ The website uses a carefully curated color scheme:
 ## Features
 
 - ✅ **Single-Page Design**: Smooth navigation with anchor links
+- ✅ **Dark Mode Support**: System-preference aware dark mode with manual toggle
 - ✅ **Performance Optimized**: Minified assets, optimized images, fast load times
 - ✅ **Responsive**: Mobile-first design that works on all devices
 - ✅ **SEO Ready**: Robots.txt, canonical URLs, proper meta tags
 - ✅ **Modern Stack**: Hugo, Tailwind CSS 4.x, PostCSS
+- ✅ **Project Gallery**: Interactive screenshot carousel with lightbox preview
 - ✅ **Clean Code**: Well-structured, maintainable codebase
+
+## Recent Updates (December 2025)
+
+### 🌙 Dark Mode Implementation
+- Added system-preference aware dark mode that respects user OS settings
+- Manual toggle button in the header for user control
+- Dark mode persists across page visits via localStorage
+- Smooth transitions between light and dark themes
+- **Files**: `assets/css/dark-mode.css`, `layouts/partials/header.html`
+
+### 🎨 About Page Fixes
+- Fixed visibility issues with elements on tertiary (yellow) gradient backgrounds
+- Quality card gem icon now visible in both light and dark modes
+- Design step numbers properly contrast on yellow backgrounds
+- **File**: `layouts/_default/about.html`
+
+### 🖼️ Project Gallery Improvements
+- Fixed invisible gallery thumbnails on project pages (Numu, Money Box, etc.)
+- Removed problematic `scroll-animate` class that caused opacity:0 issues
+- Gallery images now immediately visible without requiring scroll animation trigger
+- **File**: `layouts/partials/project-gallery.html`
+
+### 📱 Project Pages Enhanced
+- Added project screenshots and app previews for portfolio items
+- Interactive lightbox for full-size image viewing
+- Responsive carousel supporting both mobile and web gallery types
+- **Files**: `layouts/partials/project-gallery.html`, `data/projects/*.yaml`
+
 
 ## Tech Stack
 

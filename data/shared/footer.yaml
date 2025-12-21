@@ -9,18 +9,19 @@ contact:
     - label: '+1 (555) 123-4567'
       link: 'tel:+15551234567'
 
+# TODO: Update social media links with actual URLs before launch
 social:
   - title: 'Facebook'
     icon: 'fa-brands fa-facebook'
-    link: '#'
+    link: '#' # Replace with actual Facebook URL
   - title: 'Twitter'
     icon: 'fa-brands fa-twitter'
-    link: '#'
+    link: '#' # Replace with actual Twitter URL
   - title: 'Instagram'
     icon: 'fa-brands fa-instagram'
-    link: '#'
+    link: '#' # Replace with actual Instagram URL
   - title: 'LinkedIn'
     icon: 'fa-brands fa-linkedin'
-    link: '#'
+    link: '#' # Replace with actual LinkedIn URL
 
 copyright: 'Copyright © 2025 Baseet Studio. All Rights Reserved'

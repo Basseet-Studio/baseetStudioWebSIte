@@ -17,7 +17,9 @@
   }
 
   function initFormHandler() {
-    const form = document.getElementById('contact-form')
+    // Only handle subscribe forms, not the main contact form
+    // The contact form (id="contact-form") submits directly to Formspree
+    const form = document.getElementById('subscribe-form')
     if (!form) return
 
     form.addEventListener('submit', handleFormSubmit)
