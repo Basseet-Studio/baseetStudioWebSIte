@@ -31,6 +31,15 @@
 <link rel="stylesheet" href="{{ $overridesCSS.RelPermalink }}" />
 {{- end -}}
 
+<!-- Liquid Glass Effects CSS -->
+{{- $glassCSS := resources.Get "css/liquid-glass.css" -}}
+{{- if $glassCSS -}}
+{{- if hugo.IsProduction -}}
+{{- $glassCSS = $glassCSS | minify | fingerprint -}}
+{{- end -}}
+<link rel="stylesheet" href="{{ $glassCSS.RelPermalink }}" />
+{{- end -}}
+
 <!-- App Bar Header -->
 {{ partial "header.html" . }}
 
@@ -43,9 +52,6 @@
 
   {{ with site.Data.home.projects }}{{ if .enable }}{{ partial "blocks/home/projects" . }}{{ end }}{{ end }}
 
-  {{/* Tech Stack Section - after Projects */}}
-  {{ partial "blocks/home/techstack" . }}
-
   {{ with site.Data.home.team }}{{ if .enable }}{{ partial "blocks/home/team" . }}{{ end }}{{ end }}
 
   {{/* Testimonials Section - after Team */}}
@@ -53,10 +59,7 @@
 
   {{ with site.Data.home.highlights }}{{ if .enable }}{{ partial "blocks/home/highlights" . }}{{ end }}{{ end }}
 
-  {{/* FAQ Section */}}
-  {{ partial "blocks/home/faq" . }}
-
-  {{/* Contact Form Section - before Subscribe */}}
+  {{/* Contact Form Section */}}
   {{ partial "blocks/home/contact-form" . }}
 
   <!-- Scripts -->

@@ -1,6 +1,9 @@
-/* Dark Mode Theme Variables */
+/* ============================================
+   Dark Mode Theme - World Class Standards
+   Premium dark theme for Baseet Studio
+   ============================================ */
 
-/* Apply dark mode when .dark class is on html element */
+/* --- Core Dark Mode Setup --- */
 html.dark {
   color-scheme: dark;
 }
@@ -10,10 +13,15 @@ html.dark body {
   color: #e2e8f0;
 }
 
-/* App Bar Dark Mode */
+/* ============================================
+   Navigation / App Bar
+   ============================================ */
 html.dark .app-bar {
-  background-color: #1e293b;
+  background-color: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 html.dark .app-bar:hover {
@@ -21,7 +29,7 @@ html.dark .app-bar:hover {
 }
 
 html.dark .logo-text {
-  color: #818cf8;
+  color: #a5b4fc;
 }
 
 html.dark .nav-links a {
@@ -29,12 +37,14 @@ html.dark .nav-links a {
 }
 
 html.dark .nav-links a:hover {
-  color: #818cf8;
+  color: #a5b4fc;
 }
 
 /* Mobile Menu Dark Mode */
 html.dark .mobile-menu {
-  background: rgba(30, 41, 59, 0.98);
+  background: rgba(15, 23, 42, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 html.dark .mobile-nav-links a {
@@ -42,7 +52,7 @@ html.dark .mobile-nav-links a {
 }
 
 html.dark .mobile-nav-links a:hover {
-  color: #818cf8;
+  color: #a5b4fc;
   background-color: rgba(129, 140, 248, 0.1);
 }
 
@@ -50,9 +60,13 @@ html.dark .hamburger-icon span {
   background-color: #e2e8f0;
 }
 
-/* Text Colors */
+/* ============================================
+   Typography - Global Text Colors
+   ============================================ */
 html.dark .text-\[#252525\],
-html.dark .text-\[\#252525\] {
+html.dark .text-\[\#252525\],
+html.dark .text-\[#171D1C\],
+html.dark .text-\[\#171D1C\] {
   color: #f1f5f9 !important;
 }
 
@@ -61,9 +75,36 @@ html.dark .text-\[\#545454\] {
   color: #94a3b8 !important;
 }
 
-/* Background Colors */
+html.dark .text-\[#868686\],
+html.dark .text-\[\#868686\] {
+  color: #64748b !important;
+}
+
+html.dark .text-gray-600 {
+  color: #94a3b8 !important;
+}
+
+html.dark .text-gray-700 {
+  color: #cbd5e1 !important;
+}
+
+/* Important text classes for headings */
+html.dark .text-stroke,
+html.dark .text-stroke\/80,
+html.dark [class*="text-stroke"] {
+  color: #f1f5f9 !important;
+  --tw-text-opacity: 1 !important;
+}
+
+/* ============================================
+   Background Colors - Sections
+   ============================================ */
 html.dark .bg-white {
-  background-color: #1e293b !important;
+  background-color: #0f172a !important;
+}
+
+html.dark .bg-surface {
+  background-color: #0f172a !important;
 }
 
 html.dark .bg-gray-50,
@@ -72,56 +113,506 @@ html.dark .to-gray-50 {
   background-color: #0f172a !important;
 }
 
-html.dark .bg-gradient-to-b.from-white.to-gray-50 {
-  background: linear-gradient(to bottom, #1e293b, #0f172a) !important;
+html.dark .bg-\[#F8F9FA\],
+html.dark .to-\[#F8F9FA\],
+html.dark .from-\[#F8F9FA\] {
+  background-color: #0f172a !important;
 }
 
-html.dark .bg-gradient-to-b.from-gray-50.to-white {
+html.dark .bg-gradient-to-b.from-white.to-gray-50,
+html.dark .bg-gradient-to-b.from-white.to-\[#F8F9FA\] {
   background: linear-gradient(to bottom, #0f172a, #1e293b) !important;
 }
 
-/* Cards */
-html.dark .border-gray-100 {
-  border-color: #334155 !important;
+html.dark .bg-gradient-to-b.from-gray-50.to-white {
+  background: linear-gradient(to bottom, #1e293b, #0f172a) !important;
 }
 
-html.dark .shadow-lg,
-html.dark .shadow-md {
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2) !important;
+/* ============================================
+   Hero Section
+   ============================================ */
+html.dark #hero {
+  background-color: #0f172a !important;
+}
+
+html.dark .hero-title-premium {
+  color: #f1f5f9 !important;
+  -webkit-text-fill-color: #f1f5f9 !important;
+  background: none !important;
+  animation: none !important;
+}
+
+html.dark .hero-title-premium strong {
+  color: #a5b4fc !important;
+  -webkit-text-fill-color: #a5b4fc !important;
+  background: none !important;
+}
+
+html.dark .hero-text-premium {
+  color: #94a3b8 !important;
+  -webkit-text-fill-color: #94a3b8 !important;
+}
+
+/* Hero Service Cards */
+html.dark .hero-service-card {
+  background: linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9)) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+}
+
+html.dark .hero-service-card:hover {
+  box-shadow: 0 25px 50px -12px rgba(73, 107, 193, 0.25), 0 10px 20px -8px rgba(0, 0, 0, 0.3) !important;
+}
+
+html.dark .hero-card-title {
+  color: #f1f5f9 !important;
+  -webkit-text-fill-color: #f1f5f9 !important;
+  background: none !important;
+  background-clip: unset !important;
+  -webkit-background-clip: unset !important;
+}
+
+html.dark .hero-service-card:hover .hero-card-title {
+  color: #a5b4fc !important;
+  -webkit-text-fill-color: #a5b4fc !important;
+  background: none !important;
+}
+
+html.dark .hero-card-text {
+
+  color: #94a3b8 !important;
+}
+
+html.dark .hero-service-card:hover .hero-card-text {
+  color: #cbd5e1 !important;
+}
+
+/* ============================================
+   Features Section
+   ============================================ */
+html.dark #features,
+html.dark .features {
+  background-color: #0f172a !important;
+}
+
+html.dark .feature-title-premium {
+  color: #f1f5f9 !important;
+}
+
+html.dark .feature-text-premium {
+  color: #94a3b8 !important;
+}
+
+html.dark .feature-pretitle {
+  color: #a5b4fc !important;
+}
+
+/* Feature Image Container */
+html.dark .feature-image-container {
+  background: linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9)) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 8px 16px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* ============================================
+   Projects Section
+   ============================================ */
+html.dark #projects,
+html.dark .projects-section {
+  background: linear-gradient(to bottom, #0f172a, #1e293b) !important;
+}
+
+html.dark .projects-title {
+  color: #f1f5f9 !important;
+}
+
+/* Project Cards */
+html.dark .project-card-premium {
+  background: linear-gradient(145deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98)) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+}
+
+html.dark .project-card-premium:hover {
+  box-shadow: 0 25px 50px rgba(73, 107, 193, 0.2), 0 15px 30px rgba(0, 0, 0, 0.35) !important;
+}
+
+html.dark .project-name-premium {
+  color: #f1f5f9 !important;
+}
+
+html.dark .project-feature-tag {
+  background-color: rgba(51, 65, 85, 0.8) !important;
+  color: #cbd5e1 !important;
+}
+
+html.dark .project-platform-link {
+  color: #94a3b8 !important;
+}
+
+html.dark .project-platform-link:hover {
+  color: #a5b4fc !important;
+}
+
+/* Carousel Navigation */
+html.dark .carousel-arrow {
+  background: rgba(30, 41, 59, 0.9) !important;
+  color: #e2e8f0 !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+html.dark .carousel-arrow:hover {
+  background: rgba(73, 107, 193, 0.3) !important;
+  border-color: rgba(73, 107, 193, 0.5) !important;
+}
+
+html.dark .carousel-dot {
+  background: rgba(148, 163, 184, 0.3) !important;
+}
+
+html.dark .carousel-dot.active {
+  background: #a5b4fc !important;
+}
+
+html.dark .carousel-progress-bar {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* ============================================
+   Team Section
+   ============================================ */
+html.dark #team,
+html.dark .team {
+  background: linear-gradient(to bottom, #0f172a, #1e293b) !important;
+}
+
+html.dark .team-card-premium {
+  background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95)) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+}
+
+html.dark .team-card-premium:hover {
+  box-shadow: 0 25px 50px -12px rgba(73, 107, 193, 0.3), 0 12px 24px -8px rgba(0, 0, 0, 0.4) !important;
+}
+
+html.dark .team-info-section {
+  background: linear-gradient(145deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98)) !important;
+}
+
+html.dark .team-name {
+  color: #f1f5f9 !important;
+}
+
+html.dark .team-role {
+  color: #a5b4fc !important;
+}
+
+html.dark .social-btn-premium {
+  background: linear-gradient(145deg, rgba(51, 65, 85, 0.8), rgba(30, 41, 59, 0.9)) !important;
+  color: #94a3b8 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+html.dark .social-btn-premium:hover {
+  box-shadow: 0 8px 20px rgba(73, 107, 193, 0.4) !important;
+}
+
+/* ============================================
+   Testimonials Section
+   ============================================ */
+html.dark #testimonials,
+html.dark .testimonials-section {
+  background-color: #0f172a !important;
+}
+
+/* Testimonials - Section Header */
+html.dark .testimonials-section h2 {
+  color: #f1f5f9 !important;
+}
+
+html.dark .testimonials-section > .container > .text-center > p,
+html.dark .testimonials-section p.text-lg {
+  color: #94a3b8 !important;
+}
+
+/* Testimonials - Quote Cards */
+html.dark .testimonial-slide .glass-card {
+  background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95)) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark .testimonial-slide p.italic,
+html.dark .testimonial-slide .glass-card > p {
+  color: #cbd5e1 !important;
+}
+
+html.dark .testimonial-slide .font-semibold {
+  color: #f1f5f9 !important;
+}
+
+html.dark .testimonial-slide .text-xs {
+  color: #94a3b8 !important;
+}
+
+/* ============================================
+   Projects Section - Enhanced Dark Mode
+   ============================================ */
+/* Projects Section Subtitle */
+html.dark .projects-section p.text-lg,
+html.dark .projects-section > .container > .text-center > p {
+  color: #94a3b8 !important;
+}
+
+/* Project Card Descriptions */
+html.dark .project-card-premium p.text-sm,
+html.dark .project-card-premium .line-clamp-3 {
+  color: #94a3b8 !important;
+}
+
+/* Project Feature Tags */
+html.dark .project-feature-tag,
+html.dark .project-card-premium .bg-gray-100 {
+  background-color: rgba(51, 65, 85, 0.8) !important;
+  color: #cbd5e1 !important;
+}
+
+
+/* ============================================
+   Contact Section
+   ============================================ */
+html.dark #contact,
+html.dark .contact-section {
+  background-color: #0f172a !important;
+}
+
+html.dark .contact-section::before {
+  display: none;
+}
+
+/* Contact Section - Info Text */
+html.dark .contact-section p.text-lg,
+html.dark .contact-section .text-lg {
+  color: #94a3b8 !important;
+}
+
+/* Contact Info Cards - Titles and Text */
+html.dark .contact-section .glass-card .font-semibold,
+html.dark .contact-section .glass-card div > .font-semibold {
+  color: #f1f5f9 !important;
+}
+
+html.dark .contact-section .glass-card a,
+html.dark .contact-section .glass-card span.text-sm {
+  color: #94a3b8 !important;
+}
+
+
+html.dark .contact-section .glass-card a:hover {
+  color: #a5b4fc !important;
+}
+
+html.dark .glass-surface {
+
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+}
+
+html.dark .glass-surface::before {
+  background: radial-gradient(ellipse at 50% 0%, rgba(73, 107, 193, 0.15) 0%, transparent 60%) !important;
 }
 
 /* Form Inputs */
 html.dark input,
 html.dark select,
 html.dark textarea {
-  background-color: #1e293b;
-  border-color: #334155;
-  color: #e2e8f0;
+  background-color: rgba(30, 41, 59, 0.8) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  color: #e2e8f0 !important;
 }
 
 html.dark input::placeholder,
-html.dark textarea::placeholder {
-  color: #64748b;
+html.dark textarea::placeholder,
+html.dark select option {
+  color: #64748b !important;
 }
 
 html.dark input:focus,
 html.dark select:focus,
 html.dark textarea:focus {
-  border-color: #818cf8;
+  border-color: #a5b4fc !important;
+  box-shadow: 0 0 0 3px rgba(165, 180, 252, 0.15) !important;
 }
 
-/* Hero Section Decorations */
-html.dark .absolute.bg-gradient-to-br.from-primary\/5,
-html.dark .absolute.bg-gradient-to-br.from-primary\/10 {
-  opacity: 0.3;
+html.dark .glass-input {
+  background: rgba(30, 41, 59, 0.8) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  color: #e2e8f0 !important;
 }
 
-/* Footer */
+html.dark .glass-input:focus {
+  background: rgba(51, 65, 85, 0.9) !important;
+  border-color: #a5b4fc !important;
+}
+
+/* ============================================
+   Glass Card Components
+   ============================================ */
+html.dark .glass-card {
+  background: rgba(30, 41, 59, 0.8) !important;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+}
+
+html.dark .glass-card:hover {
+  background: rgba(51, 65, 85, 0.85) !important;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark .glass-badge {
+  background: rgba(73, 107, 193, 0.2) !important;
+  border-color: rgba(73, 107, 193, 0.3) !important;
+  color: #a5b4fc !important;
+}
+
+html.dark .glass-icon {
+  background: rgba(73, 107, 193, 0.2) !important;
+  border-color: rgba(73, 107, 193, 0.25) !important;
+}
+
+html.dark .glass-frosted {
+  background: rgba(30, 41, 59, 0.6) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark .glass-border-iridescent {
+  background: rgba(30, 41, 59, 0.9) !important;
+}
+
+/* ============================================
+   Cards and Borders
+   ============================================ */
+html.dark .border-gray-100 {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark .bg-gray-100 {
+  background-color: rgba(51, 65, 85, 0.6) !important;
+}
+
+html.dark .shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3) !important;
+}
+
+html.dark .shadow-md {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* ============================================
+   Footer
+   ============================================ */
 html.dark footer {
+  background-color: #0f172a !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+html.dark footer a {
+  color: #94a3b8;
+}
+
+html.dark footer a:hover {
+  color: #a5b4fc;
+}
+
+/* ============================================
+   Portfolio / Work Page
+   ============================================ */
+html.dark .portfolio-section,
+html.dark #portfolio {
   background-color: #0f172a !important;
 }
 
-/* Dark Mode Toggle Button */
+/* Work page main section background */
+html.dark section.py-16.bg-white {
+  background-color: #0f172a !important;
+}
+
+/* Filter Buttons */
+html.dark .filter-btn,
+html.dark [class*="filter"] button {
+  background-color: rgba(30, 41, 59, 0.8) !important;
+  color: #e2e8f0 !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+html.dark .filter-btn:hover,
+html.dark .filter-btn.active {
+  background-color: rgba(73, 107, 193, 0.3) !important;
+  border-color: rgba(73, 107, 193, 0.5) !important;
+  color: #a5b4fc !important;
+}
+
+/* Project Cards - Work Page */
+html.dark .project-card .inner-card,
+html.dark .project-card > div {
+  background-color: #1e293b !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark .project-card h3 {
+  color: #f1f5f9 !important;
+}
+
+html.dark .project-card p.text-sm,
+html.dark .project-card .line-clamp-3 {
+  color: #94a3b8 !important;
+}
+
+/* Platform badges in dark mode */
+html.dark .platform-badge {
+  background-color: rgba(73, 107, 193, 0.2) !important;
+  color: #a5b4fc !important;
+}
+
+html.dark .platform-badge:hover {
+  background-color: rgba(73, 107, 193, 0.35) !important;
+}
+
+/* ============================================
+   Project Detail Page
+   ============================================ */
+html.dark .project-detail,
+html.dark .project-hero {
+  background-color: #0f172a !important;
+}
+
+html.dark .project-feature-title,
+html.dark .feature-title {
+  color: #f1f5f9 !important;
+}
+
+html.dark .project-feature-card {
+  background: rgba(30, 41, 59, 0.8) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* ============================================
+   Decorative Elements
+   ============================================ */
+html.dark .absolute.bg-primary\/5,
+html.dark .absolute.bg-primary\/10,
+html.dark .absolute.bg-tertiary\/5,
+html.dark .absolute.bg-tertiary\/10 {
+  opacity: 0.15 !important;
+}
+
+/* Premium blur orbs in dark mode */
+html.dark [class*="blur-3xl"] {
+  opacity: 0.2 !important;
+}
+
+/* ============================================
+   Dark Mode Toggle Button
+   ============================================ */
 .dark-mode-toggle {
   display: flex;
   align-items: center;
@@ -147,7 +638,7 @@ html.dark .dark-mode-toggle {
 
 html.dark .dark-mode-toggle:hover {
   background-color: rgba(129, 140, 248, 0.2);
-  color: #818cf8;
+  color: #a5b4fc;
 }
 
 .dark-mode-toggle .sun-icon {
@@ -166,11 +657,304 @@ html.dark .dark-mode-toggle .moon-icon {
   display: block;
 }
 
-/* Smooth transition for theme changes */
+/* ============================================
+   Smooth Theme Transitions
+   ============================================ */
 html {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 html * {
   transition: background-color 0.3s ease, border-color 0.3s ease, color 0.15s ease, box-shadow 0.3s ease;
+}
+
+/* Disable transitions on initial load to prevent flash */
+html.no-transitions * {
+  transition: none !important;
+}
+
+/* ============================================
+   Additional Section-Specific Fixes
+   ============================================ */
+
+/* Highlight Cards (Why Choose Baseet) */
+html.dark #highlights,
+html.dark .highlights {
+  background-color: #0f172a !important;
+}
+
+html.dark .highlight-card {
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark .highlight-card-light {
+  background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95)) !important;
+}
+
+html.dark .highlight-card-light .highlight-title {
+  color: #f1f5f9 !important;
+}
+
+html.dark .highlight-card-light .highlight-text {
+  color: #94a3b8 !important;
+}
+
+html.dark .highlight-btn-primary {
+  background: rgba(73, 107, 193, 0.9) !important;
+  color: #ffffff !important;
+}
+
+html.dark .highlight-btn-primary:hover {
+  background: rgba(73, 107, 193, 1) !important;
+}
+
+/* Main Section Headings - Force All Text to Light */
+html.dark h1,
+html.dark h2,
+html.dark h3 {
+  color: #f1f5f9 !important;
+}
+
+html.dark h1 span,
+html.dark h2 span,
+html.dark h3 span {
+  color: inherit !important;
+}
+
+/* Preserve primary/accent colored spans */
+html.dark h1 span.text-primary,
+html.dark h2 span.text-primary,
+html.dark h3 span.text-primary,
+html.dark h1 .text-primary,
+html.dark h2 .text-primary,
+html.dark h3 .text-primary {
+  color: #a5b4fc !important;
+}
+
+/* Preserve markdown/safeHTML styled spans inside headings */
+html.dark h1 strong,
+html.dark h2 strong,
+html.dark h3 strong {
+  color: #a5b4fc !important;
+}
+
+/* Hero section title specifically */
+html.dark .hero-title-premium,
+html.dark .hero-title-premium * {
+  color: #f1f5f9 !important;
+}
+
+/* Contact section headings */
+html.dark .contact-section h2,
+html.dark .contact-section h3 {
+  color: #f1f5f9 !important;
+}
+
+/* Testimonials section */
+html.dark .testimonials-section h2 {
+  color: #f1f5f9 !important;
+}
+
+/* All labels in forms */
+html.dark label {
+  color: #e2e8f0 !important;
+}
+
+/* ============================================
+   Project Detail Pages - Additional Fixes
+   ============================================ */
+html.dark section[class*="project"],
+html.dark div[class*="project-"] {
+  background-color: #0f172a !important;
+}
+
+html.dark .project-feature-title {
+  color: #f1f5f9 !important;
+}
+
+html.dark .project-description {
+  color: #94a3b8 !important;
+}
+
+/* ============================================
+   FAQ Section
+   ============================================ */
+html.dark #faq,
+html.dark .faq {
+  background-color: #0f172a !important;
+}
+
+html.dark .faq-question,
+html.dark [class*="faq"] button {
+  background: rgba(30, 41, 59, 0.8) !important;
+  color: #f1f5f9 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark .faq-answer,
+html.dark [class*="faq"] p {
+  color: #94a3b8 !important;
+}
+
+/* ============================================
+   About Page
+   ============================================ */
+html.dark .about-section {
+  background-color: #0f172a !important;
+}
+
+/* About page section backgrounds */
+html.dark section.py-24.bg-white {
+  background-color: #0f172a !important;
+}
+
+html.dark section.bg-gradient-to-b.from-gray-50.to-white {
+  background: linear-gradient(to bottom, #1e293b, #0f172a) !important;
+}
+
+/* Section labels/pills */
+html.dark span.inline-block.rounded-full.text-\[\#252525\] {
+  color: #f1f5f9 !important;
+  background-color: rgba(73, 107, 193, 0.2) !important;
+}
+
+/* About page headings */
+html.dark h2.text-\[\#252525\],
+html.dark h3.text-\[\#252525\] {
+  color: #f1f5f9 !important;
+}
+
+/* About page paragraph text */
+html.dark .text-\[\#545454\],
+html.dark div.text-\[\#545454\],
+html.dark p.text-\[\#545454\],
+html.dark span.text-\[\#545454\] {
+  color: #94a3b8 !important;
+}
+
+/* Values and Team cards */
+html.dark section .bg-white.rounded-3xl {
+  background-color: #1e293b !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Stats section background */
+html.dark .bg-gradient-to-br.from-primary\/10.to-tertiary\/10 {
+  background: rgba(30, 41, 59, 0.8) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Process step numbers and Quality icon - keep tertiary background bright with white text */
+html.dark .from-tertiary.to-tertiary\/80,
+html.dark .bg-gradient-to-br.from-tertiary.to-tertiary\/80 {
+  background: linear-gradient(to bottom right, #F1D045, #e5c340) !important;
+  color: #ffffff !important;
+}
+
+/* Ensure icons in tertiary backgrounds stay white */
+html.dark .from-tertiary.to-tertiary\/80 i,
+html.dark .bg-gradient-to-br.from-tertiary.to-tertiary\/80 i {
+  color: #ffffff !important;
+}
+
+/* Team member role text (uses text-primary) */
+html.dark section p.text-primary.font-medium {
+  color: #a5b4fc !important;
+}
+
+/* Social icons in team section */
+html.dark section a.text-\[\#545454\] {
+  color: #64748b !important;
+}
+
+html.dark section a.text-\[\#545454\]:hover {
+  color: #a5b4fc !important;
+}
+
+/* ============================================
+   Tech Stack Section
+   ============================================ */
+html.dark #techstack,
+html.dark .techstack {
+  background-color: #0f172a !important;
+}
+
+html.dark .tech-card {
+  background: rgba(30, 41, 59, 0.8) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark .tech-card:hover {
+  background: rgba(51, 65, 85, 0.85) !important;
+}
+
+/* ============================================
+   Clients Section
+   ============================================ */
+html.dark #clients,
+html.dark .clients {
+  background-color: #0f172a !important;
+}
+
+/* ============================================
+   Breadcrumbs & Navigation
+   ============================================ */
+html.dark .breadcrumb,
+html.dark nav[aria-label="breadcrumb"] {
+  color: #94a3b8 !important;
+}
+
+html.dark .breadcrumb a {
+  color: #a5b4fc !important;
+}
+
+/* ============================================
+   Additional Typography Fixes
+   ============================================ */
+/* Paragraphs with specific colors */
+html.dark p[style*="color: #171D1C"],
+html.dark p[style*="color: #252525"],
+html.dark span[style*="color: #171D1C"],
+html.dark span[style*="color: #252525"],
+html.dark div[style*="color: #171D1C"],
+html.dark div[style*="color: #252525"] {
+  color: #f1f5f9 !important;
+}
+
+html.dark p[style*="color: #545454"],
+html.dark p[style*="color: #5A6265"],
+html.dark span[style*="color: #545454"],
+html.dark span[style*="color: #5A6265"] {
+  color: #94a3b8 !important;
+}
+
+/* ============================================
+   Success/Error States
+   ============================================ */
+html.dark .bg-green-100 {
+  background-color: rgba(34, 197, 94, 0.2) !important;
+}
+
+html.dark .bg-red-100 {
+  background-color: rgba(239, 68, 68, 0.2) !important;
+}
+
+/* ============================================
+   Scrollbar Dark Mode
+   ============================================ */
+html.dark {
+  scrollbar-color: #475569 #1e293b;
+}
+
+html.dark ::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 4px;
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
 }

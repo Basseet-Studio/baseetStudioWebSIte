@@ -49,6 +49,55 @@
         transform: scale(1);
         position: relative;
     }
+
+    /* Enhanced Icon Styling for visibility */
+    .project-icon-wrapper {
+        width: 80px;
+        height: 80px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: white;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .project-card:hover .project-icon-wrapper {
+        transform: scale(1.1) rotate(3deg);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Card hover enhancement */
+    .project-card .inner-card {
+        transition: all 0.4s ease;
+    }
+
+    .project-card:hover .inner-card {
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Platform icons styling */
+    .platform-badge {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 4px 12px;
+        background: rgba(73, 107, 193, 0.08);
+        border-radius: 999px;
+        font-size: 12px;
+        color: #496BC1;
+        transition: all 0.3s ease;
+    }
+
+    .platform-badge:hover {
+        background: rgba(73, 107, 193, 0.15);
+    }
+
+    .platform-badge i {
+        font-size: 14px;
+    }
 </style>
 
 <!-- App Bar Header -->
@@ -56,18 +105,21 @@
 
 <div class="pt-20">
     <!-- Hero Section -->
-    <section class="relative py-24 overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-tertiary/5"></div>
-        <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/10 to-transparent blur-3xl"></div>
+    <section class="relative py-24 xl:py-32 overflow-hidden">
+        <!-- Premium blue gradient background -->
+        <div class="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-primary"></div>
+        <div class="absolute top-0 right-0 w-96 h-96 bg-tertiary/20 rounded-full filter blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-72 h-72 bg-white/10 rounded-full filter blur-3xl"></div>
+        <div class="absolute top-1/2 left-1/4 w-64 h-64 bg-white/5 rounded-full filter blur-2xl"></div>
 
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center max-w-4xl mx-auto">
                 <span
-                    class="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm mb-6">Portfolio</span>
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#252525] mb-6 leading-tight">
-                    Our <span class="gradient-heading">Work</span>
+                    class="inline-block px-4 py-2 rounded-full bg-white/20 text-white font-semibold text-sm mb-6">Portfolio</span>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight">
+                    Our <span class="text-tertiary">Work</span>
                 </h1>
-                <p class="text-lg md:text-xl text-[#545454] max-w-2xl mx-auto leading-relaxed">
+                <p class="text-lg md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
                     Explore our portfolio of in-house products and client projects. Each one represents our commitment
                     to quality and innovation.
                 </p>
@@ -114,29 +166,38 @@
                 {{ range $projects.items }}
                 <a href="/projects/{{ .slug }}" class="project-card visible group block" data-status="{{ .status }}">
                     <div
-                        class="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100">
-                        <!-- Project Header -->
-                        <div class="relative h-48 flex items-center justify-center"
+                        class="inner-card bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100">
+                        <!-- Project Header with Gradient -->
+                        <div class="relative h-52 flex items-center justify-center overflow-hidden"
                             style="background: {{ .gradient }};">
-                            <div class="absolute inset-0 bg-black/10"></div>
-                            <div
-                                class="relative z-10 w-20 h-20 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-white text-4xl group-hover:scale-110 transition-transform duration-300">
+                            <!-- Decorative elements -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
+                            <div class="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full blur-2xl"></div>
+
+                            <!-- Icon with solid background for visibility -->
+                            <div class="project-icon-wrapper relative z-10" style="background: {{ .color }};">
                                 <i class="{{ .iconClass }}"></i>
                             </div>
+
                             <!-- Status Badge -->
                             <div class="absolute top-4 right-4">
                                 {{ if eq .status "Live" }}
                                 <span
-                                    class="px-3 py-1 rounded-full text-xs font-bold bg-green-500 text-white">Live</span>
+                                    class="px-4 py-1.5 rounded-full text-xs font-bold bg-green-500/90 backdrop-blur-sm text-white shadow-lg">🟢
+                                    Live</span>
                                 {{ else if eq .status "Coming Soon" }}
-                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-yellow-500 text-white">Coming
-                                    Soon</span>
+                                <span
+                                    class="px-4 py-1.5 rounded-full text-xs font-bold bg-yellow-500/90 backdrop-blur-sm text-white shadow-lg">🚀
+                                    Coming Soon</span>
                                 {{ else if eq .status "Completed" }}
                                 <span
-                                    class="px-3 py-1 rounded-full text-xs font-bold bg-blue-500 text-white">Completed</span>
+                                    class="px-4 py-1.5 rounded-full text-xs font-bold bg-blue-500/90 backdrop-blur-sm text-white shadow-lg">✅
+                                    Completed</span>
                                 {{ else if eq .status "Confidential" }}
                                 <span
-                                    class="px-3 py-1 rounded-full text-xs font-bold bg-gray-500 text-white">Confidential</span>
+                                    class="px-4 py-1.5 rounded-full text-xs font-bold bg-gray-600/90 backdrop-blur-sm text-white shadow-lg">🔒
+                                    Confidential</span>
                                 {{ end }}
                             </div>
                         </div>
@@ -146,13 +207,13 @@
                             <h3
                                 class="text-xl font-bold text-[#252525] mb-2 group-hover:text-primary transition-colors">
                                 {{ .name }}</h3>
-                            <p class="text-primary font-medium text-sm mb-3">{{ .tagline }}</p>
-                            <p class="text-[#545454] text-sm line-clamp-3 mb-4">{{ .description }}</p>
+                            <p class="font-semibold text-sm mb-3" style="color: {{ .color }};">{{ .tagline }}</p>
+                            <p class="text-[#545454] text-sm leading-relaxed line-clamp-3 mb-5">{{ .description }}</p>
 
-                            <!-- Platforms -->
-                            <div class="flex items-center gap-3">
+                            <!-- Platforms with improved styling -->
+                            <div class="flex flex-wrap items-center gap-2">
                                 {{ range .platforms }}
-                                <span class="flex items-center gap-1 text-xs text-[#545454]">
+                                <span class="platform-badge">
                                     <i class="{{ .icon }}"></i>
                                     {{ .name }}
                                 </span>
@@ -181,8 +242,8 @@
                     <p class="text-xl lg:text-2xl mb-10 opacity-90 max-w-2xl mx-auto">Let's build something amazing
                         together.</p>
 
-                    <a href="/#subscribe"
-                        class="inline-block bg-white text-primary hover:bg-gray-100 px-8 py-4 rounded-2xl font-bold transition-all duration-300 transform hover:-translate-y-1">
+                    <a href="/#contact"
+                        class="inline-block bg-white text-primary hover:bg-gray-100 px-8 py-4 rounded-2xl font-bold transition-all duration-300 transform hover:-translate-y-1 shadow-lg">
                         Start a Conversation
                     </a>
                 </div>
@@ -191,21 +252,7 @@
     </section>
 </div>
 
-<!-- Footer -->
-<footer class="py-8 bg-[#252525]">
-    <div class="container mx-auto px-4">
-        <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <a href="/" class="text-white font-semibold text-lg">Baseet Studio</a>
-            <nav class="flex items-center gap-6">
-                <a href="/#features" class="text-white/70 hover:text-white transition-colors">Services</a>
-                <a href="/work" class="text-white/70 hover:text-white transition-colors">Projects</a>
-                <a href="/#team" class="text-white/70 hover:text-white transition-colors">Team</a>
-                <a href="/about" class="text-white/70 hover:text-white transition-colors">About</a>
-            </nav>
-            <p class="text-white/50 text-sm">© {{ now.Year }} Baseet Studio</p>
-        </div>
-    </div>
-</footer>
+
 
 <!-- Filter Script -->
 <script>

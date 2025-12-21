@@ -35,6 +35,7 @@ module.exports = {
       backgroundColor: {
         'primary': '#496BC1',
         'secondary': '#EBEBEB',
+        'tertiary': '#FBCD37',
         'accent': '#FBCD37',
       },
       textColor: {

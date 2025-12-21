@@ -5,7 +5,7 @@ text: 'Baseet Studio is a leading tech agency specializing in innovative web and
 
 buttons:
   - label: 'Contact Us'
-    link: '#subscribe'
+    link: '#contact'
 
   - label: 'Our Services'
     link: '#features'

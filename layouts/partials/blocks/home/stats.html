@@ -1,38 +1,96 @@
 {{- $stats := site.Data.home.stats -}}
 {{- if and $stats.enable $stats.items -}}
 
-<section id="stats" class="py-20 bg-gradient-to-r from-primary to-primary/90 relative overflow-hidden">
-  <div class="absolute inset-0 bg-black/10"></div>
-  <div class="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
-  <div class="absolute bottom-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-2xl"></div>
-  
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-      {{- range $stats.items -}}
-      <div class="text-center group">
-        <div class="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center mx-auto mb-4 text-white text-2xl group-hover:scale-110 transition-transform duration-300">
-          <i class="{{ .icon }}"></i>
+<section id="stats" class="stats-section relative py-20 xl:py-28 overflow-hidden bg-white dark:bg-slate-900">
+  <div class="container mx-auto px-4 relative z-10">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <span
+        class="inline-block px-4 py-2 rounded-full text-sm font-semibold mb-4 bg-primary/15 text-primary border border-primary/25 dark:bg-primary/25 dark:border-primary/40">
+        Our Impact
+      </span>
+      <h2 class="text-3xl xl:text-4xl font-bold text-stroke dark:text-white">
+        Numbers That <span class="text-primary">Speak</span>
+      </h2>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+      {{- range $index, $item := $stats.items -}}
+      <div class="group relative scroll-animate" style="animation-delay: {{ mul $index 0.1 }}s;">
+        <!-- Card with light/dark mode -->
+        <div
+          class="stats-card relative h-full p-6 xl:p-8 rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2">
+
+          <!-- Hover glow effect -->
+          <div
+            class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl stats-card-glow">
+          </div>
+
+          <!-- Top accent line -->
+          <div
+            class="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-1 rounded-full transition-all duration-300 group-hover:w-24 bg-gradient-to-r from-primary to-tertiary">
+          </div>
+
+          <!-- Content -->
+          <div class="relative z-10 text-center">
+            <!-- Icon -->
+            <div
+              class="inline-flex items-center justify-center w-14 h-14 xl:w-16 xl:h-16 mb-5 rounded-xl transition-all duration-300 group-hover:scale-110 bg-gradient-to-br from-primary to-primary/80 shadow-lg shadow-primary/30">
+              <i class="{{ .icon }} text-xl xl:text-2xl text-white"></i>
+            </div>
+
+            <!-- Counter -->
+            <div class="text-3xl lg:text-4xl xl:text-5xl font-bold mb-2 tracking-tight text-stroke dark:text-white">
+              <span class="counter" data-target="{{ .number }}">0</span><span class="text-primary">{{ .suffix }}</span>
+            </div>
+
+            <!-- Label -->
+            <div class="text-sm xl:text-base font-medium text-gray-600 dark:text-gray-300">{{ .label }}</div>
+          </div>
         </div>
-        <div class="text-4xl lg:text-5xl font-extrabold text-white mb-2">
-          <span class="counter" data-target="{{ .number }}">0</span>{{ .suffix }}
-        </div>
-        <div class="text-white/80 font-medium">{{ .label }}</div>
       </div>
       {{- end -}}
     </div>
   </div>
 </section>
 
+<style>
+  /* Light mode card */
+  .stats-card {
+    background: linear-gradient(145deg, #f8f9fa, #ffffff);
+    border: 1px solid rgba(73, 107, 193, 0.15);
+    box-shadow: 0 8px 32px rgba(73, 107, 193, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+
+  .stats-card-glow {
+    background: radial-gradient(circle at center, rgba(73, 107, 193, 0.06) 0%, transparent 70%);
+    box-shadow: 0 12px 40px rgba(73, 107, 193, 0.18);
+  }
+
+  /* Dark mode card */
+  .dark .stats-card {
+    background: linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
+    border: 1px solid rgba(73, 107, 193, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(73, 107, 193, 0.1);
+  }
+
+  .dark .stats-card-glow {
+    background: radial-gradient(circle at center, rgba(73, 107, 193, 0.15) 0%, transparent 70%);
+    box-shadow: 0 12px 40px rgba(73, 107, 193, 0.25);
+  }
+</style>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const counters = document.querySelectorAll('.counter');
   const speed = 200;
-  
+
   const animateCounter = (counter) => {
     const target = +counter.getAttribute('data-target');
     const count = +counter.innerText;
     const increment = target / speed;
-    
+
     if (count < target) {
       counter.innerText = Math.ceil(count + increment);
       setTimeout(() => animateCounter(counter), 1);
@@ -40,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
       counter.innerText = target.toLocaleString();
     }
   };
-  
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -49,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }, { threshold: 0.5 });
-  
+
   counters.forEach(counter => observer.observe(counter));
 });
 </script>

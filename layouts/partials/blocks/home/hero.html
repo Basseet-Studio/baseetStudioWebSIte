@@ -12,11 +12,19 @@
           </p>
           <div class="flex flex-wrap gap-4">
             {{ range $index, $btn := $data.buttons }}
+            {{ if eq $index 0 }}
+            {{/* Primary CTA - Solid */}}
             <a href="{{ $btn.link }}"
-              class="hero-btn-premium px-8 py-3 text-base font-medium text-white bg-primary rounded-full transition-colors duration-300"
-              style="--btn-color: #496bc1;">
+              class="hero-btn-premium px-8 py-3 text-base font-medium text-white bg-primary rounded-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
               {{ $btn.label }}
             </a>
+            {{ else }}
+            {{/* Secondary CTA - Ghost/Outline */}}
+            <a href="{{ $btn.link }}"
+              class="px-8 py-3 text-base font-medium text-primary bg-transparent border-2 border-primary rounded-full transition-all duration-300 hover:bg-primary hover:text-white">
+              {{ $btn.label }}
+            </a>
+            {{ end }}
             {{ end }}
           </div>
         </div>
@@ -31,10 +39,12 @@
           {{ end }}
           <!-- Decorative elements -->
           <div
-            class="absolute -top-10 -right-10 w-40 h-40 bg-tertiary rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob">
+            class="absolute -top-10 -right-10 w-40 h-40 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"
+            style="background-color: #FBCD37;">
           </div>
           <div
-            class="absolute -bottom-10 -left-10 w-40 h-40 bg-primary rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000">
+            class="absolute -bottom-10 -left-10 w-40 h-40 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"
+            style="background-color: #496BC1;">
           </div>
         </div>
       </div>
