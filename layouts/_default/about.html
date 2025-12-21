@@ -1,0 +1,331 @@
+{{ define "main" }}
+<!-- Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!-- App Bar CSS -->
+{{- $appBarCSS := resources.Get "css/app-bar.css" -}}
+{{- if $appBarCSS -}}
+<link rel="stylesheet" href="{{ $appBarCSS.RelPermalink }}" />
+{{- end -}}
+
+<!-- Premium Effects CSS -->
+{{- $premiumCSS := resources.Get "css/premium-effects.css" -}}
+{{- if $premiumCSS -}}
+<link rel="stylesheet" href="{{ $premiumCSS.RelPermalink }}" />
+{{- end -}}
+
+<!-- Custom Overrides CSS -->
+{{- $overridesCSS := resources.Get "css/custom-overrides.css" -}}
+{{- if $overridesCSS -}}
+<link rel="stylesheet" href="{{ $overridesCSS.RelPermalink }}" />
+{{- end -}}
+
+<!-- App Bar Header -->
+{{ partial "header.html" . }}
+
+<div class="pt-20">
+    <!-- Hero Section -->
+    <section class="relative py-24 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-tertiary/5"></div>
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/10 to-transparent blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-tertiary/20 rounded-full blur-3xl"></div>
+
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-4xl mx-auto">
+                <span
+                    class="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm mb-6 animate-fade-in-up">About
+                    Us</span>
+                <h1
+                    class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#252525] mb-6 leading-tight animate-fade-in-up">
+                    We Build <span class="gradient-heading">Digital Experiences</span> That Matter
+                </h1>
+                <p class="text-lg md:text-xl text-[#545454] max-w-2xl mx-auto leading-relaxed animate-fade-in-up">
+                    Baseet Studio is a passionate team of developers, designers, and digital strategists dedicated to
+                    transforming ideas into exceptional digital products.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section class="py-24 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="animate-fade-in-up">
+                    <span
+                        class="inline-block px-4 py-2 rounded-full bg-tertiary/20 text-[#252525] font-semibold text-sm mb-6">Our
+                        Story</span>
+                    <h2 class="text-3xl lg:text-4xl font-bold text-[#252525] mb-6">From Passion to Purpose</h2>
+                    <div class="space-y-4 text-[#545454] leading-relaxed">
+                        <p>
+                            Baseet Studio was founded with a simple belief: great software should be accessible to
+                            everyone. What started as a small team of passionate developers has grown into a
+                            full-service digital agency.
+                        </p>
+                        <p>
+                            We've had the privilege of working with startups, government organizations, and established
+                            businesses across multiple continents. Each project has taught us something new and
+                            strengthened our commitment to excellence.
+                        </p>
+                        <p>
+                            Today, we continue to push boundaries, embracing new technologies and methodologies to
+                            deliver solutions that don't just meet expectations—they exceed them.
+                        </p>
+                    </div>
+                </div>
+                <div class="relative animate-fade-in-up">
+                    <div
+                        class="absolute -inset-4 bg-gradient-to-r from-primary to-tertiary rounded-3xl blur-xl opacity-20">
+                    </div>
+                    <div class="relative bg-gradient-to-br from-primary/10 to-tertiary/10 rounded-3xl p-12 text-center">
+                        <div class="grid grid-cols-2 gap-8">
+                            <div class="p-6">
+                                <div class="text-4xl font-extrabold text-primary mb-2">7+</div>
+                                <div class="text-[#545454] font-medium">Products Shipped</div>
+                            </div>
+                            <div class="p-6">
+                                <div class="text-4xl font-extrabold text-primary mb-2">3+</div>
+                                <div class="text-[#545454] font-medium">Years Experience</div>
+                            </div>
+                            <div class="p-6">
+                                <div class="text-4xl font-extrabold text-tertiary mb-2">100%</div>
+                                <div class="text-[#545454] font-medium">Client Satisfaction</div>
+                            </div>
+                            <div class="p-6">
+                                <div class="text-4xl font-extrabold text-tertiary mb-2">24/7</div>
+                                <div class="text-[#545454] font-medium">Support Available</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Values Section -->
+    <section class="py-24 bg-gradient-to-b from-gray-50 to-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span
+                    class="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm mb-4">Our
+                    Values</span>
+                <h2 class="text-3xl lg:text-4xl font-bold text-[#252525]">What Drives Us</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div
+                    class="group bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+                    <div
+                        class="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center mb-6 text-white text-2xl group-hover:scale-110 transition-transform">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#252525] mb-3">Innovation</h3>
+                    <p class="text-[#545454]">We embrace new technologies and creative solutions to stay ahead of the
+                        curve.</p>
+                </div>
+
+                <div
+                    class="group bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+                    <div
+                        class="w-16 h-16 rounded-2xl bg-gradient-to-br from-tertiary to-tertiary/80 flex items-center justify-center mb-6 text-[#252525] text-2xl group-hover:scale-110 transition-transform">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#252525] mb-3">Quality</h3>
+                    <p class="text-[#545454]">Every line of code, every pixel, every interaction is crafted with
+                        precision.</p>
+                </div>
+
+                <div
+                    class="group bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+                    <div
+                        class="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-500 to-green-400 flex items-center justify-center mb-6 text-white text-2xl group-hover:scale-110 transition-transform">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#252525] mb-3">Partnership</h3>
+                    <p class="text-[#545454]">We work alongside our clients, not just for them. Your success is our
+                        success.</p>
+                </div>
+
+                <div
+                    class="group bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+                    <div
+                        class="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-purple-400 flex items-center justify-center mb-6 text-white text-2xl group-hover:scale-110 transition-transform">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#252525] mb-3">Growth</h3>
+                    <p class="text-[#545454]">We're committed to continuous learning and helping our clients scale.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Process Section -->
+    <section class="py-24 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span
+                    class="inline-block px-4 py-2 rounded-full bg-tertiary/20 text-[#252525] font-semibold text-sm mb-4">Our
+                    Process</span>
+                <h2 class="text-3xl lg:text-4xl font-bold text-[#252525]">How We Work</h2>
+                <p class="text-lg text-[#545454] mt-4 max-w-2xl mx-auto">A proven methodology that delivers results</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="relative text-center group">
+                    <div class="absolute top-12 left-1/2 w-full h-1 bg-gradient-to-r from-primary to-tertiary hidden lg:block"
+                        style="transform: translateX(0);"></div>
+                    <div
+                        class="relative z-10 w-24 h-24 rounded-full bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center mx-auto mb-6 text-white text-3xl font-bold shadow-lg group-hover:scale-110 transition-transform">
+                        1
+                    </div>
+                    <h3 class="text-xl font-bold text-[#252525] mb-3">Discovery</h3>
+                    <p class="text-[#545454]">We dive deep into your business, goals, and challenges to understand your
+                        needs.</p>
+                </div>
+
+                <div class="relative text-center group">
+                    <div
+                        class="relative z-10 w-24 h-24 rounded-full bg-gradient-to-br from-tertiary to-tertiary/80 flex items-center justify-center mx-auto mb-6 text-[#252525] text-3xl font-bold shadow-lg group-hover:scale-110 transition-transform">
+                        2
+                    </div>
+                    <h3 class="text-xl font-bold text-[#252525] mb-3">Design</h3>
+                    <p class="text-[#545454]">We create intuitive, beautiful designs that reflect your brand and delight
+                        users.</p>
+                </div>
+
+                <div class="relative text-center group">
+                    <div
+                        class="relative z-10 w-24 h-24 rounded-full bg-gradient-to-br from-green-500 to-green-400 flex items-center justify-center mx-auto mb-6 text-white text-3xl font-bold shadow-lg group-hover:scale-110 transition-transform">
+                        3
+                    </div>
+                    <h3 class="text-xl font-bold text-[#252525] mb-3">Develop</h3>
+                    <p class="text-[#545454]">Our engineers build robust, scalable solutions using cutting-edge
+                        technologies.</p>
+                </div>
+
+                <div class="relative text-center group">
+                    <div
+                        class="relative z-10 w-24 h-24 rounded-full bg-gradient-to-br from-purple-500 to-purple-400 flex items-center justify-center mx-auto mb-6 text-white text-3xl font-bold shadow-lg group-hover:scale-110 transition-transform">
+                        4
+                    </div>
+                    <h3 class="text-xl font-bold text-[#252525] mb-3">Deliver</h3>
+                    <p class="text-[#545454]">We launch, monitor, and continuously improve to ensure lasting success.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="py-24 bg-gradient-to-b from-gray-50 to-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span
+                    class="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm mb-4">Our
+                    Team</span>
+                <h2 class="text-3xl lg:text-4xl font-bold text-[#252525]">Meet the Team</h2>
+                <p class="text-lg text-[#545454] mt-4 max-w-2xl mx-auto">The talented people behind Baseet Studio</p>
+            </div>
+
+            {{ $team := site.Data.home.team }}
+            {{ if $team.members }}
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                {{ range $team.members }}
+                <div
+                    class="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+                    <div
+                        class="relative overflow-hidden aspect-square bg-gradient-to-br from-primary/10 to-tertiary/10">
+                        {{ $imgVal := .image }}
+                        {{ if or (hasPrefix $imgVal "http") (hasPrefix $imgVal "/") }}
+                        <img src="{{ $imgVal }}" alt="{{ .name }}"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        {{ else }}
+                        {{ $localPath := printf "images/home/team/%s" $imgVal }}
+                        {{ $imgResource := resources.Get $localPath }}
+                        {{ if $imgResource }}
+                        <img src="{{ $imgResource.RelPermalink }}" alt="{{ .name }}"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        {{ else }}
+                        <div class="w-full h-full flex items-center justify-center text-6xl font-bold text-primary/30">
+                            {{ substr .name 0 1 }}</div>
+                        {{ end }}
+                        {{ end }}
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-bold text-[#252525] mb-1">{{ .name }}</h3>
+                        <p class="text-primary font-medium text-sm mb-3">{{ .role }}</p>
+                        <p class="text-[#545454] text-sm mb-4">{{ .bio }}</p>
+                        <div class="flex justify-center gap-4">
+                            {{ with .social.github }}<a href="{{ . }}"
+                                class="text-[#545454] hover:text-primary transition-colors"><i
+                                    class="fab fa-github text-xl"></i></a>{{ end }}
+                            {{ with .social.linkedin }}<a href="{{ . }}"
+                                class="text-[#545454] hover:text-primary transition-colors"><i
+                                    class="fab fa-linkedin text-xl"></i></a>{{ end }}
+                            {{ with .social.twitter }}<a href="{{ . }}"
+                                class="text-[#545454] hover:text-primary transition-colors"><i
+                                    class="fab fa-twitter text-xl"></i></a>{{ end }}
+                        </div>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+            {{ end }}
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div
+                class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-primary to-primary/80 p-12 lg:p-20 text-center text-white">
+                <div class="absolute inset-0 bg-black/10"></div>
+                <div class="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+                <div class="absolute bottom-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-2xl"></div>
+
+                <div class="relative z-10">
+                    <h2 class="text-3xl lg:text-4xl xl:text-5xl font-bold mb-6">Ready to Start Your Project?</h2>
+                    <p class="text-xl lg:text-2xl mb-10 opacity-90 max-w-2xl mx-auto">Let's discuss how we can help
+                        bring your vision to life.</p>
+
+                    <div class="flex flex-wrap gap-4 justify-center">
+                        <a href="/#subscribe"
+                            class="bg-white text-primary hover:bg-gray-100 px-8 py-4 rounded-2xl font-bold transition-all duration-300 transform hover:-translate-y-1">
+                            Get in Touch
+                        </a>
+                        <a href="/work"
+                            class="bg-white/20 text-white border-2 border-white/40 hover:bg-white/30 px-8 py-4 rounded-2xl font-bold transition-all duration-300 transform hover:-translate-y-1">
+                            View Our Work
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Footer -->
+<footer class="py-8 bg-[#252525]">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <a href="/" class="text-white font-semibold text-lg">Baseet Studio</a>
+            <nav class="flex items-center gap-6">
+                <a href="/#features" class="text-white/70 hover:text-white transition-colors">Services</a>
+                <a href="/#projects" class="text-white/70 hover:text-white transition-colors">Projects</a>
+                <a href="/#team" class="text-white/70 hover:text-white transition-colors">Team</a>
+                <a href="/about" class="text-white/70 hover:text-white transition-colors">About</a>
+            </nav>
+            <p class="text-white/50 text-sm">© {{ now.Year }} Baseet Studio</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Scripts -->
+{{- $animations := resources.Get "js/animations.js" -}}
+{{- if $animations -}}
+<script src="{{ $animations.Permalink }}" defer></script>
+{{- end -}}
+
+{{ end }}

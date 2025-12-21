@@ -1,0 +1,29 @@
+enable: true
+
+title: 'Our Impact'
+subtitle: 'Numbers that speak for themselves'
+
+items:
+  - number: 7
+    suffix: "+"
+    label: "Products Shipped"
+    icon: "fas fa-rocket"
+    color: "#496BC1"
+
+  - number: 10000
+    suffix: "+"
+    label: "Users Served"
+    icon: "fas fa-users"
+    color: "#FBCD37"
+
+  - number: 3
+    suffix: "+"
+    label: "Years Experience"
+    icon: "fas fa-calendar-alt"
+    color: "#34C759"
+
+  - number: 100
+    suffix: "%"
+    label: "Client Satisfaction"
+    icon: "fas fa-heart"
+    color: "#EF4444"

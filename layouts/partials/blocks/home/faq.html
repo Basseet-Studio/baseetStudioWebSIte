@@ -1,0 +1,36 @@
+{{- $faq := site.Data.home.faq -}}
+{{- if and $faq.enable $faq.items -}}
+
+<section id="faq" class="py-24 bg-gradient-to-b from-gray-50 to-white">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <span class="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm mb-4">FAQ</span>
+      <h2 class="text-3xl lg:text-4xl font-bold text-[#252525] mb-4">{{ $faq.title | default "Frequently Asked Questions" }}</h2>
+      <p class="text-lg text-[#545454] max-w-2xl mx-auto">{{ $faq.subtitle | default "Got questions? We have answers" }}</p>
+    </div>
+
+    <div class="max-w-3xl mx-auto space-y-4">
+      {{- range $index, $item := $faq.items -}}
+      <details class="group bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100" {{ if eq $index 0 }}open{{ end }}>
+        <summary class="flex justify-between items-center p-6 cursor-pointer list-none font-semibold text-[#252525] hover:text-primary transition-colors">
+          <span class="pr-4">{{ .question }}</span>
+          <svg class="w-5 h-5 text-primary flex-shrink-0 transform group-open:rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </summary>
+        <div class="px-6 pb-6 text-[#545454] leading-relaxed">{{ .answer }}</div>
+      </details>
+      {{- end -}}
+    </div>
+
+    <div class="mt-12 text-center">
+      <p class="text-[#545454] mb-4">Still have questions?</p>
+      <a href="/#subscribe" class="inline-flex items-center gap-2 text-primary font-semibold hover:underline">
+        <span>Get in touch with us</span>
+        <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+{{- end -}}

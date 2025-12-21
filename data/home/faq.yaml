@@ -1,0 +1,29 @@
+enable: true
+
+title: 'Frequently Asked Questions'
+subtitle: 'Got questions? We have answers'
+
+items:
+  - question: "What services does Baseet Studio offer?"
+    answer: "We offer full-stack web development, mobile app development (iOS & Android), UI/UX design, cloud solutions, and digital transformation consulting. We specialize in React, Next.js, Flutter, and modern cloud technologies."
+
+  - question: "How long does a typical project take?"
+    answer: "Project timelines vary based on complexity. A simple website takes 2-4 weeks, while a full-featured mobile app may take 2-4 months. During our discovery phase, we'll provide a detailed timeline specific to your project."
+
+  - question: "What is your development process?"
+    answer: "We follow an agile methodology with four key phases: Discovery (understanding your needs), Design (creating intuitive UX/UI), Development (building robust solutions), and Delivery (launching and ongoing support)."
+
+  - question: "Do you offer ongoing support and maintenance?"
+    answer: "Yes! We provide 24/7 support options for all our products. We offer various maintenance packages including bug fixes, security updates, feature enhancements, and performance optimization."
+
+  - question: "How much does a project cost?"
+    answer: "Project costs depend on scope, complexity, and timeline. We offer flexible pricing models including fixed-price projects and retainer agreements. Contact us for a free consultation and custom quote."
+
+  - question: "Can you work with existing codebases?"
+    answer: "Absolutely. We regularly take over and improve existing projects. We'll conduct a thorough code audit first to understand the current state and provide recommendations for improvements."
+
+  - question: "Do you sign NDAs?"
+    answer: "Yes, we take confidentiality seriously. We're happy to sign NDAs before discussing project details. All client information is treated with the utmost privacy and security."
+
+  - question: "What makes Baseet Studio different?"
+    answer: "We combine technical excellence with genuine partnership. We don't just build—we consult, optimize, and support. Our team brings diverse experience from startups to government projects, ensuring we can handle any challenge."

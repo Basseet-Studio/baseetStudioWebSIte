@@ -1,0 +1,33 @@
+enable: true
+
+title: 'What Our Clients Say'
+subtitle: 'Real feedback from the people we work with'
+
+items:
+  - quote: "Baseet Studio transformed our vision into a stunning reality. Their attention to detail and technical expertise exceeded our expectations."
+    author: "Ahmed Hassan"
+    role: "CEO"
+    company: "TechStart BD"
+    avatar: "https://randomuser.me/api/portraits/men/32.jpg"
+    rating: 5
+
+  - quote: "The team delivered our railway timetable system ahead of schedule. Their professionalism and communication were outstanding throughout the project."
+    author: "Khalid Rahman"
+    role: "Project Manager"
+    company: "Government Agency"
+    avatar: "https://randomuser.me/api/portraits/men/45.jpg"
+    rating: 5
+
+  - quote: "Working with Baseet Studio was a game-changer for our business. They don't just build apps—they build experiences that users love."
+    author: "Sarah Chen"
+    role: "Founder"
+    company: "EduFair Malaysia"
+    avatar: "https://randomuser.me/api/portraits/women/44.jpg"
+    rating: 5
+
+  - quote: "Their PhotoRestore AI is incredible! The quality of restoration is professional-grade, and the team is always responsive to feedback."
+    author: "Fatima Al-Rashid"
+    role: "Photography Enthusiast"
+    company: "Independent"
+    avatar: "https://randomuser.me/api/portraits/women/68.jpg"
+    rating: 5
