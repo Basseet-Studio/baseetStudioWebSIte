@@ -26,27 +26,80 @@
 {{ partial "header.html" . }}
 
 <div class="pt-20">
-    <!-- Hero Section -->
-    <section class="relative py-24 xl:py-32 overflow-hidden">
-        <!-- Premium blue gradient background -->
-        <div class="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-primary"></div>
-        <div class="absolute top-0 right-0 w-96 h-96 bg-tertiary/20 rounded-full filter blur-3xl"></div>
-        <div class="absolute bottom-0 left-0 w-72 h-72 bg-white/10 rounded-full filter blur-3xl"></div>
-        <div class="absolute top-1/2 left-1/4 w-64 h-64 bg-white/5 rounded-full filter blur-2xl"></div>
+    <!-- Hero Section - Redesigned to match homepage -->
+    <section class="relative py-24 xl:py-32 overflow-hidden bg-gradient-to-br from-[#F8F9FA] via-white to-gray-50">
+        <!-- Decorative background elements -->
+        <div class="absolute top-10 right-10 w-96 h-96 bg-primary/5 rounded-full filter blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-80 h-80 bg-tertiary/5 rounded-full filter blur-3xl"></div>
+        <div class="absolute top-1/2 left-1/3 w-64 h-64 bg-primary/3 rounded-full filter blur-2xl"></div>
 
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center max-w-4xl mx-auto">
-                <span
-                    class="inline-block px-4 py-2 rounded-full bg-white/20 text-white font-semibold text-sm mb-6 animate-fade-in-up">About
-                    Us</span>
-                <h1
-                    class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight animate-fade-in-up">
-                    We Build <span class="text-tertiary">Digital Experiences</span> That Matter
-                </h1>
-                <p class="text-lg md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed animate-fade-in-up">
-                    Baseet Studio is a passionate team of developers, designers, and digital strategists dedicated to
-                    transforming ideas into exceptional digital products.
-                </p>
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Column - Content -->
+                <div class="animate-fade-in-up">
+                    <span
+                        class="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm mb-6 border border-primary/20">
+                        About Us
+                    </span>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#252525] mb-6 leading-tight">
+                        We Build <span class="text-primary">Digital Experiences</span> That Matter
+                    </h1>
+                    <p class="text-lg md:text-xl text-[#545454] mb-8 leading-relaxed">
+                        Baseet Studio is a passionate team of developers, designers, and digital strategists dedicated
+                        to
+                        transforming ideas into exceptional digital products.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#story"
+                            class="inline-block bg-primary text-white hover:bg-primary/90 px-8 py-4 rounded-2xl font-bold transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl">
+                            Our Story
+                        </a>
+                        <a href="/#contact"
+                            class="inline-block bg-white text-primary border-2 border-primary/20 hover:border-primary px-8 py-4 rounded-2xl font-bold transition-all duration-300 transform hover:-translate-y-1">
+                            Get in Touch
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column - Visual Element -->
+                <div class="relative animate-fade-in-up hidden lg:block">
+                    <div class="relative">
+                        <!-- Premium visual placeholder - you can add an illustration here -->
+                        <div
+                            class="aspect-square rounded-3xl bg-gradient-to-br from-primary/10 to-tertiary/10 p-12 flex items-center justify-center relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent"></div>
+                            <div
+                                class="absolute top-0 right-0 w-48 h-48 bg-tertiary/20 rounded-full blur-3xl animate-pulse">
+                            </div>
+                            <div class="absolute bottom-0 left-0 w-40 h-40 bg-primary/20 rounded-full blur-3xl animate-pulse"
+                                style="animation-delay: 0.5s;"></div>
+
+                            <!-- Stats Grid -->
+                            <div class="grid grid-cols-2 gap-6 relative z-10 w-full">
+                                <div
+                                    class="hero-stats-card bg-white/80 backdrop-blur-sm rounded-2xl p-6 text-center shadow-lg">
+                                    <div class="text-4xl font-extrabold text-primary mb-2">7+</div>
+                                    <div class="text-sm hero-card-text font-medium">Projects</div>
+                                </div>
+                                <div
+                                    class="hero-stats-card bg-white/80 backdrop-blur-sm rounded-2xl p-6 text-center shadow-lg">
+                                    <div class="text-4xl font-extrabold text-primary mb-2">3+</div>
+                                    <div class="text-sm hero-card-text font-medium">Years</div>
+                                </div>
+                                <div
+                                    class="hero-stats-card bg-white/80 backdrop-blur-sm rounded-2xl p-6 text-center shadow-lg">
+                                    <div class="text-4xl font-extrabold text-tertiary mb-2">100%</div>
+                                    <div class="text-sm hero-card-text font-medium">Satisfaction</div>
+                                </div>
+                                <div
+                                    class="hero-stats-card bg-white/80 backdrop-blur-sm rounded-2xl p-6 text-center shadow-lg">
+                                    <div class="text-4xl font-extrabold text-tertiary mb-2">24/7</div>
+                                    <div class="text-sm hero-card-text font-medium">Support</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

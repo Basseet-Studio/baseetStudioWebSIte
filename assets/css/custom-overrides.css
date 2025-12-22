@@ -1,7 +1,5 @@
-/* Native smooth scroll behavior */
-html {
-  scroll-behavior: smooth;
-}
+/* CSS smooth scrolling removed - handled by animations.js for better control */
+
 
 /* Custom overrides to fix theme conflicts */
 
@@ -21,4 +19,21 @@ nav.z-50 {
 
 .main-content-wrapper {
   z-index: 2 !important;
+}
+
+/* Light mode: Ensure tertiary gradient appears on Quality card */
+.from-tertiary.to-tertiary\/80,
+.bg-gradient-to-br.from-tertiary.to-tertiary\/80 {
+  background: linear-gradient(to bottom right, #FBCD37, rgba(251, 205, 55, 0.8)) !important;
+}
+
+/* Ensure icons in tertiary backgrounds have proper contrast in light mode */
+.from-tertiary.to-tertiary\/80 i,
+.bg-gradient-to-br.from-tertiary.to-tertiary\/80 i {
+  color: #252525 !important;
+}
+
+/* Light mode: Ensure tertiary/10 gradient is visible on Web Apps category card */
+html:not(.dark) .bg-gradient-to-br.from-tertiary\/10.to-tertiary\/5 {
+  background: linear-gradient(to bottom right, rgba(251, 205, 55, 0.15), rgba(251, 205, 55, 0.08)) !important;
 }

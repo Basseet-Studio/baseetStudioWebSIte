@@ -56,8 +56,7 @@ function initParallaxEffect() {
         document.querySelectorAll('.absolute').forEach((el, i) => {
           if (el.className.includes('bg-primary') || el.className.includes('bg-tertiary')) {
             const speed = (i % 2 === 0) ? 0.3 : -0.3;
-            el.style.transform = `translateY(${scrolled * speed}px)`;
-            el.style.transition = 'transform 0.1s ease-out';
+            el.style.transform = `translate3d(0, ${scrolled * speed}px, 0)`;
           }
         });
         

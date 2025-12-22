@@ -104,25 +104,90 @@
 {{ partial "header.html" . }}
 
 <div class="pt-20">
-    <!-- Hero Section -->
-    <section class="relative py-24 xl:py-32 overflow-hidden">
-        <!-- Premium blue gradient background -->
-        <div class="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-primary"></div>
-        <div class="absolute top-0 right-0 w-96 h-96 bg-tertiary/20 rounded-full filter blur-3xl"></div>
-        <div class="absolute bottom-0 left-0 w-72 h-72 bg-white/10 rounded-full filter blur-3xl"></div>
-        <div class="absolute top-1/2 left-1/4 w-64 h-64 bg-white/5 rounded-full filter blur-2xl"></div>
+    <!-- Hero Section - Redesigned to match homepage -->
+    <section class="relative py-24 xl:py-32 overflow-hidden bg-gradient-to-br from-[#F8F9FA] via-white to-gray-50">
+        <!-- Decorative background elements -->
+        <div class="absolute top-10 right-10 w-96 h-96 bg-primary/5 rounded-full filter blur-3xl"></div>
+        <div class="absolute bottom-0 left-10 w-80 h-80 bg-tertiary/5 rounded-full filter blur-3xl"></div>
+        <div class="absolute top-1/3 right-1/4 w-64 h-64 bg-primary/3 rounded-full filter blur-2xl"></div>
 
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center max-w-4xl mx-auto">
-                <span
-                    class="inline-block px-4 py-2 rounded-full bg-white/20 text-white font-semibold text-sm mb-6">Portfolio</span>
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight">
-                    Our <span class="text-tertiary">Work</span>
-                </h1>
-                <p class="text-lg md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
-                    Explore our portfolio of in-house products and client projects. Each one represents our commitment
-                    to quality and innovation.
-                </p>
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Column - Content -->
+                <div>
+                    <span
+                        class="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm mb-6 border border-primary/20">
+                        Portfolio
+                    </span>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#252525] mb-6 leading-tight">
+                        Our <span class="text-primary">Work</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-[#545454] mb-8 leading-relaxed max-w-xl">
+                        Explore our portfolio of in-house products and client projects. Each one represents our
+                        commitment
+                        to quality and innovation.
+                    </p>
+                    <div class="flex flex-wrap gap-6">
+                        <!-- Quick Stats -->
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                                <i class="fas fa-rocket text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-bold text-[#252525]">7+</div>
+                                <div class="text-sm text-[#545454]">Projects</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-xl bg-tertiary/10 flex items-center justify-center">
+                                <i class="fas fa-users text-tertiary text-xl"></i>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-bold text-[#252525]">5+</div>
+                                <div class="text-sm text-[#545454]">Clients</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Visual Element -->
+                <div class="relative hidden lg:block">
+                    <!-- Project showcase grid -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div
+                            class="hero-category-card bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl p-6 transform hover:-translate-y-2 transition-all duration-300">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-primary flex items-center justify-center mb-4 shadow-lg">
+                                <i class="fas fa-mobile-alt text-white text-xl"></i>
+                            </div>
+                            <div class="text-sm font-semibold hero-card-text">Mobile Apps</div>
+                        </div>
+                        <div
+                            class="hero-category-card bg-gradient-to-br from-tertiary/10 to-tertiary/5 rounded-2xl p-6 transform hover:-translate-y-2 transition-all duration-300 mt-8">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-tertiary flex items-center justify-center mb-4 shadow-lg">
+                                <i class="fas fa-globe text-white text-xl"></i>
+                            </div>
+                            <div class="text-sm font-semibold hero-card-text">Web Apps</div>
+                        </div>
+                        <div
+                            class="hero-category-card bg-gradient-to-br from-green-500/10 to-green-500/5 rounded-2xl p-6 transform hover:-translate-y-2 transition-all duration-300">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-green-500 flex items-center justify-center mb-4 shadow-lg">
+                                <i class="fas fa-shopping-cart text-white text-xl"></i>
+                            </div>
+                            <div class="text-sm font-semibold hero-card-text">E-Commerce</div>
+                        </div>
+                        <div
+                            class="hero-category-card bg-gradient-to-br from-purple-500/10 to-purple-500/5 rounded-2xl p-6 transform hover:-translate-y-2 transition-all duration-300 mt-8">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-purple-500 flex items-center justify-center mb-4 shadow-lg">
+                                <i class="fas fa-chart-line text-white text-xl"></i>
+                            </div>
+                            <div class="text-sm font-semibold hero-card-text">Analytics</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

@@ -138,26 +138,8 @@
   // 6. SMOOTH ANCHOR SCROLLING
   // ============================================
 
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener('click', function (e) {
-      const href = this.getAttribute('href')
-      if (href === '#') return
+  // Removed - handled by animations.js for better header offset control
 
-      const target = document.querySelector(href)
-      if (target) {
-        e.preventDefault()
-        target.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
-        })
-
-        // Update URL without triggering navigation
-        if (history.pushState) {
-          history.pushState(null, null, href)
-        }
-      }
-    })
-  })
 
   // ============================================
   // 7. PREFETCH ON HOVER (NEXT PAGE)
