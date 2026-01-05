@@ -7,10 +7,6 @@ main:
     url: '#features'
     weight: 2
 
-  - name: 'Pricing'
-    url: 'pricing.html'
-    weight: 3
-
   - name: 'About'
     url: '#highlights'
     weight: 4
@@ -32,10 +28,6 @@ footer:
   - name: 'Services'
     url: '#features'
     weight: 2
-
-  - name: 'Pricing'
-    url: 'pricing.html'
-    weight: 3
 
   - name: 'About'
     url: '#highlights'
