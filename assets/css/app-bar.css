@@ -51,6 +51,8 @@
 /* Navigation Styles */
 .app-bar-nav {
     display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
 .nav-links {
@@ -255,6 +257,7 @@ button:focus-visible {
     position: relative;
     margin-left: 1.5rem;
     flex-shrink: 0;
+    z-index: 50;
 }
 
 .lang-toggle {
@@ -266,11 +269,13 @@ button:focus-visible {
     border: none;
     border-radius: 2rem;
     cursor: pointer;
+    pointer-events: auto;
     font-size: 0.8125rem;
     font-weight: 600;
     color: #496BC1;
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     backdrop-filter: blur(8px);
+    -webkit-tap-highlight-color: transparent;
 }
 
 .lang-toggle:hover {

@@ -24,27 +24,58 @@
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const langToggle = document.querySelector('.lang-toggle');
-    const langDropdown = document.querySelector('.lang-dropdown');
+// Only initialize once
+if (!window.langSwitcherInitialized) {
+    window.langSwitcherInitialized = true;
     
-    if (langToggle && langDropdown) {
-        langToggle.addEventListener('click', function(e) {
-            e.stopPropagation();
-            const isExpanded = this.getAttribute('aria-expanded') === 'true';
-            this.setAttribute('aria-expanded', !isExpanded);
-            langDropdown.setAttribute('aria-hidden', isExpanded);
-            langDropdown.classList.toggle('open');
+    document.addEventListener('DOMContentLoaded', function() {
+        // Handle all language switchers on the page
+        const languageSwitchers = document.querySelectorAll('.language-switcher');
+        
+        languageSwitchers.forEach(function(switcher) {
+            const langToggle = switcher.querySelector('.lang-toggle');
+            const langDropdown = switcher.querySelector('.lang-dropdown');
+            
+            if (langToggle && langDropdown) {
+                langToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                    
+                    // Close all other dropdowns first
+                    languageSwitchers.forEach(function(other) {
+                        if (other !== switcher) {
+                            const otherToggle = other.querySelector('.lang-toggle');
+                            const otherDropdown = other.querySelector('.lang-dropdown');
+                            if (otherToggle) otherToggle.setAttribute('aria-expanded', 'false');
+                            if (otherDropdown) {
+                                otherDropdown.setAttribute('aria-hidden', 'true');
+                                otherDropdown.classList.remove('open');
+                            }
+                        }
+                    });
+                    
+                    this.setAttribute('aria-expanded', !isExpanded);
+                    langDropdown.setAttribute('aria-hidden', isExpanded);
+                    langDropdown.classList.toggle('open');
+                });
+            }
         });
         
         // Close dropdown when clicking outside
         document.addEventListener('click', function(e) {
             if (!e.target.closest('.language-switcher')) {
-                langToggle.setAttribute('aria-expanded', 'false');
-                langDropdown.setAttribute('aria-hidden', 'true');
-                langDropdown.classList.remove('open');
+                languageSwitchers.forEach(function(switcher) {
+                    const langToggle = switcher.querySelector('.lang-toggle');
+                    const langDropdown = switcher.querySelector('.lang-dropdown');
+                    if (langToggle) langToggle.setAttribute('aria-expanded', 'false');
+                    if (langDropdown) {
+                        langDropdown.setAttribute('aria-hidden', 'true');
+                        langDropdown.classList.remove('open');
+                    }
+                });
             }
         });
-    }
-});
+    });
+}
 </script>

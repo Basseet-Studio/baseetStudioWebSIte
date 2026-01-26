@@ -21,19 +21,19 @@ languages:
     menus:
       main:
         - name: 'Home'
-          url: '#hero'
+          url: '/'
           weight: 1
         - name: 'Services'
-          url: '#features'
+          url: '/services/'
           weight: 2
         - name: 'Projects'
           url: '/projects/'
           weight: 3
-        - name: 'About'
-          url: '#highlights'
+        - name: 'Customers'
+          url: '/customers/'
           weight: 4
-        - name: 'Clients'
-          url: '#clients'
+        - name: 'About'
+          url: '/#highlights'
           weight: 5
       buttons:
         - name: 'Contact Us'
@@ -51,19 +51,19 @@ languages:
     menus:
       main:
         - name: 'الرئيسية'
-          url: '#hero'
+          url: '/'
           weight: 1
         - name: 'الخدمات'
-          url: '#features'
+          url: '/services/'
           weight: 2
         - name: 'المشاريع'
-          url: '/ar/projects/'
+          url: '/projects/'
           weight: 3
-        - name: 'من نحن'
-          url: '#highlights'
-          weight: 4
         - name: 'العملاء'
-          url: '#clients'
+          url: '/customers/'
+          weight: 4
+        - name: 'من نحن'
+          url: '/#highlights'
           weight: 5
       buttons:
         - name: 'تواصل معنا'
