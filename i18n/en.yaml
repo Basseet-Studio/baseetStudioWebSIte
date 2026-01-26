@@ -377,3 +377,64 @@ customer_fleetops_tagline: "Fleet Management Made Simple"
 customer_fleetops_description: "A comprehensive web platform we built to help logistics companies manage their entire fleet of delivery trucks — from real-time tracking to automated maintenance scheduling."
 customer_fleetops_challenge: "The client was managing 50+ delivery trucks using spreadsheets and phone calls. Maintenance was often missed, leading to costly breakdowns and delivery delays. They had zero visibility into where their trucks were at any given moment."
 customer_fleetops_solution: "We built a custom web platform that provides real-time GPS tracking on an interactive map, automated maintenance alerts based on mileage and time intervals, driver assignment management, fuel consumption monitoring, and comprehensive reporting dashboards."
+
+# -----------------------------------------------------------------------------
+# Contact Page
+# -----------------------------------------------------------------------------
+contact_hero_badge: "Get in Touch"
+contact_hero_title: "Let's Build Something **Amazing Together**"
+contact_hero_text: "Have a project in mind? We'd love to hear about it. Reach out and let's discuss how we can help bring your ideas to life."
+
+# Contact Form
+contact_form_title: "Send Us a Message"
+contact_name_label: "Your Name"
+contact_name_placeholder: "John Smith"
+contact_info_label: "Phone or Email"
+contact_info_placeholder: "+971 50 123 4567 or email@example.com"
+contact_info_hint: "Enter your phone number or email address"
+contact_project_label: "Project Type"
+contact_project_select: "Select a project type..."
+contact_project_website: "Website Development"
+contact_project_mobile: "Mobile App"
+contact_project_internal: "Internal Business Tool"
+contact_project_seo: "SEO & Marketing"
+contact_project_design: "UI/UX Design"
+contact_project_other: "Other"
+contact_message_label: "Your Message (Optional)"
+contact_message_placeholder: "Tell us about your project, timeline, or any questions you have..."
+contact_submit_btn: "Send Message"
+contact_sending: "Sending..."
+
+# Validation Messages
+contact_valid_email: "Valid email address"
+contact_valid_phone: "Valid phone number"
+contact_invalid_email: "Please enter a valid email address"
+contact_invalid_phone: "Please enter a valid phone number"
+contact_phone_too_short: "Phone number is too short"
+contact_enter_valid: "Please enter a valid email or phone number"
+contact_name_required: "Please enter your name"
+contact_success_message: "Thank you! We'll get back to you soon."
+contact_error_message: "Something went wrong. Please try again or contact us via WhatsApp."
+
+# WhatsApp
+contact_whatsapp_message: "Hi! I'm interested in your services and would like to discuss a project."
+contact_whatsapp_btn: "Chat on WhatsApp"
+contact_whatsapp_aria: "Contact us on WhatsApp"
+
+# Contact Info Section
+contact_quick_title: "Prefer to Chat?"
+contact_quick_text: "Get an instant response via WhatsApp. We typically reply within minutes during business hours."
+contact_details_title: "Contact Information"
+contact_email_label: "Email"
+contact_phone_label: "Phone"
+contact_location_label: "Location"
+contact_location_value: "Dubai, UAE"
+contact_response_title: "Fast Response"
+contact_response_text: "We typically respond within 2-4 hours during business hours (Sun-Thu, 9AM-6PM GST)."
+
+# WhatsApp Form Messages
+contact_wa_intro: "Hello! I'm interested in your services."
+contact_wa_name: "Name"
+contact_wa_contact: "Contact"
+contact_wa_project: "Project Type"
+contact_wa_message: "Message"

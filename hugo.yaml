@@ -32,12 +32,12 @@ languages:
         - name: 'Customers'
           url: '/customers/'
           weight: 4
-        - name: 'About'
-          url: '/#highlights'
+        - name: 'Contact'
+          url: '/contact/'
           weight: 5
       buttons:
         - name: 'Contact Us'
-          url: '#subscribe'
+          url: '/contact/'
           weight: 6
 
   ar:
@@ -62,12 +62,12 @@ languages:
         - name: 'العملاء'
           url: '/customers/'
           weight: 4
-        - name: 'من نحن'
-          url: '/#highlights'
+        - name: 'تواصل'
+          url: '/contact/'
           weight: 5
       buttons:
         - name: 'تواصل معنا'
-          url: '#subscribe'
+          url: '/contact/'
           weight: 6
 
 # Performance optimizations

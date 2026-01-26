@@ -377,3 +377,64 @@ customer_fleetops_tagline: "إدارة الأسطول بسهولة"
 customer_fleetops_description: "منصة ويب شاملة بنيناها لمساعدة شركات الخدمات اللوجستية على إدارة أسطول شاحنات التوصيل بالكامل — من التتبع الفوري إلى جدولة الصيانة الآلية."
 customer_fleetops_challenge: "كان العميل يدير أكثر من 50 شاحنة توصيل باستخدام جداول البيانات والمكالمات الهاتفية. كانت الصيانة تُفوَّت غالباً، مما أدى إلى أعطال مكلفة وتأخيرات في التوصيل. لم يكن لديهم أي رؤية لمواقع شاحناتهم في أي لحظة."
 customer_fleetops_solution: "بنينا منصة ويب مخصصة توفر تتبع GPS فوري على خريطة تفاعلية، تنبيهات صيانة آلية بناءً على المسافة المقطوعة والفترات الزمنية، إدارة تعيين السائقين، مراقبة استهلاك الوقود، ولوحات تقارير شاملة."
+
+# -----------------------------------------------------------------------------
+# Contact Page
+# -----------------------------------------------------------------------------
+contact_hero_badge: "تواصل معنا"
+contact_hero_title: "لنبني شيئاً **مذهلاً معاً**"
+contact_hero_text: "لديك مشروع في ذهنك؟ نسعد بسماعه. تواصل معنا ودعنا نناقش كيف يمكننا المساعدة في تحويل أفكارك إلى واقع."
+
+# Contact Form
+contact_form_title: "أرسل لنا رسالة"
+contact_name_label: "اسمك"
+contact_name_placeholder: "محمد أحمد"
+contact_info_label: "الهاتف أو البريد الإلكتروني"
+contact_info_placeholder: "+971 50 123 4567 أو email@example.com"
+contact_info_hint: "أدخل رقم هاتفك أو بريدك الإلكتروني"
+contact_project_label: "نوع المشروع"
+contact_project_select: "اختر نوع المشروع..."
+contact_project_website: "تطوير موقع ويب"
+contact_project_mobile: "تطبيق جوال"
+contact_project_internal: "أداة أعمال داخلية"
+contact_project_seo: "تحسين محركات البحث والتسويق"
+contact_project_design: "تصميم UI/UX"
+contact_project_other: "آخر"
+contact_message_label: "رسالتك (اختياري)"
+contact_message_placeholder: "أخبرنا عن مشروعك، الجدول الزمني، أو أي أسئلة لديك..."
+contact_submit_btn: "إرسال الرسالة"
+contact_sending: "جاري الإرسال..."
+
+# Validation Messages
+contact_valid_email: "بريد إلكتروني صالح"
+contact_valid_phone: "رقم هاتف صالح"
+contact_invalid_email: "الرجاء إدخال بريد إلكتروني صالح"
+contact_invalid_phone: "الرجاء إدخال رقم هاتف صالح"
+contact_phone_too_short: "رقم الهاتف قصير جداً"
+contact_enter_valid: "الرجاء إدخال بريد إلكتروني أو رقم هاتف صالح"
+contact_name_required: "الرجاء إدخال اسمك"
+contact_success_message: "شكراً! سنتواصل معك قريباً."
+contact_error_message: "حدث خطأ ما. الرجاء المحاولة مرة أخرى أو التواصل عبر واتساب."
+
+# WhatsApp
+contact_whatsapp_message: "مرحباً! أنا مهتم بخدماتكم وأود مناقشة مشروع."
+contact_whatsapp_btn: "تواصل عبر واتساب"
+contact_whatsapp_aria: "تواصل معنا عبر واتساب"
+
+# Contact Info Section
+contact_quick_title: "تفضل المحادثة؟"
+contact_quick_text: "احصل على رد فوري عبر واتساب. نرد عادة خلال دقائق في أوقات العمل."
+contact_details_title: "معلومات التواصل"
+contact_email_label: "البريد الإلكتروني"
+contact_phone_label: "الهاتف"
+contact_location_label: "الموقع"
+contact_location_value: "دبي، الإمارات"
+contact_response_title: "رد سريع"
+contact_response_text: "نرد عادة خلال 2-4 ساعات في أوقات العمل (الأحد-الخميس، 9ص-6م بتوقيت الخليج)."
+
+# WhatsApp Form Messages
+contact_wa_intro: "مرحباً! أنا مهتم بخدماتكم."
+contact_wa_name: "الاسم"
+contact_wa_contact: "التواصل"
+contact_wa_project: "نوع المشروع"
+contact_wa_message: "الرسالة"

@@ -1,15 +1,63 @@
 <!-- Footer -->
-<footer class="footer-section py-8 bg-[#252525]" {{ if eq .Site.Language.LanguageDirection "rtl" }}dir="rtl"{{ end }}>
+<footer class="footer-section py-12 bg-[#252525]" {{ if eq .Site.Language.LanguageDirection "rtl" }}dir="rtl"{{ end }}>
   <div class="container mx-auto px-4">
-    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 {{ if eq .Site.Language.LanguageDirection "rtl" }}sm:flex-row-reverse{{ end }}">
-      <a href="{{ "/" | relLangURL }}" class="text-white font-semibold text-lg">{{ i18n "logo_text" }}</a>
-      <nav class="flex items-center gap-6 {{ if eq .Site.Language.LanguageDirection "rtl" }}flex-row-reverse{{ end }}">
-        <a href="{{ "/" | relLangURL }}#features" class="text-white/70 hover:text-white transition-colors">{{ i18n "nav_services" }}</a>
-        <a href="{{ "/" | relLangURL }}#projects" class="text-white/70 hover:text-white transition-colors">{{ i18n "projects_page_title" }}</a>
-        <a href="{{ "/" | relLangURL }}#clients" class="text-white/70 hover:text-white transition-colors">{{ i18n "nav_clients" }}</a>
-        <a href="{{ "/" | relLangURL }}#subscribe" class="text-white/70 hover:text-white transition-colors">{{ i18n "nav_contact" }}</a>
+    <!-- Main Footer Content -->
+    <div class="flex flex-col lg:flex-row items-center justify-between gap-8 mb-8 {{ if eq .Site.Language.LanguageDirection "rtl" }}lg:flex-row-reverse{{ end }}">
+      <!-- Logo & Tagline -->
+      <div class="text-center lg:text-{{ if eq .Site.Language.LanguageDirection "rtl" }}right{{ else }}left{{ end }}">
+        <a href="{{ "/" | relLangURL }}" class="text-white font-bold text-xl">{{ i18n "logo_text" }}</a>
+        <p class="text-white/60 text-sm mt-2">{{ i18n "site_description" | truncate 60 }}</p>
+      </div>
+      
+      <!-- Navigation Links -->
+      <nav class="flex flex-wrap items-center justify-center gap-6 {{ if eq .Site.Language.LanguageDirection "rtl" }}flex-row-reverse{{ end }}">
+        <a href="{{ "/services/" | relLangURL }}" class="text-white/70 hover:text-white transition-colors">{{ i18n "nav_services" }}</a>
+        <a href="{{ "/projects/" | relLangURL }}" class="text-white/70 hover:text-white transition-colors">{{ i18n "projects_page_title" }}</a>
+        <a href="{{ "/customers/" | relLangURL }}" class="text-white/70 hover:text-white transition-colors">{{ i18n "nav_clients" }}</a>
+        <a href="{{ "/contact/" | relLangURL }}" class="text-white/70 hover:text-white transition-colors">{{ i18n "nav_contact" }}</a>
       </nav>
-      <p class="text-white/50 text-sm">{{ i18n "footer_copyright" }}</p>
+      
+      <!-- WhatsApp CTA -->
+      <a href="https://wa.me/971507566474?text={{ i18n "contact_whatsapp_message" | urlquery }}"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white px-5 py-2.5 rounded-full font-medium transition-all duration-300 hover:shadow-lg hover:shadow-[#25D366]/25">
+        <i class="fab fa-whatsapp text-lg"></i>
+        <span>{{ i18n "contact_whatsapp_btn" }}</span>
+      </a>
+    </div>
+    
+    <!-- Divider -->
+    <div class="border-t border-white/10 pt-6">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 {{ if eq .Site.Language.LanguageDirection "rtl" }}sm:flex-row-reverse{{ end }}">
+        <!-- Copyright -->
+        <p class="text-white/50 text-sm">{{ i18n "footer_copyright" }}</p>
+        
+        <!-- Contact Info -->
+        <div class="flex items-center gap-6 text-sm {{ if eq .Site.Language.LanguageDirection "rtl" }}flex-row-reverse{{ end }}">
+          <a href="mailto:info@baseetstudio.com" class="text-white/60 hover:text-white transition-colors flex items-center gap-2">
+            <i class="fas fa-envelope"></i>
+            <span>info@baseetstudio.com</span>
+          </a>
+          <a href="tel:+971507566474" class="text-white/60 hover:text-white transition-colors flex items-center gap-2">
+            <i class="fas fa-phone"></i>
+            <span dir="ltr">+971 50 756 6474</span>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </footer>
+
+<!-- Floating WhatsApp Button (on all pages) -->
+<a href="https://wa.me/971507566474?text={{ i18n "contact_whatsapp_message" | urlquery }}"
+   target="_blank"
+   rel="noopener noreferrer"
+   class="fixed bottom-6 {{ if eq .Site.Language.LanguageDirection "rtl" }}left-6{{ else }}right-6{{ end }} z-50 w-14 h-14 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl hover:shadow-[#25D366]/30 transform hover:scale-110 transition-all duration-300 group"
+   aria-label="{{ i18n "contact_whatsapp_aria" }}">
+    <i class="fab fa-whatsapp text-2xl"></i>
+    <!-- Tooltip -->
+    <span class="absolute {{ if eq .Site.Language.LanguageDirection "rtl" }}left-full ml-3{{ else }}right-full mr-3{{ end }} bg-gray-900 text-white text-sm px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+      {{ i18n "contact_whatsapp_btn" }}
+    </span>
+</a>

@@ -1,0 +1,375 @@
+{{ define "main" }}
+<!-- Contact Page -->
+<main id="mainContent" class="min-h-screen" {{ if eq .Site.Language.LanguageDirection "rtl" }}dir="rtl"{{ end }}>
+    
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-16 bg-gradient-to-br from-slate-50 via-white to-blue-50 overflow-hidden">
+        <!-- Background decoration -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute -top-40 -right-40 w-80 h-80 bg-[#496BC1]/5 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-[#FBCD37]/5 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center max-w-3xl mx-auto">
+                <span class="inline-block px-4 py-2 bg-[#496BC1]/10 text-[#496BC1] rounded-full text-sm font-medium mb-6">
+                    {{ i18n "contact_hero_badge" }}
+                </span>
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                    {{ i18n "contact_hero_title" | safeHTML }}
+                </h1>
+                <p class="text-xl text-gray-600 leading-relaxed">
+                    {{ i18n "contact_hero_text" }}
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-12">
+                    
+                    <!-- Contact Form -->
+                    <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-6">{{ i18n "contact_form_title" }}</h2>
+                        
+                        <form id="contactForm" class="space-y-6">
+                            <!-- Name -->
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
+                                    {{ i18n "contact_name_label" }} <span class="text-red-500">*</span>
+                                </label>
+                                <input type="text" id="name" name="name" required
+                                    class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#496BC1] focus:border-transparent transition-all duration-200 outline-none"
+                                    placeholder="{{ i18n "contact_name_placeholder" }}">
+                            </div>
+                            
+                            <!-- Contact (Phone or Email) -->
+                            <div>
+                                <label for="contact" class="block text-sm font-medium text-gray-700 mb-2">
+                                    {{ i18n "contact_info_label" }} <span class="text-red-500">*</span>
+                                </label>
+                                <div class="relative">
+                                    <input type="text" id="contact" name="contact" required
+                                        class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#496BC1] focus:border-transparent transition-all duration-200 outline-none {{ if eq .Site.Language.LanguageDirection "rtl" }}pr-12{{ else }}pl-12{{ end }}"
+                                        placeholder="{{ i18n "contact_info_placeholder" }}">
+                                    <span id="contactIcon" class="absolute {{ if eq .Site.Language.LanguageDirection "rtl" }}right-4{{ else }}left-4{{ end }} top-1/2 -translate-y-1/2 text-gray-400 transition-all duration-200">
+                                        <i class="fas fa-at"></i>
+                                    </span>
+                                </div>
+                                <p id="contactHint" class="mt-2 text-sm text-gray-500">{{ i18n "contact_info_hint" }}</p>
+                                <p id="contactError" class="mt-2 text-sm text-red-500 hidden"></p>
+                                <p id="contactValid" class="mt-2 text-sm text-green-500 hidden">
+                                    <i class="fas fa-check-circle {{ if eq .Site.Language.LanguageDirection "rtl" }}ml-1{{ else }}mr-1{{ end }}"></i>
+                                    <span id="contactValidText"></span>
+                                </p>
+                            </div>
+                            
+                            <!-- Project Type -->
+                            <div>
+                                <label for="projectType" class="block text-sm font-medium text-gray-700 mb-2">
+                                    {{ i18n "contact_project_label" }}
+                                </label>
+                                <select id="projectType" name="projectType"
+                                    class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#496BC1] focus:border-transparent transition-all duration-200 outline-none bg-white">
+                                    <option value="">{{ i18n "contact_project_select" }}</option>
+                                    <option value="website">{{ i18n "contact_project_website" }}</option>
+                                    <option value="mobile">{{ i18n "contact_project_mobile" }}</option>
+                                    <option value="internal">{{ i18n "contact_project_internal" }}</option>
+                                    <option value="seo">{{ i18n "contact_project_seo" }}</option>
+                                    <option value="design">{{ i18n "contact_project_design" }}</option>
+                                    <option value="other">{{ i18n "contact_project_other" }}</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Message -->
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700 mb-2">
+                                    {{ i18n "contact_message_label" }}
+                                </label>
+                                <textarea id="message" name="message" rows="4"
+                                    class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#496BC1] focus:border-transparent transition-all duration-200 outline-none resize-none"
+                                    placeholder="{{ i18n "contact_message_placeholder" }}"></textarea>
+                            </div>
+                            
+                            <!-- Submit Button -->
+                            <button type="submit" id="submitBtn"
+                                class="w-full py-4 px-6 bg-gradient-to-r from-[#496BC1] to-[#3a5aa3] text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-[#496BC1]/25 transform hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center gap-2">
+                                <span>{{ i18n "contact_submit_btn" }}</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                            
+                            <!-- Success/Error Messages -->
+                            <div id="formSuccess" class="hidden p-4 bg-green-50 border border-green-200 rounded-xl text-green-700 text-center">
+                                <i class="fas fa-check-circle {{ if eq .Site.Language.LanguageDirection "rtl" }}ml-2{{ else }}mr-2{{ end }}"></i>
+                                {{ i18n "contact_success_message" }}
+                            </div>
+                            <div id="formError" class="hidden p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-center">
+                                <i class="fas fa-exclamation-circle {{ if eq .Site.Language.LanguageDirection "rtl" }}ml-2{{ else }}mr-2{{ end }}"></i>
+                                {{ i18n "contact_error_message" }}
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Contact Info & WhatsApp -->
+                    <div class="space-y-8">
+                        <!-- Quick Contact -->
+                        <div class="bg-gradient-to-br from-[#496BC1] to-[#3a5aa3] rounded-2xl p-8 text-white">
+                            <h3 class="text-xl font-bold mb-4">{{ i18n "contact_quick_title" }}</h3>
+                            <p class="text-white/80 mb-6">{{ i18n "contact_quick_text" }}</p>
+                            
+                            <!-- WhatsApp Button -->
+                            <a href="https://wa.me/971507566474?text={{ i18n "contact_whatsapp_message" | urlquery }}"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="flex items-center gap-3 bg-[#25D366] hover:bg-[#20bd5a] text-white px-6 py-4 rounded-xl font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-[#25D366]/25 transform hover:-translate-y-0.5">
+                                <i class="fab fa-whatsapp text-2xl"></i>
+                                <span>{{ i18n "contact_whatsapp_btn" }}</span>
+                            </a>
+                        </div>
+                        
+                        <!-- Contact Details -->
+                        <div class="bg-gray-50 rounded-2xl p-8">
+                            <h3 class="text-xl font-bold text-gray-900 mb-6">{{ i18n "contact_details_title" }}</h3>
+                            
+                            <div class="space-y-4">
+                                <!-- Email -->
+                                <a href="mailto:info@baseetstudio.com" class="flex items-center gap-4 p-4 bg-white rounded-xl hover:shadow-md transition-all duration-200 group">
+                                    <div class="w-12 h-12 bg-[#496BC1]/10 rounded-xl flex items-center justify-center text-[#496BC1] group-hover:bg-[#496BC1] group-hover:text-white transition-all duration-200">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-500">{{ i18n "contact_email_label" }}</p>
+                                        <p class="font-medium text-gray-900">info@baseetstudio.com</p>
+                                    </div>
+                                </a>
+                                
+                                <!-- Phone -->
+                                <a href="tel:+971507566474" class="flex items-center gap-4 p-4 bg-white rounded-xl hover:shadow-md transition-all duration-200 group">
+                                    <div class="w-12 h-12 bg-[#496BC1]/10 rounded-xl flex items-center justify-center text-[#496BC1] group-hover:bg-[#496BC1] group-hover:text-white transition-all duration-200">
+                                        <i class="fas fa-phone"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-500">{{ i18n "contact_phone_label" }}</p>
+                                        <p class="font-medium text-gray-900" dir="ltr">+971 50 756 6474</p>
+                                    </div>
+                                </a>
+                                
+                                <!-- Location -->
+                                <div class="flex items-center gap-4 p-4 bg-white rounded-xl">
+                                    <div class="w-12 h-12 bg-[#496BC1]/10 rounded-xl flex items-center justify-center text-[#496BC1]">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-500">{{ i18n "contact_location_label" }}</p>
+                                        <p class="font-medium text-gray-900">{{ i18n "contact_location_value" }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Response Time -->
+                        <div class="bg-[#FBCD37]/10 rounded-2xl p-6 border border-[#FBCD37]/20">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 bg-[#FBCD37] rounded-lg flex items-center justify-center text-white flex-shrink-0">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 mb-1">{{ i18n "contact_response_title" }}</h4>
+                                    <p class="text-sm text-gray-600">{{ i18n "contact_response_text" }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const contactInput = document.getElementById('contact');
+    const contactIcon = document.getElementById('contactIcon');
+    const contactHint = document.getElementById('contactHint');
+    const contactError = document.getElementById('contactError');
+    const contactValid = document.getElementById('contactValid');
+    const contactValidText = document.getElementById('contactValidText');
+    const contactForm = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const formSuccess = document.getElementById('formSuccess');
+    const formError = document.getElementById('formError');
+    
+    // Validation patterns
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phonePatterns = {
+        // International format with +
+        international: /^\+[1-9]\d{6,14}$/,
+        // UAE numbers
+        uae: /^(?:\+971|00971|971)?(?:50|52|54|55|56|58)[0-9]{7}$/,
+        // US/Canada
+        us: /^(?:\+1)?[2-9]\d{2}[2-9]\d{6}$/,
+        // General: digits only, 7-15 length
+        general: /^[\d\s\-\(\)\.]{7,20}$/
+    };
+    
+    // Format phone number for display
+    function formatPhoneNumber(value) {
+        // Remove all non-digit characters except +
+        let cleaned = value.replace(/[^\d+]/g, '');
+        
+        // UAE format
+        if (cleaned.match(/^(?:\+971|971|00971)/)) {
+            cleaned = cleaned.replace(/^00971/, '+971').replace(/^971(?!\+)/, '+971');
+            if (cleaned.length >= 13) {
+                return cleaned.slice(0, 4) + ' ' + cleaned.slice(4, 6) + ' ' + cleaned.slice(6, 9) + ' ' + cleaned.slice(9, 13);
+            }
+        }
+        
+        return cleaned;
+    }
+    
+    // Detect input type and validate
+    function validateContact(value) {
+        const trimmed = value.trim();
+        
+        if (!trimmed) {
+            return { valid: false, type: null, message: '' };
+        }
+        
+        // Check if email
+        if (trimmed.includes('@') || emailPattern.test(trimmed)) {
+            if (emailPattern.test(trimmed)) {
+                return { valid: true, type: 'email', message: '{{ i18n "contact_valid_email" }}' };
+            } else {
+                return { valid: false, type: 'email', message: '{{ i18n "contact_invalid_email" }}' };
+            }
+        }
+        
+        // Check if phone (starts with + or digit)
+        const cleaned = trimmed.replace(/[\s\-\(\)\.]/g, '');
+        if (/^[\+\d]/.test(cleaned)) {
+            // Validate phone
+            if (phonePatterns.uae.test(cleaned) || 
+                phonePatterns.international.test(cleaned) || 
+                phonePatterns.us.test(cleaned) ||
+                (phonePatterns.general.test(trimmed) && cleaned.length >= 7)) {
+                return { valid: true, type: 'phone', message: '{{ i18n "contact_valid_phone" }}' };
+            } else if (cleaned.length < 7) {
+                return { valid: false, type: 'phone', message: '{{ i18n "contact_phone_too_short" }}' };
+            } else {
+                return { valid: false, type: 'phone', message: '{{ i18n "contact_invalid_phone" }}' };
+            }
+        }
+        
+        return { valid: false, type: null, message: '{{ i18n "contact_enter_valid" }}' };
+    }
+    
+    // Update UI based on validation
+    function updateContactUI(result) {
+        // Update icon
+        if (result.type === 'email') {
+            contactIcon.innerHTML = '<i class="fas fa-envelope"></i>';
+            contactIcon.classList.remove('text-gray-400', 'text-green-500', 'text-red-500');
+            contactIcon.classList.add(result.valid ? 'text-green-500' : 'text-red-500');
+        } else if (result.type === 'phone') {
+            contactIcon.innerHTML = '<i class="fas fa-phone"></i>';
+            contactIcon.classList.remove('text-gray-400', 'text-green-500', 'text-red-500');
+            contactIcon.classList.add(result.valid ? 'text-green-500' : 'text-red-500');
+        } else {
+            contactIcon.innerHTML = '<i class="fas fa-at"></i>';
+            contactIcon.classList.remove('text-green-500', 'text-red-500');
+            contactIcon.classList.add('text-gray-400');
+        }
+        
+        // Update messages
+        if (result.valid) {
+            contactHint.classList.add('hidden');
+            contactError.classList.add('hidden');
+            contactValid.classList.remove('hidden');
+            contactValidText.textContent = result.message;
+            contactInput.classList.remove('border-red-300');
+            contactInput.classList.add('border-green-300');
+        } else if (result.message && contactInput.value.trim()) {
+            contactHint.classList.add('hidden');
+            contactError.classList.remove('hidden');
+            contactError.textContent = result.message;
+            contactValid.classList.add('hidden');
+            contactInput.classList.remove('border-green-300');
+            contactInput.classList.add('border-red-300');
+        } else {
+            contactHint.classList.remove('hidden');
+            contactError.classList.add('hidden');
+            contactValid.classList.add('hidden');
+            contactInput.classList.remove('border-green-300', 'border-red-300');
+        }
+    }
+    
+    // Input event listener
+    contactInput.addEventListener('input', function(e) {
+        const result = validateContact(e.target.value);
+        updateContactUI(result);
+    });
+    
+    // Blur event - format phone number
+    contactInput.addEventListener('blur', function(e) {
+        const result = validateContact(e.target.value);
+        if (result.valid && result.type === 'phone') {
+            e.target.value = formatPhoneNumber(e.target.value);
+        }
+    });
+    
+    // Form submission
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('name').value.trim();
+        const contact = contactInput.value.trim();
+        const projectType = document.getElementById('projectType').value;
+        const message = document.getElementById('message').value.trim();
+        
+        // Validate
+        if (!name) {
+            alert('{{ i18n "contact_name_required" }}');
+            return;
+        }
+        
+        const contactResult = validateContact(contact);
+        if (!contactResult.valid) {
+            updateContactUI(contactResult);
+            return;
+        }
+        
+        // Show loading state
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin {{ if eq .Site.Language.LanguageDirection "rtl" }}ml-2{{ else }}mr-2{{ end }}"></i> {{ i18n "contact_sending" }}';
+        
+        // Prepare WhatsApp message
+        let waMessage = '{{ i18n "contact_wa_intro" }}\n\n';
+        waMessage += '👤 {{ i18n "contact_wa_name" }}: ' + name + '\n';
+        waMessage += (contactResult.type === 'email' ? '📧' : '📱') + ' {{ i18n "contact_wa_contact" }}: ' + contact + '\n';
+        if (projectType) {
+            waMessage += '📋 {{ i18n "contact_wa_project" }}: ' + projectType + '\n';
+        }
+        if (message) {
+            waMessage += '\n💬 {{ i18n "contact_wa_message" }}:\n' + message;
+        }
+        
+        // Simulate form processing then redirect to WhatsApp
+        setTimeout(function() {
+            formSuccess.classList.remove('hidden');
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<span>{{ i18n "contact_submit_btn" }}</span> <i class="fas fa-paper-plane"></i>';
+            
+            // Open WhatsApp after short delay
+            setTimeout(function() {
+                window.open('https://wa.me/971507566474?text=' + encodeURIComponent(waMessage), '_blank');
+            }, 1000);
+        }, 800);
+    });
+});
+</script>
+
+{{ end }}
