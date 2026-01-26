@@ -1,23 +1,26 @@
 {{ $data := . }}
-<section id="hero" class="relative overflow-hidden bg-surface pt-32 pb-16 lg:pt-48 lg:pb-32">
+<section id="hero" class="relative overflow-hidden bg-surface pt-32 pb-16 lg:pt-48 lg:pb-32" {{ if eq site.Language.LanguageDirection "rtl" }}dir="rtl"{{ end }}>
   <div class="container mx-auto px-4">
     <div class="flex flex-wrap items-center -mx-4">
       <div class="w-full lg:w-1/2 px-4 mb-12 lg:mb-0">
-        <div class="max-w-lg">
+        <div class="max-w-lg {{ if eq site.Language.LanguageDirection "rtl" }}lg:mr-auto{{ else }}lg:ml-0{{ end }}">
           <h1 class="hero-title-premium text-4xl lg:text-6xl font-bold text-stroke mb-6 leading-tight">
-            {{ $data.title | markdownify }}
+            {{ i18n "hero_title" | markdownify }}
           </h1>
           <p class="hero-text-premium text-lg text-stroke/80 mb-8 leading-relaxed">
-            {{ $data.text | markdownify }}
+            {{ i18n "hero_text" | markdownify }}
           </p>
           <div class="flex flex-wrap gap-4">
-            {{ range $index, $btn := $data.buttons }}
-            <a href="{{ $btn.link }}"
+            <a href="#subscribe"
               class="hero-btn-premium px-8 py-3 text-base font-medium text-white bg-primary rounded-full transition-colors duration-300"
               style="--btn-color: #496bc1;">
-              {{ $btn.label }}
+              {{ i18n "hero_btn_contact" }}
             </a>
-            {{ end }}
+            <a href="#features"
+              class="hero-btn-premium px-8 py-3 text-base font-medium text-white bg-primary rounded-full transition-colors duration-300"
+              style="--btn-color: #496bc1;">
+              {{ i18n "hero_btn_services" }}
+            </a>
           </div>
         </div>
       </div>
@@ -31,10 +34,10 @@
           {{ end }}
           <!-- Decorative elements -->
           <div
-            class="absolute -top-10 -right-10 w-40 h-40 bg-tertiary rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob">
+            class="absolute -top-10 {{ if eq site.Language.LanguageDirection "rtl" }}-left-10{{ else }}-right-10{{ end }} w-40 h-40 bg-tertiary rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob">
           </div>
           <div
-            class="absolute -bottom-10 -left-10 w-40 h-40 bg-primary rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000">
+            class="absolute -bottom-10 {{ if eq site.Language.LanguageDirection "rtl" }}-right-10{{ else }}-left-10{{ end }} w-40 h-40 bg-primary rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000">
           </div>
         </div>
       </div>
@@ -43,13 +46,19 @@
     <!-- Hero Items -->
     {{ if $data.items }}
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-20">
-      {{ range $index, $item := $data.items }}
+      {{/* Hero cards use i18n keys */}}
+      {{ $heroCards := slice 
+        (dict "icon" "fas fa-laptop-code" "color" "#496BC1" "titleKey" "hero_card_1_title" "textKey" "hero_card_1_text")
+        (dict "icon" "fas fa-mobile-alt" "color" "#FBCD37" "titleKey" "hero_card_2_title" "textKey" "hero_card_2_text")
+        (dict "icon" "fas fa-paint-brush" "color" "#496BC1" "titleKey" "hero_card_3_title" "textKey" "hero_card_3_text")
+      }}
+      {{ range $index, $item := $heroCards }}
       <div class="hero-service-card" style="--card-color: {{ $item.color }}; animation-delay: {{ mul $index 0.1 }}s;">
         <div class="hero-icon-container" style="background-color: {{ $item.color }}20; color: {{ $item.color }}">
           <i class="{{ $item.icon }} text-xl"></i>
         </div>
-        <h3 class="hero-card-title">{{ $item.title }}</h3>
-        <p class="hero-card-text">{{ $item.text }}</p>
+        <h3 class="hero-card-title">{{ i18n $item.titleKey }}</h3>
+        <p class="hero-card-text">{{ i18n $item.textKey }}</p>
       </div>
       {{ end }}
     </div>

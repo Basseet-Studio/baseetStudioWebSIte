@@ -1,23 +1,26 @@
 {{- if .enable -}}
-<section id="highlights" class="highlights relative py-16 xl:py-24 overflow-hidden">
+<section id="highlights" class="highlights relative py-16 xl:py-24 overflow-hidden" {{ if eq site.Language.LanguageDirection "rtl" }}dir="rtl"{{ end }}>
     <div class="container mx-auto px-4 grid xl:grid-cols-2 gap-12">
-        {{- range $index, $item := .items -}}
+        {{/* Define highlight items with i18n keys */}}
+        {{ $highlightItems := slice
+            (dict "titleKey" "highlight_1_title" "textKey" "highlight_1_text" "btnKey" "highlight_1_btn" "link" "#subscribe")
+            (dict "titleKey" "highlight_2_title" "textKey" "highlight_2_text" "btnKey" "highlight_2_btn" "link" "#features")
+        }}
+        {{- range $index, $item := $highlightItems -}}
         <div class="highlight-card {{ if (mod $index 2) }}highlight-card-primary{{ else }}highlight-card-light{{ end }}"
             style="animation-delay: {{ mul $index 0.15 }}s;">
             <h1 class="highlight-title">
-                {{ $item.title }}
+                {{ i18n $item.titleKey }}
             </h1>
             <p class="highlight-text">
-                {{ $item.text }}
+                {{ i18n $item.textKey }}
             </p>
-            {{- if $item.button -}}
             <div class="flex items-center justify-center">
                 <a class="highlight-btn {{ if (mod $index 2) }}highlight-btn-light{{ else }}highlight-btn-primary{{ end }}"
-                    href="{{ $item.button.link }}">
-                    {{ $item.button.label }}
+                    href="{{ $item.link }}">
+                    {{ i18n $item.btnKey }}
                 </a>
             </div>
-            {{- end -}}
         </div>
         {{- end -}}
     </div>

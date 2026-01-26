@@ -1,22 +1,28 @@
 {{- if .enable -}}
-<section id="features" class="features relative py-8 xl:py-32 overflow-hidden">
+<section id="features" class="features relative py-8 xl:py-32 overflow-hidden" {{ if eq site.Language.LanguageDirection "rtl" }}dir="rtl"{{ end }}>
     <!-- Background decorations -->
-    <div class="absolute top-20 right-0 w-72 h-72 bg-primary/5 rounded-full filter blur-3xl -z-10"></div>
-    <div class="absolute bottom-20 left-0 w-72 h-72 bg-tertiary/5 rounded-full filter blur-3xl -z-10"></div>
+    <div class="absolute top-20 {{ if eq site.Language.LanguageDirection "rtl" }}left-0{{ else }}right-0{{ end }} w-72 h-72 bg-primary/5 rounded-full filter blur-3xl -z-10"></div>
+    <div class="absolute bottom-20 {{ if eq site.Language.LanguageDirection "rtl" }}right-0{{ else }}left-0{{ end }} w-72 h-72 bg-tertiary/5 rounded-full filter blur-3xl -z-10"></div>
 
     <div class="container mx-auto px-4">
         <h2
             class="feature-title-premium xl:max-w-2/3 mx-auto text-center text-[#252525] font-semibold text-4xl xl:text-5xl leading-tight mb-6 scroll-animate">
-            {{ .title | safeHTML }}
+            {{ i18n "features_title" | safeHTML }}
         </h2>
         <p class="feature-text-premium xl:max-w-2xl mx-auto text-center text-[#868686] text-lg mb-16 scroll-animate"
             style="animation-delay: 0.2s;">
-            {{ .text }}
+            {{ i18n "features_text" }}
         </p>
     </div>
 
     <div class="flex flex-col relative gap-20">
-        {{- range $index, $item := .items -}}
+        {{/* Define feature items with i18n keys */}}
+        {{ $featureItems := slice
+            (dict "icon" "fas fa-code" "color" "#496BC1" "pretitleKey" "feature_1_pretitle" "pretextKey" "feature_1_pretext" "titleKey" "feature_1_title" "textKey" "feature_1_text" "image" "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=600&fit=crop")
+            (dict "icon" "fas fa-mobile-screen" "color" "#FBCD37" "pretitleKey" "feature_2_pretitle" "pretextKey" "feature_2_pretext" "titleKey" "feature_2_title" "textKey" "feature_2_text" "image" "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=600&fit=crop")
+            (dict "icon" "fas fa-lightbulb" "color" "#496BC1" "pretitleKey" "feature_3_pretitle" "pretextKey" "feature_3_pretext" "titleKey" "feature_3_title" "textKey" "feature_3_text" "image" "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop")
+        }}
+        {{- range $index, $item := $featureItems -}}
         <div class="container mx-auto px-4 {{ if (mod $index 2) }}scroll-animate-left{{ else }}scroll-animate-right{{ end }}"
             style="animation-delay: {{ mul $index 0.2 }}s;">
             <div class="grid xl:grid-cols-12 gap-8 xl:gap-12 items-center">
@@ -29,18 +35,18 @@
                             class="feature-icon-premium flex items-center justify-center shrink-0 text-xl text-white bg-[{{ $item.color }}] size-16 rounded-2xl shadow-lg magnetic-button">
                             <i class="{{ $item.icon }}"></i>
                         </div>
-                        <div class="inline-flex flex-col text-center xl:text-start">
-                            <h2 class="feature-pretitle text-lg font-semibold text-stroke">{{ $item.pretitle }}</h2>
-                            <p class="text-sm text-[#868686]">{{ $item.pretext }}</p>
+                        <div class="inline-flex flex-col text-center xl:text-start {{ if eq site.Language.LanguageDirection "rtl" }}xl:text-end{{ end }}">
+                            <h2 class="feature-pretitle text-lg font-semibold text-stroke">{{ i18n $item.pretitleKey }}</h2>
+                            <p class="text-sm text-[#868686]">{{ i18n $item.pretextKey }}</p>
                         </div>
                     </div>
                     <h3
-                        class="feature-title-premium text-[#252525] font-bold text-3xl xl:text-4xl leading-tight text-center xl:text-start">
-                        {{ $item.title | markdownify }}
+                        class="feature-title-premium text-[#252525] font-bold text-3xl xl:text-4xl leading-tight text-center xl:text-start {{ if eq site.Language.LanguageDirection "rtl" }}xl:text-end{{ end }}">
+                        {{ i18n $item.titleKey | markdownify }}
                     </h3>
                     <p
-                        class="feature-text-premium text-[#545454] text-base xl:text-lg leading-relaxed text-center xl:text-start">
-                        {{ $item.text }}
+                        class="feature-text-premium text-[#545454] text-base xl:text-lg leading-relaxed text-center xl:text-start {{ if eq site.Language.LanguageDirection "rtl" }}xl:text-end{{ end }}">
+                        {{ i18n $item.textKey }}
                     </p>
                 </div>
 
@@ -58,8 +64,7 @@
                         <!-- Image container with overlay -->
                         <div class="feature-image-container relative overflow-hidden rounded-2xl">
                             {{ $class := "feature-image-premium w-[85%] xl:w-[75%] mx-auto" }}
-                            {{ partial "responsive-img.html" (dict "src" $item.image "alt" $item.title "class" $class)
-                            }}
+                            {{ partial "responsive-img.html" (dict "src" $item.image "alt" (i18n $item.titleKey) "class" $class) }}
                             <!-- Gradient overlay on hover -->
                             <div class="feature-overlay-gradient"></div>
 

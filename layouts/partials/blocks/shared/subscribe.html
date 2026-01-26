@@ -1,12 +1,12 @@
 {{ with . }}{{ if .enable }}
 <section id="subscribe"
-    class="subscribe-section relative py-36 overflow-hidden bg-gradient-to-br from-primary/5 via-white to-tertiary/5">
+    class="subscribe-section relative py-36 overflow-hidden bg-gradient-to-br from-primary/5 via-white to-tertiary/5" {{ if eq site.Language.LanguageDirection "rtl" }}dir="rtl"{{ end }}>
     <!-- Floating decorations -->
     <div class="subscribe-decoration subscribe-decoration-1"></div>
     <div class="subscribe-decoration subscribe-decoration-2"></div>
 
     <div class="container mx-auto px-4 relative z-10">
-        <h1 class="subscribe-title">{{ .title }}</h1>
+        <h1 class="subscribe-title">{{ i18n "subscribe_title" }}</h1>
 
         <!-- AJAX Feedback Area (hidden by default, aria-live for accessibility) -->
         <div id="form-feedback" class="max-w-xl mx-auto mb-6 hidden" role="status" aria-live="polite"
@@ -20,8 +20,7 @@
                             d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                             clip-rule="evenodd" />
                     </svg>
-                    <p class="font-medium">Thank you! Your message has been sent successfully. We'll get back to you
-                        soon.</p>
+                    <p class="font-medium">{{ i18n "subscribe_success" }}</p>
                 </div>
             </div>
 
@@ -33,7 +32,7 @@
                             d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
                             clip-rule="evenodd" />
                     </svg>
-                    <p class="font-medium" id="form-error-message">Oops! Something went wrong. Please try again.</p>
+                    <p class="font-medium" id="form-error-message">{{ i18n "subscribe_error" }}</p>
                 </div>
             </div>
         </div>
@@ -43,13 +42,13 @@
             class="subscribe-form flex flex-col xl:flex-row xl:items-center justify-stretch gap-4 xl:max-w-2xl mx-auto"
             {{ with .method }}method="{{ . }}" {{ end }} {{ with .action }}action="{{ . }}" {{ end }}>
             <label for="subscribe-email" class="hidden">Email</label>
-            <input id="subscribe-email" class="subscribe-input flex-1" type="email" name="email" value="" {{ with
-                .placeholder }}placeholder="{{ . }}" {{ end }} required aria-required="true" />
+            <input id="subscribe-email" class="subscribe-input flex-1" type="email" name="email" value=""
+                placeholder="{{ i18n "subscribe_placeholder" }}" required aria-required="true" />
 
             <button id="submit-button" class="subscribe-btn flex items-center justify-center gap-2" type="submit"
                 aria-label="Submit contact form">
                 <!-- Button Text -->
-                <span id="button-text">{{ default "Get in Touch" .label }}</span>
+                <span id="button-text">{{ i18n "subscribe_btn" }}</span>
 
                 <!-- Loading Spinner (hidden by default) -->
                 <svg id="button-spinner" class="hidden animate-spin h-5 w-5 text-white"

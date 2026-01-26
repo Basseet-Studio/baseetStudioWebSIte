@@ -1,0 +1,15 @@
+<!-- Footer -->
+<footer class="footer-section py-8 bg-[#252525]" {{ if eq .Site.Language.LanguageDirection "rtl" }}dir="rtl"{{ end }}>
+  <div class="container mx-auto px-4">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 {{ if eq .Site.Language.LanguageDirection "rtl" }}sm:flex-row-reverse{{ end }}">
+      <a href="{{ "/" | relLangURL }}" class="text-white font-semibold text-lg">{{ i18n "logo_text" }}</a>
+      <nav class="flex items-center gap-6 {{ if eq .Site.Language.LanguageDirection "rtl" }}flex-row-reverse{{ end }}">
+        <a href="{{ "/" | relLangURL }}#features" class="text-white/70 hover:text-white transition-colors">{{ i18n "nav_services" }}</a>
+        <a href="{{ "/" | relLangURL }}#projects" class="text-white/70 hover:text-white transition-colors">{{ i18n "projects_page_title" }}</a>
+        <a href="{{ "/" | relLangURL }}#clients" class="text-white/70 hover:text-white transition-colors">{{ i18n "nav_clients" }}</a>
+        <a href="{{ "/" | relLangURL }}#subscribe" class="text-white/70 hover:text-white transition-colors">{{ i18n "nav_contact" }}</a>
+      </nav>
+      <p class="text-white/50 text-sm">{{ i18n "footer_copyright" }}</p>
+    </div>
+  </div>
+</footer>

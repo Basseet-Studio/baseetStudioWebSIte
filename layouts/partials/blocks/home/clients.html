@@ -1,8 +1,8 @@
 {{- if .enable -}}
-<section id="clients" class="clients clients-section relative py-32 overflow-hidden">
+<section id="clients" class="clients clients-section relative py-32 overflow-hidden" {{ if eq site.Language.LanguageDirection "rtl" }}dir="rtl"{{ end }}>
     <div class="container mx-auto px-4">
         <h1 class="clients-title text-2xl font-medium leading-relaxed text-center mb-16 scroll-animate">
-            {{ .title }}
+            {{ i18n "clients_title" }}
         </h1>
         <div class="clients-logos-wrapper scroll-animate-scale" style="animation-delay: 0.2s;">
             {{- range $index, $client := .items -}}

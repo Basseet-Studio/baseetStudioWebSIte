@@ -1,47 +1,45 @@
 {{- if .enable -}}
-<section id="team" class="team relative py-16 xl:py-32 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
+<section id="team" class="team relative py-16 xl:py-32 bg-gradient-to-b from-white to-gray-50 overflow-hidden" {{ if eq site.Language.LanguageDirection "rtl" }}dir="rtl"{{ end }}>
     <!-- Background decoration -->
-    <div class="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full filter blur-3xl -z-10"></div>
-    <div class="absolute bottom-0 left-0 w-96 h-96 bg-tertiary/5 rounded-full filter blur-3xl -z-10"></div>
+    <div class="absolute top-0 {{ if eq site.Language.LanguageDirection "rtl" }}left-0{{ else }}right-0{{ end }} w-96 h-96 bg-primary/5 rounded-full filter blur-3xl -z-10"></div>
+    <div class="absolute bottom-0 {{ if eq site.Language.LanguageDirection "rtl" }}right-0{{ else }}left-0{{ end }} w-96 h-96 bg-tertiary/5 rounded-full filter blur-3xl -z-10"></div>
 
     <div class="container mx-auto px-4">
         <!-- Section Header -->
         <div class="text-center mb-16 scroll-animate">
             <h2 class="text-4xl xl:text-5xl font-bold text-stroke mb-4">
-                {{ .title }}
+                {{ i18n "team_title" }}
             </h2>
             <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                {{ .subtitle }}
+                {{ i18n "team_subtitle" }}
             </p>
         </div>
 
         <!-- Team Grid -->
+        {{/* Define team members with i18n keys */}}
+        {{ $teamMembers := slice
+            (dict "nameKey" "team_member_1_name" "roleKey" "team_member_1_role" "bioKey" "team_member_1_bio" "image" "mohamed-abdallah.jpg" "social" (dict "github" "#" "linkedin" "#" "twitter" "#"))
+            (dict "nameKey" "team_member_2_name" "roleKey" "team_member_2_role" "bioKey" "team_member_2_bio" "image" "asadur-rahman.png" "social" (dict "github" "#" "linkedin" "#" "twitter" "#"))
+            (dict "nameKey" "team_member_3_name" "roleKey" "team_member_3_role" "bioKey" "team_member_3_bio" "image" "ariyan-rehman.jpg" "isAriyan" true "social" (dict "github" "#" "linkedin" "#" "twitter" "#"))
+        }}
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 justify-items-center max-w-5xl mx-auto">
-            {{- range $index, $member := .members -}}
+            {{- range $index, $member := $teamMembers -}}
+            {{ $memberName := i18n $member.nameKey }}
             <div class="group team-card-premium w-full max-w-sm scroll-animate-scale"
                 style="animation-delay: {{ mul $index 0.15 }}s;">
                 <!-- Image Container -->
                 <div
                     class="team-image-container relative overflow-hidden bg-gradient-to-br from-primary/10 to-tertiary/10 aspect-square">
                     {{ $imgVal := $member.image }}
-                    {{ $zoomClass := cond (eq $member.name "Ariyan Rehman") " scale-200 group-hover:scale-220" "" }}
-                    {{ $positionClass := cond (eq $member.name "Ariyan Rehman") " object-right" " object-center" }}
-                    {{- /* If image is a URL or absolute path, render as-is. Otherwise, process as local asset in
-                    assets/images/home/team/ */ -}}
-                    {{ if or (hasPrefix $imgVal "http") (hasPrefix $imgVal "/") }}
-                    <img src="{{ $imgVal | relURL }}" alt="{{ $member.name }}"
-                        class="team-image-zoom w-full h-full object-cover {{ $positionClass }}{{ $zoomClass }}"
-                        onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect width=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2280%22 fill=%22white%22%3E{{ substr $member.name 0 1 }}%3C/text%3E%3C/svg%3E'">
-                    {{ else }}
+                    {{ $zoomClass := cond $member.isAriyan " scale-200 group-hover:scale-220" "" }}
+                    {{ $positionClass := cond $member.isAriyan " object-right" " object-center" }}
                     {{ $imgPath := printf "images/home/team/%s" $imgVal }}
                     {{ with resources.Get $imgPath }}
                     {{ $imgRes := . }}
-                    {{/* If it's an SVG, don't try to Fit/Convert; just use permalink */}}
                     {{ if or (eq $imgRes.MediaType.SubType "svg+xml") (eq $imgRes.MediaType.SubType "svg") }}
-                    <img src="{{ $imgRes.Permalink }}" alt="{{ $member.name }}" loading="lazy" decoding="async"
+                    <img src="{{ $imgRes.Permalink }}" alt="{{ $memberName }}" loading="lazy" decoding="async"
                         width="400" height="400"
-                        class="team-image-zoom w-full h-full object-contain {{ $positionClass }}{{ $zoomClass }}"
-                        onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect width=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2280%22 fill=%22white%22%3E{{ substr $member.name 0 1 }}%3C/text%3E%3C/svg%3E'">
+                        class="team-image-zoom w-full h-full object-contain {{ $positionClass }}{{ $zoomClass }}">
                     {{ else }}
                     {{ $sizes := slice 320 480 768 1024 }}
                     {{ $srcset := slice }}
@@ -54,35 +52,24 @@
                     {{ $largest := $imgRes.Fit "1024x1024" }}
                     {{ if gt (len $srcset) 0 }}
                     <img src="{{ $largest.RelPermalink }}" srcset="{{ delimit $srcset " , " }}"
-                        sizes="(max-width: 640px) 320px, (max-width: 1024px) 768px, 1024px" alt="{{ $member.name }}"
+                        sizes="(max-width: 640px) 320px, (max-width: 1024px) 768px, 1024px" alt="{{ $memberName }}"
                         loading="lazy" decoding="async" width="400" height="400"
-                        class="team-image-zoom w-full h-full object-cover {{ $positionClass }}{{ $zoomClass }}"
-                        onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect width=%22400%22 height=%22400%22 fill=%22%23496BC1%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2280%22 fill=%22white%22%3E{{ substr $member.name 0 1 }}%3C/text%3E%3C/svg%3E'">
-                    {{ else }}
-                    <img src="{{ $imgRes.RelPermalink }}" alt="{{ $member.name }}" loading="lazy" decoding="async"
-                        width="400" height="400"
-                        class="team-image-zoom w-full h-full object-cover {{ $positionClass }}{{ $zoomClass }}"
-                        onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect width=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2280%22 fill=%22white%22%3E{{ substr $member.name 0 1 }}%3C/text%3E%3C/svg%3E'">
+                        class="team-image-zoom w-full h-full object-cover {{ $positionClass }}{{ $zoomClass }}">
                     {{ end }}
-                    {{ end }}
-                    {{ else }}
-                    <img src="{{ $imgVal | relURL }}" alt="{{ $member.name }}"
-                        class="team-image-zoom w-full h-full object-cover object-center"
-                        onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect width=%22400%22 height=%22400%22 fill=%22%23496BC1%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2280%22 fill=%22white%22%3E{{ substr $member.name 0 1 }}%3C/text%3E%3C/svg%3E'">
                     {{ end }}
                     {{ end }}
                     <!-- Premium Bio Overlay -->
                     <div class="team-bio-overlay">
                         <p class="team-bio-text">
-                            {{ $member.bio }}
+                            {{ i18n $member.bioKey }}
                         </p>
                     </div>
                 </div>
 
                 <!-- Info Container -->
                 <div class="team-info-section">
-                    <h3 class="team-name">{{ $member.name }}</h3>
-                    <p class="team-role">{{ $member.role }}</p>
+                    <h3 class="team-name">{{ $memberName }}</h3>
+                    <p class="team-role">{{ i18n $member.roleKey }}</p>
 
                     <!-- Social Links -->
                     <div class="flex gap-3">

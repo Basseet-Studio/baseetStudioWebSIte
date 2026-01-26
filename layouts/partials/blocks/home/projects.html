@@ -1,29 +1,38 @@
 {{- if .enable -}}
+{{/* Project i18n key mappings */}}
+{{ $projectI18n := dict 
+    "money-box" (dict "name" "project_moneybox_name" "tagline" "project_moneybox_tagline" "description" "project_moneybox_description" "status" "project_moneybox_status" "features" (slice "project_moneybox_feature_1" "project_moneybox_feature_2" "project_moneybox_feature_3" "project_moneybox_feature_4"))
+    "numu" (dict "name" "project_numu_name" "tagline" "project_numu_tagline" "description" "project_numu_description" "status" "project_numu_status" "features" (slice "project_numu_feature_1" "project_numu_feature_2" "project_numu_feature_3" "project_numu_feature_4"))
+    "photorestore-ai" (dict "name" "project_photorestore_name" "tagline" "project_photorestore_tagline" "description" "project_photorestore_description" "status" "project_photorestore_status" "features" (slice "project_photorestore_feature_1" "project_photorestore_feature_2" "project_photorestore_feature_3" "project_photorestore_feature_4" "project_photorestore_feature_5" "project_photorestore_feature_6"))
+    "nss-virtual-education-fair" (dict "name" "project_nss_name" "tagline" "project_nss_tagline" "description" "project_nss_description" "status" "project_nss_status" "features" (slice "project_nss_feature_1" "project_nss_feature_2" "project_nss_feature_3" "project_nss_feature_4" "project_nss_feature_5" "project_nss_feature_6"))
+    "bd-railway-automated-timetable" (dict "name" "project_bdrailway_name" "tagline" "project_bdrailway_tagline" "description" "project_bdrailway_description" "status" "project_bdrailway_status" "features" (slice "project_bdrailway_feature_1" "project_bdrailway_feature_2" "project_bdrailway_feature_3" "project_bdrailway_feature_4" "project_bdrailway_feature_5" "project_bdrailway_feature_6"))
+    "malaysian-business-websites" (dict "name" "project_malaysian_name" "tagline" "project_malaysian_tagline" "description" "project_malaysian_description" "status" "project_malaysian_status" "features" (slice "project_malaysian_feature_1" "project_malaysian_feature_2" "project_malaysian_feature_3" "project_malaysian_feature_4" "project_malaysian_feature_5" "project_malaysian_feature_6"))
+    "deshikitchen" (dict "name" "project_deshikitchen_name" "tagline" "project_deshikitchen_tagline" "description" "project_deshikitchen_description" "status" "project_deshikitchen_status" "features" (slice "project_deshikitchen_feature_1" "project_deshikitchen_feature_2" "project_deshikitchen_feature_3" "project_deshikitchen_feature_4" "project_deshikitchen_feature_5" "project_deshikitchen_feature_6"))
+}}
+
+{{ $platformI18n := dict "iOS" "platform_ios" "Android" "platform_android" "Web" "platform_web" "Confidential" "platform_confidential" }}
+
 <section id="projects"
-    class="projects projects-section relative py-16 xl:py-24 overflow-hidden bg-gradient-to-b from-white to-[#F8F9FA]">
+    class="projects projects-section relative py-16 xl:py-24 overflow-hidden bg-gradient-to-b from-white to-[#F8F9FA]" {{ if eq site.Language.LanguageDirection "rtl" }}dir="rtl"{{ end }}>
     <div class="container mx-auto px-4">
         <!-- Section Header -->
         <div class="text-center mb-12">
             <h2 class="projects-title text-3xl xl:text-5xl font-bold text-[#252525] mb-4">
-                {{ .title | safeHTML }}
+                {{ i18n "projects_title" | safeHTML }}
             </h2>
-            {{- if .subtitle -}}
-            <p class="text-xl text-primary font-semibold mb-4">{{ .subtitle }}</p>
-            {{- end -}}
-            {{- if .text -}}
-            <p class="max-w-2xl mx-auto text-[#545454] text-lg leading-relaxed">{{ .text }}</p>
-            {{- end -}}
+            <p class="text-xl text-primary font-semibold mb-4">{{ i18n "projects_subtitle" }}</p>
+            <p class="max-w-2xl mx-auto text-[#545454] text-lg leading-relaxed">{{ i18n "projects_text" }}</p>
         </div>
 
         <!-- Premium Carousel Container -->
         <div class="projects-carousel-wrapper relative max-w-7xl mx-auto">
             <!-- Navigation Arrows -->
-            <button class="carousel-arrow carousel-arrow-left" aria-label="Previous projects">
+            <button class="carousel-arrow carousel-arrow-left" aria-label="{{ i18n "projects_prev" }}">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                 </svg>
             </button>
-            <button class="carousel-arrow carousel-arrow-right" aria-label="Next projects">
+            <button class="carousel-arrow carousel-arrow-right" aria-label="{{ i18n "projects_next" }}">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                 </svg>
@@ -33,6 +42,11 @@
             <div class="projects-carousel-viewport overflow-hidden">
                 <div class="projects-carousel-track flex transition-transform duration-500 ease-out">
                     {{- range $index, $project := .items -}}
+                    {{ $i18nKeys := index $projectI18n $project.slug }}
+                    {{ $projectName := cond (ne $i18nKeys nil) (i18n (index $i18nKeys "name")) $project.name }}
+                    {{ $projectTagline := cond (ne $i18nKeys nil) (i18n (index $i18nKeys "tagline")) $project.tagline }}
+                    {{ $projectDescription := cond (ne $i18nKeys nil) (i18n (index $i18nKeys "description")) $project.description }}
+                    {{ $projectStatus := cond (ne $i18nKeys nil) (i18n (index $i18nKeys "status")) $project.status }}
                     <article class="projects-carousel-slide flex-shrink-0 w-full md:w-1/2 xl:w-1/3 px-4"
                         data-index="{{ $index }}">
                         <div class="project-card-premium group relative bg-white rounded-3xl shadow-lg overflow-hidden h-full"
@@ -52,34 +66,50 @@
                                             {{- if $project.iconClass -}}
                                             <i class="{{ $project.iconClass }}"></i>
                                             {{- else -}}
-                                            {{ substr $project.name 0 1 }}
+                                            {{ substr $projectName 0 1 }}
                                             {{- end -}}
                                         </div>
                                     </div>
                                     {{- if $project.status -}}
                                     <span class="project-status-badge px-3 py-1 text-xs font-semibold rounded-full"
                                         style="background: {{ $project.color }}20; color: {{ $project.color }};">
-                                        {{ $project.status }}
+                                        {{ $projectStatus }}
                                     </span>
                                     {{- end -}}
                                 </div>
 
                                 <!-- App Name & Tagline -->
                                 <h3 class="project-name-premium text-xl xl:text-2xl font-bold text-[#252525] mb-1">
-                                    {{ $project.name }}
+                                    {{ $projectName }}
                                 </h3>
                                 <p class="text-sm font-medium mb-3 transition-colors duration-300"
                                     style="color: {{ $project.color }};">
-                                    {{ $project.tagline }}
+                                    {{ $projectTagline }}
                                 </p>
 
                                 <!-- Description -->
                                 <p class="text-[#545454] text-sm leading-relaxed mb-4 line-clamp-3">
-                                    {{ $project.description }}
+                                    {{ $projectDescription }}
                                 </p>
 
                                 <!-- Features List (Compact) -->
-                                {{- if $project.features -}}
+                                {{- if and $i18nKeys (index $i18nKeys "features") -}}
+                                <div class="mb-4 flex-grow">
+                                    <ul class="flex flex-wrap gap-2">
+                                        {{- range first 4 (index $i18nKeys "features") -}}
+                                        <li
+                                            class="project-feature-tag text-xs px-2 py-1 rounded-full bg-gray-100 text-[#545454]">
+                                            {{ i18n . }}
+                                        </li>
+                                        {{- end -}}
+                                        {{- if gt (len (index $i18nKeys "features")) 4 -}}
+                                        <li class="text-xs px-2 py-1 rounded-full bg-gray-100 text-[#545454]">
+                                            +{{ sub (len (index $i18nKeys "features")) 4 }}
+                                        </li>
+                                        {{- end -}}
+                                    </ul>
+                                </div>
+                                {{- else if $project.features -}}
                                 <div class="mb-4 flex-grow">
                                     <ul class="flex flex-wrap gap-2">
                                         {{- range first 4 $project.features -}}
@@ -90,7 +120,7 @@
                                         {{- end -}}
                                         {{- if gt (len $project.features) 4 -}}
                                         <li class="text-xs px-2 py-1 rounded-full bg-gray-100 text-[#545454]">
-                                            +{{ sub (len $project.features) 4 }} more
+                                            +{{ sub (len $project.features) 4 }}
                                         </li>
                                         {{- end -}}
                                     </ul>
@@ -102,21 +132,22 @@
                                     <!-- Platform Icons -->
                                     <div class="flex items-center gap-3">
                                         {{- range $project.platforms -}}
+                                        {{ $platformName := cond (ne (index $platformI18n .name) nil) (i18n (index $platformI18n .name)) .name }}
                                         <a href="{{ .link }}"
                                             class="project-platform-link flex items-center gap-1 text-[#545454]"
-                                            title="Available on {{ .name }}">
+                                            title="{{ i18n "projects_available_on" }} {{ $platformName }}">
                                             <i class="{{ .icon }} text-lg"></i>
-                                            <span class="text-xs font-medium hidden sm:inline">{{ .name }}</span>
+                                            <span class="text-xs font-medium hidden sm:inline">{{ $platformName }}</span>
                                         </a>
                                         {{- end -}}
                                     </div>
 
                                     <!-- Learn More Link -->
-                                    <a href="/projects/{{ $project.slug }}/"
-                                        class="project-learn-more inline-flex items-center gap-1 text-sm font-semibold"
+                                    <a href="{{ "/" | relLangURL }}projects/{{ $project.slug }}/"
+                                        class="project-learn-more inline-flex items-center gap-1 text-sm font-semibold {{ if eq site.Language.LanguageDirection "rtl" }}flex-row-reverse{{ end }}"
                                         style="color: {{ $project.color }};">
-                                        Details
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        {{ i18n "projects_view_project" }}
+                                        <svg class="w-4 h-4 {{ if eq site.Language.LanguageDirection "rtl" }}rotate-180{{ end }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                         </svg>

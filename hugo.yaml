@@ -1,5 +1,74 @@
 theme: 'github.com/writeonlycode/hugo-agency-web'
-languageCode: 'en-us'
+
+# =============================================================================
+# Multilingual Configuration
+# =============================================================================
+defaultContentLanguage: 'en'
+defaultContentLanguageInSubdir: false
+
+# Render untranslated content in other languages
+disableLanguages: []
+
+languages:
+  en:
+    languageCode: 'en-US'
+    languageName: 'English'
+    languageDirection: 'ltr'
+    weight: 1
+    title: 'Baseet Studio'
+    params:
+      description: 'Your trusted partner in digital innovation, creating exceptional web and mobile solutions.'
+    menus:
+      main:
+        - name: 'Home'
+          url: '#hero'
+          weight: 1
+        - name: 'Services'
+          url: '#features'
+          weight: 2
+        - name: 'Projects'
+          url: '/projects/'
+          weight: 3
+        - name: 'About'
+          url: '#highlights'
+          weight: 4
+        - name: 'Clients'
+          url: '#clients'
+          weight: 5
+      buttons:
+        - name: 'Contact Us'
+          url: '#subscribe'
+          weight: 6
+
+  ar:
+    languageCode: 'ar-SA'
+    languageName: 'العربية'
+    languageDirection: 'rtl'
+    weight: 2
+    title: 'استوديو بصيط'
+    params:
+      description: 'شريكك الموثوق في الابتكار الرقمي، نصنع حلول ويب وتطبيقات استثنائية.'
+    menus:
+      main:
+        - name: 'الرئيسية'
+          url: '#hero'
+          weight: 1
+        - name: 'الخدمات'
+          url: '#features'
+          weight: 2
+        - name: 'المشاريع'
+          url: '/ar/projects/'
+          weight: 3
+        - name: 'من نحن'
+          url: '#highlights'
+          weight: 4
+        - name: 'العملاء'
+          url: '#clients'
+          weight: 5
+      buttons:
+        - name: 'تواصل معنا'
+          url: '#subscribe'
+          weight: 6
 
 # Performance optimizations
 enableRobotsTXT: true

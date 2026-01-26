@@ -1,0 +1,263 @@
+# =============================================================================
+# English Translations - Baseet Studio Website
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Site Meta
+# -----------------------------------------------------------------------------
+site_title: "Baseet Studio"
+site_description: "Your trusted partner in digital innovation, creating exceptional web and mobile solutions."
+logo_text: "Baseet Studio"
+skip_to_content: "Skip to main content"
+
+# -----------------------------------------------------------------------------
+# Navigation
+# -----------------------------------------------------------------------------
+nav_home: "Home"
+nav_services: "Services"
+nav_about: "About"
+nav_clients: "Clients"
+nav_contact: "Contact Us"
+
+# -----------------------------------------------------------------------------
+# Hero Section
+# -----------------------------------------------------------------------------
+hero_title: "Transforming Ideas into **Digital Excellence**"
+hero_text: "Baseet Studio is a leading tech agency specializing in innovative web and mobile solutions. We deliver cutting-edge applications and websites that drive business growth and exceed expectations."
+hero_btn_contact: "Contact Us"
+hero_btn_services: "Our Services"
+
+# Hero Cards
+hero_card_1_title: "Web Development"
+hero_card_1_text: "Modern, responsive websites built with latest technologies"
+hero_card_2_title: "Mobile Apps"
+hero_card_2_text: "Native iOS & Android applications that users love"
+hero_card_3_title: "UI/UX Design"
+hero_card_3_text: "Beautiful, intuitive interfaces that enhance user experience"
+
+# -----------------------------------------------------------------------------
+# Features Section
+# -----------------------------------------------------------------------------
+features_title: '<span class="gradient-heading">Comprehensive Digital Solutions</span> for Your Business'
+features_text: "At Baseet Studio, we combine creativity with technical expertise to deliver outstanding results that drive your business forward."
+
+# Feature 1 - Web Development
+feature_1_pretitle: "Custom Development"
+feature_1_pretext: "Tailored Solutions"
+feature_1_title: "**Full-Stack** Web Development"
+feature_1_text: "We create powerful, scalable web applications using modern frameworks and best practices. From e-commerce platforms to enterprise solutions, we build digital experiences that perform flawlessly across all devices."
+
+# Feature 2 - Mobile Apps
+feature_2_pretitle: "Native & Cross-Platform"
+feature_2_pretext: "Mobile First"
+feature_2_title: "**Mobile App** Development"
+feature_2_text: "Transform your ideas into engaging mobile experiences. We develop high-performance iOS and Android applications with intuitive interfaces and seamless functionality that keep users coming back."
+
+# Feature 3 - Digital Transformation
+feature_3_pretitle: "Innovation & Strategy"
+feature_3_pretext: "End-to-End Service"
+feature_3_title: "**Digital Transformation** Consulting"
+feature_3_text: "Partner with us to modernize your business processes. We provide strategic consulting, UI/UX design, cloud solutions, and ongoing support to ensure your digital success in a competitive market."
+
+# -----------------------------------------------------------------------------
+# Projects Section
+# -----------------------------------------------------------------------------
+projects_title: '<span class="gradient-heading">Our Products</span>'
+projects_subtitle: "In-House Apps Built with Love"
+projects_text: "We practice what we preach. These are our own products, crafted with the same passion and attention to detail we bring to every client project."
+projects_prev: "Previous projects"
+projects_next: "Next projects"
+projects_features: "Key Features"
+projects_available_on: "Available on"
+
+# Project - Money Box
+project_moneybox_name: "Money Box"
+project_moneybox_tagline: "Smart Savings Made Simple"
+project_moneybox_description: "Take control of your finances with Money Box. Track your savings goals, monitor spending habits, and watch your money grow with our intuitive money management app for iOS and Android."
+project_moneybox_status: "Coming Soon"
+project_moneybox_feature_1: "Smart savings goals"
+project_moneybox_feature_2: "Expense tracking"
+project_moneybox_feature_3: "Visual progress charts"
+project_moneybox_feature_4: "Daily reminders"
+
+# Project - Numu
+project_numu_name: "Numu"
+project_numu_tagline: "Build Better Habits"
+project_numu_description: "Transform your daily routine with Numu. Our beautiful habit tracking app helps you build positive habits, break bad ones, and become the best version of yourself."
+project_numu_status: "Coming Soon"
+project_numu_feature_1: "Habit streaks"
+project_numu_feature_2: "Daily check-ins"
+project_numu_feature_3: "Progress analytics"
+project_numu_feature_4: "Custom reminders"
+
+# Project - PhotoRestore AI
+project_photorestore_name: "PhotoRestore AI"
+project_photorestore_tagline: "Restore Old Photos with AI"
+project_photorestore_description: "Bring your old, damaged, or faded photos back to life using advanced AI technology. Professional-quality restoration in seconds with secure processing and a modern experience."
+project_photorestore_status: "Live"
+project_photorestore_feature_1: "AI-powered photo restoration"
+project_photorestore_feature_2: "Lightning-fast processing"
+project_photorestore_feature_3: "Professional-quality results"
+project_photorestore_feature_4: "Secure & private (auto-delete)"
+project_photorestore_feature_5: "Stripe & SSLCommerz payments"
+project_photorestore_feature_6: "Responsive modern UI"
+
+# Project - NSS Virtual Education Fair
+project_nss_name: "NSS Virtual Education Fair"
+project_nss_tagline: "Modern Virtual Fair Platform for Students"
+project_nss_description: "A fully interactive virtual education fair built with React and Next.js. Complete with custom-designed UI/UX, responsive layouts, backend integrations, and a seamless user experience tailored for large-scale educational events."
+project_nss_status: "Completed"
+project_nss_feature_1: "Interactive React + Next.js interface"
+project_nss_feature_2: "Custom vector graphics design"
+project_nss_feature_3: "Responsive UI/UX design"
+project_nss_feature_4: "Backend event data integration"
+project_nss_feature_5: "Fully functional virtual fair system"
+project_nss_feature_6: "Large-scale event support"
+
+# Project - BD Railway
+project_bdrailway_name: "BD Railway Timetable System"
+project_bdrailway_tagline: "Automated Real-Time Train Scheduling System"
+project_bdrailway_description: "A government-level digital timetable system for Bangladesh Railway. Built to convert raw train data into structured schedules, power station display boards, and automate real-time updates across the network."
+project_bdrailway_status: "Confidential"
+project_bdrailway_feature_1: "Real-time data cleaning & JSON formatting"
+project_bdrailway_feature_2: "Backend CRUD system for schedules"
+project_bdrailway_feature_3: "REST API for display boards"
+project_bdrailway_feature_4: "ES6 logic for timetable calculations"
+project_bdrailway_feature_5: "Frontend display UI"
+project_bdrailway_feature_6: "Official railway digitalization"
+
+# Project - Malaysian Websites
+project_malaysian_name: "Malaysian Corporate Websites"
+project_malaysian_tagline: "Fast, Responsive One-Page Corporate Sites"
+project_malaysian_description: "A set of three modern one-page corporate websites built for Malaysian companies in AC Service, Waterproofing, and Solid Surface industries. Designed with smooth animations, clean layouts, and optimized front-end performance."
+project_malaysian_status: "Completed"
+project_malaysian_feature_1: "Responsive UI layouts"
+project_malaysian_feature_2: "Fast-loading one-page design"
+project_malaysian_feature_3: "JavaScript & jQuery animations"
+project_malaysian_feature_4: "Clean, professional layout"
+project_malaysian_feature_5: "Optimized for mobile & desktop"
+project_malaysian_feature_6: "Multiple industry templates"
+
+# Project - DeshiKitchen
+project_deshikitchen_name: "DeshiKitchen"
+project_deshikitchen_tagline: "Authentic Bangladeshi Cuisine Platform"
+project_deshikitchen_description: "A modern, full-stack restaurant ordering platform with stunning 3D hero, real-time order management, social proof elements, Stripe payments, and comprehensive admin dashboard."
+project_deshikitchen_status: "Live"
+project_deshikitchen_feature_1: "3D hero with React Three Fiber"
+project_deshikitchen_feature_2: "Real-time order tracking"
+project_deshikitchen_feature_3: "Live social proof notifications"
+project_deshikitchen_feature_4: "Stripe payments (Apple/Google Pay)"
+project_deshikitchen_feature_5: "Comprehensive admin dashboard"
+project_deshikitchen_feature_6: "Firebase Auth + Firestore"
+
+# Platform names
+platform_ios: "iOS"
+platform_android: "Android"
+platform_web: "Web"
+platform_confidential: "Confidential"
+
+# -----------------------------------------------------------------------------
+# Team Section
+# -----------------------------------------------------------------------------
+team_title: "Meet Our Expert Team"
+team_subtitle: "The talented developers behind your digital success"
+
+# Team Members
+team_member_1_name: "Mohamed Abdallah"
+team_member_1_role: "Founder / Product Lead / PM / Senior Engineer"
+team_member_1_bio: "Founder and product lead combining deep engineering expertise with product strategy to shape high-quality software products."
+
+team_member_2_name: "Asadur Rahman"
+team_member_2_role: "Tech Lead / System Architect"
+team_member_2_bio: "Tech lead and systems architect focused on designing scalable distributed systems and robust cloud infrastructure."
+
+team_member_3_name: "Ariyan Rehman"
+team_member_3_role: "Product Experience & Docs Engineer"
+team_member_3_bio: "Ensures product experience and documentation excellence by focusing on UX, developer docs, and content-driven workflows."
+
+# -----------------------------------------------------------------------------
+# Highlights Section
+# -----------------------------------------------------------------------------
+highlight_1_title: "Why Choose Baseet Studio?"
+highlight_1_text: "We're more than just developers – we're your technology partners. With a proven track record of delivering high-quality digital solutions, we combine innovative thinking with technical excellence to bring your vision to life."
+highlight_1_btn: "Get Started"
+
+highlight_2_title: "Results-Driven Approach"
+highlight_2_text: "From initial concept to final deployment, we focus on delivering measurable results. Our agile methodology ensures transparency, flexibility, and on-time delivery while maintaining the highest quality standards."
+highlight_2_btn: "Learn More"
+
+# -----------------------------------------------------------------------------
+# Clients Section
+# -----------------------------------------------------------------------------
+clients_title: "Trusted by Leading Brands"
+
+# -----------------------------------------------------------------------------
+# Subscribe / Contact Section
+# -----------------------------------------------------------------------------
+subscribe_title: "Ready to Start Your Project?"
+subscribe_placeholder: "Enter your email"
+subscribe_btn: "Get in Touch"
+subscribe_success: "Thank you! Your message has been sent successfully. We'll get back to you soon."
+subscribe_error: "Oops! Something went wrong. Please try again."
+
+# -----------------------------------------------------------------------------
+# Footer
+# -----------------------------------------------------------------------------
+footer_contact_title: "Contact"
+footer_copyright: "Copyright © 2025 Baseet Studio. All Rights Reserved"
+
+# Social Media
+social_facebook: "Facebook"
+social_twitter: "Twitter"
+social_instagram: "Instagram"
+social_linkedin: "LinkedIn"
+
+# -----------------------------------------------------------------------------
+# Language Switcher
+# -----------------------------------------------------------------------------
+language_switcher_label: "Language"
+language_english: "English"
+language_arabic: "العربية"
+
+# -----------------------------------------------------------------------------
+# Accessibility
+# -----------------------------------------------------------------------------
+aria_toggle_menu: "Toggle navigation menu"
+aria_home_link: "Baseet Studio Home"
+
+# -----------------------------------------------------------------------------
+# Projects List Page
+# -----------------------------------------------------------------------------
+projects_page_title: "Our Projects"
+projects_page_description: "Explore our in-house mobile applications built with passion and expertise."
+projects_back_home: "Back to Home"
+projects_view_project: "View Project"
+
+# -----------------------------------------------------------------------------
+# Project Detail Page
+# -----------------------------------------------------------------------------
+project_back_to_projects: "Back to Projects"
+project_features_label: "Features"
+project_key_features: "Key Features"
+project_features_subtitle: "Everything you need to get the most out of"
+project_faq_label: "FAQ"
+project_faq_title: "Frequently Asked Questions"
+project_cta_title: "Ready to Get Started?"
+project_cta_subtitle: "Experience it today and see the difference."
+project_get_started: "Get Started"
+project_learn_more: "Learn More"
+project_get_early_access: "Get Early Access"
+project_coming_soon: "Coming Soon"
+project_live: "Live"
+project_completed: "Completed"
+project_confidential: "Confidential"
+
+# -----------------------------------------------------------------------------
+# Project Gallery
+# -----------------------------------------------------------------------------
+project_screenshots_label: "Screenshots"
+project_app_preview: "App Preview"
+project_preview_subtitle: "Take a look at"
+project_view_full_size: "View Full Size"
+project_prev_screenshots: "Previous screenshots"
+project_next_screenshots: "Next screenshots"

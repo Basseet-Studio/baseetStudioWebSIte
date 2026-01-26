@@ -1,0 +1,263 @@
+# =============================================================================
+# Arabic Translations - Baseet Studio Website
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Site Meta
+# -----------------------------------------------------------------------------
+site_title: "استوديو بصيط"
+site_description: "شريكك الموثوق في الابتكار الرقمي، نصنع حلول ويب وتطبيقات استثنائية."
+logo_text: "استوديو بصيط"
+skip_to_content: "الانتقال إلى المحتوى الرئيسي"
+
+# -----------------------------------------------------------------------------
+# Navigation
+# -----------------------------------------------------------------------------
+nav_home: "الرئيسية"
+nav_services: "الخدمات"
+nav_about: "من نحن"
+nav_clients: "العملاء"
+nav_contact: "تواصل معنا"
+
+# -----------------------------------------------------------------------------
+# Hero Section
+# -----------------------------------------------------------------------------
+hero_title: "تحويل الأفكار إلى **تميز رقمي**"
+hero_text: "استوديو بصيط هو وكالة تقنية رائدة متخصصة في حلول الويب والتطبيقات المبتكرة. نقدم تطبيقات ومواقع متطورة تدفع نمو الأعمال وتتجاوز التوقعات."
+hero_btn_contact: "تواصل معنا"
+hero_btn_services: "خدماتنا"
+
+# Hero Cards
+hero_card_1_title: "تطوير الويب"
+hero_card_1_text: "مواقع حديثة ومتجاوبة مبنية بأحدث التقنيات"
+hero_card_2_title: "تطبيقات الجوال"
+hero_card_2_text: "تطبيقات iOS و Android أصلية يحبها المستخدمون"
+hero_card_3_title: "تصميم UI/UX"
+hero_card_3_text: "واجهات جميلة وبديهية تعزز تجربة المستخدم"
+
+# -----------------------------------------------------------------------------
+# Features Section
+# -----------------------------------------------------------------------------
+features_title: '<span class="gradient-heading">حلول رقمية شاملة</span> لأعمالك'
+features_text: "في استوديو بصيط، نجمع بين الإبداع والخبرة التقنية لتقديم نتائج متميزة تدفع أعمالك للأمام."
+
+# Feature 1 - Web Development
+feature_1_pretitle: "تطوير مخصص"
+feature_1_pretext: "حلول مصممة خصيصاً"
+feature_1_title: "تطوير ويب **متكامل**"
+feature_1_text: "نصنع تطبيقات ويب قوية وقابلة للتوسع باستخدام أطر عمل حديثة وأفضل الممارسات. من منصات التجارة الإلكترونية إلى حلول المؤسسات، نبني تجارب رقمية تعمل بسلاسة على جميع الأجهزة."
+
+# Feature 2 - Mobile Apps
+feature_2_pretitle: "أصلي ومتعدد المنصات"
+feature_2_pretext: "الجوال أولاً"
+feature_2_title: "تطوير **تطبيقات الجوال**"
+feature_2_text: "حوّل أفكارك إلى تجارب جوال جذابة. نطور تطبيقات iOS و Android عالية الأداء بواجهات بديهية ووظائف سلسة تجعل المستخدمين يعودون."
+
+# Feature 3 - Digital Transformation
+feature_3_pretitle: "الابتكار والاستراتيجية"
+feature_3_pretext: "خدمة شاملة"
+feature_3_title: "استشارات **التحول الرقمي**"
+feature_3_text: "تعاون معنا لتحديث عمليات أعمالك. نقدم استشارات استراتيجية، تصميم UI/UX، حلول سحابية، ودعم مستمر لضمان نجاحك الرقمي في سوق تنافسي."
+
+# -----------------------------------------------------------------------------
+# Projects Section
+# -----------------------------------------------------------------------------
+projects_title: '<span class="gradient-heading">منتجاتنا</span>'
+projects_subtitle: "تطبيقات داخلية مصنوعة بحب"
+projects_text: "نطبق ما نعظ به. هذه منتجاتنا الخاصة، مصنوعة بنفس الشغف والاهتمام بالتفاصيل الذي نجلبه لكل مشروع عميل."
+projects_prev: "المشاريع السابقة"
+projects_next: "المشاريع التالية"
+projects_features: "الميزات الرئيسية"
+projects_available_on: "متوفر على"
+
+# Project - Money Box
+project_moneybox_name: "صندوق المال"
+project_moneybox_tagline: "توفير ذكي بسهولة"
+project_moneybox_description: "تحكم في أموالك مع صندوق المال. تتبع أهداف التوفير، راقب عادات الإنفاق، وشاهد أموالك تنمو مع تطبيقنا البديهي لإدارة الأموال لـ iOS و Android."
+project_moneybox_status: "قريباً"
+project_moneybox_feature_1: "أهداف توفير ذكية"
+project_moneybox_feature_2: "تتبع النفقات"
+project_moneybox_feature_3: "رسوم بيانية للتقدم"
+project_moneybox_feature_4: "تذكيرات يومية"
+
+# Project - Numu
+project_numu_name: "نُمُو"
+project_numu_tagline: "ابنِ عادات أفضل"
+project_numu_description: "حوّل روتينك اليومي مع نُمُو. تطبيقنا الجميل لتتبع العادات يساعدك على بناء عادات إيجابية، كسر السيئة منها، وتصبح أفضل نسخة من نفسك."
+project_numu_status: "قريباً"
+project_numu_feature_1: "سلاسل العادات"
+project_numu_feature_2: "تسجيل يومي"
+project_numu_feature_3: "تحليلات التقدم"
+project_numu_feature_4: "تذكيرات مخصصة"
+
+# Project - PhotoRestore AI
+project_photorestore_name: "استعادة الصور بالذكاء الاصطناعي"
+project_photorestore_tagline: "استعد الصور القديمة بالذكاء الاصطناعي"
+project_photorestore_description: "أعد الحياة لصورك القديمة أو التالفة أو الباهتة باستخدام تقنية الذكاء الاصطناعي المتقدمة. استعادة بجودة احترافية في ثوانٍ مع معالجة آمنة وتجربة حديثة."
+project_photorestore_status: "متاح"
+project_photorestore_feature_1: "استعادة صور بالذكاء الاصطناعي"
+project_photorestore_feature_2: "معالجة سريعة للغاية"
+project_photorestore_feature_3: "نتائج بجودة احترافية"
+project_photorestore_feature_4: "آمن وخاص (حذف تلقائي)"
+project_photorestore_feature_5: "دفع Stripe و SSLCommerz"
+project_photorestore_feature_6: "واجهة حديثة متجاوبة"
+
+# Project - NSS Virtual Education Fair
+project_nss_name: "معرض NSS التعليمي الافتراضي"
+project_nss_tagline: "منصة معرض افتراضية حديثة للطلاب"
+project_nss_description: "معرض تعليمي افتراضي تفاعلي بالكامل مبني بـ React و Next.js. مكتمل بتصميم UI/UX مخصص، تخطيطات متجاوبة، تكاملات خلفية، وتجربة مستخدم سلسة مصممة للأحداث التعليمية الكبيرة."
+project_nss_status: "مكتمل"
+project_nss_feature_1: "واجهة React + Next.js تفاعلية"
+project_nss_feature_2: "تصميم رسومات متجهة مخصصة"
+project_nss_feature_3: "تصميم UI/UX متجاوب"
+project_nss_feature_4: "تكامل بيانات الأحداث"
+project_nss_feature_5: "نظام معرض افتراضي كامل"
+project_nss_feature_6: "دعم الأحداث الكبيرة"
+
+# Project - BD Railway
+project_bdrailway_name: "نظام جدول سكك حديد بنغلاديش"
+project_bdrailway_tagline: "نظام جدولة قطارات آلي في الوقت الفعلي"
+project_bdrailway_description: "نظام جدول رقمي على مستوى حكومي لسكك حديد بنغلاديش. مبني لتحويل بيانات القطارات الخام إلى جداول منظمة، تشغيل لوحات عرض المحطات، وأتمتة التحديثات في الوقت الفعلي عبر الشبكة."
+project_bdrailway_status: "سري"
+project_bdrailway_feature_1: "تنظيف البيانات وتنسيق JSON في الوقت الفعلي"
+project_bdrailway_feature_2: "نظام CRUD خلفي للجداول"
+project_bdrailway_feature_3: "REST API للوحات العرض"
+project_bdrailway_feature_4: "منطق ES6 لحسابات الجداول"
+project_bdrailway_feature_5: "واجهة عرض أمامية"
+project_bdrailway_feature_6: "رقمنة السكك الحديدية الرسمية"
+
+# Project - Malaysian Websites
+project_malaysian_name: "مواقع شركات ماليزية"
+project_malaysian_tagline: "مواقع شركات سريعة ومتجاوبة صفحة واحدة"
+project_malaysian_description: "مجموعة من ثلاثة مواقع شركات حديثة صفحة واحدة مبنية لشركات ماليزية في صناعات خدمة التكييف، العزل المائي، والأسطح الصلبة. مصممة برسوم متحركة سلسة، تخطيطات نظيفة، وأداء أمامي محسّن."
+project_malaysian_status: "مكتمل"
+project_malaysian_feature_1: "تخطيطات UI متجاوبة"
+project_malaysian_feature_2: "تصميم صفحة واحدة سريع التحميل"
+project_malaysian_feature_3: "رسوم JavaScript و jQuery متحركة"
+project_malaysian_feature_4: "تخطيط نظيف واحترافي"
+project_malaysian_feature_5: "محسّن للجوال وسطح المكتب"
+project_malaysian_feature_6: "قوالب متعددة الصناعات"
+
+# Project - DeshiKitchen
+project_deshikitchen_name: "ديشي كيتشن"
+project_deshikitchen_tagline: "منصة المطبخ البنغالي الأصيل"
+project_deshikitchen_description: "منصة طلب مطاعم حديثة متكاملة مع hero ثلاثي الأبعاد مذهل، إدارة طلبات في الوقت الفعلي، عناصر إثبات اجتماعي، دفع Stripe، ولوحة تحكم إدارية شاملة."
+project_deshikitchen_status: "متاح"
+project_deshikitchen_feature_1: "Hero ثلاثي الأبعاد بـ React Three Fiber"
+project_deshikitchen_feature_2: "تتبع الطلبات في الوقت الفعلي"
+project_deshikitchen_feature_3: "إشعارات إثبات اجتماعي مباشرة"
+project_deshikitchen_feature_4: "دفع Stripe (Apple/Google Pay)"
+project_deshikitchen_feature_5: "لوحة تحكم إدارية شاملة"
+project_deshikitchen_feature_6: "Firebase Auth + Firestore"
+
+# Platform names
+platform_ios: "iOS"
+platform_android: "أندرويد"
+platform_web: "الويب"
+platform_confidential: "سري"
+
+# -----------------------------------------------------------------------------
+# Team Section
+# -----------------------------------------------------------------------------
+team_title: "تعرف على فريقنا الخبير"
+team_subtitle: "المطورون الموهوبون وراء نجاحك الرقمي"
+
+# Team Members
+team_member_1_name: "محمد عبدالله"
+team_member_1_role: "المؤسس / قائد المنتج / مدير المشاريع / مهندس أول"
+team_member_1_bio: "مؤسس وقائد منتج يجمع بين الخبرة الهندسية العميقة واستراتيجية المنتج لتشكيل منتجات برمجية عالية الجودة."
+
+team_member_2_name: "أسد الرحمن"
+team_member_2_role: "قائد تقني / مهندس أنظمة"
+team_member_2_bio: "قائد تقني ومهندس أنظمة يركز على تصميم أنظمة موزعة قابلة للتوسع وبنية تحتية سحابية قوية."
+
+team_member_3_name: "أريان رحمان"
+team_member_3_role: "مهندس تجربة المنتج والتوثيق"
+team_member_3_bio: "يضمن تميز تجربة المنتج والتوثيق من خلال التركيز على UX، وثائق المطورين، وسير العمل المدفوع بالمحتوى."
+
+# -----------------------------------------------------------------------------
+# Highlights Section
+# -----------------------------------------------------------------------------
+highlight_1_title: "لماذا تختار استوديو بصيط؟"
+highlight_1_text: "نحن أكثر من مجرد مطورين - نحن شركاؤك التقنيون. مع سجل حافل في تقديم حلول رقمية عالية الجودة، نجمع بين التفكير الابتكاري والتميز التقني لتحقيق رؤيتك."
+highlight_1_btn: "ابدأ الآن"
+
+highlight_2_title: "نهج قائم على النتائج"
+highlight_2_text: "من المفهوم الأولي إلى النشر النهائي، نركز على تقديم نتائج قابلة للقياس. منهجيتنا الرشيقة تضمن الشفافية والمرونة والتسليم في الوقت المحدد مع الحفاظ على أعلى معايير الجودة."
+highlight_2_btn: "اعرف المزيد"
+
+# -----------------------------------------------------------------------------
+# Clients Section
+# -----------------------------------------------------------------------------
+clients_title: "موثوق من قبل العلامات التجارية الرائدة"
+
+# -----------------------------------------------------------------------------
+# Subscribe / Contact Section
+# -----------------------------------------------------------------------------
+subscribe_title: "هل أنت مستعد لبدء مشروعك؟"
+subscribe_placeholder: "أدخل بريدك الإلكتروني"
+subscribe_btn: "تواصل معنا"
+subscribe_success: "شكراً لك! تم إرسال رسالتك بنجاح. سنتواصل معك قريباً."
+subscribe_error: "عذراً! حدث خطأ ما. يرجى المحاولة مرة أخرى."
+
+# -----------------------------------------------------------------------------
+# Footer
+# -----------------------------------------------------------------------------
+footer_contact_title: "التواصل"
+footer_copyright: "حقوق الطبع والنشر © 2025 استوديو بصيط. جميع الحقوق محفوظة"
+
+# Social Media
+social_facebook: "فيسبوك"
+social_twitter: "تويتر"
+social_instagram: "إنستغرام"
+social_linkedin: "لينكد إن"
+
+# -----------------------------------------------------------------------------
+# Language Switcher
+# -----------------------------------------------------------------------------
+language_switcher_label: "اللغة"
+language_english: "English"
+language_arabic: "العربية"
+
+# -----------------------------------------------------------------------------
+# Accessibility
+# -----------------------------------------------------------------------------
+aria_toggle_menu: "تبديل قائمة التنقل"
+aria_home_link: "الصفحة الرئيسية لاستوديو بصيط"
+
+# -----------------------------------------------------------------------------
+# Projects List Page
+# -----------------------------------------------------------------------------
+projects_page_title: "مشاريعنا"
+projects_page_description: "استكشف تطبيقاتنا الداخلية المبنية بشغف وخبرة."
+projects_back_home: "العودة للرئيسية"
+projects_view_project: "عرض المشروع"
+
+# -----------------------------------------------------------------------------
+# Project Detail Page
+# -----------------------------------------------------------------------------
+project_back_to_projects: "العودة للمشاريع"
+project_features_label: "الميزات"
+project_key_features: "الميزات الرئيسية"
+project_features_subtitle: "كل ما تحتاجه للاستفادة القصوى من"
+project_faq_label: "الأسئلة الشائعة"
+project_faq_title: "الأسئلة المتكررة"
+project_cta_title: "هل أنت مستعد للبدء؟"
+project_cta_subtitle: "جربه اليوم وشاهد الفرق."
+project_get_started: "ابدأ الآن"
+project_learn_more: "اعرف المزيد"
+project_get_early_access: "احصل على وصول مبكر"
+project_coming_soon: "قريباً"
+project_live: "متاح"
+project_completed: "مكتمل"
+project_confidential: "سري"
+
+# -----------------------------------------------------------------------------
+# Project Gallery
+# -----------------------------------------------------------------------------
+project_screenshots_label: "لقطات الشاشة"
+project_app_preview: "معاينة التطبيق"
+project_preview_subtitle: "ألقِ نظرة على"
+project_view_full_size: "عرض بالحجم الكامل"
+project_prev_screenshots: "الصور السابقة"
+project_next_screenshots: "الصور التالية"
