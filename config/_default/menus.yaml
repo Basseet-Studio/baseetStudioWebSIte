@@ -1,42 +1,41 @@
 main:
   - name: 'Home'
-    url: '#hero'
+    url: '/'
     weight: 1
 
   - name: 'Services'
-    url: '#features'
+    url: '/services/'
     weight: 2
 
-  - name: 'About'
-    url: '#highlights'
-    weight: 4
+  - name: 'Customers'
+    url: '/customers/'
+    weight: 3
 
-  - name: 'Clients'
-    url: '#clients'
-    weight: 5
+  - name: 'About'
+    url: '/#highlights'
+    weight: 4
 
 buttons:
   - name: 'Contact Us'
-    url: '#subscribe'
+    url: '/#subscribe'
     weight: 6
 
 footer:
   - name: 'Home'
-    url: '#hero'
+    url: '/'
     weight: 1
 
   - name: 'Services'
-    url: '#features'
+    url: '/services/'
     weight: 2
 
+  - name: 'Customers'
+    url: '/customers/'
+    weight: 3
+
   - name: 'About'
-    url: '#highlights'
+    url: '/#highlights'
     weight: 4
 
-  - name: 'Clients'
-    url: '#clients'
-    weight: 5
-
   - name: 'Contact'
-    url: '#subscribe'
-    weight: 6
+    url: '/#subscribe'

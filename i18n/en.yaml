@@ -261,3 +261,119 @@ project_preview_subtitle: "Take a look at"
 project_view_full_size: "View Full Size"
 project_prev_screenshots: "Previous screenshots"
 project_next_screenshots: "Next screenshots"
+# -----------------------------------------------------------------------------
+# Services Page
+# -----------------------------------------------------------------------------
+services_hero_badge: "What We Offer"
+services_hero_title: "Comprehensive **Digital Services**"
+services_hero_text: "We don't just build websites. We create complete digital ecosystems tailored to your business needs — from customer-facing apps to internal tools that make your team's life easier."
+
+services_grid_title: '<span class="gradient-heading">Our Services</span>'
+services_grid_text: "Whether you need a simple website or a complex business system, we've got you covered."
+
+# Service Categories
+service_web_title: "Web Development"
+service_web_short: "Your online presence, done right. From company websites to online stores and booking systems."
+service_web_item_1: "Company & Portfolio Websites"
+service_web_item_2: "Online Stores & E-commerce"
+service_web_item_3: "Booking & Reservation Systems"
+service_web_item_4: "HR & Documentation Portals"
+service_web_example: "Examples: Restaurant websites, clinic booking systems, company intranets, online catalogs"
+
+service_mobile_title: "Mobile Development"
+service_mobile_short: "Apps your customers will love. Delivery tracking, ordering, loyalty programs — all in their pocket."
+service_mobile_item_1: "Delivery & Tracking Apps"
+service_mobile_item_2: "Customer Ordering Apps"
+service_mobile_item_3: "Loyalty & Rewards Programs"
+service_mobile_item_4: "Field Service Apps"
+service_mobile_example: "Examples: Food delivery apps, driver tracking, customer loyalty apps, service request apps"
+
+service_internal_title: "Internal Business Tools"
+service_internal_short: "Stop using spreadsheets for everything. Get custom tools built for how YOUR business works."
+service_internal_item_1: "Fleet & Vehicle Management"
+service_internal_item_2: "Property & Asset Tracking"
+service_internal_item_3: "Employee & HR Systems"
+service_internal_item_4: "Inventory & Stock Control"
+service_internal_example: "Examples: Truck fleet dashboards, property management systems, warehouse tracking, maintenance schedulers"
+
+service_seo_title: "SEO & Marketing"
+service_seo_short: "Get found on Google. More visitors = more customers. We make your site popular and visible."
+service_seo_item_1: "Google Rankings Optimization"
+service_seo_item_2: "Local Business Visibility"
+service_seo_item_3: "Content That Ranks"
+service_seo_item_4: "Performance Analytics"
+service_seo_example: "Examples: Ranking #1 for 'best restaurant in [city]', getting more Google reviews, traffic reports"
+
+service_design_title: "UI/UX Design"
+service_design_short: "Make it beautiful AND easy to use. Happy users become loyal customers."
+service_design_item_1: "User Research & Testing"
+service_design_item_2: "Mobile-Friendly Design"
+service_design_item_3: "Brand-Aligned Visuals"
+service_design_item_4: "Interactive Prototypes"
+service_design_example: "Examples: App redesigns, website makeovers, dashboard layouts, brand guidelines"
+
+service_cloud_title: "Cloud & DevOps"
+service_cloud_short: "Keep your systems running 24/7. Fast, secure, and always available."
+service_cloud_item_1: "Cloud Hosting Setup"
+service_cloud_item_2: "Automatic Backups"
+service_cloud_item_3: "Security & Protection"
+service_cloud_item_4: "Performance Monitoring"
+service_cloud_example: "Examples: AWS/Google Cloud setup, disaster recovery, SSL certificates, uptime monitoring"
+
+# Process Section
+services_process_title: "How We Work"
+services_process_text: "Our proven 6-step process ensures we deliver exceptional results on time and on budget."
+
+process_step_1_title: "Discovery"
+process_step_1_text: "We learn about your business, goals, and challenges through in-depth conversations."
+
+process_step_2_title: "Planning"
+process_step_2_text: "We create a detailed roadmap and technical specifications for your project."
+
+process_step_3_title: "Design"
+process_step_3_text: "We craft beautiful, user-centered designs that align with your brand."
+
+process_step_4_title: "Development"
+process_step_4_text: "We build your solution with clean, maintainable, and scalable code."
+
+process_step_5_title: "Testing"
+process_step_5_text: "We rigorously test across devices, browsers, and scenarios."
+
+process_step_6_title: "Launch"
+process_step_6_text: "We deploy your project and provide ongoing support and maintenance."
+
+# CTA Section
+services_cta_title: "Not Sure What You Need?"
+services_cta_text: "Every business is unique. Let's have a conversation to identify the right solutions for your specific needs and budget."
+services_cta_button: "Get Free Consultation"
+
+# -----------------------------------------------------------------------------
+# Customers Page
+# -----------------------------------------------------------------------------
+customers_hero_badge: "Success Stories"
+customers_hero_title: "Our **Customers**"
+customers_hero_text: "Real projects we've built for real businesses. See how companies like yours are achieving results with our solutions."
+
+# Customer Page Labels
+customer_challenge_title: "The Challenge"
+customer_solution_title: "Our Solution"
+customer_results_title: "The Results"
+customer_features_title: "Key Features Built"
+customer_tech_title: "Technologies Used"
+customer_testimonial_coming: "Customer review coming soon"
+customer_empty_title: "Coming Soon"
+customer_empty_text: "We're preparing our customer success stories. Check back soon!"
+
+# CTA Section
+customers_cta_title: "Want Similar Results?"
+customers_cta_text: "Let's discuss how we can build a custom solution that drives real results for your business."
+customers_cta_button: "Start Your Project"
+
+# FleetOps Customer
+customer_fleetops_name: "FleetOps"
+customer_fleetops_service_type: "Internal Tool"
+customer_fleetops_industry: "Logistics & Transportation"
+customer_fleetops_tagline: "Fleet Management Made Simple"
+customer_fleetops_description: "A comprehensive web platform we built to help logistics companies manage their entire fleet of delivery trucks — from real-time tracking to automated maintenance scheduling."
+customer_fleetops_challenge: "The client was managing 50+ delivery trucks using spreadsheets and phone calls. Maintenance was often missed, leading to costly breakdowns and delivery delays. They had zero visibility into where their trucks were at any given moment."
+customer_fleetops_solution: "We built a custom web platform that provides real-time GPS tracking on an interactive map, automated maintenance alerts based on mileage and time intervals, driver assignment management, fuel consumption monitoring, and comprehensive reporting dashboards."

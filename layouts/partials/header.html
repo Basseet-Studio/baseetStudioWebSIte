@@ -12,7 +12,30 @@
         <nav class="app-bar-nav" aria-label="Main navigation">
             <ul class="nav-links">
                 {{ range site.Menus.main }}
-                <li><a href="{{ .URL | relLangURL }}" class="nav-link-premium {{ if eq .Name "Pricing" }}font-bold{{ end }}">{{ .Name }}</a></li>
+                {{ $isActive := false }}
+                {{ $currentPath := $.Page.RelPermalink }}
+                {{ $menuURL := .URL }}
+                {{/* Build the correct URL */}}
+                {{ $href := "" }}
+                {{ if hasPrefix .URL "#" }}
+                    {{/* Hash link - prepend home URL */}}
+                    {{ $href = printf "%s%s" ("/" | relLangURL) .URL }}
+                {{ else if hasPrefix .URL "/" }}
+                    {{/* Absolute path - use relLangURL */}}
+                    {{ $href = .URL | relLangURL }}
+                {{ else }}
+                    {{/* Relative or external URL */}}
+                    {{ $href = .URL }}
+                {{ end }}
+                {{/* Check if current page matches menu item */}}
+                {{ if eq .URL "/" }}
+                    {{ $isActive = $.Page.IsHome }}
+                {{ else if hasPrefix .URL "#" }}
+                    {{ $isActive = $.Page.IsHome }}
+                {{ else if hasPrefix .URL "/" }}
+                    {{ $isActive = hasPrefix $currentPath (.URL | relLangURL) }}
+                {{ end }}
+                <li><a href="{{ $href }}" class="nav-link-premium {{ if $isActive }}nav-active{{ end }} {{ if eq .Name "Pricing" }}font-bold{{ end }}">{{ .Name }}</a></li>
                 {{ end }}
             </ul>
             
@@ -35,7 +58,26 @@
         <nav aria-label="Mobile navigation">
             <ul class="mobile-nav-links">
                 {{ range site.Menus.main }}
-                <li><a href="{{ .URL | relLangURL }}" class="mobile-nav-link-premium">{{ .Name }}</a></li>
+                {{ $isActive := false }}
+                {{ $currentPath := $.Page.RelPermalink }}
+                {{/* Build the correct URL */}}
+                {{ $href := "" }}
+                {{ if hasPrefix .URL "#" }}
+                    {{ $href = printf "%s%s" ("/" | relLangURL) .URL }}
+                {{ else if hasPrefix .URL "/" }}
+                    {{ $href = .URL | relLangURL }}
+                {{ else }}
+                    {{ $href = .URL }}
+                {{ end }}
+                {{/* Check if current page matches menu item */}}
+                {{ if eq .URL "/" }}
+                    {{ $isActive = $.Page.IsHome }}
+                {{ else if hasPrefix .URL "#" }}
+                    {{ $isActive = $.Page.IsHome }}
+                {{ else if hasPrefix .URL "/" }}
+                    {{ $isActive = hasPrefix $currentPath (.URL | relLangURL) }}
+                {{ end }}
+                <li><a href="{{ $href }}" class="mobile-nav-link-premium {{ if $isActive }}mobile-nav-active{{ end }}">{{ .Name }}</a></li>
                 {{ end }}
             </ul>
             

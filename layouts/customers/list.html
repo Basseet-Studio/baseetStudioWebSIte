@@ -1,0 +1,340 @@
+{{ define "main" }}
+<!-- Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!-- App Bar CSS -->
+{{- $appBarCSS := resources.Get "css/app-bar.css" -}}
+{{- if $appBarCSS -}}
+{{- if hugo.IsProduction -}}
+{{- $appBarCSS = $appBarCSS | minify | fingerprint -}}
+{{- end -}}
+<link rel="stylesheet" href="{{ $appBarCSS.RelPermalink }}" />
+{{- end -}}
+
+<!-- Premium Effects CSS -->
+{{- $premiumCSS := resources.Get "css/premium-effects.css" -}}
+{{- if $premiumCSS -}}
+{{- if hugo.IsProduction -}}
+{{- $premiumCSS = $premiumCSS | minify | fingerprint -}}
+{{- end -}}
+<link rel="stylesheet" href="{{ $premiumCSS.RelPermalink }}" />
+{{- end -}}
+
+<!-- Custom Overrides CSS -->
+{{- $overridesCSS := resources.Get "css/custom-overrides.css" -}}
+{{- if $overridesCSS -}}
+{{- if hugo.IsProduction -}}
+{{- $overridesCSS = $overridesCSS | minify | fingerprint -}}
+{{- end -}}
+<link rel="stylesheet" href="{{ $overridesCSS.RelPermalink }}" />
+{{- end -}}
+
+<!-- App Bar Header -->
+{{ partial "header.html" . }}
+
+<main id="mainContent" class="main-content-wrapper">
+  
+  <!-- Hero Section -->
+  <section id="customers-hero" class="relative overflow-hidden bg-surface pt-32 pb-16 lg:pt-40 lg:pb-24" {{ if eq site.Language.LanguageDirection "rtl" }}dir="rtl"{{ end }}>
+    <div class="absolute top-20 {{ if eq site.Language.LanguageDirection "rtl" }}left-0{{ else }}right-0{{ end }} w-96 h-96 bg-primary/10 rounded-full filter blur-3xl -z-10"></div>
+    <div class="absolute bottom-20 {{ if eq site.Language.LanguageDirection "rtl" }}right-0{{ else }}left-0{{ end }} w-72 h-72 bg-tertiary/10 rounded-full filter blur-3xl -z-10"></div>
+    
+    <div class="container mx-auto px-4 text-center">
+      <span class="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-6 scroll-animate">
+        {{ i18n "customers_hero_badge" }}
+      </span>
+      <h1 class="hero-title-premium text-4xl lg:text-6xl font-bold text-stroke mb-6 leading-tight scroll-animate">
+        {{ i18n "customers_hero_title" | markdownify }}
+      </h1>
+      <p class="hero-text-premium text-lg lg:text-xl text-stroke/80 max-w-3xl mx-auto mb-8 leading-relaxed scroll-animate" style="animation-delay: 0.2s;">
+        {{ i18n "customers_hero_text" }}
+      </p>
+    </div>
+  </section>
+
+  <!-- Customer Projects Section -->
+  <section id="customer-projects" class="py-16 lg:py-24 bg-white" {{ if eq site.Language.LanguageDirection "rtl" }}dir="rtl"{{ end }}>
+    <div class="container mx-auto px-4">
+      
+      {{ range $index, $customer := site.Data.customers.customers }}
+      <!-- Customer Card: {{ $customer.name }} -->
+      <div class="customer-project-card mb-16 last:mb-0 scroll-animate" style="animation-delay: {{ mul $index 0.1 }}s;">
+        
+        <!-- Header -->
+        <div class="customer-card-header" style="background: linear-gradient(135deg, {{ $customer.color }} 0%, {{ $customer.color }}dd 100%);">
+          <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+            <div>
+              <div class="flex items-center gap-3 mb-2">
+                <span class="px-3 py-1 bg-white/20 rounded-full text-sm text-white">{{ i18n (printf "customer_%s_service_type" $customer.id) | default $customer.service_type }}</span>
+                <span class="px-3 py-1 bg-white/20 rounded-full text-sm text-white">{{ i18n (printf "customer_%s_industry" $customer.id) | default $customer.industry }}</span>
+              </div>
+              <h2 class="text-3xl lg:text-4xl font-bold text-white mb-2">{{ i18n (printf "customer_%s_name" $customer.id) | default $customer.name }}</h2>
+              <p class="text-white/90 text-lg">{{ i18n (printf "customer_%s_tagline" $customer.id) | default $customer.tagline }}</p>
+            </div>
+            {{ if $customer.logo }}
+            <div class="w-20 h-20 bg-white rounded-xl flex items-center justify-center p-2">
+              <img src="{{ $customer.logo }}" alt="{{ $customer.name }}" class="max-w-full max-h-full">
+            </div>
+            {{ else }}
+            <div class="w-20 h-20 bg-white/20 rounded-xl flex items-center justify-center">
+              <i class="fas fa-building text-3xl text-white"></i>
+            </div>
+            {{ end }}
+          </div>
+        </div>
+
+        <!-- Body -->
+        <div class="customer-card-body">
+          
+          <!-- Short Description -->
+          <p class="text-lg text-[#545454] mb-8 leading-relaxed">
+            {{ i18n (printf "customer_%s_description" $customer.id) | default $customer.short_description }}
+          </p>
+
+          <!-- Challenge & Solution Grid -->
+          <div class="grid lg:grid-cols-2 gap-8 mb-8">
+            <!-- The Challenge -->
+            <div class="challenge-solution-box">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center">
+                  <i class="fas fa-exclamation-triangle text-red-500"></i>
+                </div>
+                <h3 class="text-xl font-bold text-[#252525]">{{ i18n "customer_challenge_title" }}</h3>
+              </div>
+              <p class="text-[#545454]">{{ i18n (printf "customer_%s_challenge" $customer.id) | default $customer.challenge }}</p>
+            </div>
+
+            <!-- Our Solution -->
+            <div class="challenge-solution-box">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center">
+                  <i class="fas fa-check-circle text-green-500"></i>
+                </div>
+                <h3 class="text-xl font-bold text-[#252525]">{{ i18n "customer_solution_title" }}</h3>
+              </div>
+              <p class="text-[#545454]">{{ i18n (printf "customer_%s_solution" $customer.id) | default $customer.solution }}</p>
+            </div>
+          </div>
+
+          <!-- Results -->
+          {{ if $customer.results }}
+          <div class="results-section mb-8">
+            <h3 class="text-xl font-bold text-[#252525] mb-6 text-center">{{ i18n "customer_results_title" }}</h3>
+            <div class="grid grid-cols-2 lg:grid-cols-{{ len $customer.results }} gap-4">
+              {{ range $customer.results }}
+              <div class="result-stat text-center">
+                <div class="text-3xl lg:text-4xl font-bold" style="color: {{ $customer.color }};">{{ .metric }}</div>
+                <div class="text-sm text-[#868686]">{{ .label }}</div>
+              </div>
+              {{ end }}
+            </div>
+          </div>
+          {{ end }}
+
+          <!-- Features Grid -->
+          {{ if $customer.features }}
+          <div class="features-section mb-8">
+            <h3 class="text-xl font-bold text-[#252525] mb-4">{{ i18n "customer_features_title" }}</h3>
+            <div class="grid grid-cols-2 lg:grid-cols-3 gap-3">
+              {{ range $customer.features }}
+              <div class="feature-tag">
+                <i class="fas fa-check text-primary text-xs"></i>
+                <span>{{ . }}</span>
+              </div>
+              {{ end }}
+            </div>
+          </div>
+          {{ end }}
+
+          <!-- Technologies Used -->
+          {{ if $customer.technologies }}
+          <div class="tech-section mb-8">
+            <h3 class="text-sm font-semibold text-[#868686] uppercase tracking-wider mb-3">{{ i18n "customer_tech_title" }}</h3>
+            <div class="flex flex-wrap gap-2">
+              {{ range $customer.technologies }}
+              <span class="tech-badge">{{ . }}</span>
+              {{ end }}
+            </div>
+          </div>
+          {{ end }}
+
+          <!-- Testimonial (if available) -->
+          {{ if and $customer.testimonial $customer.testimonial.quote }}
+          <div class="testimonial-section">
+            <div class="flex gap-4">
+              <div class="text-4xl text-primary/30">"</div>
+              <div>
+                <p class="text-lg text-[#545454] italic mb-4">{{ $customer.testimonial.quote }}</p>
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
+                    <i class="fas fa-user text-gray-400"></i>
+                  </div>
+                  <div>
+                    <div class="font-semibold text-[#252525]">{{ $customer.testimonial.author }}</div>
+                    <div class="text-sm text-[#868686]">{{ $customer.testimonial.role }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{ else }}
+          <!-- Placeholder for future testimonial -->
+          <div class="testimonial-placeholder">
+            <div class="flex items-center justify-center gap-2 text-[#868686]">
+              <i class="fas fa-quote-left"></i>
+              <span class="text-sm">{{ i18n "customer_testimonial_coming" }}</span>
+            </div>
+          </div>
+          {{ end }}
+
+        </div>
+      </div>
+      {{ end }}
+
+      <!-- Empty State (if no customers) -->
+      {{ if not site.Data.customers.customers }}
+      <div class="text-center py-16">
+        <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-gray-100 flex items-center justify-center">
+          <i class="fas fa-users text-3xl text-gray-400"></i>
+        </div>
+        <h3 class="text-xl font-bold text-[#252525] mb-2">{{ i18n "customer_empty_title" }}</h3>
+        <p class="text-[#868686]">{{ i18n "customer_empty_text" }}</p>
+      </div>
+      {{ end }}
+
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section id="customers-cta" class="py-16 lg:py-24 bg-primary relative overflow-hidden" {{ if eq site.Language.LanguageDirection "rtl" }}dir="rtl"{{ end }}>
+    <div class="absolute top-0 {{ if eq site.Language.LanguageDirection "rtl" }}right-0{{ else }}left-0{{ end }} w-72 h-72 bg-white/10 rounded-full filter blur-3xl"></div>
+    <div class="absolute bottom-0 {{ if eq site.Language.LanguageDirection "rtl" }}left-0{{ else }}right-0{{ end }} w-96 h-96 bg-tertiary/20 rounded-full filter blur-3xl"></div>
+    
+    <div class="container mx-auto px-4 text-center relative z-10">
+      <h2 class="text-3xl lg:text-4xl font-bold text-white mb-4 scroll-animate">
+        {{ i18n "customers_cta_title" }}
+      </h2>
+      <p class="text-lg text-white/80 max-w-2xl mx-auto mb-8 scroll-animate" style="animation-delay: 0.1s;">
+        {{ i18n "customers_cta_text" }}
+      </p>
+      <a href="{{ "/" | relLangURL }}#subscribe" class="inline-block px-8 py-4 bg-white text-primary font-semibold rounded-full hover:bg-tertiary hover:text-stroke transition-all duration-300 scroll-animate" style="animation-delay: 0.2s;">
+        {{ i18n "customers_cta_button" }}
+      </a>
+    </div>
+  </section>
+
+  {{ with site.Data.shared.subscribe }}{{ partial "blocks/shared/subscribe" . }}{{ end }}
+
+  <!-- Scripts -->
+  {{- $performance := resources.Get "js/performance.js" -}}
+  {{- if $performance -}}
+  <script src="{{ $performance.Permalink }}" defer></script>
+  {{- end -}}
+
+  {{- $animations := resources.Get "js/animations.js" -}}
+  {{- if $animations -}}
+  <script src="{{ $animations.Permalink }}" defer></script>
+  {{- end -}}
+
+  {{- $formHandler := resources.Get "js/form-handler.js" -}}
+  {{- if $formHandler -}}
+  <script src="{{ $formHandler.Permalink }}" defer></script>
+  {{- end -}}
+</main>
+
+<style>
+/* Customer Project Card */
+.customer-project-card {
+  background: white;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.customer-project-card:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.customer-card-header {
+  padding: 2rem;
+  color: white;
+}
+
+.customer-card-body {
+  padding: 2rem;
+}
+
+/* Challenge & Solution Boxes */
+.challenge-solution-box {
+  background: #FAFAFA;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Results Stats */
+.result-stat {
+  background: #FAFAFA;
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+/* Feature Tags */
+.feature-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(73, 107, 193, 0.05);
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  color: #545454;
+}
+
+/* Tech Badges */
+.tech-badge {
+  padding: 0.375rem 0.75rem;
+  background: #F3F4F6;
+  border-radius: 2rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #6B7280;
+}
+
+/* Testimonial Section */
+.testimonial-section {
+  background: linear-gradient(135deg, rgba(73, 107, 193, 0.05) 0%, rgba(251, 205, 55, 0.05) 100%);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  border-left: 4px solid #496BC1;
+}
+
+.testimonial-placeholder {
+  background: #FAFAFA;
+  border-radius: 1rem;
+  padding: 2rem;
+  border: 2px dashed #E5E7EB;
+}
+
+/* RTL Adjustments */
+[dir="rtl"] .customer-card-header .flex {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .challenge-solution-box .flex {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .testimonial-section {
+  border-left: none;
+  border-right: 4px solid #496BC1;
+}
+
+[dir="rtl"] .feature-tag {
+  flex-direction: row-reverse;
+}
+</style>
+{{ end }}

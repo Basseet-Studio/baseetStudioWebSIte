@@ -1,0 +1,44 @@
+enable: true
+
+# Hero Section
+title: "Our Customers"
+subtitle: "Success Stories"
+description: "See how businesses like yours are achieving results with our solutions."
+
+# Customer Projects
+customers:
+  - id: "fleetops"
+    name: "FleetOps"
+    logo: ""
+    industry: "Logistics & Transportation"
+    service_type: "Internal Tool"
+    color: "#2563EB"
+    tagline: "Fleet Management Made Simple"
+    short_description: "A comprehensive web platform for managing delivery truck fleets and their maintenance schedules."
+    full_description: "FleetOps is a powerful internal tool we built to help logistics companies manage their entire fleet of delivery trucks. From tracking vehicle locations to scheduling maintenance, everything is handled in one centralized dashboard."
+    challenge: "The client was managing 50+ delivery trucks using spreadsheets and phone calls. Maintenance was often missed, leading to breakdowns and delays. They had no visibility into their fleet's real-time status."
+    solution: "We built a custom web platform that provides real-time GPS tracking, automated maintenance scheduling based on mileage and time, driver assignment management, and comprehensive reporting."
+    results:
+      - metric: "30%"
+        label: "Reduction in breakdowns"
+      - metric: "2hrs"
+        label: "Saved daily on admin"
+      - metric: "100%"
+        label: "Fleet visibility"
+    features:
+      - "Real-time GPS fleet tracking"
+      - "Automated maintenance alerts"
+      - "Driver assignment & scheduling"
+      - "Fuel consumption tracking"
+      - "Maintenance history logs"
+      - "Custom reporting dashboard"
+    technologies:
+      - "React"
+      - "Node.js"
+      - "PostgreSQL"
+      - "Google Maps API"
+    testimonial:
+      quote: ""
+      author: ""
+      role: ""
+    screenshots: []

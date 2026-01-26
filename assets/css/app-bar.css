@@ -79,6 +79,23 @@
     color: #496BC1;
 }
 
+/* Active navigation link */
+.nav-links a.nav-active {
+    color: #496BC1;
+    position: relative;
+}
+
+.nav-links a.nav-active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #496BC1 0%, #FBCD37 100%);
+    border-radius: 2px;
+}
+
 /* Mobile Menu Styles */
 .mobile-menu-toggle {
     display: none;
@@ -175,6 +192,18 @@
 .mobile-nav-links a:focus {
     color: #496BC1;
     background-color: rgba(73, 107, 193, 0.1);
+}
+
+/* Mobile active navigation link */
+.mobile-nav-links a.mobile-nav-active {
+    color: #496BC1;
+    background-color: rgba(73, 107, 193, 0.1);
+    border-left: 3px solid #496BC1;
+}
+
+[dir="rtl"] .mobile-nav-links a.mobile-nav-active {
+    border-left: none;
+    border-right: 3px solid #496BC1;
 }
 
 /* ============================================
@@ -390,11 +419,16 @@ button:focus-visible {
 
 [dir="rtl"] .nav-links {
     flex-direction: row-reverse;
+    gap: 2.5rem; /* Increased gap for Arabic text */
+}
+
+[dir="rtl"] .nav-links a {
+    letter-spacing: 0; /* Reset letter-spacing for Arabic */
 }
 
 [dir="rtl"] .language-switcher {
     margin-left: 0;
-    margin-right: 1.5rem;
+    margin-right: 2rem; /* Increased margin for better spacing */
 }
 
 [dir="rtl"] .lang-dropdown {
@@ -410,6 +444,11 @@ button:focus-visible {
 
 [dir="rtl"] .mobile-nav-links {
     text-align: right;
+}
+
+[dir="rtl"] .mobile-nav-links a {
+    padding-right: 1.5rem;
+    padding-left: 1rem;
 }
 
 [dir="rtl"] .flex-row {

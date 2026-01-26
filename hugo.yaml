@@ -45,7 +45,7 @@ languages:
     languageName: 'العربية'
     languageDirection: 'rtl'
     weight: 2
-    title: 'استوديو بصيط'
+    title: 'استوديو بسيط'
     params:
       description: 'شريكك الموثوق في الابتكار الرقمي، نصنع حلول ويب وتطبيقات استثنائية.'
     menus:
