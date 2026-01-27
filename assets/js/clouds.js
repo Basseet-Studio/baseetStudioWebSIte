@@ -102,323 +102,205 @@
     varying vec2 v_uv;
     
     // ==========================================================================
-    // CUSTOMIZATION PARAMETERS - Tweak these to change cloud appearance!
+    // CUSTOMIZATION PARAMETERS - OPTIMIZED FOR PERFORMANCE
     // ==========================================================================
     
     // COVERAGE: How much of the sky has clouds (0.0 to 1.0)
-    // 0.3 = sparse, 0.5 = medium, 0.7 = overcast
     const float COVERAGE = 0.42;
     
-    // CLOUD_SCALE: Size of the clouds
-    // Lower = bigger clouds, Higher = smaller clouds
-    const float CLOUD_SCALE = 0.4;
+    // CLOUD_SCALE: Size of the clouds (higher = smaller individual clouds)
+    const float CLOUD_SCALE = 0.5;
     
-    // CLOUD_SPEED: How fast clouds drift across the sky
-    const float CLOUD_SPEED = 0.025;
+    // CLOUD_SPEED: Animation speed
+    const float CLOUD_SPEED = 0.1;
     
-    // NOISE_VARIATION: Adds variety to cloud shapes (higher = more varied)
-    const float NOISE_VARIATION = 1.5;
-    
-    // VERTICAL_SCALE: Stretches clouds vertically for more variety
-    const float VERTICAL_SCALE = 0.7;
-    
-    // EDGE_SOFTNESS: How soft/fluffy the cloud edges are (0.1 to 0.5)
-    const float EDGE_SOFTNESS = 0.25;
-    
-    // CLOUD_DENSITY: How thick/opaque clouds appear (0.2 to 0.6)
-    const float CLOUD_DENSITY = 0.4;
+    // CLOUD_DENSITY: How thick/opaque clouds appear
+    const float CLOUD_DENSITY = 0.65;
     
     // ==========================================================================
     // LIGHTING PARAMETERS
     // ==========================================================================
     
-    // SUN_DIRECTION: Where the light comes from (will be normalized)
-    // Tweak x,y,z to move sun position
     vec3 sunDir = normalize(vec3(-0.7, 0.5, -0.6));
-    
-    // CLOUD_COLOR: Bright parts of clouds (sun-lit areas)
-    const vec3 CLOUD_COLOR = vec3(1.1, 1.05, 1.0);
-    
-    // SHADOW_COLOR: Dark parts of clouds (shaded areas)  
-    const vec3 SHADOW_COLOR = vec3(0.35, 0.4, 0.55);
+    const vec3 CLOUD_COLOR = vec3(1.0, 0.98, 0.95);
+    const vec3 SHADOW_COLOR = vec3(0.4, 0.45, 0.6);
     
     // ==========================================================================
     // SKY PARAMETERS
     // ==========================================================================
     
-    // SKY_COLOR_HORIZON: Sky color near the horizon
-    const vec3 SKY_HORIZON = vec3(0.75, 0.85, 0.95);
-    
-    // SKY_COLOR_ZENITH: Sky color looking straight up
+    const vec3 SKY_HORIZON = vec3(0.7, 0.82, 0.95);
     const vec3 SKY_ZENITH = vec3(0.35, 0.55, 0.85);
     
     // ==========================================================================
     // CLOUD LAYER PARAMETERS
     // ==========================================================================
     
-    // Camera flies THROUGH the clouds at this height
     const float CAMERA_HEIGHT = 1.5;
-    
-    // CLOUD_HEIGHT_MIN: Bottom of cloud layer (below camera = clouds below you)
     const float CLOUD_HEIGHT_MIN = -2.0;
-    
-    // CLOUD_HEIGHT_MAX: Top of cloud layer (above camera = clouds above you)
     const float CLOUD_HEIGHT_MAX = 5.0;
-    
-    // MAX_DISTANCE: How far to render clouds
-    const float MAX_DISTANCE = 80.0;
+    const float MAX_DISTANCE = 60.0;
     
     // ==========================================================================
-    // NOISE FUNCTIONS - These generate the cloud shapes
+    // OPTIMIZED NOISE - Simple and fast!
     // ==========================================================================
     
-    // Hash function - creates pseudo-random values
-    float hash(float n) {
-      return fract(sin(n) * 43758.5453123);
+    // Fast hash
+    float hash(vec3 p) {
+      p = fract(p * 0.3183099 + 0.1);
+      p *= 17.0;
+      return fract(p.x * p.y * p.z * (p.x + p.y + p.z));
     }
     
-    // 3D Value Noise - the building block for clouds
-    float noise(vec3 x) {
-      vec3 p = floor(x);
-      vec3 f = fract(x);
+    // Simple 3D noise - fast version
+    float noise(vec3 p) {
+      vec3 i = floor(p);
+      vec3 f = fract(p);
+      f = f * f * (3.0 - 2.0 * f);  // Cubic interpolation
       
-      // Smooth interpolation (removes blocky artifacts)
-      f = f * f * (3.0 - 2.0 * f);
-      
-      // Use prime numbers for better distribution
-      float n = p.x + p.y * 157.0 + 113.0 * p.z;
-      
-      // Trilinear interpolation of 8 corners
       return mix(
-        mix(mix(hash(n + 0.0), hash(n + 1.0), f.x),
-            mix(hash(n + 157.0), hash(n + 158.0), f.x), f.y),
-        mix(mix(hash(n + 113.0), hash(n + 114.0), f.x),
-            mix(hash(n + 270.0), hash(n + 271.0), f.x), f.y), f.z
+        mix(mix(hash(i + vec3(0,0,0)), hash(i + vec3(1,0,0)), f.x),
+            mix(hash(i + vec3(0,1,0)), hash(i + vec3(1,1,0)), f.x), f.y),
+        mix(mix(hash(i + vec3(0,0,1)), hash(i + vec3(1,0,1)), f.x),
+            mix(hash(i + vec3(0,1,1)), hash(i + vec3(1,1,1)), f.x), f.y), f.z
       );
     }
     
     // ==========================================================================
-    // CLOUD DENSITY FUNCTION - The heart of the cloud generation
+    // CLOUD DENSITY - Clean FBM, no expensive Worley
     // ==========================================================================
     
     float cloudDensity(vec3 p, int octaves) {
-      // Apply scale to position
       vec3 q = p * CLOUD_SCALE;
+      q.y *= 0.5;  // Flatten vertically
+      q.z -= u_time * CLOUD_SPEED;
       
-      // Add vertical variation for more interesting shapes
-      q.y *= VERTICAL_SCALE;
+      // Large scale variation to create separate cloud clusters
+      float largeMask = noise(q * 0.3) * 0.4;
       
-      // Animate: clouds drift with time
-      // Change the vec3 to alter drift direction (currently drifting in Z)
-      q -= vec3(0.0, 0.0, u_time * CLOUD_SPEED);
-      
-      // Add some large-scale variation for more interesting cloud groups
-      float largeScale = noise(q * 0.3) * NOISE_VARIATION;
-      q += largeScale * 0.5;
-      
-      // =======================================================================
-      // FBM (Fractal Brownian Motion) - Layer multiple noise octaves
-      // Each octave adds finer detail
-      // =======================================================================
+      // Simple FBM - 4 octaves max for performance
       float fbm = 0.0;
-      float amp = 0.5;    // Starting amplitude
-      float freq = 1.0;   // Starting frequency
-      float maxAmp = 0.0; // Track total amplitude for normalization
+      float amp = 0.5;
+      float freq = 1.0;
       
-      for(int i = 0; i < 5; i++) {
+      for(int i = 0; i < 4; i++) {
         if(i >= octaves) break;
         fbm += amp * noise(q * freq);
-        maxAmp += amp;
-        
-        // Each octave: double frequency, halve amplitude
-        freq *= 2.03;  // Slightly off 2.0 to reduce repetition
+        freq *= 2.0;
         amp *= 0.5;
       }
       
-      // Normalize FBM to 0-1 range
-      fbm /= maxAmp;
+      // Add large scale mask to create gaps between cloud groups
+      fbm = fbm * (0.7 + largeMask);
       
-      // =======================================================================
-      // COVERAGE THRESHOLD - This is what creates distinct clouds!
-      // =======================================================================
-      // Only show clouds where noise exceeds (1 - COVERAGE)
-      // Higher coverage = lower threshold = more clouds
-      float threshold = 1.0 - COVERAGE;
-      float density = fbm - threshold;
+      // Coverage threshold
+      float density = fbm - (1.0 - COVERAGE);
       
-      // Smooth the edges with smoothstep (controlled by EDGE_SOFTNESS)
-      density = smoothstep(0.0, EDGE_SOFTNESS, density);
-      
-      return density;
+      // Sharper edges for more distinct individual clouds
+      return smoothstep(0.0, 0.08, density);
     }
     
-    // Different detail levels for performance optimization
-    float map5(vec3 p) { return cloudDensity(p, 5); } // High detail - main rendering
-    float map4(vec3 p) { return cloudDensity(p, 4); } // Medium detail - secondary
-    float map3(vec3 p) { return cloudDensity(p, 3); } // Low detail - lighting/shadows
+    float map4(vec3 p) { return cloudDensity(p, 4); }
+    float map2(vec3 p) { return cloudDensity(p, 2); }
     
     // ==========================================================================
-    // LIGHTING INTEGRATION - Accumulates cloud color along the ray
+    // RAYMARCHING - Optimized with fewer steps
     // ==========================================================================
     
-    vec4 integrate(vec4 sum, float lighting, float density, vec3 bgcol, float dist) {
-      // Mix between shadow and lit color based on lighting
-      vec3 col = mix(SHADOW_COLOR, CLOUD_COLOR, lighting);
-      
-      // Distance fog - clouds fade into sky color at distance
-      float fogAmount = 1.0 - exp(-0.0015 * dist * dist);
-      col = mix(col, bgcol, fogAmount);
-      
-      // Accumulate with premultiplied alpha blending
-      float alpha = density * CLOUD_DENSITY;
-      col *= alpha;
-      
-      // Front-to-back compositing
-      return sum + vec4(col, alpha) * (1.0 - sum.a);
-    }
-    
-    // ==========================================================================
-    // RAYMARCHING - Steps through the cloud volume
-    // ==========================================================================
-    
-    vec4 raymarch(vec3 rayOrigin, vec3 rayDir, vec3 bgcol) {
+    vec4 raymarch(vec3 ro, vec3 rd, vec3 bgcol) {
       vec4 sum = vec4(0.0);
+      float t = 0.5;
       
-      // For flying through clouds, we march forward regardless of direction
-      // Start close to camera and march outward
-      float t = 0.1;
-      
-      // =======================================================================
-      // RAYMARCH LOOP - Sample cloud density at steps along ray
-      // =======================================================================
-      for(int i = 0; i < 80; i++) {
-        // Early exit if cloud is opaque or ray goes too far
-        if(sum.a > 0.99 || t > MAX_DISTANCE) break;
+      // Reduced to 50 steps for performance
+      for(int i = 0; i < 50; i++) {
+        if(sum.a > 0.95 || t > MAX_DISTANCE) break;
         
-        vec3 pos = rayOrigin + t * rayDir;
+        vec3 pos = ro + t * rd;
         
-        // Check if we're in the cloud layer
+        // Skip if outside cloud layer
         if(pos.y < CLOUD_HEIGHT_MIN || pos.y > CLOUD_HEIGHT_MAX) {
-          t += 0.5;
+          t += 0.8;
           continue;
         }
         
-        // Sample cloud density at this position
-        float density = map5(pos);
+        float density = map4(pos);
         
         if(density > 0.01) {
-          // ===================================================================
-          // LIGHTING - Sample density towards sun to determine shadowing
-          // ===================================================================
-          float sunSample = map3(pos + sunDir * 0.6);
-          float lighting = clamp((density - sunSample) / 0.5 + 0.5, 0.0, 1.0);
+          // Simple lighting
+          float lit = clamp((density - map2(pos + sunDir * 0.5)) / 0.4 + 0.5, 0.0, 1.0);
+          vec3 col = mix(SHADOW_COLOR, CLOUD_COLOR, lit);
           
-          // Add this sample's contribution
-          sum = integrate(sum, lighting, density, bgcol, t);
+          // Distance fade
+          col = mix(col, bgcol, 1.0 - exp(-0.002 * t * t));
+          
+          // Accumulate
+          float alpha = density * CLOUD_DENSITY;
+          col *= alpha;
+          sum += vec4(col, alpha) * (1.0 - sum.a);
         }
         
-        // =====================================================================
-        // ADAPTIVE STEP SIZE - Bigger steps in empty space, smaller in clouds
-        // =====================================================================
-        float stepSize = max(0.08, 0.04 * t);
-        stepSize *= (1.0 + 1.5 * (1.0 - density)); // Larger steps when no clouds
-        t += stepSize;
+        // Adaptive stepping
+        t += max(0.1, 0.05 * t) * (1.0 + 2.0 * (1.0 - density));
       }
       
-      // Unpremultiply alpha for final color
-      if(sum.a > 0.001) {
-        sum.rgb /= sum.a;
-      }
-      
+      if(sum.a > 0.001) sum.rgb /= sum.a;
       return clamp(sum, 0.0, 1.0);
     }
     
     // ==========================================================================
-    // SKY COLOR - Gradient background behind clouds
+    // SKY COLOR
     // ==========================================================================
     
     vec3 getSkyColor(vec3 rd) {
-      // Vertical gradient from horizon to zenith
       float t = max(0.0, rd.y);
       vec3 sky = mix(SKY_HORIZON, SKY_ZENITH, t);
       
-      // Sun glow effect
+      // Sun glow
       float sunAmount = clamp(dot(rd, sunDir), 0.0, 1.0);
-      
-      // Sharp sun disk
-      sky += vec3(1.0, 0.9, 0.7) * pow(sunAmount, 32.0) * 0.4;
-      // Soft sun halo
-      sky += vec3(1.0, 0.7, 0.4) * pow(sunAmount, 8.0) * 0.25;
+      sky += vec3(1.0, 0.9, 0.7) * pow(sunAmount, 32.0) * 0.3;
+      sky += vec3(1.0, 0.7, 0.4) * pow(sunAmount, 8.0) * 0.2;
       
       return sky;
     }
     
     // ==========================================================================
-    // MAIN - Entry point
+    // MAIN
     // ==========================================================================
     
     void main() {
-      // Convert pixel coordinates to normalized UV (-1 to 1, aspect corrected)
       vec2 uv = (gl_FragCoord.xy - 0.5 * u_resolution.xy) / u_resolution.y;
       
-      // ========================================================================
-      // CAMERA SETUP - Flying through clouds
-      // ========================================================================
-      
-      // Camera position - flying forward through the cloud layer
-      // Camera is AT cloud height, moving gently forward
-      float flySpeed = u_time * 0.08;  // Gentle forward movement
+      // Camera - flying through clouds
+      float flySpeed = u_time * 0.15;
       vec3 ro = vec3(
-        sin(u_time * 0.02) * 0.5,      // Gentle side-to-side drift
-        CAMERA_HEIGHT + sin(u_time * 0.015) * 0.3,  // Subtle up/down bob
-        flySpeed                         // Constant forward flight
+        sin(u_time * 0.02) * 0.5,
+        CAMERA_HEIGHT + sin(u_time * 0.015) * 0.3,
+        flySpeed
       );
       
-      // Look straight ahead (horizontal), not up
-      // This creates the "flying through" feeling
       vec3 ta = vec3(
-        ro.x + sin(u_time * 0.01) * 0.3,  // Slight look left/right
-        ro.y,                              // Same height = looking horizontal
-        ro.z + 5.0                         // Looking forward
+        ro.x + sin(u_time * 0.01) * 0.3,
+        ro.y,
+        ro.z + 5.0
       );
       
-      // Mouse influence on camera (subtle)
+      // Mouse look
       vec2 m = u_mouse * 2.0 - 1.0;
       ta.x += m.x * 0.3;
       ta.y += m.y * 0.2;
       
-      // Build camera matrix
-      vec3 cw = normalize(ta - ro);           // Camera forward
-      vec3 cp = vec3(0.0, 1.0, 0.0);          // World up
-      vec3 cu = normalize(cross(cw, cp));     // Camera right
-      vec3 cv = cross(cu, cw);                // Camera up
+      // Camera matrix
+      vec3 cw = normalize(ta - ro);
+      vec3 cu = normalize(cross(cw, vec3(0,1,0)));
+      vec3 cv = cross(cu, cw);
       
-      // Create ray direction from camera through pixel
-      // The 1.8 controls field of view (wider for immersive feel)
-      vec3 rd = normalize(uv.x * cu + uv.y * cv + 1.8 * cw);
+      vec3 rd = normalize(uv.x * cu + uv.y * cv + 1.4 * cw);
       
-      // ========================================================================
-      // RENDER
-      // ========================================================================
+      // Render
+      vec3 sky = getSkyColor(rd);
+      vec4 clouds = raymarch(ro, rd, sky);
       
-      // Get sky background color
-      vec3 bgcol = getSkyColor(rd);
-      
-      // Raymarch through clouds
-      vec4 clouds = raymarch(ro, rd, bgcol);
-      
-      // Composite clouds over sky
-      vec3 col = mix(bgcol, clouds.rgb, clouds.a);
-      
-      // ========================================================================
-      // POST-PROCESSING
-      // ========================================================================
-      
-      // Subtle tone mapping (prevents over-bright areas)
-      col = col / (1.0 + col * 0.15);
-      
-      // Gamma correction for display
-      col = pow(col, vec3(0.95));
+      vec3 col = mix(sky, clouds.rgb, clouds.a);
       
       gl_FragColor = vec4(col, 1.0);
     }
