@@ -1,0 +1,249 @@
+/**
+ * Volumetric Clouds Section Styles
+ * Beautiful animated cloud background with scroll indicator
+ */
+
+/* Main container */
+.clouds-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 500px;
+  max-height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(180deg, #87CEEB 0%, #B8D4E8 50%, #E8DED0 100%);
+}
+
+/* WebGL Canvas */
+#clouds-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  /* Smooth scaling for lower resolution rendering */
+  image-rendering: auto;
+}
+
+/* Overlay gradient for smooth transition to hero */
+.clouds-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 30%,
+    rgba(255, 255, 255, 0.5) 60%,
+    var(--color-surface, #ffffff) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Content overlay */
+.clouds-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 60px;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  opacity: 0.8;
+  animation: fadeInUp 1s ease-out 0.5s both;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.scroll-indicator:hover {
+  opacity: 1;
+}
+
+.scroll-text {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: rgba(50, 70, 100, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  transition: color 0.3s ease;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+.scroll-indicator:hover .scroll-text {
+  color: rgba(30, 50, 80, 1);
+}
+
+.scroll-arrow {
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(50, 70, 100, 0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: bounceDown 2s ease-in-out infinite;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+}
+
+.scroll-indicator:hover .scroll-arrow {
+  border-color: rgba(50, 70, 100, 0.7);
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.scroll-arrow i {
+  color: rgba(50, 70, 100, 0.8);
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.scroll-indicator:hover .scroll-arrow i {
+  color: rgba(30, 50, 80, 1);
+}
+
+/* Fallback for non-WebGL browsers */
+.clouds-fallback {
+  background: linear-gradient(180deg, #87CEEB 0%, #B8D4E8 40%, #E8DED0 100%);
+  background-size: 100% 100%;
+}
+
+.clouds-fallback::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(ellipse 600px 200px at 20% 40%, rgba(255, 255, 255, 0.8) 0%, transparent 70%),
+    radial-gradient(ellipse 400px 150px at 60% 30%, rgba(255, 255, 255, 0.7) 0%, transparent 60%),
+    radial-gradient(ellipse 500px 180px at 80% 50%, rgba(255, 255, 255, 0.6) 0%, transparent 65%);
+  animation: cloudDrift 30s ease-in-out infinite;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 0.8;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceDown {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes cloudDrift {
+  0%, 100% {
+    transform: translateX(0) scale(1);
+  }
+  50% {
+    transform: translateX(30px) scale(1.05);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .clouds-container {
+    height: 80vh;
+    min-height: 400px;
+  }
+  
+  .clouds-content {
+    padding-bottom: 40px;
+  }
+  
+  .scroll-text {
+    font-size: 0.75rem;
+  }
+  
+  .scroll-arrow {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .clouds-container {
+    height: 70vh;
+    min-height: 350px;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-arrow {
+    animation: none;
+  }
+  
+  .clouds-fallback {
+    animation: none;
+  }
+  
+  .clouds-fallback::before {
+    animation: none;
+  }
+  
+  .scroll-indicator {
+    animation: none;
+    opacity: 0.8;
+  }
+}
+
+/* Dark mode adjustments (if needed) */
+@media (prefers-color-scheme: dark) {
+  .clouds-overlay {
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(15, 17, 23, 0.2) 30%,
+      rgba(15, 17, 23, 0.6) 60%,
+      #0f1117 100%
+    );
+  }
+}
+
+/* RTL Support */
+[dir="rtl"] .clouds-content {
+  direction: rtl;
+}

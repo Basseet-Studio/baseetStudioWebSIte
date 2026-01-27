@@ -4,6 +4,15 @@
   integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
   crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+<!-- Clouds CSS -->
+{{- $cloudsCSS := resources.Get "css/clouds.css" -}}
+{{- if $cloudsCSS -}}
+{{- if hugo.IsProduction -}}
+{{- $cloudsCSS = $cloudsCSS | minify | fingerprint -}}
+{{- end -}}
+<link rel="stylesheet" href="{{ $cloudsCSS.RelPermalink }}" />
+{{- end -}}
+
 <!-- App Bar CSS -->
 {{- $appBarCSS := resources.Get "css/app-bar.css" -}}
 {{- if $appBarCSS -}}
@@ -35,6 +44,9 @@
 {{ partial "header.html" . }}
 
 <main id="mainContent" class="main-content-wrapper">
+  <!-- Volumetric Clouds Section -->
+  {{ with site.Data.home.clouds }}{{ if .enable }}{{ partial "blocks/home/clouds" . }}{{ end }}{{ end }}
+  
   {{ with site.Data.home.hero }}{{ if .enable }}{{ partial "blocks/home/hero" . }}{{ end }}{{ end }}
   {{ with site.Data.home.features }}{{ if .enable }}{{ partial "blocks/home/features" . }}{{ end }}{{ end }}
   {{ with site.Data.home.projects }}{{ if .enable }}{{ partial "blocks/home/projects" . }}{{ end }}{{ end }}
@@ -44,6 +56,11 @@
   {{ with site.Data.shared.subscribe }}{{ partial "blocks/shared/subscribe" . }}{{ end }}
 
   <!-- Scripts -->
+  {{- $cloudsJS := resources.Get "js/clouds.js" -}}
+  {{- if $cloudsJS -}}
+  <script src="{{ $cloudsJS.Permalink }}" defer></script>
+  {{- end -}}
+
   {{- $performance := resources.Get "js/performance.js" -}}
   {{- if $performance -}}
   <script src="{{ $performance.Permalink }}" defer></script>

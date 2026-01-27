@@ -1,0 +1,18 @@
+{{/* Volumetric Clouds Section - Above Hero */}}
+{{ $data := site.Data.home.clouds }}
+{{ if $data.enable }}
+<section id="clouds-section" class="clouds-container" {{ if not $data.enableOnMobile }}data-disable-mobile="true"{{ end }}>
+  <canvas id="clouds-canvas"></canvas>
+  <div class="clouds-overlay"></div>
+  
+  {{/* Scroll indicator */}}
+  <div class="clouds-content">
+    <div class="scroll-indicator" onclick="document.getElementById('hero').scrollIntoView({behavior: 'smooth'})">
+      <span class="scroll-text">{{ i18n "scroll_down" | default "Scroll" }}</span>
+      <div class="scroll-arrow">
+        <i class="fas fa-chevron-down"></i>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}

@@ -1,0 +1,8 @@
+# Clouds Section Configuration
+enable: true
+
+# Set to false to disable clouds on mobile for performance
+enableOnMobile: true
+
+# Scroll indicator text (uses i18n key "scroll_down" if not set)
+scrollText: ""

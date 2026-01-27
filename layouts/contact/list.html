@@ -1,4 +1,30 @@
 {{ define "main" }}
+<!-- Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!-- App Bar CSS -->
+{{- $appBarCSS := resources.Get "css/app-bar.css" -}}
+{{- if $appBarCSS -}}
+{{- if hugo.IsProduction -}}
+{{- $appBarCSS = $appBarCSS | minify | fingerprint -}}
+{{- end -}}
+<link rel="stylesheet" href="{{ $appBarCSS.RelPermalink }}" />
+{{- end -}}
+
+<!-- Premium Effects CSS -->
+{{- $premiumCSS := resources.Get "css/premium-effects.css" -}}
+{{- if $premiumCSS -}}
+{{- if hugo.IsProduction -}}
+{{- $premiumCSS = $premiumCSS | minify | fingerprint -}}
+{{- end -}}
+<link rel="stylesheet" href="{{ $premiumCSS.RelPermalink }}" />
+{{- end -}}
+
+<!-- App Bar Header -->
+{{ partial "header.html" . }}
+
 <!-- Contact Page -->
 <main id="mainContent" class="min-h-screen" {{ if eq .Site.Language.LanguageDirection "rtl" }}dir="rtl"{{ end }}>
     
@@ -35,7 +61,12 @@
                     <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
                         <h2 class="text-2xl font-bold text-gray-900 mb-6">{{ i18n "contact_form_title" }}</h2>
                         
-                        <form id="contactForm" class="space-y-6">
+                        <form id="contactForm" name="contactForm" class="space-y-6">
+                            <!-- Hidden fields for extra data -->
+                            <input type="hidden" name="contactType" id="contactTypeHidden" value="">
+                            <input type="hidden" name="language" value="{{ .Site.Language.Lang }}">
+                            <input type="hidden" name="page" id="pageHidden" value="">
+                            
                             <!-- Name -->
                             <div>
                                 <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
@@ -311,6 +342,8 @@ document.addEventListener('DOMContentLoaded', function() {
     contactInput.addEventListener('input', function(e) {
         const result = validateContact(e.target.value);
         updateContactUI(result);
+        // Update hidden contactType field
+        document.getElementById('contactTypeHidden').value = result.type || '';
     });
     
     // Blur event - format phone number
@@ -321,14 +354,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Form submission
+    // Set page URL on load
+    document.getElementById('pageHidden').value = window.location.href;
+    
+    // Form submission - Send to Google Sheets using FormData
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxK-k-X_sjSjZ-SJEu-UuPKRRFjE71jEiLUEn-Y17_GdEZlkdPqH3J5Cer-u3gxJStS/exec';
+    
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
         const name = document.getElementById('name').value.trim();
         const contact = contactInput.value.trim();
-        const projectType = document.getElementById('projectType').value;
-        const message = document.getElementById('message').value.trim();
         
         // Validate
         if (!name) {
@@ -342,33 +378,68 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
+        // Update hidden field before submission
+        document.getElementById('contactTypeHidden').value = contactResult.type || 'unknown';
+        
         // Show loading state
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin {{ if eq .Site.Language.LanguageDirection "rtl" }}ml-2{{ else }}mr-2{{ end }}"></i> {{ i18n "contact_sending" }}';
         
-        // Prepare WhatsApp message
-        let waMessage = '{{ i18n "contact_wa_intro" }}\n\n';
-        waMessage += '👤 {{ i18n "contact_wa_name" }}: ' + name + '\n';
-        waMessage += (contactResult.type === 'email' ? '📧' : '📱') + ' {{ i18n "contact_wa_contact" }}: ' + contact + '\n';
-        if (projectType) {
-            waMessage += '📋 {{ i18n "contact_wa_project" }}: ' + projectType + '\n';
-        }
-        if (message) {
-            waMessage += '\n💬 {{ i18n "contact_wa_message" }}:\n' + message;
+        // Hide previous messages
+        formSuccess.classList.add('hidden');
+        formError.classList.add('hidden');
+        
+        // Debug log
+        const formDataDebug = new FormData(contactForm);
+        console.log('Sending form data:');
+        for (let [key, value] of formDataDebug.entries()) {
+            console.log(key + ': ' + value);
         }
         
-        // Simulate form processing then redirect to WhatsApp
-        setTimeout(function() {
-            formSuccess.classList.remove('hidden');
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = '<span>{{ i18n "contact_submit_btn" }}</span> <i class="fas fa-paper-plane"></i>';
-            
-            // Open WhatsApp after short delay
-            setTimeout(function() {
-                window.open('https://wa.me/971507566474?text=' + encodeURIComponent(waMessage), '_blank');
-            }, 1000);
-        }, 800);
+        // Send to Google Sheets using FormData (the proper way)
+        fetch(scriptURL, { method: 'POST', body: new FormData(contactForm) })
+            .then(response => response.json())
+            .then(response => {
+                console.log('Success!', response);
+                formSuccess.classList.remove('hidden');
+                contactForm.reset();
+                
+                // Reset validation UI
+                contactIcon.innerHTML = '<i class="fas fa-at"></i>';
+                contactIcon.classList.remove('text-green-500', 'text-red-500');
+                contactIcon.classList.add('text-gray-400');
+                contactHint.classList.remove('hidden');
+                contactValid.classList.add('hidden');
+                contactInput.classList.remove('border-green-300', 'border-red-300');
+            })
+            .catch(error => {
+                console.error('Error!', error.message);
+                formError.classList.remove('hidden');
+            })
+            .finally(() => {
+                // Reset button state
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<span>{{ i18n "contact_submit_btn" }}</span> <i class="fas fa-paper-plane"></i>';
+            });
     });
+});
+</script>
+
+<!-- App Bar Manager Script -->
+{{- $appBarManager := resources.Get "js/app-bar-manager.js" -}}
+{{- if $appBarManager -}}
+<script src="{{ $appBarManager.Permalink }}" defer></script>
+{{- end -}}
+
+<script>
+// Initialize app bar in site mode for non-home pages
+document.addEventListener('DOMContentLoaded', function() {
+    const appBar = document.getElementById('app-bar');
+    if (appBar) {
+        // Set site mode immediately for contact page
+        appBar.classList.remove('app-bar-cloud');
+        appBar.classList.add('app-bar-site');
+    }
 });
 </script>
 
