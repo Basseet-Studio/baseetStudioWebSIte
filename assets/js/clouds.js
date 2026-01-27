@@ -98,6 +98,7 @@
     uniform float u_time;
     uniform vec2 u_resolution;
     uniform vec2 u_mouse;
+    uniform float u_scroll;  // Scroll position for speed boost
     
     varying vec2 v_uv;
     
@@ -122,23 +123,23 @@
     // ==========================================================================
     
     vec3 sunDir = normalize(vec3(-0.7, 0.5, -0.6));
-    const vec3 CLOUD_COLOR = vec3(1.0, 0.98, 0.95);
-    const vec3 SHADOW_COLOR = vec3(0.4, 0.45, 0.6);
+    const vec3 CLOUD_COLOR = vec3(1.0, 0.99, 0.97);
+    const vec3 SHADOW_COLOR = vec3(0.6, 0.65, 0.75);
     
     // ==========================================================================
-    // SKY PARAMETERS
+    // SKY PARAMETERS - Closer to white
     // ==========================================================================
     
-    const vec3 SKY_HORIZON = vec3(0.7, 0.82, 0.95);
-    const vec3 SKY_ZENITH = vec3(0.35, 0.55, 0.85);
+    const vec3 SKY_HORIZON = vec3(0.92, 0.95, 0.98);
+    const vec3 SKY_ZENITH = vec3(0.75, 0.85, 0.95);
     
     // ==========================================================================
     // CLOUD LAYER PARAMETERS
     // ==========================================================================
     
-    const float CAMERA_HEIGHT = 1.5;
-    const float CLOUD_HEIGHT_MIN = -2.0;
-    const float CLOUD_HEIGHT_MAX = 5.0;
+    const float CAMERA_HEIGHT = -3.0;      // Start below clouds
+    const float CLOUD_HEIGHT_MIN = -5.0;   // Extended cloud layer
+    const float CLOUD_HEIGHT_MAX = 20.0;   // Tall cloud layer to fly through
     const float MAX_DISTANCE = 60.0;
     
     // ==========================================================================
@@ -270,24 +271,26 @@
     void main() {
       vec2 uv = (gl_FragCoord.xy - 0.5 * u_resolution.xy) / u_resolution.y;
       
-      // Camera - flying through clouds
-      float flySpeed = u_time * 0.15;
+      // Scroll controls vertical position - scrolling down = flying UP through clouds
+      // u_scroll goes 0 to 1 as user scrolls down the page
+      float scrollHeight = u_scroll * 15.0;  // How far up we fly based on scroll
+      
+      // Camera position - rises UP through cloud layer as you scroll
       vec3 ro = vec3(
-        sin(u_time * 0.02) * 0.5,
-        CAMERA_HEIGHT + sin(u_time * 0.015) * 0.3,
-        flySpeed
+        sin(u_time * 0.03) * 0.3,           // Gentle side drift
+        CAMERA_HEIGHT + scrollHeight,        // SCROLL = go UP through clouds!
+        u_time * 0.08                         // Slow constant forward drift
       );
       
-      vec3 ta = vec3(
-        ro.x + sin(u_time * 0.01) * 0.3,
-        ro.y,
-        ro.z + 5.0
-      );
-      
-      // Mouse look
+      // Mouse controls look direction (left/right = look left/right)
       vec2 m = u_mouse * 2.0 - 1.0;
-      ta.x += m.x * 0.3;
-      ta.y += m.y * 0.2;
+      
+      // Look target - looking forward and slightly influenced by mouse
+      vec3 ta = vec3(
+        ro.x + m.x * 2.0,     // Mouse X = look left/right (strong effect)
+        ro.y + m.y * 0.5,     // Mouse Y = look up/down (subtle)
+        ro.z + 5.0            // Looking forward
+      );
       
       // Camera matrix
       vec3 cw = normalize(ta - ro);
@@ -340,6 +343,7 @@
       this.startTime = Date.now();
       this.mouseX = 0.5;
       this.mouseY = 0.5;
+      this.scrollY = 0;
       this.isRunning = false;
       this.animationId = null;
       
@@ -418,7 +422,8 @@
       this.uniforms = {
         time: gl.getUniformLocation(this.program, 'u_time'),
         resolution: gl.getUniformLocation(this.program, 'u_resolution'),
-        mouse: gl.getUniformLocation(this.program, 'u_mouse')
+        mouse: gl.getUniformLocation(this.program, 'u_mouse'),
+        scroll: gl.getUniformLocation(this.program, 'u_scroll')
       };
       
       // Setup event listeners
@@ -443,6 +448,12 @@
           this.mouseX = e.touches[0].clientX / window.innerWidth;
           this.mouseY = 1.0 - e.touches[0].clientY / window.innerHeight;
         }
+      }, { passive: true });
+      
+      // Scroll - makes clouds fly faster!
+      window.addEventListener('scroll', () => {
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        this.scrollY = window.scrollY / Math.max(1, maxScroll);
       }, { passive: true });
       
       // Resize
@@ -508,6 +519,7 @@
       gl.uniform1f(this.uniforms.time, time);
       gl.uniform2f(this.uniforms.resolution, this.canvas.width, this.canvas.height);
       gl.uniform2f(this.uniforms.mouse, this.mouseX, this.mouseY);
+      gl.uniform1f(this.uniforms.scroll, this.scrollY);
       
       // Draw
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
