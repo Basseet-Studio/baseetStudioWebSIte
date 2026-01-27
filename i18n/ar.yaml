@@ -103,6 +103,17 @@ project_photorestore_feature_4: "آمن وخاص (حذف تلقائي)"
 project_photorestore_feature_5: "دفع Stripe و SSLCommerz"
 project_photorestore_feature_6: "واجهة حديثة متجاوبة"
 
+# Project - Medical Education App (MAI)
+project_mai_name: "تطبيق التعليم الطبي (MAI)"
+project_mai_tagline: "منصة تعليم طبي بالذكاء الاصطناعي"
+project_mai_description: "منصة تعليم طبي شاملة مدعومة بالذكاء الاصطناعي للأطباء المقيمين، تجمع دعم القرار السريري وإدارة الحالات والتصوير والدوائيات والجولات والتعلم المخصص مع بيانات وهمية واقعية."
+project_mai_status: "نموذج أولي MVP"
+project_mai_feature_1: "دعم القرار السريري"
+project_mai_feature_2: "تحليل التصوير الطبي"
+project_mai_feature_3: "سير عمل الجولات السريرية"
+project_mai_feature_4: "مركز تعلم مخصص"
+project_mai_feature_5: "تحليلات وتتبع التقدم"
+
 # Project - NSS Virtual Education Fair
 project_nss_name: "معرض NSS التعليمي الافتراضي"
 project_nss_tagline: "منصة معرض افتراضية حديثة للطلاب"
@@ -156,6 +167,7 @@ platform_ios: "iOS"
 platform_android: "أندرويد"
 platform_web: "الويب"
 platform_confidential: "سري"
+platform_desktop: "سطح المكتب"
 
 # -----------------------------------------------------------------------------
 # Team Section

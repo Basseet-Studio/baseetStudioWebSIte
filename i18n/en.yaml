@@ -103,6 +103,17 @@ project_photorestore_feature_4: "Secure & private (auto-delete)"
 project_photorestore_feature_5: "Stripe & SSLCommerz payments"
 project_photorestore_feature_6: "Responsive modern UI"
 
+# Project - Medical Education App (MAI)
+project_mai_name: "Medical Education App (MAI)"
+project_mai_tagline: "AI-Powered Medical Education Platform"
+project_mai_description: "A comprehensive AI-powered medical education platform for resident doctors, combining clinical decision support, case management, imaging, pharmacology, rounds, and personalized learning with realistic mock data."
+project_mai_status: "MVP Proof of Concept"
+project_mai_feature_1: "Clinical decision support"
+project_mai_feature_2: "Medical imaging analysis"
+project_mai_feature_3: "Clinical rounds workflow"
+project_mai_feature_4: "Personalized learning hub"
+project_mai_feature_5: "Analytics & progress tracking"
+
 # Project - NSS Virtual Education Fair
 project_nss_name: "NSS Virtual Education Fair"
 project_nss_tagline: "Modern Virtual Fair Platform for Students"
@@ -156,6 +167,7 @@ platform_ios: "iOS"
 platform_android: "Android"
 platform_web: "Web"
 platform_confidential: "Confidential"
+platform_desktop: "Desktop"
 
 # -----------------------------------------------------------------------------
 # Team Section
