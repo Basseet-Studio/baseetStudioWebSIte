@@ -6,14 +6,17 @@
  * Based on Inigo Quilez's famous "Clouds" shader (ShaderToy XslGRr)
  * Procedural volumetric clouds using raymarching - NO TEXTURES NEEDED!
  * 
+ * Creates a "flying through clouds" experience - camera is AT cloud level,
+ * gently drifting forward through an infinite procedural cloudscape.
+ * 
  * ============================================================================
  * HOW IT WORKS:
  * ============================================================================
- * 1. We create 3D noise using a hash function
- * 2. Layer multiple octaves of noise (FBM - Fractal Brownian Motion) for detail
- * 3. Use raymarching to step through the sky and sample cloud density
- * 4. Apply lighting by comparing density towards the sun
- * 5. Blend clouds over a sky gradient background
+ * 1. Camera is positioned INSIDE the cloud layer, looking forward
+ * 2. Procedural 3D noise creates infinite, non-repeating cloud formations
+ * 3. Raymarching samples cloud density along view rays
+ * 4. Gentle camera movement creates the sensation of flight
+ * 5. Clouds naturally "loop" because noise is mathematically infinite
  * 
  * ============================================================================
  * HOW TO CUSTOMIZE THE CLOUDS:
@@ -153,14 +156,17 @@
     // CLOUD LAYER PARAMETERS
     // ==========================================================================
     
-    // CLOUD_HEIGHT_MIN: Bottom of cloud layer
-    const float CLOUD_HEIGHT_MIN = 0.3;
+    // Camera flies THROUGH the clouds at this height
+    const float CAMERA_HEIGHT = 1.5;
     
-    // CLOUD_HEIGHT_MAX: Top of cloud layer
-    const float CLOUD_HEIGHT_MAX = 3.5;
+    // CLOUD_HEIGHT_MIN: Bottom of cloud layer (below camera = clouds below you)
+    const float CLOUD_HEIGHT_MIN = -2.0;
+    
+    // CLOUD_HEIGHT_MAX: Top of cloud layer (above camera = clouds above you)
+    const float CLOUD_HEIGHT_MAX = 5.0;
     
     // MAX_DISTANCE: How far to render clouds
-    const float MAX_DISTANCE = 60.0;
+    const float MAX_DISTANCE = 80.0;
     
     // ==========================================================================
     // NOISE FUNCTIONS - These generate the cloud shapes
@@ -278,34 +284,24 @@
     vec4 raymarch(vec3 rayOrigin, vec3 rayDir, vec3 bgcol) {
       vec4 sum = vec4(0.0);
       
-      // Calculate where ray enters and exits the cloud layer
-      float tmin = (CLOUD_HEIGHT_MIN - rayOrigin.y) / rayDir.y;
-      float tmax = (CLOUD_HEIGHT_MAX - rayOrigin.y) / rayDir.y;
-      
-      // Ensure tmin < tmax
-      if(tmin > tmax) {
-        float tmp = tmin; tmin = tmax; tmax = tmp;
-      }
-      
-      // Clamp to valid range
-      tmin = max(0.0, tmin);
-      tmax = min(MAX_DISTANCE, tmax);
-      
-      // Early exit if no intersection with cloud layer
-      if(tmin > tmax) return sum;
-      
-      float t = tmin;
+      // For flying through clouds, we march forward regardless of direction
+      // Start close to camera and march outward
+      float t = 0.1;
       
       // =======================================================================
       // RAYMARCH LOOP - Sample cloud density at steps along ray
       // =======================================================================
-      // More iterations = higher quality but slower
-      // 64 is a good balance for web
-      for(int i = 0; i < 64; i++) {
+      for(int i = 0; i < 80; i++) {
         // Early exit if cloud is opaque or ray goes too far
-        if(sum.a > 0.99 || t > tmax) break;
+        if(sum.a > 0.99 || t > MAX_DISTANCE) break;
         
         vec3 pos = rayOrigin + t * rayDir;
+        
+        // Check if we're in the cloud layer
+        if(pos.y < CLOUD_HEIGHT_MIN || pos.y > CLOUD_HEIGHT_MAX) {
+          t += 0.5;
+          continue;
+        }
         
         // Sample cloud density at this position
         float density = map5(pos);
@@ -324,8 +320,8 @@
         // =====================================================================
         // ADAPTIVE STEP SIZE - Bigger steps in empty space, smaller in clouds
         // =====================================================================
-        float stepSize = max(0.05, 0.03 * t);
-        stepSize *= (1.0 + 2.0 * (1.0 - density)); // Larger steps when no clouds
+        float stepSize = max(0.08, 0.04 * t);
+        stepSize *= (1.0 + 1.5 * (1.0 - density)); // Larger steps when no clouds
         t += stepSize;
       }
       
@@ -366,19 +362,30 @@
       vec2 uv = (gl_FragCoord.xy - 0.5 * u_resolution.xy) / u_resolution.y;
       
       // ========================================================================
-      // CAMERA SETUP
+      // CAMERA SETUP - Flying through clouds
       // ========================================================================
       
-      // Camera position - moves forward over time
-      vec3 ro = vec3(0.0, 0.0, u_time * 0.04);
+      // Camera position - flying forward through the cloud layer
+      // Camera is AT cloud height, moving gently forward
+      float flySpeed = u_time * 0.08;  // Gentle forward movement
+      vec3 ro = vec3(
+        sin(u_time * 0.02) * 0.5,      // Gentle side-to-side drift
+        CAMERA_HEIGHT + sin(u_time * 0.015) * 0.3,  // Subtle up/down bob
+        flySpeed                         // Constant forward flight
+      );
       
-      // Camera target - looking up at the clouds
-      vec3 ta = vec3(0.0, 1.8, ro.z + 2.5);
+      // Look straight ahead (horizontal), not up
+      // This creates the "flying through" feeling
+      vec3 ta = vec3(
+        ro.x + sin(u_time * 0.01) * 0.3,  // Slight look left/right
+        ro.y,                              // Same height = looking horizontal
+        ro.z + 5.0                         // Looking forward
+      );
       
-      // Mouse influence on camera (optional - adds interactivity)
+      // Mouse influence on camera (subtle)
       vec2 m = u_mouse * 2.0 - 1.0;
-      ta.x += m.x * 0.4;
-      ta.y += m.y * 0.25;
+      ta.x += m.x * 0.3;
+      ta.y += m.y * 0.2;
       
       // Build camera matrix
       vec3 cw = normalize(ta - ro);           // Camera forward
@@ -387,8 +394,8 @@
       vec3 cv = cross(cu, cw);                // Camera up
       
       // Create ray direction from camera through pixel
-      // The 1.5 controls field of view (lower = wider)
-      vec3 rd = normalize(uv.x * cu + uv.y * cv + 1.5 * cw);
+      // The 1.8 controls field of view (wider for immersive feel)
+      vec3 rd = normalize(uv.x * cu + uv.y * cv + 1.8 * cw);
       
       // ========================================================================
       // RENDER
