@@ -1,0 +1,45 @@
+{{/* Global Clouds Background - Fixed fullscreen behind all content */}}
+{{ $data := site.Data.home.clouds }}
+{{ if $data.enable }}
+<div id="clouds-background" class="clouds-global-bg" {{ if not $data.enableOnMobile }}data-disable-mobile="true"{{ end }}>
+  <canvas id="clouds-canvas"></canvas>
+</div>
+
+<style>
+  /* Global clouds background - fixed behind everything */
+  .clouds-global-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+  }
+  
+  .clouds-global-bg canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    pointer-events: auto;
+  }
+  
+  /* Make body/main content areas allow background to show through */
+  body {
+    background: transparent !important;
+  }
+  
+  /* Optional: Add slight transparency to content areas for depth */
+  .content-overlay {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(2px);
+  }
+</style>
+
+{{/* Load clouds JavaScript */}}
+{{ $cloudsJS := resources.Get "js/clouds.js" }}
+{{ if $cloudsJS }}
+  {{ $cloudsJS = $cloudsJS | js.Build (dict "minify" hugo.IsProduction) | fingerprint }}
+  <script src="{{ $cloudsJS.RelPermalink }}" defer></script>
+{{ end }}
+{{ end }}

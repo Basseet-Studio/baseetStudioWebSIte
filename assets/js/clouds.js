@@ -457,7 +457,15 @@
         }
       });
       
-      // Intersection observer
+      // For global background, always run (no intersection needed)
+      // Just start immediately since it covers the whole page
+      const isGlobalBg = document.querySelector('.clouds-global-bg');
+      if (isGlobalBg) {
+        // Always running for global background
+        return;
+      }
+      
+      // Intersection observer (only for section-based clouds)
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -538,18 +546,19 @@
     }
     
     // Check if mobile and if should be disabled
-    const container = document.querySelector('.clouds-container');
+    // Support both old section container and new global background
+    const container = document.querySelector('.clouds-global-bg') || document.querySelector('.clouds-container');
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     
     if (container && container.dataset.disableMobile === 'true' && isMobile) {
-      container.classList.add('clouds-fallback');
+      container.style.display = 'none';
       return;
     }
     
     if (!isWebGLSupported()) {
-      console.log('WebGL not supported, using fallback');
+      console.log('WebGL not supported, hiding clouds');
       if (container) {
-        container.classList.add('clouds-fallback');
+        container.style.display = 'none';
       }
       return;
     }

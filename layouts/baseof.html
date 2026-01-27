@@ -149,6 +149,9 @@
     {{ end }}
   </head>
   <body class="{{ if eq .Site.Language.LanguageDirection "rtl" }}rtl{{ else }}ltr{{ end }}">
+    {{/* Global clouds background - renders behind all content */}}
+    {{ partial "shared/clouds-background" . }}
+    
     <div class="flex min-h-screen flex-col">
       {{ partial "shared/header" . }}
       <div class="grow">{{ block "main" . }}{{ end }}</div>
