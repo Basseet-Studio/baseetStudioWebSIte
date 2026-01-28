@@ -18,9 +18,27 @@
 
   function initFormHandler() {
     const form = document.getElementById('contact-form')
-    if (!form) return
-
-    form.addEventListener('submit', handleFormSubmit)
+    const contactForm = document.getElementById('contactForm')
+    
+    // Set page source for subscribe form based on current page
+    if (form) {
+      const pageSourceField = document.getElementById('subscribe-page-source')
+      if (pageSourceField) {
+        const currentPath = window.location.pathname
+        let pageName = 'Home Page'
+        if (currentPath.includes('/services')) pageName = 'Services Page'
+        else if (currentPath.includes('/contact')) pageName = 'Contact Page'
+        else if (currentPath.includes('/projects')) pageName = 'Projects Page'
+        else if (currentPath.includes('/customers')) pageName = 'Customers Page'
+        pageSourceField.value = pageName
+      }
+      form.addEventListener('submit', handleFormSubmit)
+    }
+    
+    // Handle contact form
+    if (contactForm) {
+      contactForm.addEventListener('submit', handleContactFormSubmit)
+    }
   }
 
   /**
@@ -162,5 +180,68 @@
       errorMessage.classList.add('hidden')
       feedbackContainer.classList.add('hidden')
     }, 10000)
+  }
+
+  /**
+   * Handle contact form submission (for full contact page)
+   */
+  async function handleContactFormSubmit(event) {
+    event.preventDefault()
+
+    const form = event.target
+    const formData = new FormData(form)
+    const submitBtn = document.getElementById('submitBtn')
+    const formSuccess = document.getElementById('formSuccess')
+    const formError = document.getElementById('formError')
+    const originalBtnText = submitBtn.innerHTML
+
+    // Update UI to loading state
+    submitBtn.disabled = true
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i><span>Sending...</span>'
+    formSuccess.classList.add('hidden')
+    formError.classList.add('hidden')
+
+    try {
+      // Submit to Web3Forms
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          Accept: 'application/json',
+        },
+      })
+
+      if (response.ok) {
+        // Show success
+        formSuccess.classList.remove('hidden')
+        form.reset()
+        formSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+        
+        // Auto-hide after 8 seconds
+        setTimeout(() => {
+          formSuccess.classList.add('hidden')
+        }, 8000)
+      } else {
+        // Show error
+        formError.classList.remove('hidden')
+        formError.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+        
+        setTimeout(() => {
+          formError.classList.add('hidden')
+        }, 10000)
+      }
+    } catch (error) {
+      // Network error
+      formError.classList.remove('hidden')
+      formError.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+      
+      setTimeout(() => {
+        formError.classList.add('hidden')
+      }, 10000)
+    } finally {
+      // Reset button
+      submitBtn.disabled = false
+      submitBtn.innerHTML = originalBtnText
+    }
   }
 })()

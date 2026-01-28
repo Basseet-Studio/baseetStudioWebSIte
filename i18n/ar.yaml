@@ -216,6 +216,12 @@ subscribe_error: "عذراً! حدث خطأ ما. يرجى المحاولة مر
 # -----------------------------------------------------------------------------
 # Footer
 # -----------------------------------------------------------------------------
+footer_form_title: "تواصل معنا"
+footer_form_text: "مهتم بالعمل معنا؟ اترك بريدك الإلكتروني أو رقم هاتفك وسنتواصل معك."
+footer_contact_placeholder: "البريد الإلكتروني أو رقم الهاتف"
+footer_contact_btn: "إرسال"
+footer_need_more: "تحتاج لمشاركة المزيد من التفاصيل؟"
+footer_full_contact: "استخدم نموذج التواصل الكامل"
 footer_contact_title: "التواصل"
 footer_copyright: "حقوق الطبع والنشر © 2025 استوديو بسيط. جميع الحقوق محفوظة"
 
@@ -360,6 +366,10 @@ services_cta_title: "لست متأكداً مما تحتاج؟"
 services_cta_text: "كل عمل فريد. دعنا نتحدث لتحديد الحلول المناسبة لاحتياجاتك وميزانيتك."
 services_cta_button: "احصل على استشارة مجانية"
 
+# Contact Form
+services_contact_title: "هل أنت مستعد للبدء؟"
+services_contact_text: "أخبرنا عن مشروعك وسنساعدك في إيجاد الحل المثالي."
+
 # -----------------------------------------------------------------------------
 # Customers Page
 # -----------------------------------------------------------------------------
@@ -399,6 +409,10 @@ contact_hero_title: "لنبني شيئاً **مذهلاً معاً**"
 contact_hero_text: "لديك مشروع في ذهنك؟ نسعد بسماعه. تواصل معنا ودعنا نناقش كيف يمكننا المساعدة في تحويل أفكارك إلى واقع."
 
 # Contact Form
+quick_contact_title: "تواصل معنا"
+quick_contact_text: "نحب أن نسمع منك. أرسل لنا رسالة وسنرد في أقرب وقت ممكن."
+contact_email_placeholder: "your.email@example.com"
+contact_phone_placeholder: "+971 50 123 4567"
 contact_form_title: "أرسل لنا رسالة"
 contact_name_label: "اسمك"
 contact_name_placeholder: "محمد أحمد"
@@ -417,6 +431,7 @@ contact_message_label: "رسالتك (اختياري)"
 contact_message_placeholder: "أخبرنا عن مشروعك، الجدول الزمني، أو أي أسئلة لديك..."
 contact_submit_btn: "إرسال الرسالة"
 contact_sending: "جاري الإرسال..."
+sending: "جاري الإرسال..."
 
 # Validation Messages
 contact_valid_email: "بريد إلكتروني صالح"

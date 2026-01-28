@@ -216,6 +216,12 @@ subscribe_error: "Oops! Something went wrong. Please try again."
 # -----------------------------------------------------------------------------
 # Footer
 # -----------------------------------------------------------------------------
+footer_form_title: "Get in Touch"
+footer_form_text: "Interested in working with us? Leave your email or phone and we'll reach out."
+footer_contact_placeholder: "Your email or phone number"
+footer_contact_btn: "Send"
+footer_need_more: "Need to share more details?"
+footer_full_contact: "Use our full contact form"
 footer_contact_title: "Contact"
 footer_copyright: "Copyright © 2025 Baseet Studio. All Rights Reserved"
 
@@ -360,6 +366,10 @@ services_cta_title: "Not Sure What You Need?"
 services_cta_text: "Every business is unique. Let's have a conversation to identify the right solutions for your specific needs and budget."
 services_cta_button: "Get Free Consultation"
 
+# Contact Form
+services_contact_title: "Ready to Get Started?"
+services_contact_text: "Tell us about your project and we'll help you find the perfect solution."
+
 # -----------------------------------------------------------------------------
 # Customers Page
 # -----------------------------------------------------------------------------
@@ -399,6 +409,10 @@ contact_hero_title: "Let's Build Something **Amazing Together**"
 contact_hero_text: "Have a project in mind? We'd love to hear about it. Reach out and let's discuss how we can help bring your ideas to life."
 
 # Contact Form
+quick_contact_title: "Contact Us"
+quick_contact_text: "We'd love to hear from you. Send us a message and we'll respond as soon as possible."
+contact_email_placeholder: "your.email@example.com"
+contact_phone_placeholder: "+971 50 123 4567"
 contact_form_title: "Send Us a Message"
 contact_name_label: "Your Name"
 contact_name_placeholder: "John Smith"
@@ -417,6 +431,7 @@ contact_message_label: "Your Message (Optional)"
 contact_message_placeholder: "Tell us about your project, timeline, or any questions you have..."
 contact_submit_btn: "Send Message"
 contact_sending: "Sending..."
+sending: "Sending..."
 
 # Validation Messages
 contact_valid_email: "Valid email address"

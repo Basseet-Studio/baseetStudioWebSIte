@@ -40,7 +40,12 @@
         <!-- Contact Form with AJAX Enhancement -->
         <form id="contact-form"
             class="subscribe-form flex flex-col xl:flex-row xl:items-center justify-stretch gap-4 xl:max-w-2xl mx-auto"
-            {{ with .method }}method="{{ . }}" {{ end }} {{ with .action }}action="{{ . }}" {{ end }}>
+            action="https://api.web3forms.com/submit" method="POST">
+            <!-- Web3Forms Access Key -->
+            <input type="hidden" name="access_key" value="bec4456c-9b97-4528-b493-1189ef3d3969">
+            <input type="hidden" name="subject" value="New Newsletter Subscription - Baseet Studio">
+            <input type="hidden" name="page" id="subscribe-page-source" value="Home Page">
+            
             <label for="subscribe-email" class="hidden">Email</label>
             <input id="subscribe-email" class="subscribe-input flex-1" type="email" name="email" value=""
                 placeholder="{{ i18n "subscribe_placeholder" }}" required aria-required="true" />
