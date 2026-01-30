@@ -90,6 +90,17 @@
       {{ end }}
     {{ end }}
 
+    <!-- App Bar CSS (Global) -->
+    {{ with resources.Get "css/app-bar.css" }}
+      {{ if hugo.IsProduction }}
+        {{ with . | minify | fingerprint }}
+          <link rel="stylesheet" href="{{ .RelPermalink }}" />
+        {{ end }}
+      {{ else }}
+        <link rel="stylesheet" href="{{ .RelPermalink }}" />
+      {{ end }}
+    {{ end }}
+
 
     <!-- Load Fonts - Include Arabic font -->
     {{ with resources.Get "css/fonts.css" }}

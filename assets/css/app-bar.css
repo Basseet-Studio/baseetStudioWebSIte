@@ -442,43 +442,27 @@ button:focus-visible {
    RTL (Right-to-Left) Support for Arabic
    ============================================ */
 
+/* ============================================
+   RTL (Right-to-Left) Support for Arabic
+   ============================================ */
+/* 
+   NOTE: App Bar and Sidebar are forced to LTR layout by user choice 
+   even in Arabic. We removed the flex-direction: row-reverse rules.
+   
+   If specific text alignment is needed for Arabic content inside the LTR structure,
+   add it here targeting the specific element.
+*/
+
 [dir='rtl'] {
   text-align: right;
 }
 
-[dir='rtl'] .app-bar-container {
-  flex-direction: row-reverse;
-}
-
-[dir='rtl'] .app-bar-nav {
-  flex-direction: row-reverse;
-}
-
-[dir='rtl'] .nav-links {
-  flex-direction: row-reverse;
-  gap: 2.5rem;
-}
-
+/* Ensure Logo text and Nav links don't get messed up if they inherit weirdly */
 [dir='rtl'] .nav-links a {
   letter-spacing: 0;
 }
 
-[dir='rtl'] .language-switcher {
-  margin-left: 0;
-  margin-right: 2rem;
-}
-
-[dir='rtl'] .lang-dropdown {
-  right: auto;
-  left: 0;
-}
-
-[dir='rtl'] .lang-option::before {
-  left: auto;
-  right: 0;
-  border-radius: 2px 0 0 2px;
-}
-
+/* Arabic text alignment in mobile menu - Keep text right aligned strictly for readability */
 [dir='rtl'] .mobile-nav-links {
   text-align: right;
 }
@@ -488,25 +472,14 @@ button:focus-visible {
   padding-left: 1rem;
 }
 
-[dir='rtl'] .mobile-controls {
-  flex-direction: row-reverse;
-}
-
-/* RTL Mobile Menu Position */
-[dir='rtl'] .mobile-menu {
-  right: auto;
-  left: 0;
-  transform: translateX(-100%);
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-}
-
-[dir='rtl'] .mobile-menu.open {
-  transform: translateX(0);
-}
-
 /* Arabic text alignment in mobile menu */
-.mobile-menu[data-lang='ar'] .mobile-nav-links {
+[dir='rtl'] .mobile-nav-links {
   text-align: right;
+}
+
+[dir='rtl'] .mobile-nav-links a {
+  padding-right: 1.5rem;
+  padding-left: 1rem;
 }
 
 /* ============================================

@@ -1,7 +1,7 @@
 <!-- Skip to content for keyboard users -->
 <a href="#mainContent" class="skip-to-content">{{ i18n "skip_to_content" }}</a>
 
-<header id="app-bar" class="app-bar" role="banner" {{ if eq .Site.Language.LanguageDirection "rtl" }}dir="rtl"{{ end }}>
+<header id="app-bar" class="app-bar" role="banner" dir="ltr">
     <div class="app-bar-container">
         <!-- Logo -->
         <a href="{{ "/" | relLangURL }}" class="app-bar-logo logo-premium" aria-label="{{ i18n "aria_home_link" }}">
@@ -48,7 +48,7 @@
 
 <!-- Mobile Menu Sidebar -->
 <div id="shared-mobile-backdrop" class="mobile-menu-backdrop"></div>
-<nav id="shared-mobile-menu" class="mobile-menu" aria-label="Mobile navigation" aria-hidden="true" data-lang="{{ .Site.Language.Lang }}">
+<nav id="shared-mobile-menu" class="mobile-menu" aria-label="Mobile navigation" aria-hidden="true" data-lang="{{ .Site.Language.Lang }}" dir="ltr">
     <ul class="mobile-nav-links">
         {{ range site.Menus.main }}
         <li><a href="{{ .URL | relLangURL }}" class="mobile-nav-link">{{ .Name }}</a></li>

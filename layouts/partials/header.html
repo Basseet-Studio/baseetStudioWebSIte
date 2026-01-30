@@ -1,7 +1,7 @@
 <!-- Skip to content for keyboard users -->
 <a href="#mainContent" class="skip-to-content">{{ i18n "skip_to_content" }}</a>
 
-<header id="app-bar" class="app-bar" role="banner" {{ if eq .Site.Language.LanguageDirection "rtl" }}dir="rtl"{{ end }}>
+<header id="app-bar" class="app-bar" role="banner" dir="ltr">
     <div class="app-bar-container">
         <!-- Logo -->
         <a href="{{ "/" | relLangURL }}" class="app-bar-logo logo-premium" aria-label="{{ i18n "aria_home_link" }}">
@@ -71,7 +71,7 @@
 
 <!-- Mobile Menu Sidebar (Outside header for proper z-index) -->
 <div id="mobile-menu-backdrop" class="mobile-menu-backdrop"></div>
-<nav id="mobile-menu" class="mobile-menu" aria-label="Mobile navigation" aria-hidden="true" {{ if eq .Site.Language.LanguageDirection "rtl" }}dir="rtl"{{ end }}>
+<nav id="mobile-menu" class="mobile-menu" aria-label="Mobile navigation" aria-hidden="true" dir="ltr">
     <ul class="mobile-nav-links">
         {{ range site.Menus.main }}
         {{ $isActive := false }}
