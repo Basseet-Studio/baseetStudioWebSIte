@@ -39,6 +39,8 @@
     font-size: 1.5rem;
     font-weight: 700;
     transition: color 300ms ease;
+    pointer-events: auto;
+    position: relative;
 }
 
 /* Logo - Brand color */
@@ -116,6 +118,9 @@
     min-width: 44px;
     min-height: 44px;
     z-index: 201;
+    pointer-events: auto;
+    position: relative;
+    touch-action: manipulation;
 }
 
 .mobile-menu-toggle:hover {
@@ -127,6 +132,7 @@
     flex-direction: column;
     gap: 4px;
     width: 24px;
+    pointer-events: none;
 }
 
 .hamburger-icon span {
@@ -495,10 +501,16 @@ button:focus-visible {
 
 .app-bar-cloud .mobile-menu-toggle {
     color: #ffffff;
+    opacity: 1;
 }
 
 .app-bar-cloud .hamburger-icon span {
     background-color: #ffffff;
+    opacity: 1;
+}
+
+.app-bar-cloud .app-bar-logo {
+    opacity: 1;
 }
 
 /* Site Mode Styles */
@@ -594,8 +606,14 @@ button:focus-visible {
     }
     
     .app-bar-cloud .mobile-menu-toggle {
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.15);
         border-radius: 0.5rem;
+        opacity: 1 !important;
+        backdrop-filter: blur(4px);
+    }
+    
+    .app-bar-cloud .hamburger-icon span {
+        opacity: 1 !important;
     }
 }
 
