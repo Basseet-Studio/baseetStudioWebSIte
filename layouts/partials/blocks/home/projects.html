@@ -278,20 +278,50 @@
         }
 
         // Autoplay - continuous infinite loop
+        let autoplayPaused = false;
+        let resumeAutoplayTimeout;
+        const AUTOPLAY_INTERVAL = 4000; // Time between auto-advances
+        const RESUME_DELAY = 6000; // Time to wait after user interaction before resuming
+
         function startAutoplay() {
+            if (autoplayPaused) return;
+            clearInterval(autoplayInterval);
             autoplayInterval = setInterval(() => {
-                nextSlide();
-            }, 4000);
+                if (!autoplayPaused) {
+                    nextSlide();
+                }
+            }, AUTOPLAY_INTERVAL);
         }
 
-        function resetAutoplay() {
+        function pauseAutoplay() {
+            autoplayPaused = true;
             clearInterval(autoplayInterval);
-            startAutoplay();
+            clearTimeout(resumeAutoplayTimeout);
+        }
+
+        function scheduleAutoplayResume() {
+            clearTimeout(resumeAutoplayTimeout);
+            resumeAutoplayTimeout = setTimeout(() => {
+                autoplayPaused = false;
+                startAutoplay();
+            }, RESUME_DELAY);
+        }
+
+        // Call this when user interacts - pauses autoplay and schedules resume
+        function onUserInteraction() {
+            pauseAutoplay();
+            scheduleAutoplayResume();
         }
 
         // Event listeners
-        leftArrow.addEventListener('click', () => { prevSlide(); resetAutoplay(); });
-        rightArrow.addEventListener('click', () => { nextSlide(); resetAutoplay(); });
+        leftArrow.addEventListener('click', () => { 
+            prevSlide(); 
+            onUserInteraction(); 
+        });
+        rightArrow.addEventListener('click', () => { 
+            nextSlide(); 
+            onUserInteraction(); 
+        });
 
         // Touch/swipe support
         let touchStartX = 0;
@@ -299,6 +329,7 @@
 
         track.addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
+            pauseAutoplay(); // Pause immediately on touch
         }, { passive: true });
 
         track.addEventListener('touchend', (e) => {
@@ -316,24 +347,27 @@
                 } else {
                     prevSlide();
                 }
-                resetAutoplay();
             }
+            onUserInteraction();
         }
 
         // Keyboard navigation
         carousel.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowLeft') {
                 prevSlide();
-                resetAutoplay();
+                onUserInteraction();
             } else if (e.key === 'ArrowRight') {
                 nextSlide();
-                resetAutoplay();
+                onUserInteraction();
             }
         });
 
         // Pause autoplay on hover
-        carousel.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
-        carousel.addEventListener('mouseleave', startAutoplay);
+        carousel.addEventListener('mouseenter', pauseAutoplay);
+        carousel.addEventListener('mouseleave', () => {
+            autoplayPaused = false;
+            startAutoplay();
+        });
 
         // Handle resize
         let resizeTimeout;
