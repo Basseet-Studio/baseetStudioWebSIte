@@ -109,6 +109,9 @@
                 this.setAttribute('aria-expanded', !isExpanded);
                 mobileMenu.setAttribute('aria-hidden', isExpanded);
                 mobileMenu.classList.toggle('open');
+                
+                // Prevent body scroll when menu is open
+                document.body.classList.toggle('mobile-menu-open', !isExpanded);
             });
 
             // Close menu when clicking a link
@@ -118,7 +121,21 @@
                     mobileToggle.setAttribute('aria-expanded', 'false');
                     mobileMenu.setAttribute('aria-hidden', 'true');
                     mobileMenu.classList.remove('open');
+                    document.body.classList.remove('mobile-menu-open');
                 });
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                const isClickInside = mobileMenu.contains(event.target) || mobileToggle.contains(event.target);
+                const isMenuOpen = mobileMenu.classList.contains('open');
+                
+                if (!isClickInside && isMenuOpen) {
+                    mobileToggle.setAttribute('aria-expanded', 'false');
+                    mobileMenu.setAttribute('aria-hidden', 'true');
+                    mobileMenu.classList.remove('open');
+                    document.body.classList.remove('mobile-menu-open');
+                }
             });
         }
     });

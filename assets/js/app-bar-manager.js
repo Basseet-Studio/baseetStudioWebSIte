@@ -181,8 +181,8 @@ class AppBarManager {
         this.mobileMenu.setAttribute('aria-hidden', 'false');
         this.mobileMenuToggle.setAttribute('aria-expanded', 'true');
 
-        // Prevent body scroll
-        document.body.style.overflow = 'hidden';
+        // Prevent body scroll (using class for better compatibility)
+        document.body.classList.add('mobile-menu-open');
     }
 
     /**
@@ -197,7 +197,7 @@ class AppBarManager {
         this.mobileMenuToggle.setAttribute('aria-expanded', 'false');
 
         // Restore body scroll
-        document.body.style.overflow = '';
+        document.body.classList.remove('mobile-menu-open');
     }
 
     /**
@@ -284,7 +284,7 @@ class AppBarManager {
 
         // Restore body scroll if menu was open
         if (this.mobileMenuOpen) {
-            document.body.style.overflow = '';
+            document.body.classList.remove('mobile-menu-open');
         }
     }
 }
