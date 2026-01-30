@@ -43,100 +43,131 @@
             {{ partial "language-switcher.html" . }}
         </nav>
 
-        <!-- Mobile Menu Toggle -->
-        <button class="mobile-menu-toggle hamburger-premium" aria-label="{{ i18n "aria_toggle_menu" }}" aria-expanded="false">
-            <span class="hamburger-icon">
-                <span></span>
-                <span></span>
-                <span></span>
-            </span>
-        </button>
-    </div>
-
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" aria-hidden="true">
-        <nav aria-label="Mobile navigation">
-            <ul class="mobile-nav-links">
-                {{ range site.Menus.main }}
-                {{ $isActive := false }}
-                {{ $currentPath := $.Page.RelPermalink }}
-                {{/* Build the correct URL */}}
-                {{ $href := "" }}
-                {{ if hasPrefix .URL "#" }}
-                    {{ $href = printf "%s%s" ("/" | relLangURL) .URL }}
-                {{ else if hasPrefix .URL "/" }}
-                    {{ $href = .URL | relLangURL }}
-                {{ else }}
-                    {{ $href = .URL }}
-                {{ end }}
-                {{/* Check if current page matches menu item */}}
-                {{ if eq .URL "/" }}
-                    {{ $isActive = $.Page.IsHome }}
-                {{ else if hasPrefix .URL "#" }}
-                    {{ $isActive = $.Page.IsHome }}
-                {{ else if hasPrefix .URL "/" }}
-                    {{ $isActive = hasPrefix $currentPath (.URL | relLangURL) }}
-                {{ end }}
-                <li><a href="{{ $href }}" class="mobile-nav-link-premium {{ if $isActive }}mobile-nav-active{{ end }}">{{ .Name }}</a></li>
-                {{ end }}
-            </ul>
-            
-            <!-- Language Switcher (Mobile) -->
-            <div class="mobile-lang-switcher">
+        <!-- Mobile Controls -->
+        <div class="mobile-controls">
+            <!-- Mobile Language Switcher -->
+            <div class="mobile-language-switcher">
                 {{ range .Site.Home.AllTranslations }}
                 <a href="{{ .RelPermalink }}" 
-                   class="mobile-lang-option {{ if eq $.Site.Language.Lang .Language.Lang }}active{{ end }}"
-                   lang="{{ .Language.Lang }}">
-                    {{ .Language.LanguageName }}
+                   class="mobile-lang-btn {{ if eq $.Site.Language.Lang .Language.Lang }}active{{ end }}"
+                   lang="{{ .Language.Lang }}"
+                   title="{{ .Language.LanguageName }}">
+                    {{ if eq .Language.Lang "ar" }}ع{{ else }}EN{{ end }}
                 </a>
                 {{ end }}
             </div>
-        </nav>
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-toggle" aria-label="{{ i18n "aria_toggle_menu" }}" aria-expanded="false" aria-controls="mobile-menu">
+                <span class="hamburger-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </button>
+        </div>
     </div>
 </header>
 
+<!-- Mobile Menu Sidebar (Outside header for proper z-index) -->
+<div id="mobile-menu-backdrop" class="mobile-menu-backdrop"></div>
+<nav id="mobile-menu" class="mobile-menu" aria-label="Mobile navigation" aria-hidden="true" {{ if eq .Site.Language.LanguageDirection "rtl" }}dir="rtl"{{ end }}>
+    <ul class="mobile-nav-links">
+        {{ range site.Menus.main }}
+        {{ $isActive := false }}
+        {{ $currentPath := $.Page.RelPermalink }}
+        {{/* Build the correct URL */}}
+        {{ $href := "" }}
+        {{ if hasPrefix .URL "#" }}
+            {{ $href = printf "%s%s" ("/" | relLangURL) .URL }}
+        {{ else if hasPrefix .URL "/" }}
+            {{ $href = .URL | relLangURL }}
+        {{ else }}
+            {{ $href = .URL }}
+        {{ end }}
+        {{/* Check if current page matches menu item */}}
+        {{ if eq .URL "/" }}
+            {{ $isActive = $.Page.IsHome }}
+        {{ else if hasPrefix .URL "#" }}
+            {{ $isActive = $.Page.IsHome }}
+        {{ else if hasPrefix .URL "/" }}
+            {{ $isActive = hasPrefix $currentPath (.URL | relLangURL) }}
+        {{ end }}
+        <li><a href="{{ $href }}" class="mobile-nav-link {{ if $isActive }}mobile-nav-active{{ end }}">{{ .Name }}</a></li>
+        {{ end }}
+    </ul>
+</nav>
+
 <script>
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Mobile menu script loaded');
+    
     // Mobile menu toggle functionality
-    document.addEventListener('DOMContentLoaded', function () {
-        const mobileToggle = document.querySelector('.mobile-menu-toggle');
-        const mobileMenu = document.querySelector('.mobile-menu');
+    const mobileToggle = document.querySelector('.mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const backdrop = document.getElementById('mobile-menu-backdrop');
 
-        if (mobileToggle && mobileMenu) {
-            mobileToggle.addEventListener('click', function () {
-                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+    console.log('Toggle:', mobileToggle);
+    console.log('Menu:', mobileMenu);
+    console.log('Backdrop:', backdrop);
 
-                // Toggle states
-                this.setAttribute('aria-expanded', !isExpanded);
-                mobileMenu.setAttribute('aria-hidden', isExpanded);
-                mobileMenu.classList.toggle('open');
-                
-                // Prevent body scroll when menu is open
-                document.body.classList.toggle('mobile-menu-open', !isExpanded);
-            });
+    if (!mobileToggle || !mobileMenu || !backdrop) {
+        console.error('Mobile menu elements not found!');
+        return;
+    }
 
-            // Close menu when clicking a link
-            const mobileLinks = mobileMenu.querySelectorAll('a');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', function () {
-                    mobileToggle.setAttribute('aria-expanded', 'false');
-                    mobileMenu.setAttribute('aria-hidden', 'true');
-                    mobileMenu.classList.remove('open');
-                    document.body.classList.remove('mobile-menu-open');
-                });
-            });
-            
-            // Close menu when clicking outside
-            document.addEventListener('click', function(event) {
-                const isClickInside = mobileMenu.contains(event.target) || mobileToggle.contains(event.target);
-                const isMenuOpen = mobileMenu.classList.contains('open');
-                
-                if (!isClickInside && isMenuOpen) {
-                    mobileToggle.setAttribute('aria-expanded', 'false');
-                    mobileMenu.setAttribute('aria-hidden', 'true');
-                    mobileMenu.classList.remove('open');
-                    document.body.classList.remove('mobile-menu-open');
-                }
-            });
+    function openMenu() {
+        console.log('Opening menu');
+        mobileMenu.classList.add('open');
+        backdrop.classList.add('open');
+        mobileToggle.setAttribute('aria-expanded', 'true');
+        mobileMenu.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('mobile-menu-open');
+    }
+
+    function closeMenu() {
+        console.log('Closing menu');
+        mobileMenu.classList.remove('open');
+        backdrop.classList.remove('open');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('mobile-menu-open');
+    }
+
+    // Toggle on hamburger click
+    mobileToggle.addEventListener('click', function(e) {
+        console.log('Hamburger clicked!');
+        e.preventDefault();
+        e.stopPropagation();
+        
+        if (mobileMenu.classList.contains('open')) {
+            closeMenu();
+        } else {
+            openMenu();
         }
     });
+
+    // Close on backdrop click
+    backdrop.addEventListener('click', function(e) {
+        console.log('Backdrop clicked');
+        closeMenu();
+    });
+
+    // Close on link click
+    mobileMenu.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+            console.log('Link clicked');
+            closeMenu();
+        });
+    });
+
+    // Close on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+            closeMenu();
+        }
+    });
+    
+    console.log('Mobile menu initialized successfully');
+});
 </script>

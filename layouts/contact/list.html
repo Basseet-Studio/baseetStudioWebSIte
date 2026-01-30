@@ -23,7 +23,6 @@
 {{- end -}}
 
 <!-- App Bar Header -->
-{{ partial "header.html" . }}
 
 <!-- Contact Page -->
 <main id="mainContent" class="min-h-screen" {{ if eq .Site.Language.LanguageDirection "rtl" }}dir="rtl"{{ end }}>
@@ -430,24 +429,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 submitBtn.innerHTML = '<span>{{ i18n "contact_submit_btn" }}</span> <i class="fas fa-paper-plane"></i>';
             });
     });
-});
-</script>
-
-<!-- App Bar Manager Script -->
-{{- $appBarManager := resources.Get "js/app-bar-manager.js" -}}
-{{- if $appBarManager -}}
-<script src="{{ $appBarManager.Permalink }}" defer></script>
-{{- end -}}
-
-<script>
-// Initialize app bar in site mode for non-home pages
-document.addEventListener('DOMContentLoaded', function() {
-    const appBar = document.getElementById('app-bar');
-    if (appBar) {
-        // Set site mode immediately for contact page
-        appBar.classList.remove('app-bar-cloud');
-        appBar.classList.add('app-bar-site');
-    }
 });
 </script>
 

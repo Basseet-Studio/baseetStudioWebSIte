@@ -20,64 +20,78 @@
             {{ partial "language-switcher.html" . }}
         </nav>
 
-        <!-- Mobile Menu Toggle -->
-        <button class="mobile-menu-toggle hamburger-premium" aria-label="{{ i18n "aria_toggle_menu" }}" aria-expanded="false">
-            <span class="hamburger-icon">
-                <span></span>
-                <span></span>
-                <span></span>
-            </span>
-        </button>
-    </div>
-
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" aria-hidden="true">
-        <nav aria-label="Mobile navigation">
-            <ul class="mobile-nav-links">
-                {{ range site.Menus.main }}
-                <li><a href="{{ .URL | relLangURL }}" class="mobile-nav-link-premium">{{ .Name }}</a></li>
-                {{ end }}
-            </ul>
-            
-            <!-- Language Switcher (Mobile) -->
-            <div class="mobile-lang-switcher">
+        <!-- Mobile Controls -->
+        <div class="mobile-controls">
+            <!-- Mobile Language Switcher -->
+            <div class="mobile-language-switcher">
                 {{ range .Site.Home.AllTranslations }}
                 <a href="{{ .RelPermalink }}" 
-                   class="mobile-lang-option {{ if eq $.Site.Language.Lang .Language.Lang }}active{{ end }}"
-                   lang="{{ .Language.Lang }}">
-                    {{ .Language.LanguageName }}
+                   class="mobile-lang-btn {{ if eq $.Site.Language.Lang .Language.Lang }}active{{ end }}"
+                   lang="{{ .Language.Lang }}"
+                   title="{{ .Language.LanguageName }}">
+                    {{ if eq .Language.Lang "ar" }}ع{{ else }}EN{{ end }}
                 </a>
                 {{ end }}
             </div>
-        </nav>
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-toggle" id="shared-mobile-toggle" aria-label="{{ i18n "aria_toggle_menu" }}" aria-expanded="false">
+                <span class="hamburger-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </button>
+        </div>
     </div>
 </header>
 
+<!-- Mobile Menu Sidebar -->
+<div id="shared-mobile-backdrop" class="mobile-menu-backdrop"></div>
+<nav id="shared-mobile-menu" class="mobile-menu" aria-label="Mobile navigation" aria-hidden="true" data-lang="{{ .Site.Language.Lang }}">
+    <ul class="mobile-nav-links">
+        {{ range site.Menus.main }}
+        <li><a href="{{ .URL | relLangURL }}" class="mobile-nav-link">{{ .Name }}</a></li>
+        {{ end }}
+    </ul>
+</nav>
+
 <script>
-    // Mobile menu toggle functionality
-    document.addEventListener('DOMContentLoaded', function () {
-        const mobileToggle = document.querySelector('.mobile-menu-toggle');
-        const mobileMenu = document.querySelector('.mobile-menu');
+document.addEventListener('DOMContentLoaded', function() {
+    // Shared header mobile menu
+    const toggle = document.getElementById('shared-mobile-toggle');
+    const menu = document.getElementById('shared-mobile-menu');
+    const backdrop = document.getElementById('shared-mobile-backdrop');
 
-        if (mobileToggle && mobileMenu) {
-            mobileToggle.addEventListener('click', function () {
-                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+    if (!toggle || !menu || !backdrop) return;
 
-                // Toggle states
-                this.setAttribute('aria-expanded', !isExpanded);
-                mobileMenu.setAttribute('aria-hidden', isExpanded);
-                mobileMenu.classList.toggle('open');
-            });
+    function openMenu() {
+        menu.classList.add('open');
+        backdrop.classList.add('open');
+        toggle.setAttribute('aria-expanded', 'true');
+        document.body.classList.add('mobile-menu-open');
+    }
 
-            // Close menu when clicking a link
-            const mobileLinks = mobileMenu.querySelectorAll('a');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', function () {
-                    mobileToggle.setAttribute('aria-expanded', 'false');
-                    mobileMenu.setAttribute('aria-hidden', 'true');
-                    mobileMenu.classList.remove('open');
-                });
-            });
+    function closeMenu() {
+        menu.classList.remove('open');
+        backdrop.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('mobile-menu-open');
+    }
+
+    toggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (menu.classList.contains('open')) {
+            closeMenu();
+        } else {
+            openMenu();
         }
     });
+
+    backdrop.addEventListener('click', closeMenu);
+
+    menu.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', closeMenu);
+    });
+});
 </script>
