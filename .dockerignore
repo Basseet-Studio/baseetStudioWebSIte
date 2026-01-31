@@ -1,0 +1,10 @@
+node_modules
+.git
+.github
+*.md
+public
+resources/_gen
+.hugo_build.lock
+hugo_stats.json
+*.log
+.DS_Store
