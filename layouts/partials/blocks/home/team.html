@@ -1,8 +1,11 @@
 {{- if .enable -}}
-<section id="team" class="team relative py-16 xl:py-32 bg-gradient-to-b from-white to-gray-50 overflow-hidden" {{ if eq site.Language.LanguageDirection "rtl" }}dir="rtl"{{ end }}>
+<section id="team" class="team relative py-16 xl:py-32 bg-gradient-to-b from-white to-gray-50 overflow-hidden" {{ if eq
+    site.Language.LanguageDirection "rtl" }}dir="rtl" {{ end }}>
     <!-- Background decoration -->
-    <div class="absolute top-0 {{ if eq site.Language.LanguageDirection "rtl" }}left-0{{ else }}right-0{{ end }} w-96 h-96 bg-primary/5 rounded-full filter blur-3xl -z-10"></div>
-    <div class="absolute bottom-0 {{ if eq site.Language.LanguageDirection "rtl" }}right-0{{ else }}left-0{{ end }} w-96 h-96 bg-tertiary/5 rounded-full filter blur-3xl -z-10"></div>
+    <div class="absolute top-0 {{ if eq site.Language.LanguageDirection " rtl" }}left-0{{ else }}right-0{{ end }} w-96
+        h-96 bg-primary/5 rounded-full filter blur-3xl -z-10"></div>
+    <div class="absolute bottom-0 {{ if eq site.Language.LanguageDirection " rtl" }}right-0{{ else }}left-0{{ end }}
+        w-96 h-96 bg-tertiary/5 rounded-full filter blur-3xl -z-10"></div>
 
     <div class="container mx-auto px-4">
         <!-- Section Header -->
@@ -18,9 +21,12 @@
         <!-- Team Grid -->
         {{/* Define team members with i18n keys */}}
         {{ $teamMembers := slice
-            (dict "nameKey" "team_member_1_name" "roleKey" "team_member_1_role" "bioKey" "team_member_1_bio" "image" "mohamed-abdallah.jpg" "social" (dict "github" "#" "linkedin" "#" "twitter" "#"))
-            (dict "nameKey" "team_member_2_name" "roleKey" "team_member_2_role" "bioKey" "team_member_2_bio" "image" "asadur-rahman.png" "social" (dict "github" "#" "linkedin" "#" "twitter" "#"))
-            (dict "nameKey" "team_member_3_name" "roleKey" "team_member_3_role" "bioKey" "team_member_3_bio" "image" "ariyan-rehman.jpg" "isAriyan" true "social" (dict "github" "#" "linkedin" "#" "twitter" "#"))
+        (dict "nameKey" "team_member_1_name" "roleKey" "team_member_1_role" "bioKey" "team_member_1_bio" "image"
+        "mohamed-abdallah.jpg" "social" (dict "github" "#" "linkedin" "#" "twitter" "#"))
+        (dict "nameKey" "team_member_2_name" "roleKey" "team_member_2_role" "bioKey" "team_member_2_bio" "image"
+        "asadur-rahman.png" "social" (dict "github" "#" "linkedin" "#" "twitter" "#"))
+        (dict "nameKey" "team_member_3_name" "roleKey" "team_member_3_role" "bioKey" "team_member_3_bio" "image"
+        "ariyan-rehman.jpg" "isAriyan" true "social" (dict "github" "#" "linkedin" "#" "twitter" "#"))
         }}
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 justify-items-center max-w-5xl mx-auto">
             {{- range $index, $member := $teamMembers -}}
