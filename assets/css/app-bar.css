@@ -402,6 +402,100 @@
 }
 
 /* ============================================
+   Branded App Bar Mode
+   ============================================ */
+
+.app-bar.branded {
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+}
+
+.app-bar-logo.branded .logo-text {
+  color: var(--project-color, #496bc1);
+  font-weight: 800;
+}
+
+.app-bar-logo.branded:hover .logo-text {
+  opacity: 0.8;
+}
+
+.app-bar-logo.branded .brand-logo-img {
+  height: 1.75rem;
+  width: auto;
+  margin-right: 0.5rem;
+}
+
+/* Branded nav links use project color on hover */
+.app-bar.branded .nav-link-premium:hover,
+.app-bar.branded .nav-link-premium:focus {
+  color: var(--project-color, #496bc1);
+}
+
+.app-bar.branded .nav-link-premium.nav-active {
+  color: var(--project-color, #496bc1);
+}
+
+.app-bar.branded .nav-link-premium.nav-active::after {
+  background: var(--project-gradient, linear-gradient(90deg, #496bc1, #fbcd37));
+}
+
+/* Back to Baseet link */
+.back-to-baseet-wrapper {
+  margin-left: 1rem;
+  padding-left: 1rem;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.back-to-baseet {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+  transition: color 300ms ease;
+}
+
+.back-to-baseet:hover,
+.back-to-baseet:focus {
+  color: #496bc1;
+}
+
+.back-to-baseet i {
+  font-size: 0.75rem;
+  transition: transform 200ms ease;
+}
+
+.back-to-baseet:hover i {
+  transform: translateX(-2px);
+}
+
+/* Branded mobile nav */
+.mobile-back-to-baseet {
+  margin-top: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.mobile-back-to-baseet .back-to-baseet {
+  font-size: 1rem;
+  padding: 0.875rem 1rem;
+  color: #6b7280;
+}
+
+.mobile-back-to-baseet .back-to-baseet:hover {
+  color: #496bc1;
+  background-color: rgba(73, 107, 193, 0.1);
+  border-radius: 8px;
+}
+
+/* Branded mobile links use project color */
+.app-bar.branded ~ .mobile-menu .mobile-nav-link:hover,
+.app-bar.branded ~ .mobile-menu .mobile-nav-link:focus {
+  color: var(--project-color, #496bc1);
+  background-color: color-mix(in srgb, var(--project-color, #496bc1) 10%, transparent);
+}
+
+/* ============================================
    Accessibility
    ============================================ */
 

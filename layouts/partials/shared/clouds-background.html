@@ -1,7 +1,20 @@
-{{/* Global Clouds Background - Fixed fullscreen behind all content */}}
+{{/* Global Background - Fixed fullscreen behind all content */}}
+{{/* Supports branded effects (leaves, paper-notes, kitchen, shopping, grid) and default clouds */}}
 {{ $data := site.Data.home.clouds }}
-{{ if $data.enable }}
-<div id="clouds-background" class="clouds-global-bg" {{ if not $data.enableOnMobile }}data-disable-mobile="true"{{ end }}>
+{{ $bgEffect := "clouds" }}
+{{ $isBranded := false }}
+{{ with .Params.project }}
+  {{ with .bgEffect }}
+    {{ $bgEffect = . }}
+    {{ $isBranded = true }}
+  {{ end }}
+{{ end }}
+
+{{ if or $data.enable $isBranded }}
+<div id="clouds-background" class="clouds-global-bg{{ if $isBranded }} branded-bg{{ end }}"
+     data-bg-effect="{{ $bgEffect }}"
+     {{ if and (not $isBranded) (not $data.enableOnMobile) }}data-disable-mobile="true"{{ end }}
+     {{ with .Params.project }}{{ with .bgFallbackGradient }}style="--bg-fallback: {{ . | safeCSS }}"{{ end }}{{ end }}>
   <canvas id="clouds-canvas"></canvas>
 </div>
 
@@ -36,10 +49,43 @@
   }
 </style>
 
-{{/* Load clouds JavaScript */}}
-{{ $cloudsJS := resources.Get "js/clouds.js" }}
-{{ if $cloudsJS }}
-  {{ $cloudsJS = $cloudsJS | js.Build (dict "minify" hugo.IsProduction) | fingerprint }}
-  <script src="{{ $cloudsJS.RelPermalink }}" defer></script>
+{{/* Load the appropriate background effect JS */}}
+{{ if eq $bgEffect "leaves" }}
+  {{ $js := resources.Get "js/leaves.js" }}
+  {{ with $js }}
+    {{ $js = . | js.Build (dict "minify" hugo.IsProduction) | fingerprint }}
+    <script src="{{ $js.RelPermalink }}" defer></script>
+  {{ end }}
+{{ else if eq $bgEffect "paper-notes" }}
+  {{ $js := resources.Get "js/paper-notes.js" }}
+  {{ with $js }}
+    {{ $js = . | js.Build (dict "minify" hugo.IsProduction) | fingerprint }}
+    <script src="{{ $js.RelPermalink }}" defer></script>
+  {{ end }}
+{{ else if eq $bgEffect "kitchen" }}
+  {{ $js := resources.Get "js/kitchen.js" }}
+  {{ with $js }}
+    {{ $js = . | js.Build (dict "minify" hugo.IsProduction) | fingerprint }}
+    <script src="{{ $js.RelPermalink }}" defer></script>
+  {{ end }}
+{{ else if eq $bgEffect "shopping" }}
+  {{ $js := resources.Get "js/shopping.js" }}
+  {{ with $js }}
+    {{ $js = . | js.Build (dict "minify" hugo.IsProduction) | fingerprint }}
+    <script src="{{ $js.RelPermalink }}" defer></script>
+  {{ end }}
+{{ else if eq $bgEffect "grid" }}
+  {{ $js := resources.Get "js/grid.js" }}
+  {{ with $js }}
+    {{ $js = . | js.Build (dict "minify" hugo.IsProduction) | fingerprint }}
+    <script src="{{ $js.RelPermalink }}" defer></script>
+  {{ end }}
+{{ else }}
+  {{/* Default: clouds */}}
+  {{ $cloudsJS := resources.Get "js/clouds.js" }}
+  {{ with $cloudsJS }}
+    {{ $cloudsJS = . | js.Build (dict "minify" hugo.IsProduction) | fingerprint }}
+    <script src="{{ $cloudsJS.RelPermalink }}" defer></script>
+  {{ end }}
 {{ end }}
 {{ end }}

@@ -3,7 +3,7 @@ title: 'مطبخ ديشي'
 description: 'منصة طلب مطعم حديثة ومتكاملة تتميز بتجربة ثلاثية الأبعاد مذهلة وطلبات فورية ولوحة تحكم شاملة للإدارة.'
 date: 2024-01-04
 draft: false
-layout: 'single'
+layout: branded
 
 # Project Details
 project:
@@ -14,6 +14,20 @@ project:
   iconClass: 'fas fa-utensils'
   color: '#F97316'
   gradient: 'linear-gradient(135deg, #F97316 0%, #FB923C 100%)'
+
+  # Branded Page Fields
+  brandName: 'Desi Kitchen'
+  navItems:
+    - label: 'الرئيسية'
+      url: '#home'
+    - label: 'الميزات'
+      url: '#features'
+    - label: 'تجربة'
+      url: '#demo'
+    - label: 'تواصل'
+      url: '#contact'
+  bgEffect: 'kitchen'
+  bgFallbackGradient: 'linear-gradient(180deg, #FFFBEB 0%, #FDE68A 40%, #FBBF24 100%)'
   status: 'متاح'
   platforms:
     - name: 'الويب'

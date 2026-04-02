@@ -1,0 +1,52 @@
+/* ============================================
+   Branded Background Effects
+   Shared CSS for all branded product pages
+   ============================================ */
+
+/* Branded background container - inherits fallback gradient */
+.clouds-global-bg.branded-bg {
+  background: var(--bg-fallback, linear-gradient(180deg, #f0f4ff 0%, #e0e8ff 100%));
+}
+
+.clouds-global-bg.branded-bg canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* WebGL fallback: show gradient when canvas fails */
+.clouds-global-bg.branded-bg.webgl-fallback canvas {
+  display: none;
+}
+
+/* ============================================
+   Reduced Motion: Static gradient, no canvas
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .clouds-global-bg.branded-bg canvas {
+    display: none;
+  }
+
+  .clouds-global-bg.branded-bg {
+    background: var(--bg-fallback, linear-gradient(180deg, #f0f4ff 0%, #e0e8ff 100%));
+  }
+}
+
+/* ============================================
+   Responsive Height Adjustments
+   ============================================ */
+
+@media (max-width: 768px) {
+  .clouds-global-bg.branded-bg {
+    height: 100vh;
+    height: 100dvh;
+  }
+}
+
+@media (max-width: 480px) {
+  .clouds-global-bg.branded-bg {
+    height: 100vh;
+    height: 100svh;
+  }
+}

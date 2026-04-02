@@ -7,15 +7,11 @@ main:
     url: '/services/'
     weight: 2
 
-  - name: 'Customers'
-    url: '/customers/'
+  - name: 'Clients'
+    url: '/clients/'
     weight: 3
 
   - name: 'About'
-    url: '/#highlights'
-    weight: 4
-
-buttons:
   - name: 'Contact Us'
     url: '/#subscribe'
     weight: 6
@@ -29,8 +25,8 @@ footer:
     url: '/services/'
     weight: 2
 
-  - name: 'Customers'
-    url: '/customers/'
+  - name: 'Clients'
+    url: '/clients/'
     weight: 3
 
   - name: 'About'

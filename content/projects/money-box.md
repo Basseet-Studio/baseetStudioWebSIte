@@ -3,7 +3,7 @@ title: 'Money Box'
 description: 'Take control of your finances with Money Box - the smart savings app for iOS and Android.'
 date: 2024-01-01
 draft: false
-layout: 'single'
+layout: branded
 
 # Project Details
 project:
@@ -13,6 +13,20 @@ project:
   icon: '/images/projects/money-box-icon.png'
   color: '#34C759'
   gradient: 'linear-gradient(135deg, #34C759 0%, #30D158 100%)'
+
+  # Branded Page Fields
+  brandName: 'Money Box'
+  navItems:
+    - label: 'Home'
+      url: '#home'
+    - label: 'Features'
+      url: '#features'
+    - label: 'Download'
+      url: '#download'
+    - label: 'Contact'
+      url: '#contact'
+  bgEffect: 'paper-notes'
+  bgFallbackGradient: 'linear-gradient(180deg, #FFFFF0 0%, #FEFCBF 40%, #FAF089 100%)'
   status: 'Coming Soon'
   platforms:
     - name: 'iOS'

@@ -371,35 +371,73 @@ services_contact_title: "Ready to Get Started?"
 services_contact_text: "Tell us about your project and we'll help you find the perfect solution."
 
 # -----------------------------------------------------------------------------
-# Customers Page
+# Clients Page (renamed from Customers)
 # -----------------------------------------------------------------------------
-customers_hero_badge: "Success Stories"
-customers_hero_title: "Our **Customers**"
-customers_hero_text: "Real projects we've built for real businesses. See how companies like yours are achieving results with our solutions."
+clients_hero_badge: "Success Stories"
+clients_hero_title: "Our **Clients**"
+clients_hero_text: "Real projects we've built for real businesses. See how companies like yours are achieving results with our solutions."
 
-# Customer Page Labels
-customer_challenge_title: "The Challenge"
-customer_solution_title: "Our Solution"
-customer_results_title: "The Results"
-customer_features_title: "Key Features Built"
-customer_tech_title: "Technologies Used"
-customer_testimonial_coming: "Customer review coming soon"
-customer_empty_title: "Coming Soon"
-customer_empty_text: "We're preparing our customer success stories. Check back soon!"
+# Client Page Labels
+client_challenge_title: "The Challenge"
+client_solution_title: "Our Solution"
+client_results_title: "The Results"
+client_features_title: "Key Features Built"
+client_tech_title: "Technologies Used"
+client_testimonial_coming: "Client review coming soon"
+client_empty_title: "Coming Soon"
+client_empty_text: "We're preparing our client success stories. Check back soon!"
+client_view_project: "View Project"
 
 # CTA Section
-customers_cta_title: "Want Similar Results?"
-customers_cta_text: "Let's discuss how we can build a custom solution that drives real results for your business."
-customers_cta_button: "Start Your Project"
+clients_cta_title: "Want Similar Results?"
+clients_cta_text: "Let's discuss how we can build a custom solution that drives real results for your business."
+clients_cta_button: "Start Your Project"
 
-# FleetOps Customer
-customer_fleetops_name: "FleetOps"
-customer_fleetops_service_type: "Internal Tool"
-customer_fleetops_industry: "Logistics & Transportation"
-customer_fleetops_tagline: "Fleet Management Made Simple"
-customer_fleetops_description: "A comprehensive web platform we built to help logistics companies manage their entire fleet of delivery trucks — from real-time tracking to automated maintenance scheduling."
-customer_fleetops_challenge: "The client was managing 50+ delivery trucks using spreadsheets and phone calls. Maintenance was often missed, leading to costly breakdowns and delivery delays. They had zero visibility into where their trucks were at any given moment."
-customer_fleetops_solution: "We built a custom web platform that provides real-time GPS tracking on an interactive map, automated maintenance alerts based on mileage and time intervals, driver assignment management, fuel consumption monitoring, and comprehensive reporting dashboards."
+# Portia Grid Client (renamed from FleetOps)
+client_portia-grid_name: "Portia Grid"
+client_portia-grid_service_type: "Internal Tool"
+client_portia-grid_industry: "Logistics & Data Intelligence"
+client_portia-grid_tagline: "Intelligent Fleet & Data Management"
+client_portia-grid_description: "A comprehensive web platform we built to help logistics companies manage their entire fleet of delivery trucks — from real-time tracking to automated maintenance scheduling."
+client_portia-grid_challenge: "The client was managing 50+ delivery trucks using spreadsheets and phone calls. Maintenance was often missed, leading to costly breakdowns and delivery delays. They had zero visibility into where their trucks were at any given moment."
+client_portia-grid_solution: "We built a custom web platform that provides real-time GPS tracking on an interactive map, automated maintenance alerts based on mileage and time intervals, driver assignment management, fuel consumption monitoring, and comprehensive reporting dashboards."
+
+# Iyat Client
+client_iyat_name: "Iyat"
+client_iyat_service_type: "Website"
+client_iyat_industry: "Digital Marketing & Creative"
+client_iyat_tagline: "Digital Agency Portfolio"
+client_iyat_description: "A modern, visually rich website for Iyat, a digital agency showcasing their creative portfolio and services."
+client_iyat_challenge: "Iyat needed a professional online presence that would showcase their creative work and attract new clients."
+client_iyat_solution: "We built a sleek, modern portfolio website with smooth animations, responsive design, and an engaging user experience."
+
+# -----------------------------------------------------------------------------
+# Branded Navigation
+# -----------------------------------------------------------------------------
+back_to_baseet: "Back to Baseet"
+nav_features: "Features"
+nav_download: "Download"
+nav_demo: "Demo"
+
+# ChopShop Product
+project_chopshop_name: "ChopShop"
+project_chopshop_tagline: "Your Shop, Everywhere"
+project_chopshop_description: "A B2C shopping platform for vendors to sell their products online and reach a wider audience. Includes a delivery app and customizable customer-facing app."
+project_chopshop_status: "Ready to Deliver"
+project_chopshop_feature_1: "Vendor storefront management"
+project_chopshop_feature_2: "Custom-branded customer app"
+project_chopshop_feature_3: "Delivery app & tracking"
+project_chopshop_feature_4: "Payment processing"
+
+# Matrix Product
+project_matrix_name: "Matrix"
+project_matrix_tagline: "Manage Everything, Miss Nothing"
+project_matrix_description: "A task management tool for teams — take docs, run meetings, and manage projects all in one place."
+project_matrix_status: "Coming Soon"
+project_matrix_feature_1: "Task management"
+project_matrix_feature_2: "Meeting notes & docs"
+project_matrix_feature_3: "Project boards"
+project_matrix_feature_4: "Team collaboration"
 
 # -----------------------------------------------------------------------------
 # Contact Page

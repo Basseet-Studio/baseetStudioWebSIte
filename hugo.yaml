@@ -29,8 +29,8 @@ languages:
         - name: 'Projects'
           url: '/projects/'
           weight: 3
-        - name: 'Customers'
-          url: '/customers/'
+        - name: 'Clients'
+          url: '/clients/'
           weight: 4
         - name: 'Contact'
           url: '/contact/'
@@ -60,7 +60,7 @@ languages:
           url: '/projects/'
           weight: 3
         - name: 'العملاء'
-          url: '/customers/'
+          url: '/clients/'
           weight: 4
         - name: 'تواصل'
           url: '/contact/'

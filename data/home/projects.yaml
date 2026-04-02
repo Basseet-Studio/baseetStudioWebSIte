@@ -7,6 +7,7 @@ text: 'We practice what we preach. These are our own products, crafted with the 
 items:
   - name: 'Money Box'
     slug: 'money-box'
+    type: 'branded'
     tagline: 'Smart Savings Made Simple'
     description: 'Take control of your finances with Money Box. Track your savings goals, monitor spending habits, and watch your money grow with our intuitive money management app for iOS and Android.'
     iconClass: 'fas fa-piggy-bank'
@@ -28,6 +29,7 @@ items:
 
   - name: 'Numu'
     slug: 'numu'
+    type: 'branded'
     tagline: 'Build Better Habits'
     description: 'Transform your daily routine with Numu. Our beautiful habit tracking app helps you build positive habits, break bad ones, and become the best version of yourself.'
     iconClass: 'fas fa-chart-line'
@@ -49,6 +51,7 @@ items:
 
   - name: 'PhotoRestore AI'
     slug: 'photorestore-ai'
+    type: 'standard'
     tagline: 'Restore Old Photos with AI'
     description: 'Bring your old, damaged, or faded photos back to life using advanced AI technology. Professional-quality restoration in seconds with secure processing and a modern experience.'
     iconClass: 'fas fa-wand-magic-sparkles'
@@ -69,6 +72,7 @@ items:
 
   - name: 'Medical Education App (MAI)'
     slug: 'medical-education-app'
+    type: 'standard'
     tagline: 'AI-Powered Medical Education Platform'
     description: 'A comprehensive AI-powered medical education platform for resident doctors, combining clinical decision support, case management, imaging, pharmacology, rounds, and personalized learning with realistic mock data.'
     iconClass: 'fas fa-stethoscope'
@@ -97,6 +101,7 @@ items:
 
   - name: 'NSS Virtual Education Fair'
     slug: 'nss-virtual-education-fair'
+    type: 'standard'
     tagline: 'Modern Virtual Fair Platform for Students'
     description: 'A fully interactive virtual education fair built with React and Next.js. Complete with custom-designed UI/UX, responsive layouts, backend integrations, and a seamless user experience tailored for large-scale educational events.'
     iconClass: 'fas fa-graduation-cap'
@@ -117,6 +122,7 @@ items:
 
   - name: 'BD Railway Timetable System'
     slug: 'bd-railway-automated-timetable'
+    type: 'standard'
     tagline: 'Automated Real-Time Train Scheduling System'
     description: 'A government-level digital timetable system for Bangladesh Railway. Built to convert raw train data into structured schedules, power station display boards, and automate real-time updates across the network.'
     iconClass: 'fas fa-train'
@@ -137,6 +143,7 @@ items:
 
   - name: 'Malaysian Corporate Websites'
     slug: 'malaysian-business-websites'
+    type: 'standard'
     tagline: 'Fast, Responsive One-Page Corporate Sites'
     description: 'A set of three modern one-page corporate websites built for Malaysian companies in AC Service, Waterproofing, and Solid Surface industries. Designed with smooth animations, clean layouts, and optimized front-end performance.'
     iconClass: 'fas fa-building'
@@ -157,6 +164,7 @@ items:
 
   - name: 'DeshiKitchen'
     slug: 'deshikitchen'
+    type: 'branded'
     tagline: 'Authentic Bangladeshi Cuisine Platform'
     description: 'A modern, full-stack restaurant ordering platform with stunning 3D hero, real-time order management, social proof elements, Stripe payments, and comprehensive admin dashboard.'
     iconClass: 'fas fa-utensils'
@@ -174,3 +182,49 @@ items:
     color: '#F97316'
     gradient: 'linear-gradient(135deg, #F97316 0%, #FB923C 100%)'
     status: 'Live'
+
+  - name: 'ChopShop'
+    slug: 'chopshop'
+    type: 'branded'
+    tagline: 'Your Shop, Everywhere'
+    description: 'A complete B2C shopping platform for vendors to sell their products online and reach a wider audience. Custom-branded apps for your customers.'
+    iconClass: 'fas fa-shopping-bag'
+    platforms:
+      - name: 'Web'
+        icon: 'fas fa-globe'
+        link: '#'
+      - name: 'iOS'
+        icon: 'fab fa-apple'
+        link: '#'
+      - name: 'Android'
+        icon: 'fab fa-android'
+        link: '#'
+    features:
+      - 'Multi-vendor storefront'
+      - 'Real-time inventory'
+      - 'Secure checkout'
+      - 'Vendor analytics'
+      - 'Delivery management'
+      - 'Admin dashboard'
+    color: '#E11D48'
+    gradient: 'linear-gradient(135deg, #E11D48 0%, #FB7185 100%)'
+    status: 'Ready to Deliver'
+
+  - name: 'Matrix'
+    slug: 'matrix'
+    type: 'branded'
+    tagline: 'Intelligent Data Intelligence'
+    description: 'A unified data intelligence platform offering real-time analytics, automated workflows, and predictive insights for modern teams.'
+    iconClass: 'fas fa-database'
+    platforms:
+      - name: 'Web'
+        icon: 'fas fa-globe'
+        link: '#'
+    features:
+      - 'Real-time analytics'
+      - 'Automated ETL pipelines'
+      - 'Custom dashboards'
+      - 'Predictive insights'
+    color: '#0891B2'
+    gradient: 'linear-gradient(135deg, #0891B2 0%, #22D3EE 100%)'
+    status: 'Coming Soon'

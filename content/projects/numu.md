@@ -3,7 +3,7 @@ title: 'Numu'
 description: 'Build better habits and transform your daily routine with Numu - the beautiful habit tracking app.'
 date: 2024-01-02
 draft: false
-layout: 'single'
+layout: branded
 
 # Project Details
 project:
@@ -13,6 +13,20 @@ project:
   icon: '/images/projects/numu-icon.png'
   color: '#AF52DE'
   gradient: 'linear-gradient(135deg, #AF52DE 0%, #BF5AF2 100%)'
+
+  # Branded Page Fields
+  brandName: 'Numu'
+  navItems:
+    - label: 'Home'
+      url: '#home'
+    - label: 'Features'
+      url: '#features'
+    - label: 'Download'
+      url: '#download'
+    - label: 'Contact'
+      url: '#contact'
+  bgEffect: 'leaves'
+  bgFallbackGradient: 'linear-gradient(180deg, #F0FFF4 0%, #C6F6D5 40%, #9AE6B4 100%)'
   status: 'Coming Soon'
   platforms:
     - name: 'iOS'

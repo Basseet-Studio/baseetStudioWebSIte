@@ -371,35 +371,73 @@ services_contact_title: "هل أنت مستعد للبدء؟"
 services_contact_text: "أخبرنا عن مشروعك وسنساعدك في إيجاد الحل المثالي."
 
 # -----------------------------------------------------------------------------
-# Customers Page
+# Clients Page (renamed from Customers)
 # -----------------------------------------------------------------------------
-customers_hero_badge: "قصص النجاح"
-customers_hero_title: "**عملاؤنا**"
-customers_hero_text: "مشاريع حقيقية بنيناها لشركات حقيقية. شاهد كيف تحقق الشركات مثلك نتائج مع حلولنا."
+clients_hero_badge: "قصص النجاح"
+clients_hero_title: "**عملاؤنا**"
+clients_hero_text: "مشاريع حقيقية بنيناها لشركات حقيقية. شاهد كيف تحقق الشركات مثلك نتائج مع حلولنا."
 
-# Customer Page Labels
-customer_challenge_title: "التحدي"
-customer_solution_title: "حلنا"
-customer_results_title: "النتائج"
-customer_features_title: "الميزات المبنية"
-customer_tech_title: "التقنيات المستخدمة"
-customer_testimonial_coming: "مراجعة العميل قريباً"
-customer_empty_title: "قريباً"
-customer_empty_text: "نحضّر قصص نجاح عملائنا. تابعنا قريباً!"
+# Client Page Labels
+client_challenge_title: "التحدي"
+client_solution_title: "حلنا"
+client_results_title: "النتائج"
+client_features_title: "الميزات المبنية"
+client_tech_title: "التقنيات المستخدمة"
+client_testimonial_coming: "مراجعة العميل قريباً"
+client_empty_title: "قريباً"
+client_empty_text: "نحضّر قصص نجاح عملائنا. تابعنا قريباً!"
+client_view_project: "عرض المشروع"
 
 # CTA Section
-customers_cta_title: "تريد نتائج مماثلة؟"
-customers_cta_text: "دعنا نناقش كيف يمكننا بناء حل مخصص يحقق نتائج حقيقية لعملك."
-customers_cta_button: "ابدأ مشروعك"
+clients_cta_title: "تريد نتائج مماثلة؟"
+clients_cta_text: "دعنا نناقش كيف يمكننا بناء حل مخصص يحقق نتائج حقيقية لعملك."
+clients_cta_button: "ابدأ مشروعك"
 
-# FleetOps Customer
-customer_fleetops_name: "فليت أوبس"
-customer_fleetops_service_type: "أداة داخلية"
-customer_fleetops_industry: "اللوجستيات والنقل"
-customer_fleetops_tagline: "إدارة الأسطول بسهولة"
-customer_fleetops_description: "منصة ويب شاملة بنيناها لمساعدة شركات الخدمات اللوجستية على إدارة أسطول شاحنات التوصيل بالكامل — من التتبع الفوري إلى جدولة الصيانة الآلية."
-customer_fleetops_challenge: "كان العميل يدير أكثر من 50 شاحنة توصيل باستخدام جداول البيانات والمكالمات الهاتفية. كانت الصيانة تُفوَّت غالباً، مما أدى إلى أعطال مكلفة وتأخيرات في التوصيل. لم يكن لديهم أي رؤية لمواقع شاحناتهم في أي لحظة."
-customer_fleetops_solution: "بنينا منصة ويب مخصصة توفر تتبع GPS فوري على خريطة تفاعلية، تنبيهات صيانة آلية بناءً على المسافة المقطوعة والفترات الزمنية، إدارة تعيين السائقين، مراقبة استهلاك الوقود، ولوحات تقارير شاملة."
+# Portia Grid Client (renamed from FleetOps)
+client_portia-grid_name: "بورتيا غريد"
+client_portia-grid_service_type: "أداة داخلية"
+client_portia-grid_industry: "اللوجستيات وذكاء البيانات"
+client_portia-grid_tagline: "إدارة أسطول وبيانات ذكية"
+client_portia-grid_description: "منصة ويب شاملة بنيناها لمساعدة شركات الخدمات اللوجستية على إدارة أسطول شاحنات التوصيل بالكامل — من التتبع الفوري إلى جدولة الصيانة الآلية."
+client_portia-grid_challenge: "كان العميل يدير أكثر من 50 شاحنة توصيل باستخدام جداول البيانات والمكالمات الهاتفية. كانت الصيانة تُفوَّت غالباً، مما أدى إلى أعطال مكلفة وتأخيرات في التوصيل. لم يكن لديهم أي رؤية لمواقع شاحناتهم في أي لحظة."
+client_portia-grid_solution: "بنينا منصة ويب مخصصة توفر تتبع GPS فوري على خريطة تفاعلية، تنبيهات صيانة آلية بناءً على المسافة المقطوعة والفترات الزمنية، إدارة تعيين السائقين، مراقبة استهلاك الوقود، ولوحات تقارير شاملة."
+
+# Iyat Client
+client_iyat_name: "إيات"
+client_iyat_service_type: "موقع إلكتروني"
+client_iyat_industry: "التسويق الرقمي والإبداعي"
+client_iyat_tagline: "محفظة وكالة رقمية"
+client_iyat_description: "موقع حديث وغني بصرياً لإيات، وكالة رقمية تعرض محفظتها الإبداعية وخدماتها."
+client_iyat_challenge: "احتاجت إيات إلى تواجد احترافي على الإنترنت يعرض أعمالهم الإبداعية ويجذب عملاء جدد."
+client_iyat_solution: "بنينا موقع محفظة أنيق وحديث مع حركات سلسة، تصميم متجاوب، وتجربة مستخدم جذابة."
+
+# -----------------------------------------------------------------------------
+# Branded Navigation
+# -----------------------------------------------------------------------------
+back_to_baseet: "العودة إلى بصيت"
+nav_features: "الميزات"
+nav_download: "تحميل"
+nav_demo: "عرض تجريبي"
+
+# ChopShop Product
+project_chopshop_name: "تشوب شوب"
+project_chopshop_tagline: "متجرك، في كل مكان"
+project_chopshop_description: "منصة تسوق B2C للبائعين لبيع منتجاتهم عبر الإنترنت والوصول إلى جمهور أوسع. تتضمن تطبيق توصيل وتطبيق عملاء قابل للتخصيص."
+project_chopshop_status: "جاهز للتسليم"
+project_chopshop_feature_1: "إدارة واجهة متجر البائع"
+project_chopshop_feature_2: "تطبيق عملاء بعلامة تجارية مخصصة"
+project_chopshop_feature_3: "تطبيق توصيل وتتبع"
+project_chopshop_feature_4: "معالجة الدفع"
+
+# Matrix Product
+project_matrix_name: "ماتريكس"
+project_matrix_tagline: "أدر كل شيء، لا تفوّت شيئاً"
+project_matrix_description: "أداة إدارة مهام للفرق — اكتب المستندات، أدر الاجتماعات، وأدر المشاريع في مكان واحد."
+project_matrix_status: "قريباً"
+project_matrix_feature_1: "إدارة المهام"
+project_matrix_feature_2: "ملاحظات الاجتماعات والمستندات"
+project_matrix_feature_3: "لوحات المشاريع"
+project_matrix_feature_4: "التعاون الجماعي"
 
 # -----------------------------------------------------------------------------
 # Contact Page

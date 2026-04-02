@@ -1,18 +1,45 @@
 <!-- Skip to content for keyboard users -->
 <a href="#mainContent" class="skip-to-content">{{ i18n "skip_to_content" }}</a>
 
-<header id="app-bar" class="app-bar" role="banner" dir="ltr">
+{{- $isBranded := and (.Params.project) (.Params.project.brandName) (eq .Layout "branded") -}}
+
+<header id="app-bar" class="app-bar{{ if $isBranded }} branded{{ end }}" role="banner" dir="ltr">
     <div class="app-bar-container">
         <!-- Logo -->
+        {{ if $isBranded }}
+        {{/* Branded Mode: Product logo/name */}}
+        <a href="#home" class="app-bar-logo logo-premium branded" aria-label="{{ .Params.project.brandName }}" style="color: {{ .Params.project.color }};">
+            {{ with .Params.project.brandLogo }}
+            <img src="{{ . | relURL }}" alt="{{ $.Params.project.brandName }}" class="brand-logo-img" />
+            {{ end }}
+            <span class="logo-text">{{ .Params.project.brandName }}</span>
+        </a>
+        {{ else }}
+        {{/* Studio Mode: Default Baseet Studio logo */}}
         <a href="{{ "/" | relLangURL }}" class="app-bar-logo logo-premium" aria-label="{{ i18n "aria_home_link" }}">
             <span class="logo-text">{{ i18n "logo_text" }}</span>
         </a>
+        {{ end }}
 
         <!-- Desktop Navigation -->
         <nav class="app-bar-nav" aria-label="Main navigation">
             <ul class="nav-links">
+                {{ if $isBranded }}
+                {{/* Branded Mode: Product-specific nav items */}}
+                {{ range .Params.project.navItems }}
+                <li><a href="{{ .url }}" class="nav-link-premium">{{ .label }}</a></li>
+                {{ end }}
+                <li class="back-to-baseet-wrapper">
+                    <a href="{{ "/" | relLangURL }}" class="nav-link-premium back-to-baseet" aria-label="{{ i18n "back_to_baseet" }}">
+                        <i class="fas fa-arrow-left{{ if eq $.Site.Language.LanguageDirection "rtl" }} fa-flip-horizontal{{ end }}"></i>
+                        <span>{{ i18n "back_to_baseet" }}</span>
+                    </a>
+                </li>
+                {{ else }}
+                {{/* Studio Mode: Default menu items */}}
                 {{ range site.Menus.main }}
                 <li><a href="{{ .URL | relLangURL }}" class="nav-link-premium {{ if eq .Name "Pricing" }}font-bold{{ end }}">{{ .Name }}</a></li>
+                {{ end }}
                 {{ end }}
             </ul>
             
@@ -50,8 +77,22 @@
 <div id="shared-mobile-backdrop" class="mobile-menu-backdrop"></div>
 <nav id="shared-mobile-menu" class="mobile-menu" aria-label="Mobile navigation" aria-hidden="true" data-lang="{{ .Site.Language.Lang }}" dir="ltr">
     <ul class="mobile-nav-links">
+        {{ if $isBranded }}
+        {{/* Branded Mode: Product-specific nav */}}
+        {{ range .Params.project.navItems }}
+        <li><a href="{{ .url }}" class="mobile-nav-link">{{ .label }}</a></li>
+        {{ end }}
+        <li class="mobile-back-to-baseet">
+            <a href="{{ "/" | relLangURL }}" class="mobile-nav-link back-to-baseet">
+                <i class="fas fa-arrow-left{{ if eq $.Site.Language.LanguageDirection "rtl" }} fa-flip-horizontal{{ end }}"></i>
+                {{ i18n "back_to_baseet" }}
+            </a>
+        </li>
+        {{ else }}
+        {{/* Studio Mode: Default menu items */}}
         {{ range site.Menus.main }}
         <li><a href="{{ .URL | relLangURL }}" class="mobile-nav-link">{{ .Name }}</a></li>
+        {{ end }}
         {{ end }}
     </ul>
 </nav>

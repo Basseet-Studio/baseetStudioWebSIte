@@ -3,7 +3,7 @@ title: 'DeshiKitchen'
 description: 'A modern, full-stack restaurant ordering platform featuring stunning 3D hero, real-time orders, and comprehensive admin dashboard.'
 date: 2024-01-04
 draft: false
-layout: 'single'
+layout: branded
 
 # Project Details
 project:
@@ -14,6 +14,20 @@ project:
   iconClass: 'fas fa-utensils'
   color: '#F97316'
   gradient: 'linear-gradient(135deg, #F97316 0%, #FB923C 100%)'
+
+  # Branded Page Fields
+  brandName: 'Desi Kitchen'
+  navItems:
+    - label: 'Home'
+      url: '#home'
+    - label: 'Features'
+      url: '#features'
+    - label: 'Demo'
+      url: '#demo'
+    - label: 'Contact'
+      url: '#contact'
+  bgEffect: 'kitchen'
+  bgFallbackGradient: 'linear-gradient(180deg, #FFFBEB 0%, #FDE68A 40%, #FBBF24 100%)'
   status: 'Live'
   platforms:
     - name: 'Web'

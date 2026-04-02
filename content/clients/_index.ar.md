@@ -2,4 +2,6 @@
 title: 'العملاء'
 description: 'شاهد كيف تنجح الشركات مثلك مع حلولنا. مشاريع حقيقية، نتائج حقيقية.'
 layout: 'list'
+aliases:
+  - '/ar/customers/'
 ---

@@ -36,19 +36,19 @@
 <main id="mainContent" class="main-content-wrapper">
   
   <!-- Hero Section -->
-  <section id="customers-hero" class="relative overflow-hidden bg-surface pt-32 pb-16 lg:pt-40 lg:pb-24" {{ if eq site.Language.LanguageDirection "rtl" }}dir="rtl"{{ end }}>
+  <section id="clients-hero" class="relative overflow-hidden bg-surface pt-32 pb-16 lg:pt-40 lg:pb-24" {{ if eq site.Language.LanguageDirection "rtl" }}dir="rtl"{{ end }}>
     <div class="absolute top-20 {{ if eq site.Language.LanguageDirection "rtl" }}left-0{{ else }}right-0{{ end }} w-96 h-96 bg-primary/10 rounded-full filter blur-3xl -z-10"></div>
     <div class="absolute bottom-20 {{ if eq site.Language.LanguageDirection "rtl" }}right-0{{ else }}left-0{{ end }} w-72 h-72 bg-tertiary/10 rounded-full filter blur-3xl -z-10"></div>
     
     <div class="container mx-auto px-4 text-center">
       <span class="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-6 scroll-animate">
-        {{ i18n "customers_hero_badge" }}
+        {{ i18n "clients_hero_badge" }}
       </span>
       <h1 class="hero-title-premium text-4xl lg:text-6xl font-bold text-stroke mb-6 leading-tight scroll-animate">
-        {{ i18n "customers_hero_title" | markdownify }}
+        {{ i18n "clients_hero_title" | markdownify }}
       </h1>
       <p class="hero-text-premium text-lg lg:text-xl text-stroke/80 max-w-3xl mx-auto mb-8 leading-relaxed scroll-animate" style="animation-delay: 0.2s;">
-        {{ i18n "customers_hero_text" }}
+        {{ i18n "clients_hero_text" }}
       </p>
     </div>
   </section>
@@ -57,24 +57,24 @@
   <section id="customer-projects" class="py-16 lg:py-24 bg-white" {{ if eq site.Language.LanguageDirection "rtl" }}dir="rtl"{{ end }}>
     <div class="container mx-auto px-4">
       
-      {{ range $index, $customer := site.Data.customers.customers }}
-      <!-- Customer Card: {{ $customer.name }} -->
-      <div class="customer-project-card mb-16 last:mb-0 scroll-animate" style="animation-delay: {{ mul $index 0.1 }}s;">
+      {{ range $index, $client := site.Data.clients.clients }}
+      <!-- Client Card: {{ $client.name }} -->
+      <div class="client-project-card mb-16 last:mb-0 scroll-animate" style="animation-delay: {{ mul $index 0.1 }}s;">
         
         <!-- Header -->
-        <div class="customer-card-header" style="background: linear-gradient(135deg, {{ $customer.color }} 0%, {{ $customer.color }}dd 100%);">
+        <div class="client-card-header" style="background: linear-gradient(135deg, {{ $client.color }} 0%, {{ $client.color }}dd 100%);">
           <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <div>
               <div class="flex items-center gap-3 mb-2">
-                <span class="px-3 py-1 bg-white/20 rounded-full text-sm text-white">{{ i18n (printf "customer_%s_service_type" $customer.id) | default $customer.service_type }}</span>
-                <span class="px-3 py-1 bg-white/20 rounded-full text-sm text-white">{{ i18n (printf "customer_%s_industry" $customer.id) | default $customer.industry }}</span>
+                <span class="px-3 py-1 bg-white/20 rounded-full text-sm text-white">{{ i18n (printf "client_%s_service_type" $client.id) | default $client.service_type }}</span>
+                <span class="px-3 py-1 bg-white/20 rounded-full text-sm text-white">{{ i18n (printf "client_%s_industry" $client.id) | default $client.industry }}</span>
               </div>
-              <h2 class="text-3xl lg:text-4xl font-bold text-white mb-2">{{ i18n (printf "customer_%s_name" $customer.id) | default $customer.name }}</h2>
-              <p class="text-white/90 text-lg">{{ i18n (printf "customer_%s_tagline" $customer.id) | default $customer.tagline }}</p>
+              <h2 class="text-3xl lg:text-4xl font-bold text-white mb-2">{{ i18n (printf "client_%s_name" $client.id) | default $client.name }}</h2>
+              <p class="text-white/90 text-lg">{{ i18n (printf "client_%s_tagline" $client.id) | default $client.tagline }}</p>
             </div>
-            {{ if $customer.logo }}
+            {{ if $client.logo }}
             <div class="w-20 h-20 bg-white rounded-xl flex items-center justify-center p-2">
-              <img src="{{ $customer.logo }}" alt="{{ $customer.name }}" class="max-w-full max-h-full">
+              <img src="{{ $client.logo }}" alt="{{ $client.name }}" class="max-w-full max-h-full">
             </div>
             {{ else }}
             <div class="w-20 h-20 bg-white/20 rounded-xl flex items-center justify-center">
@@ -85,11 +85,11 @@
         </div>
 
         <!-- Body -->
-        <div class="customer-card-body">
+        <div class="client-card-body">
           
           <!-- Short Description -->
           <p class="text-lg text-[#545454] mb-8 leading-relaxed">
-            {{ i18n (printf "customer_%s_description" $customer.id) | default $customer.short_description }}
+            {{ i18n (printf "client_%s_description" $client.id) | default $client.short_description }}
           </p>
 
           <!-- Challenge & Solution Grid -->
@@ -100,9 +100,9 @@
                 <div class="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center">
                   <i class="fas fa-exclamation-triangle text-red-500"></i>
                 </div>
-                <h3 class="text-xl font-bold text-[#252525]">{{ i18n "customer_challenge_title" }}</h3>
+                <h3 class="text-xl font-bold text-[#252525]">{{ i18n "client_challenge_title" }}</h3>
               </div>
-              <p class="text-[#545454]">{{ i18n (printf "customer_%s_challenge" $customer.id) | default $customer.challenge }}</p>
+              <p class="text-[#545454]">{{ i18n (printf "client_%s_challenge" $client.id) | default $client.challenge }}</p>
             </div>
 
             <!-- Our Solution -->
@@ -111,20 +111,20 @@
                 <div class="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center">
                   <i class="fas fa-check-circle text-green-500"></i>
                 </div>
-                <h3 class="text-xl font-bold text-[#252525]">{{ i18n "customer_solution_title" }}</h3>
+                <h3 class="text-xl font-bold text-[#252525]">{{ i18n "client_solution_title" }}</h3>
               </div>
-              <p class="text-[#545454]">{{ i18n (printf "customer_%s_solution" $customer.id) | default $customer.solution }}</p>
+              <p class="text-[#545454]">{{ i18n (printf "client_%s_solution" $client.id) | default $client.solution }}</p>
             </div>
           </div>
 
           <!-- Results -->
-          {{ if $customer.results }}
+          {{ if $client.results }}
           <div class="results-section mb-8">
-            <h3 class="text-xl font-bold text-[#252525] mb-6 text-center">{{ i18n "customer_results_title" }}</h3>
-            <div class="grid grid-cols-2 lg:grid-cols-{{ len $customer.results }} gap-4">
-              {{ range $customer.results }}
+            <h3 class="text-xl font-bold text-[#252525] mb-6 text-center">{{ i18n "client_results_title" }}</h3>
+            <div class="grid grid-cols-2 lg:grid-cols-{{ len $client.results }} gap-4">
+              {{ range $client.results }}
               <div class="result-stat text-center">
-                <div class="text-3xl lg:text-4xl font-bold" style="color: {{ $customer.color }};">{{ .metric }}</div>
+                <div class="text-3xl lg:text-4xl font-bold" style="color: {{ $client.color }};">{{ .metric }}</div>
                 <div class="text-sm text-[#868686]">{{ .label }}</div>
               </div>
               {{ end }}
@@ -133,11 +133,11 @@
           {{ end }}
 
           <!-- Features Grid -->
-          {{ if $customer.features }}
+          {{ if $client.features }}
           <div class="features-section mb-8">
-            <h3 class="text-xl font-bold text-[#252525] mb-4">{{ i18n "customer_features_title" }}</h3>
+            <h3 class="text-xl font-bold text-[#252525] mb-4">{{ i18n "client_features_title" }}</h3>
             <div class="grid grid-cols-2 lg:grid-cols-3 gap-3">
-              {{ range $customer.features }}
+              {{ range $client.features }}
               <div class="feature-tag">
                 <i class="fas fa-check text-primary text-xs"></i>
                 <span>{{ . }}</span>
@@ -148,11 +148,11 @@
           {{ end }}
 
           <!-- Technologies Used -->
-          {{ if $customer.technologies }}
+          {{ if $client.technologies }}
           <div class="tech-section mb-8">
-            <h3 class="text-sm font-semibold text-[#868686] uppercase tracking-wider mb-3">{{ i18n "customer_tech_title" }}</h3>
+            <h3 class="text-sm font-semibold text-[#868686] uppercase tracking-wider mb-3">{{ i18n "client_tech_title" }}</h3>
             <div class="flex flex-wrap gap-2">
-              {{ range $customer.technologies }}
+              {{ range $client.technologies }}
               <span class="tech-badge">{{ . }}</span>
               {{ end }}
             </div>
@@ -160,19 +160,19 @@
           {{ end }}
 
           <!-- Testimonial (if available) -->
-          {{ if and $customer.testimonial $customer.testimonial.quote }}
+          {{ if and $client.testimonial $client.testimonial.quote }}
           <div class="testimonial-section">
             <div class="flex gap-4">
               <div class="text-4xl text-primary/30">"</div>
               <div>
-                <p class="text-lg text-[#545454] italic mb-4">{{ $customer.testimonial.quote }}</p>
+                <p class="text-lg text-[#545454] italic mb-4">{{ $client.testimonial.quote }}</p>
                 <div class="flex items-center gap-3">
                   <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
                     <i class="fas fa-user text-gray-400"></i>
                   </div>
                   <div>
-                    <div class="font-semibold text-[#252525]">{{ $customer.testimonial.author }}</div>
-                    <div class="text-sm text-[#868686]">{{ $customer.testimonial.role }}</div>
+                    <div class="font-semibold text-[#252525]">{{ $client.testimonial.author }}</div>
+                    <div class="text-sm text-[#868686]">{{ $client.testimonial.role }}</div>
                   </div>
                 </div>
               </div>
@@ -183,8 +183,20 @@
           <div class="testimonial-placeholder">
             <div class="flex items-center justify-center gap-2 text-[#868686]">
               <i class="fas fa-quote-left"></i>
-              <span class="text-sm">{{ i18n "customer_testimonial_coming" }}</span>
+              <span class="text-sm">{{ i18n "client_testimonial_coming" }}</span>
             </div>
+          </div>
+          {{ end }}
+
+          <!-- View Project Link (if available) -->
+          {{ if $client.link }}
+          <div class="mt-6 pt-4 border-t border-gray-100">
+            <a href="{{ $client.link }}" target="_blank" rel="noopener noreferrer" 
+               class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5"
+               style="background: {{ $client.color }}15; color: {{ $client.color }};">
+              <span>{{ i18n "client_view_project" }}</span>
+              <i class="fas fa-external-link-alt text-xs"></i>
+            </a>
           </div>
           {{ end }}
 
@@ -192,14 +204,14 @@
       </div>
       {{ end }}
 
-      <!-- Empty State (if no customers) -->
-      {{ if not site.Data.customers.customers }}
+      <!-- Empty State (if no clients) -->
+      {{ if not site.Data.clients.clients }}
       <div class="text-center py-16">
         <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-gray-100 flex items-center justify-center">
           <i class="fas fa-users text-3xl text-gray-400"></i>
         </div>
-        <h3 class="text-xl font-bold text-[#252525] mb-2">{{ i18n "customer_empty_title" }}</h3>
-        <p class="text-[#868686]">{{ i18n "customer_empty_text" }}</p>
+        <h3 class="text-xl font-bold text-[#252525] mb-2">{{ i18n "client_empty_title" }}</h3>
+        <p class="text-[#868686]">{{ i18n "client_empty_text" }}</p>
       </div>
       {{ end }}
 
@@ -207,20 +219,20 @@
   </section>
 
   <!-- CTA Section -->
-  <section id="customers-cta" class="subscribe-section relative py-36 overflow-hidden bg-gradient-to-br from-primary/5 via-white to-tertiary/5" {{ if eq site.Language.LanguageDirection "rtl" }}dir="rtl"{{ end }}>
+  <section id="clients-cta" class="subscribe-section relative py-36 overflow-hidden bg-gradient-to-br from-primary/5 via-white to-tertiary/5" {{ if eq site.Language.LanguageDirection "rtl" }}dir="rtl"{{ end }}>
     <!-- Floating decorations -->
     <div class="subscribe-decoration subscribe-decoration-1"></div>
     <div class="subscribe-decoration subscribe-decoration-2"></div>
     
     <div class="container mx-auto px-4 text-center relative z-10">
-      <h1 class="subscribe-title">{{ i18n "customers_cta_title" }}</h1>
+      <h1 class="subscribe-title">{{ i18n "clients_cta_title" }}</h1>
       <p class="text-lg lg:text-xl text-stroke/80 max-w-3xl mx-auto mb-8 leading-relaxed">
-        {{ i18n "customers_cta_text" }}
+        {{ i18n "clients_cta_text" }}
       </p>
       
       <!-- CTA Button -->
       <a href="{{ "/contact/" | relLangURL }}" class="subscribe-btn inline-flex items-center justify-center gap-2">
-        <span>{{ i18n "customers_cta_button" }}</span>
+        <span>{{ i18n "clients_cta_button" }}</span>
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
         </svg>
@@ -247,7 +259,7 @@
 
 <style>
 /* Customer Project Card */
-.customer-project-card {
+.client-project-card {
   background: white;
   border-radius: 1.5rem;
   overflow: hidden;
@@ -255,16 +267,16 @@
   transition: all 0.3s ease;
 }
 
-.customer-project-card:hover {
+.client-project-card:hover {
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
-.customer-card-header {
+.client-card-header {
   padding: 2rem;
   color: white;
 }
 
-.customer-card-body {
+.client-card-body {
   padding: 2rem;
 }
 
@@ -321,7 +333,7 @@
 }
 
 /* RTL Adjustments */
-[dir="rtl"] .customer-card-header .flex {
+[dir="rtl"] .client-card-header .flex {
   flex-direction: row-reverse;
 }
 

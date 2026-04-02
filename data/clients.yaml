@@ -1,0 +1,75 @@
+enable: true
+
+# Hero Section
+title: "Our Clients"
+subtitle: "Success Stories"
+description: "See how businesses like yours are achieving results with our solutions."
+
+# Client Projects
+clients:
+  - id: "portia-grid"
+    name: "Portia Grid"
+    logo: ""
+    industry: "Logistics & Data Intelligence"
+    service_type: "Internal Tool"
+    color: "#2563EB"
+    tagline: "Intelligent Fleet & Data Management"
+    short_description: "A comprehensive web platform for managing delivery truck fleets and their maintenance schedules."
+    full_description: "Portia Grid is a powerful internal tool we built to help logistics companies manage their entire fleet of delivery trucks. From tracking vehicle locations to scheduling maintenance, everything is handled in one centralized dashboard."
+    challenge: "The client was managing 50+ delivery trucks using spreadsheets and phone calls. Maintenance was often missed, leading to breakdowns and delays. They had no visibility into their fleet's real-time status."
+    solution: "We built a custom web platform that provides real-time GPS tracking, automated maintenance scheduling based on mileage and time, driver assignment management, and comprehensive reporting."
+    results:
+      - metric: "30%"
+        label: "Reduction in breakdowns"
+      - metric: "2hrs"
+        label: "Saved daily on admin"
+      - metric: "100%"
+        label: "Fleet visibility"
+    features:
+      - "Real-time GPS fleet tracking"
+      - "Automated maintenance alerts"
+      - "Driver assignment & scheduling"
+      - "Fuel consumption tracking"
+      - "Maintenance history logs"
+      - "Custom reporting dashboard"
+    technologies:
+      - "React"
+      - "Node.js"
+      - "PostgreSQL"
+      - "Google Maps API"
+    testimonial:
+      quote: "Most devs just build what you tell them; this team actually thinks through the logic with you. Building Portia Grid required a lot of tactical intelligence and complex data handling, and Mohamed, Asad, and Ariyan absolutely nailed it. They've got great energy, they know their tech inside out, and they held my hand through the entire process. If you want a team that takes ownership of the outcome, this is it."
+      author: "Hassan"
+      role: "CEO & Founder of Portia Grid"
+    screenshots: []
+
+  - id: "iyat"
+    name: "Iyat"
+    logo: ""
+    industry: "Digital Marketing & Creative"
+    service_type: "Website"
+    color: "#8B5CF6"
+    tagline: "Digital Agency Portfolio"
+    short_description: "A modern, visually rich website for Iyat, a digital agency showcasing their creative portfolio and services."
+    full_description: "We designed and built a premium portfolio website for Iyat, a digital agency specializing in creative marketing solutions."
+    challenge: "Iyat needed a professional online presence that would showcase their creative work and attract new clients."
+    solution: "We built a sleek, modern portfolio website with smooth animations, responsive design, and an engaging user experience."
+    results:
+      - metric: "100%"
+        label: "Custom design"
+      - metric: "< 2s"
+        label: "Load time"
+    features:
+      - "Custom portfolio design"
+      - "Responsive layout"
+      - "Smooth animations"
+      - "Modern UI/UX"
+    technologies:
+      - "HTML/CSS"
+      - "JavaScript"
+    testimonial:
+      quote: ""
+      author: ""
+      role: ""
+    link: "https://iyat-site.mohameda-elobaid.workers.dev/portfolio"
+    screenshots: []

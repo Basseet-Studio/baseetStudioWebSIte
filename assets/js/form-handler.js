@@ -29,7 +29,7 @@
         if (currentPath.includes('/services')) pageName = 'Services Page'
         else if (currentPath.includes('/contact')) pageName = 'Contact Page'
         else if (currentPath.includes('/projects')) pageName = 'Projects Page'
-        else if (currentPath.includes('/customers')) pageName = 'Customers Page'
+        else if (currentPath.includes('/clients')) pageName = 'Clients Page'
         pageSourceField.value = pageName
       }
       form.addEventListener('submit', handleFormSubmit)

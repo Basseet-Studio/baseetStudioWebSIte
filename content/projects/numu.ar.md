@@ -3,7 +3,7 @@ title: 'نُمُوّ'
 description: 'ابنِ عادات أفضل وحوّل روتينك اليومي مع نُمُوّ - تطبيق تتبع العادات الجميل.'
 date: 2024-01-02
 draft: false
-layout: 'single'
+layout: branded
 
 # Project Details
 project:
@@ -13,6 +13,20 @@ project:
   icon: '/images/projects/numu-icon.png'
   color: '#AF52DE'
   gradient: 'linear-gradient(135deg, #AF52DE 0%, #BF5AF2 100%)'
+
+  # Branded Page Fields
+  brandName: 'Numu'
+  navItems:
+    - label: 'الرئيسية'
+      url: '#home'
+    - label: 'الميزات'
+      url: '#features'
+    - label: 'تحميل'
+      url: '#download'
+    - label: 'تواصل'
+      url: '#contact'
+  bgEffect: 'leaves'
+  bgFallbackGradient: 'linear-gradient(180deg, #F0FFF4 0%, #C6F6D5 40%, #9AE6B4 100%)'
   status: 'قريباً'
   platforms:
     - name: 'iOS'
