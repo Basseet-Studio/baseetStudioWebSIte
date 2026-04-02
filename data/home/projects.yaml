@@ -49,6 +49,25 @@ items:
     gradient: 'linear-gradient(135deg, #AF52DE 0%, #BF5AF2 100%)'
     status: 'Coming Soon'
 
+  - name: 'Matrix'
+    slug: 'matrix'
+    type: 'branded'
+    tagline: 'Intelligent Data Intelligence'
+    description: 'A unified data intelligence platform offering real-time analytics, automated workflows, and predictive insights for modern teams.'
+    iconClass: 'fas fa-database'
+    platforms:
+      - name: 'Web'
+        icon: 'fas fa-globe'
+        link: '#'
+    features:
+      - 'Real-time analytics'
+      - 'Automated ETL pipelines'
+      - 'Custom dashboards'
+      - 'Predictive insights'
+    color: '#0891B2'
+    gradient: 'linear-gradient(135deg, #0891B2 0%, #22D3EE 100%)'
+    status: 'Coming Soon'
+
   - name: 'PhotoRestore AI'
     slug: 'photorestore-ai'
     type: 'standard'
@@ -209,22 +228,3 @@ items:
     color: '#E11D48'
     gradient: 'linear-gradient(135deg, #E11D48 0%, #FB7185 100%)'
     status: 'Ready to Deliver'
-
-  - name: 'Matrix'
-    slug: 'matrix'
-    type: 'branded'
-    tagline: 'Intelligent Data Intelligence'
-    description: 'A unified data intelligence platform offering real-time analytics, automated workflows, and predictive insights for modern teams.'
-    iconClass: 'fas fa-database'
-    platforms:
-      - name: 'Web'
-        icon: 'fas fa-globe'
-        link: '#'
-    features:
-      - 'Real-time analytics'
-      - 'Automated ETL pipelines'
-      - 'Custom dashboards'
-      - 'Predictive insights'
-    color: '#0891B2'
-    gradient: 'linear-gradient(135deg, #0891B2 0%, #22D3EE 100%)'
-    status: 'Coming Soon'

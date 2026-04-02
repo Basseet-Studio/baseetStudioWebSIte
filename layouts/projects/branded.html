@@ -37,19 +37,18 @@
 
 <style>
   :root {
-    --project-color: {{ $project.color }};
+    --project-color: {{ $project.color | safeCSS }};
     --project-gradient: {{ $project.gradient | safeCSS }};
     --bg-fallback: {{ $project.bgFallbackGradient | default "linear-gradient(180deg, #f0f0f0, #e0e0e0)" | safeCSS }};
   }
-  .project-page { --project-color: {{ $project.color }}; --project-gradient: {{ $project.gradient | safeCSS }}; }
-  .project-gradient { background: {{ $project.gradient | safeCSS }}; }
-  .text-project { color: {{ $project.color }}; }
-  .bg-project { background-color: {{ $project.color }}; }
-  .bg-project-light { background-color: {{ $project.color }}15; }
-  .border-project { border-color: {{ $project.color }}; }
-  .hover\:bg-project:hover { background-color: {{ $project.color }}; }
-  .hover\:text-project:hover { color: {{ $project.color }}; }
-  .shadow-project { box-shadow: 0 10px 40px -10px {{ $project.color }}50; }
+  .project-gradient { background: var(--project-gradient); }
+  .text-project { color: var(--project-color); }
+  .bg-project { background-color: var(--project-color); }
+  .bg-project-light { background-color: color-mix(in srgb, var(--project-color) 8%, transparent); }
+  .border-project { border-color: var(--project-color); }
+  .hover\:bg-project:hover { background-color: var(--project-color); }
+  .hover\:text-project:hover { color: var(--project-color); }
+  .shadow-project { box-shadow: 0 10px 40px -10px color-mix(in srgb, var(--project-color) 31%, transparent); }
   @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
   .animate-fade-in-up { animation: fadeInUp 0.6s ease-out forwards; }
