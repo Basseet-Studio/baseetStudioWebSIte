@@ -256,6 +256,7 @@ projects_view_project: "عرض المشروع"
 # Project Detail Page
 # -----------------------------------------------------------------------------
 project_back_to_projects: "العودة للمشاريع"
+project_back_to: "العودة إلى"
 project_features_label: "الميزات"
 project_key_features: "الميزات الرئيسية"
 project_features_subtitle: "كل ما تحتاجه للاستفادة القصوى من"
@@ -504,3 +505,51 @@ contact_wa_name: "الاسم"
 contact_wa_contact: "التواصل"
 contact_wa_project: "نوع المشروع"
 contact_wa_message: "الرسالة"
+
+# -----------------------------------------------------------------------------
+# Project Navigation (Section Pages)
+# -----------------------------------------------------------------------------
+project_nav_home: "الرئيسية"
+project_nav_features: "المميزات"
+project_nav_download: "تحميل"
+project_nav_demo: "تجربة"
+project_nav_terms: "الشروط"
+project_nav_baseet: "بصيرة"
+
+# -----------------------------------------------------------------------------
+# Project Features Page
+# -----------------------------------------------------------------------------
+project_features_page_title: "المميزات"
+project_features_empty: "المميزات قريباً"
+
+# -----------------------------------------------------------------------------
+# Project Demo Page
+# -----------------------------------------------------------------------------
+project_demo_page_title: "تجربة"
+project_demo_download_title: "تحميل"
+project_demo_coming_soon: "التجربة قريباً"
+project_demo_coming_soon_text: "نعمل بجد لتقديم تجربة مذهلة. ترقبوا!"
+project_demo_try_live: "جرب النسخة الحية"
+
+# -----------------------------------------------------------------------------
+# Project Terms Page
+# -----------------------------------------------------------------------------
+project_terms_page_title: "الشروط والأحكام"
+project_terms_intro: "المقدمة"
+project_terms_usage: "شروط الاستخدام"
+project_terms_privacy: "سياسة الخصوصية"
+project_terms_data: "جمع البيانات واستخدامها"
+project_terms_rights: "حقوق المستخدم"
+project_terms_liability: "حدود المسؤولية"
+project_terms_contact: "معلومات الاتصال"
+project_terms_placeholder: "سيتم إضافة المحتوى هنا."
+
+# -----------------------------------------------------------------------------
+# Footer — Visitor Detection
+# -----------------------------------------------------------------------------
+footer_visiting_from: "زيارة من"
+footer_device: "الجهاز"
+footer_device_mobile: "جوال"
+footer_device_tablet: "لوحي"
+footer_device_desktop: "حاسوب"
+footer_unknown: "غير معروف"

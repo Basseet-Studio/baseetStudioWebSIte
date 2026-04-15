@@ -1,0 +1,213 @@
+{{ define "header" }}{{ partial "project-header.html" . }}{{ end }}
+{{ define "main" }}
+{{- $project := .Params.project -}}
+{{- $isRTL := eq .Site.Language.LanguageDirection "rtl" -}}
+
+<!-- Google Fonts: Quicksand + Nunito -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&family=Nunito:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- Project CSS -->
+{{- with resources.Get "css/project-numu.css" -}}
+  {{- if hugo.IsProduction -}}
+    {{- with . | minify | fingerprint -}}
+      <link rel="stylesheet" href="{{ .RelPermalink }}" />
+    {{- end -}}
+  {{- else -}}
+    <link rel="stylesheet" href="{{ .RelPermalink }}" />
+  {{- end -}}
+{{- end -}}
+
+<!-- Branded Effects CSS -->
+{{- with resources.Get "css/branded-effects.css" -}}
+  {{- if hugo.IsProduction -}}
+    {{- with . | minify | fingerprint -}}
+      <link rel="stylesheet" href="{{ .RelPermalink }}" />
+    {{- end -}}
+  {{- else -}}
+    <link rel="stylesheet" href="{{ .RelPermalink }}" />
+  {{- end -}}
+{{- end -}}
+
+<!-- Premium Effects CSS -->
+{{- with resources.Get "css/premium-effects.css" -}}
+  {{- if hugo.IsProduction -}}
+    {{- with . | minify | fingerprint -}}
+      <link rel="stylesheet" href="{{ .RelPermalink }}" />
+    {{- end -}}
+  {{- else -}}
+    <link rel="stylesheet" href="{{ .RelPermalink }}" />
+  {{- end -}}
+{{- end -}}
+
+<!-- Custom Overrides CSS -->
+{{- with resources.Get "css/custom-overrides.css" -}}
+  {{- if hugo.IsProduction -}}
+    {{- with . | minify | fingerprint -}}
+      <link rel="stylesheet" href="{{ .RelPermalink }}" />
+    {{- end -}}
+  {{- else -}}
+    <link rel="stylesheet" href="{{ .RelPermalink }}" />
+  {{- end -}}
+{{- end -}}
+
+<style>
+  :root {
+    --project-color: {{ $project.color | safeCSS }};
+    --project-gradient: {{ $project.gradient | safeCSS }};
+    --bg-fallback: {{ $project.bgFallbackGradient | default "linear-gradient(180deg, #f0f0f0, #e0e0e0)" | safeCSS }};
+  }
+  .project-gradient { background: var(--project-gradient); }
+  .text-project { color: var(--project-color); }
+  .bg-project { background-color: var(--project-color); }
+  .bg-project-light { background-color: color-mix(in srgb, var(--project-color) 8%, transparent); }
+  .border-project { border-color: var(--project-color); }
+  .hover\:bg-project:hover { background-color: var(--project-color); }
+  .hover\:text-project:hover { color: var(--project-color); }
+  .shadow-project { box-shadow: 0 10px 40px -10px color-mix(in srgb, var(--project-color) 31%, transparent); }
+  @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  .animate-fade-in-up { animation: fadeInUp 0.6s ease-out forwards; }
+  .animate-float { animation: float 3s ease-in-out infinite; }
+</style>
+
+<div id="home" class="project-page project-numu pt-20" {{ if $isRTL }}dir="rtl"{{ end }}>
+
+  <!-- ========== Centered Hero with Floating Icons ========== -->
+  <section class="relative min-h-[80vh] flex items-center overflow-hidden">
+    <div class="absolute inset-0 project-gradient opacity-5"></div>
+    <!-- Floating habit icons -->
+    <div class="floating-icon absolute top-20 {{ if $isRTL }}right-[10%]{{ else }}left-[10%]{{ end }} text-5xl text-project opacity-10"><i class="fas fa-fire"></i></div>
+    <div class="floating-icon absolute top-40 {{ if $isRTL }}left-[15%]{{ else }}right-[15%]{{ end }} text-4xl text-project opacity-10"><i class="fas fa-check-circle"></i></div>
+    <div class="floating-icon absolute bottom-32 {{ if $isRTL }}right-[20%]{{ else }}left-[20%]{{ end }} text-6xl text-project opacity-10"><i class="fas fa-chart-bar"></i></div>
+    <div class="floating-icon absolute bottom-20 {{ if $isRTL }}left-[8%]{{ else }}right-[8%]{{ end }} text-4xl text-project opacity-10"><i class="fas fa-bell"></i></div>
+    
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-16">
+      <div class="max-w-3xl mx-auto text-center">
+        <div class="flex items-center gap-5 justify-center mb-8 animate-fade-in-up">
+          <div class="w-24 h-24 rounded-3xl project-gradient flex items-center justify-center text-white shadow-2xl shadow-project animate-float">
+            {{- if $project.iconClass -}}<i class="{{ $project.iconClass }} text-4xl"></i>{{- else -}}<span class="text-4xl font-bold">{{ substr $project.name 0 1 }}</span>{{- end -}}
+          </div>
+        </div>
+
+        <h1 class="text-4xl lg:text-5xl xl:text-6xl font-extrabold text-[#252525] tracking-tight mb-3 animate-fade-in-up">{{ $project.name }}</h1>
+        <p class="text-xl lg:text-2xl font-semibold text-project mb-4 animate-fade-in-up" style="animation-delay: 0.1s;">{{ $project.tagline }}</p>
+        
+        {{ with $project.status }}
+        <div class="mb-6 animate-fade-in-up" style="animation-delay: 0.15s;">
+          <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-project-light text-project font-semibold text-sm">
+            {{ if eq . "Coming Soon" }}<i class="fas fa-clock"></i>{{ else if eq . "Live" }}<i class="fas fa-circle text-green-500 text-xs"></i>{{ else if eq . "Ready to Deliver" }}<i class="fas fa-check-circle"></i>{{ end }}
+            {{ . }}
+          </span>
+        </div>
+        {{ end }}
+        
+        <h2 class="text-2xl lg:text-3xl xl:text-4xl font-bold text-[#252525] mb-6 leading-tight animate-fade-in-up" style="animation-delay: 0.2s;">{{ $project.hero.title }}</h2>
+        <p class="text-lg lg:text-xl text-[#545454] mb-8 max-w-xl mx-auto leading-relaxed animate-fade-in-up" style="animation-delay: 0.3s;">{{ $project.hero.subtitle }}</p>
+        
+        <div class="flex flex-wrap gap-4 justify-center animate-fade-in-up" style="animation-delay: 0.4s;">
+          <a href="{{ $project.hero.cta_primary_link | default "#contact" }}" class="bg-project text-white hover:shadow-project shadow-lg px-8 py-4 rounded-2xl font-bold transition-all duration-300 transform hover:-translate-y-1">
+            {{ $project.hero.cta_primary | default (i18n "project_get_started") }}
+          </a>
+          <a href="{{ $project.hero.cta_secondary_link | default "#features" }}" class="bg-white text-project border-2 border-project hover:bg-project-light px-8 py-4 rounded-2xl font-bold transition-all duration-300 transform hover:-translate-y-1">
+            {{ $project.hero.cta_secondary | default (i18n "project_learn_more") }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Gallery (before Features) ========== -->
+  {{ partial "project-gallery.html" $project }}
+
+  <!-- ========== Horizontal Scroll Feature Carousel ========== -->
+  {{ with $project.features }}
+  <section id="features" class="py-24 bg-gradient-to-b from-white to-gray-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <span class="inline-block px-4 py-2 rounded-full bg-project-light text-project font-semibold text-sm mb-4">{{ i18n "project_features_label" }}</span>
+        <h2 class="text-3xl lg:text-4xl font-bold text-[#252525]">{{ i18n "project_key_features" }}</h2>
+        <p class="text-lg text-[#545454] mt-4 max-w-2xl mx-auto">{{ i18n "project_features_subtitle" }} {{ $project.name }}</p>
+      </div>
+      
+      <div class="feature-carousel" {{ if $isRTL }}dir="rtl"{{ end }}>
+        {{ range . }}
+        <div class="carousel-card {{ if $isRTL }}text-right{{ end }}" data-gsap="elastic-bounce">
+          <div class="w-14 h-14 rounded-2xl project-gradient flex items-center justify-center mb-5 text-white text-xl {{ if $isRTL }}mr-auto{{ end }}">
+            <i class="{{ .icon }}"></i>
+          </div>
+          <h3 class="text-xl font-bold text-[#252525] mb-3">{{ .title }}</h3>
+          <p class="text-[#545454] leading-relaxed">{{ .description }}</p>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+  {{ end }}
+
+  <!-- ========== Testimonials ========== -->
+  {{ with $project.testimonials }}
+  <section class="py-24 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        {{ range . }}
+        <div class="bg-gray-50 rounded-3xl p-10 lg:p-14 relative">
+          <div class="absolute top-6 {{ if $isRTL }}right-8{{ else }}left-8{{ end }} text-6xl text-project opacity-20 font-serif">"</div>
+          <blockquote class="relative z-10">
+            <p class="text-xl lg:text-2xl text-[#545454] italic leading-relaxed mb-6 {{ if $isRTL }}text-right{{ end }}">{{ .quote }}</p>
+            <footer class="flex items-center gap-4 {{ if $isRTL }}flex-row-reverse{{ end }}">
+              <div class="w-12 h-12 rounded-full project-gradient flex items-center justify-center text-white font-bold">
+                {{ substr .author 0 1 }}
+              </div>
+              <div class="{{ if $isRTL }}text-right{{ end }}">
+                <div class="font-bold text-[#252525]">{{ .author }}</div>
+                <div class="text-sm text-[#868686]">{{ .role }}</div>
+              </div>
+            </footer>
+          </blockquote>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+  {{ end }}
+
+  <!-- ========== Gradient CTA ========== -->
+  <section id="contact" class="py-24">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="relative rounded-3xl overflow-hidden project-gradient p-12 lg:p-20 text-center text-white">
+        <div class="absolute inset-0 bg-black/10"></div>
+        <div class="absolute top-0 {{ if $isRTL }}left-0{{ else }}right-0{{ end }} w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 {{ if $isRTL }}right-0{{ else }}left-0{{ end }} w-64 h-64 bg-white/10 rounded-full blur-2xl"></div>
+        
+        <div class="relative z-10">
+          <h2 class="text-3xl lg:text-4xl xl:text-5xl font-bold mb-6">{{ i18n "project_cta_title" }}</h2>
+          <p class="text-xl lg:text-2xl mb-10 opacity-90 max-w-2xl mx-auto">{{ i18n "project_cta_subtitle" }} {{ $project.name }}</p>
+          
+          <div class="flex flex-wrap gap-4 justify-center">
+            <a href="{{ "/contact/" | relLangURL }}" class="bg-white text-project hover:bg-gray-100 px-8 py-4 rounded-2xl font-bold transition-all duration-300 transform hover:-translate-y-1">
+              {{ i18n "nav_contact" }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- Scripts -->
+{{- with resources.Get "js/performance.js" -}}
+<script src="{{ .Permalink }}" defer></script>
+{{- end -}}
+{{- with resources.Get "js/animations.js" -}}
+<script src="{{ .Permalink }}" defer></script>
+{{- end -}}
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js" defer></script>
+{{- with resources.Get "js/gsap-numu.js" -}}
+<script src="{{ .Permalink }}" defer></script>
+{{- end -}}
+
+{{ end }}

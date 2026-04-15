@@ -3,7 +3,7 @@ title: 'Numu'
 description: 'Build better habits and transform your daily routine with Numu - the beautiful habit tracking app.'
 date: 2024-01-02
 draft: false
-layout: branded
+layout: numu
 
 # Project Details
 project:
@@ -14,17 +14,36 @@ project:
   color: '#AF52DE'
   gradient: 'linear-gradient(135deg, #AF52DE 0%, #BF5AF2 100%)'
 
-  # Branded Page Fields
+  # Layout & Typography
+  layoutVariant: 'numu'
+  fontHeading: 'Quicksand'
+  fontBody: 'Nunito'
+  fontWeights: '400,500,600,700'
+  gsapAnimation: 'elastic-bounce'
+  appType: 'mobile'
+
+  # Navigation
   brandName: 'Numu'
   navItems:
     - label: 'Home'
-      url: '#home'
+      url: ''
+      i18nKey: 'project_nav_home'
     - label: 'Features'
-      url: '#features'
+      url: 'features/'
+      i18nKey: 'project_nav_features'
     - label: 'Download'
-      url: '#download'
-    - label: 'Contact'
-      url: '#contact'
+      url: 'demo/'
+      i18nKey: 'project_nav_download'
+    - label: 'Terms'
+      url: 'terms/'
+      i18nKey: 'project_nav_terms'
+  navMetaItems:
+    - label: 'Baseet'
+      url: '/'
+      i18nKey: 'project_nav_baseet'
+    - label: 'Contact Us'
+      url: '/contact/'
+      i18nKey: 'nav_contact'
   bgEffect: 'leaves'
   bgFallbackGradient: 'linear-gradient(180deg, #F0FFF4 0%, #C6F6D5 40%, #9AE6B4 100%)'
   status: 'Coming Soon'

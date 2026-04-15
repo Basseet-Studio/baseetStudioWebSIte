@@ -3,7 +3,7 @@ title: 'تشوب شوب'
 description: 'منصة تسوق B2C للبائعين لبيع منتجاتهم عبر الإنترنت والوصول إلى جمهور أوسع.'
 date: 2024-01-05
 draft: false
-layout: branded
+layout: chopshop
 
 # Project Details
 project:
@@ -28,17 +28,36 @@ project:
       version: 'Android 8+'
       link: '#'
 
-  # Branded Page Fields
+  # Layout & Typography
+  layoutVariant: 'chopshop'
+  fontHeading: 'Outfit'
+  fontBody: 'DM Sans'
+  fontWeights: '400,500,600,700'
+  gsapAnimation: 'slide-edges'
+  appType: 'web'
+
+  # Navigation
   brandName: 'تشوب شوب'
   navItems:
     - label: 'الرئيسية'
-      url: '#home'
-    - label: 'الميزات'
-      url: '#features'
+      url: ''
+      i18nKey: 'project_nav_home'
+    - label: 'المميزات'
+      url: 'features/'
+      i18nKey: 'project_nav_features'
     - label: 'عرض تجريبي'
-      url: '#demo'
-    - label: 'تواصل'
-      url: '#contact'
+      url: 'demo/'
+      i18nKey: 'project_nav_demo'
+    - label: 'الشروط'
+      url: 'terms/'
+      i18nKey: 'project_nav_terms'
+  navMetaItems:
+    - label: 'بصيرة'
+      url: '/'
+      i18nKey: 'project_nav_baseet'
+    - label: 'تواصل معنا'
+      url: '/contact/'
+      i18nKey: 'nav_contact'
   bgEffect: 'shopping'
   bgFallbackGradient: 'linear-gradient(180deg, #FFF1F2 0%, #FECDD3 40%, #FDA4AF 100%)'
 

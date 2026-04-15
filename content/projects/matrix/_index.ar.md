@@ -3,7 +3,7 @@ title: 'ماتريكس'
 description: 'أداة إدارة مهام للفرق — اكتب المستندات، أدر الاجتماعات، وأدر المشاريع في مكان واحد.'
 date: 2024-01-06
 draft: false
-layout: branded
+layout: matrix
 
 # Project Details
 project:
@@ -20,17 +20,36 @@ project:
       version: 'تطبيق ويب'
       link: '#'
 
-  # Branded Page Fields
+  # Layout & Typography
+  layoutVariant: 'matrix'
+  fontHeading: 'JetBrains Mono'
+  fontBody: 'IBM Plex Sans'
+  fontWeights: '400,500,700'
+  gsapAnimation: 'typewriter-glitch'
+  appType: 'web'
+
+  # Navigation
   brandName: 'ماتريكس'
   navItems:
     - label: 'الرئيسية'
-      url: '#home'
-    - label: 'الميزات'
-      url: '#features'
+      url: ''
+      i18nKey: 'project_nav_home'
+    - label: 'المميزات'
+      url: 'features/'
+      i18nKey: 'project_nav_features'
     - label: 'عرض تجريبي'
-      url: '#demo'
-    - label: 'تواصل'
-      url: '#contact'
+      url: 'demo/'
+      i18nKey: 'project_nav_demo'
+    - label: 'الشروط'
+      url: 'terms/'
+      i18nKey: 'project_nav_terms'
+  navMetaItems:
+    - label: 'بصيرة'
+      url: '/'
+      i18nKey: 'project_nav_baseet'
+    - label: 'تواصل معنا'
+      url: '/contact/'
+      i18nKey: 'nav_contact'
   bgEffect: 'grid'
   bgFallbackGradient: 'linear-gradient(180deg, #ECFEFF 0%, #CFFAFE 40%, #A5F3FC 100%)'
 

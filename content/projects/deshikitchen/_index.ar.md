@@ -3,7 +3,7 @@ title: 'مطبخ ديشي'
 description: 'منصة طلب مطعم حديثة ومتكاملة تتميز بتجربة ثلاثية الأبعاد مذهلة وطلبات فورية ولوحة تحكم شاملة للإدارة.'
 date: 2024-01-04
 draft: false
-layout: branded
+layout: deshikitchen
 
 # Project Details
 project:
@@ -15,17 +15,36 @@ project:
   color: '#F97316'
   gradient: 'linear-gradient(135deg, #F97316 0%, #FB923C 100%)'
 
-  # Branded Page Fields
+  # Layout & Typography
+  layoutVariant: 'deshikitchen'
+  fontHeading: 'Playfair Display'
+  fontBody: 'Source Sans 3'
+  fontWeights: '400,500,700'
+  gsapAnimation: 'parallax-masonry'
+  appType: 'web'
+
+  # Navigation
   brandName: 'Desi Kitchen'
   navItems:
     - label: 'الرئيسية'
-      url: '#home'
-    - label: 'الميزات'
-      url: '#features'
+      url: ''
+      i18nKey: 'project_nav_home'
+    - label: 'المميزات'
+      url: 'features/'
+      i18nKey: 'project_nav_features'
     - label: 'تجربة'
-      url: '#demo'
-    - label: 'تواصل'
-      url: '#contact'
+      url: 'demo/'
+      i18nKey: 'project_nav_demo'
+    - label: 'الشروط'
+      url: 'terms/'
+      i18nKey: 'project_nav_terms'
+  navMetaItems:
+    - label: 'بصيرة'
+      url: '/'
+      i18nKey: 'project_nav_baseet'
+    - label: 'تواصل معنا'
+      url: '/contact/'
+      i18nKey: 'nav_contact'
   bgEffect: 'kitchen'
   bgFallbackGradient: 'linear-gradient(180deg, #FFFBEB 0%, #FDE68A 40%, #FBBF24 100%)'
   status: 'متاح'

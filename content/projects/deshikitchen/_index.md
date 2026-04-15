@@ -3,7 +3,7 @@ title: 'DeshiKitchen'
 description: 'A modern, full-stack restaurant ordering platform featuring stunning 3D hero, real-time orders, and comprehensive admin dashboard.'
 date: 2024-01-04
 draft: false
-layout: branded
+layout: deshikitchen
 
 # Project Details
 project:
@@ -15,17 +15,36 @@ project:
   color: '#F97316'
   gradient: 'linear-gradient(135deg, #F97316 0%, #FB923C 100%)'
 
-  # Branded Page Fields
+  # Layout & Typography
+  layoutVariant: 'deshikitchen'
+  fontHeading: 'Playfair Display'
+  fontBody: 'Source Sans 3'
+  fontWeights: '400,500,700'
+  gsapAnimation: 'parallax-masonry'
+  appType: 'web'
+
+  # Navigation
   brandName: 'Desi Kitchen'
   navItems:
     - label: 'Home'
-      url: '#home'
+      url: ''
+      i18nKey: 'project_nav_home'
     - label: 'Features'
-      url: '#features'
+      url: 'features/'
+      i18nKey: 'project_nav_features'
     - label: 'Demo'
-      url: '#demo'
-    - label: 'Contact'
-      url: '#contact'
+      url: 'demo/'
+      i18nKey: 'project_nav_demo'
+    - label: 'Terms'
+      url: 'terms/'
+      i18nKey: 'project_nav_terms'
+  navMetaItems:
+    - label: 'Baseet'
+      url: '/'
+      i18nKey: 'project_nav_baseet'
+    - label: 'Contact Us'
+      url: '/contact/'
+      i18nKey: 'nav_contact'
   bgEffect: 'kitchen'
   bgFallbackGradient: 'linear-gradient(180deg, #FFFBEB 0%, #FDE68A 40%, #FBBF24 100%)'
   status: 'Live'

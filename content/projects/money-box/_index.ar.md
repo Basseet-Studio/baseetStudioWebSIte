@@ -3,7 +3,7 @@ title: 'صندوق المال'
 description: 'تحكم في مالياتك مع صندوق المال - تطبيق التوفير الذكي لأجهزة iOS و Android.'
 date: 2024-01-01
 draft: false
-layout: branded
+layout: moneybox
 
 # Project Details
 project:
@@ -14,17 +14,36 @@ project:
   color: '#34C759'
   gradient: 'linear-gradient(135deg, #34C759 0%, #30D158 100%)'
 
-  # Branded Page Fields
+  # Layout & Typography
+  layoutVariant: 'moneybox'
+  fontHeading: 'Space Grotesk'
+  fontBody: 'Inter'
+  fontWeights: '400,500,700'
+  gsapAnimation: 'stagger-flip'
+  appType: 'mobile'
+
+  # Navigation
   brandName: 'Money Box'
   navItems:
     - label: 'الرئيسية'
-      url: '#home'
-    - label: 'الميزات'
-      url: '#features'
+      url: ''
+      i18nKey: 'project_nav_home'
+    - label: 'المميزات'
+      url: 'features/'
+      i18nKey: 'project_nav_features'
     - label: 'تحميل'
-      url: '#download'
-    - label: 'تواصل'
-      url: '#contact'
+      url: 'demo/'
+      i18nKey: 'project_nav_download'
+    - label: 'الشروط'
+      url: 'terms/'
+      i18nKey: 'project_nav_terms'
+  navMetaItems:
+    - label: 'بصيرة'
+      url: '/'
+      i18nKey: 'project_nav_baseet'
+    - label: 'تواصل معنا'
+      url: '/contact/'
+      i18nKey: 'nav_contact'
   bgEffect: 'paper-notes'
   bgFallbackGradient: 'linear-gradient(180deg, #FFFFF0 0%, #FEFCBF 40%, #FAF089 100%)'
   status: 'قريباً'

@@ -1,0 +1,141 @@
+{{/* Project-specific app bar — used when project layouts override the "header" block */}}
+{{- $project := .Params.project -}}
+{{- $parentProject := "" -}}
+{{- if not $project -}}
+  {{- with .Parent -}}
+    {{- $project = .Params.project -}}
+    {{- $parentProject = "true" -}}
+  {{- end -}}
+{{- end -}}
+{{- $isRTL := eq .Site.Language.LanguageDirection "rtl" -}}
+{{- $activeNav := .Params.activeNav | default "" -}}
+{{- $projectBase := "" -}}
+{{- if $parentProject -}}
+  {{- $projectBase = .Parent.RelPermalink -}}
+{{- else -}}
+  {{- $projectBase = .RelPermalink -}}
+{{- end -}}
+
+<!-- Skip to content for keyboard users -->
+<a href="#mainContent" class="skip-to-content">{{ i18n "skip_to_content" }}</a>
+
+<header id="app-bar" class="app-bar project-app-bar" role="banner" dir="ltr"
+  style="--project-color: {{ $project.color | safeCSS }}; --project-gradient: {{ $project.gradient | safeCSS }};">
+  <div class="app-bar-container">
+    <!-- Project Logo -->
+    <a href="{{ $projectBase }}" class="app-bar-logo logo-premium" aria-label="{{ $project.brandName }}" style="color: var(--project-color);">
+      <span class="logo-text">{{ $project.brandName }}</span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="app-bar-nav" aria-label="Project navigation">
+      <ul class="nav-links">
+        {{- range $project.navItems -}}
+        {{- $navURL := (printf "%s%s" $projectBase .url) -}}
+        {{- $isActive := false -}}
+        {{- if and (eq .url "") (not $activeNav) -}}
+          {{- $isActive = true -}}
+        {{- else if and $activeNav (eq .url (printf "%s/" $activeNav)) -}}
+          {{- $isActive = true -}}
+        {{- end -}}
+        <li>
+          <a href="{{ $navURL }}" class="nav-link-premium{{ if $isActive }} active{{ end }}">
+            {{- if .i18nKey }}{{ i18n .i18nKey }}{{ else }}{{ .label }}{{ end -}}
+          </a>
+        </li>
+        {{- end -}}
+
+        {{/* Meta items: Baseet + Contact Us */}}
+        <li class="nav-separator"></li>
+        {{- range $project.navMetaItems -}}
+        <li>
+          <a href="{{ .url | relLangURL }}" class="nav-link-premium nav-meta-link">
+            {{- if .i18nKey }}{{ i18n .i18nKey }}{{ else }}{{ .label }}{{ end -}}
+          </a>
+        </li>
+        {{- end -}}
+      </ul>
+
+      <!-- Language Switcher (Desktop) -->
+      {{ partial "language-switcher.html" $ }}
+    </nav>
+
+    <!-- Mobile Controls -->
+    <div class="mobile-controls">
+      <!-- Mobile Language Switcher -->
+      <div class="mobile-language-switcher">
+        {{ range $.Site.Home.AllTranslations }}
+        <a href="{{ .RelPermalink }}"
+           class="mobile-lang-btn {{ if eq $.Site.Language.Lang .Language.Lang }}active{{ end }}"
+           lang="{{ .Language.Lang }}"
+           title="{{ .Language.LanguageName }}">
+          {{ if eq .Language.Lang "ar" }}ع{{ else }}EN{{ end }}
+        </a>
+        {{ end }}
+      </div>
+
+      <!-- Mobile Menu Toggle -->
+      <button class="project-mobile-toggle" id="project-mobile-toggle" aria-label="{{ i18n "aria_toggle_menu" }}" aria-expanded="false">
+        <span class="hamburger-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Menu Sidebar -->
+<div id="project-mobile-backdrop" class="mobile-menu-backdrop"></div>
+<nav id="project-mobile-menu" class="mobile-menu" aria-label="Project mobile navigation" aria-hidden="true" dir="ltr">
+  <ul class="mobile-nav-links">
+    {{- range $project.navItems -}}
+    {{- $navURL := (printf "%s%s" $projectBase .url) -}}
+    <li>
+      <a href="{{ $navURL }}" class="mobile-nav-link">
+        {{- if .i18nKey }}{{ i18n .i18nKey }}{{ else }}{{ .label }}{{ end -}}
+      </a>
+    </li>
+    {{- end -}}
+    <li class="mobile-nav-divider"></li>
+    {{- range $project.navMetaItems -}}
+    <li>
+      <a href="{{ .url | relLangURL }}" class="mobile-nav-link">
+        {{- if .i18nKey }}{{ i18n .i18nKey }}{{ else }}{{ .label }}{{ end -}}
+      </a>
+    </li>
+    {{- end -}}
+  </ul>
+</nav>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var toggle = document.getElementById('project-mobile-toggle');
+  var menu = document.getElementById('project-mobile-menu');
+  var backdrop = document.getElementById('project-mobile-backdrop');
+  if (!toggle || !menu || !backdrop) return;
+
+  function openMenu() {
+    menu.classList.add('open');
+    backdrop.classList.add('open');
+    toggle.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('mobile-menu-open');
+  }
+  function closeMenu() {
+    menu.classList.remove('open');
+    backdrop.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('mobile-menu-open');
+  }
+
+  toggle.addEventListener('click', function(e) {
+    e.preventDefault();
+    menu.classList.contains('open') ? closeMenu() : openMenu();
+  });
+  backdrop.addEventListener('click', closeMenu);
+  menu.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', closeMenu);
+  });
+});
+</script>

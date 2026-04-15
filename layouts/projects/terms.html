@@ -1,0 +1,108 @@
+{{ define "header" }}{{ partial "project-header.html" . }}{{ end }}
+{{ define "main" }}
+{{- $project := "" -}}
+{{- with .Parent -}}
+  {{- $project = .Params.project -}}
+{{- end -}}
+{{- $isRTL := eq .Site.Language.LanguageDirection "rtl" -}}
+
+{{- if not $project -}}
+<div class="container mx-auto px-4 py-24 text-center">
+  <p class="text-lg text-gray-500">{{ i18n "project_terms_page_title" }}</p>
+</div>
+{{- else -}}
+
+<!-- Load project-specific Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+{{- $variant := $project.layoutVariant -}}
+{{- if eq $variant "moneybox" -}}
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+{{- else if eq $variant "numu" -}}
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&family=Nunito:wght@400;500&display=swap" rel="stylesheet">
+{{- else if eq $variant "matrix" -}}
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+{{- else if eq $variant "chopshop" -}}
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+{{- else if eq $variant "deshikitchen" -}}
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Sans+3:wght@400;500&display=swap" rel="stylesheet">
+{{- end -}}
+
+<!-- Load project CSS -->
+{{- with resources.Get (printf "css/project-%s.css" $variant) -}}
+  {{- if hugo.IsProduction -}}
+    {{- with . | minify | fingerprint -}}
+      <link rel="stylesheet" href="{{ .RelPermalink }}" />
+    {{- end -}}
+  {{- else -}}
+    <link rel="stylesheet" href="{{ .RelPermalink }}" />
+  {{- end -}}
+{{- end -}}
+
+<style>
+  :root {
+    --project-color: {{ $project.color | safeCSS }};
+    --project-gradient: {{ $project.gradient | safeCSS }};
+  }
+  .project-gradient { background: var(--project-gradient); }
+  .text-project { color: var(--project-color); }
+  .bg-project { background-color: var(--project-color); }
+  .bg-project-light { background-color: color-mix(in srgb, var(--project-color) 8%, transparent); }
+  .border-project { border-color: var(--project-color); }
+</style>
+
+{{- $isDark := eq $variant "matrix" -}}
+
+<div class="project-page project-{{ $variant }} pt-20 min-h-screen {{ if $isDark }}bg-[#0f172a]{{ end }}" {{ if $isRTL }}dir="rtl"{{ end }}>
+
+  <!-- Page Header -->
+  <section class="py-16 {{ if $isDark }}bg-[#0f172a]{{ else }}bg-gradient-to-b from-gray-50 to-white{{ end }}">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="inline-block px-4 py-2 rounded-full {{ if $isDark }}bg-[#0891b2]/10 text-[#22d3ee] border border-[#0891b2]/20{{ else }}bg-project-light text-project{{ end }} font-semibold text-sm mb-4">{{ i18n "project_terms_page_title" }}</span>
+      <h1 class="text-3xl lg:text-4xl xl:text-5xl font-bold {{ if $isDark }}text-[#f1f5f9]{{ else }}text-[#252525]{{ end }} mb-4">{{ i18n "project_terms_page_title" }}</h1>
+      <p class="text-lg {{ if $isDark }}text-[#94a3b8]{{ else }}text-[#545454]{{ end }} max-w-2xl mx-auto">{{ $project.name }}</p>
+    </div>
+  </section>
+
+  <!-- Terms Sections -->
+  <section class="py-16 {{ if $isDark }}bg-[#0f172a]{{ end }}">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+
+      {{- $sections := slice
+        "project_terms_intro"
+        "project_terms_usage"
+        "project_terms_privacy"
+        "project_terms_data"
+        "project_terms_rights"
+        "project_terms_liability"
+        "project_terms_contact"
+      -}}
+
+      {{ range $i, $key := $sections }}
+      <div class="mb-12 {{ if $isDark }}bg-[#1e293b] border-[#334155]{{ else }}bg-white border-gray-100{{ end }} rounded-2xl p-8 shadow-sm border">
+        <div class="flex items-center gap-4 mb-6 {{ if $isRTL }}flex-row-reverse text-right{{ end }}">
+          <span class="flex-shrink-0 w-10 h-10 rounded-xl {{ if $isDark }}bg-gradient-to-br from-[#0891b2] to-[#22d3ee]{{ else }}project-gradient{{ end }} flex items-center justify-center text-white font-bold text-sm">{{ add $i 1 }}</span>
+          <h2 class="text-xl lg:text-2xl font-bold {{ if $isDark }}text-[#f1f5f9]{{ else }}text-[#252525]{{ end }}">{{ i18n $key }}</h2>
+        </div>
+        <div class="rounded-xl border-2 border-dashed {{ if $isDark }}border-[#334155] bg-[#0f172a]/50{{ else }}border-gray-200 bg-gray-50/50{{ end }} p-6 {{ if $isRTL }}text-right{{ end }}">
+          <p class="{{ if $isDark }}text-[#64748b]{{ else }}text-gray-400{{ end }} italic">{{ i18n "project_terms_placeholder" }}</p>
+        </div>
+      </div>
+      {{ end }}
+
+    </div>
+  </section>
+
+  <!-- Back to Project -->
+  <section class="py-16 {{ if $isDark }}bg-[#020617]{{ else }}bg-gray-50{{ end }}">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <a href="{{ .Parent.RelPermalink }}" class="inline-flex items-center gap-2 {{ if $isDark }}text-[#22d3ee] hover:text-[#67e8f9]{{ else }}text-project hover:opacity-80{{ end }} font-semibold text-lg transition-colors no-underline">
+        {{ if $isRTL }}<i class="fas fa-arrow-right"></i>{{ else }}<i class="fas fa-arrow-left"></i>{{ end }}
+        {{ i18n "project_back_to" }} {{ $project.name }}
+      </a>
+    </div>
+  </section>
+
+</div>
+{{- end -}}
+{{ end }}

@@ -15,7 +15,9 @@ module.exports = [
       globals: {
         ...globals.browser,
         ...globals.es2021,
-        THREE: "readonly"
+        THREE: "readonly",
+        gsap: "readonly",
+        ScrollTrigger: "readonly"
       }
     },
     rules: {

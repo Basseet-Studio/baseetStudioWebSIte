@@ -3,7 +3,7 @@ title: 'نُمُوّ'
 description: 'ابنِ عادات أفضل وحوّل روتينك اليومي مع نُمُوّ - تطبيق تتبع العادات الجميل.'
 date: 2024-01-02
 draft: false
-layout: branded
+layout: numu
 
 # Project Details
 project:
@@ -14,17 +14,36 @@ project:
   color: '#AF52DE'
   gradient: 'linear-gradient(135deg, #AF52DE 0%, #BF5AF2 100%)'
 
-  # Branded Page Fields
+  # Layout & Typography
+  layoutVariant: 'numu'
+  fontHeading: 'Quicksand'
+  fontBody: 'Nunito'
+  fontWeights: '400,500,600,700'
+  gsapAnimation: 'elastic-bounce'
+  appType: 'mobile'
+
+  # Navigation
   brandName: 'Numu'
   navItems:
     - label: 'الرئيسية'
-      url: '#home'
-    - label: 'الميزات'
-      url: '#features'
+      url: ''
+      i18nKey: 'project_nav_home'
+    - label: 'المميزات'
+      url: 'features/'
+      i18nKey: 'project_nav_features'
     - label: 'تحميل'
-      url: '#download'
-    - label: 'تواصل'
-      url: '#contact'
+      url: 'demo/'
+      i18nKey: 'project_nav_download'
+    - label: 'الشروط'
+      url: 'terms/'
+      i18nKey: 'project_nav_terms'
+  navMetaItems:
+    - label: 'بصيرة'
+      url: '/'
+      i18nKey: 'project_nav_baseet'
+    - label: 'تواصل معنا'
+      url: '/contact/'
+      i18nKey: 'nav_contact'
   bgEffect: 'leaves'
   bgFallbackGradient: 'linear-gradient(180deg, #F0FFF4 0%, #C6F6D5 40%, #9AE6B4 100%)'
   status: 'قريباً'

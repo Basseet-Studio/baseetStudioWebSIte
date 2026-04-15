@@ -1,0 +1,122 @@
+/* Chopshop — Outfit + DM Sans */
+
+.project-page.project-chopshop {
+  --font-heading: 'Outfit', system-ui, sans-serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+}
+
+.project-page.project-chopshop h1,
+.project-page.project-chopshop h2,
+.project-page.project-chopshop h3,
+.project-page.project-chopshop h4 {
+  font-family: var(--font-heading);
+}
+
+.project-page.project-chopshop p,
+.project-page.project-chopshop li,
+.project-page.project-chopshop span,
+.project-page.project-chopshop a {
+  font-family: var(--font-body);
+}
+
+/* Alternating Feature Rows */
+.feature-row {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  padding: 3rem 0;
+}
+
+.feature-row:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+[dir='rtl'] .feature-row:nth-child(even) {
+  flex-direction: row;
+}
+
+[dir='rtl'] .feature-row:nth-child(odd) {
+  flex-direction: row-reverse;
+}
+
+.feature-row-content {
+  flex: 1;
+}
+
+.feature-row-visual {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.feature-row-icon {
+  width: 120px;
+  height: 120px;
+  border-radius: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  color: white;
+  background: var(--project-gradient);
+}
+
+/* How It Works Steps */
+.steps-flow {
+  display: flex;
+  gap: 2rem;
+  position: relative;
+}
+
+.steps-flow::before {
+  content: '';
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  right: 2rem;
+  height: 2px;
+  background: linear-gradient(90deg, var(--project-color), transparent);
+}
+
+[dir='rtl'] .steps-flow::before {
+  background: linear-gradient(270deg, var(--project-color), transparent);
+}
+
+.step-card {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.step-number {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background: var(--project-gradient);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin: 0 auto 1rem;
+}
+
+@media (max-width: 768px) {
+  .feature-row,
+  .feature-row:nth-child(even) {
+    flex-direction: column;
+  }
+  [dir='rtl'] .feature-row,
+  [dir='rtl'] .feature-row:nth-child(even),
+  [dir='rtl'] .feature-row:nth-child(odd) {
+    flex-direction: column;
+  }
+  .steps-flow {
+    flex-direction: column;
+  }
+  .steps-flow::before {
+    display: none;
+  }
+}

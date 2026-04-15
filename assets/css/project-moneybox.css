@@ -1,0 +1,90 @@
+/* Money Box — Space Grotesk + Inter */
+/* Fonts loaded via <link> in layout template */
+
+.project-page.project-moneybox {
+  --font-heading: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}
+
+.project-page.project-moneybox h1,
+.project-page.project-moneybox h2,
+.project-page.project-moneybox h3,
+.project-page.project-moneybox h4 {
+  font-family: var(--font-heading);
+}
+
+.project-page.project-moneybox p,
+.project-page.project-moneybox li,
+.project-page.project-moneybox span,
+.project-page.project-moneybox a {
+  font-family: var(--font-body);
+}
+
+/* Bento Grid Layout */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.bento-grid .bento-card:nth-child(1) {
+  grid-column: span 2;
+}
+
+.bento-grid .bento-card:nth-child(4) {
+  grid-column: span 2;
+}
+
+.bento-card {
+  padding: 2rem;
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(52, 199, 89, 0.12);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.bento-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px -8px rgba(52, 199, 89, 0.15);
+}
+
+/* FAQ Accordion */
+.faq-item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.faq-question {
+  cursor: pointer;
+  padding: 1.25rem 0;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.faq-item.open .faq-answer {
+  max-height: 500px;
+}
+
+.faq-item.open .faq-chevron {
+  transform: rotate(180deg);
+}
+
+@media (max-width: 768px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+  }
+  .bento-grid .bento-card:nth-child(1),
+  .bento-grid .bento-card:nth-child(4) {
+    grid-column: span 1;
+  }
+}

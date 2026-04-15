@@ -3,7 +3,7 @@ title: 'Money Box'
 description: 'Take control of your finances with Money Box - the smart savings app for iOS and Android.'
 date: 2024-01-01
 draft: false
-layout: branded
+layout: moneybox
 
 # Project Details
 project:
@@ -14,17 +14,36 @@ project:
   color: '#34C759'
   gradient: 'linear-gradient(135deg, #34C759 0%, #30D158 100%)'
 
-  # Branded Page Fields
+  # Layout & Typography
+  layoutVariant: 'moneybox'
+  fontHeading: 'Space Grotesk'
+  fontBody: 'Inter'
+  fontWeights: '400,500,700'
+  gsapAnimation: 'stagger-flip'
+  appType: 'mobile'
+
+  # Navigation
   brandName: 'Money Box'
   navItems:
     - label: 'Home'
-      url: '#home'
+      url: ''
+      i18nKey: 'project_nav_home'
     - label: 'Features'
-      url: '#features'
+      url: 'features/'
+      i18nKey: 'project_nav_features'
     - label: 'Download'
-      url: '#download'
-    - label: 'Contact'
-      url: '#contact'
+      url: 'demo/'
+      i18nKey: 'project_nav_download'
+    - label: 'Terms'
+      url: 'terms/'
+      i18nKey: 'project_nav_terms'
+  navMetaItems:
+    - label: 'Baseet'
+      url: '/'
+      i18nKey: 'project_nav_baseet'
+    - label: 'Contact Us'
+      url: '/contact/'
+      i18nKey: 'nav_contact'
   bgEffect: 'paper-notes'
   bgFallbackGradient: 'linear-gradient(180deg, #FFFFF0 0%, #FEFCBF 40%, #FAF089 100%)'
   status: 'Coming Soon'

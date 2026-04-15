@@ -499,7 +499,193 @@
    Accessibility
    ============================================ */
 
-*:focus-visible {
+/* ============================================
+   Project-Specific App Bar
+   ============================================ */
+
+.project-app-bar {
+  background-color: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.project-app-bar .app-bar-logo.logo-premium .logo-text {
+  color: var(--project-color, #496bc1);
+  font-weight: 800;
+}
+
+.project-app-bar .app-bar-logo.logo-premium:hover .logo-text {
+  opacity: 0.8;
+}
+
+/* Project nav links */
+.project-app-bar .nav-link-premium {
+  color: #171d1c;
+  font-weight: 500;
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 300ms ease;
+}
+
+.project-app-bar .nav-link-premium:hover,
+.project-app-bar .nav-link-premium:focus {
+  color: var(--project-color, #496bc1);
+}
+
+/* Active link underline in project color */
+.project-app-bar .nav-link-premium.active {
+  color: var(--project-color, #496bc1);
+  font-weight: 600;
+}
+
+.project-app-bar .nav-link-premium.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--project-gradient, var(--project-color));
+  border-radius: 2px;
+}
+
+/* Meta links (Baseet, Contact) — slightly muted */
+.project-app-bar .nav-meta-link {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.project-app-bar .nav-meta-link:hover {
+  color: var(--project-color, #496bc1);
+}
+
+/* Nav separator between project nav and meta items */
+.project-app-bar .nav-separator {
+  width: 1px;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.1);
+  margin: 0 0.25rem;
+}
+
+/* Mobile menu project color accents */
+.project-app-bar ~ .mobile-menu .mobile-nav-link:hover,
+.project-app-bar ~ .mobile-menu .mobile-nav-link:focus {
+  color: var(--project-color, #496bc1);
+  background-color: color-mix(in srgb, var(--project-color, #496bc1) 10%, transparent);
+}
+
+/* Mobile divider */
+.mobile-nav-divider {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.08);
+  margin: 0.5rem 0;
+  list-style: none;
+}
+
+/* Mobile hamburger project color on hover */
+.project-mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: #171d1c;
+  transition: color 300ms ease;
+  -webkit-tap-highlight-color: transparent;
+  min-width: 44px;
+  min-height: 44px;
+  z-index: 201;
+  pointer-events: auto;
+  touch-action: manipulation;
+}
+
+.project-mobile-toggle:hover {
+  color: var(--project-color, #496bc1);
+}
+
+.project-mobile-toggle .hamburger-icon {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 24px;
+  pointer-events: none;
+}
+
+.project-mobile-toggle .hamburger-icon span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #171d1c;
+  transition: background-color 300ms ease, transform 300ms ease, opacity 300ms ease;
+}
+
+.project-mobile-toggle:hover .hamburger-icon span {
+  background-color: var(--project-color, #496bc1);
+}
+
+.project-mobile-toggle[aria-expanded='true'] .hamburger-icon span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.project-mobile-toggle[aria-expanded='true'] .hamburger-icon span:nth-child(2) {
+  opacity: 0;
+}
+
+.project-mobile-toggle[aria-expanded='true'] .hamburger-icon span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile lang btn project color */
+.project-app-bar .mobile-lang-btn.active {
+  background: var(--project-color, #496bc1);
+  color: white;
+}
+
+.project-app-bar .mobile-lang-btn {
+  background: color-mix(in srgb, var(--project-color, #496bc1) 10%, transparent);
+  color: var(--project-color, #496bc1);
+}
+
+/* Desktop language switcher project color */
+.project-app-bar .lang-toggle {
+  background: color-mix(in srgb, var(--project-color, #496bc1) 8%, transparent);
+  color: var(--project-color, #496bc1);
+}
+
+.project-app-bar .lang-toggle:hover {
+  background: color-mix(in srgb, var(--project-color, #496bc1) 15%, transparent);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--project-color, #496bc1) 15%, transparent);
+}
+
+.project-app-bar .lang-option.active {
+  background: var(--project-gradient, var(--project-color));
+  color: white;
+}
+
+.project-app-bar .lang-option:hover {
+  color: var(--project-color, #496bc1);
+}
+
+.project-app-bar .lang-option:hover::before {
+  background: var(--project-color, #496bc1);
+}
+
+/* Focus ring in project color */
+.project-app-bar *:focus-visible {
+  outline-color: var(--project-color, #496bc1);
+}
+
+@media (max-width: 768px) {
+  .project-mobile-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* ============================================
+   Accessibility
+   ============================================ */
   outline: 2px solid #496bc1;
   outline-offset: 2px;
 }

@@ -3,7 +3,7 @@ title: 'ChopShop'
 description: 'A B2C shopping platform for vendors to sell their products online and reach a wider audience.'
 date: 2024-01-05
 draft: false
-layout: branded
+layout: chopshop
 
 # Project Details
 project:
@@ -28,17 +28,36 @@ project:
       version: 'Android 8+'
       link: '#'
 
-  # Branded Page Fields
+  # Layout & Typography
+  layoutVariant: 'chopshop'
+  fontHeading: 'Outfit'
+  fontBody: 'DM Sans'
+  fontWeights: '400,500,600,700'
+  gsapAnimation: 'slide-edges'
+  appType: 'web'
+
+  # Navigation
   brandName: 'ChopShop'
   navItems:
     - label: 'Home'
-      url: '#home'
+      url: ''
+      i18nKey: 'project_nav_home'
     - label: 'Features'
-      url: '#features'
+      url: 'features/'
+      i18nKey: 'project_nav_features'
     - label: 'Demo'
-      url: '#demo'
-    - label: 'Contact'
-      url: '#contact'
+      url: 'demo/'
+      i18nKey: 'project_nav_demo'
+    - label: 'Terms'
+      url: 'terms/'
+      i18nKey: 'project_nav_terms'
+  navMetaItems:
+    - label: 'Baseet'
+      url: '/'
+      i18nKey: 'project_nav_baseet'
+    - label: 'Contact Us'
+      url: '/contact/'
+      i18nKey: 'nav_contact'
   bgEffect: 'shopping'
   bgFallbackGradient: 'linear-gradient(180deg, #FFF1F2 0%, #FECDD3 40%, #FDA4AF 100%)'
 

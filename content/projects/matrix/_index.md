@@ -3,7 +3,7 @@ title: 'Matrix'
 description: 'A task management tool for teams — take docs, run meetings, and manage projects all in one place.'
 date: 2024-01-06
 draft: false
-layout: branded
+layout: matrix
 
 # Project Details
 project:
@@ -20,17 +20,36 @@ project:
       version: 'Web App'
       link: '#'
 
-  # Branded Page Fields
+  # Layout & Typography
+  layoutVariant: 'matrix'
+  fontHeading: 'JetBrains Mono'
+  fontBody: 'IBM Plex Sans'
+  fontWeights: '400,500,700'
+  gsapAnimation: 'typewriter-glitch'
+  appType: 'web'
+
+  # Navigation
   brandName: 'Matrix'
   navItems:
     - label: 'Home'
-      url: '#home'
+      url: ''
+      i18nKey: 'project_nav_home'
     - label: 'Features'
-      url: '#features'
+      url: 'features/'
+      i18nKey: 'project_nav_features'
     - label: 'Demo'
-      url: '#demo'
-    - label: 'Contact'
-      url: '#contact'
+      url: 'demo/'
+      i18nKey: 'project_nav_demo'
+    - label: 'Terms'
+      url: 'terms/'
+      i18nKey: 'project_nav_terms'
+  navMetaItems:
+    - label: 'Baseet'
+      url: '/'
+      i18nKey: 'project_nav_baseet'
+    - label: 'Contact Us'
+      url: '/contact/'
+      i18nKey: 'nav_contact'
   bgEffect: 'grid'
   bgFallbackGradient: 'linear-gradient(180deg, #ECFEFF 0%, #CFFAFE 40%, #A5F3FC 100%)'
 

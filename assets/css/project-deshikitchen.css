@@ -1,0 +1,110 @@
+/* Deshi Kitchen — Playfair Display + Source Sans 3 */
+
+.project-page.project-deshikitchen {
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Source Sans 3', system-ui, sans-serif;
+  --warm-bg: #fffbeb;
+}
+
+.project-page.project-deshikitchen h1,
+.project-page.project-deshikitchen h2,
+.project-page.project-deshikitchen h3,
+.project-page.project-deshikitchen h4 {
+  font-family: var(--font-heading);
+}
+
+.project-page.project-deshikitchen p,
+.project-page.project-deshikitchen li,
+.project-page.project-deshikitchen span,
+.project-page.project-deshikitchen a {
+  font-family: var(--font-body);
+}
+
+/* Masonry Grid */
+.masonry-grid {
+  columns: 3;
+  column-gap: 1.5rem;
+}
+
+.masonry-card {
+  break-inside: avoid;
+  margin-bottom: 1.5rem;
+  padding: 2rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(249, 115, 22, 0.1);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.masonry-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px -6px rgba(249, 115, 22, 0.15);
+}
+
+/* Warm Gradient Helpers */
+.warm-gradient-bg {
+  background: linear-gradient(135deg, #fffbeb 0%, #fde68a 50%, #fed7aa 100%);
+}
+
+.warm-gradient-text {
+  background: linear-gradient(135deg, #f97316, #fb923c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Social Proof Ticker */
+.social-ticker {
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 1rem 0;
+}
+
+.ticker-track {
+  display: inline-flex;
+  gap: 2rem;
+  animation: ticker-scroll 30s linear infinite;
+}
+
+@keyframes ticker-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+[dir='rtl'] @keyframes ticker-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(50%);
+  }
+}
+
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 2rem;
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .masonry-grid {
+    columns: 1;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .masonry-grid {
+    columns: 2;
+  }
+}

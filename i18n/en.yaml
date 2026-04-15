@@ -256,6 +256,7 @@ projects_view_project: "View Project"
 # Project Detail Page
 # -----------------------------------------------------------------------------
 project_back_to_projects: "Back to Projects"
+project_back_to: "Back to"
 project_features_label: "Features"
 project_key_features: "Key Features"
 project_features_subtitle: "Everything you need to get the most out of"
@@ -504,3 +505,51 @@ contact_wa_name: "Name"
 contact_wa_contact: "Contact"
 contact_wa_project: "Project Type"
 contact_wa_message: "Message"
+
+# -----------------------------------------------------------------------------
+# Project Navigation (Section Pages)
+# -----------------------------------------------------------------------------
+project_nav_home: "Home"
+project_nav_features: "Features"
+project_nav_download: "Download"
+project_nav_demo: "Demo"
+project_nav_terms: "Terms"
+project_nav_baseet: "Baseet"
+
+# -----------------------------------------------------------------------------
+# Project Features Page
+# -----------------------------------------------------------------------------
+project_features_page_title: "Features"
+project_features_empty: "Features coming soon"
+
+# -----------------------------------------------------------------------------
+# Project Demo Page
+# -----------------------------------------------------------------------------
+project_demo_page_title: "Demo"
+project_demo_download_title: "Download"
+project_demo_coming_soon: "Demo Coming Soon"
+project_demo_coming_soon_text: "We're working hard to bring you an amazing demo experience. Stay tuned!"
+project_demo_try_live: "Try Live Demo"
+
+# -----------------------------------------------------------------------------
+# Project Terms Page
+# -----------------------------------------------------------------------------
+project_terms_page_title: "Terms & Conditions"
+project_terms_intro: "Introduction"
+project_terms_usage: "Terms of Use"
+project_terms_privacy: "Privacy Policy"
+project_terms_data: "Data Collection & Usage"
+project_terms_rights: "User Rights"
+project_terms_liability: "Limitations of Liability"
+project_terms_contact: "Contact Information"
+project_terms_placeholder: "Content will be added here."
+
+# -----------------------------------------------------------------------------
+# Footer — Visitor Detection
+# -----------------------------------------------------------------------------
+footer_visiting_from: "Visiting from"
+footer_device: "Device"
+footer_device_mobile: "Mobile"
+footer_device_tablet: "Tablet"
+footer_device_desktop: "Desktop"
+footer_unknown: "Unknown"
