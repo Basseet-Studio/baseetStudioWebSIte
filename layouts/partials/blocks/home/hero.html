@@ -1,9 +1,10 @@
 {{ $data := . }}
-<section id="hero" class="relative overflow-hidden bg-surface pt-32 pb-16 lg:pt-48 lg:pb-32" {{ if eq site.Language.LanguageDirection "rtl" }}dir="rtl"{{ end }}>
+<section id="hero" class="relative overflow-hidden bg-surface pt-32 pb-16 lg:pt-48 lg:pb-32" {{ if eq
+  site.Language.LanguageDirection "rtl" }}dir="rtl" {{ end }}>
   <div class="container mx-auto px-4">
     <div class="flex flex-wrap items-center -mx-4">
       <div class="w-full lg:w-1/2 px-4 mb-12 lg:mb-0">
-        <div class="max-w-lg {{ if eq site.Language.LanguageDirection "rtl" }}lg:mr-auto{{ else }}lg:ml-0{{ end }}">
+        <div class="max-w-lg {{ if eq site.Language.LanguageDirection " rtl" }}lg:mr-auto{{ else }}lg:ml-0{{ end }}">
           <h1 class="hero-title-premium text-4xl lg:text-6xl font-bold text-stroke mb-6 leading-tight">
             {{ i18n "hero_title" | markdownify }}
           </h1>
@@ -33,11 +34,12 @@
           {{ end }}
           {{ end }}
           <!-- Decorative elements -->
-          <div
-            class="absolute -top-10 {{ if eq site.Language.LanguageDirection "rtl" }}-left-10{{ else }}-right-10{{ end }} w-40 h-40 bg-tertiary rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob">
+          <div class="absolute -top-10 {{ if eq site.Language.LanguageDirection " rtl" }}-left-10{{ else }}-right-10{{
+            end }} w-40 h-40 bg-tertiary rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob">
           </div>
-          <div
-            class="absolute -bottom-10 {{ if eq site.Language.LanguageDirection "rtl" }}-right-10{{ else }}-left-10{{ end }} w-40 h-40 bg-primary rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000">
+          <div class="absolute -bottom-10 {{ if eq site.Language.LanguageDirection " rtl" }}-right-10{{ else
+            }}-left-10{{ end }} w-40 h-40 bg-primary rounded-full mix-blend-multiply filter blur-xl opacity-70
+            animate-blob animation-delay-2000">
           </div>
         </div>
       </div>
@@ -45,12 +47,12 @@
 
     <!-- Hero Items -->
     {{ if $data.items }}
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-20">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-20 justify-center max-w-4xl mx-auto">
       {{/* Hero cards use i18n keys */}}
-      {{ $heroCards := slice 
-        (dict "icon" "fas fa-laptop-code" "color" "#496BC1" "titleKey" "hero_card_1_title" "textKey" "hero_card_1_text")
-        (dict "icon" "fas fa-mobile-alt" "color" "#FBCD37" "titleKey" "hero_card_2_title" "textKey" "hero_card_2_text")
-        (dict "icon" "fas fa-paint-brush" "color" "#496BC1" "titleKey" "hero_card_3_title" "textKey" "hero_card_3_text")
+      {{ $heroCards := slice
+      (dict "icon" "fas fa-laptop-code" "color" "#496BC1" "titleKey" "hero_card_1_title" "textKey" "hero_card_1_text")
+      (dict "icon" "fas fa-mobile-alt" "color" "#FBCD37" "titleKey" "hero_card_2_title" "textKey" "hero_card_2_text")
+      (dict "icon" "fas fa-paint-brush" "color" "#496BC1" "titleKey" "hero_card_3_title" "textKey" "hero_card_3_text")
       }}
       {{ range $index, $item := $heroCards }}
       <div class="hero-service-card" style="--card-color: {{ $item.color }}; animation-delay: {{ mul $index 0.1 }}s;">

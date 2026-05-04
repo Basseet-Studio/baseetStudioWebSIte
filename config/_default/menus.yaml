@@ -13,7 +13,7 @@ main:
 
   - name: 'About'
   - name: 'Contact Us'
-    url: '/#subscribe'
+    url: '/contact/'
     weight: 6
 
 footer:
@@ -34,4 +34,4 @@ footer:
     weight: 4
 
   - name: 'Contact'
-    url: '/#subscribe'
+    url: '/contact/'

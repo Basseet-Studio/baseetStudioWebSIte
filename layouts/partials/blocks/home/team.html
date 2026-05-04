@@ -27,11 +27,13 @@
         "asadur-rahman.png" "social" (dict "github" "#" "linkedin" "#" "twitter" "#"))
         (dict "nameKey" "team_member_3_name" "roleKey" "team_member_3_role" "bioKey" "team_member_3_bio" "image"
         "ariyan-rehman.jpg" "isAriyan" true "social" (dict "github" "#" "linkedin" "#" "twitter" "#"))
+        (dict "nameKey" "team_member_4_name" "roleKey" "team_member_4_role" "bioKey" "team_member_4_bio" "image"
+        "dibakar-sutradhar.JPG" "social" (dict "github" "#" "linkedin" "#" "twitter" "#"))
         }}
-        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 justify-items-center max-w-5xl mx-auto">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 justify-items-center max-w-6xl mx-auto">
             {{- range $index, $member := $teamMembers -}}
             {{ $memberName := i18n $member.nameKey }}
-            <div class="group team-card-premium w-full max-w-sm scroll-animate-scale"
+            <div class="group team-card-premium w-full scroll-animate-scale"
                 style="animation-delay: {{ mul $index 0.15 }}s;">
                 <!-- Image Container -->
                 <div

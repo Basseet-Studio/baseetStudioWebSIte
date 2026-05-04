@@ -30,3 +30,12 @@ members:
       github: '#'
       linkedin: '#'
       twitter: '#'
+
+  - name: 'Dibakar Sutradhar'
+    role: 'Backend Engineer / API Architect'
+    bio: 'Backend engineer specializing in API architecture and scalable server solutions for web and mobile applications.'
+    image: 'dibakar-sutradhar.JPG'
+    social:
+      github: '#'
+      linkedin: '#'
+      twitter: '#'

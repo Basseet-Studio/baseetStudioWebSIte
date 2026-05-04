@@ -5,551 +5,557 @@
 # -----------------------------------------------------------------------------
 # Site Meta
 # -----------------------------------------------------------------------------
-site_title: "استوديو بسيط"
-site_description: "شريكك الموثوق في الابتكار الرقمي، نصنع حلول ويب وتطبيقات استثنائية."
-logo_text: "استوديو بسيط"
-skip_to_content: "الانتقال إلى المحتوى الرئيسي"
-scroll_down: "استكشف"
+site_title: 'استوديو بسيط'
+site_description: 'شريكك الموثوق في الابتكار الرقمي، نصنع حلول ويب وتطبيقات استثنائية.'
+logo_text: 'استوديو بسيط'
+skip_to_content: 'الانتقال إلى المحتوى الرئيسي'
+scroll_down: 'استكشف'
 
 # -----------------------------------------------------------------------------
 # Navigation
 # -----------------------------------------------------------------------------
-nav_home: "الرئيسية"
-nav_services: "الخدمات"
-nav_about: "من نحن"
-nav_clients: "العملاء"
-nav_contact: "تواصل معنا"
+nav_home: 'الرئيسية'
+nav_services: 'الخدمات'
+nav_about: 'من نحن'
+nav_clients: 'العملاء'
+nav_contact: 'تواصل معنا'
 
 # -----------------------------------------------------------------------------
 # Hero Section
 # -----------------------------------------------------------------------------
-hero_title: "تحويل الأفكار إلى **تميز رقمي**"
-hero_text: "استوديو بسيط هو وكالة تقنية رائدة متخصصة في حلول الويب والتطبيقات المبتكرة. نقدم تطبيقات ومواقع متطورة تدفع نمو الأعمال وتتجاوز التوقعات."
-hero_btn_contact: "تواصل معنا"
-hero_btn_services: "خدماتنا"
+hero_title: 'تحويل الأفكار إلى **تميز رقمي**'
+hero_text: 'استوديو بسيط هو وكالة تقنية رائدة متخصصة في حلول الويب والتطبيقات المبتكرة. نقدم تطبيقات ومواقع متطورة تدفع نمو الأعمال وتتجاوز التوقعات.'
+hero_btn_contact: 'تواصل معنا'
+hero_btn_services: 'خدماتنا'
 
 # Hero Cards
-hero_card_1_title: "تطوير الويب"
-hero_card_1_text: "مواقع حديثة ومتجاوبة مبنية بأحدث التقنيات"
-hero_card_2_title: "تطبيقات الجوال"
-hero_card_2_text: "تطبيقات iOS و Android أصلية يحبها المستخدمون"
-hero_card_3_title: "تصميم UI/UX"
-hero_card_3_text: "واجهات جميلة وبديهية تعزز تجربة المستخدم"
+hero_card_1_title: 'تطوير الويب'
+hero_card_1_text: 'مواقع حديثة ومتجاوبة مبنية بأحدث التقنيات'
+hero_card_2_title: 'تطبيقات الجوال'
+hero_card_2_text: 'تطبيقات iOS و Android أصلية يحبها المستخدمون'
+hero_card_3_title: 'تصميم UI/UX'
+hero_card_3_text: 'واجهات جميلة وبديهية تعزز تجربة المستخدم'
 
 # -----------------------------------------------------------------------------
 # Features Section
 # -----------------------------------------------------------------------------
 features_title: '<span class="gradient-heading">حلول رقمية شاملة</span> لأعمالك'
-features_text: "في استوديو بسيط، نجمع بين الإبداع والخبرة التقنية لتقديم نتائج متميزة تدفع أعمالك للأمام."
+features_text: 'في استوديو بسيط، نجمع بين الإبداع والخبرة التقنية لتقديم نتائج متميزة تدفع أعمالك للأمام.'
 
 # Feature 1 - Web Development
-feature_1_pretitle: "تطوير مخصص"
-feature_1_pretext: "حلول مصممة خصيصاً"
-feature_1_title: "تطوير ويب **متكامل**"
-feature_1_text: "نصنع تطبيقات ويب قوية وقابلة للتوسع باستخدام أطر عمل حديثة وأفضل الممارسات. من منصات التجارة الإلكترونية إلى حلول المؤسسات، نبني تجارب رقمية تعمل بسلاسة على جميع الأجهزة."
+feature_1_pretitle: 'تطوير مخصص'
+feature_1_pretext: 'حلول مصممة خصيصاً'
+feature_1_title: 'تطوير ويب **متكامل**'
+feature_1_text: 'نصنع تطبيقات ويب قوية وقابلة للتوسع باستخدام أطر عمل حديثة وأفضل الممارسات. من منصات التجارة الإلكترونية إلى حلول المؤسسات، نبني تجارب رقمية تعمل بسلاسة على جميع الأجهزة.'
 
 # Feature 2 - Mobile Apps
-feature_2_pretitle: "أصلي ومتعدد المنصات"
-feature_2_pretext: "الجوال أولاً"
-feature_2_title: "تطوير **تطبيقات الجوال**"
-feature_2_text: "حوّل أفكارك إلى تجارب جوال جذابة. نطور تطبيقات iOS و Android عالية الأداء بواجهات بديهية ووظائف سلسة تجعل المستخدمين يعودون."
+feature_2_pretitle: 'أصلي ومتعدد المنصات'
+feature_2_pretext: 'الجوال أولاً'
+feature_2_title: 'تطوير **تطبيقات الجوال**'
+feature_2_text: 'حوّل أفكارك إلى تجارب جوال جذابة. نطور تطبيقات iOS و Android عالية الأداء بواجهات بديهية ووظائف سلسة تجعل المستخدمين يعودون.'
 
 # Feature 3 - Digital Transformation
-feature_3_pretitle: "الابتكار والاستراتيجية"
-feature_3_pretext: "خدمة شاملة"
-feature_3_title: "استشارات **التحول الرقمي**"
-feature_3_text: "تعاون معنا لتحديث عمليات أعمالك. نقدم استشارات استراتيجية، تصميم UI/UX، حلول سحابية، ودعم مستمر لضمان نجاحك الرقمي في سوق تنافسي."
+feature_3_pretitle: 'الابتكار والاستراتيجية'
+feature_3_pretext: 'خدمة شاملة'
+feature_3_title: 'استشارات **التحول الرقمي**'
+feature_3_text: 'تعاون معنا لتحديث عمليات أعمالك. نقدم استشارات استراتيجية، تصميم UI/UX، حلول سحابية، ودعم مستمر لضمان نجاحك الرقمي في سوق تنافسي.'
 
 # -----------------------------------------------------------------------------
 # Projects Section
 # -----------------------------------------------------------------------------
 projects_title: '<span class="gradient-heading">منتجاتنا</span>'
-projects_subtitle: "تطبيقات داخلية مصنوعة بحب"
-projects_text: "نطبق ما نعظ به. هذه منتجاتنا الخاصة، مصنوعة بنفس الشغف والاهتمام بالتفاصيل الذي نجلبه لكل مشروع عميل."
-projects_prev: "المشاريع السابقة"
-projects_next: "المشاريع التالية"
-projects_features: "الميزات الرئيسية"
-projects_available_on: "متوفر على"
+projects_subtitle: 'تطبيقات داخلية مصنوعة بحب'
+projects_text: 'نطبق ما نعظ به. هذه منتجاتنا الخاصة، مصنوعة بنفس الشغف والاهتمام بالتفاصيل الذي نجلبه لكل مشروع عميل.'
+projects_prev: 'المشاريع السابقة'
+projects_next: 'المشاريع التالية'
+projects_features: 'الميزات الرئيسية'
+projects_available_on: 'متوفر على'
 
 # Project - Money Box
-project_moneybox_name: "صندوق المال"
-project_moneybox_tagline: "توفير ذكي بسهولة"
-project_moneybox_description: "تحكم في أموالك مع صندوق المال. تتبع أهداف التوفير، راقب عادات الإنفاق، وشاهد أموالك تنمو مع تطبيقنا البديهي لإدارة الأموال لـ iOS و Android."
-project_moneybox_status: "قريباً"
-project_moneybox_feature_1: "أهداف توفير ذكية"
-project_moneybox_feature_2: "تتبع النفقات"
-project_moneybox_feature_3: "رسوم بيانية للتقدم"
-project_moneybox_feature_4: "تذكيرات يومية"
+project_moneybox_name: 'صندوق المال'
+project_moneybox_tagline: 'توفير ذكي بسهولة'
+project_moneybox_description: 'تحكم في أموالك مع صندوق المال. تتبع أهداف التوفير، راقب عادات الإنفاق، وشاهد أموالك تنمو مع تطبيقنا البديهي لإدارة الأموال لـ iOS و Android.'
+project_moneybox_status: 'قريباً'
+project_moneybox_feature_1: 'أهداف توفير ذكية'
+project_moneybox_feature_2: 'تتبع النفقات'
+project_moneybox_feature_3: 'رسوم بيانية للتقدم'
+project_moneybox_feature_4: 'تذكيرات يومية'
 
 # Project - Numu
-project_numu_name: "نُمُو"
-project_numu_tagline: "ابنِ عادات أفضل"
-project_numu_description: "حوّل روتينك اليومي مع نُمُو. تطبيقنا الجميل لتتبع العادات يساعدك على بناء عادات إيجابية، كسر السيئة منها، وتصبح أفضل نسخة من نفسك."
-project_numu_status: "قريباً"
-project_numu_feature_1: "سلاسل العادات"
-project_numu_feature_2: "تسجيل يومي"
-project_numu_feature_3: "تحليلات التقدم"
-project_numu_feature_4: "تذكيرات مخصصة"
+project_numu_name: 'نُمُو'
+project_numu_tagline: 'ابنِ عادات أفضل'
+project_numu_description: 'حوّل روتينك اليومي مع نُمُو. تطبيقنا الجميل لتتبع العادات يساعدك على بناء عادات إيجابية، كسر السيئة منها، وتصبح أفضل نسخة من نفسك.'
+project_numu_status: 'قريباً'
+project_numu_feature_1: 'سلاسل العادات'
+project_numu_feature_2: 'تسجيل يومي'
+project_numu_feature_3: 'تحليلات التقدم'
+project_numu_feature_4: 'تذكيرات مخصصة'
 
 # Project - PhotoRestore AI
-project_photorestore_name: "استعادة الصور بالذكاء الاصطناعي"
-project_photorestore_tagline: "استعد الصور القديمة بالذكاء الاصطناعي"
-project_photorestore_description: "أعد الحياة لصورك القديمة أو التالفة أو الباهتة باستخدام تقنية الذكاء الاصطناعي المتقدمة. استعادة بجودة احترافية في ثوانٍ مع معالجة آمنة وتجربة حديثة."
-project_photorestore_status: "متاح"
-project_photorestore_feature_1: "استعادة صور بالذكاء الاصطناعي"
-project_photorestore_feature_2: "معالجة سريعة للغاية"
-project_photorestore_feature_3: "نتائج بجودة احترافية"
-project_photorestore_feature_4: "آمن وخاص (حذف تلقائي)"
-project_photorestore_feature_5: "دفع Stripe و SSLCommerz"
-project_photorestore_feature_6: "واجهة حديثة متجاوبة"
+project_photorestore_name: 'استعادة الصور بالذكاء الاصطناعي'
+project_photorestore_tagline: 'استعد الصور القديمة بالذكاء الاصطناعي'
+project_photorestore_description: 'أعد الحياة لصورك القديمة أو التالفة أو الباهتة باستخدام تقنية الذكاء الاصطناعي المتقدمة. استعادة بجودة احترافية في ثوانٍ مع معالجة آمنة وتجربة حديثة.'
+project_photorestore_status: 'متاح'
+project_photorestore_feature_1: 'استعادة صور بالذكاء الاصطناعي'
+project_photorestore_feature_2: 'معالجة سريعة للغاية'
+project_photorestore_feature_3: 'نتائج بجودة احترافية'
+project_photorestore_feature_4: 'آمن وخاص (حذف تلقائي)'
+project_photorestore_feature_5: 'دفع Stripe و SSLCommerz'
+project_photorestore_feature_6: 'واجهة حديثة متجاوبة'
 
 # Project - Medical Education App (MAI)
-project_mai_name: "تطبيق التعليم الطبي (MAI)"
-project_mai_tagline: "منصة تعليم طبي بالذكاء الاصطناعي"
-project_mai_description: "منصة تعليم طبي شاملة مدعومة بالذكاء الاصطناعي للأطباء المقيمين، تجمع دعم القرار السريري وإدارة الحالات والتصوير والدوائيات والجولات والتعلم المخصص مع بيانات وهمية واقعية."
-project_mai_status: "نموذج أولي MVP"
-project_mai_feature_1: "دعم القرار السريري"
-project_mai_feature_2: "تحليل التصوير الطبي"
-project_mai_feature_3: "سير عمل الجولات السريرية"
-project_mai_feature_4: "مركز تعلم مخصص"
-project_mai_feature_5: "تحليلات وتتبع التقدم"
+project_mai_name: 'تطبيق التعليم الطبي (MAI)'
+project_mai_tagline: 'منصة تعليم طبي بالذكاء الاصطناعي'
+project_mai_description: 'منصة تعليم طبي شاملة مدعومة بالذكاء الاصطناعي للأطباء المقيمين، تجمع دعم القرار السريري وإدارة الحالات والتصوير والدوائيات والجولات والتعلم المخصص مع بيانات وهمية واقعية.'
+project_mai_status: 'نموذج أولي MVP'
+project_mai_feature_1: 'دعم القرار السريري'
+project_mai_feature_2: 'تحليل التصوير الطبي'
+project_mai_feature_3: 'سير عمل الجولات السريرية'
+project_mai_feature_4: 'مركز تعلم مخصص'
+project_mai_feature_5: 'تحليلات وتتبع التقدم'
 
 # Project - NSS Virtual Education Fair
-project_nss_name: "معرض NSS التعليمي الافتراضي"
-project_nss_tagline: "منصة معرض افتراضية حديثة للطلاب"
-project_nss_description: "معرض تعليمي افتراضي تفاعلي بالكامل مبني بـ React و Next.js. مكتمل بتصميم UI/UX مخصص، تخطيطات متجاوبة، تكاملات خلفية، وتجربة مستخدم سلسة مصممة للأحداث التعليمية الكبيرة."
-project_nss_status: "مكتمل"
-project_nss_feature_1: "واجهة React + Next.js تفاعلية"
-project_nss_feature_2: "تصميم رسومات متجهة مخصصة"
-project_nss_feature_3: "تصميم UI/UX متجاوب"
-project_nss_feature_4: "تكامل بيانات الأحداث"
-project_nss_feature_5: "نظام معرض افتراضي كامل"
-project_nss_feature_6: "دعم الأحداث الكبيرة"
+project_nss_name: 'معرض NSS التعليمي الافتراضي'
+project_nss_tagline: 'منصة معرض افتراضية حديثة للطلاب'
+project_nss_description: 'معرض تعليمي افتراضي تفاعلي بالكامل مبني بـ React و Next.js. مكتمل بتصميم UI/UX مخصص، تخطيطات متجاوبة، تكاملات خلفية، وتجربة مستخدم سلسة مصممة للأحداث التعليمية الكبيرة.'
+project_nss_status: 'مكتمل'
+project_nss_feature_1: 'واجهة React + Next.js تفاعلية'
+project_nss_feature_2: 'تصميم رسومات متجهة مخصصة'
+project_nss_feature_3: 'تصميم UI/UX متجاوب'
+project_nss_feature_4: 'تكامل بيانات الأحداث'
+project_nss_feature_5: 'نظام معرض افتراضي كامل'
+project_nss_feature_6: 'دعم الأحداث الكبيرة'
 
 # Project - BD Railway
-project_bdrailway_name: "نظام جدول سكك حديد بنغلاديش"
-project_bdrailway_tagline: "نظام جدولة قطارات آلي في الوقت الفعلي"
-project_bdrailway_description: "نظام جدول رقمي على مستوى حكومي لسكك حديد بنغلاديش. مبني لتحويل بيانات القطارات الخام إلى جداول منظمة، تشغيل لوحات عرض المحطات، وأتمتة التحديثات في الوقت الفعلي عبر الشبكة."
-project_bdrailway_status: "سري"
-project_bdrailway_feature_1: "تنظيف البيانات وتنسيق JSON في الوقت الفعلي"
-project_bdrailway_feature_2: "نظام CRUD خلفي للجداول"
-project_bdrailway_feature_3: "REST API للوحات العرض"
-project_bdrailway_feature_4: "منطق ES6 لحسابات الجداول"
-project_bdrailway_feature_5: "واجهة عرض أمامية"
-project_bdrailway_feature_6: "رقمنة السكك الحديدية الرسمية"
+project_bdrailway_name: 'نظام جدول سكك حديد بنغلاديش'
+project_bdrailway_tagline: 'نظام جدولة قطارات آلي في الوقت الفعلي'
+project_bdrailway_description: 'نظام جدول رقمي على مستوى حكومي لسكك حديد بنغلاديش. مبني لتحويل بيانات القطارات الخام إلى جداول منظمة، تشغيل لوحات عرض المحطات، وأتمتة التحديثات في الوقت الفعلي عبر الشبكة.'
+project_bdrailway_status: 'سري'
+project_bdrailway_feature_1: 'تنظيف البيانات وتنسيق JSON في الوقت الفعلي'
+project_bdrailway_feature_2: 'نظام CRUD خلفي للجداول'
+project_bdrailway_feature_3: 'REST API للوحات العرض'
+project_bdrailway_feature_4: 'منطق ES6 لحسابات الجداول'
+project_bdrailway_feature_5: 'واجهة عرض أمامية'
+project_bdrailway_feature_6: 'رقمنة السكك الحديدية الرسمية'
 
 # Project - Malaysian Websites
-project_malaysian_name: "مواقع شركات ماليزية"
-project_malaysian_tagline: "مواقع شركات سريعة ومتجاوبة صفحة واحدة"
-project_malaysian_description: "مجموعة من ثلاثة مواقع شركات حديثة صفحة واحدة مبنية لشركات ماليزية في صناعات خدمة التكييف، العزل المائي، والأسطح الصلبة. مصممة برسوم متحركة سلسة، تخطيطات نظيفة، وأداء أمامي محسّن."
-project_malaysian_status: "مكتمل"
-project_malaysian_feature_1: "تخطيطات UI متجاوبة"
-project_malaysian_feature_2: "تصميم صفحة واحدة سريع التحميل"
-project_malaysian_feature_3: "رسوم JavaScript و jQuery متحركة"
-project_malaysian_feature_4: "تخطيط نظيف واحترافي"
-project_malaysian_feature_5: "محسّن للجوال وسطح المكتب"
-project_malaysian_feature_6: "قوالب متعددة الصناعات"
+project_malaysian_name: 'مواقع شركات ماليزية'
+project_malaysian_tagline: 'مواقع شركات سريعة ومتجاوبة صفحة واحدة'
+project_malaysian_description: 'مجموعة من ثلاثة مواقع شركات حديثة صفحة واحدة مبنية لشركات ماليزية في صناعات خدمة التكييف، العزل المائي، والأسطح الصلبة. مصممة برسوم متحركة سلسة، تخطيطات نظيفة، وأداء أمامي محسّن.'
+project_malaysian_status: 'مكتمل'
+project_malaysian_feature_1: 'تخطيطات UI متجاوبة'
+project_malaysian_feature_2: 'تصميم صفحة واحدة سريع التحميل'
+project_malaysian_feature_3: 'رسوم JavaScript و jQuery متحركة'
+project_malaysian_feature_4: 'تخطيط نظيف واحترافي'
+project_malaysian_feature_5: 'محسّن للجوال وسطح المكتب'
+project_malaysian_feature_6: 'قوالب متعددة الصناعات'
 
 # Project - DeshiKitchen
-project_deshikitchen_name: "ديشي كيتشن"
-project_deshikitchen_tagline: "منصة المطبخ البنغالي الأصيل"
-project_deshikitchen_description: "منصة طلب مطاعم حديثة متكاملة مع hero ثلاثي الأبعاد مذهل، إدارة طلبات في الوقت الفعلي، عناصر إثبات اجتماعي، دفع Stripe، ولوحة تحكم إدارية شاملة."
-project_deshikitchen_status: "متاح"
-project_deshikitchen_feature_1: "Hero ثلاثي الأبعاد بـ React Three Fiber"
-project_deshikitchen_feature_2: "تتبع الطلبات في الوقت الفعلي"
-project_deshikitchen_feature_3: "إشعارات إثبات اجتماعي مباشرة"
-project_deshikitchen_feature_4: "دفع Stripe (Apple/Google Pay)"
-project_deshikitchen_feature_5: "لوحة تحكم إدارية شاملة"
-project_deshikitchen_feature_6: "Firebase Auth + Firestore"
+project_deshikitchen_name: 'ديشي كيتشن'
+project_deshikitchen_tagline: 'منصة المطبخ البنغالي الأصيل'
+project_deshikitchen_description: 'منصة طلب مطاعم حديثة متكاملة مع hero ثلاثي الأبعاد مذهل، إدارة طلبات في الوقت الفعلي، عناصر إثبات اجتماعي، دفع Stripe، ولوحة تحكم إدارية شاملة.'
+project_deshikitchen_status: 'متاح'
+project_deshikitchen_feature_1: 'Hero ثلاثي الأبعاد بـ React Three Fiber'
+project_deshikitchen_feature_2: 'تتبع الطلبات في الوقت الفعلي'
+project_deshikitchen_feature_3: 'إشعارات إثبات اجتماعي مباشرة'
+project_deshikitchen_feature_4: 'دفع Stripe (Apple/Google Pay)'
+project_deshikitchen_feature_5: 'لوحة تحكم إدارية شاملة'
+project_deshikitchen_feature_6: 'Firebase Auth + Firestore'
 
 # Platform names
-platform_ios: "iOS"
-platform_android: "أندرويد"
-platform_web: "الويب"
-platform_confidential: "سري"
-platform_desktop: "سطح المكتب"
+platform_ios: 'iOS'
+platform_android: 'أندرويد'
+platform_web: 'الويب'
+platform_confidential: 'سري'
+platform_desktop: 'سطح المكتب'
 
 # -----------------------------------------------------------------------------
 # Team Section
 # -----------------------------------------------------------------------------
-team_title: "تعرف على فريقنا الخبير"
-team_subtitle: "المطورون الموهوبون وراء نجاحك الرقمي"
+team_title: 'تعرف على فريقنا الخبير'
+team_subtitle: 'المطورون الموهوبون وراء نجاحك الرقمي'
 
 # Team Members
-team_member_1_name: "محمد عبدالله"
-team_member_1_role: "المؤسس / قائد المنتج / مدير المشاريع / مهندس أول"
-team_member_1_bio: "مؤسس وقائد منتج يجمع بين الخبرة الهندسية العميقة واستراتيجية المنتج لتشكيل منتجات برمجية عالية الجودة."
+team_member_1_name: 'محمد عبدالله'
+team_member_1_role: 'المؤسس / قائد المنتج / مدير المشاريع / مهندس أول'
+team_member_1_bio: 'مؤسس وقائد منتج يجمع بين الخبرة الهندسية العميقة واستراتيجية المنتج لتشكيل منتجات برمجية عالية الجودة.'
 
-team_member_2_name: "أسد الرحمن"
-team_member_2_role: "قائد تقني / مهندس أنظمة"
-team_member_2_bio: "قائد تقني ومهندس أنظمة يركز على تصميم أنظمة موزعة قابلة للتوسع وبنية تحتية سحابية قوية."
+team_member_2_name: 'أسد الرحمن'
+team_member_2_role: 'قائد تقني / مهندس أنظمة'
+team_member_2_bio: 'قائد تقني ومهندس أنظمة يركز على تصميم أنظمة موزعة قابلة للتوسع وبنية تحتية سحابية قوية.'
 
-team_member_3_name: "أريان رحمان"
-team_member_3_role: "مهندس تجربة المنتج والتوثيق"
-team_member_3_bio: "يضمن تميز تجربة المنتج والتوثيق من خلال التركيز على UX، وثائق المطورين، وسير العمل المدفوع بالمحتوى."
+team_member_3_name: 'أريان رحمان'
+team_member_3_role: 'مهندس تجربة المنتج والتوثيق'
+team_member_3_bio: 'يضمن تميز تجربة المنتج والتوثيق من خلال التركيز على UX، وثائق المطورين، وسير العمل المدفوع بالمحتوى.'
+
+team_member_4_name: 'ديباكار سوترادهار'
+team_member_4_role: 'مهندس_backend / مهندس_api'
+team_member_4_bio: 'مهندس backend متخصص في تصميم واجهات برمجة التطبيقات والحلول الخادم القابلة للتطوير لتطبيقات الويب والهواتف المحمولة.'
 
 # -----------------------------------------------------------------------------
 # Highlights Section
 # -----------------------------------------------------------------------------
-highlight_1_title: "لماذا تختار استوديو بسيط؟"
-highlight_1_text: "نحن أكثر من مجرد مطورين - نحن شركاؤك التقنيون. مع سجل حافل في تقديم حلول رقمية عالية الجودة، نجمع بين التفكير الابتكاري والتميز التقني لتحقيق رؤيتك."
-highlight_1_btn: "ابدأ الآن"
+highlight_1_title: 'لماذا تختار استوديو بسيط؟'
+highlight_1_text: 'نحن أكثر من مجرد مطورين - نحن شركاؤك التقنيون. مع سجل حافل في تقديم حلول رقمية عالية الجودة، نجمع بين التفكير الابتكاري والتميز التقني لتحقيق رؤيتك.'
+highlight_1_btn: 'ابدأ الآن'
 
-highlight_2_title: "نهج قائم على النتائج"
-highlight_2_text: "من المفهوم الأولي إلى النشر النهائي، نركز على تقديم نتائج قابلة للقياس. منهجيتنا الرشيقة تضمن الشفافية والمرونة والتسليم في الوقت المحدد مع الحفاظ على أعلى معايير الجودة."
-highlight_2_btn: "اعرف المزيد"
+highlight_2_title: 'نهج قائم على النتائج'
+highlight_2_text: 'من المفهوم الأولي إلى النشر النهائي، نركز على تقديم نتائج قابلة للقياس. منهجيتنا الرشيقة تضمن الشفافية والمرونة والتسليم في الوقت المحدد مع الحفاظ على أعلى معايير الجودة.'
+highlight_2_btn: 'اعرف المزيد'
 
 # -----------------------------------------------------------------------------
 # Clients Section
 # -----------------------------------------------------------------------------
-clients_title: "موثوق من قبل العلامات التجارية الرائدة"
+clients_title: 'موثوق من قبل العلامات التجارية الرائدة'
 
 # -----------------------------------------------------------------------------
 # Subscribe / Contact Section
 # -----------------------------------------------------------------------------
-subscribe_title: "هل أنت مستعد لبدء مشروعك؟"
-subscribe_placeholder: "أدخل بريدك الإلكتروني"
-subscribe_btn: "تواصل معنا"
-subscribe_success: "شكراً لك! تم إرسال رسالتك بنجاح. سنتواصل معك قريباً."
-subscribe_error: "عذراً! حدث خطأ ما. يرجى المحاولة مرة أخرى."
+subscribe_title: 'هل أنت مستعد لبدء مشروعك؟'
+subscribe_subtitle: 'دعنا نساعدك في تحويل رؤيتك إلى واقع. تواصل معنا لمناقشة متطلبات مشروعك.'
+subscribe_cta: 'تواصل معنا'
+subscribe_placeholder: 'أدخل بريدك الإلكتروني'
+subscribe_btn: 'تواصل معنا'
+subscribe_success: 'شكراً لك! تم إرسال رسالتك بنجاح. سنتواصل معك قريباً.'
+subscribe_error: 'عذراً! حدث خطأ ما. يرجى المحاولة مرة أخرى.'
 
 # -----------------------------------------------------------------------------
 # Footer
 # -----------------------------------------------------------------------------
-footer_form_title: "تواصل معنا"
-footer_form_text: "مهتم بالعمل معنا؟ اترك بريدك الإلكتروني أو رقم هاتفك وسنتواصل معك."
-footer_contact_placeholder: "البريد الإلكتروني أو رقم الهاتف"
-footer_contact_btn: "إرسال"
-footer_need_more: "تحتاج لمشاركة المزيد من التفاصيل؟"
-footer_full_contact: "استخدم نموذج التواصل الكامل"
-footer_contact_title: "التواصل"
-footer_copyright: "حقوق الطبع والنشر © 2025 استوديو بسيط. جميع الحقوق محفوظة"
+footer_form_title: 'تواصل معنا'
+footer_form_text: 'مهتم بالعمل معنا؟ اترك بريدك الإلكتروني أو رقم هاتفك وسنتواصل معك.'
+footer_contact_placeholder: 'البريد الإلكتروني أو رقم الهاتف'
+footer_contact_btn: 'إرسال'
+footer_need_more: 'تحتاج لمشاركة المزيد من التفاصيل؟'
+footer_full_contact: 'استخدم نموذج التواصل الكامل'
+footer_contact_title: 'التواصل'
+footer_copyright: 'حقوق الطبع والنشر © 2025 استوديو بسيط. جميع الحقوق محفوظة'
 
 # Social Media
-social_facebook: "فيسبوك"
-social_twitter: "تويتر"
-social_instagram: "إنستغرام"
-social_linkedin: "لينكد إن"
+social_facebook: 'فيسبوك'
+social_twitter: 'تويتر'
+social_instagram: 'إنستغرام'
+social_linkedin: 'لينكد إن'
 
 # -----------------------------------------------------------------------------
 # Language Switcher
 # -----------------------------------------------------------------------------
-language_switcher_label: "اللغة"
-language_english: "English"
-language_arabic: "العربية"
+language_switcher_label: 'اللغة'
+language_english: 'English'
+language_arabic: 'العربية'
 
 # -----------------------------------------------------------------------------
 # Accessibility
 # -----------------------------------------------------------------------------
-aria_toggle_menu: "تبديل قائمة التنقل"
-aria_home_link: "الصفحة الرئيسية لاستوديو بسيط"
+aria_toggle_menu: 'تبديل قائمة التنقل'
+aria_home_link: 'الصفحة الرئيسية لاستوديو بسيط'
 
 # -----------------------------------------------------------------------------
 # Projects List Page
 # -----------------------------------------------------------------------------
-projects_page_title: "مشاريعنا"
-projects_page_description: "استكشف تطبيقاتنا الداخلية المبنية بشغف وخبرة."
-projects_back_home: "العودة للرئيسية"
-projects_view_project: "عرض المشروع"
+projects_page_title: 'مشاريعنا'
+projects_page_description: 'استكشف تطبيقاتنا الداخلية المبنية بشغف وخبرة.'
+projects_back_home: 'العودة للرئيسية'
+projects_view_project: 'عرض المشروع'
 
 # -----------------------------------------------------------------------------
 # Project Detail Page
 # -----------------------------------------------------------------------------
-project_back_to_projects: "العودة للمشاريع"
-project_back_to: "العودة إلى"
-project_features_label: "الميزات"
-project_key_features: "الميزات الرئيسية"
-project_features_subtitle: "كل ما تحتاجه للاستفادة القصوى من"
-project_faq_label: "الأسئلة الشائعة"
-project_faq_title: "الأسئلة المتكررة"
-project_cta_title: "هل أنت مستعد للبدء؟"
-project_cta_subtitle: "جربه اليوم وشاهد الفرق."
-project_get_started: "ابدأ الآن"
-project_learn_more: "اعرف المزيد"
-project_get_early_access: "احصل على وصول مبكر"
-project_coming_soon: "قريباً"
-project_live: "متاح"
-project_completed: "مكتمل"
-project_confidential: "سري"
+project_back_to_projects: 'العودة للمشاريع'
+project_back_to: 'العودة إلى'
+project_features_label: 'الميزات'
+project_key_features: 'الميزات الرئيسية'
+project_features_subtitle: 'كل ما تحتاجه للاستفادة القصوى من'
+project_faq_label: 'الأسئلة الشائعة'
+project_faq_title: 'الأسئلة المتكررة'
+project_cta_title: 'هل أنت مستعد للبدء؟'
+project_cta_subtitle: 'جربه اليوم وشاهد الفرق.'
+project_get_started: 'ابدأ الآن'
+project_learn_more: 'اعرف المزيد'
+project_get_early_access: 'احصل على وصول مبكر'
+project_coming_soon: 'قريباً'
+project_live: 'متاح'
+project_completed: 'مكتمل'
+project_confidential: 'سري'
 
 # -----------------------------------------------------------------------------
 # Project Gallery
 # -----------------------------------------------------------------------------
-project_screenshots_label: "لقطات الشاشة"
-project_app_preview: "معاينة التطبيق"
-project_preview_subtitle: "ألقِ نظرة على"
-project_view_full_size: "عرض بالحجم الكامل"
-project_prev_screenshots: "الصور السابقة"
-project_next_screenshots: "الصور التالية"
+project_screenshots_label: 'لقطات الشاشة'
+project_app_preview: 'معاينة التطبيق'
+project_preview_subtitle: 'ألقِ نظرة على'
+project_view_full_size: 'عرض بالحجم الكامل'
+project_prev_screenshots: 'الصور السابقة'
+project_next_screenshots: 'الصور التالية'
 # -----------------------------------------------------------------------------
 # Services Page
 # -----------------------------------------------------------------------------
-services_hero_badge: "ما نقدمه"
-services_hero_title: "**خدمات رقمية** شاملة"
-services_hero_text: "لا نبني مواقع فحسب. نصنع أنظمة رقمية متكاملة مصممة خصيصاً لاحتياجات عملك — من التطبيقات الموجهة للعملاء إلى الأدوات الداخلية التي تجعل حياة فريقك أسهل."
+services_hero_badge: 'ما نقدمه'
+services_hero_title: '**خدمات رقمية** شاملة'
+services_hero_text: 'لا نبني مواقع فحسب. نصنع أنظمة رقمية متكاملة مصممة خصيصاً لاحتياجات عملك — من التطبيقات الموجهة للعملاء إلى الأدوات الداخلية التي تجعل حياة فريقك أسهل.'
 
 services_grid_title: '<span class="gradient-heading">خدماتنا</span>'
-services_grid_text: "سواء كنت بحاجة لموقع بسيط أو نظام أعمال معقد، نحن هنا لمساعدتك."
+services_grid_text: 'سواء كنت بحاجة لموقع بسيط أو نظام أعمال معقد، نحن هنا لمساعدتك.'
 
 # Service Categories
-service_web_title: "تطوير الويب"
-service_web_short: "تواجدك على الإنترنت، بالشكل الصحيح. من مواقع الشركات إلى المتاجر الإلكترونية وأنظمة الحجز."
-service_web_item_1: "مواقع الشركات والمحافظ"
-service_web_item_2: "المتاجر الإلكترونية"
-service_web_item_3: "أنظمة الحجز والمواعيد"
-service_web_item_4: "بوابات الموارد البشرية والتوثيق"
-service_web_example: "أمثلة: مواقع المطاعم، أنظمة حجز العيادات، الشبكات الداخلية للشركات، الكتالوجات الإلكترونية"
+service_web_title: 'تطوير الويب'
+service_web_short: 'تواجدك على الإنترنت، بالشكل الصحيح. من مواقع الشركات إلى المتاجر الإلكترونية وأنظمة الحجز.'
+service_web_item_1: 'مواقع الشركات والمحافظ'
+service_web_item_2: 'المتاجر الإلكترونية'
+service_web_item_3: 'أنظمة الحجز والمواعيد'
+service_web_item_4: 'بوابات الموارد البشرية والتوثيق'
+service_web_example: 'أمثلة: مواقع المطاعم، أنظمة حجز العيادات، الشبكات الداخلية للشركات، الكتالوجات الإلكترونية'
 
-service_mobile_title: "تطوير الجوال"
-service_mobile_short: "تطبيقات يحبها عملاؤك. تتبع التوصيل، الطلب، برامج الولاء — كلها في جيبهم."
-service_mobile_item_1: "تطبيقات التوصيل والتتبع"
-service_mobile_item_2: "تطبيقات طلب العملاء"
-service_mobile_item_3: "برامج الولاء والمكافآت"
-service_mobile_item_4: "تطبيقات الخدمة الميدانية"
-service_mobile_example: "أمثلة: تطبيقات توصيل الطعام، تتبع السائقين، تطبيقات ولاء العملاء، تطبيقات طلب الخدمة"
+service_mobile_title: 'تطوير الجوال'
+service_mobile_short: 'تطبيقات يحبها عملاؤك. تتبع التوصيل، الطلب، برامج الولاء — كلها في جيبهم.'
+service_mobile_item_1: 'تطبيقات التوصيل والتتبع'
+service_mobile_item_2: 'تطبيقات طلب العملاء'
+service_mobile_item_3: 'برامج الولاء والمكافآت'
+service_mobile_item_4: 'تطبيقات الخدمة الميدانية'
+service_mobile_example: 'أمثلة: تطبيقات توصيل الطعام، تتبع السائقين، تطبيقات ولاء العملاء، تطبيقات طلب الخدمة'
 
-service_internal_title: "أدوات الأعمال الداخلية"
-service_internal_short: "توقف عن استخدام الجداول لكل شيء. احصل على أدوات مخصصة مبنية لطريقة عمل شركتك."
-service_internal_item_1: "إدارة الأساطيل والمركبات"
-service_internal_item_2: "تتبع العقارات والأصول"
-service_internal_item_3: "أنظمة الموظفين والموارد البشرية"
-service_internal_item_4: "التحكم في المخزون"
-service_internal_example: "أمثلة: لوحات تحكم أساطيل الشاحنات، أنظمة إدارة العقارات، تتبع المستودعات، جدولة الصيانة"
+service_internal_title: 'أدوات الأعمال الداخلية'
+service_internal_short: 'توقف عن استخدام الجداول لكل شيء. احصل على أدوات مخصصة مبنية لطريقة عمل شركتك.'
+service_internal_item_1: 'إدارة الأساطيل والمركبات'
+service_internal_item_2: 'تتبع العقارات والأصول'
+service_internal_item_3: 'أنظمة الموظفين والموارد البشرية'
+service_internal_item_4: 'التحكم في المخزون'
+service_internal_example: 'أمثلة: لوحات تحكم أساطيل الشاحنات، أنظمة إدارة العقارات، تتبع المستودعات، جدولة الصيانة'
 
-service_seo_title: "تحسين محركات البحث والتسويق"
-service_seo_short: "اظهر على جوجل. المزيد من الزوار = المزيد من العملاء. نجعل موقعك مشهوراً ومرئياً."
-service_seo_item_1: "تحسين ترتيب جوجل"
-service_seo_item_2: "ظهور الأعمال المحلية"
-service_seo_item_3: "محتوى يتصدر النتائج"
-service_seo_item_4: "تحليلات الأداء"
+service_seo_title: 'تحسين محركات البحث والتسويق'
+service_seo_short: 'اظهر على جوجل. المزيد من الزوار = المزيد من العملاء. نجعل موقعك مشهوراً ومرئياً.'
+service_seo_item_1: 'تحسين ترتيب جوجل'
+service_seo_item_2: 'ظهور الأعمال المحلية'
+service_seo_item_3: 'محتوى يتصدر النتائج'
+service_seo_item_4: 'تحليلات الأداء'
 service_seo_example: "أمثلة: التصدر في 'أفضل مطعم في [المدينة]'، الحصول على المزيد من تقييمات جوجل، تقارير الزيارات"
 
-service_design_title: "تصميم UI/UX"
-service_design_short: "اجعله جميلاً وسهل الاستخدام. المستخدمون السعداء يصبحون عملاء مخلصين."
-service_design_item_1: "بحث واختبار المستخدم"
-service_design_item_2: "تصميم متوافق مع الجوال"
-service_design_item_3: "مرئيات متوافقة مع العلامة التجارية"
-service_design_item_4: "نماذج أولية تفاعلية"
-service_design_example: "أمثلة: إعادة تصميم التطبيقات، تجديد المواقع، تخطيطات لوحات التحكم، إرشادات العلامة التجارية"
+service_design_title: 'تصميم UI/UX'
+service_design_short: 'اجعله جميلاً وسهل الاستخدام. المستخدمون السعداء يصبحون عملاء مخلصين.'
+service_design_item_1: 'بحث واختبار المستخدم'
+service_design_item_2: 'تصميم متوافق مع الجوال'
+service_design_item_3: 'مرئيات متوافقة مع العلامة التجارية'
+service_design_item_4: 'نماذج أولية تفاعلية'
+service_design_example: 'أمثلة: إعادة تصميم التطبيقات، تجديد المواقع، تخطيطات لوحات التحكم، إرشادات العلامة التجارية'
 
-service_cloud_title: "السحابة و DevOps"
-service_cloud_short: "حافظ على أنظمتك تعمل 24/7. سريعة، آمنة، ومتاحة دائماً."
-service_cloud_item_1: "إعداد الاستضافة السحابية"
-service_cloud_item_2: "النسخ الاحتياطي التلقائي"
-service_cloud_item_3: "الأمان والحماية"
-service_cloud_item_4: "مراقبة الأداء"
-service_cloud_example: "أمثلة: إعداد AWS/Google Cloud، استعادة الكوارث، شهادات SSL، مراقبة التشغيل"
+service_cloud_title: 'السحابة و DevOps'
+service_cloud_short: 'حافظ على أنظمتك تعمل 24/7. سريعة، آمنة، ومتاحة دائماً.'
+service_cloud_item_1: 'إعداد الاستضافة السحابية'
+service_cloud_item_2: 'النسخ الاحتياطي التلقائي'
+service_cloud_item_3: 'الأمان والحماية'
+service_cloud_item_4: 'مراقبة الأداء'
+service_cloud_example: 'أمثلة: إعداد AWS/Google Cloud، استعادة الكوارث، شهادات SSL، مراقبة التشغيل'
 
 # Process Section
-services_process_title: "كيف نعمل"
-services_process_text: "عمليتنا المثبتة من 6 خطوات تضمن تقديم نتائج استثنائية في الوقت المحدد وضمن الميزانية."
+services_process_title: 'كيف نعمل'
+services_process_text: 'عمليتنا المثبتة من 6 خطوات تضمن تقديم نتائج استثنائية في الوقت المحدد وضمن الميزانية.'
 
-process_step_1_title: "الاكتشاف"
-process_step_1_text: "نتعرف على عملك وأهدافك وتحدياتك من خلال محادثات معمقة."
+process_step_1_title: 'الاكتشاف'
+process_step_1_text: 'نتعرف على عملك وأهدافك وتحدياتك من خلال محادثات معمقة.'
 
-process_step_2_title: "التخطيط"
-process_step_2_text: "نصنع خارطة طريق مفصلة ومواصفات تقنية لمشروعك."
+process_step_2_title: 'التخطيط'
+process_step_2_text: 'نصنع خارطة طريق مفصلة ومواصفات تقنية لمشروعك.'
 
-process_step_3_title: "التصميم"
-process_step_3_text: "نصمم واجهات جميلة تركز على المستخدم وتتوافق مع علامتك التجارية."
+process_step_3_title: 'التصميم'
+process_step_3_text: 'نصمم واجهات جميلة تركز على المستخدم وتتوافق مع علامتك التجارية.'
 
-process_step_4_title: "التطوير"
-process_step_4_text: "نبني حلك بكود نظيف وقابل للصيانة والتوسع."
+process_step_4_title: 'التطوير'
+process_step_4_text: 'نبني حلك بكود نظيف وقابل للصيانة والتوسع.'
 
-process_step_5_title: "الاختبار"
-process_step_5_text: "نختبر بدقة عبر الأجهزة والمتصفحات والسيناريوهات."
+process_step_5_title: 'الاختبار'
+process_step_5_text: 'نختبر بدقة عبر الأجهزة والمتصفحات والسيناريوهات.'
 
-process_step_6_title: "الإطلاق"
-process_step_6_text: "ننشر مشروعك ونقدم دعماً وصيانة مستمرة."
+process_step_6_title: 'الإطلاق'
+process_step_6_text: 'ننشر مشروعك ونقدم دعماً وصيانة مستمرة.'
 
 # CTA Section
-services_cta_title: "لست متأكداً مما تحتاج؟"
-services_cta_text: "كل عمل فريد. دعنا نتحدث لتحديد الحلول المناسبة لاحتياجاتك وميزانيتك."
-services_cta_button: "احصل على استشارة مجانية"
+services_cta_title: 'لست متأكداً مما تحتاج؟'
+services_cta_text: 'كل عمل فريد. دعنا نتحدث لتحديد الحلول المناسبة لاحتياجاتك وميزانيتك.'
+services_cta_button: 'احصل على استشارة مجانية'
 
 # Contact Form
-services_contact_title: "هل أنت مستعد للبدء؟"
-services_contact_text: "أخبرنا عن مشروعك وسنساعدك في إيجاد الحل المثالي."
+services_contact_title: 'هل أنت مستعد للبدء؟'
+services_contact_text: 'أخبرنا عن مشروعك وسنساعدك في إيجاد الحل المثالي.'
 
 # -----------------------------------------------------------------------------
 # Clients Page (renamed from Customers)
 # -----------------------------------------------------------------------------
-clients_hero_badge: "قصص النجاح"
-clients_hero_title: "**عملاؤنا**"
-clients_hero_text: "مشاريع حقيقية بنيناها لشركات حقيقية. شاهد كيف تحقق الشركات مثلك نتائج مع حلولنا."
+clients_hero_badge: 'قصص النجاح'
+clients_hero_title: '**عملاؤنا**'
+clients_hero_text: 'مشاريع حقيقية بنيناها لشركات حقيقية. شاهد كيف تحقق الشركات مثلك نتائج مع حلولنا.'
 
 # Client Page Labels
-client_challenge_title: "التحدي"
-client_solution_title: "حلنا"
-client_results_title: "النتائج"
-client_features_title: "الميزات المبنية"
-client_tech_title: "التقنيات المستخدمة"
-client_testimonial_coming: "مراجعة العميل قريباً"
-client_empty_title: "قريباً"
-client_empty_text: "نحضّر قصص نجاح عملائنا. تابعنا قريباً!"
-client_view_project: "عرض المشروع"
+client_challenge_title: 'التحدي'
+client_solution_title: 'حلنا'
+client_results_title: 'النتائج'
+client_features_title: 'الميزات المبنية'
+client_tech_title: 'التقنيات المستخدمة'
+client_testimonial_coming: 'مراجعة العميل قريباً'
+client_empty_title: 'قريباً'
+client_empty_text: 'نحضّر قصص نجاح عملائنا. تابعنا قريباً!'
+client_view_project: 'عرض المشروع'
 
 # CTA Section
-clients_cta_title: "تريد نتائج مماثلة؟"
-clients_cta_text: "دعنا نناقش كيف يمكننا بناء حل مخصص يحقق نتائج حقيقية لعملك."
-clients_cta_button: "ابدأ مشروعك"
+clients_cta_title: 'تريد نتائج مماثلة؟'
+clients_cta_text: 'دعنا نناقش كيف يمكننا بناء حل مخصص يحقق نتائج حقيقية لعملك.'
+clients_cta_button: 'ابدأ مشروعك'
 
 # Portia Grid Client (renamed from FleetOps)
-client_portia-grid_name: "بورتيا غريد"
-client_portia-grid_service_type: "أداة داخلية"
-client_portia-grid_industry: "اللوجستيات وذكاء البيانات"
-client_portia-grid_tagline: "إدارة أسطول وبيانات ذكية"
-client_portia-grid_description: "منصة ويب شاملة بنيناها لمساعدة شركات الخدمات اللوجستية على إدارة أسطول شاحنات التوصيل بالكامل — من التتبع الفوري إلى جدولة الصيانة الآلية."
-client_portia-grid_challenge: "كان العميل يدير أكثر من 50 شاحنة توصيل باستخدام جداول البيانات والمكالمات الهاتفية. كانت الصيانة تُفوَّت غالباً، مما أدى إلى أعطال مكلفة وتأخيرات في التوصيل. لم يكن لديهم أي رؤية لمواقع شاحناتهم في أي لحظة."
-client_portia-grid_solution: "بنينا منصة ويب مخصصة توفر تتبع GPS فوري على خريطة تفاعلية، تنبيهات صيانة آلية بناءً على المسافة المقطوعة والفترات الزمنية، إدارة تعيين السائقين، مراقبة استهلاك الوقود، ولوحات تقارير شاملة."
+client_portia-grid_name: 'بورتيا غريد'
+client_portia-grid_service_type: 'أداة داخلية'
+client_portia-grid_industry: 'اللوجستيات وذكاء البيانات'
+client_portia-grid_tagline: 'إدارة أسطول وبيانات ذكية'
+client_portia-grid_description: 'منصة ويب شاملة بنيناها لمساعدة شركات الخدمات اللوجستية على إدارة أسطول شاحنات التوصيل بالكامل — من التتبع الفوري إلى جدولة الصيانة الآلية.'
+client_portia-grid_challenge: 'كان العميل يدير أكثر من 50 شاحنة توصيل باستخدام جداول البيانات والمكالمات الهاتفية. كانت الصيانة تُفوَّت غالباً، مما أدى إلى أعطال مكلفة وتأخيرات في التوصيل. لم يكن لديهم أي رؤية لمواقع شاحناتهم في أي لحظة.'
+client_portia-grid_solution: 'بنينا منصة ويب مخصصة توفر تتبع GPS فوري على خريطة تفاعلية، تنبيهات صيانة آلية بناءً على المسافة المقطوعة والفترات الزمنية، إدارة تعيين السائقين، مراقبة استهلاك الوقود، ولوحات تقارير شاملة.'
 
 # Iyat Client
-client_iyat_name: "إيات"
-client_iyat_service_type: "موقع إلكتروني"
-client_iyat_industry: "التسويق الرقمي والإبداعي"
-client_iyat_tagline: "محفظة وكالة رقمية"
-client_iyat_description: "موقع حديث وغني بصرياً لإيات، وكالة رقمية تعرض محفظتها الإبداعية وخدماتها."
-client_iyat_challenge: "احتاجت إيات إلى تواجد احترافي على الإنترنت يعرض أعمالهم الإبداعية ويجذب عملاء جدد."
-client_iyat_solution: "بنينا موقع محفظة أنيق وحديث مع حركات سلسة، تصميم متجاوب، وتجربة مستخدم جذابة."
+client_iyat_name: 'إيات'
+client_iyat_service_type: 'موقع إلكتروني'
+client_iyat_industry: 'التسويق الرقمي والإبداعي'
+client_iyat_tagline: 'محفظة وكالة رقمية'
+client_iyat_description: 'موقع حديث وغني بصرياً لإيات، وكالة رقمية تعرض محفظتها الإبداعية وخدماتها.'
+client_iyat_challenge: 'احتاجت إيات إلى تواجد احترافي على الإنترنت يعرض أعمالهم الإبداعية ويجذب عملاء جدد.'
+client_iyat_solution: 'بنينا موقع محفظة أنيق وحديث مع حركات سلسة، تصميم متجاوب، وتجربة مستخدم جذابة.'
 
 # -----------------------------------------------------------------------------
 # Branded Navigation
 # -----------------------------------------------------------------------------
-back_to_baseet: "العودة إلى بصيت"
-nav_features: "الميزات"
-nav_download: "تحميل"
-nav_demo: "عرض تجريبي"
+back_to_baseet: 'العودة إلى بصيت'
+nav_features: 'الميزات'
+nav_download: 'تحميل'
+nav_demo: 'عرض تجريبي'
 
 # ChopShop Product
-project_chopshop_name: "تشوب شوب"
-project_chopshop_tagline: "متجرك، في كل مكان"
-project_chopshop_description: "منصة تسوق B2C للبائعين لبيع منتجاتهم عبر الإنترنت والوصول إلى جمهور أوسع. تتضمن تطبيق توصيل وتطبيق عملاء قابل للتخصيص."
-project_chopshop_status: "جاهز للتسليم"
-project_chopshop_feature_1: "إدارة واجهة متجر البائع"
-project_chopshop_feature_2: "تطبيق عملاء بعلامة تجارية مخصصة"
-project_chopshop_feature_3: "تطبيق توصيل وتتبع"
-project_chopshop_feature_4: "معالجة الدفع"
+project_chopshop_name: 'تشوب شوب'
+project_chopshop_tagline: 'متجرك، في كل مكان'
+project_chopshop_description: 'منصة تسوق B2C للبائعين لبيع منتجاتهم عبر الإنترنت والوصول إلى جمهور أوسع. تتضمن تطبيق توصيل وتطبيق عملاء قابل للتخصيص.'
+project_chopshop_status: 'جاهز للتسليم'
+project_chopshop_feature_1: 'إدارة واجهة متجر البائع'
+project_chopshop_feature_2: 'تطبيق عملاء بعلامة تجارية مخصصة'
+project_chopshop_feature_3: 'تطبيق توصيل وتتبع'
+project_chopshop_feature_4: 'معالجة الدفع'
 
 # Matrix Product
-project_matrix_name: "ماتريكس"
-project_matrix_tagline: "أدر كل شيء، لا تفوّت شيئاً"
-project_matrix_description: "أداة إدارة مهام للفرق — اكتب المستندات، أدر الاجتماعات، وأدر المشاريع في مكان واحد."
-project_matrix_status: "قريباً"
-project_matrix_feature_1: "إدارة المهام"
-project_matrix_feature_2: "ملاحظات الاجتماعات والمستندات"
-project_matrix_feature_3: "لوحات المشاريع"
-project_matrix_feature_4: "التعاون الجماعي"
+project_matrix_name: 'ماتريكس'
+project_matrix_tagline: 'أدر كل شيء، لا تفوّت شيئاً'
+project_matrix_description: 'أداة إدارة مهام للفرق — اكتب المستندات، أدر الاجتماعات، وأدر المشاريع في مكان واحد.'
+project_matrix_status: 'قريباً'
+project_matrix_feature_1: 'إدارة المهام'
+project_matrix_feature_2: 'ملاحظات الاجتماعات والمستندات'
+project_matrix_feature_3: 'لوحات المشاريع'
+project_matrix_feature_4: 'التعاون الجماعي'
 
 # -----------------------------------------------------------------------------
 # Contact Page
 # -----------------------------------------------------------------------------
-contact_hero_badge: "تواصل معنا"
-contact_hero_title: "لنبني شيئاً **مذهلاً معاً**"
-contact_hero_text: "لديك مشروع في ذهنك؟ نسعد بسماعه. تواصل معنا ودعنا نناقش كيف يمكننا المساعدة في تحويل أفكارك إلى واقع."
+contact_hero_badge: 'تواصل معنا'
+contact_hero_title: 'لنبني شيئاً **مذهلاً معاً**'
+contact_hero_text: 'لديك مشروع في ذهنك؟ نسعد بسماعه. تواصل معنا ودعنا نناقش كيف يمكننا المساعدة في تحويل أفكارك إلى واقع.'
 
 # Contact Form
-quick_contact_title: "تواصل معنا"
-quick_contact_text: "نحب أن نسمع منك. أرسل لنا رسالة وسنرد في أقرب وقت ممكن."
-contact_email_placeholder: "your.email@example.com"
-contact_phone_placeholder: "+971 50 123 4567"
-contact_form_title: "أرسل لنا رسالة"
-contact_name_label: "اسمك"
-contact_name_placeholder: "محمد أحمد"
-contact_info_label: "الهاتف أو البريد الإلكتروني"
-contact_info_placeholder: "+971 50 123 4567 أو email@example.com"
-contact_info_hint: "أدخل رقم هاتفك أو بريدك الإلكتروني"
-contact_project_label: "نوع المشروع"
-contact_project_select: "اختر نوع المشروع..."
-contact_project_website: "تطوير موقع ويب"
-contact_project_mobile: "تطبيق جوال"
-contact_project_internal: "أداة أعمال داخلية"
-contact_project_seo: "تحسين محركات البحث والتسويق"
-contact_project_design: "تصميم UI/UX"
-contact_project_other: "آخر"
-contact_message_label: "رسالتك (اختياري)"
-contact_message_placeholder: "أخبرنا عن مشروعك، الجدول الزمني، أو أي أسئلة لديك..."
-contact_submit_btn: "إرسال الرسالة"
-contact_sending: "جاري الإرسال..."
-sending: "جاري الإرسال..."
+quick_contact_title: 'تواصل معنا'
+quick_contact_text: 'نحب أن نسمع منك. أرسل لنا رسالة وسنرد في أقرب وقت ممكن.'
+contact_email_placeholder: 'your.email@example.com'
+contact_phone_placeholder: '+971 50 123 4567'
+contact_form_title: 'أرسل لنا رسالة'
+contact_name_label: 'اسمك'
+contact_name_placeholder: 'محمد أحمد'
+contact_info_label: 'الهاتف أو البريد الإلكتروني'
+contact_info_placeholder: '+971 50 123 4567 أو email@example.com'
+contact_info_hint: 'أدخل رقم هاتفك أو بريدك الإلكتروني'
+contact_project_label: 'نوع المشروع'
+contact_project_select: 'اختر نوع المشروع...'
+contact_project_website: 'تطوير موقع ويب'
+contact_project_mobile: 'تطبيق جوال'
+contact_project_internal: 'أداة أعمال داخلية'
+contact_project_seo: 'تحسين محركات البحث والتسويق'
+contact_project_design: 'تصميم UI/UX'
+contact_project_other: 'آخر'
+contact_message_label: 'رسالتك (اختياري)'
+contact_message_placeholder: 'أخبرنا عن مشروعك، الجدول الزمني، أو أي أسئلة لديك...'
+contact_submit_btn: 'إرسال الرسالة'
+contact_sending: 'جاري الإرسال...'
+sending: 'جاري الإرسال...'
 
 # Validation Messages
-contact_valid_email: "بريد إلكتروني صالح"
-contact_valid_phone: "رقم هاتف صالح"
-contact_invalid_email: "الرجاء إدخال بريد إلكتروني صالح"
-contact_invalid_phone: "الرجاء إدخال رقم هاتف صالح"
-contact_phone_too_short: "رقم الهاتف قصير جداً"
-contact_enter_valid: "الرجاء إدخال بريد إلكتروني أو رقم هاتف صالح"
-contact_name_required: "الرجاء إدخال اسمك"
-contact_success_message: "شكراً! سنتواصل معك قريباً."
-contact_error_message: "حدث خطأ ما. الرجاء المحاولة مرة أخرى أو التواصل عبر واتساب."
+contact_valid_email: 'بريد إلكتروني صالح'
+contact_valid_phone: 'رقم هاتف صالح'
+contact_invalid_email: 'الرجاء إدخال بريد إلكتروني صالح'
+contact_invalid_phone: 'الرجاء إدخال رقم هاتف صالح'
+contact_phone_too_short: 'رقم الهاتف قصير جداً'
+contact_enter_valid: 'الرجاء إدخال بريد إلكتروني أو رقم هاتف صالح'
+contact_name_required: 'الرجاء إدخال اسمك'
+contact_success_message: 'شكراً! سنتواصل معك قريباً.'
+contact_error_message: 'حدث خطأ ما. الرجاء المحاولة مرة أخرى أو التواصل عبر واتساب.'
 
 # WhatsApp
-contact_whatsapp_message: "مرحباً! أنا مهتم بخدماتكم وأود مناقشة مشروع."
-contact_whatsapp_btn: "تواصل عبر واتساب"
-contact_whatsapp_aria: "تواصل معنا عبر واتساب"
+contact_whatsapp_message: 'مرحباً! أنا مهتم بخدماتكم وأود مناقشة مشروع.'
+contact_whatsapp_btn: 'تواصل عبر واتساب'
+contact_whatsapp_aria: 'تواصل معنا عبر واتساب'
 
 # Contact Info Section
-contact_quick_title: "تفضل المحادثة؟"
-contact_quick_text: "احصل على رد فوري عبر واتساب. نرد عادة خلال دقائق في أوقات العمل."
-contact_details_title: "معلومات التواصل"
-contact_email_label: "البريد الإلكتروني"
-contact_phone_label: "الهاتف"
-contact_location_label: "الموقع"
-contact_location_value: "دبي، الإمارات"
-contact_response_title: "رد سريع"
-contact_response_text: "نرد عادة خلال 2-4 ساعات في أوقات العمل (الأحد-الخميس، 9ص-6م بتوقيت الخليج)."
+contact_quick_title: 'تفضل المحادثة؟'
+contact_quick_text: 'احصل على رد فوري عبر واتساب. نرد عادة خلال دقائق في أوقات العمل.'
+contact_details_title: 'معلومات التواصل'
+contact_email_label: 'البريد الإلكتروني'
+contact_phone_label: 'الهاتف'
+contact_location_label: 'الموقع'
+contact_location_value: 'دبي، الإمارات'
+contact_response_title: 'رد سريع'
+contact_response_text: 'نرد عادة خلال 2-4 ساعات في أوقات العمل (الأحد-الخميس، 9ص-6م بتوقيت الخليج).'
 
 # WhatsApp Form Messages
-contact_wa_intro: "مرحباً! أنا مهتم بخدماتكم."
-contact_wa_name: "الاسم"
-contact_wa_contact: "التواصل"
-contact_wa_project: "نوع المشروع"
-contact_wa_message: "الرسالة"
+contact_wa_intro: 'مرحباً! أنا مهتم بخدماتكم.'
+contact_wa_name: 'الاسم'
+contact_wa_contact: 'التواصل'
+contact_wa_project: 'نوع المشروع'
+contact_wa_message: 'الرسالة'
 
 # -----------------------------------------------------------------------------
 # Project Navigation (Section Pages)
 # -----------------------------------------------------------------------------
-project_nav_home: "الرئيسية"
-project_nav_features: "المميزات"
-project_nav_download: "تحميل"
-project_nav_demo: "تجربة"
-project_nav_terms: "الشروط"
-project_nav_baseet: "بصيرة"
+project_nav_home: 'الرئيسية'
+project_nav_features: 'المميزات'
+project_nav_download: 'تحميل'
+project_nav_demo: 'تجربة'
+project_nav_terms: 'الشروط'
+project_nav_baseet: 'بصيرة'
 
 # -----------------------------------------------------------------------------
 # Project Features Page
 # -----------------------------------------------------------------------------
-project_features_page_title: "المميزات"
-project_features_empty: "المميزات قريباً"
+project_features_page_title: 'المميزات'
+project_features_empty: 'المميزات قريباً'
 
 # -----------------------------------------------------------------------------
 # Project Demo Page
 # -----------------------------------------------------------------------------
-project_demo_page_title: "تجربة"
-project_demo_download_title: "تحميل"
-project_demo_coming_soon: "التجربة قريباً"
-project_demo_coming_soon_text: "نعمل بجد لتقديم تجربة مذهلة. ترقبوا!"
-project_demo_try_live: "جرب النسخة الحية"
+project_demo_page_title: 'تجربة'
+project_demo_download_title: 'تحميل'
+project_demo_coming_soon: 'التجربة قريباً'
+project_demo_coming_soon_text: 'نعمل بجد لتقديم تجربة مذهلة. ترقبوا!'
+project_demo_try_live: 'جرب النسخة الحية'
 
 # -----------------------------------------------------------------------------
 # Project Terms Page
 # -----------------------------------------------------------------------------
-project_terms_page_title: "الشروط والأحكام"
-project_terms_intro: "المقدمة"
-project_terms_usage: "شروط الاستخدام"
-project_terms_privacy: "سياسة الخصوصية"
-project_terms_data: "جمع البيانات واستخدامها"
-project_terms_rights: "حقوق المستخدم"
-project_terms_liability: "حدود المسؤولية"
-project_terms_contact: "معلومات الاتصال"
-project_terms_placeholder: "سيتم إضافة المحتوى هنا."
+project_terms_page_title: 'الشروط والأحكام'
+project_terms_intro: 'المقدمة'
+project_terms_usage: 'شروط الاستخدام'
+project_terms_privacy: 'سياسة الخصوصية'
+project_terms_data: 'جمع البيانات واستخدامها'
+project_terms_rights: 'حقوق المستخدم'
+project_terms_liability: 'حدود المسؤولية'
+project_terms_contact: 'معلومات الاتصال'
+project_terms_placeholder: 'سيتم إضافة المحتوى هنا.'
 
 # -----------------------------------------------------------------------------
 # Footer — Visitor Detection
 # -----------------------------------------------------------------------------
-footer_visiting_from: "زيارة من"
-footer_device: "الجهاز"
-footer_device_mobile: "جوال"
-footer_device_tablet: "لوحي"
-footer_device_desktop: "حاسوب"
-footer_unknown: "غير معروف"
+footer_visiting_from: 'زيارة من'
+footer_device: 'الجهاز'
+footer_device_mobile: 'جوال'
+footer_device_tablet: 'لوحي'
+footer_device_desktop: 'حاسوب'
+footer_unknown: 'غير معروف'

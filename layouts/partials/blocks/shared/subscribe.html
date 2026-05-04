@@ -1,70 +1,20 @@
 {{ with . }}{{ if .enable }}
 <section id="subscribe"
-    class="subscribe-section relative py-36 overflow-hidden bg-gradient-to-br from-primary/5 via-white to-tertiary/5" {{ if eq site.Language.LanguageDirection "rtl" }}dir="rtl"{{ end }}>
+    class="subscribe-section relative py-36 overflow-hidden bg-gradient-to-br from-primary/5 via-white to-tertiary/5" {{
+    if eq site.Language.LanguageDirection "rtl" }}dir="rtl" {{ end }}>
     <!-- Floating decorations -->
     <div class="subscribe-decoration subscribe-decoration-1"></div>
     <div class="subscribe-decoration subscribe-decoration-2"></div>
 
-    <div class="container mx-auto px-4 relative z-10">
+    <div class="container mx-auto px-4 relative z-10 text-center">
         <h1 class="subscribe-title">{{ i18n "subscribe_title" }}</h1>
-
-        <!-- AJAX Feedback Area (hidden by default, aria-live for accessibility) -->
-        <div id="form-feedback" class="max-w-xl mx-auto mb-6 hidden" role="status" aria-live="polite"
-            aria-atomic="true">
-            <!-- Success Message -->
-            <div id="form-success"
-                class="hidden bg-green-50 border border-green-200 text-green-800 px-6 py-4 rounded-xl">
-                <div class="flex items-center gap-3">
-                    <svg class="w-6 h-6 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd"
-                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                            clip-rule="evenodd" />
-                    </svg>
-                    <p class="font-medium">{{ i18n "subscribe_success" }}</p>
-                </div>
-            </div>
-
-            <!-- Error Message -->
-            <div id="form-error" class="hidden bg-red-50 border border-red-200 text-red-800 px-6 py-4 rounded-xl">
-                <div class="flex items-center gap-3">
-                    <svg class="w-6 h-6 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd"
-                            d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                            clip-rule="evenodd" />
-                    </svg>
-                    <p class="font-medium" id="form-error-message">{{ i18n "subscribe_error" }}</p>
-                </div>
-            </div>
+        <p class="subscribe-subtitle text-gray-600 text-center mb-8">{{ i18n "subscribe_subtitle" }}</p>
+        <div class="flex justify-center">
+            <a href="{{- "/contact" | relLangURL -}}"
+                class="subscribe-btn inline-flex items-center justify-center gap-2">
+                {{ i18n "subscribe_cta" }}
+            </a>
         </div>
-
-        <!-- Contact Form with AJAX Enhancement -->
-        <form id="contact-form"
-            class="subscribe-form flex flex-col xl:flex-row xl:items-center justify-stretch gap-4 xl:max-w-2xl mx-auto"
-            action="https://api.web3forms.com/submit" method="POST">
-            <!-- Web3Forms Access Key -->
-            <input type="hidden" name="access_key" value="bec4456c-9b97-4528-b493-1189ef3d3969">
-            <input type="hidden" name="subject" value="New Newsletter Subscription - Baseet Studio">
-            <input type="hidden" name="page" id="subscribe-page-source" value="Home Page">
-            
-            <label for="subscribe-email" class="hidden">Email</label>
-            <input id="subscribe-email" class="subscribe-input flex-1" type="email" name="email" value=""
-                placeholder="{{ i18n "subscribe_placeholder" }}" required aria-required="true" />
-
-            <button id="submit-button" class="subscribe-btn flex items-center justify-center gap-2" type="submit"
-                aria-label="Submit contact form">
-                <!-- Button Text -->
-                <span id="button-text">{{ i18n "subscribe_btn" }}</span>
-
-                <!-- Loading Spinner (hidden by default) -->
-                <svg id="button-spinner" class="hidden animate-spin h-5 w-5 text-white"
-                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                    <path class="opacity-75" fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                    </path>
-                </svg>
-            </button>
-        </form>
     </div>
 </section>
 {{ end }}{{ end }}
