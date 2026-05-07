@@ -3,24 +3,24 @@
 
 # Social Media Links
 social:
-  github: '#'
-  linkedin: '#'
-  twitter: '#'
-  instagram: '#'
+  github: 'https://github.com/Basseet-Studio'
+  linkedin: 'https://www.linkedin.com/company/baseet-studio/'
+  twitter: 'https://x.com/bybaseet'
+  instagram: 'https://www.instagram.com/studio_baseet/'
   facebook: '#'
   dribbble: '#'
   youtube: '#'
-  tiktok: '#'
+  tiktok: 'https://www.tiktok.com/@the.baseet.studio'
 
 # Contact Links
 contact:
-  email: 'info@baseetstudio.com'
-  email_link: 'mailto:info@baseetstudio.com'
-  phone: '+1 (555) 123-4567'
-  phone_link: 'tel:+15551234567'
+  email: 'baseet.socials@gmail.com'
+  email_link: 'mailto:baseet.socials@gmail.com'
+  phone: '+971507566474'
+  phone_link: 'tel:+971507566474'
   whatsapp: '+971507566474'
   whatsapp_link: 'https://wa.me/971507566474'
-  address: '#'
+  address: 'abu dhabi - UAE'
 
 # Form Handler
 forms:
@@ -31,11 +31,11 @@ projects:
   # In-House Products
   money-box:
     ios: '#'
-    android: '#'
+    android: 'https://drive.google.com/drive/folders/1_8MswXC-JxPEFU_0-fmeXal_hK7yKs9C?usp=sharing'
     web: '#'
   numu:
-    ios: '#'
-    android: '#'
+    ios: 'https://testflight.apple.com/join/wgRQGpw8'
+    android: 'https://drive.google.com/drive/folders/1_8MswXC-JxPEFU_0-fmeXal_hK7yKs9C?usp=sharing'
     web: '#'
   matrix:
     ios: '#'
@@ -47,7 +47,7 @@ projects:
     web: '#'
   medical-education-app:
     ios: '#'
-    android: '#'
+    android: 'https://drive.google.com/drive/folders/1_8MswXC-JxPEFU_0-fmeXal_hK7yKs9C?usp=sharing'
     web: '#'
   deshikitchen:
     ios: '#'
@@ -77,18 +77,18 @@ external:
 # Team Member Social Links
 team:
   mohamed_abdallah:
-    github: '#'
-    linkedin: '#'
+    github: 'https://github.com/mohamed-a-elobaid'
+    linkedin: 'https://www.linkedin.com/in/mohamed-abdalla-elobaid-29937b227/'
     twitter: '#'
   asadur_rahman:
-    github: '#'
-    linkedin: '#'
+    github: 'https://github.com/ViX3L'
+    linkedin: 'https://www.linkedin.com/in/vix3l/'
     twitter: '#'
   ariyan_rehman:
-    github: '#'
-    linkedin: '#'
-    twitter: '#'
+    github: 'https://github.com/ariyangd'
+    linkedin: 'https://www.linkedin.com/in/ariyangd/'
+    twitter: 'https://x.com/ariyangd'
   dibakar_sutradhar:
-    github: '#'
-    linkedin: '#'
-    twitter: '#'
+    github: 'https://github.com/dibakarsutradhar'
+    linkedin: 'https://www.linkedin.com/in/dibakarsutradhar/'
+    twitter: https://x.com/iamdibakardipu'
