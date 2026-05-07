@@ -1,52 +1,77 @@
 {{ with . }}{{ if .enable }}
 <section id="subscribe"
-    class="subscribe-section relative py-36 overflow-hidden bg-gradient-to-br from-primary/5 via-white to-tertiary/5" {{
+    class="subscribe-section relative py-24 overflow-hidden bg-gradient-to-br from-primary/5 via-white to-tertiary/5" {{
     if eq site.Language.LanguageDirection "rtl" }}dir="rtl" {{ end }}>
-    <!-- Floating decorations -->
     <div class="subscribe-decoration subscribe-decoration-1"></div>
     <div class="subscribe-decoration subscribe-decoration-2"></div>
 
     <div class="container mx-auto px-4 relative z-10 text-center">
         <h1 class="subscribe-title">{{ i18n "subscribe_title" }}</h1>
         <p class="subscribe-subtitle text-gray-600 text-center mb-8">{{ i18n "subscribe_subtitle" }}</p>
-        <div class="flex justify-center">
-            <a href="{{- "/contact" | relLangURL -}}"
-                class="subscribe-btn inline-flex items-center justify-center gap-2">
-                {{ i18n "subscribe_cta" }}
-            </a>
-        </div>
-<<<<<<< Updated upstream
-=======
 
-        <!-- Contact Form with AJAX Enhancement -->
-        <form id="contact-form"
-            class="subscribe-form flex flex-col xl:flex-row xl:items-center justify-stretch gap-4 xl:max-w-2xl mx-auto"
-            action="https://baseet-form-handler.baseetstudio.workers.dev" method="POST">
-            <input type="hidden" name="name" value="Newsletter Subscriber">
-            <input type="hidden" name="message" value="Newsletter subscription request">
-            <input type="hidden" name="page" id="subscribe-page-source" value="Home Page">
+        <form id="subscribe-form"
+            class="subscribe-form flex flex-col sm:flex-row items-center justify-center gap-3 max-w-lg mx-auto"
+            action="{{ site.Data.shared.links.forms.contact_form_url }}" method="POST">
+            <input type="hidden" name="name" value="">
+            <input type="hidden" name="email" value="">
+            <input type="hidden" name="page" value="Home Page">
             <input type="hidden" name="language" value="{{ site.Language.Lang }}">
             
-            <label for="subscribe-email" class="hidden">Email</label>
-            <input id="subscribe-email" class="subscribe-input flex-1" type="email" name="email" value=""
-                placeholder="{{ i18n "subscribe_placeholder" }}" required aria-required="true" />
+            <input id="subscribe-contact" class="subscribe-input flex-1 w-full" type="text" name="message"
+                placeholder="{{ i18n "subscribe_placeholder" }}" required />
 
-            <button id="submit-button" class="subscribe-btn flex items-center justify-center gap-2" type="submit"
-                aria-label="Submit contact form">
-                <!-- Button Text -->
-                <span id="button-text">{{ i18n "subscribe_btn" }}</span>
-
-                <!-- Loading Spinner (hidden by default) -->
-                <svg id="button-spinner" class="hidden animate-spin h-5 w-5 text-white"
+            <button id="subscribe-button" class="subscribe-btn flex items-center justify-center gap-2 shrink-0" type="submit">
+                <span id="subscribe-button-text">{{ i18n "subscribe_btn" }}</span>
+                <svg id="subscribe-spinner" class="hidden animate-spin h-5 w-5 text-white"
                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                     <path class="opacity-75" fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                    </path>
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/>
                 </svg>
             </button>
         </form>
->>>>>>> Stashed changes
+
+        <!-- Hidden iframe for form target (avoids CORS, no page nav) -->
+        <iframe name="subscribe-frame" id="subscribe-frame" class="hidden" title=""></iframe>
+
+        <div id="subscribe-success" class="hidden mt-4 text-green-600 font-semibold">{{ i18n "subscribe_success" }}</div>
+        <div id="subscribe-error" class="hidden mt-4 text-red-500 font-semibold">{{ i18n "subscribe_error" }}</div>
     </div>
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('subscribe-form');
+    if (!form) return;
+    const btnText = document.getElementById('subscribe-button-text');
+    const spinner = document.getElementById('subscribe-spinner');
+    const successEl = document.getElementById('subscribe-success');
+    const errorEl = document.getElementById('subscribe-error');
+    const frame = document.getElementById('subscribe-frame');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        btnText.classList.add('hidden');
+        spinner.classList.remove('hidden');
+        successEl.classList.add('hidden');
+        errorEl.classList.add('hidden');
+
+        const formData = new FormData(form);
+        const url = new URL(form.action);
+        const body = new URLSearchParams();
+        for (let [k, v] of formData.entries()) body.append(k, v);
+
+        // sendBeacon bypasses CORS preflight for simple POST
+        const sent = navigator.sendBeacon(url.toString(), body);
+        if (sent) {
+            form.reset();
+            successEl.classList.remove('hidden');
+        } else {
+            errorEl.classList.remove('hidden');
+        }
+        btnText.classList.remove('hidden');
+        spinner.classList.add('hidden');
+    });
+});
+</script>
 {{ end }}{{ end }}

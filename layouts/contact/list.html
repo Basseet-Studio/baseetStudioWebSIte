@@ -436,6 +436,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const message = (formData.get('message') || '').toString().trim();
         if (!message) {
             alert('{{ i18n "contact_error_message" }}');
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<span>{{ i18n "contact_submit_btn" }}</span> <i class="fas fa-paper-plane"></i>';
             return;
         }
 
@@ -445,48 +447,31 @@ document.addEventListener('DOMContentLoaded', function() {
             formData.delete('phone');
         } else {
             alert('{{ i18n "contact_invalid_email" }}');
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<span>{{ i18n "contact_submit_btn" }}</span> <i class="fas fa-paper-plane"></i>';
             return;
         }
 
-        // Debug log
-        const formDataDebug = formData;
-        console.log('Sending form data:');
-        for (let [key, value] of formDataDebug.entries()) {
-            console.log(key + ': ' + value);
+        // Send via sendBeacon (bypasses CORS preflight)
+        const body = new URLSearchParams();
+        for (let [k, v] of formData.entries()) body.append(k, v);
+
+        const sent = navigator.sendBeacon(contactForm.action, body);
+        if (sent) {
+            formSuccess.classList.remove('hidden');
+            contactForm.reset();
+            contactIcon.innerHTML = '<i class="fas fa-at"></i>';
+            contactIcon.classList.remove('text-green-500', 'text-red-500');
+            contactIcon.classList.add('text-gray-400');
+            contactHint.classList.remove('hidden');
+            contactValid.classList.add('hidden');
+            contactInput.classList.remove('border-green-300', 'border-red-300');
+        } else {
+            formError.classList.remove('hidden');
         }
-        
-        // Send to Cloudflare Worker
-        fetch(contactForm.action, {
-            method: 'POST',
-            body: formData,
-            headers: { 'Accept': 'application/json' }
-        })
-            .then(response => {
-                if (!response.ok) throw new Error('Submission failed');
-                return response.json().catch(() => ({}));
-            })
-            .then(response => {
-                console.log('Success!', response);
-                formSuccess.classList.remove('hidden');
-                contactForm.reset();
-                
-                // Reset validation UI
-                contactIcon.innerHTML = '<i class="fas fa-at"></i>';
-                contactIcon.classList.remove('text-green-500', 'text-red-500');
-                contactIcon.classList.add('text-gray-400');
-                contactHint.classList.remove('hidden');
-                contactValid.classList.add('hidden');
-                contactInput.classList.remove('border-green-300', 'border-red-300');
-            })
-            .catch(error => {
-                console.error('Error!', error.message);
-                formError.classList.remove('hidden');
-            })
-            .finally(() => {
-                // Reset button state
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = '<span>{{ i18n "contact_submit_btn" }}</span> <i class="fas fa-paper-plane"></i>';
-            });
+
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<span>{{ i18n "contact_submit_btn" }}</span> <i class="fas fa-paper-plane"></i>';
     });
 });
 </script>

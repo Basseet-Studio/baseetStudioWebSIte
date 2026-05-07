@@ -1,84 +1,79 @@
 <!-- Footer -->
-<footer class="footer-section py-12 bg-[#252525]" {{ if eq .Site.Language.LanguageDirection "rtl" }}dir="rtl"{{ end }}>
+<footer class="footer-section bg-[#252525] py-8" {{ if eq .Site.Language.LanguageDirection "rtl" }}dir="rtl"{{ end }}>
   <div class="container mx-auto px-4">
-    <!-- Main Footer Content -->
-    <div class="flex flex-col lg:flex-row items-center justify-between gap-8 mb-8 {{ if eq .Site.Language.LanguageDirection "rtl" }}lg:flex-row-reverse{{ end }}">
+    <!-- Row 1: Logo + Nav + WhatsApp CTA -->
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6 mb-6 {{ if eq .Site.Language.LanguageDirection "rtl" }}md:flex-row-reverse{{ end }}">
       <!-- Logo & Tagline -->
-      <div class="text-center lg:text-{{ if eq .Site.Language.LanguageDirection "rtl" }}right{{ else }}left{{ end }}">
-        <a href="{{ "/" | relLangURL }}" class="text-white font-bold text-xl">{{ i18n "logo_text" }}</a>
-        <p class="text-white/60 text-sm mt-2">{{ i18n "site_description" | truncate 60 }}</p>
+      <div class="text-center md:text-{{ if eq .Site.Language.LanguageDirection "rtl" }}right{{ else }}left{{ end }}">
+        <a href="{{ "/" | relLangURL }}" class="text-white font-bold text-lg">{{ i18n "logo_text" }}</a>
+        <p class="text-white/50 text-xs mt-1">{{ i18n "site_description" | truncate 60 }}</p>
       </div>
       
       <!-- Navigation Links -->
-      <nav class="flex flex-wrap items-center justify-center gap-6 {{ if eq .Site.Language.LanguageDirection "rtl" }}flex-row-reverse{{ end }}">
-        <a href="{{ "/services/" | relLangURL }}" class="text-white/70 hover:text-white transition-colors">{{ i18n "nav_services" }}</a>
-        <a href="{{ "/projects/" | relLangURL }}" class="text-white/70 hover:text-white transition-colors">{{ i18n "projects_page_title" }}</a>
-        <a href="{{ "/customers/" | relLangURL }}" class="text-white/70 hover:text-white transition-colors">{{ i18n "nav_clients" }}</a>
-        <a href="{{ "/contact/" | relLangURL }}" class="text-white/70 hover:text-white transition-colors">{{ i18n "nav_contact" }}</a>
+      <nav class="flex flex-wrap items-center justify-center gap-6 text-sm {{ if eq .Site.Language.LanguageDirection "rtl" }}flex-row-reverse{{ end }}">
+        <a href="{{ "/services/" | relLangURL }}" class="text-white/60 hover:text-white transition-colors">{{ i18n "nav_services" }}</a>
+        <a href="{{ "/projects/" | relLangURL }}" class="text-white/60 hover:text-white transition-colors">{{ i18n "projects_page_title" }}</a>
+        <a href="{{ "/customers/" | relLangURL }}" class="text-white/60 hover:text-white transition-colors">{{ i18n "nav_clients" }}</a>
+        <a href="{{ "/contact/" | relLangURL }}" class="text-white/60 hover:text-white transition-colors">{{ i18n "nav_contact" }}</a>
       </nav>
       
       <!-- WhatsApp CTA -->
       <a href="{{ .Site.Data.shared.links.contact.whatsapp_link }}?text={{ i18n "contact_whatsapp_message" | urlquery }}"
-         target="_blank"
-         rel="noopener noreferrer"
-         class="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white px-5 py-2.5 rounded-full font-medium transition-all duration-300 hover:shadow-lg hover:shadow-[#25D366]/25">
-        <i class="fab fa-whatsapp text-lg"></i>
+         target="_blank" rel="noopener noreferrer"
+         class="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:shadow-lg hover:shadow-[#25D366]/25 shrink-0">
+        <i class="fab fa-whatsapp"></i>
         <span>{{ i18n "contact_whatsapp_btn" }}</span>
       </a>
     </div>
 
-    <!-- Social Media Links Section -->
-    {{ $social := .Site.Data.shared.links.social }}
-    {{ if $social }}
-    {{ $platforms := slice
-      (dict "key" "github"    "icon" "fa-brands fa-github"     "hoverBg" "bg-[#333]")
-      (dict "key" "linkedin"  "icon" "fa-brands fa-linkedin"   "hoverBg" "bg-[#0A66C2]")
-      (dict "key" "twitter"   "icon" "fa-brands fa-x-twitter"  "hoverBg" "bg-black")
-      (dict "key" "instagram" "icon" "fa-brands fa-instagram"  "hoverBg" "bg-[#E4405F]")
-      (dict "key" "facebook"  "icon" "fa-brands fa-facebook"   "hoverBg" "bg-[#1877F2]")
-      (dict "key" "youtube"   "icon" "fa-brands fa-youtube"    "hoverBg" "bg-[#FF0000]")
-      (dict "key" "dribbble"  "icon" "fa-brands fa-dribbble"   "hoverBg" "bg-[#EA4C89]")
-      (dict "key" "tiktok"    "icon" "fa-brands fa-tiktok"     "hoverBg" "bg-black")
-    }}
-    <div class="border-t border-white/10 pt-6 mb-6">
-      <h3 class="text-white text-center text-lg font-semibold mb-4">{{ i18n "footer_follow_us" }}</h3>
-      <div class="flex items-center justify-center gap-4">
-        {{ range $platforms }}
-        {{ $link := index $social .key }}
-        {{ if and $link (ne $link "#") }}
-        <a href="{{ $link }}" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/10 hover:{{ .hoverBg }} flex items-center justify-center transition-all duration-300">
-          <i class="{{ .icon }} text-white"></i>
-        </a>
-        {{ end }}
-        {{ end }}
-      </div>
-    </div>
-    {{ end }}
-    
-    <!-- Divider -->
-    <div class="border-t border-white/10 pt-6">
-      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 {{ if eq .Site.Language.LanguageDirection "rtl" }}sm:flex-row-reverse{{ end }}">
-        <!-- Copyright -->
-        <p class="text-white/50 text-sm">{{ i18n "footer_copyright" }}</p>
-        
-        <!-- Contact Info -->
-        <div class="flex items-center gap-6 text-sm {{ if eq .Site.Language.LanguageDirection "rtl" }}flex-row-reverse{{ end }}">
-          <a href="{{ .Site.Data.shared.links.contact.email_link }}" class="text-white/60 hover:text-white transition-colors flex items-center gap-2">
-            <i class="fas fa-envelope"></i>
-            <span>{{ .Site.Data.shared.links.contact.email }}</span>
+    <!-- Row 2: Social Icons + Copyright + Contact -->
+    <div class="border-t border-white/10 pt-5">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4 {{ if eq .Site.Language.LanguageDirection "rtl" }}md:flex-row-reverse{{ end }}">
+        <!-- Social Icons -->
+        {{ $social := .Site.Data.shared.links.social }}
+        {{ if $social }}
+        {{ $platforms := slice
+          (dict "key" "github"    "icon" "fa-brands fa-github"     "hoverBg" "bg-[#333]")
+          (dict "key" "linkedin"  "icon" "fa-brands fa-linkedin"   "hoverBg" "bg-[#0A66C2]")
+          (dict "key" "twitter"   "icon" "fa-brands fa-x-twitter"  "hoverBg" "bg-black")
+          (dict "key" "instagram" "icon" "fa-brands fa-instagram"  "hoverBg" "bg-[#E4405F]")
+          (dict "key" "facebook"  "icon" "fa-brands fa-facebook"   "hoverBg" "bg-[#1877F2]")
+          (dict "key" "youtube"   "icon" "fa-brands fa-youtube"    "hoverBg" "bg-[#FF0000]")
+          (dict "key" "dribbble"  "icon" "fa-brands fa-dribbble"   "hoverBg" "bg-[#EA4C89]")
+          (dict "key" "tiktok"    "icon" "fa-brands fa-tiktok"     "hoverBg" "bg-black")
+        }}
+        <div class="flex items-center gap-3">
+          {{ range $platforms }}
+          {{ $link := index $social .key }}
+          {{ if and $link (ne $link "#") }}
+          <a href="{{ $link }}" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-white/10 hover:{{ .hoverBg }} flex items-center justify-center transition-all duration-300">
+            <i class="{{ .icon }} text-white text-xs"></i>
           </a>
-          <a href="{{ .Site.Data.shared.links.contact.whatsapp_link }}" class="text-white/60 hover:text-white transition-colors flex items-center gap-2">
-            <i class="fab fa-whatsapp"></i>
-            <span dir="ltr">{{ .Site.Data.shared.links.contact.whatsapp }}</span>
+          {{ end }}
+          {{ end }}
+        </div>
+        {{ end }}
+
+        <!-- Copyright -->
+        <p class="text-white/40 text-xs text-center">{{ i18n "footer_copyright" }}</p>
+
+        <!-- Contact Info -->
+        <div class="flex items-center gap-5 text-sm {{ if eq .Site.Language.LanguageDirection "rtl" }}flex-row-reverse{{ end }}">
+          <a href="{{ .Site.Data.shared.links.contact.email_link }}" class="text-white/50 hover:text-white transition-colors flex items-center gap-1.5">
+            <i class="fas fa-envelope text-xs"></i>
+            <span class="text-xs">{{ .Site.Data.shared.links.contact.email }}</span>
+          </a>
+          <a href="{{ .Site.Data.shared.links.contact.whatsapp_link }}" class="text-white/50 hover:text-white transition-colors flex items-center gap-1.5">
+            <i class="fab fa-whatsapp text-xs"></i>
+            <span class="text-xs" dir="ltr">{{ .Site.Data.shared.links.contact.whatsapp }}</span>
           </a>
         </div>
       </div>
     </div>
-  </div>
 
     <!-- Visitor Detection -->
     <div class="mt-4 text-center">
-      <p id="visitor-info" class="text-white/30 text-xs" data-visiting="{{ i18n "footer_visiting_from" }}" data-device="{{ i18n "footer_device" }}" data-unknown="{{ i18n "footer_unknown" }}"></p>
+      <p id="visitor-info" class="text-white/20 text-[10px]" data-visiting="{{ i18n "footer_visiting_from" }}" data-device="{{ i18n "footer_device" }}" data-unknown="{{ i18n "footer_unknown" }}"></p>
     </div>
   </div>
 </footer>
