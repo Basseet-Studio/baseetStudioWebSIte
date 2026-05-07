@@ -31,9 +31,9 @@ members:
       linkedin: '{{ .Site.Data.shared.links.team.ariyan_rehman.linkedin }}'
       twitter: '{{ .Site.Data.shared.links.team.ariyan_rehman.twitter }}'
 
-  - name: 'Dibakar Sutradhar'
-    role: 'Backend Engineer / API Architect'
-    bio: 'Backend engineer specializing in API architecture and scalable server solutions for web and mobile applications.'
+  - name: 'Dibakar Sutra Dhar'
+    role: 'Backend Engineer & Data Engineer'
+    bio: 'Backend engineer specializing in distributed systems and scalable server solutions for web & cloud applications.'
     image: 'dibakar-sutradhar.JPG'
     social:
       github: '{{ .Site.Data.shared.links.team.dibakar_sutradhar.github }}'
