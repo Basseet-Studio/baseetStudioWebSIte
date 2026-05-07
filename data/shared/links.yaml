@@ -1,0 +1,94 @@
+# Central configuration for all external links
+# Update these values in one place and they will reflect across the entire site
+
+# Social Media Links
+social:
+  github: '#'
+  linkedin: '#'
+  twitter: '#'
+  instagram: '#'
+  facebook: '#'
+  dribbble: '#'
+  youtube: '#'
+  tiktok: '#'
+
+# Contact Links
+contact:
+  email: 'info@baseetstudio.com'
+  email_link: 'mailto:info@baseetstudio.com'
+  phone: '+1 (555) 123-4567'
+  phone_link: 'tel:+15551234567'
+  whatsapp: '+971507566474'
+  whatsapp_link: 'https://wa.me/971507566474'
+  address: '#'
+
+# Form Handler
+forms:
+  contact_form_url: 'https://baseet-form-handler.baseetstudio.workers.dev'
+
+# Project Demo/Download/Try Links
+projects:
+  # In-House Products
+  money-box:
+    ios: '#'
+    android: '#'
+    web: '#'
+  numu:
+    ios: '#'
+    android: '#'
+    web: '#'
+  matrix:
+    ios: '#'
+    android: '#'
+    web: '#'
+  photorestore-ai:
+    ios: '#'
+    android: '#'
+    web: '#'
+  medical-education-app:
+    ios: '#'
+    android: '#'
+    web: '#'
+  deshikitchen:
+    ios: '#'
+    android: '#'
+    web: 'https://deshikitchen.com'
+  chopshop:
+    ios: '#'
+    android: '#'
+    web: '#'
+
+  # Client Projects
+  nss-virtual-education-fair:
+    web: 'https://nssedufair.com'
+  bd-railway-automated-timetable:
+    web: '#'
+  malaysian-business-websites:
+    web: '#'
+
+# External Services (CDN links)
+external:
+  gsap_js: 'https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js'
+  gsap_scroll_trigger: 'https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js'
+  font_awesome: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css'
+  google_fonts: 'https://fonts.googleapis.com'
+  google_fonts_static: 'https://fonts.gstatic.com'
+
+# Team Member Social Links
+team:
+  mohamed_abdallah:
+    github: '#'
+    linkedin: '#'
+    twitter: '#'
+  asadur_rahman:
+    github: '#'
+    linkedin: '#'
+    twitter: '#'
+  ariyan_rehman:
+    github: '#'
+    linkedin: '#'
+    twitter: '#'
+  dibakar_sutradhar:
+    github: '#'
+    linkedin: '#'
+    twitter: '#'

@@ -1,0 +1,91 @@
+{{- /*
+  Project CTA Buttons Partial
+  Usage: {{ partial "project-cta.html" (dict "project" $project "isRTL" $isRTL) }}
+  
+  Expects $project to have:
+  - slug: the project slug (used to look up links from data)
+  - status: "Coming Soon", "Live", etc.
+  - hero.cta_primary: optional override text
+  - hero.cta_secondary: optional override text
+*/ -}}
+
+{{- $project := .project -}}
+{{- $isRTL := .isRTL -}}
+{{- $links := slice -}}
+{{- with $project.slug -}}
+  {{- $links = index $.Site.Data.shared.links.projects . -}}
+{{- end -}}
+
+{{- $primaryLink := "" -}}
+{{- $primaryText := $project.hero.cta_primary -}}
+{{- $secondaryLink := "" -}}
+{{- $secondaryText := $project.hero.cta_secondary -}}
+
+{{- /* Determine primary button (demo/contact) */ -}}
+{{- if eq $project.status "Coming Soon" -}}
+  {{- $primaryLink = "#demo" -}}
+  {{- $primaryText = $primaryText | default (i18n "project_demo_coming_soon") -}}
+{{- else if eq $project.status "Live" -}}
+  {{- with $links -}}
+    {{- $primaryLink = .web | default .ios | default .android -}}
+  {{- end -}}
+  {{- if or (not $primaryLink) (eq $primaryLink "#") -}}
+    {{- $primaryLink = (printf "/projects/%s/demo/" $project.slug | relLangURL) -}}
+  {{- end -}}
+  {{- $primaryText = $primaryText | default (i18n "project_try_live") -}}
+{{- else -}}
+  {{- $primaryLink = "/contact/" | relLangURL -}}
+  {{- $primaryText = $primaryText | default (i18n "project_get_started") -}}
+{{- end -}}
+
+{{- /* Secondary button always links to features */ -}}
+{{- $secondaryLink = "#features" -}}
+{{- $secondaryText = $secondaryText | default (i18n "project_learn_more") -}}
+
+<div class="flex flex-wrap gap-4 justify-center {{ if $isRTL }}lg:justify-end{{ else }}lg:justify-start{{ end }}">
+  {{- /* Primary CTA */ -}}
+  <a href="{{ $primaryLink }}" class="bg-project text-white hover:shadow-project shadow-lg px-8 py-4 rounded-2xl font-bold transition-all duration-300 transform hover:-translate-y-1">
+    {{ $primaryText }}
+  </a>
+  
+  {{- /* Secondary CTA */ -}}
+  <a href="{{ $secondaryLink }}" class="bg-white text-project border-2 border-project hover:bg-project-light px-8 py-4 rounded-2xl font-bold transition-all duration-300 transform hover:-translate-y-1">
+    {{ $secondaryText }}
+  </a>
+</div>
+
+{{- /* Mobile platform download links (for mobile apps) */ -}}
+{{- if and $links (or .showPlatforms true) -}}
+{{- $hasPlatform := false -}}
+{{- with $links.ios -}}{{- if ne . "#" -}}{{- $hasPlatform = true -}}{{- end -}}{{- end -}}
+{{- with $links.android -}}{{- if ne . "#" -}}{{- $hasPlatform = true -}}{{- end -}}{{- end -}}
+{{- with $links.web -}}{{- if ne . "#" -}}{{- $hasPlatform = true -}}{{- end -}}{{- end -}}
+{{- if $hasPlatform -}}
+<div class="mt-6 flex flex-wrap gap-3 justify-center {{ if $isRTL }}lg:justify-end{{ else }}lg:justify-start{{ end }}">
+  {{- with $links.ios -}}
+  {{- if ne . "#" -}}
+  <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-medium text-[#545454] hover:text-project transition-colors">
+    <i class="fab fa-apple text-lg"></i>
+    <span>iOS</span>
+  </a>
+  {{- end -}}
+  {{- end -}}
+  {{- with $links.android -}}
+  {{- if ne . "#" -}}
+  <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-medium text-[#545454] hover:text-project transition-colors">
+    <i class="fab fa-android text-lg"></i>
+    <span>Android</span>
+  </a>
+  {{- end -}}
+  {{- end -}}
+  {{- with $links.web -}}
+  {{- if ne . "#" -}}
+  <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-medium text-[#545454] hover:text-project transition-colors">
+    <i class="fas fa-globe text-lg"></i>
+    <span>Web</span>
+  </a>
+  {{- end -}}
+  {{- end -}}
+</div>
+{{- end -}}
+{{- end -}}
