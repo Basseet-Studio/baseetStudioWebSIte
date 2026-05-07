@@ -105,12 +105,7 @@
         <p class="text-lg lg:text-xl text-[#545454] mb-8 max-w-2xl mx-auto leading-relaxed animate-fade-in-up" style="animation-delay: 0.3s;">{{ $project.hero.subtitle }}</p>
         
         <div class="flex flex-wrap gap-4 justify-center animate-fade-in-up" style="animation-delay: 0.4s;">
-          <a href="{{ $project.hero.cta_primary_link | default "#contact" }}" class="bg-project text-white hover:shadow-project shadow-lg px-8 py-4 rounded-2xl font-bold transition-all duration-300 transform hover:-translate-y-1">
-            {{ $project.hero.cta_primary | default (i18n "project_get_started") }}
-          </a>
-          <a href="{{ $project.hero.cta_secondary_link | default "#features" }}" class="bg-white text-project border-2 border-project hover:bg-project-light px-8 py-4 rounded-2xl font-bold transition-all duration-300 transform hover:-translate-y-1">
-            {{ $project.hero.cta_secondary | default (i18n "project_learn_more") }}
-          </a>
+          {{ partial "project-cta.html" (dict "project" $project "isRTL" $isRTL "showPlatforms" false) }}
         </div>
       </div>
     </div>
@@ -187,7 +182,14 @@
       
       <div class="flex flex-wrap gap-6 justify-center">
         {{ range . }}
-        <a href="{{ .link | default "#" }}" class="group flex items-center gap-4 bg-white rounded-2xl px-8 py-5 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
+        {{- $platformKey := lower .name -}}
+        {{- $configLink := index $.Site.Data.shared.links.projects $project.slug -}}
+        {{- $demoLink := "" -}}
+        {{- with $configLink -}}
+          {{- $demoLink = index . $platformKey -}}
+        {{- end -}}
+        {{- $demoLink = $demoLink | default .link | default "#" -}}
+        <a href="{{ $demoLink }}" class="group flex items-center gap-4 bg-white rounded-2xl px-8 py-5 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
           <i class="{{ .icon }} text-3xl text-project group-hover:scale-110 transition-transform"></i>
           <div class="{{ if $isRTL }}text-right{{ else }}text-left{{ end }}">
             <div class="text-sm text-[#868686]">{{ .version | default "" }}</div>
@@ -255,8 +257,8 @@
 {{- with resources.Get "js/animations.js" -}}
 <script src="{{ .Permalink }}" defer></script>
 {{- end -}}
-<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js" defer></script>
+<script src="{{ .Site.Data.shared.links.external.gsap_js }}" defer></script>
+<script src="{{ .Site.Data.shared.links.external.gsap_scroll_trigger }}" defer></script>
 {{- with resources.Get "js/gsap-chopshop.js" -}}
 <script src="{{ .Permalink }}" defer></script>
 {{- end -}}

@@ -54,6 +54,10 @@
 {{- $appType := $project.appType -}}
 {{- $status := $project.status -}}
 {{- $platforms := $project.platforms -}}
+{{- $links := slice -}}
+{{- with $project.slug -}}
+  {{- $links = index $.Site.Data.shared.links.projects . -}}
+{{- end -}}
 
 <div class="project-page project-{{ $variant }} pt-20 min-h-screen" {{ if $isRTL }}dir="rtl"{{ end }}>
 
@@ -71,7 +75,13 @@
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid md:grid-cols-{{ len $platforms }} gap-8 max-w-3xl mx-auto">
         {{ range $platforms }}
-        <a href="{{ .link }}" class="group block {{ if eq $variant "matrix" }}bg-[#1e293b] border-[#334155] hover:border-[#0891b2]/40{{ else }}bg-white border-gray-100 hover:shadow-xl{{ end }} rounded-3xl p-8 shadow-lg transition-all duration-300 transform hover:-translate-y-2 border text-center no-underline">
+        {{- $platformKey := lower .name -}}
+        {{- $configLink := "" -}}
+        {{- with $links -}}
+          {{- $configLink = index . $platformKey -}}
+        {{- end -}}
+        {{- $demoLink := $configLink | default .link | default (printf "/projects/%s/demo/" $project.slug | relLangURL) -}}
+        <a href="{{ $demoLink }}" class="group block {{ if eq $variant "matrix" }}bg-[#1e293b] border-[#334155] hover:border-[#0891b2]/40{{ else }}bg-white border-gray-100 hover:shadow-xl{{ end }} rounded-3xl p-8 shadow-lg transition-all duration-300 transform hover:-translate-y-2 border text-center no-underline">
           <div class="w-20 h-20 rounded-2xl {{ if eq $variant "matrix" }}bg-gradient-to-br from-[#0891b2] to-[#22d3ee]{{ else }}project-gradient{{ end }} flex items-center justify-center mx-auto mb-6 text-white text-3xl group-hover:scale-110 transition-transform">
             <i class="{{ .icon }}"></i>
           </div>
@@ -106,17 +116,13 @@
         </div>
         <h2 class="text-2xl font-bold {{ if eq $variant "matrix" }}text-[#f1f5f9]{{ else }}text-[#252525]{{ end }} mb-4">{{ $project.name }}</h2>
         <p class="{{ if eq $variant "matrix" }}text-[#94a3b8]{{ else }}text-[#545454]{{ end }} mb-8">{{ $project.tagline }}</p>
-        {{ with $platforms }}
-          {{ range . }}
-            {{ if eq .name "Web" }}
-        <a href="{{ .link }}" class="inline-flex items-center gap-3 project-gradient text-white px-8 py-4 rounded-2xl font-semibold text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 no-underline">
+         {{- $webLink := "" -}}
+         {{- with $links -}}{{- $webLink = .web -}}{{- end -}}
+         <a href="{{ $webLink | default (printf "/projects/%s/demo/" $project.slug | relLangURL) }}" class="inline-flex items-center gap-3 project-gradient text-white px-8 py-4 rounded-2xl font-semibold text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 no-underline">
           <i class="fas fa-external-link-alt"></i>
           {{ i18n "project_demo_try_live" }}
-        </a>
-            {{ end }}
-          {{ end }}
-        {{ end }}
-      </div>
+         </a>
+       </div>
     </div>
   </section>
 

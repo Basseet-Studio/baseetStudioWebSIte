@@ -43,7 +43,7 @@
     <!-- Contact Form -->
     <form id="quick-contact-{{ $pageName | urlize }}" 
           class="quick-contact-form space-y-4"
-          action="https://baseet-form-handler.baseetstudio.workers.dev" 
+          action="{{ site.Data.shared.links.forms.contact_form_url }}" 
           method="POST">
       
       <input type="hidden" name="page" value="{{ $pageName }}">

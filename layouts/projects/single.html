@@ -2,9 +2,6 @@
 {{- $project := .Params.project -}}
 {{- $isRTL := eq .Site.Language.LanguageDirection "rtl" -}}
 
-<!-- Font Awesome CDN -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 <!-- App Bar CSS -->
 {{- $appBarCSS := resources.Get "css/app-bar.css" -}}
 {{- if $appBarCSS -}}
@@ -70,12 +67,7 @@
           <p class="text-lg lg:text-xl text-[#545454] mb-8 max-w-xl {{ if $isRTL }}mr-auto lg:mr-0{{ else }}mx-auto lg:mx-0{{ end }} leading-relaxed">{{ $project.hero.subtitle }}</p>
           
           <div class="flex flex-wrap gap-4 justify-center {{ if $isRTL }}lg:justify-end{{ else }}lg:justify-start{{ end }}">
-            <a href="#" class="bg-project text-white hover:shadow-project shadow-lg px-8 py-4 rounded-2xl font-bold transition-all duration-300 transform hover:-translate-y-1">
-              {{ $project.hero.cta_primary | default (i18n "project_get_started") }}
-            </a>
-            <a href="#features" class="bg-white text-project border-2 border-project hover:bg-project-light px-8 py-4 rounded-2xl font-bold transition-all duration-300 transform hover:-translate-y-1">
-              {{ $project.hero.cta_secondary | default (i18n "project_learn_more") }}
-            </a>
+            {{ partial "project-cta.html" (dict "project" $project "isRTL" $isRTL "showPlatforms" false) }}
           </div>
         </div>
         
@@ -177,8 +169,29 @@
           <p class="text-xl lg:text-2xl mb-10 opacity-90 max-w-2xl mx-auto">{{ i18n "project_cta_subtitle" }} {{ $project.name }}</p>
           
           <div class="flex flex-wrap gap-4 justify-center">
-            <a href="#" class="bg-white text-project hover:bg-gray-100 px-8 py-4 rounded-2xl font-bold transition-all duration-300 transform hover:-translate-y-1">
-              {{ $project.hero.cta_primary | default (i18n "project_get_started") }}
+            {{- $ctaLinks := slice -}}
+            {{- with $project.slug -}}
+              {{- $ctaLinks = index $.Site.Data.shared.links.projects . -}}
+            {{- end -}}
+            {{- $ctaLink := "" -}}
+            {{- $ctaText := $project.hero.cta_primary -}}
+            {{- if eq $project.status "Coming Soon" -}}
+              {{- $ctaLink = "#demo" -}}
+              {{- $ctaText = $ctaText | default (i18n "project_demo_coming_soon") -}}
+            {{- else if eq $project.status "Live" -}}
+              {{- with $ctaLinks -}}
+                {{- $ctaLink = .web | default .ios | default .android -}}
+              {{- end -}}
+              {{- if not $ctaLink -}}
+                {{- $ctaLink = (printf "/projects/%s/demo/" $project.slug | relLangURL) -}}
+              {{- end -}}
+              {{- $ctaText = $ctaText | default (i18n "project_try_live") -}}
+            {{- else -}}
+              {{- $ctaLink = "/contact/" | relLangURL -}}
+              {{- $ctaText = $ctaText | default (i18n "project_get_started") -}}
+            {{- end -}}
+            <a href="{{ $ctaLink }}" class="bg-white text-project hover:bg-gray-100 px-8 py-4 rounded-2xl font-bold transition-all duration-300 transform hover:-translate-y-1">
+              {{ $ctaText }}
             </a>
             <a href="#features" class="bg-white/20 text-white border-2 border-white/40 hover:bg-white/30 px-8 py-4 rounded-2xl font-bold transition-all duration-300 transform hover:-translate-y-1">
               {{ $project.hero.cta_secondary | default (i18n "project_learn_more") }}

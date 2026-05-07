@@ -106,11 +106,22 @@
           <p class="text-lg lg:text-xl text-[#94a3b8] mb-8 max-w-xl {{ if $isRTL }}mr-auto lg:mr-0{{ else }}mx-auto lg:mx-0{{ end }} leading-relaxed">{{ $project.hero.subtitle }}</p>
           
           <div class="flex flex-wrap gap-4 justify-center {{ if $isRTL }}lg:justify-end{{ else }}lg:justify-start{{ end }}">
-            <a href="{{ $project.hero.cta_primary_link | default "#contact" }}" class="bg-gradient-to-r from-[#0891b2] to-[#22d3ee] text-white hover:shadow-lg hover:shadow-[#0891b2]/30 px-8 py-4 rounded-2xl font-bold transition-all duration-300 transform hover:-translate-y-1">
-              {{ $project.hero.cta_primary | default (i18n "project_get_started") }}
+            {{- /* Matrix has custom styling, so we render buttons directly but use config for links */ -}}
+            {{- $links := slice -}}
+            {{- with $project.slug -}}
+              {{- $links = index $.Site.Data.shared.links.projects . -}}
+            {{- end -}}
+            {{- $primaryLink := "" -}}
+            {{- if eq $project.status "Coming Soon" -}}
+              {{- $primaryLink = "#demo" -}}
+            {{- else -}}
+              {{- $primaryLink = $links.web | default "/contact/" | relLangURL -}}
+            {{- end -}}
+            <a href="{{ $primaryLink }}" class="bg-gradient-to-r from-[#0891b2] to-[#22d3ee] text-white hover:shadow-lg hover:shadow-[#0891b2]/30 px-8 py-4 rounded-2xl font-bold transition-all duration-300 transform hover:-translate-y-1">
+              {{ if eq $project.status "Coming Soon" }}{{ i18n "project_demo_coming_soon" }}{{ else }}{{ i18n "project_try_live" }}{{ end }}
             </a>
-            <a href="{{ $project.hero.cta_secondary_link | default "#features" }}" class="bg-[#1e293b] text-[#22d3ee] border border-[#0891b2]/30 hover:bg-[#0891b2]/10 px-8 py-4 rounded-2xl font-bold transition-all duration-300 transform hover:-translate-y-1">
-              {{ $project.hero.cta_secondary | default (i18n "project_learn_more") }}
+            <a href="#features" class="bg-[#1e293b] text-[#22d3ee] border border-[#0891b2]/30 hover:bg-[#0891b2]/10 px-8 py-4 rounded-2xl font-bold transition-all duration-300 transform hover:-translate-y-1">
+              {{ i18n "project_learn_more" }}
             </a>
           </div>
         </div>
@@ -253,8 +264,8 @@
 {{- with resources.Get "js/animations.js" -}}
 <script src="{{ .Permalink }}" defer></script>
 {{- end -}}
-<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js" defer></script>
+<script src="{{ .Site.Data.shared.links.external.gsap_js }}" defer></script>
+<script src="{{ .Site.Data.shared.links.external.gsap_scroll_trigger }}" defer></script>
 {{- with resources.Get "js/gsap-matrix.js" -}}
 <script src="{{ .Permalink }}" defer></script>
 {{- end -}}

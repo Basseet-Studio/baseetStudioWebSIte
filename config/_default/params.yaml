@@ -10,14 +10,4 @@ favicons:
   backgroundColor: '#EBEBEB'
   faviconColor: '#171D1C'
 
-contact:
-  - 'info@baseetstudio.com'
-  - '+1 (555) 123-4567'
-
-social:
-  dribbble: '#'
-  instagram: '#'
-  facebook: '#'
-  twitter: '#'
-
 copyright: '© 2025 Baseet Studio. All Rights Reserved'

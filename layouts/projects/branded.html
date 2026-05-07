@@ -90,12 +90,7 @@
           <p class="text-lg lg:text-xl text-[#545454] mb-8 max-w-xl {{ if $isRTL }}mr-auto lg:mr-0{{ else }}mx-auto lg:mx-0{{ end }} leading-relaxed animate-fade-in-up" style="animation-delay: 0.3s;">{{ $project.hero.subtitle }}</p>
           
           <div class="flex flex-wrap gap-4 justify-center {{ if $isRTL }}lg:justify-end{{ else }}lg:justify-start{{ end }} animate-fade-in-up" style="animation-delay: 0.4s;">
-            <a href="{{ $project.hero.cta_primary_link | default "#contact" }}" class="bg-project text-white hover:shadow-project shadow-lg px-8 py-4 rounded-2xl font-bold transition-all duration-300 transform hover:-translate-y-1">
-              {{ $project.hero.cta_primary | default (i18n "project_get_started") }}
-            </a>
-            <a href="{{ $project.hero.cta_secondary_link | default "#features" }}" class="bg-white text-project border-2 border-project hover:bg-project-light px-8 py-4 rounded-2xl font-bold transition-all duration-300 transform hover:-translate-y-1">
-              {{ $project.hero.cta_secondary | default (i18n "project_learn_more") }}
-            </a>
+            {{ partial "project-cta.html" (dict "project" $project "isRTL" $isRTL "showPlatforms" false) }}
           </div>
         </div>
         

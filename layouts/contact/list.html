@@ -1,6 +1,6 @@
 {{ define "main" }}
 <!-- Font Awesome CDN -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+<link rel="stylesheet" href="{{ .Site.Data.shared.links.external.font_awesome }}"
   integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
   crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -64,7 +64,7 @@
                     <div class="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-white/20">
                         <h2 class="text-3xl font-bold bg-gradient-to-r from-[#496BC1] to-[#3a5aa3] bg-clip-text text-transparent mb-6">{{ i18n "contact_form_title" }}</h2>
                         
-                        <form id="contactForm" name="contactForm" class="space-y-6" action="https://baseet-form-handler.baseetstudio.workers.dev" method="POST">
+                        <form id="contactForm" name="contactForm" class="space-y-6" action="{{ .Site.Data.shared.links.forms.contact_form_url }}" method="POST">
                             
                             <!-- Hidden fields for extra data -->
                             <input type="hidden" name="contactType" id="contactTypeHidden" value="">
@@ -156,7 +156,7 @@
                             <p class="text-white/80 mb-6">{{ i18n "contact_quick_text" }}</p>
                             
                             <!-- WhatsApp Button -->
-                            <a href="https://wa.me/971507566474?text={{ i18n "contact_whatsapp_message" | urlquery }}"
+                            <a href="{{ .Site.Data.shared.links.contact.whatsapp_link }}?text={{ i18n "contact_whatsapp_message" | urlquery }}"
                                target="_blank"
                                rel="noopener noreferrer"
                                class="flex items-center gap-3 bg-[#25D366] hover:bg-[#20bd5a] text-white px-6 py-4 rounded-xl font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-[#25D366]/25 transform hover:-translate-y-0.5">
@@ -165,30 +165,72 @@
                             </a>
                         </div>
                         
+                        <!-- Social Media Section -->
+                        <div class="bg-gray-50 rounded-2xl p-8">
+                            <h3 class="text-xl font-bold text-gray-900 mb-6">{{ i18n "contact_social_title" }}</h3>
+                            <div class="grid grid-cols-2 gap-3">
+                                <!-- LinkedIn -->
+                                <a href="{{ .Site.Data.shared.links.social.linkedin }}" target="_blank" rel="noopener noreferrer"
+                                   class="flex items-center gap-3 p-4 bg-white rounded-xl hover:shadow-md transition-all duration-200 group">
+                                    <div class="w-10 h-10 bg-[#0A66C2] rounded-lg flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+                                        <i class="fa-brands fa-linkedin text-lg"></i>
+                                    </div>
+                                    <span class="font-medium text-gray-700">LinkedIn</span>
+                                </a>
+                                
+                                <!-- Twitter/X -->
+                                <a href="{{ .Site.Data.shared.links.social.twitter }}" target="_blank" rel="noopener noreferrer"
+                                   class="flex items-center gap-3 p-4 bg-white rounded-xl hover:shadow-md transition-all duration-200 group">
+                                    <div class="w-10 h-10 bg-black rounded-lg flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+                                        <i class="fa-brands fa-x-twitter text-lg"></i>
+                                    </div>
+                                    <span class="font-medium text-gray-700">Twitter</span>
+                                </a>
+                                
+                                <!-- Instagram -->
+                                <a href="{{ .Site.Data.shared.links.social.instagram }}" target="_blank" rel="noopener noreferrer"
+                                   class="flex items-center gap-3 p-4 bg-white rounded-xl hover:shadow-md transition-all duration-200 group">
+                                    <div class="w-10 h-10 bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#F77737] rounded-lg flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+                                        <i class="fa-brands fa-instagram text-lg"></i>
+                                    </div>
+                                    <span class="font-medium text-gray-700">Instagram</span>
+                                </a>
+                                
+                                <!-- GitHub -->
+                                <a href="{{ .Site.Data.shared.links.social.github }}" target="_blank" rel="noopener noreferrer"
+                                   class="flex items-center gap-3 p-4 bg-white rounded-xl hover:shadow-md transition-all duration-200 group">
+                                    <div class="w-10 h-10 bg-[#333] rounded-lg flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+                                        <i class="fa-brands fa-github text-lg"></i>
+                                    </div>
+                                    <span class="font-medium text-gray-700">GitHub</span>
+                                </a>
+                            </div>
+                        </div>
+                        
                         <!-- Contact Details -->
                         <div class="bg-gray-50 rounded-2xl p-8">
                             <h3 class="text-xl font-bold text-gray-900 mb-6">{{ i18n "contact_details_title" }}</h3>
                             
                             <div class="space-y-4">
                                 <!-- Email -->
-                                <a href="mailto:info@baseetstudio.com" class="flex items-center gap-4 p-4 bg-white rounded-xl hover:shadow-md transition-all duration-200 group">
+                                <a href="{{ .Site.Data.shared.links.contact.email_link }}" class="flex items-center gap-4 p-4 bg-white rounded-xl hover:shadow-md transition-all duration-200 group">
                                     <div class="w-12 h-12 bg-[#496BC1]/10 rounded-xl flex items-center justify-center text-[#496BC1] group-hover:bg-[#496BC1] group-hover:text-white transition-all duration-200">
                                         <i class="fas fa-envelope"></i>
                                     </div>
                                     <div>
                                         <p class="text-sm text-gray-500">{{ i18n "contact_email_label" }}</p>
-                                        <p class="font-medium text-gray-900">info@baseetstudio.com</p>
+                                        <p class="font-medium text-gray-900">{{ .Site.Data.shared.links.contact.email }}</p>
                                     </div>
                                 </a>
                                 
-                                <!-- Phone -->
-                                <a href="tel:+971507566474" class="flex items-center gap-4 p-4 bg-white rounded-xl hover:shadow-md transition-all duration-200 group">
-                                    <div class="w-12 h-12 bg-[#496BC1]/10 rounded-xl flex items-center justify-center text-[#496BC1] group-hover:bg-[#496BC1] group-hover:text-white transition-all duration-200">
-                                        <i class="fas fa-phone"></i>
+                                <!-- WhatsApp -->
+                                <a href="{{ .Site.Data.shared.links.contact.whatsapp_link }}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-4 bg-white rounded-xl hover:shadow-md transition-all duration-200 group">
+                                    <div class="w-12 h-12 bg-[#25D366]/10 rounded-xl flex items-center justify-center text-[#25D366] group-hover:bg-[#25D366] group-hover:text-white transition-all duration-200">
+                                        <i class="fab fa-whatsapp"></i>
                                     </div>
                                     <div>
-                                        <p class="text-sm text-gray-500">{{ i18n "contact_phone_label" }}</p>
-                                        <p class="font-medium text-gray-900" dir="ltr">+971 50 756 6474</p>
+                                        <p class="text-sm text-gray-500">{{ i18n "contact_whatsapp_label" }}</p>
+                                        <p class="font-medium text-gray-900" dir="ltr">{{ .Site.Data.shared.links.contact.whatsapp }}</p>
                                     </div>
                                 </a>
                                 

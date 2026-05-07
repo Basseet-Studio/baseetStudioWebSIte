@@ -134,9 +134,19 @@
                                 <div class="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
                                     <!-- Platform Icons -->
                                     <div class="flex items-center gap-3">
+                                        {{- $projectLinks := slice -}}
+                                        {{- with $project.slug -}}
+                                          {{- $projectLinks = index $.Site.Data.shared.links.projects . -}}
+                                        {{- end -}}
                                         {{- range $project.platforms -}}
                                         {{ $platformName := cond (ne (index $platformI18n .name) nil) (i18n (index $platformI18n .name)) .name }}
-                                        <a href="{{ .link }}"
+                                        {{- $platformKey := lower .name -}}
+                                        {{- $platformLink := "" -}}
+                                        {{- with $projectLinks -}}
+                                          {{- $platformLink = index . $platformKey -}}
+                                        {{- end -}}
+                                        {{- $link := $platformLink | default .link -}}
+                                        <a href="{{ $link }}"
                                             class="project-platform-link flex items-center gap-1 text-[#545454]"
                                             title="{{ i18n "projects_available_on" }} {{ $platformName }}">
                                             <i class="{{ .icon }} text-lg"></i>

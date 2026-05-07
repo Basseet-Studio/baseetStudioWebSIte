@@ -21,14 +21,10 @@
         <!-- Team Grid -->
         {{/* Define team members with i18n keys */}}
         {{ $teamMembers := slice
-        (dict "nameKey" "team_member_1_name" "roleKey" "team_member_1_role" "bioKey" "team_member_1_bio" "image"
-        "mohamed-abdallah.jpg" "social" (dict "github" "#" "linkedin" "#" "twitter" "#"))
-        (dict "nameKey" "team_member_2_name" "roleKey" "team_member_2_role" "bioKey" "team_member_2_bio" "image"
-        "asadur-rahman.png" "social" (dict "github" "#" "linkedin" "#" "twitter" "#"))
-        (dict "nameKey" "team_member_3_name" "roleKey" "team_member_3_role" "bioKey" "team_member_3_bio" "image"
-        "ariyan-rehman.jpg" "isAriyan" true "social" (dict "github" "#" "linkedin" "#" "twitter" "#"))
-        (dict "nameKey" "team_member_4_name" "roleKey" "team_member_4_role" "bioKey" "team_member_4_bio" "image"
-        "dibakar-sutradhar.JPG" "social" (dict "github" "#" "linkedin" "#" "twitter" "#"))
+        (dict "nameKey" "team_member_1_name" "roleKey" "team_member_1_role" "bioKey" "team_member_1_bio" "image" "mohamed-abdallah.jpg" "socialKey" "mohamed_abdallah")
+        (dict "nameKey" "team_member_2_name" "roleKey" "team_member_2_role" "bioKey" "team_member_2_bio" "image" "asadur-rahman.png" "socialKey" "asadur_rahman")
+        (dict "nameKey" "team_member_3_name" "roleKey" "team_member_3_role" "bioKey" "team_member_3_bio" "image" "ariyan-rehman.jpg" "isAriyan" true "socialKey" "ariyan_rehman")
+        (dict "nameKey" "team_member_4_name" "roleKey" "team_member_4_role" "bioKey" "team_member_4_bio" "image" "dibakar-sutradhar.JPG" "socialKey" "dibakar_sutradhar")
         }}
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 justify-items-center max-w-6xl mx-auto">
             {{- range $index, $member := $teamMembers -}}
@@ -81,20 +77,27 @@
 
                     <!-- Social Links -->
                     <div class="flex gap-3">
-                        {{- if $member.social.github -}}
-                        <a href="{{ $member.social.github }}" class="social-btn-premium" aria-label="GitHub">
+                        {{- $teamSocial := index $.Site.Data.shared.links.team $member.socialKey -}}
+                        {{- with $teamSocial.github -}}
+                        {{- if ne . "#" -}}
+                        <a href="{{ . }}" class="social-btn-premium" aria-label="GitHub">
                             <i class="fab fa-github"></i>
                         </a>
                         {{- end -}}
-                        {{- if $member.social.linkedin -}}
-                        <a href="{{ $member.social.linkedin }}" class="social-btn-premium" aria-label="LinkedIn">
+                        {{- end -}}
+                        {{- with $teamSocial.linkedin -}}
+                        {{- if ne . "#" -}}
+                        <a href="{{ . }}" class="social-btn-premium" aria-label="LinkedIn">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
                         {{- end -}}
-                        {{- if $member.social.twitter -}}
-                        <a href="{{ $member.social.twitter }}" class="social-btn-premium" aria-label="Twitter">
+                        {{- end -}}
+                        {{- with $teamSocial.twitter -}}
+                        {{- if ne . "#" -}}
+                        <a href="{{ . }}" class="social-btn-premium" aria-label="Twitter">
                             <i class="fab fa-twitter"></i>
                         </a>
+                        {{- end -}}
                         {{- end -}}
                     </div>
                 </div>
