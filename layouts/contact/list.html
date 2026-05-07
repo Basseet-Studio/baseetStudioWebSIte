@@ -64,15 +64,12 @@
                     <div class="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-white/20">
                         <h2 class="text-3xl font-bold bg-gradient-to-r from-[#496BC1] to-[#3a5aa3] bg-clip-text text-transparent mb-6">{{ i18n "contact_form_title" }}</h2>
                         
-                        <form id="contactForm" name="contactForm" class="space-y-6" action="https://api.web3forms.com/submit" method="POST">
-                            <!-- Web3Forms Access Key -->
-                            <input type="hidden" name="access_key" value="bec4456c-9b97-4528-b493-1189ef3d3969">
+                        <form id="contactForm" name="contactForm" class="space-y-6" action="https://baseet-form-handler.baseetstudio.workers.dev" method="POST">
                             
                             <!-- Hidden fields for extra data -->
                             <input type="hidden" name="contactType" id="contactTypeHidden" value="">
                             <input type="hidden" name="language" value="{{ .Site.Language.Lang }}">
                             <input type="hidden" name="page" id="pageHidden" value="Contact Page">
-                            <input type="hidden" name="subject" value="New Contact Form Submission from Baseet Studio">
                             
                             <!-- Name -->
                             <div>
@@ -364,9 +361,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set page URL on load
     document.getElementById('pageHidden').value = window.location.href;
     
-    // Form submission - Send to Google Sheets using FormData
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxK-k-X_sjSjZ-SJEu-UuPKRRFjE71jEiLUEn-Y17_GdEZlkdPqH3J5Cer-u3gxJStS/exec';
-    
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
@@ -396,16 +390,39 @@ document.addEventListener('DOMContentLoaded', function() {
         formSuccess.classList.add('hidden');
         formError.classList.add('hidden');
         
+        const formData = new FormData(contactForm);
+        const message = (formData.get('message') || '').toString().trim();
+        if (!message) {
+            alert('{{ i18n "contact_error_message" }}');
+            return;
+        }
+
+        // Map unified contact field to worker-expected keys
+        if (contactResult.type === 'email') {
+            formData.set('email', contact);
+            formData.delete('phone');
+        } else {
+            alert('{{ i18n "contact_invalid_email" }}');
+            return;
+        }
+
         // Debug log
-        const formDataDebug = new FormData(contactForm);
+        const formDataDebug = formData;
         console.log('Sending form data:');
         for (let [key, value] of formDataDebug.entries()) {
             console.log(key + ': ' + value);
         }
         
-        // Send to Google Sheets using FormData (the proper way)
-        fetch(scriptURL, { method: 'POST', body: new FormData(contactForm) })
-            .then(response => response.json())
+        // Send to Cloudflare Worker
+        fetch(contactForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+        })
+            .then(response => {
+                if (!response.ok) throw new Error('Submission failed');
+                return response.json().catch(() => ({}));
+            })
             .then(response => {
                 console.log('Success!', response);
                 formSuccess.classList.remove('hidden');

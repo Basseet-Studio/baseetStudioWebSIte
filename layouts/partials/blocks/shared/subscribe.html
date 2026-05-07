@@ -15,6 +15,38 @@
                 {{ i18n "subscribe_cta" }}
             </a>
         </div>
+<<<<<<< Updated upstream
+=======
+
+        <!-- Contact Form with AJAX Enhancement -->
+        <form id="contact-form"
+            class="subscribe-form flex flex-col xl:flex-row xl:items-center justify-stretch gap-4 xl:max-w-2xl mx-auto"
+            action="https://baseet-form-handler.baseetstudio.workers.dev" method="POST">
+            <input type="hidden" name="name" value="Newsletter Subscriber">
+            <input type="hidden" name="message" value="Newsletter subscription request">
+            <input type="hidden" name="page" id="subscribe-page-source" value="Home Page">
+            <input type="hidden" name="language" value="{{ site.Language.Lang }}">
+            
+            <label for="subscribe-email" class="hidden">Email</label>
+            <input id="subscribe-email" class="subscribe-input flex-1" type="email" name="email" value=""
+                placeholder="{{ i18n "subscribe_placeholder" }}" required aria-required="true" />
+
+            <button id="submit-button" class="subscribe-btn flex items-center justify-center gap-2" type="submit"
+                aria-label="Submit contact form">
+                <!-- Button Text -->
+                <span id="button-text">{{ i18n "subscribe_btn" }}</span>
+
+                <!-- Loading Spinner (hidden by default) -->
+                <svg id="button-spinner" class="hidden animate-spin h-5 w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                    </path>
+                </svg>
+            </button>
+        </form>
+>>>>>>> Stashed changes
     </div>
 </section>
 {{ end }}{{ end }}

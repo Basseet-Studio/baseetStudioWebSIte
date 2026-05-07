@@ -36,7 +36,7 @@
     }
     
     // Handle contact form
-    if (contactForm) {
+    if (contactForm && !contactForm.querySelector('input[name="contact"]')) {
       contactForm.addEventListener('submit', handleContactFormSubmit)
     }
   }
@@ -202,7 +202,7 @@
     formError.classList.add('hidden')
 
     try {
-      // Submit to Web3Forms
+      // Submit to form handler endpoint
       const response = await fetch(form.action, {
         method: 'POST',
         body: formData,

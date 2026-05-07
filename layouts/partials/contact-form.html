@@ -43,12 +43,9 @@
     <!-- Contact Form -->
     <form id="quick-contact-{{ $pageName | urlize }}" 
           class="quick-contact-form space-y-4"
-          action="https://api.web3forms.com/submit" 
+          action="https://baseet-form-handler.baseetstudio.workers.dev" 
           method="POST">
       
-      <!-- Web3Forms Access Key -->
-      <input type="hidden" name="access_key" value="bec4456c-9b97-4528-b493-1189ef3d3969">
-      <input type="hidden" name="subject" value="Quick Contact Form - Baseet Studio">
       <input type="hidden" name="page" value="{{ $pageName }}">
       <input type="hidden" name="language" value="{{ site.Language.Lang }}">
       

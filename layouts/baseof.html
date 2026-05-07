@@ -40,27 +40,27 @@
 
     <!-- Favicons from https://favicon.io/ -->
     {{ with resources.Get "favicon.ico" }}
-      <link rel="icon" type="image/x-icon" href="{{ .Permalink }}">
+      <link rel="icon" type="image/x-icon" href="{{ .RelPermalink }}">
     {{ end }}
 
     {{ with resources.Get "apple-touch-icon.png" }}
-      <link rel="apple-touch-icon" sizes="180x180" href="{{ .Permalink }}" />
+      <link rel="apple-touch-icon" sizes="180x180" href="{{ .RelPermalink }}" />
     {{ end }}
 
     {{ with resources.Get "favicon-32x32.png" }}
-      <link rel="icon" type="image/png" sizes="32x32" href="{{ .Permalink }}" />
+      <link rel="icon" type="image/png" sizes="32x32" href="{{ .RelPermalink }}" />
     {{ end }}
 
     {{ with resources.Get "favicon-16x16.png" }}
-      <link rel="icon" type="image/png" sizes="16x16" href="" />
+      <link rel="icon" type="image/png" sizes="16x16" href="{{ .RelPermalink }}" />
     {{ end }}
 
     {{ with resources.Get "site.webmanifest" }}
-      <link rel="manifest" href="{{ .Permalink }}" />
+      <link rel="manifest" href="{{ .RelPermalink }}" />
     {{ end }}
 
     {{ with resources.Get "safari-pinned-tab.svg" }}
-      <link rel="mask-icon" href="" color="#FFFFFF" />
+      <link rel="mask-icon" href="{{ .RelPermalink }}" color="#FFFFFF" />
     {{ end }}
 
 
