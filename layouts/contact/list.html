@@ -403,7 +403,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set page URL on load
     document.getElementById('pageHidden').value = window.location.href;
     
-    contactForm.addEventListener('submit', function(e) {
+    contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         
         const name = document.getElementById('name').value.trim();
@@ -433,30 +433,44 @@ document.addEventListener('DOMContentLoaded', function() {
         formError.classList.add('hidden');
         
         const formData = new FormData(contactForm);
-        const message = (formData.get('message') || '').toString().trim();
-        if (!message) {
-            alert('{{ i18n "contact_error_message" }}');
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = '<span>{{ i18n "contact_submit_btn" }}</span> <i class="fas fa-paper-plane"></i>';
-            return;
+        const originalMessage = (formData.get('message') || '').toString().trim();
+        const projectType = (formData.get('projectType') || '').toString().trim();
+        const selectedProjectOption = document.querySelector('#projectType option:checked');
+        const projectTypeLabel = selectedProjectOption ? selectedProjectOption.textContent.trim() : projectType;
+
+        // Build message body per worker contract while preserving user-entered details.
+        const messageParts = [];
+        if (originalMessage) messageParts.push(originalMessage);
+        if (contactResult.type === 'phone') {
+            messageParts.push('Phone: ' + contact);
+            if (projectType) messageParts.push('Service Type: ' + (projectTypeLabel || projectType));
+        } else if (projectType) {
+            messageParts.push('Service Type: ' + (projectTypeLabel || projectType));
         }
 
-        // Map unified contact field to worker-expected keys
-        if (contactResult.type === 'email') {
-            formData.set('email', contact);
-            formData.delete('phone');
-        } else {
-            alert('{{ i18n "contact_invalid_email" }}');
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = '<span>{{ i18n "contact_submit_btn" }}</span> <i class="fas fa-paper-plane"></i>';
-            return;
+        // Strict worker payload format: name, email, message, page, language.
+        const payload = new URLSearchParams();
+        payload.set('name', name);
+        payload.set('email', contactResult.type === 'email' ? contact : 'noemail@baseetstudio.local');
+        payload.set('message', messageParts.join('\n\n'));
+        payload.set('page', (document.getElementById('pageHidden').value || window.location.href).trim());
+        payload.set('language', '{{ .Site.Language.Lang }}');
+
+        let sent = false;
+        try {
+            await fetch(contactForm.action, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                },
+                body: payload.toString()
+            });
+            sent = true;
+        } catch (err) {
+            sent = false;
         }
 
-        // Send via sendBeacon (bypasses CORS preflight)
-        const body = new URLSearchParams();
-        for (let [k, v] of formData.entries()) body.append(k, v);
-
-        const sent = navigator.sendBeacon(contactForm.action, body);
         if (sent) {
             formSuccess.classList.remove('hidden');
             contactForm.reset();

@@ -9,12 +9,12 @@
         <h1 class="subscribe-title">{{ i18n "subscribe_title" }}</h1>
         <p class="subscribe-subtitle text-gray-600 text-center mb-8">{{ i18n "subscribe_subtitle" }}</p>
 
-        <form id="subscribe-form"
+        <form id="subscribe-form" novalidate
             class="subscribe-form flex flex-col sm:flex-row items-center justify-center gap-3 max-w-lg mx-auto"
             action="{{ site.Data.shared.links.forms.contact_form_url }}" method="POST">
-            <input type="hidden" name="name" value="">
-            <input type="hidden" name="email" value="">
-            <input type="hidden" name="page" value="Home Page">
+            <input type="hidden" name="name" value="Test">
+            <input type="hidden" name="email" value="test@test.com">
+            <input type="hidden" name="page" value="">
             <input type="hidden" name="language" value="{{ site.Language.Lang }}">
             
             <input id="subscribe-contact" class="subscribe-input flex-1 w-full" type="text" name="message"
@@ -56,21 +56,51 @@ document.addEventListener('DOMContentLoaded', function() {
         successEl.classList.add('hidden');
         errorEl.classList.add('hidden');
 
-        const formData = new FormData(form);
-        const url = new URL(form.action);
-        const body = new URLSearchParams();
-        for (let [k, v] of formData.entries()) body.append(k, v);
+        (async () => {
+            try {
+                const contactText = (document.getElementById('subscribe-contact')?.value || '').trim();
+                if (!contactText) {
+                    errorEl.classList.remove('hidden');
+                    return;
+                }
 
-        // sendBeacon bypasses CORS preflight for simple POST
-        const sent = navigator.sendBeacon(url.toString(), body);
-        if (sent) {
-            form.reset();
-            successEl.classList.remove('hidden');
-        } else {
-            errorEl.classList.remove('hidden');
-        }
-        btnText.classList.remove('hidden');
-        spinner.classList.add('hidden');
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                const cleanedPhone = contactText.replace(/[\s\-\(\)\.]/g, '');
+                const looksLikePhone = /^[\+\d]{7,20}$/.test(cleanedPhone);
+
+                const payload = new URLSearchParams();
+                payload.set('name', 'Test');
+                if (emailPattern.test(contactText)) {
+                    payload.set('email', contactText);
+                    payload.set('message', 'Homepage email inquiry');
+                } else if (looksLikePhone) {
+                    payload.set('email', 'test@test.com');
+                    payload.set('message', 'Phone: ' + contactText);
+                } else {
+                    payload.set('email', 'test@test.com');
+                    payload.set('message', contactText);
+                }
+                payload.set('page', window.location.href);
+                payload.set('language', '{{ site.Language.Lang }}');
+
+                await fetch(form.action, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                    },
+                    body: payload.toString()
+                });
+
+                form.reset();
+                successEl.classList.remove('hidden');
+            } catch (err) {
+                errorEl.classList.remove('hidden');
+            } finally {
+                btnText.classList.remove('hidden');
+                spinner.classList.add('hidden');
+            }
+        })();
     });
 });
 </script>
