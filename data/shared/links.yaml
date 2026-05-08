@@ -57,6 +57,14 @@ projects:
     ios: '#'
     android: '#'
     web: '#'
+  baseetims:
+    ios: '#'
+    android: '#'
+    web: '#'
+  medev:
+    ios: '#'
+    android: '#'
+    web: '#'
 
   # Client Projects
   nss-virtual-education-fair:

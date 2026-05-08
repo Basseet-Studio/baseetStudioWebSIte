@@ -193,7 +193,7 @@ For issues or questions:
 
 ## License
 
-MIT License - Copyright © 2025 Baseet Studio. All Rights Reserved.
+MIT License - Copyright © 2026 Baseet Studio. All Rights Reserved.
 
 ---
 

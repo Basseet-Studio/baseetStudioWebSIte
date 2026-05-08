@@ -1,0 +1,146 @@
+/* project-medev.css — Teal medical grid theme (Matrix-style) */
+
+/* Grid background effect */
+.project-medev .grid-bg {
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 40px,
+    rgba(14, 166, 116, 0.3) 40px,
+    rgba(14, 166, 116, 0.3) 41px
+  ),
+  repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 40px,
+    rgba(14, 166, 116, 0.3) 40px,
+    rgba(14, 166, 116, 0.3) 41px
+  );
+}
+
+/* Tab Panel Navigation */
+.project-medev .tab-panel-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.project-medev .tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  background: rgba(15, 41, 47, 0.8);
+  border: 1px solid #134E4A;
+  border-radius: 0.75rem;
+  color: #99F6E4;
+  font-weight: 500;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.project-medev .tab-btn:hover {
+  background: rgba(10, 110, 116, 0.3);
+  border-color: #0A6E74;
+}
+
+.project-medev .tab-btn.active {
+  background: linear-gradient(135deg, #0A6E74, #14B8A6);
+  border-color: transparent;
+  color: white;
+}
+
+.project-medev .tab-btn i {
+  font-size: 1rem;
+}
+
+/* Tab Content */
+.project-medev .tab-content {
+  display: none;
+  background: rgba(15, 41, 47, 0.6);
+  border: 1px solid #134E4A;
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  animation: fadeIn 0.3s ease;
+}
+
+.project-medev .tab-content.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Integration Grid */
+.project-medev .integrations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+}
+
+.project-medev .integration-card {
+  background: rgba(15, 41, 47, 0.8);
+  border: 1px solid #134E4A;
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.project-medev .integration-card:hover {
+  background: rgba(10, 110, 116, 0.3);
+  border-color: #0A6E74;
+  transform: translateY(-2px);
+}
+
+/* Code text style */
+.project-medev .code-text {
+  font-family: 'IBM Plex Sans', monospace;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* FAQ accordion */
+.project-medev details summary::-webkit-details-marker {
+  display: none;
+}
+
+.project-medev details summary::after {
+  display: none;
+}
+
+.project-medev details[open] summary {
+  color: #14B8A6;
+}
+
+/* Scroll animations */
+.project-medev .animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.project-medev .animate-on-scroll.animated {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive tab panel */
+@media (max-width: 640px) {
+  .project-medev .tab-panel-nav {
+    flex-direction: column;
+  }
+
+  .project-medev .tab-btn {
+    justify-content: center;
+  }
+
+  .project-medev .tab-content {
+    padding: 1.5rem;
+  }
+}
