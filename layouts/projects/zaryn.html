@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 
 <!-- Project CSS -->
-{{- with resources.Get "css/project-baseetims.css" -}}
+{{- with resources.Get "css/project-zaryn.css" -}}
   {{- if hugo.IsProduction -}}
     {{- with . | minify | fingerprint -}}
       <link rel="stylesheet" href="{{ .RelPermalink }}" />
@@ -72,7 +72,7 @@
   .animate-flip-in { animation: flipIn 0.6s ease-out forwards; }
 </style>
 
-<div id="home" class="project-page project-baseetims pt-20" {{ if $isRTL }}dir="rtl"{{ end }}>
+<div id="home" class="project-page project-zaryn pt-20" {{ if $isRTL }}dir="rtl"{{ end }}>
 
   <!-- ========== Split-Screen Hero with Dashboard Mockup ========== -->
   <section class="relative min-h-[85vh] flex items-center overflow-hidden bg-gradient-to-br from-[#FFFBF7] to-[#FFF7ED]">
@@ -276,7 +276,7 @@
 {{- end -}}
 <script src="{{ .Site.Data.shared.links.external.gsap_js }}" defer></script>
 <script src="{{ .Site.Data.shared.links.external.gsap_scroll_trigger }}" defer></script>
-{{- with resources.Get "js/gsap-baseetims.js" -}}
+{{- with resources.Get "js/gsap-zaryn.js" -}}
 <script src="{{ .Permalink }}" defer></script>
 {{- end -}}
 

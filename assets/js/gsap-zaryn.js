@@ -1,4 +1,4 @@
-/* gsap-baseetims.js — Stagger flip for bento cards */
+/* gsap-zaryn.js — Stagger flip for bento cards */
 ;(function () {
   'use strict'
 
@@ -9,7 +9,7 @@
     gsap.registerPlugin(ScrollTrigger)
 
     // Stagger flip for bento cards
-    var bentoCards = gsap.utils.toArray('.project-baseetims .bento-card')
+    var bentoCards = gsap.utils.toArray('.project-zaryn .bento-card')
     if (bentoCards.length) {
       gsap.set(bentoCards, { opacity: 0, y: 40, scale: 0.9 })
       ScrollTrigger.batch(bentoCards, {
@@ -29,7 +29,7 @@
     }
 
     // Fade-up for stat cards
-    var statCards = gsap.utils.toArray('.project-baseetims .stat-card')
+    var statCards = gsap.utils.toArray('.project-zaryn .stat-card')
     if (statCards.length) {
       gsap.set(statCards, { y: 30, opacity: 0 })
       ScrollTrigger.batch(statCards, {

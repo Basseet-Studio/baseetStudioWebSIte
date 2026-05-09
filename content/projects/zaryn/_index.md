@@ -1,14 +1,14 @@
 ---
-title: 'BaseetIMS'
+title: 'Zaryn'
 description: 'Complete POS and Inventory Management System for retail, restaurants, and service businesses.'
 date: 2024-01-03
 draft: false
-layout: baseetims
+layout: zaryn
 
 # Project Details
 project:
-  name: 'BaseetIMS'
-  slug: 'baseetims'
+  name: 'Zaryn'
+  slug: 'zaryn'
   tagline: 'All-In-One Business Management'
   iconClass: 'fas fa-cash-register'
   color: '#F97316'
@@ -21,7 +21,7 @@ project:
       link: '#'
 
   # Layout & Typography
-  layoutVariant: 'baseetims'
+  layoutVariant: 'zaryn'
   fontHeading: 'Space Grotesk'
   fontBody: 'Inter'
   fontWeights: '400,500,700'
@@ -29,7 +29,7 @@ project:
   appType: 'web'
 
   # Navigation
-  brandName: 'BaseetIMS'
+  brandName: 'Zaryn'
   navItems:
     - label: 'Home'
       url: ''
@@ -56,7 +56,7 @@ project:
   # Hero Section
   hero:
     title: 'Run Your Business Like a Pro'
-    subtitle: 'Complete point-of-sale, inventory management, and business analytics in one powerful platform. From retail stores to restaurants, BaseetIMS handles it all.'
+    subtitle: 'Complete point-of-sale, inventory management, and business analytics in one powerful platform. From retail stores to restaurants, Zaryn handles it all.'
     cta_primary: 'Request Demo'
     cta_primary_link: '#contact'
     cta_secondary: 'View Features'
@@ -99,31 +99,31 @@ project:
 
   # FAQ
   faq:
-    - question: 'What types of businesses can use BaseetIMS?'
-      answer: 'BaseetIMS is designed for retail stores, restaurants, and service businesses. It supports multiple sale modes (POS, Return, Invoice, Quote, Work Order), dinner table management for restaurants, and comprehensive inventory tracking.'
+    - question: 'What types of businesses can use Zaryn?'
+      answer: 'Zaryn is designed for retail stores, restaurants, and service businesses. It supports multiple sale modes (POS, Return, Invoice, Quote, Work Order), dinner table management for restaurants, and comprehensive inventory tracking.'
 
-    - question: 'Can I run BaseetIMS on my own server?'
-      answer: 'Yes! BaseetIMS is fully self-hosted. We provide Docker containers for easy deployment on your own VPS or local server. You have full control over your data.'
+    - question: 'Can I run Zaryn on my own server?'
+      answer: 'Yes! Zaryn is fully self-hosted. We provide Docker containers for easy deployment on your own VPS or local server. You have full control over your data.'
 
-    - question: 'Does BaseetIMS support multiple languages?'
-      answer: 'Absolutely. BaseetIMS includes translations for 49 languages with per-employee language selection — one of the most comprehensive language supports in the industry.'
+    - question: 'Does Zaryn support multiple languages?'
+      answer: 'Absolutely. Zaryn includes translations for 49 languages with per-employee language selection — one of the most comprehensive language supports in the industry.'
 
     - question: 'Is there a free trial?'
       answer: 'Contact us for a personalized demo. We offer flexible licensing for businesses of all sizes.'
 ---
 
-## About BaseetIMS
+## About Zaryn
 
-BaseetIMS is a rebranded instance of Open Source POS — the world's leading open-source Point of Sale and Inventory Management system. Trusted by businesses worldwide, it delivers enterprise-grade features at a fraction of the cost.
+Zaryn is a rebranded instance of Open Source POS — the world's leading open-source Point of Sale and Inventory Management system. Trusted by businesses worldwide, it delivers enterprise-grade features at a fraction of the cost.
 
-### Why BaseetIMS?
+### Why Zaryn?
 
-Whether you're running a boutique retail store, a busy restaurant, or a service business, BaseetIMS gives you the tools to manage sales, track inventory, and understand your business — all from one dashboard.
+Whether you're running a boutique retail store, a busy restaurant, or a service business, Zaryn gives you the tools to manage sales, track inventory, and understand your business — all from one dashboard.
 
 ### Built for Growth
 
-From a single register to multiple locations, BaseetIMS scales with your business. Our permission system ensures your team has exactly the access they need — no more, no less.
+From a single register to multiple locations, Zaryn scales with your business. Our permission system ensures your team has exactly the access they need — no more, no less.
 
 ## Ready to Transform Your Business
 
-Contact us to learn how BaseetIMS can streamline your operations.
+Contact us to learn how Zaryn can streamline your operations.

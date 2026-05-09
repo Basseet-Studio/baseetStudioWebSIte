@@ -1,7 +1,6 @@
 {{ with . }}{{ if .enable }}
 <section id="subscribe"
-    class="subscribe-section relative py-24 overflow-hidden bg-gradient-to-br from-primary/5 via-white to-tertiary/5" {{
-    if eq site.Language.LanguageDirection "rtl" }}dir="rtl" {{ end }}>
+    class="subscribe-section relative py-24 overflow-hidden bg-gradient-to-br from-primary/5 via-white to-tertiary/5" {{ if eq site.Language.LanguageDirection "rtl" }}dir="rtl" {{ end }}>
     <div class="subscribe-decoration subscribe-decoration-1"></div>
     <div class="subscribe-decoration subscribe-decoration-2"></div>
 
@@ -9,99 +8,9 @@
         <h1 class="subscribe-title">{{ i18n "subscribe_title" }}</h1>
         <p class="subscribe-subtitle text-gray-600 text-center mb-8">{{ i18n "subscribe_subtitle" }}</p>
 
-        <form id="subscribe-form" novalidate
-            class="subscribe-form flex flex-col sm:flex-row items-center justify-center gap-3 max-w-lg mx-auto"
-            action="{{ site.Data.shared.links.forms.contact_form_url }}" method="POST">
-            <input type="hidden" name="name" value="Test">
-            <input type="hidden" name="email" value="test@test.com">
-            <input type="hidden" name="page" value="">
-            <input type="hidden" name="language" value="{{ site.Language.Lang }}">
-            
-            <input id="subscribe-contact" class="subscribe-input flex-1 w-full" type="text" name="message"
-                placeholder="{{ i18n "subscribe_placeholder" }}" required />
-
-            <button id="subscribe-button" class="subscribe-btn flex items-center justify-center gap-2 shrink-0" type="submit">
-                <span id="subscribe-button-text">{{ i18n "subscribe_btn" }}</span>
-                <svg id="subscribe-spinner" class="hidden animate-spin h-5 w-5 text-white"
-                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                    <path class="opacity-75" fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/>
-                </svg>
-            </button>
-        </form>
-
-        <!-- Hidden iframe for form target (avoids CORS, no page nav) -->
-        <iframe name="subscribe-frame" id="subscribe-frame" class="hidden" title=""></iframe>
-
-        <div id="subscribe-success" class="hidden mt-4 text-green-600 font-semibold">{{ i18n "subscribe_success" }}</div>
-        <div id="subscribe-error" class="hidden mt-4 text-red-500 font-semibold">{{ i18n "subscribe_error" }}</div>
+        <a href="/contact" class="subscribe-btn w-full max-w-[70%] mx-auto flex items-center justify-center gap-2">
+            <span>{{ i18n "subscribe_btn" }}</span>
+        </a>
     </div>
 </section>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('subscribe-form');
-    if (!form) return;
-    const btnText = document.getElementById('subscribe-button-text');
-    const spinner = document.getElementById('subscribe-spinner');
-    const successEl = document.getElementById('subscribe-success');
-    const errorEl = document.getElementById('subscribe-error');
-    const frame = document.getElementById('subscribe-frame');
-
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        btnText.classList.add('hidden');
-        spinner.classList.remove('hidden');
-        successEl.classList.add('hidden');
-        errorEl.classList.add('hidden');
-
-        (async () => {
-            try {
-                const contactText = (document.getElementById('subscribe-contact')?.value || '').trim();
-                if (!contactText) {
-                    errorEl.classList.remove('hidden');
-                    return;
-                }
-
-                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                const cleanedPhone = contactText.replace(/[\s\-\(\)\.]/g, '');
-                const looksLikePhone = /^[\+\d]{7,20}$/.test(cleanedPhone);
-
-                const payload = new URLSearchParams();
-                payload.set('name', 'Test');
-                if (emailPattern.test(contactText)) {
-                    payload.set('email', contactText);
-                    payload.set('message', 'Homepage email inquiry');
-                } else if (looksLikePhone) {
-                    payload.set('email', 'test@test.com');
-                    payload.set('message', 'Phone: ' + contactText);
-                } else {
-                    payload.set('email', 'test@test.com');
-                    payload.set('message', contactText);
-                }
-                payload.set('page', window.location.href);
-                payload.set('language', '{{ site.Language.Lang }}');
-
-                await fetch(form.action, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-                    },
-                    body: payload.toString()
-                });
-
-                form.reset();
-                successEl.classList.remove('hidden');
-            } catch (err) {
-                errorEl.classList.remove('hidden');
-            } finally {
-                btnText.classList.remove('hidden');
-                spinner.classList.add('hidden');
-            }
-        })();
-    });
-});
-</script>
 {{ end }}{{ end }}

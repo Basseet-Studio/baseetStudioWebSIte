@@ -439,8 +439,8 @@ project_chopshop_feature_4: 'Payment processing'
 
 # Matrix Product
 project_matrix_name: 'Matrix'
-project_matrix_tagline: 'Manage Everything, Miss Nothing'
-project_matrix_description: 'A task management tool for teams — take docs, run meetings, and manage projects all in one place.'
+project_matrix_tagline: 'Project Management for Developers'
+project_matrix_description: 'A project management tool like Notion for developers — docs, tasks, meetings, and projects all in one place.'
 project_matrix_status: 'Coming Soon'
 project_matrix_feature_1: 'Task management'
 project_matrix_feature_2: 'Meeting notes & docs'
@@ -451,7 +451,7 @@ project_matrix_feature_4: 'Team collaboration'
 # Contact Page
 # -----------------------------------------------------------------------------
 contact_hero_badge: 'Get in Touch'
-contact_hero_title: "Let's Build Something **Amazing Together**"
+contact_hero_title: "Let's Build Something<br><em>Amazing Together</em>"
 contact_hero_text: "Have a project in mind? We'd love to hear about it. Reach out and let's discuss how we can help bring your ideas to life."
 
 # Contact Form

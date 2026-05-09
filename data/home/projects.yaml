@@ -24,11 +24,11 @@ items:
     gradient: 'linear-gradient(135deg, #0891B2 0%, #22D3EE 100%)'
     status: 'Coming Soon'
 
-  - name: 'BaseetIMS'
-    slug: 'baseetims'
+  - name: 'Zaryn'
+    slug: 'zaryn'
     type: 'branded'
     tagline: 'All-In-One Business Management'
-    description: 'Complete point-of-sale, inventory management, and business analytics in one powerful platform. From retail stores to restaurants, BaseetIMS handles it all.'
+    description: 'Complete point-of-sale, inventory management, and business analytics in one powerful platform. From retail stores to restaurants, Zaryn handles it all.'
     iconClass: 'fas fa-cash-register'
     platforms:
       - name: 'Web'

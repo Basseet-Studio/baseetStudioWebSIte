@@ -74,9 +74,9 @@
                             <!-- Name -->
                             <div>
                                 <label for="name" class="block text-sm font-semibold text-gray-800 mb-2">
-                                    {{ i18n "contact_name_label" }} <span class="text-[#496BC1]">*</span>
+                                    {{ i18n "contact_name_label" }}
                                 </label>
-                                <input type="text" id="name" name="name" required
+                                <input type="text" id="name" name="name"
                                     class="subscribe-input w-full"
                                     placeholder="{{ i18n "contact_name_placeholder" }}">
                             </div>
@@ -118,7 +118,52 @@
                                     <option value="other">{{ i18n "contact_project_other" }}</option>
                                 </select>
                             </div>
-                            
+
+                            <!-- Interested In (Existing Products - Checkboxes) -->
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-800 mb-3">
+                                    {{ i18n "contact_interested_label" | default "Interested in our products:" }}
+                                </label>
+                                <div class="grid grid-cols-2 sm:grid-cols-3 gap-2" id="interested-checkboxes">
+                                    <label class="flex items-center gap-2 cursor-pointer group">
+                                        <input type="checkbox" name="interested_in" value="Matrix" class="w-4 h-4 rounded border-gray-300 text-[#496BC1] focus:ring-[#496BC1]">
+                                        <span class="text-sm text-gray-700 group-hover:text-[#496BC1] transition-colors">Matrix</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer group">
+                                        <input type="checkbox" name="interested_in" value="Zaryn" class="w-4 h-4 rounded border-gray-300 text-[#496BC1] focus:ring-[#496BC1]">
+                                        <span class="text-sm text-gray-700 group-hover:text-[#496BC1] transition-colors">Zaryn</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer group">
+                                        <input type="checkbox" name="interested_in" value="Medev" class="w-4 h-4 rounded border-gray-300 text-[#496BC1] focus:ring-[#496BC1]">
+                                        <span class="text-sm text-gray-700 group-hover:text-[#496BC1] transition-colors">Medev</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer group">
+                                        <input type="checkbox" name="interested_in" value="DeshiKitchen" class="w-4 h-4 rounded border-gray-300 text-[#496BC1] focus:ring-[#496BC1]">
+                                        <span class="text-sm text-gray-700 group-hover:text-[#496BC1] transition-colors">DeshiKitchen</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer group">
+                                        <input type="checkbox" name="interested_in" value="Numu" class="w-4 h-4 rounded border-gray-300 text-[#496BC1] focus:ring-[#496BC1]">
+                                        <span class="text-sm text-gray-700 group-hover:text-[#496BC1] transition-colors">Numu</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer group">
+                                        <input type="checkbox" name="interested_in" value="ChopShop" class="w-4 h-4 rounded border-gray-300 text-[#496BC1] focus:ring-[#496BC1]">
+                                        <span class="text-sm text-gray-700 group-hover:text-[#496BC1] transition-colors">ChopShop</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer group">
+                                        <input type="checkbox" name="interested_in" value="Money Box" class="w-4 h-4 rounded border-gray-300 text-[#496BC1] focus:ring-[#496BC1]">
+                                        <span class="text-sm text-gray-700 group-hover:text-[#496BC1] transition-colors">Money Box</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer group">
+                                        <input type="checkbox" name="interested_in" value="PhotoRestore AI" class="w-4 h-4 rounded border-gray-300 text-[#496BC1] focus:ring-[#496BC1]">
+                                        <span class="text-sm text-gray-700 group-hover:text-[#496BC1] transition-colors">PhotoRestore AI</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer group">
+                                        <input type="checkbox" name="interested_in" value="Medical Education App (MAI)" class="w-4 h-4 rounded border-gray-300 text-[#496BC1] focus:ring-[#496BC1]">
+                                        <span class="text-sm text-gray-700 group-hover:text-[#496BC1] transition-colors">MAI</span>
+                                    </label>
+                                </div>
+                            </div>
+
                             <!-- Message -->
                             <div>
                                 <label for="message" class="block text-sm font-semibold text-gray-800 mb-2">
@@ -408,13 +453,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const name = document.getElementById('name').value.trim();
         const contact = contactInput.value.trim();
-        
-        // Validate
-        if (!name) {
-            alert('{{ i18n "contact_name_required" }}');
-            return;
-        }
-        
+
+        // Validate only contact field
         const contactResult = validateContact(contact);
         if (!contactResult.valid) {
             updateContactUI(contactResult);
@@ -438,9 +478,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const selectedProjectOption = document.querySelector('#projectType option:checked');
         const projectTypeLabel = selectedProjectOption ? selectedProjectOption.textContent.trim() : projectType;
 
+        const selectedProducts = Array.from(document.querySelectorAll('#interested-checkboxes input[type="checkbox"]:checked'))
+            .map(cb => cb.value);
+        const interestedText = selectedProducts.length > 0 ? 'Interested in: ' + selectedProducts.join(', ') : '';
+
         // Build message body per worker contract while preserving user-entered details.
         const messageParts = [];
         if (originalMessage) messageParts.push(originalMessage);
+        if (interestedText) messageParts.push(interestedText);
         if (contactResult.type === 'phone') {
             messageParts.push('Phone: ' + contact);
             if (projectType) messageParts.push('Service Type: ' + (projectTypeLabel || projectType));

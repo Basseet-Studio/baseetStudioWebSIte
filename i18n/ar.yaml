@@ -439,8 +439,8 @@ project_chopshop_feature_4: 'معالجة الدفع'
 
 # Matrix Product
 project_matrix_name: 'ماتريكس'
-project_matrix_tagline: 'أدر كل شيء، لا تفوّت شيئاً'
-project_matrix_description: 'أداة إدارة مهام للفرق — اكتب المستندات، أدر الاجتماعات، وأدر المشاريع في مكان واحد.'
+project_matrix_tagline: 'إدارة المشاريع للمطورين'
+project_matrix_description: 'أداة إدارة مشاريع مثل نوتيون للمطورين — المستندات، المهام، الاجتماعات، والمشاريع في مكان واحد.'
 project_matrix_status: 'قريباً'
 project_matrix_feature_1: 'إدارة المهام'
 project_matrix_feature_2: 'ملاحظات الاجتماعات والمستندات'
@@ -451,7 +451,7 @@ project_matrix_feature_4: 'التعاون الجماعي'
 # Contact Page
 # -----------------------------------------------------------------------------
 contact_hero_badge: 'تواصل معنا'
-contact_hero_title: 'لنبني شيئاً **مذهلاً معاً**'
+contact_hero_title: 'لنبني شيئاً<br><em>مذهلاً معاً</em>'
 contact_hero_text: 'لديك مشروع في ذهنك؟ نسعد بسماعه. تواصل معنا ودعنا نناقش كيف يمكننا المساعدة في تحويل أفكارك إلى واقع.'
 
 # Contact Form

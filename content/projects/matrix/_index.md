@@ -1,6 +1,6 @@
 ---
 title: 'Matrix'
-description: 'A task management tool for teams — take docs, run meetings, and manage projects all in one place.'
+description: 'A project management tool like Notion for developers — docs, tasks, meetings, and projects all in one place.'
 date: 2024-01-06
 draft: false
 layout: matrix
@@ -55,8 +55,8 @@ project:
 
   # Hero Section
   hero:
-    title: 'Manage Everything, Miss Nothing'
-    subtitle: 'The all-in-one workspace for teams. Take meeting notes, manage tasks, collaborate on documents, and track project progress — without switching between a dozen tools.'
+    title: 'Project Management for Developers'
+    subtitle: 'Docs, tasks, meetings, and project boards — built for developers who value clarity and speed. A project management tool like Notion, but designed for dev teams.'
     cta_primary: 'Get Early Access'
     cta_primary_link: '#contact'
     cta_secondary: 'View Features'
