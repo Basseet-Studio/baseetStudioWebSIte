@@ -1,0 +1,181 @@
+---
+import Icon from '../icons/Icon.astro'
+import type { Lang } from '../../types'
+
+interface Props {
+  members: Array<{
+    name: string
+    role: string
+    bio?: string
+    image: string
+    social?: { github?: string; linkedin?: string; twitter?: string }
+  }>
+  lang?: Lang
+}
+
+const { members, lang = 'en' } = Astro.props
+
+const platformMeta: Record<string, { label: string; icon: string; variant?: 'regular' | 'bold' | 'fill' }> = {
+  github: { label: 'GitHub', icon: 'github-logo', variant: 'fill' },
+  linkedin: { label: 'LinkedIn', icon: 'linkedin-logo', variant: 'fill' },
+  twitter: { label: 'X (Twitter)', icon: 'x-logo', variant: 'fill' },
+}
+
+function visibleSocialLinks(social: Record<string, string | undefined> | undefined) {
+  if (!social) return []
+  return Object.entries(social)
+    .filter(([platform, url]) => url && url !== '#' && platformMeta[platform])
+    .map(([platform, url]) => ({ platform, url: url as string, ...platformMeta[platform] }))
+}
+---
+
+<section class="team" data-animate="fade-slide-up">
+  <h2 class="team__heading">Meet the Team</h2>
+
+  <div class="team__grid">
+    {members.map((member) => {
+      const links = visibleSocialLinks(member.social)
+      return (
+        <div class="team__card glass glass-card" data-animate="fade-slide-up">
+          <div class="team__photo-wrap">
+            <img
+              src={member.image}
+              alt={member.name}
+              class="team__photo"
+              loading="lazy"
+              width="120"
+              height="120"
+            />
+          </div>
+          <div class="team__info">
+            <h3 class="team__name">{member.name}</h3>
+            <p class="team__role">{member.role}</p>
+            {links.length > 0 && (
+              <div class="team__social">
+                {links.map((link) => (
+                  <a
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="team__social-link"
+                    aria-label={link.label}
+                  >
+                    <Icon name={link.icon} variant={link.variant} size={18} color="currentColor" />
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      )
+    })}
+  </div>
+</section>
+
+<style>
+  .team {
+    padding: 80px 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .team__heading {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--heading-text);
+    text-align: center;
+    margin: 0 0 48px;
+  }
+
+  .team__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .team__card {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 24px 28px;
+    border-radius: 16px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .team__card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--card-shadow-hover);
+  }
+
+  .team__photo-wrap {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .team__photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--border-soft);
+  }
+
+  .team__info {
+    min-width: 0;
+  }
+
+  .team__name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--heading-text);
+    margin: 0 0 2px;
+  }
+
+  .team__role {
+    font-size: 0.8rem;
+    color: var(--color-primary);
+    margin: 0 0 10px;
+    font-weight: 500;
+  }
+
+  .team__social {
+    display: flex;
+    gap: 10px;
+  }
+
+  .team__social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: var(--surface-soft);
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .team__social-link:hover {
+    background: var(--interactive-hover);
+    color: var(--text-primary);
+  }
+
+  @media (max-width: 640px) {
+    .team__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .team {
+      padding: 60px 16px;
+    }
+
+    .team__card {
+      gap: 16px;
+      padding: 20px;
+    }
+  }
+</style>
+>

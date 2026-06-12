@@ -1,0 +1,282 @@
+html <!-- Floating Background Elements -->
+<div class="floating-elements">
+    <div class="floating-circle"></div>
+    <div class="floating-circle"></div>
+    <div class="floating-circle"></div>
+</div>
+
+<!-- Advanced Navigation Bar -->
+<nav class="navbar-container">
+    <div class="navbar">
+        <!-- Brand/Logo -->
+        <a href="#" class="navbar-brand">
+            <div class="logo-icon"></div>
+            <span class="brand-text">NeoNav</span>
+        </a>
+
+        <!-- Navigation Links -->
+        <ul class="navbar-nav" id="navbarNav">
+            <li class="nav-item">
+                <a href="#home" class="nav-link active">
+                    <svg class="nav-icon" viewBox="0 0 24 24">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9,22 9,12 15,12 15,22"></polyline>
+                    </svg>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#about" class="nav-link">
+                    <svg class="nav-icon" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                    <span>About</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#services" class="nav-link">
+                    <svg class="nav-icon" viewBox="0 0 24 24">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                        <line x1="8" y1="21" x2="16" y2="21"></line>
+                        <line x1="12" y1="17" x2="12" y2="21"></line>
+                    </svg>
+                    <span>Services</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#portfolio" class="nav-link">
+                    <svg class="nav-icon" viewBox="0 0 24 24">
+                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                        <path d="M16 3h6v4"></path>
+                        <path d="m22 7-10-4-10 4"></path>
+                    </svg>
+                    <span>Portfolio</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#contact" class="nav-link">
+                    <svg class="nav-icon" viewBox="0 0 24 24">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    <span>Contact</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#cta" class="cta-button">
+                    Get Started
+                </a>
+            </li>
+        </ul>
+
+        <!-- Mobile Toggle -->
+        <button class="mobile-toggle" id="mobileToggle">
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+    </div>
+</nav>
+
+<!-- Mobile Menu Overlay -->
+<div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-header">
+        <a href="#" class="mobile-menu-brand">
+            <div class="logo-icon"></div>
+            <span class="brand-text">NeoNav</span>
+        </a>
+        <button class="mobile-menu-close" id="mobileMenuClose">
+            <span>×</span>
+        </button>
+    </div>
+
+    <ul class="mobile-menu-nav">
+        <li class="mobile-menu-item">
+            <a href="#home" class="mobile-menu-link active">
+                <svg class="mobile-menu-icon" viewBox="0 0 24 24">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9,22 9,12 15,12 15,22"></polyline>
+                </svg>
+                <span>Home</span>
+            </a>
+        </li>
+        <li class="mobile-menu-item">
+            <a href="#about" class="mobile-menu-link">
+                <svg class="mobile-menu-icon" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                <span>About</span>
+            </a>
+        </li>
+        <li class="mobile-menu-item">
+            <a href="#services" class="mobile-menu-link">
+                <svg class="mobile-menu-icon" viewBox="0 0 24 24">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                </svg>
+                <span>Services</span>
+            </a>
+        </li>
+        <li class="mobile-menu-item">
+            <a href="#portfolio" class="mobile-menu-link">
+                <svg class="mobile-menu-icon" viewBox="0 0 24 24">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                    <path d="M16 3h6v4"></path>
+                    <path d="m22 7-10-4-10 4"></path>
+                </svg>
+                <span>Portfolio</span>
+            </a>
+        </li>
+        <li class="mobile-menu-item">
+            <a href="#contact" class="mobile-menu-link">
+                <svg class="mobile-menu-icon" viewBox="0 0 24 24">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                <span>Contact</span>
+            </a>
+        </li>
+    </ul>
+
+    <div class="mobile-cta">
+        <a href="#cta" class="mobile-cta-button">
+            Get Started
+        </a>
+    </div>
+</div>
+
+<!-- Demo Content -->
+<div class="demo-container"> <!-- Home Section -->
+    <section id="home" class="content-section">
+        <h1 class="section-title">Advanced Navigation</h1>
+        <p class="section-subtitle">
+            Experience the future of web navigation with this sleek, responsive, and feature-rich navigation bar.
+        </p>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="content-section">
+        <h2 class="section-title">About Us</h2>
+        <p class="section-subtitle">
+            We create innovative web experiences that push the boundaries of modern design.
+            Our navigation systems are crafted with attention to detail and user experience in mind.
+        </p>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="content-section">
+        <h2 class="section-title">Our Services</h2>
+        <p class="section-subtitle">
+            From responsive navigation bars to complete UI/UX solutions, we deliver cutting-edge
+            web components that enhance user engagement and satisfaction.
+        </p>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="content-section">
+        <h2 class="section-title">Portfolio</h2>
+        <p class="section-subtitle">
+            Explore our collection of advanced navigation components, interactive elements,
+            and modern web designs that showcase the latest in CSS and JavaScript techniques.
+        </p>
+    </section> <!-- Contact Section -->
+    <section id="contact" class="content-section">
+        <h2 class="section-title">Contact</h2>
+        <p class="section-subtitle">
+            Ready to elevate your web presence? Get in touch with us to discuss your next project
+            and how we can create amazing navigation experiences for your users.
+        </p>
+
+        <div class="contact-form">
+            <form>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName" class="form-label">First Name</label>
+                        <input type="text" id="firstName" name="firstName" class="form-input"
+                            placeholder="Enter your first name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName" class="form-label">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" class="form-input"
+                            placeholder="Enter your last name" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" id="email" name="email" class="form-input"
+                        placeholder="Enter your email address" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject" class="form-label">Subject</label>
+                    <input type="text" id="subject" name="subject" class="form-input" placeholder="What's this about?"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea id="message" name="message" class="form-textarea"
+                        placeholder="Tell us more about your project..." required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <span>Send Message</span>
+                </button>
+            </form>
+        </div>
+    </section>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <a href="#" class="footer-brand">
+            <div class="footer-logo"></div>
+            <span>NeoNav</span>
+        </a>
+
+        <ul class="footer-links">
+            <li><a href="#home" class="footer-link">Home</a></li>
+            <li><a href="#about" class="footer-link">About</a></li>
+            <li><a href="#services" class="footer-link">Services</a></li>
+            <li><a href="#portfolio" class="footer-link">Portfolio</a></li>
+            <li><a href="#contact" class="footer-link">Contact</a></li>
+        </ul>
+
+        <div class="footer-social">
+            <a href="#" class="social-link">
+                <svg class="social-icon" viewBox="0 0 24 24">
+                    <path
+                        d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                </svg>
+            </a>
+            <a href="#" class="social-link">
+                <svg class="social-icon" viewBox="0 0 24 24">
+                    <path
+                        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                </svg>
+            </a>
+            <a href="#" class="social-link">
+                <svg class="social-icon" viewBox="0 0 24 24">
+                    <path
+                        d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.748-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.001 12.017z" />
+                </svg>
+            </a>
+        </div>
+    </div>
+
+    <div class="footer-copy">
+        © 2025 NeoNav. All rights reserved. Built with modern CSS and love.
+    </div>
+</footer>

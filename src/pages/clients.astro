@@ -1,0 +1,98 @@
+---
+import Page from '../layouts/Page.astro'
+import clientsData from '../content/data/clients.json'
+import type { Lang } from '../types'
+
+
+const lang: 'en' = 'en'
+const description = 'Client success stories from Baseet Studio — see how we help businesses in the UAE and beyond transform through technology.'
+---
+
+<Page title="Client Success Stories — Baseet Studio" description={description} section="clients" lang={lang}>
+  <section class="mb-16">
+    <h1 class="text-4xl font-bold mb-4">
+      {/* TODO: localise this later */}
+      Client Success Stories
+    </h1>
+    <p class="text-lg opacity-70 max-w-2xl">
+      {/* TODO: localise this later */}
+      See how we've helped businesses transform through technology.
+    </p>
+  </section>
+
+  <div class="grid grid-cols-1 gap-10">
+    {clientsData.clients?.map((client: any) => (
+      <article
+        class="glass glass-card p-8 md:p-10"
+        data-animate="fade-up"
+        style={`border-left: 4px solid ${client.color || 'var(--color-primary)'};`}
+      >
+        <div class="flex items-start gap-4 mb-6">
+          {client.logo && (
+            <img
+              src={client.logo}
+              alt={client.name || 'Client logo'}
+              class="w-16 h-16 object-contain rounded-lg"
+              style="background: rgba(255,255,255,0.05);"
+            />
+          )}
+          <div>
+            <h2 class="text-2xl font-bold">{client.name}</h2>
+            <p class="text-sm opacity-50 capitalize">{client.industry}</p>
+          </div>
+        </div>
+
+        <p class="text-lg font-medium mb-4 opacity-80">{client.tagline}</p>
+        <p class="opacity-60 mb-6">{client.fullDescription || client.shortDescription}</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <div>
+            <h4 class="text-sm font-semibold uppercase tracking-wider mb-2" style="color: var(--color-primary);">
+              {/* TODO: localise this later */}
+              Challenge
+            </h4>
+            <p class="text-sm opacity-70">{client.challenge}</p>
+          </div>
+          <div>
+            <h4 class="text-sm font-semibold uppercase tracking-wider mb-2" style="color: var(--color-accent);">
+              {/* TODO: localise this later */}
+              Solution
+            </h4>
+            <p class="text-sm opacity-70">{client.solution}</p>
+          </div>
+        </div>
+
+        {client.results?.length > 0 && (
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            {client.results.map((r: any) => (
+              <div class="glass glass-card p-4 text-center">
+                <div class="text-2xl font-bold" style="color: var(--color-accent);">{r.metric}</div>
+                <div class="text-xs opacity-50">{r.label}</div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {client.technologies?.length > 0 && (
+          <div class="flex flex-wrap gap-2">
+            {client.technologies.map((tech: string) => (
+              <span
+                class="text-xs px-3 py-1 rounded-full"
+                style="background: rgba(255,255,255,0.08); color: var(--color-light);"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {client.testimonial && (
+          <blockquote class="mt-8 p-6 rounded-lg" style="background: rgba(255,255,255,0.04); border-left: 3px solid var(--color-primary);">
+            <p class="italic opacity-80 mb-3">"{client.testimonial.quote}"</p>
+            <footer class="text-sm opacity-60">— {client.testimonial.author}{client.testimonial.role ? `, ${client.testimonial.role}` : ''}</footer>
+          </blockquote>
+        )}
+      </article>
+    ))}
+  </div>
+</Page>

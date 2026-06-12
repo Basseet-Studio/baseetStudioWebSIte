@@ -1,0 +1,19 @@
+---
+import Base from './Base.astro'
+import type { Lang, Section } from '../types'
+
+interface Props {
+  title: string
+  description?: string
+  section: Section
+  lang?: Lang
+}
+
+const { title, description, section, lang = 'en' } = Astro.props
+---
+
+<Base title={title} description={description} section={section} lang={lang}>
+  <div class="page-content" style="max-width:1200px;margin:0 auto;padding:120px 24px 64px;">
+    <slot />
+  </div>
+</Base>

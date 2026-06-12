@@ -1,0 +1,92 @@
+---
+// VantaBg.astro — Fullscreen WebGL clouds background
+// Three.js + Vanta are lazy-loaded after page load; skipped entirely on mobile.
+---
+
+<div id="vanta-bg" aria-hidden="true" role="presentation">
+  <div id="vanta-cloud-fog"></div>
+  <div id="vanta-clear-sky"></div>
+  <div id="vanta-fallback"></div>
+</div>
+
+<script>
+  function matchesMobile() {
+    return (
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+      || window.innerWidth < 600
+    )
+  }
+
+  function loadVanta() {
+    if (matchesMobile()) {
+      document.getElementById('vanta-fallback')!.style.display = 'block'
+      return
+    }
+
+    const threeScript = document.createElement('script')
+    threeScript.src = '/vendor/three.min.js'
+    threeScript.onload = () => {
+      const vantaScript = document.createElement('script')
+      vantaScript.src = '/vendor/vanta.clouds.min.js'
+      vantaScript.onload = () => {
+        import('./vanta-init.ts').then(m => {
+          if (typeof (window as any).VANTA !== 'undefined') {
+            m.initVanta()
+            const theme = document.documentElement.getAttribute('data-theme')
+            if (theme === 'night') m.setVantaTheme('night')
+          } else {
+            document.getElementById('vanta-fallback')!.style.display = 'block'
+          }
+        })
+      }
+      document.head.appendChild(vantaScript)
+    }
+    document.head.appendChild(threeScript)
+  }
+
+  if (document.readyState === 'complete') {
+    requestIdleCallback ? requestIdleCallback(loadVanta) : setTimeout(loadVanta, 200)
+  } else {
+    window.addEventListener('load', () => {
+      requestIdleCallback ? requestIdleCallback(loadVanta) : setTimeout(loadVanta, 200)
+    })
+  }
+</script>
+
+<style is:global>
+  #vanta-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200vh;
+    z-index: 0;
+    pointer-events: none;
+    contain: layout style paint;
+    transform: translateZ(0);
+  }
+
+  #vanta-bg canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    pointer-events: none;
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+
+  #vanta-cloud-fog {
+    display: none;
+  }
+
+  #vanta-clear-sky {
+    display: none;
+  }
+
+  #vanta-fallback {
+    display: none;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, #0d1117 0%, #161b22 100%);
+  }
+</style>

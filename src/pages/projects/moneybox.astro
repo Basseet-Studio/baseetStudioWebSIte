@@ -1,0 +1,165 @@
+---
+import ProjectLayout from '../../layouts/Project.astro'
+import ProjectGallery from '../../components/project/ProjectGallery.astro'
+import ProjectCTA from '../../components/project/ProjectCTA.astro'
+import ProjectFeatureCard from '../../components/project/ProjectFeatureCard.astro'
+import ProjectTestimonial from '../../components/project/ProjectTestimonial.astro'
+import ProjectFAQ from '../../components/project/ProjectFAQ.astro'
+import Icon from '../../components/icons/Icon.astro'
+import { resolveIcon } from '../../components/icons/iconMappings'
+import projects from '../../content/data/projects.json'
+import type { Project } from '../../types'
+
+
+const lang: 'en' = 'en'
+const slug = 'money-box'
+const project = projects.find(p => p.slug === slug) as Project | undefined
+
+if (!project) return Astro.redirect('/404')
+---
+
+<ProjectLayout title={`${project.name} — Baseet Studio`} description={project.tagline} slug={project.slug} projectColor={project.color} projectGradient={project.gradient} projectName={project.name} projectIconClass={project.iconClass} projectNavItems={project.navItems} projectNavMeta={project.navMetaItems} lang={lang}>
+  <link rel="stylesheet" href="/src/styles/projects/moneybox.css" />
+
+  <!-- Hero: The coloured background wash now lives in shared.css
+       (`.project-hero-wash`) so it is theme-aware and fades out gradually
+       as the user scrolls, instead of cutting off sharply at the bottom
+       of the hero. The hero itself is transparent so the wash shows
+       through. -->
+  <section class="project-hero" style="padding:140px 24px 80px;position:relative;overflow:hidden;text-align:center;">
+    <!-- Growth/leaf decorations -->
+    <div style={`position:absolute;top:12%;left:8%;opacity:0.06;color:${project.color};pointer-events:none;`}>
+      <svg width="100" height="100" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+    </div>
+    <div style={`position:absolute;bottom:10%;right:10%;opacity:0.05;color:${project.color};pointer-events:none;`}>
+      <svg width="80" height="80" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+    </div>
+
+    <div style="max-width:800px;margin:0 auto;position:relative;z-index:1;">
+      <!-- Piggy-bank icon -->
+      <div style="display:flex;justify-content:center;margin-bottom:28px;" data-animate="fade-up">
+        <div style={`width:96px;height:96px;border-radius:24px;background:${project.gradient};display:flex;align-items:center;justify-content:center;box-shadow:0 12px 40px -10px color-mix(in srgb, ${project.color} 30%, transparent);`}>
+          <Icon name={resolveIcon(project.iconClass).name} size={40} color="white" />
+        </div>
+      </div>
+
+      <!-- Name + Tagline -->
+      <h1 style="font-size:3.2rem;font-weight:700;color:var(--heading-text);margin-bottom:8px;letter-spacing:-0.02em;" data-animate="fade-up">
+        {project.name}
+      </h1>
+      <p style={`font-size:1.3rem;font-weight:600;color:${project.color};margin-bottom:24px;`} data-animate="fade-up">
+        {project.tagline}
+      </p>
+
+      <!-- Status Badge -->
+      <div style="margin-bottom:28px;" data-animate="fade-up">
+        <span style={`display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);`}>
+          <Icon name="clock" size={16} color={project.color} />
+          {project.status}
+        </span>
+      </div>
+
+      <!-- Title + Subtitle -->
+      <h2 style="font-size:2rem;font-weight:700;color:var(--heading-text);margin-bottom:20px;line-height:1.3;" data-animate="fade-up">
+        {project.hero.title}
+      </h2>
+      <p style="font-size:1.15rem;color:var(--muted-text);margin-bottom:36px;max-width:580px;margin-left:auto;margin-right:auto;line-height:1.7;" data-animate="fade-up">
+        {project.hero.subtitle}
+      </p>
+
+      <!-- CTA Buttons -->
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" data-animate="fade-up">
+        {project.hero.cta_primary && (
+          <a href={project.hero.cta_primary_link || '/contact/'}
+            style={`display:inline-flex;align-items:center;gap:8px;padding:16px 32px;border-radius:50px;font-weight:600;text-decoration:none;background:${project.gradient};color:white;transition:transform 0.2s,box-shadow 0.2s;font-size:1.05rem;`}
+            onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+            {project.hero.cta_primary}
+          </a>
+        )}
+        {project.hero.cta_secondary && (
+          <a href={project.hero.cta_secondary_link || '#features'}
+            style={`display:inline-flex;align-items:center;gap:8px;padding:16px 32px;border-radius:50px;font-weight:600;text-decoration:none;border:2px solid color-mix(in srgb, ${project.color} 20%, transparent);color:var(--heading-text);transition:transform 0.2s;font-size:1.05rem;`}
+            onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+            {project.hero.cta_secondary}
+          </a>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  {project.features && project.features.length > 0 && (
+    <section id="features" style="padding:64px 24px;max-width:1200px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:48px;" data-animate="fade-up">
+        <span style={`display:inline-block;padding:8px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);margin-bottom:16px;`}>
+          {/* TODO: localise this later */ 'Features'}
+        </span>
+        <h2 style="font-size:2rem;margin-bottom:0;color:var(--heading-text);">
+          {/* TODO: localise this later */ 'Key Features'}
+        </h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));gap:24px;">
+        {project.features.map((feature, i) => (
+          <ProjectFeatureCard title={feature.title} description={feature.description} iconName={resolveIcon(feature.icon).name} projectColor={project.color} projectGradient={project.gradient} index={i} />
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- Gallery -->
+  {project.screenshots && project.screenshots.length > 0 && (
+    <ProjectGallery screenshots={project.screenshots} galleryType={project.galleryType || 'mobile'} projectSlug={project.slug} projectColor={project.color} projectName={project.name} />
+  )}
+
+  <!-- Testimonials -->
+  {project.testimonials && project.testimonials.length > 0 && (
+    <section style="padding:64px 24px;max-width:1200px;margin:0 auto;">
+      <h2 style="text-align:center;font-size:2rem;margin-bottom:48px;color:var(--heading-text);">
+        {/* TODO: localise this later */ 'What People Say'}
+      </h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(340px, 1fr));gap:24px;">
+        {project.testimonials.map(t => (
+          <ProjectTestimonial quote={t.quote} author={t.author} role={t.role} projectColor={project.color} projectGradient={project.gradient} />
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- FAQ -->
+  {project.faq && project.faq.length > 0 && (
+    <section style="padding:64px 24px;max-width:800px;margin:0 auto;">
+      <h2 style="text-align:center;font-size:2rem;margin-bottom:48px;color:var(--heading-text);">
+        {/* TODO: localise this later */ 'FAQ'}
+      </h2>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        {project.faq.map(item => (
+          <ProjectFAQ question={item.question} answer={item.answer} projectColor={project.color} />
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- Gradient CTA -->
+  <section style="padding:80px 24px;">
+    <div style={`max-width:1000px;margin:0 auto;position:relative;border-radius:32px;overflow:hidden;padding:64px 48px;text-align:center;color:white;background:${project.gradient};`}>
+      <div style="position:absolute;inset:0;background:rgba(0,0,0,0.1);"></div>
+      <div style={`position:absolute;top:-80px;right:-80px;width:300px;height:300px;background:white;opacity:0.1;border-radius:50%;filter:blur(60px);`}></div>
+      <div style={`position:absolute;bottom:-60px;left:-60px;width:200px;height:200px;background:white;opacity:0.1;border-radius:50%;filter:blur(40px);`}></div>
+      <div style="position:relative;z-index:1;">
+        <h2 style="font-size:2.5rem;font-weight:700;margin-bottom:16px;">
+          {/* TODO: localise this later */ `Interested in ${project.name}?`}
+        </h2>
+        <p style="font-size:1.2rem;opacity:0.9;margin-bottom:32px;max-width:600px;margin-left:auto;margin-right:auto;">
+          {/* TODO: localise this later */ 'Get in touch and we will help you get started.'}
+        </p>
+        <a href={'/contact/'}
+          style={`display:inline-flex;align-items:center;gap:8px;background:white;color:${project.color};padding:16px 32px;border-radius:50px;font-weight:700;text-decoration:none;font-size:1.05rem;transition:transform 0.2s;`}
+          onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+          {/* TODO: localise this later */ 'Get in Touch'}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <ProjectCTA status={project.status} platforms={project.platforms || []} links={project.links} lang={lang} />
+</ProjectLayout>

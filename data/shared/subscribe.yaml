@@ -1,7 +1,0 @@
-enable: true
-
-title: 'Ready to Start Your Project?'
-method: 'POST'
-action: 'https://baseet-form-handler.baseetstudio.workers.dev'
-placeholder: 'Enter your email'
-label: 'Get in Touch'

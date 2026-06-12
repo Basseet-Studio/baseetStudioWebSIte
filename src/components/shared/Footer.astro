@@ -1,0 +1,343 @@
+---
+import Icon from '../icons/Icon.astro'
+import footerData from '../../content/data/footer.json'
+import linksData from '../../content/data/links.json'
+import servicesData from '../../content/data/services.json'
+
+const socialPlatforms = [
+  { key: 'github', icon: 'github-logo' },
+  { key: 'linkedin', icon: 'linkedin-logo' },
+  { key: 'twitter', icon: 'x-logo' },
+  { key: 'instagram', icon: 'instagram-logo' },
+  { key: 'tiktok', icon: 'tiktok-logo' },
+]
+---
+
+<footer class="footer">
+  <div class="footer__container">
+
+    <!-- === Column 1: Brand === -->
+    <div class="footer__col footer__col--brand">
+      <a href="/" class="footer__logo">
+        <svg class="footer__logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" aria-hidden="true"><rect width="256" height="256" fill="none"/><path d="M128,120s90-96,0-96S128,120,128,120Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/><path d="M128,120s-96-90-96,0S128,120,128,120Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/><path d="M128,120s-90,96,0,96S128,120,128,120Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/><path d="M128,120s96,90,96,0S128,120,128,120Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/><path d="M128,120s64,56,80,120" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/></svg>
+        Baseet Studio
+      </a>
+      <p class="footer__tagline">Digital product studio based in Abu Dhabi.</p>
+      <div class="footer__address">
+        <Icon name="map-pin" size={14} color="currentColor" />
+        <span>{linksData.contact.address}</span>
+      </div>
+      <div class="footer__social">
+        {socialPlatforms.map(item => {
+          const url = linksData.social[item.key as keyof typeof linksData.social]
+          if (!url || url === '#') return null
+          return (
+            <a href={url} target="_blank" rel="noopener noreferrer"
+              class="footer-social-icon"
+              aria-label={item.key}>
+              <Icon name={item.icon} size={16} variant="fill" color="currentColor" />
+            </a>
+          )
+        })}
+      </div>
+    </div>
+
+    <!-- === Column 2: Services === -->
+    <div class="footer__col">
+      <h4 class="footer__heading">Services</h4>
+      <ul class="footer__links">
+        {servicesData.categories.map(cat => (
+          <li>
+            <a href={`/services/#${cat.id}`}>{cat.title}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- === Column 3: Company === -->
+    <div class="footer__col">
+      <h4 class="footer__heading">Company</h4>
+      <ul class="footer__links">
+        {footerData.links.map(link => (
+          <li>
+            <a href={link.url}>{link.label}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- === Column 4: Contact === -->
+    <div class="footer__col">
+      <h4 class="footer__heading">Get in Touch</h4>
+      <ul class="footer__links">
+        <li>
+          <a href={linksData.contact.email_link}>
+            <Icon name="envelope" size={14} color="currentColor" />
+            {linksData.contact.email}
+          </a>
+        </li>
+        <li>
+          <a href={linksData.contact.phone_link}>
+            <Icon name="phone" size={14} color="currentColor" />
+            {linksData.contact.phone}
+          </a>
+        </li>
+        <li>
+          <a href={linksData.contact.whatsapp_link} target="_blank" rel="noopener noreferrer">
+            <Icon name="whatsapp-logo" size={14} variant="fill" color="currentColor" />
+            WhatsApp
+          </a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- === Bottom Bar === -->
+  <div class="footer__bottom">
+    <p class="footer__copyright">{footerData.copyright}</p>
+    <p id="visitor-info" data-visiting="Visiting from" data-device="Device" data-unknown="Unknown"></p>
+  </div>
+</footer>
+
+<!-- === Back to Top === -->
+<button id="back-to-top" class="footer-back-to-top" aria-label="Back to top" type="button">
+  <Icon name="caret-up" size={20} color="currentColor" />
+</button>
+
+<style>
+  .footer {
+    background: transparent;
+    border-top: 1px solid var(--footer-border);
+    position: relative;
+    z-index: 2;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .footer__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 64px 24px 40px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 48px;
+  }
+
+  .footer__col--brand {
+    padding-right: 24px;
+  }
+
+  .footer__logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--footer-text-primary);
+    font-weight: 700;
+    font-size: 1.125rem;
+    text-decoration: none;
+    margin-bottom: 12px;
+  }
+
+  .footer__logo-mark {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+
+  .footer__tagline {
+    color: var(--footer-text-muted);
+    font-size: 0.8rem;
+    line-height: 1.6;
+    margin: 0 0 14px;
+    max-width: 260px;
+  }
+
+  .footer__address {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--footer-text-muted);
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+  }
+
+  .footer__social {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .footer-social-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--footer-chip-bg);
+    color: var(--footer-text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background var(--transition-fast), transform var(--transition-fast);
+  }
+
+  .footer-social-icon:hover {
+    background: var(--interactive-hover);
+    transform: translateY(-1px);
+  }
+
+  .footer__heading {
+    color: var(--footer-text-primary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin: 0 0 16px;
+    letter-spacing: 0.02em;
+  }
+
+  .footer__links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer__links a {
+    color: var(--footer-text-muted);
+    font-size: 0.8rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: color var(--transition-fast);
+  }
+
+  .footer__links a:hover {
+    color: var(--footer-text-primary);
+  }
+
+  .footer__bottom {
+    border-top: 1px solid var(--footer-border);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 24px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .footer__copyright {
+    color: var(--footer-text-soft);
+    font-size: 0.75rem;
+    margin: 0;
+  }
+
+  #visitor-info {
+    color: var(--footer-text-soft);
+    font-size: 10px;
+    margin: 0;
+  }
+
+  /* === Back to Top === */
+  .footer-back-to-top {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 50;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--footer-chip-bg);
+    color: var(--footer-text-primary);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--footer-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity var(--transition-base), visibility var(--transition-base), transform var(--transition-base), background var(--transition-fast);
+  }
+
+  .footer-back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .footer-back-to-top:hover {
+    background: var(--interactive-hover);
+    transform: translateY(-2px);
+  }
+
+  .footer-back-to-top.visible:hover {
+    transform: translateY(-2px);
+  }
+
+  /* === Responsive === */
+  @media (max-width: 1023px) {
+    .footer__container {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+    }
+    .footer__col--brand {
+      grid-column: 1 / -1;
+      padding-right: 0;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .footer__container {
+      grid-template-columns: 1fr;
+      gap: 36px;
+      padding: 48px 20px 32px;
+    }
+    .footer__col--brand {
+      grid-column: auto;
+      text-align: center;
+    }
+    .footer__tagline {
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .footer__address {
+      justify-content: center;
+    }
+    .footer__social {
+      justify-content: center;
+    }
+    .footer__heading {
+      text-align: center;
+    }
+    .footer__links {
+      align-items: center;
+    }
+    .footer__bottom {
+      padding: 16px 20px 20px;
+    }
+    .footer-back-to-top {
+      bottom: 20px;
+      right: 20px;
+    }
+  }
+</style>
+
+<script>
+  const btn = document.getElementById('back-to-top')
+  if (btn) {
+    const onScroll = () => {
+      btn.classList.toggle('visible', window.scrollY > 300)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    btn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    })
+  }
+</script>

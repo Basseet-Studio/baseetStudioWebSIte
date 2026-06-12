@@ -1,0 +1,99 @@
+---
+import Icon from '../icons/Icon.astro'
+import { resolveIcon } from '../icons/iconMappings'
+import type { Lang, Highlight } from '../../types'
+
+interface Props {
+  highlights: Highlight[]
+  lang?: Lang
+}
+
+const { highlights, lang = 'en' } = Astro.props
+---
+
+<section class="highlights" data-animate="fade-slide-up">
+  <h2 class="highlights__heading">{/* TODO: localise this later */ 'Why Choose Baseet'}</h2>
+  <div class="highlights__grid">
+    {highlights.map((item) => {
+      const icon = item.icon ? resolveIcon(item.icon) : null
+      return (
+      <div class="highlights__card glass glass-card" data-animate="fade-slide-up">
+        {icon && <span class="highlights__icon"><Icon name={icon.name} variant={icon.variant} size={28} color="var(--color-primary)" /></span>}
+        <span class="highlights__metric">{item.metric}</span>
+        <span class="highlights__label">{/* TODO: localise this later */ item.label}</span>
+      </div>
+    )})}
+  </div>
+</section>
+
+<style>
+  .highlights {
+    padding: 80px 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .highlights__heading {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--heading-text);
+    text-align: center;
+    margin: 0 0 48px;
+  }
+
+  .highlights__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  .highlights__card {
+    padding: 32px 20px;
+    border-radius: 16px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .highlights__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  }
+
+  .highlights__icon {
+    display: flex;
+    justify-content: center;
+  }
+
+  .highlights__metric {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1.2;
+  }
+
+  .highlights__label {
+    font-size: 0.9375rem;
+    color: var(--muted-text);
+    line-height: 1.4;
+  }
+
+  @media (max-width: 768px) {
+    .highlights__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .highlights {
+      padding: 60px 16px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .highlights__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

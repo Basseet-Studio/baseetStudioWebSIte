@@ -1,0 +1,161 @@
+---
+import ProjectLayout from '../../layouts/Project.astro'
+import ProjectGallery from '../../components/project/ProjectGallery.astro'
+import ProjectCTA from '../../components/project/ProjectCTA.astro'
+import ProjectFeatureCard from '../../components/project/ProjectFeatureCard.astro'
+import ProjectTestimonial from '../../components/project/ProjectTestimonial.astro'
+import ProjectFAQ from '../../components/project/ProjectFAQ.astro'
+import Icon from '../../components/icons/Icon.astro'
+import { resolveIcon } from '../../components/icons/iconMappings'
+import { getProject } from '../../lib/projects'
+import type { Project } from '../../types'
+
+
+const lang: 'en' = 'en'
+const slug = 'numu'
+const project = getProject(slug)
+if (!project) return Astro.redirect('/404')
+---
+
+<ProjectLayout title={`${project.name} — Baseet Studio`} description={project.tagline} slug={project.slug} projectColor={project.color} projectGradient={project.gradient} projectName={project.name} projectIconClass={project.iconClass} projectNavItems={project.navItems} projectNavMeta={project.navMetaItems} lang={lang}>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&family=Nunito:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles/projects/numu.css" />
+
+  <!-- Centered Hero with Floating Icons.
+       The coloured background wash is provided by the shared
+       `.project-hero-wash` (added in Project.astro) so it is theme-aware
+       and fades out gradually. We deliberately removed the old
+       `background:${project.gradient};opacity:0.05` overlay because it
+       ended in a hard line at the hero boundary — now the wash is the
+       only colour layer, so the transition into the gallery is a smooth
+       gradient instead of a cut. -->
+  <section class="project-hero relative min-h-[80vh] flex items-center overflow-hidden">
+    <!-- Floating habit icons -->
+    <div class="floating-icon" style={`top:15%;left:10%;font-size:3rem;color:${project.color};`}>
+      <Icon name="fire" size={48} color={project.color} />
+    </div>
+    <div class="floating-icon" style={`top:35%;right:12%;font-size:2.5rem;color:${project.color};`}>
+      <Icon name="check-circle" size={40} color={project.color} />
+    </div>
+    <div class="floating-icon" style={`bottom:25%;left:18%;font-size:3.5rem;color:${project.color};`}>
+      <Icon name="chart-bar" size={52} color={project.color} />
+    </div>
+    <div class="floating-icon" style={`bottom:15%;right:10%;font-size:2.5rem;color:${project.color};`}>
+      <Icon name="bell" size={40} color={project.color} />
+    </div>
+
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-16" style="max-width:1200px;margin:0 auto;">
+      <div style="max-width:700px;margin:0 auto;text-align:center;">
+        <div style="display:flex;justify-content:center;margin-bottom:32px;" data-animate="fade-up">
+          <div style={`width:90px;height:90px;border-radius:24px;background:${project.gradient};display:flex;align-items:center;justify-content:center;box-shadow:0 12px 40px -10px color-mix(in srgb, ${project.color} 30%, transparent);animation:float 3s ease-in-out infinite;`}>
+            <Icon name="fire" size={42} color="white" />
+          </div>
+        </div>
+
+        <h1 style="font-size:2.8rem;font-weight:800;color:var(--heading-text);margin-bottom:8px;font-family:'Quicksand',sans-serif;" data-animate="fade-up">
+          {project.name}
+        </h1>
+        <p style={`font-size:1.3rem;font-weight:600;color:${project.color};margin-bottom:20px;`} data-animate="fade-up">
+          {project.tagline}
+        </p>
+
+        <div style="margin-bottom:24px;" data-animate="fade-up">
+          <span style={`display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);`}>
+            <Icon name="clock" size={16} color={project.color} />
+            {project.status}
+          </span>
+        </div>
+
+        <h2 style="font-size:1.8rem;font-weight:700;color:var(--heading-text);margin-bottom:20px;line-height:1.3;" data-animate="fade-up">
+          {project.hero.title}
+        </h2>
+        <p style="font-size:1.1rem;opacity:0.7;margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto;line-height:1.7;" data-animate="fade-up">
+          {project.hero.subtitle}
+        </p>
+
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" data-animate="fade-up">
+          {project.hero.cta_primary && (
+            <a href={project.hero.cta_primary_link || '/contact/'}
+              style={`display:inline-flex;align-items:center;gap:8px;padding:16px 32px;border-radius:50px;font-weight:700;text-decoration:none;background:${project.gradient};color:white;transition:transform 0.2s,box-shadow 0.2s;font-size:1.05rem;font-family:'Quicksand',sans-serif;`}>
+              {project.hero.cta_primary}
+            </a>
+          )}
+          {project.hero.cta_secondary && (
+            <a href={project.hero.cta_secondary_link || '#features'}
+              style={`display:inline-flex;align-items:center;gap:8px;padding:16px 32px;border-radius:50px;font-weight:600;text-decoration:none;border:2px solid color-mix(in srgb, ${project.color} 30%, transparent);color:var(--heading-text);transition:transform 0.2s;font-size:1.05rem;`}>
+              {project.hero.cta_secondary}
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery (before features for Numu) -->
+  {project.screenshots && project.screenshots.length > 0 && (
+    <ProjectGallery screenshots={project.screenshots} galleryType={project.galleryType || 'mobile'} projectSlug={project.slug} projectColor={project.color} projectName={project.name} />
+  )}
+
+  <!-- Feature Carousel.
+       No background here on purpose: the shared `.project-hero-wash`
+       continues down from the hero, so removing the old `background:
+       linear-gradient(to bottom, white, ...)` keeps the colour fading
+       smoothly into this section instead of cutting off in a hard white
+       slab right where the screenshots end. -->
+  {project.features && project.features.length > 0 && (
+    <section id="features" style="padding:80px 24px;">
+      <div style="max-width:1200px;margin:0 auto;">
+        <div style="text-align:center;margin-bottom:48px;" data-animate="fade-up">
+          <span style={`display:inline-block;padding:8px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);margin-bottom:16px;`}>
+            {/* TODO: localise this later */ 'Features'}
+          </span>
+          <h2 style="font-size:2.2rem;font-weight:700;color:var(--heading-text);font-family:'Quicksand',sans-serif;">
+            {/* TODO: localise this later */ 'Key Features'}
+          </h2>
+        </div>
+
+        <div class="feature-carousel">
+          {project.features.map((feature, i) => (
+            <div class="carousel-card" data-animate="fade-up" style={`animation-delay:${i * 0.06}s;`}>
+              <div style={`width:56px;height:56px;border-radius:16px;background:${project.gradient};display:flex;align-items:center;justify-content:center;margin-bottom:20px;`}>
+                <Icon name={resolveIcon(feature.icon).name} size={24} color="white" />
+              </div>
+              <h3 style="font-size:1.15rem;font-weight:700;margin-bottom:8px;color:var(--heading-text);">{feature.title}</h3>
+              <p style="font-size:0.9rem;opacity:0.7;line-height:1.6;">{feature.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {project.testimonials && project.testimonials.length > 0 && (
+    <section style="padding:64px 24px;max-width:1200px;margin:0 auto;" data-animate="fade-up">
+      <h2 style="text-align:center;font-size:2rem;margin-bottom:48px;color:var(--heading-text);font-family:'Quicksand',sans-serif;">
+        {/* TODO: localise this later */ 'What People Say'}
+      </h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(340px, 1fr));gap:24px;">
+        {project.testimonials.map(t => (
+          <ProjectTestimonial quote={t.quote} author={t.author} role={t.role} projectColor={project.color} projectGradient={project.gradient} />
+        ))}
+      </div>
+    </section>
+  )}
+
+  {project.faq && project.faq.length > 0 && (
+    <section style="padding:64px 24px;max-width:800px;margin:0 auto;">
+      <h2 style="text-align:center;font-size:2rem;margin-bottom:48px;color:var(--heading-text);font-family:'Quicksand',sans-serif;">
+        {/* TODO: localise this later */ 'FAQ'}
+      </h2>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        {project.faq.map(item => (
+          <ProjectFAQ question={item.question} answer={item.answer} projectColor={project.color} />
+        ))}
+      </div>
+    </section>
+  )}
+
+  <ProjectCTA status={project.status} platforms={project.platforms || []} links={project.links} lang={lang} />
+</ProjectLayout>

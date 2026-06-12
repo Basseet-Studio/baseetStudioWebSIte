@@ -1,0 +1,119 @@
+---
+import Icon from '../icons/Icon.astro'
+import { resolveIcon } from '../icons/iconMappings'
+import { parseBold } from '../../utils/markup'
+import type { Lang } from '../../types'
+
+interface Props {
+  features: Array<{ icon: string; pretitle: string; title: string; text: string }>
+  lang?: Lang
+}
+
+const { features, lang = 'en' } = Astro.props
+---
+
+<section class="features" data-animate="fade-slide-up">
+  <h2 class="features__heading">Our Services</h2>
+  <div class="features__grid">
+    {features.map((feature) => {
+      const icon = resolveIcon(feature.icon)
+      return (
+      <div class="features__card glass glass-card" data-animate="fade-slide-up">
+        <div class="features__icon-wrap">
+          <Icon name={icon.name} variant={icon.variant} size={32} color="var(--text-primary)" />
+        </div>
+        <p class="features__pretitle">{feature.pretitle}</p>
+        <h3 class="features__title" set:html={parseBold(feature.title)} />
+        <p class="features__text">{feature.text}</p>
+      </div>
+    )})}
+  </div>
+</section>
+
+<style>
+  .features {
+    padding: 80px 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .features__heading {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--heading-text);
+    text-align: center;
+    margin: 0 0 48px;
+  }
+
+  .features__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  .features__card {
+    padding: 28px 22px;
+    border-radius: 16px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .features__card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--card-shadow-hover);
+  }
+
+  .features__icon-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+    margin: 0 auto 16px;
+  }
+
+  .features__pretitle {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-secondary);
+    margin: 0 0 8px;
+  }
+
+  .features__title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--heading-text);
+    margin: 0 0 10px;
+  }
+
+  .features__title :global(strong) {
+    color: var(--text-primary);
+  }
+
+  .features__text {
+    font-size: 0.85rem;
+    color: var(--muted-text);
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  @media (max-width: 900px) {
+    .features__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .features__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .features {
+      padding: 60px 16px;
+    }
+  }
+</style>

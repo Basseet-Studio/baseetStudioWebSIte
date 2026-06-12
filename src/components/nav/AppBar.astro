@@ -1,0 +1,213 @@
+---
+// AppBar.astro — Adaptive glassmorphic floating pill navigation
+// On non-project pages: standard nav (Home / Work / Services / Clients / Contact).
+// On project pages: clover logo (icon only) → divider → project icon (in
+// project color) → project nav items (Home/Features/Demo/Terms) with active
+// state tinted by the project color → divider → meta items (Projects / Contact).
+// Active state is computed at build time so no client-side detection is needed.
+import ThemeSwitcher from '../shared/ThemeSwitcher.astro'
+import Icon from '../icons/Icon.astro'
+import { resolveIcon } from '../icons/iconMappings'
+import type { Lang, NavItem } from '../../types'
+import links from '../../content/data/links.json'
+
+interface Props {
+  lang?: Lang
+  slug?: string
+  projectName?: string
+  projectColor?: string
+  projectIconClass?: string
+  projectNavItems?: NavItem[]
+  projectNavMeta?: NavItem[]
+}
+
+const {
+  lang = 'en',
+  slug,
+  projectName,
+  projectColor,
+  projectIconClass,
+  projectNavItems,
+  projectNavMeta,
+} = Astro.props
+const isProject = !!projectName && !!(projectNavItems && projectNavItems.length > 0)
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/'
+
+const projectRoot = `/projects/${slug || ''}`.replace(/\/$/, '') || '/'
+
+// Project nav: build absolute URLs and compute active state per item.
+// Home is the default active when on the bare project root.
+type ProjectNavEntry = NavItem & { fullUrl: string; isActive: boolean; dataKey: string }
+
+const projectNav: ProjectNavEntry[] = isProject && projectNavItems
+  ? projectNavItems.map(item => {
+      const url = item.url || ''
+      const fullUrl = url === '' ? projectRoot + '/' : `${projectRoot}/${url}`.replace(/\/$/, '') || '/'
+      const isActive =
+        (url === '' && (pathname === projectRoot || pathname === projectRoot + '/')) ||
+        (url !== '' && (pathname === fullUrl || pathname === fullUrl + '/'))
+      return {
+        ...item,
+        fullUrl,
+        isActive,
+        dataKey: (item.i18nKey || item.label || url).toLowerCase().replace(/[^a-z0-9-]/g, '-'),
+      }
+    })
+  : []
+
+// Resolve the project icon (e.g. cash-register for Zaryn, hospital for Medev).
+const projectIconResolved = projectIconClass
+  ? resolveIcon(projectIconClass)
+  : { name: 'cube', variant: 'regular' as const }
+
+// Non-project nav (Home / Work / Services / Clients / Contact) with active state.
+// Active matching: strip trailing slashes on BOTH sides so /projects/ === /projects.
+const normalizedPath = pathname.replace(/\/$/, '') || '/'
+type StandardNavEntry = { label: string; url: string; dataKey: string; isActive: boolean }
+const standardNavData: { key: string; label: string; url: string }[] = [
+  { key: 'home',     label: 'Home',     url: '/' },
+  { key: 'work',     label: 'Work',     url: '/projects/' },
+  { key: 'services', label: 'Services', url: '/services/' },
+  { key: 'clients',  label: 'Clients',  url: '/clients/' },
+  { key: 'contact',  label: 'Contact',  url: '/contact/' },
+]
+const standardNav: StandardNavEntry[] = standardNavData.map(item => {
+  const url = item.url.replace(/\/$/, '') || '/'
+  return { label: item.label, url, dataKey: item.key, isActive: normalizedPath === url }
+})
+
+// Meta items for project pages: Projects + Contact Us, side by side inline.
+const projectMetaData: { key: string; label: string; url: string }[] = [
+  { key: 'projects', label: 'Projects', url: '/projects/' },
+  { key: 'contact', label: 'Contact', url: '/contact/' },
+]
+
+// Per FR-032: hide social icons when URL is "#", empty, or missing.
+const socialIconMap: Record<string, string> = {
+  instagram: 'instagram-logo',
+  linkedin: 'linkedin-logo',
+  github: 'github-logo',
+  twitter: 'x-logo',
+}
+const socialLabelMap: Record<string, string> = {
+  instagram: 'Instagram',
+  linkedin: 'LinkedIn',
+  github: 'GitHub',
+  twitter: 'X (Twitter)',
+}
+const socialLinks = (['instagram', 'linkedin', 'github', 'twitter'] as const)
+  .filter(p => links.social[p] && links.social[p] !== '#')
+  .map(p => ({ platform: p, icon: socialIconMap[p], label: socialLabelMap[p], url: links.social[p] as string }))
+---
+
+<a href="#main-content" class="skip-to-content">{/* TODO: localise this later */ 'Skip to content'}</a>
+
+<nav
+  class="app-bar app-bar--visible"
+  id="app-bar"
+  dir="ltr"
+  aria-label="Main navigation"
+  data-is-project={isProject ? 'true' : 'false'}
+  data-project-color={projectColor || ''}
+  style={isProject && projectColor ? `--project-color:${projectColor};` : ''}
+  transition:name="app-bar"
+  transition:persist
+>
+  <div class="app-bar__inner">
+    {isProject ? (
+      <>
+        {/* Logo (icon only) — always links to home */}
+        <a href="/" class="app-bar__logo" aria-label="Back to Baseet Studio Home">
+          <img src="/icons/bold/clover-bold.svg" alt="" class="app-bar__logo-mark" width="26" height="26" aria-hidden="true" />
+        </a>
+
+        {/* Vertical divider */}
+        <span class="app-bar__logo-divider" aria-hidden="true"></span>
+
+        {/* Project icon + name — no container chip, just the icon next to the name. Coloured with the project colour. */}
+        <a href={projectRoot} class="app-bar__project-mark" style={`color:${projectColor || 'var(--color-primary)'}`} aria-label={`${projectName || 'Project'} home`}>
+          <Icon name={projectIconResolved.name} variant={projectIconResolved.variant} size={22} color="currentColor" />
+          {projectName && <span class="app-bar__project-name">{projectName}</span>}
+        </a>
+      </>
+    ) : (
+      <a href="/" class="app-bar__logo" aria-label="Baseet Studio Home">
+        <img src="/icons/bold/clover-bold.svg" alt="" class="app-bar__logo-mark" width="26" height="26" aria-hidden="true" />
+      </a>
+    )}
+
+    {/* Nav links */}
+    <ul class="app-bar__links" id="app-bar-links">
+      {isProject
+        ? projectNav.map(item => (
+            <li>
+              <a
+                href={item.fullUrl}
+                class:list={['app-bar__link', { active: item.isActive }]}
+                data-page={item.dataKey}
+                aria-current={item.isActive ? 'page' : undefined}
+              >
+                <span class="app-bar__link-label">{item.label}</span>
+              </a>
+            </li>
+          ))
+        : standardNav.map(item => (
+            <li>
+              <a
+                href={item.url}
+                class:list={['app-bar__link', { active: item.isActive }]}
+                data-page={item.dataKey}
+                aria-current={item.isActive ? 'page' : undefined}
+              >
+                <span class="app-bar__link-label">{item.label}</span>
+              </a>
+            </li>
+          ))}
+    </ul>
+
+    {/* Project meta items (Projects + Contact) — inline on project pages */}
+    {isProject && (
+      <ul class="app-bar__meta">
+        {projectMetaData.map(meta => (
+          <li>
+            <a
+              href={meta.url}
+              class="app-bar__link app-bar__link--meta"
+              data-page={meta.key}
+            >
+              <span class="app-bar__link-label">{meta.label}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+
+    <div class="app-bar__actions">
+      <ThemeSwitcher />
+    </div>
+
+    <div class="app-bar__social-links" aria-label="Social media links">
+      {socialLinks.map(link => (
+        <a
+          href={link.url}
+          class="app-bar__social-link"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={link.label}
+        >
+          <Icon name={link.icon} variant="fill" size={14} color="currentColor" />
+        </a>
+      ))}
+    </div>
+
+    <button class="app-bar__mobile-toggle" id="mobile-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+<script>
+  import '../nav/AppBar.ts'
+</script>

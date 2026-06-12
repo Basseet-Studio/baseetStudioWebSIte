@@ -1,0 +1,90 @@
+---
+// ThemeSwitcher.astro — Day/Night toggle. Renders both sun + moon icons
+// with a '/' separator so the visual reads as "either/or". Good padding
+// around the pair. Click anywhere on the button to toggle.
+import Icon from '../icons/Icon.astro'
+---
+
+<button
+  type="button"
+  class="theme-switcher"
+  id="theme-switcher"
+  aria-label="Switch to night mode"
+  aria-pressed="false"
+  title="Toggle theme"
+>
+  <Icon name="sun" size={16} color="currentColor" />
+  <span class="theme-switcher__sep" aria-hidden="true">/</span>
+  <Icon name="moon" size={16} color="currentColor" />
+</button>
+
+<script>
+  const STORAGE_KEY = 'baseet-theme'
+
+  function getCurrentTheme(): 'day' | 'night' {
+    const root = document.documentElement
+    return root.getAttribute('data-theme') === 'night' ? 'night' : 'day'
+  }
+
+  function updateThemeSwitchUI() {
+    const button = document.getElementById('theme-switcher')
+    if (!button) return
+    const theme = getCurrentTheme()
+    const isNight = theme === 'night'
+    button.setAttribute('aria-pressed', String(isNight))
+    button.setAttribute('aria-label', isNight ? 'Switch to day mode' : 'Switch to night mode')
+  }
+
+  function initThemeSwitcher() {
+    const button = document.getElementById('theme-switcher')
+    if (!button) return
+    updateThemeSwitchUI()
+    button.onclick = () => {
+      const root = document.documentElement
+      const nextTheme: 'day' | 'night' = getCurrentTheme() === 'night' ? 'day' : 'night'
+      root.setAttribute('data-theme', nextTheme)
+      try {
+        localStorage.setItem(STORAGE_KEY, nextTheme)
+      } catch {
+        /* ignore */
+      }
+      updateThemeSwitchUI()
+      import('../background/vanta-init.ts')
+        .then(m => m.setVantaTheme(nextTheme))
+        .catch(err => console.warn('[ThemeSwitcher] vanta theme update failed:', err))
+    }
+  }
+
+  window.addEventListener('load', initThemeSwitcher)
+  document.addEventListener('astro:page-load', initThemeSwitcher)
+</script>
+
+<style>
+  .theme-switcher {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border: 1px solid var(--border-soft);
+    border-radius: 10px;
+    background: var(--bg-elevated);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .theme-switcher:hover {
+    background: var(--interactive-hover);
+    border-color: var(--border-strong);
+    transform: translateY(-1px);
+  }
+
+  .theme-switcher__sep {
+    font-size: 1.05rem;
+    font-weight: 600;
+    opacity: 0.45;
+    line-height: 1;
+    user-select: none;
+  }
+</style>

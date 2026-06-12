@@ -1,0 +1,81 @@
+/* Shared project utility classes — used by all project pages */
+.project-gradient {
+    background: var(--project-gradient);
+}
+.text-project {
+    color: var(--project-color);
+}
+.bg-project {
+    background-color: var(--project-color);
+}
+.bg-project-light {
+    background-color: color-mix(in srgb, var(--project-color) 8%, transparent);
+}
+.border-project {
+    border-color: var(--project-color);
+}
+.shadow-project {
+    box-shadow: 0 10px 40px -10px
+        color-mix(in srgb, var(--project-color) 31%, transparent);
+}
+
+/* Project hero wash
+ * ───────────────────────────────────────────────────────────────────────
+ * A soft, theme-aware coloured band that sits at the top of every project
+ * page. The wash extends ~180vh from the top of the wrapper and the
+ * background gradient itself goes from full project colour at the top to
+ * fully transparent at the bottom. That does two things at once:
+ *
+ *   1. It gives the hero a subtle colour identity in BOTH day and night
+ *      modes (the mix targets the studio's --bg-page in day mode and the
+ *      dark night surface in night mode) — the same approach that
+ *      Numu and Geeb already use to look good in both themes.
+ *   2. It fades away gradually as the user scrolls. The wash is in the
+ *      document flow (position: absolute on a relative wrapper) and is
+ *      tall enough that the bottom of the wash is well past the hero,
+ *      so there's no sharp cut-off where the colour ends — you simply
+ *      scroll into a clean area.
+ *
+ * The wash is a child of `.project-wrapper` (added in Project.astro) and
+ * sits at z-index 0. Project content is z-index 2; the night-mode global
+ * dark wash is z-index 1 + position: fixed, so it tints on top.
+ */
+.project-hero-wash {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 180vh;
+    z-index: 0;
+    pointer-events: none;
+    background: linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--project-color) 14%, transparent) 0%,
+        color-mix(in srgb, var(--project-color) 10%, transparent) 25%,
+        color-mix(in srgb, var(--project-color) 6%, transparent) 55%,
+        color-mix(in srgb, var(--project-color) 2%, transparent) 85%,
+        transparent 100%
+    );
+}
+
+[data-theme="night"] .project-hero-wash {
+    /* In night mode the wash is mixed with the dark night surface
+     (rgba(8, 12, 22, ...)) so the colour reads as a soft band rather than
+     a bright slab — same idea the global night wash uses. */
+    background: linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--project-color) 22%, rgba(8, 12, 22, 0.55)) 0%,
+        color-mix(in srgb, var(--project-color) 14%, rgba(8, 12, 22, 0.45)) 25%,
+        color-mix(in srgb, var(--project-color) 8%, rgba(8, 12, 22, 0.4)) 55%,
+        color-mix(in srgb, var(--project-color) 3%, rgba(8, 12, 22, 0.35)) 85%,
+        transparent 100%
+    );
+}
+
+/* Reduced motion: skip the wash entirely (it's static anyway, but this
+   keeps the paint cost down and avoids any compositor overhead). */
+@media (prefers-reduced-motion: reduce) {
+    .project-hero-wash {
+        display: none;
+    }
+}

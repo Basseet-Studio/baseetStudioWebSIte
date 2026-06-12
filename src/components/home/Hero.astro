@@ -1,0 +1,150 @@
+---
+import Icon from '../icons/Icon.astro'
+import { parseBold } from '../../utils/markup'
+import type { Lang } from '../../types'
+
+interface Props {
+  data: {
+    title: string
+    text: string
+  }
+  lang?: Lang
+}
+
+const { data, lang = 'en' } = Astro.props
+const titleHtml = parseBold(data.title)
+---
+
+<section class="hero" data-animate="fade-slide-up">
+  <div class="hero__inner">
+    <h1 class="hero__title" set:html={titleHtml} />
+
+    <p class="hero__subtitle">{data.text}</p>
+
+    <div class="hero__cta">
+      <a href="/projects/" class="hero__btn">
+        <Icon name="rocket" size={18} color="currentColor" />
+        View Our Work
+        <Icon name="arrow-right" size={16} color="currentColor" />
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 24px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero__inner {
+    text-align: center;
+    max-width: 800px;
+    width: 100%;
+  }
+
+  .hero__title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    color: var(--heading-text);
+    margin: 0 0 16px;
+    line-height: 1.15;
+  }
+
+  .hero__title :global(strong) {
+    color: var(--text-primary);
+    visibility: hidden;
+  }
+
+  .hero__title :global(.typewriter-cursor) {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background: var(--text-primary);
+    margin-left: 1px;
+    vertical-align: text-bottom;
+    animation: blink 0.8s step-end infinite;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  .hero__subtitle {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--muted-text);
+    max-width: 560px;
+    margin: 0 auto 48px;
+    line-height: 1.6;
+  }
+
+  .hero__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 36px;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    background: var(--color-primary);
+    color: white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .hero__btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px color-mix(in srgb, var(--color-primary) 40%, transparent);
+  }
+
+  @media (max-width: 640px) {
+    .hero {
+      padding: 100px 16px 60px;
+    }
+  }
+</style>
+
+<script>
+  let typed = false
+
+  function typewrite() {
+    if (typed) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const strong = document.querySelector('.hero__title strong')
+      if (strong) strong.style.visibility = 'visible'
+      typed = true
+      return
+    }
+
+    const strong = document.querySelector('.hero__title strong')
+    if (!strong) return
+
+    const text = strong.textContent || ''
+    strong.textContent = ''
+    strong.style.visibility = 'visible'
+
+    const cursor = document.createElement('span')
+    cursor.className = 'typewriter-cursor'
+    strong.insertAdjacentElement('afterend', cursor)
+    typed = true
+
+    let i = 0
+    const interval = setInterval(() => {
+      if (i >= text.length) {
+        clearInterval(interval)
+        setTimeout(() => cursor.remove(), 2500)
+        return
+      }
+      strong.textContent += text[i]
+      i++
+    }, 80)
+  }
+
+  typewrite()
+  document.addEventListener('astro:page-load', typewrite)
+</script>

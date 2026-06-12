@@ -1,0 +1,183 @@
+---
+import ProjectLayout from '../../../../layouts/Project.astro'
+import ProjectFAQ from '../../../../components/project/ProjectFAQ.astro'
+import Icon from '../../../../components/icons/Icon.astro'
+import { resolveIcon } from '../../../../components/icons/iconMappings'
+import { getProject } from '../../../../lib/projects'
+import type { Lang, Project } from '../../../../types'
+
+const pathname = Astro.url.pathname
+const lang: Lang = pathname.startsWith('/ar') ? 'ar' : 'en'
+const slug = 'geeb'
+const project = getProject(slug)
+if (!project) return Astro.redirect('/404')
+
+// Comprehensive FAQ for the dedicated /faq subpage
+const customerFaqs = [
+  {
+    question: 'What kinds of services can I book on Geeb?',
+    answer: 'Plumbing, electrical, carpentry, painting, cleaning, appliance repair, AC and HVAC service, handyman jobs, pest control, landscaping, and locksmith services. New categories are added every month as pros join the platform.',
+  },
+  {
+    question: 'How much does it cost to use Geeb?',
+    answer: 'It is free to download the app and browse pros. You pay only for the work that is done, at the price your pro quoted upfront. There are no booking fees, no subscription, and no hidden charges. We add a small service fee at checkout that is shown clearly before you pay.',
+  },
+  {
+    question: 'How quickly can I get a pro to my door?',
+    answer: 'For urgent jobs — plumbing leaks, electrical faults, lockouts — many pros offer same-day service. Bookings for non-urgent work can typically be scheduled within 24 to 48 hours, depending on your service area and trade.',
+  },
+  {
+    question: 'How are service pros verified?',
+    answer: 'Every pro submits government-issued ID, trade certificates (where applicable), and passes a background check. We also collect reviews after every job so quality stays high. You can see a pro\'s verification status, rating, and review history on their profile.',
+  },
+  {
+    question: 'When do I pay?',
+    answer: 'You do not pay until the job is finished and you approve the work. Funds are held in escrow by Geeb and released to the pro on your confirmation — so you are never out of pocket for unfinished work. You can pay with Apple Pay, Google Pay, or any major card.',
+  },
+  {
+    question: 'What if I am not happy with the work?',
+    answer: 'Every booking is backed by our 30-day workmanship guarantee. If something is not right after the job, contact us within 30 days and we will either send the pro back to fix it at no extra cost or issue a refund — your choice. Our support team is reachable 7 days a week.',
+  },
+  {
+    question: 'Can I choose my pro, or is one assigned to me?',
+    answer: 'You can do both. For most jobs, the app shows you a shortlist of available pros with ratings, prices, and arrival windows — pick the one you trust. For urgent jobs, we auto-assign the nearest available pro so you are not left waiting.',
+  },
+  {
+    question: 'Is Geeb available in my city?',
+    answer: 'We are launching city by city. Join the waitlist to be notified when Geeb goes live in your area — early-access customers get priority booking and exclusive launch promos.',
+  },
+  {
+    question: 'How do I contact my pro during the job?',
+    answer: 'Every booking includes in-app chat and tap-to-call. You can message or call your pro without sharing your personal phone number, and the conversation history is saved for reference.',
+  },
+  {
+    question: 'Can I reschedule or cancel a booking?',
+    answer: 'Yes. You can reschedule or cancel a booking for free up to 2 hours before the scheduled start time. After that, a small cancellation fee may apply to cover the pro\'s time.',
+  },
+]
+
+const proFaqs = [
+  {
+    question: 'How do I become a pro on Geeb?',
+    answer: 'Visit the "Become a Pro" page, fill in the application, and our team reviews it within 48 hours. Once approved, you complete a 20-minute onboarding call, pass our verification checks, and can set your schedule and start receiving job requests.',
+  },
+  {
+    question: 'What does Geeb charge pros?',
+    answer: 'A flat platform fee per completed job — no upfront cost, no monthly subscription, no exclusivity. The exact rate depends on your trade and city, and is shown clearly in your pro dashboard before you accept a job.',
+  },
+  {
+    question: 'When do I get paid?',
+    answer: 'Funds are released to you as soon as the customer approves the job. Standard payout is within 24 hours to your linked bank account via Stripe Connect. Instant payout is available for a small fee.',
+  },
+  {
+    question: 'Can I set my own prices?',
+    answer: 'Yes — for fixed-price jobs, you set your own rate card. For hourly work, you choose your hourly rate and minimum booking duration. Geeb shows you market benchmarks so you can price competitively without undercutting yourself.',
+  },
+  {
+    question: 'What if a customer cancels?',
+    answer: 'Cancellations more than 2 hours before the job are free. Late cancellations trigger a small cancellation fee that is paid to you. No-shows are covered by our protection policy.',
+  },
+  {
+    question: 'Do I need my own insurance?',
+    answer: 'Yes — pros on Geeb must carry valid public liability insurance. We help you upload and store your certificate of insurance in the app, and we re-verify it annually.',
+  },
+  {
+    question: 'Can I work for other platforms while on Geeb?',
+    answer: 'Absolutely. We do not require exclusivity — Geeb is one more channel for you to find work, alongside your existing customers, referrals, and any other platforms you use.',
+  },
+]
+---
+
+<ProjectLayout title={`FAQ — ${project.name} — Baseet Studio`} description={`Frequently asked questions about ${project.name} — ${project.tagline}`} slug={project.slug} projectColor={project.color} projectGradient={project.gradient} projectName={project.name} projectIconClass={project.iconClass} projectNavItems={project.navItems} projectNavMeta={project.navMetaItems} lang={lang}>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles/projects/geeb.css" />
+
+  <!-- Subpage hero -->
+  <section class="geeb-subhero">
+    <div class="geeb-hero__grid" aria-hidden="true"></div>
+    <div class="geeb-hero__glow geeb-hero__glow--a" aria-hidden="true"></div>
+
+    <div class="geeb-subhero__inner">
+      <span class="geeb-eyebrow">
+        <Icon name="question" size={14} color="currentColor" />
+        FAQ
+      </span>
+      <h1 class="geeb-subhero__title" data-animate="fade-up">Questions, answered</h1>
+      <p class="geeb-subhero__lede" data-animate="fade-up">
+        Everything you need to know about booking on Geeb — and everything you need to know if you are a pro thinking about joining the platform. Can not find your answer? Reach out and we will get back to you within a day.
+      </p>
+    </div>
+  </section>
+
+  <!-- Customer FAQs -->
+  <section class="geeb-content geeb-content--narrow" id="customers">
+    <div class="geeb-section__head" data-animate="fade-up">
+      <span class="geeb-eyebrow">
+        <Icon name="user" size={14} color="currentColor" />
+        For customers
+      </span>
+      <h2 class="geeb-section__title">Booking on Geeb</h2>
+    </div>
+
+    <div class="geeb-faq">
+      {customerFaqs.map(item => (
+        <ProjectFAQ question={item.question} answer={item.answer} projectColor={project.color} />
+      ))}
+    </div>
+  </section>
+
+  <!-- Pro FAQs -->
+  <section class="geeb-content geeb-content--narrow" id="pros" style="padding-top:0;">
+    <div class="geeb-section__head" data-animate="fade-up" style="margin-top:48px;">
+      <span class="geeb-eyebrow">
+        <Icon name="hard-hat" size={14} color="currentColor" />
+        For service pros
+      </span>
+      <h2 class="geeb-section__title">Working on Geeb</h2>
+    </div>
+
+    <div class="geeb-faq">
+      {proFaqs.map(item => (
+        <ProjectFAQ question={item.question} answer={item.answer} projectColor={project.color} />
+      ))}
+    </div>
+  </section>
+
+  <!-- Contact CTA -->
+  <section class="geeb-cta">
+    <div class="geeb-cta__inner">
+      <div class="geeb-cta__glow geeb-cta__glow--a" aria-hidden="true"></div>
+      <div class="geeb-cta__glow geeb-cta__glow--b" aria-hidden="true"></div>
+      <h2 class="geeb-cta__title" data-animate="fade-up">Still have a question?</h2>
+      <p class="geeb-cta__text" data-animate="fade-up">
+        Our team is happy to help. Drop us a note and we will get back to you within one business day.
+      </p>
+      <div class="geeb-cta__actions" data-animate="fade-up">
+        <a href="/contact/" class="geeb-btn geeb-btn--invert">
+          <Icon name="envelope" size={18} color="currentColor" />
+          Contact us
+        </a>
+        <a href={`/${lang === 'ar' ? 'ar/' : ''}projects/geeb/pro/`} class="geeb-btn geeb-btn--ghost">
+          <Icon name="hard-hat" size={18} color="currentColor" />
+          Become a pro
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Subpage navigation -->
+  <nav class="geeb-subnav" aria-label="Geeb pages">
+    <div class="geeb-subnav__inner">
+      <a href={`/${lang === 'ar' ? 'ar/' : ''}projects/geeb/pro/`} class="geeb-subnav__link">
+        <Icon name="arrow-left" size={16} color="currentColor" />
+        Become a pro
+      </a>
+      <a href={`/${lang === 'ar' ? 'ar/' : ''}projects/geeb/`} class="geeb-subnav__link">
+        Back to Geeb
+        <Icon name="arrow-right" size={16} color="currentColor" />
+      </a>
+    </div>
+  </nav>
+</ProjectLayout>

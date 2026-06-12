@@ -1,0 +1,142 @@
+---
+import type { Lang } from '../../types'
+
+interface ClientData {
+  name: string
+  color?: string
+  testimonial?: { quote?: string; author?: string; role?: string }
+}
+
+interface Props {
+  clients: ClientData[]
+  lang?: Lang
+}
+
+const { clients, lang = 'en' } = Astro.props
+---
+
+<section class="clients" data-animate="fade-slide-up">
+  <h2 class="clients__heading">Trusted By</h2>
+  <p class="clients__sub">What our clients say about working with us</p>
+
+  <div class="clients__grid">
+    {clients.map((client) => {
+      const accent = client.color ?? 'var(--accent, #B45309)'
+      const quote = client.testimonial?.quote?.trim() ?? ''
+      const author = client.testimonial?.author?.trim() ?? ''
+      const role = client.testimonial?.role?.trim() ?? ''
+      return (
+        <figure class="clients__card glass glass-card" style={`border-top: 3px solid ${accent}`}>
+          <h3 class="clients__card-name">{client.name}</h3>
+          {quote ? (
+            <blockquote class="clients__quote" style={`border-left: 3px solid ${accent}`}>
+              <p>&ldquo;{quote}&rdquo;</p>
+              {(author || role) && (
+                <footer>
+                  {author && <span class="clients__author">&mdash; {author}</span>}
+                  {role && <span class="clients__role">{role}</span>}
+                </footer>
+              )}
+            </blockquote>
+          ) : null}
+        </figure>
+      )
+    })}
+  </div>
+</section>
+
+<style>
+  .clients {
+    padding: 80px 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .clients__heading {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--heading-text);
+    text-align: center;
+    margin: 0 0 6px;
+  }
+
+  .clients__sub {
+    font-size: 0.95rem;
+    color: var(--muted-text);
+    text-align: center;
+    margin: 0 0 48px;
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .clients__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+
+  .clients__card {
+    padding: 28px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin: 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .clients__card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--card-shadow-hover);
+  }
+
+  .clients__card-name {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--heading-text);
+    margin: 0;
+  }
+
+  .clients__quote {
+    margin: 0;
+    padding: 12px 16px;
+    border-radius: 8px;
+    background: var(--surface-soft);
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .clients__quote p {
+    margin: 0 0 8px;
+  }
+
+  .clients__quote footer {
+    font-style: normal;
+    font-size: 0.8rem;
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .clients__author {
+    font-weight: 600;
+  }
+
+  .clients__role {
+    color: var(--muted-text);
+    font-size: 0.75rem;
+  }
+
+  @media (max-width: 768px) {
+    .clients__grid {
+      grid-template-columns: 1fr;
+    }
+    .clients {
+      padding: 60px 16px;
+    }
+  }
+</style>

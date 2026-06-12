@@ -1,0 +1,246 @@
+[
+  {
+    "slug": "matrix",
+    "name": "Matrix",
+    "tagline": "One platform. Every part of your business. Zero tool fatigue.",
+    "color": "#0891B2",
+    "gradient": "linear-gradient(135deg, #0891B2 0%, #22D3EE 100%)",
+    "status": "Coming Soon",
+    "iconClass": "fas fa-th-large",
+    "icon": null,
+    "platforms": [
+      {
+        "name": "Web",
+        "icon": "fas fa-globe"
+      }
+    ]
+  },
+  {
+    "slug": "geeb",
+    "name": "Geeb",
+    "tagline": "Trusted Home-Service Pros, On Demand",
+    "color": "#B45309",
+    "gradient": "linear-gradient(135deg, #B45309 0%, #F59E0B 100%)",
+    "status": "Coming Soon",
+    "iconClass": "fas fa-wrench",
+    "icon": null,
+    "platforms": [
+      {
+        "name": "Customer App",
+        "icon": "fas fa-mobile-alt"
+      },
+      {
+        "name": "Vendor App",
+        "icon": "fas fa-hard-hat"
+      },
+      {
+        "name": "Admin Console",
+        "icon": "fas fa-user-shield"
+      }
+    ]
+  },
+  {
+    "slug": "deshikitchen",
+    "name": "DeshiKitchen",
+    "tagline": "One platform. Every step from kitchen to doorstep.",
+    "color": "#F97316",
+    "gradient": "linear-gradient(135deg, #F97316 0%, #FB923C 100%)",
+    "status": "Live",
+    "iconClass": "fas fa-utensils",
+    "icon": "/images/projects/deshikitchen-icon.png",
+    "platforms": [
+      {
+        "name": "Customer",
+        "icon": "fas fa-globe"
+      },
+      {
+        "name": "Admin",
+        "icon": "fas fa-user-shield"
+      },
+      {
+        "name": "Cook",
+        "icon": "fas fa-hat-chef"
+      },
+      {
+        "name": "Delivery",
+        "icon": "fas fa-truck"
+      }
+    ]
+  },
+  {
+    "slug": "numu",
+    "name": "Numu",
+    "tagline": "Track what you do. Build the person you want to become.",
+    "color": "#AF52DE",
+    "gradient": "linear-gradient(135deg, #AF52DE 0%, #BF5AF2 100%)",
+    "status": "Coming Soon",
+    "iconClass": null,
+    "icon": "/images/projects/numu-icon.png",
+    "platforms": [
+      {
+        "name": "iOS",
+        "icon": "fab fa-apple"
+      },
+      {
+        "name": "Android",
+        "icon": "fab fa-android"
+      }
+    ]
+  },
+  {
+    "slug": "photorestore-ai",
+    "name": "PhotoRestore AI",
+    "tagline": "Restore Old Photos with AI",
+    "color": "#6366F1",
+    "gradient": "linear-gradient(135deg, #6366F1 0%, #818CF8 100%)",
+    "status": "Live",
+    "iconClass": "fas fa-wand-magic-sparkles",
+    "icon": null,
+    "platforms": [
+      {
+        "name": "Web",
+        "icon": "fas fa-globe"
+      }
+    ]
+  },
+  {
+    "slug": "zaryn",
+    "name": "Zaryn",
+    "tagline": "All-In-One Business Management",
+    "color": "#F97316",
+    "gradient": "linear-gradient(135deg, #F97316 0%, #FB923C 100%)",
+    "status": "Ready to Deliver",
+    "iconClass": "fas fa-cash-register",
+    "icon": null,
+    "platforms": [
+      {
+        "name": "Web",
+        "icon": "fas fa-globe"
+      }
+    ]
+  },
+  {
+    "slug": "medev",
+    "name": "Medev",
+    "tagline": "Healthcare. Simplified.",
+    "color": "#0A6E74",
+    "gradient": "linear-gradient(135deg, #0A6E74 0%, #14B8A6 100%)",
+    "status": "Ready to Deliver",
+    "iconClass": "fas fa-hospital",
+    "icon": null,
+    "platforms": [
+      {
+        "name": "Web",
+        "icon": "fas fa-globe"
+      },
+      {
+        "name": "Docker",
+        "icon": "fab fa-docker"
+      }
+    ]
+  },
+  {
+    "slug": "chopshop",
+    "name": "ChopShop",
+    "tagline": "Your Shop, Everywhere",
+    "color": "#E11D48",
+    "gradient": "linear-gradient(135deg, #E11D48 0%, #FB7185 100%)",
+    "status": "Ready to Deliver",
+    "iconClass": "fas fa-shopping-bag",
+    "icon": null,
+    "platforms": [
+      {
+        "name": "Web",
+        "icon": "fas fa-globe"
+      },
+      {
+        "name": "iOS",
+        "icon": "fab fa-apple"
+      },
+      {
+        "name": "Android",
+        "icon": "fab fa-android"
+      }
+    ]
+  },
+  {
+    "slug": "medical-education-app",
+    "name": "Medical Education App (MAI)",
+    "tagline": "AI-Powered Medical Education Platform",
+    "color": "#0F766E",
+    "gradient": "linear-gradient(135deg, #0F766E 0%, #14B8A6 100%)",
+    "status": "Coming Soon",
+    "iconClass": "fas fa-stethoscope",
+    "icon": null,
+    "platforms": [
+      {
+        "name": "iOS",
+        "icon": "fab fa-apple"
+      },
+      {
+        "name": "Android",
+        "icon": "fab fa-android"
+      },
+      {
+        "name": "Web",
+        "icon": "fas fa-globe"
+      },
+      {
+        "name": "Desktop",
+        "icon": "fas fa-desktop"
+      }
+    ]
+  },
+  {
+    "slug": "nss-virtual-education-fair",
+    "name": "NSS Virtual Education Fair",
+    "tagline": "Virtual Education Fair Platform",
+    "color": "#0EA5E9",
+    "gradient": "linear-gradient(135deg, #0EA5E9 0%, #38BDF8 100%)",
+    "status": "Completed",
+    "iconClass": "fas fa-graduation-cap",
+    "icon": null,
+    "platforms": [
+      {
+        "name": "Web",
+        "icon": "fas fa-globe"
+      }
+    ]
+  },
+  {
+    "slug": "bd-railway-automated-timetable",
+    "name": "BD Railway Automated Timetable",
+    "tagline": "Railway Scheduling System",
+    "color": "#16A34A",
+    "gradient": "linear-gradient(135deg, #16A34A 0%, #22C55E 100%)",
+    "status": "Confidential",
+    "iconClass": "fas fa-train",
+    "icon": null,
+    "platforms": [
+      {
+        "name": "Web",
+        "icon": "fas fa-globe"
+      },
+      {
+        "name": "API",
+        "icon": "fas fa-code"
+      }
+    ]
+  },
+  {
+    "slug": "malaysian-business-websites",
+    "name": "Malaysian Business Websites",
+    "tagline": "Corporate Web Solutions",
+    "color": "#F59E0B",
+    "gradient": "linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%)",
+    "status": "Completed",
+    "iconClass": "fas fa-building",
+    "icon": null,
+    "platforms": [
+      {
+        "name": "Web",
+        "icon": "fas fa-globe"
+      }
+    ]
+  }
+]

@@ -1,0 +1,255 @@
+---
+// Base.astro — Root layout shell with ViewTransitions, VantaBg, AppBar, Footer
+import VantaBg from '../components/background/VantaBg.astro'
+import AppBar from '../components/nav/AppBar.astro'
+import Footer from '../components/shared/Footer.astro'
+import type { Lang, Section, NavItem } from '../types'
+
+import '../styles/global.css'
+import '../styles/glass.css'
+import '../styles/animations.css'
+import '../styles/nav.css'
+
+interface Props {
+  title: string
+  description?: string
+  section: Section
+  lang: Lang
+  ogImage?: string
+  ogImageAlt?: string
+  ogImageWidth?: number
+  ogImageHeight?: number
+  projectName?: string
+  projectColor?: string
+  projectIconClass?: string
+  slug?: string
+  projectNavItems?: NavItem[]
+  projectNavMeta?: NavItem[]
+}
+
+const {
+  title,
+  description,
+  section,
+  lang = 'en',
+  ogImage = '/icons/bold/clover-bold.svg',
+  ogImageAlt = 'Baseet Studio — Digital product studio in Abu Dhabi',
+  ogImageWidth = 1200,
+  ogImageHeight = 630,
+  projectName,
+  projectColor,
+  projectIconClass,
+  slug,
+  projectNavItems,
+  projectNavMeta,
+} = Astro.props
+
+// Canonical + hreflang URLs (relative path on the canonical Site URL).
+const siteOrigin = Astro.site?.toString().replace(/\/$/, '') ?? 'https://baseetstudio.com'
+const pathname = Astro.url.pathname
+const stripped = pathname.replace(/\/$/, '') || '/'
+const enPath = stripped
+const arPath = stripped === '/' ? '/ar' : `/ar${stripped}`
+const canonicalURL = `${siteOrigin}${enPath}`
+const enURL = canonicalURL
+const arURL = `${siteOrigin}${arPath}`
+
+// lang / dir are dynamic so the future /ar/ mirror can render correctly.
+const htmlLang = lang
+const htmlDir = lang === 'ar' ? 'rtl' : 'ltr'
+
+// Twitter handle (matches the social link in links.json).
+const twitterHandle = '@baseetstudios'
+
+// Default description if the page does not pass one.
+const fallbackDescription = 'Baseet Studio crafts mobile apps, web platforms, and digital experiences for ambitious brands in Abu Dhabi and beyond.'
+const metaDescription = description || fallbackDescription
+
+// Locale tags (en_AE primary, ar_AE alternate).
+const ogLocale = 'en_AE'
+const ogLocaleAlternate = 'ar_AE'
+
+// JSON-LD: Organization + LocalBusiness + WebSite.
+// Address: Abu Dhabi, UAE. Phone: +971507566474.
+const jsonLdOrganization = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': `${siteOrigin}/#organization`,
+  name: 'Baseet Studio',
+  url: siteOrigin,
+  logo: `${siteOrigin}/icons/bold/clover-bold.svg`,
+  email: 'mailto:baseet.socials@gmail.com',
+  telephone: '+971507566474',
+  sameAs: [
+    'https://github.com/baseetstudios',
+    'https://linkedin.com/company/baseetstudios',
+    'https://twitter.com/baseetstudios',
+    'https://instagram.com/baseet.studio',
+    'https://tiktok.com/@baseet.studio',
+  ],
+}
+
+const jsonLdLocalBusiness = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': `${siteOrigin}/#localbusiness`,
+  name: 'Baseet Studio',
+  image: `${siteOrigin}/icons/bold/clover-bold.svg`,
+  url: siteOrigin,
+  telephone: '+971507566474',
+  email: 'baseet.socials@gmail.com',
+  priceRange: '$$',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Abu Dhabi',
+    addressRegion: 'Abu Dhabi',
+    addressCountry: 'AE',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 24.4539,
+    longitude: 54.3773,
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'],
+      opens: '09:00',
+      closes: '18:00',
+    },
+  ],
+  parentOrganization: { '@id': `${siteOrigin}/#organization` },
+}
+
+const jsonLdWebSite = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${siteOrigin}/#website`,
+  name: 'Baseet Studio',
+  url: siteOrigin,
+  inLanguage: ['en-AE', 'ar-AE'],
+  publisher: { '@id': `${siteOrigin}/#organization` },
+}
+---
+
+<!doctype html>
+<html lang={htmlLang} dir={htmlDir}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script is:inline>
+      (() => {
+        const STORAGE_KEY = 'baseet-theme'
+        let theme = 'day'
+        try {
+          const saved = localStorage.getItem(STORAGE_KEY)
+          if (saved === 'day' || saved === 'night') {
+            theme = saved
+          } else {
+            const now = new Date()
+            const hour = now.getHours() + now.getMinutes() / 60
+            theme = (hour >= 4.5 && hour < 20) ? 'day' : 'night'
+          }
+        } catch {}
+        document.documentElement.setAttribute('data-theme', theme)
+      })()
+    </script>
+
+    <!-- Primary meta -->
+    <title>{title}</title>
+    <meta name="description" content={metaDescription} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- hreflang for the future /ar/ Arabic mirror -->
+    <link rel="alternate" hreflang="en" href={enURL} />
+    <link rel="alternate" hreflang="ar" href={arURL} />
+    <link rel="alternate" hreflang="x-default" href={enURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Baseet Studio" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:locale:alternate" content={ogLocaleAlternate} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:secure_url" content={ogImage} />
+    <meta property="og:image:width" content={String(ogImageWidth)} />
+    <meta property="og:image:height" content={String(ogImageHeight)} />
+    <meta property="og:image:alt" content={ogImageAlt} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content={twitterHandle} />
+    <meta name="twitter:creator" content={twitterHandle} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={metaDescription} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico?v=2" />
+
+    <!-- Google Fonts — Rammetto One (titles), Rambla (body), Amiri Quran (Arabic, future).
+         Loaded with display=swap so content stays readable during font load.
+         Amiri Quran is preloaded for the future /ar/ mirror even though no Arabic
+         content ships yet — the [lang="ar"] / [dir="rtl"] selectors in global.css
+         will pick it up as soon as the Arabic pages are added. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Rambla:wght@400;500;600;700&family=Rammetto+One&display=swap"
+      rel="stylesheet"
+    >
+
+    <meta name="astro-view-transitions" content="true" />
+    <script>
+      document.addEventListener('astro:page-load', () => {
+        if (document.startViewTransition) {
+          document.startViewTransition
+        }
+      })
+    </script>
+
+    <!-- JSON-LD: Organization, LocalBusiness, WebSite -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLdOrganization)} is:inline />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLdLocalBusiness)} is:inline />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLdWebSite)} is:inline />
+  </head>
+  <body data-page={section} data-lang={lang}>
+    <a href="#main-content" class="skip-to-content">Skip to content</a>
+    <VantaBg />
+    <AppBar lang={lang} slug={slug} projectName={projectName} projectColor={projectColor} projectIconClass={projectIconClass} projectNavItems={projectNavItems} projectNavMeta={projectNavMeta} />
+
+    <main transition:animate="fade" transition:name="content" id="main-content" style="position:relative;z-index:1;min-height:100vh;">
+      <slot />
+    </main>
+
+    <Footer />
+
+    <script>
+      import('../animations/global.ts').then(m => {
+        m.init()
+        document.addEventListener('astro:after-swap', () => {
+          m.destroy()
+          m.init()
+        })
+      })
+    </script>
+
+    <script>
+      // Round 3 — visitor auto-detect (device + country) in the footer.
+      // Re-runs on astro:page-load so the line updates on view-transition navigations.
+      import('../scripts/visitor-detect').then(m => {
+        const run = () => m.init()
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', run)
+        } else {
+          run()
+        }
+        document.addEventListener('astro:page-load', run)
+      })
+    </script>
+  </body>
+</html>

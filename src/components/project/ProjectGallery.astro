@@ -1,0 +1,82 @@
+---
+interface Props {
+  screenshots: string[]
+  galleryType: 'mobile' | 'web'
+  projectSlug: string
+  projectColor: string
+  projectName?: string
+}
+
+const { screenshots, galleryType, projectSlug, projectColor, projectName } = Astro.props
+const isWeb = galleryType === 'web'
+
+// Pulled from project data via the `projectName` prop. Fallback to the slug
+// when the prop is missing so every image still has descriptive alt text.
+const displayName = projectName || projectSlug
+---
+
+<section id="gallery" style="padding:64px 24px;max-width:1200px;margin:0 auto;" data-animate="fade-up">
+  <h2 style="text-align:center;font-size:2rem;margin-bottom:48px;color:var(--heading-text);">
+    Screenshots
+  </h2>
+  <div class={`project-gallery project-gallery--${galleryType}`}>
+    {screenshots.map((src, i) => (
+      <div class="gallery-item">
+        <img
+          src={`/images/projects/${projectSlug}/${src}`}
+          alt={`${displayName} — screenshot ${i + 1} of ${screenshots.length}`}
+          loading="lazy"
+          style="display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--gallery-border);box-shadow:var(--gallery-shadow);"
+        />
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .project-gallery--mobile {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .project-gallery--web {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 8px;
+  }
+
+  .project-gallery--web .gallery-item {
+    flex: 0 0 auto;
+    width: 85%;
+    max-width: 900px;
+    scroll-snap-align: start;
+  }
+
+  @media (max-width: 640px) {
+    .project-gallery--mobile {
+      grid-template-columns: 1fr;
+    }
+
+    .project-gallery--web .gallery-item {
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .project-gallery--mobile {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .gallery-item img {
+    transition: transform 0.3s ease;
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.02);
+  }
+</style>

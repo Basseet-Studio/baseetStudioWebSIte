@@ -1,0 +1,620 @@
+---
+// [slug]/[page].astro — Generic subpage for every (project, nav item) pair.
+//
+// Why this file exists: each project's `navItems` in projects.json references
+// subpages (features/, faq/, demo/, terms/, pro/, download/). The AppBar builds
+// full URLs from those and renders them in the pill nav, so without these
+// subpages every link 404s. This dynamic route generates one page per
+// (project, subpage) pair the data declares, themed in the project's colour.
+//
+// The 13 landing <slug>.astro files stay untouched (each is a custom design).
+// Geeb's hand-crafted geeb/{faq,features,pro}.astro files keep winning
+// over the dynamic route via Astro's static-priority routing.
+import ProjectLayout from '../../../layouts/Project.astro'
+import ProjectFAQ from '../../../components/project/ProjectFAQ.astro'
+import Icon from '../../../components/icons/Icon.astro'
+import { resolveIcon } from '../../../components/icons/iconMappings'
+import { getAllProjects } from '../../../lib/projects'
+import type { Project, NavItem } from '../../../types'
+
+// Subpages that already exist as static files (Geeb). They win over this
+// dynamic route via file-based routing, so we skip them here to avoid the
+// "duplicate route" build error.
+// Defined inside getStaticPaths so Astro's module scoping picks it up.
+
+export function getStaticPaths() {
+  // Subpages that already exist as static files (Geeb). They win over this
+  // dynamic route via file-based routing, so we skip them here to avoid the
+  // "duplicate route" build error.
+  const staticOverrides = new Set<string>([
+    'geeb:features',
+    'geeb:faq',
+    'geeb:pro',
+  ])
+  const allProjects = getAllProjects()
+  const paths: Array<{
+    params: { slug: string; page: string }
+    props: { project: Project; navItem: NavItem; siblings: NavItem[] }
+  }> = []
+
+  for (const project of allProjects) {
+    const items = project.navItems || []
+    items.forEach((item, idx) => {
+      // url === '' is the project root (Home); url like "features/" is a subpage.
+      if (!item.url) return
+      const page = item.url.replace(/\/$/, '')
+      if (!page) return
+      if (staticOverrides.has(`${project.slug}:${page}`)) return
+      paths.push({
+        params: { slug: project.slug, page },
+        props: {
+          project,
+          navItem: item,
+          // Sibling subpages for prev/next nav at the bottom of the page.
+          siblings: items.filter((_, i) => i !== idx && !!items[i].url),
+        },
+      })
+    })
+  }
+
+  return paths
+}
+
+const { project, navItem, siblings } = Astro.props
+const page = Astro.params.page as string
+
+// Page-type → Phosphor icon basename (used in the subpage hero).
+// Phosphor names are used directly (no FA mapping) so the SVG must exist
+// in public/icons/regular/. Missing icons fall back to an empty span.
+const pageIconMap: Record<string, string> = {
+  features: 'sparkle',
+  faq: 'question',
+  demo: 'play',
+  download: 'download',
+  terms: 'file-text',
+  pro: 'hard-hat',
+}
+const pageIcon = pageIconMap[page] || 'circle'
+const pageTitle = navItem.label
+
+// Friendly content per page type, derived from the project's own data.
+const hasFeatures = !!project.features && project.features.length > 0
+const hasFaq = !!project.faq && project.faq.length > 0
+const hasPlatforms = !!project.platforms && project.platforms.length > 0
+const hasTech = !!project.tech && project.tech.length > 0
+
+// Sibling subpage URLs, used for prev/next navigation at the bottom.
+const projectRoot = `/projects/${project.slug}`
+const prev = siblings[siblings.length - 1]
+  ? { label: siblings[siblings.length - 1].label, url: `${projectRoot}/${siblings[siblings.length - 1].url.replace(/\/$/, '')}/` }
+  : null
+const next = siblings[0]
+  ? { label: siblings[0].label, url: `${projectRoot}/${siblings[0].url.replace(/\/$/, '')}/` }
+  : null
+---
+
+<ProjectLayout
+  title={`${pageTitle} — ${project.name} — Baseet Studio`}
+  description={`${pageTitle} — ${project.name}: ${project.tagline}`}
+  slug={project.slug}
+  projectColor={project.color}
+  projectGradient={project.gradient}
+  projectName={project.name}
+  projectIconClass={project.iconClass}
+  projectNavItems={project.navItems}
+  projectNavMeta={project.navMetaItems}
+  lang="en"
+>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Subpage hero: transparent background so the shared `.project-hero-wash`
+       (added by Project.astro) shows through. The wash is theme-aware and
+       fades out gradually as the user scrolls, so we don't need a
+       hard-coded light/dark gradient on this section. -->
+  <section class="subpage-hero">
+    <div class="subpage-hero__inner">
+      <div class="subpage-hero__mark" style={`background:${project.gradient};`}>
+        <Icon name={pageIcon} size={28} color="white" />
+      </div>
+      <span class="subpage-hero__eyebrow" style={`color:${project.color};`}>
+        {project.name}
+      </span>
+      <h1 class="subpage-hero__title" data-animate="fade-up">{pageTitle}</h1>
+      <p class="subpage-hero__lede" data-animate="fade-up">
+        {page === 'features' && (hasFeatures
+          ? `Everything ${project.name} ships with — a quick tour of the capabilities built into the platform.`
+          : `A look at what ${project.name} will offer at launch. Want the deep-dive? Get in touch and we will walk you through it.`
+        )}
+        {page === 'faq' && (hasFaq
+          ? `Common questions about ${project.name}. Can not find your answer? Reach out and we will get back to you.`
+          : `Got questions about ${project.name}? We are happy to help — drop us a note.`
+        )}
+        {page === 'demo' && (hasPlatforms
+          ? `${project.name} runs on the platforms below. Request a personalised demo and we will set one up with you.`
+          : `Request a personalised demo of ${project.name} and we will walk you through it.`
+        )}
+        {page === 'download' && (hasPlatforms
+          ? `${project.name} is available on the platforms below. Tap to download or request access.`
+          : `${project.name} will be available on the platforms below. Join the waitlist for early access.`
+        )}
+        {page === 'terms' && `The terms of use for ${project.name}. Plain language — please read before getting started.`}
+        {page === 'pro' && `Join the network of ${project.name} professionals. Apply below and our team will be in touch.`}
+      </p>
+    </div>
+  </section>
+
+  <!-- Features list -->
+  {page === 'features' && hasFeatures && (
+    <section class="subpage-section">
+      <div class="subpage-section__inner">
+        <div class="subpage-bento">
+          {project.features!.map((feature, i) => (
+            <div class={`subpage-bento__card ${i === 0 ? 'subpage-bento__card--lead' : ''}`} data-animate="fade-up" style={i > 0 ? `animation-delay:${i * 0.04}s;` : ''}>
+              <div class="subpage-bento__icon" style={`background:${project.gradient};`}>
+                <Icon name={resolveIcon(feature.icon).name} size={22} color="white" />
+              </div>
+              <h3>{feature.title}</h3>
+              <p>{feature.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {page === 'features' && !hasFeatures && (
+    <section class="subpage-section">
+      <div class="subpage-section__inner subpage-empty">
+        <Icon name="sparkle" size={36} color={project.color} />
+        <h2>The full feature list is in flight</h2>
+        <p>We are still polishing the details. Want a sneak peek? Get in touch and we will share what is coming.</p>
+        <a href="/contact/" class="subpage-btn subpage-btn--primary" style={`background:${project.gradient};`}>Request the rundown</a>
+      </div>
+    </section>
+  )}
+
+  <!-- FAQ list -->
+  {page === 'faq' && hasFaq && (
+    <section class="subpage-section">
+      <div class="subpage-section__inner subpage-section__inner--narrow">
+        <div class="subpage-faq">
+          {project.faq!.map(item => (
+            <ProjectFAQ question={item.question} answer={item.answer} projectColor={project.color} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {page === 'faq' && !hasFaq && (
+    <section class="subpage-section">
+      <div class="subpage-section__inner subpage-empty">
+        <Icon name="question" size={36} color={project.color} />
+        <h2>No questions yet</h2>
+        <p>We have not published a full FAQ for {project.name} yet. Reach out and we will answer anything you need to know.</p>
+        <a href="/contact/" class="subpage-btn subpage-btn--primary" style={`background:${project.gradient};`}>Ask us anything</a>
+      </div>
+    </section>
+  )}
+
+  <!-- Demo / Download — platforms + contact CTA -->
+  {(page === 'demo' || page === 'download') && (
+    <section class="subpage-section">
+      <div class="subpage-section__inner">
+        {hasPlatforms ? (
+          <div class="subpage-platforms" data-animate="fade-up">
+            {project.platforms!.map(p => (
+              <div class="subpage-platform" style={`border-color: color-mix(in srgb, ${project.color} 25%, transparent);`}>
+                <div class="subpage-platform__icon" style={`background:color-mix(in srgb, ${project.color} 12%, transparent);color:${project.color};`}>
+                  <Icon name={resolveIcon(p.icon).name} size={26} color="currentColor" />
+                </div>
+                <div>
+                  <strong>{p.name}</strong>
+                  {p.version && <span class="subpage-platform__version">{p.version}</span>}
+                </div>
+                {p.link && p.link !== '#' && (
+                  <a href={p.link} class="subpage-btn subpage-btn--ghost" style={`color:${project.color};border-color:color-mix(in srgb, ${project.color} 35%, transparent);`}>
+                    Open
+                    <Icon name="arrow-square-out" size={14} color="currentColor" />
+                  </a>
+                )}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div class="subpage-empty">
+            <Icon name={page === 'download' ? 'download' : 'play'} size={36} color={project.color} />
+            <h2>{page === 'download' ? 'Releasing soon' : 'Demo on request'}</h2>
+            <p>{page === 'download'
+              ? `${project.name} is heading to the stores. Join the waitlist and we will let you know the moment it is live.`
+              : `We run personalised demos for serious teams. Tell us a bit about you and we will set one up.`}</p>
+            <a href="/contact/" class="subpage-btn subpage-btn--primary" style={`background:${project.gradient};`}>
+              {page === 'download' ? 'Join the waitlist' : 'Request a demo'}
+            </a>
+          </div>
+        )}
+
+        {hasTech && (
+          <div class="subpage-tech" data-animate="fade-up">
+            <h3>Built with</h3>
+            <div class="subpage-tech__list">
+              {project.tech!.map(t => (
+                <span class="subpage-tech__chip" style={`background:color-mix(in srgb, ${project.color} 8%, transparent);color:${project.color};border-color:color-mix(in srgb, ${project.color} 20%, transparent);`}>{t}</span>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+  )}
+
+  <!-- Terms of use (placeholder content) -->
+  {page === 'terms' && (
+    <section class="subpage-section">
+      <div class="subpage-section__inner subpage-section__inner--narrow subpage-prose">
+        <h2>Using {project.name}</h2>
+        <p>By using {project.name} you agree to use the service in good faith, follow applicable law, and respect other users. We reserve the right to suspend access for misuse, abuse, or activity that harms the platform or its users.</p>
+
+        <h2>Your data</h2>
+        <p>Anything you submit to {project.name} remains yours. We process it only to deliver the service and never sell it to third parties. Self-hosted deployments keep all data on infrastructure you control.</p>
+
+        <h2>Service availability</h2>
+        <p>We work hard to keep {project.name} reliable but cannot guarantee uninterrupted access. Scheduled maintenance, security patches, and infrastructure incidents are part of operating any software platform.</p>
+
+        <h2>Liability</h2>
+        <p>{project.name} is provided as-is. To the extent permitted by law, our liability is limited to fees paid in the prior twelve months. Nothing in these terms excludes liability that cannot be excluded by law.</p>
+
+        <h2>Changes</h2>
+        <p>We may update these terms as the product evolves. Material changes will be communicated in advance where reasonable. Continued use after changes constitutes acceptance.</p>
+
+        <h2>Questions?</h2>
+        <p>Reach out — we are happy to clarify anything.</p>
+        <a href="/contact/" class="subpage-btn subpage-btn--primary" style={`background:${project.gradient};`}>Get in touch</a>
+      </div>
+    </section>
+  )}
+
+  <!-- Pro signup -->
+  {page === 'pro' && (
+    <section class="subpage-section">
+      <div class="subpage-section__inner subpage-section__inner--narrow">
+        <div class="subpage-pro-card" data-animate="fade-up" style={`background:linear-gradient(135deg, color-mix(in srgb, ${project.color} 8%, white) 0%, white 60%);border-color:color-mix(in srgb, ${project.color} 25%, transparent);`}>
+          <Icon name="hard-hat" size={42} color={project.color} />
+          <h2>Join the {project.name} network</h2>
+          <p>Apply below and our team will review your application within 48 hours.</p>
+          <a href="/contact/" class="subpage-btn subpage-btn--primary" style={`background:${project.gradient};`}>
+            Apply now
+            <Icon name="arrow-right" size={16} color="white" />
+          </a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Subpage nav (prev / back to project / next) -->
+  <nav class="subpage-pagenav" aria-label={`${project.name} pages`}>
+    <div class="subpage-pagenav__inner">
+      {prev ? (
+        <a href={prev.url} class="subpage-pagenav__link subpage-pagenav__link--prev">
+          <Icon name="arrow-left" size={16} color="currentColor" />
+          {prev.label}
+        </a>
+      ) : <span></span>}
+
+      <a href={`${projectRoot}/`} class="subpage-pagenav__link subpage-pagenav__link--home">
+        <Icon name="arrow-left" size={14} color="currentColor" />
+        Back to {project.name}
+      </a>
+
+      {next ? (
+        <a href={next.url} class="subpage-pagenav__link subpage-pagenav__link--next">
+          {next.label}
+          <Icon name="arrow-right" size={16} color="currentColor" />
+        </a>
+      ) : <span></span>}
+    </div>
+  </nav>
+</ProjectLayout>
+
+<style>
+  .subpage-hero {
+    padding: 120px 24px 72px;
+    position: relative;
+    overflow: hidden;
+  }
+  .subpage-hero__inner {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .subpage-hero__mark {
+    width: 72px;
+    height: 72px;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 14px 40px -10px rgba(0, 0, 0, 0.18);
+    margin-bottom: 20px;
+  }
+  .subpage-hero__eyebrow {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .subpage-hero__title {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0 0 16px;
+    color: var(--heading-text, #1C1917);
+  }
+  .subpage-hero__lede {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--muted-text, #57534E);
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .subpage-section {
+    padding: 80px 24px;
+  }
+  .subpage-section__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .subpage-section__inner--narrow {
+    max-width: 760px;
+  }
+
+  /* Bento features grid */
+  .subpage-bento {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 900px) {
+    .subpage-bento { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .subpage-bento { grid-template-columns: 1fr; }
+  }
+  .subpage-bento__card {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 20px;
+    padding: 24px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .subpage-bento__card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px -12px rgba(0, 0, 0, 0.12);
+  }
+  .subpage-bento__card--lead {
+    grid-column: span 3;
+  }
+  @media (max-width: 900px) {
+    .subpage-bento__card--lead { grid-column: span 2; }
+  }
+  @media (max-width: 600px) {
+    .subpage-bento__card--lead { grid-column: span 1; }
+  }
+  .subpage-bento__icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+  .subpage-bento__card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0 0 8px;
+    color: var(--heading-text, #1C1917);
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+  }
+  .subpage-bento__card p {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--muted-text, #57534E);
+    margin: 0;
+  }
+
+  /* FAQ list */
+  .subpage-faq {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* Platforms */
+  .subpage-platforms {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  .subpage-platform {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 20px;
+    border: 1px solid;
+    border-radius: 16px;
+    background: white;
+    transition: transform 0.2s;
+  }
+  .subpage-platform:hover { transform: translateY(-2px); }
+  .subpage-platform__icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .subpage-platform strong {
+    display: block;
+    font-size: 1rem;
+    color: var(--heading-text, #1C1917);
+  }
+  .subpage-platform__version {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--muted-text, #57534E);
+    margin-top: 2px;
+  }
+  .subpage-platform .subpage-btn { margin-left: auto; }
+
+  /* Tech chips */
+  .subpage-tech { margin-top: 56px; text-align: center; }
+  .subpage-tech h3 {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0 0 20px;
+    color: var(--heading-text, #1C1917);
+  }
+  .subpage-tech__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  .subpage-tech__chip {
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border: 1px solid;
+  }
+
+  /* Prose (terms) */
+  .subpage-prose h2 {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 40px 0 12px;
+    color: var(--heading-text, #1C1917);
+  }
+  .subpage-prose h2:first-child { margin-top: 0; }
+  .subpage-prose p {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--muted-text, #57534E);
+    margin: 0 0 16px;
+  }
+
+  /* Pro signup card */
+  .subpage-pro-card {
+    text-align: center;
+    padding: 48px 32px;
+    border-radius: 24px;
+    border: 1px solid;
+  }
+  .subpage-pro-card h2 {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 16px 0 8px;
+    color: var(--heading-text, #1C1917);
+  }
+  .subpage-pro-card p {
+    color: var(--muted-text, #57534E);
+    margin: 0 0 24px;
+  }
+
+  /* Empty state */
+  .subpage-empty {
+    text-align: center;
+    padding: 32px 16px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .subpage-empty h2 {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 16px 0 8px;
+    color: var(--heading-text, #1C1917);
+  }
+  .subpage-empty p {
+    color: var(--muted-text, #57534E);
+    line-height: 1.6;
+    margin: 0 0 24px;
+  }
+
+  /* Buttons */
+  .subpage-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: none;
+    cursor: pointer;
+    color: white;
+  }
+  .subpage-btn--primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.2);
+  }
+  .subpage-btn--ghost {
+    background: transparent;
+    border: 1px solid;
+  }
+
+  /* Prev/next nav */
+  .subpage-pagenav {
+    padding: 24px 24px 80px;
+  }
+  .subpage-pagenav__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 16px;
+    align-items: center;
+    padding: 20px 24px;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 16px;
+  }
+  @media (max-width: 640px) {
+    .subpage-pagenav__inner {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+  }
+  .subpage-pagenav__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: var(--muted-text, #57534E);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .subpage-pagenav__link:hover { color: var(--heading-text, #1C1917); }
+  .subpage-pagenav__link--prev { justify-self: start; }
+  .subpage-pagenav__link--home { justify-self: center; }
+  .subpage-pagenav__link--next { justify-self: end; }
+  @media (max-width: 640px) {
+    .subpage-pagenav__link--prev,
+    .subpage-pagenav__link--home,
+    .subpage-pagenav__link--next { justify-self: center; }
+  }
+</style>

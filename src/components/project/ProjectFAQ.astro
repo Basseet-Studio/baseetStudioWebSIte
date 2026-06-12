@@ -1,0 +1,36 @@
+---
+// ProjectFAQ.astro — Reusable FAQ accordion for project pages
+// Details/summary pattern with project-color chevron
+
+interface Props {
+  question: string
+  answer: string
+  projectColor: string
+}
+
+const { question, answer, projectColor } = Astro.props
+---
+
+<details class="glass glass-card" style="padding:0;border-radius:16px;overflow:hidden;transition:all 0.3s;">
+  <summary style="display:flex;justify-content:space-between;align-items:center;padding:20px 24px;cursor:pointer;list-style:none;font-weight:600;font-size:1.05rem;color:var(--heading-text);user-select:none;">
+    <span>{question}</span>
+    <span
+      class="faq-chevron"
+      style={`display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;transition:transform 0.3s;color:${projectColor};`}
+      aria-hidden="true"
+    >
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9" />
+      </svg>
+    </span>
+  </summary>
+  <div style="padding:0 24px 20px;color:var(--muted-text);font-size:0.9rem;line-height:1.6;">
+    {answer}
+  </div>
+</details>
+
+<style>
+  details[open] .faq-chevron {
+    transform: rotate(180deg);
+  }
+</style>

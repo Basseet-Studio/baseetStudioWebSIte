@@ -1,0 +1,11 @@
+/* Medev — Medical Education Platform */
+:root {
+  --project-color: #3B82F6;
+  --project-gradient: linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%);
+}
+
+.medev-hero-visual { display: none; }
+
+@media (min-width: 1024px) {
+  .medev-hero-visual { display: block; }
+}

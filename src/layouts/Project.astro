@@ -1,0 +1,35 @@
+---
+// Project.astro — Per-project layout wrapper extending Base.astro
+// Injects --project-color and --project-gradient CSS custom properties
+// Passes project nav items to AppBar for adaptive navigation
+import Base from './Base.astro'
+import type { Lang, NavItem } from '../types'
+import '../styles/projects/shared.css'
+
+interface Props {
+  title: string
+  description?: string
+  slug: string
+  projectColor: string
+  projectGradient: string
+  projectName?: string
+  projectIconClass?: string
+  projectNavItems?: NavItem[]
+  projectNavMeta?: NavItem[]
+  lang?: Lang
+}
+
+const { title, description, slug, projectColor, projectGradient, projectName, projectIconClass, projectNavItems, projectNavMeta, lang = 'en' } = Astro.props
+---
+
+<Base title={title} description={description} section="projects" lang={lang} projectName={projectName} projectColor={projectColor} projectIconClass={projectIconClass} slug={slug} projectNavItems={projectNavItems} projectNavMeta={projectNavMeta}>
+  <div
+    style={`--project-color:${projectColor};--project-gradient:${projectGradient};`}
+    class="project-wrapper"
+  >
+    {/* Soft, theme-aware colour band that fades out gradually as the user
+        scrolls. See shared.css `.project-hero-wash` for the rationale. */}
+    <div class="project-hero-wash" aria-hidden="true"></div>
+    <slot />
+  </div>
+</Base>

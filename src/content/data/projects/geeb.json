@@ -1,0 +1,154 @@
+{
+  "name": "Geeb",
+  "slug": "geeb",
+  "type": "branded",
+  "tagline": "Trusted Home-Service Pros, On Demand",
+  "description": "## About Geeb (CNG)\n\nGeeb — the brand for our CNG service marketplace platform — bridges the gap between customers who need a service and the providers who deliver it. It's a full multi-app ecosystem: a customer-facing app, a vendor-facing app, and an admin-facing app, all sharing a single, well-architected backend.\n\n### The Vision\n\nFinding a trusted service provider shouldn't be a gamble. Whether it's a home service, a professional, or a local business, customers deserve to **discover, compare, book, and review** with confidence. Geeb makes that experience seamless for everyone in the loop.\n\n### Three Apps, One Platform\n\n- **📱 Customer App** — Discover nearby and trending vendors, browse by category and area, book, track, and review services, and manage your profile, avatar, and account security.\n- **🛠️ Vendor App** — Manage service offerings and delivery areas, receive and respond to customer requests, and track performance via reviews and ratings. Includes OTP-based email verification, Hive-based offline caching, background sync, and smart error handling.\n- **🛡️ Admin App** — Monitor the full ecosystem, manage users, vendors, and content, and review system health and security events.\n- **📦 Shared Package** — Common widgets, utilities, services, and business logic reused across all three apps for consistency and velocity.\n\n### Feature Highlights\n\n- **🏆 Trending Vendors** — Curated discovery that surfaces the most relevant, highest-rated providers.\n- **🏠 Customer Home Screen** — Personalized landing with smart recommendations and quick category access.\n- **🗺️ Hierarchical Area System** — Multi-level geographic organization (city → district → neighborhood) for accurate local discovery.\n- **🧑 Avatar Management** — Full spec for avatar uploads, storage, and rendering across all apps.\n- **🔐 Auth & Security** — Google OAuth, Two-Factor Authentication (TOTP), and OTP-based email verification for vendors — with a professional guided signup and pending-verification recovery flow.\n- **⭐ Reviews & Ratings v2.1** — Automatic rating calculation at service and vendor level, real-time UI refresh, cross-app updates via smart polling, and PostgreSQL RLS for secure access.\n- **💾 Offline-First Sync** — Hive-based local caching, background data sync, and 5-minute refresh intervals to keep things fast.\n- **🧰 Developer-First Foundations** — Strict Android NDK pinning (`29.0.13113456`), iOS 14.0 deployment target, `.vscode/launch.json` ready to go.\n\n### What Geeb Delivers\n\n| For Customers | For Vendors | For Admins |\n|---|---|---|\n| Easy discovery | Streamlined onboarding | Full ecosystem visibility |\n| Trusted reviews | Real-time requests | User & content management |\n| Local-area search | Offline-capable app | Security event monitoring |\n| Secure account | Performance tracking | Scalable moderation tools |\n\n### Engineering Principles\n\n- **Modular by design** — Easy to expand into new service categories or geographies.\n- **Localization-first** — Multi-language support from day one.\n- **Security-first** — RLS policies, 2FA, OTP verification, and audit-friendly flows.\n- **Accessibility-aware** — Semantic markup, screen-reader friendly UI.\n- **Modern Flutter** — Clean architecture shared across customer, vendor, and admin.\n\n*Built for accessibility, localization, and scale. Designed to grow into new industries and regions with the same proven architecture.*",
+  "iconClass": "fas fa-wrench",
+  "color": "#B45309",
+  "gradient": "linear-gradient(135deg, #B45309 0%, #F59E0B 100%)",
+  "status": "Coming Soon",
+  "layoutVariant": "geeb",
+  "fontHeading": "Manrope",
+  "fontBody": "Inter",
+  "fontWeights": "400,500,600,700,800",
+  "gsapAnimation": "stagger-rise",
+  "appType": "web",
+  "brandName": "Geeb",
+  "bgEffect": "none",
+  "bgFallbackGradient": "linear-gradient(180deg, #FFFBEB 0%, #FEF3C7 40%, #FDE68A 100%)",
+  "hero": {
+    "title": "Book a Trusted Pro in Minutes",
+    "subtitle": "Geeb connects you with verified plumbers, electricians, handymen, cleaners, and home-service pros. Transparent pricing, real-time tracking, and a quality guarantee on every job — powered by a multi-app service marketplace built for scale.",
+    "cta_primary": "Get the App",
+    "cta_primary_link": "/contact",
+    "cta_secondary": "Become a Pro",
+    "cta_secondary_link": "/contact"
+  },
+  "features": [
+    {
+      "title": "Three Apps, One Platform",
+      "description": "Customer, vendor, and admin apps share a single Flutter codebase, monorepo, and shared package — consistent UX, faster iteration, and easier scaling across every service category.",
+      "icon": "fas fa-layer-group"
+    },
+    {
+      "title": "Trending Vendors & Smart Discovery",
+      "description": "Curated discovery surfaces the most relevant, highest-rated providers, with a personalized home screen and quick access to categories — so customers never have to guess who to hire.",
+      "icon": "fas fa-fire"
+    },
+    {
+      "title": "Hierarchical Area System",
+      "description": "Multi-level geographic organization (city → district → neighborhood) for accurate local discovery, smart job routing, and vendors serving exactly the right service areas.",
+      "icon": "fas fa-map-marked-alt"
+    },
+    {
+      "title": "Verified Pros, Secure Auth & 2FA",
+      "description": "Background-checked, ID-verified pros. Customers can opt into Google OAuth and Two-Factor (TOTP); vendors get a streamlined OTP email verification flow with a guided signup and pending-verification recovery.",
+      "icon": "fas fa-shield-alt"
+    },
+    {
+      "title": "Reviews & Ratings v2.1",
+      "description": "Automatic rating calculation at service and vendor level, real-time UI refresh in both customer and vendor apps, and cross-app updates via smart polling — all secured by PostgreSQL Row-Level Security.",
+      "icon": "fas fa-star"
+    },
+    {
+      "title": "Offline-First Vendor App",
+      "description": "Hive-based local caching, background data sync for profiles, services, areas, and notifications, plus 5-minute refresh intervals — so vendors keep working even on shaky connections.",
+      "icon": "fas fa-sync-alt"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "Customer App",
+      "icon": "fas fa-mobile-alt",
+      "version": "iOS · Android · Web",
+      "link": "#"
+    },
+    {
+      "name": "Vendor App",
+      "icon": "fas fa-hard-hat",
+      "version": "iOS · Android · Web",
+      "link": "#"
+    },
+    {
+      "name": "Admin Console",
+      "icon": "fas fa-user-shield",
+      "version": "Web",
+      "link": "#"
+    }
+  ],
+  "tech": [
+    "Flutter 3.x",
+    "Dart 3.x",
+    "Supabase",
+    "Hive",
+    "Riverpod",
+    "PostgreSQL",
+    "Row-Level Security",
+    "Google OAuth",
+    "TOTP / 2FA",
+    "OTP Email Verification",
+    "Stripe Connect",
+    "Google Maps Platform"
+  ],
+  "navItems": [
+    {
+      "label": "Home",
+      "url": "",
+      "i18nKey": "project_nav_home"
+    },
+    {
+      "label": "Features",
+      "url": "features/",
+      "i18nKey": "project_nav_features"
+    },
+    {
+      "label": "Pro signup",
+      "url": "pro/",
+      "i18nKey": "project_nav_pro"
+    },
+    {
+      "label": "FAQ",
+      "url": "faq/",
+      "i18nKey": "project_nav_faq"
+    }
+  ],
+  "navMetaItems": [
+    {
+      "label": "Baseet",
+      "url": "/",
+      "i18nKey": "project_nav_baseet"
+    },
+    {
+      "label": "Contact Us",
+      "url": "/contact/",
+      "i18nKey": "nav_contact"
+    }
+  ],
+  "faq": [
+    {
+      "question": "What kinds of services can I book on Geeb?",
+      "answer": "Plumbing, electrical, carpentry, painting, appliance repair, AC service, cleaning, pest control, handyman jobs, and more. New categories are added every month as pros join the platform."
+    },
+    {
+      "question": "How are service pros verified?",
+      "answer": "Every pro submits government ID, trade certificates (where applicable), and passes a background check. We also collect reviews after every job so quality stays high."
+    },
+    {
+      "question": "When do I pay?",
+      "answer": "You don't pay until the job is finished and you approve the work. Funds are held in escrow by Geeb and released to the pro on your confirmation — so you're never out of pocket for unfinished work."
+    },
+    {
+      "question": "How do I become a service pro on Geeb?",
+      "answer": "Tap 'Become a Pro' on the home page, complete the application (ID, trade details, service area), and our team reviews it within 48 hours. Once approved, you can set your schedule and start receiving job requests."
+    },
+    {
+      "question": "Does Geeb work offline?",
+      "answer": "Yes — the vendor app is offline-first, using Hive-based local caching. Vendors can manage offerings, areas, and notifications even without an active connection, and changes sync automatically when they're back online."
+    },
+    {
+      "question": "How is my data secured?",
+      "answer": "All sensitive data is protected by Supabase Row-Level Security policies. Customers and vendors can opt into Two-Factor Authentication (TOTP), and the entire platform is built with security-first principles from day one."
+    }
+  ]
+}

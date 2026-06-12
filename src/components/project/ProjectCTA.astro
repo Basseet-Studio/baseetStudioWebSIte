@@ -1,0 +1,101 @@
+---
+import Icon from '../icons/Icon.astro'
+import type { Platform, Lang } from '../../types'
+
+interface Props {
+  status: string
+  platforms: Platform[]
+  links?: { ios?: string; android?: string; web?: string }
+  lang: Lang
+}
+
+const { status, platforms, links = {}, lang = 'en' } = Astro.props
+
+// Per FR-033: only render a platform badge if its URL is real (not "#" / empty / missing).
+function realLink(p: string): string | undefined {
+  const key = p.toLowerCase() as 'ios' | 'android' | 'web'
+  const url = links[key]
+  if (url && url !== '#') return url
+  return undefined
+}
+
+const platformIcons: Record<string, string> = {
+  iOS: 'apple-logo',
+  Android: 'android-logo',
+  Web: 'globe',
+}
+
+const platformLabels: Record<string, string> = {
+  iOS: 'App Store',
+  Android: 'Google Play',
+  Web: 'Open Web App',
+}
+
+const visiblePlatforms = platforms.filter(p => realLink(p.name))
+---
+
+<section id="cta" style="padding:80px 24px;text-align:center;" data-animate="fade-up">
+  <div class="glass" style="max-width:700px;margin:0 auto;padding:48px;border-radius:20px;border:1px solid var(--card-border);">
+    {status === 'Coming Soon' && (
+      <>
+        <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:12px;color:var(--heading-text);">Coming Soon</h2>
+        <p style="opacity:0.7;margin-bottom:24px;">Be the first to know when we launch. Join the waitlist for early access.</p>
+        <a href="/contact/" class="cta-btn cta-btn--primary" style="display:inline-block;padding:14px 32px;border-radius:50px;font-weight:600;text-decoration:none;background:var(--project-color, var(--color-primary));color:white;transition:transform 0.2s,box-shadow 0.2s;">
+          Join the Waitlist
+        </a>
+      </>
+    )}
+
+    {status === 'Ready to Deliver' && (
+      <>
+        <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:12px;color:var(--heading-text);">Ready to Deliver</h2>
+        <p style="opacity:0.7;margin-bottom:24px;">This product is ready for deployment. Contact us for early access or a personalized demo.</p>
+        <a href="/contact/" class="cta-btn cta-btn--primary" style="display:inline-block;padding:14px 32px;border-radius:50px;font-weight:600;text-decoration:none;background:var(--project-color, var(--color-primary));color:white;transition:transform 0.2s,box-shadow 0.2s;">
+          Request Early Access
+        </a>
+      </>
+    )}
+
+    {status === 'Live' && visiblePlatforms.length > 0 && (
+      <>
+        <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:12px;color:var(--heading-text);">{/* TODO: localise this later */ 'Get Started Today'}</h2>
+        <p style="opacity:0.7;margin-bottom:24px;">{/* TODO: localise this later */ 'Available now. Download or access the platform below.'}</p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+          {visiblePlatforms.map(p => {
+            const href = realLink(p.name)
+            if (!href) return null
+            return (
+              <a
+                href={href}
+                class="cta-btn cta-btn--primary"
+                style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:50px;font-weight:600;text-decoration:none;background:var(--project-color, var(--color-primary));color:white;transition:transform 0.2s,box-shadow 0.2s;"
+              >
+                <Icon name={platformIcons[p.name] || 'arrow-square-out'} size={18} color="white" />
+                {platformLabels[p.name] || p.name}
+              </a>
+            )
+          })}
+        </div>
+      </>
+    )}
+
+    {status === 'Confidential' && (
+      <>
+        <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:12px;color:var(--heading-text);">Confidential Project</h2>
+        <p style="opacity:0.7;margin-bottom:24px;">This project is confidential. Details are not publicly available.</p>
+        <p style="font-size:0.85rem;opacity:0.5;">For inquiries, please <a href="/contact/" style="color:var(--project-color, var(--color-primary));">contact us</a>.</p>
+      </>
+    )}
+
+    {status === 'Completed' && (
+      <>
+        <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:12px;color:var(--heading-text);">Project Completed</h2>
+        <p style="opacity:0.7;margin-bottom:24px;">This project has been successfully delivered. Check out our other work or get in touch for your next project.</p>
+      </>
+    )}
+  </div>
+</section>
+
+<style>
+  .cta-btn--primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+</style>

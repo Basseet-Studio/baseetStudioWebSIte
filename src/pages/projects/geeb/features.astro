@@ -1,0 +1,173 @@
+---
+import ProjectLayout from '../../../layouts/Project.astro'
+import Icon from '../../../components/icons/Icon.astro'
+import { resolveIcon } from '../../../components/icons/iconMappings'
+import { getProject } from '../../../lib/projects'
+import type { Lang, Project } from '../../../types'
+
+const pathname = Astro.url.pathname
+const lang: Lang = pathname.startsWith('/ar') ? 'ar' : 'en'
+const slug = 'geeb'
+const project = getProject(slug)
+if (!project) return Astro.redirect('/404')
+
+// Extended feature deep-dive for the dedicated /features subpage
+// Each feature gets a 50/50 split with a copy block and a visual mock.
+const featureDetails = [
+  {
+    title: 'Verified service pros',
+    description: 'Every pro on Geeb is background-checked, ID-verified, and reviewed by real customers. We confirm trade qualifications, run reference checks, and continuously monitor ratings so you hire with confidence.',
+    bullets: [
+      'Government-issued ID verification',
+      'Trade & certification checks where applicable',
+      'Ongoing rating & review monitoring',
+      'Insurance documentation stored securely',
+    ],
+    icon: 'shield-check',
+  },
+  {
+    title: 'Instant booking, real-time availability',
+    description: 'See live availability from pros in your service area, compare profiles, and lock in a time in under a minute. Same-day service for urgent jobs — plumbing leaks, electrical faults, and lockouts do not wait.',
+    bullets: [
+      'Live availability by service area',
+      'Same-day booking for urgent jobs',
+      'Auto-rescheduling on conflicts',
+      'Calendar sync with your phone',
+    ],
+    icon: 'calendar-check',
+  },
+  {
+    title: 'Transparent pricing — no surprises',
+    description: 'See upfront quotes, hourly rates, and material costs before you confirm a booking. Pros submit itemized estimates; you approve or request changes. No haggling, no hidden fees, no awkward conversations.',
+    bullets: [
+      'Upfront, itemized quotes',
+      'Hourly or fixed-price options',
+      'Material cost transparency',
+      'No charges until the job is done',
+    ],
+    icon: 'tag',
+  },
+  {
+    title: 'Real-time tracking from dispatch to done',
+    description: 'Follow your pro from assignment to arrival on the in-app map. Live ETAs, status updates, and in-app chat keep everyone in sync throughout the job. You always know who is on the way and when.',
+    bullets: [
+      'Live map tracking from dispatch to arrival',
+      'In-app chat with your pro',
+      'Push-notification status updates',
+      'Job-stage timeline at a glance',
+    ],
+    icon: 'map-pin',
+  },
+  {
+    title: 'Secure in-app payments with escrow protection',
+    description: 'Pay only when the job is done. Funds are held in escrow by Geeb and released to the pro on your approval — cashless, contactless, and protected. Apple Pay, Google Pay, and all major cards supported.',
+    bullets: [
+      'Funds held in escrow until approval',
+      'Apple Pay, Google Pay, all major cards',
+      'Automatic receipts and invoices',
+      'Refundable on quality disputes',
+    ],
+    icon: 'credit-card',
+  },
+  {
+    title: '30-day workmanship guarantee',
+    description: 'Every booking is backed by our 30-day workmanship guarantee. If something is not right after the job, we make it right at no extra cost — and we follow up to make sure you are happy.',
+    bullets: [
+      '30-day coverage on all completed work',
+      'Free re-service for qualifying issues',
+      'Dedicated support team for claims',
+      'Follow-up satisfaction check',
+    ],
+    icon: 'trophy',
+  },
+]
+---
+
+<ProjectLayout title={`Features — ${project.name} — Baseet Studio`} description={`Features of ${project.name} — ${project.tagline}`} slug={project.slug} projectColor={project.color} projectGradient={project.gradient} projectName={project.name} projectIconClass={project.iconClass} projectNavItems={project.navItems} projectNavMeta={project.navMetaItems} lang={lang}>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles/projects/geeb.css" />
+
+  <!-- Subpage hero -->
+  <section class="geeb-subhero">
+    <div class="geeb-hero__grid" aria-hidden="true"></div>
+    <div class="geeb-hero__glow geeb-hero__glow--a" aria-hidden="true"></div>
+
+    <div class="geeb-subhero__inner">
+      <span class="geeb-eyebrow">
+        <Icon name="wrench" size={14} color="currentColor" />
+        Features
+      </span>
+      <h1 class="geeb-subhero__title" data-animate="fade-up">Everything you need to book a great pro</h1>
+      <p class="geeb-subhero__lede" data-animate="fade-up">
+        Geeb is built around the moments that matter: finding someone you trust, knowing the price, and knowing the job is done right. Here is how every layer of the platform works in your favour.
+      </p>
+    </div>
+  </section>
+
+  <!-- Feature deep-dive: alternating copy + visual blocks -->
+  <section class="geeb-content">
+    {featureDetails.map((feature, i) => (
+      <div class={`geeb-feature-block${i % 2 === 1 ? ' geeb-feature-block--reverse' : ''}`} data-animate="fade-up">
+        <div class="geeb-feature-block__copy">
+          <span class="geeb-eyebrow">
+            <Icon name={feature.icon} size={14} color="currentColor" />
+            {`0${i + 1}`}
+          </span>
+          <h2>{feature.title}</h2>
+          <p>{feature.description}</p>
+          <ul class="geeb-feature-block__list">
+            {feature.bullets.map((b) => (
+              <li>
+                <Icon name="check-circle" size={16} color="currentColor" />
+                <span>{b}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="geeb-feature-block__visual">
+          <div class="geeb-feature-block__visual-icon">
+            <Icon name={feature.icon} size={48} color="currentColor" />
+          </div>
+        </div>
+      </div>
+    ))}
+  </section>
+
+  <!-- CTA -->
+  <section class="geeb-cta">
+    <div class="geeb-cta__inner">
+      <div class="geeb-cta__glow geeb-cta__glow--a" aria-hidden="true"></div>
+      <div class="geeb-cta__glow geeb-cta__glow--b" aria-hidden="true"></div>
+      <h2 class="geeb-cta__title" data-animate="fade-up">Ready to give it a try?</h2>
+      <p class="geeb-cta__text" data-animate="fade-up">
+        Join the Geeb waitlist for early access when we launch in your city.
+      </p>
+      <div class="geeb-cta__actions" data-animate="fade-up">
+        <a href="/contact/" class="geeb-btn geeb-btn--invert">
+          <Icon name="envelope" size={18} color="currentColor" />
+          Join the waitlist
+        </a>
+        <a href={`/${lang === 'ar' ? 'ar/' : ''}projects/geeb/pro/`} class="geeb-btn geeb-btn--ghost">
+          <Icon name="hard-hat" size={18} color="currentColor" />
+          Become a pro
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Subpage navigation -->
+  <nav class="geeb-subnav" aria-label="Geeb pages">
+    <div class="geeb-subnav__inner">
+      <a href={`/${lang === 'ar' ? 'ar/' : ''}projects/geeb/`} class="geeb-subnav__link">
+        <Icon name="arrow-left" size={16} color="currentColor" />
+        Back to Geeb
+      </a>
+      <a href={`/${lang === 'ar' ? 'ar/' : ''}projects/geeb/pro/`} class="geeb-subnav__link">
+        Become a pro
+        <Icon name="arrow-right" size={16} color="currentColor" />
+      </a>
+    </div>
+  </nav>
+</ProjectLayout>

@@ -1,0 +1,99 @@
+{
+  "name": "BD Railway Automated Timetable",
+  "slug": "bd-railway-automated-timetable",
+  "type": "standalone",
+  "tagline": "Railway Scheduling System",
+  "description": "## About BD Railway Automated Timetable\n\nThe BD Railway Automated Timetable system brings modern scheduling technology to the Bangladesh Railway network. Manual timetable creation is time-consuming, error-prone, and often suboptimal.\n\n### The Challenge\n\nRailway scheduling involves hundreds of trains, limited track capacity, mandatory safety margins, maintenance windows, passenger demand patterns, and crew scheduling constraints.\n\n### Our Solution\n\nA comprehensive scheduling engine that models the entire network, respects all safety and operational constraints, optimizes objectives to minimize delays and maximize throughput, and adapts quickly to real-time changes.\n\n### Technical Approach\n\nConstraint Programming ensures all safety rules are satisfied. Mathematical Optimization finds the best schedules. Machine Learning predicts demand patterns.\n\n## Impact\n\nSince deployment: 90% reduction in planning time, 95% fewer scheduling conflicts, 15% improved network efficiency.\n",
+  "iconClass": "fas fa-train",
+  "color": "#16A34A",
+  "gradient": "linear-gradient(135deg, #16A34A 0%, #22C55E 100%)",
+  "status": "Confidential",
+  "hero": {
+    "title": "Intelligent Railway Scheduling",
+    "subtitle": "Automate complex railway timetable generation with advanced algorithms. Optimize routes, minimize conflicts, and improve efficiency.",
+    "cta_primary": "Learn More",
+    "cta_primary_link": "/contact",
+    "cta_secondary": "View Documentation",
+    "cta_secondary_link": "#features"
+  },
+  "features": [
+    {
+      "title": "Automated Timetable Generation",
+      "description": "Generate complete railway timetables automatically using sophisticated scheduling algorithms that consider all constraints.",
+      "icon": "fas fa-robot"
+    },
+    {
+      "title": "Conflict Detection & Resolution",
+      "description": "Automatically identify and resolve scheduling conflicts such as track overlaps, platform clashes, and maintenance windows.",
+      "icon": "fas fa-exclamation-triangle"
+    },
+    {
+      "title": "Route Optimization",
+      "description": "Optimize train routes to minimize travel time, reduce delays, and maximize track utilization across the network.",
+      "icon": "fas fa-route"
+    },
+    {
+      "title": "Real-time Adjustments",
+      "description": "Dynamically adjust schedules in response to delays, emergencies, or special events while minimizing disruption.",
+      "icon": "fas fa-clock"
+    },
+    {
+      "title": "Multi-track Support",
+      "description": "Handle complex multi-track stations and junctions with proper sequencing and safety margins.",
+      "icon": "fas fa-code-branch"
+    },
+    {
+      "title": "Comprehensive Reporting",
+      "description": "Generate detailed reports on schedule efficiency, track utilization, and potential improvements.",
+      "icon": "fas fa-file-alt"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "Web",
+      "icon": "fas fa-globe",
+      "version": "Admin Portal",
+      "link": "#"
+    },
+    {
+      "name": "API",
+      "icon": "fas fa-code",
+      "version": "REST API",
+      "link": "#"
+    }
+  ],
+  "tech": [
+    "Python",
+    "Constraint Programming",
+    "OR-Tools",
+    "PostgreSQL",
+    "FastAPI",
+    "React Admin"
+  ],
+  "screenshots": [],
+  "testimonials": [
+    {
+      "quote": "This system has dramatically reduced the time we spend on timetable planning while improving overall schedule quality.",
+      "author": "Eng. Rahman",
+      "role": "Bangladesh Railway Operations"
+    }
+  ],
+  "faq": [
+    {
+      "question": "How does the automated scheduling work?",
+      "answer": "Our system uses constraint satisfaction and optimization algorithms to find valid timetables that meet all operational requirements while optimizing for efficiency."
+    },
+    {
+      "question": "Can it handle the entire Bangladesh Railway network?",
+      "answer": "Yes, the system is designed to handle large-scale networks with hundreds of trains and complex junction configurations."
+    },
+    {
+      "question": "How quickly can it generate a timetable?",
+      "answer": "A complete network timetable can be generated in minutes, compared to weeks of manual planning."
+    },
+    {
+      "question": "What happens when there are unexpected disruptions?",
+      "answer": "The system can quickly recalculate affected portions of the schedule to minimize passenger impact while maintaining safety constraints."
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+---
+// ProjectTestimonial.astro — Reusable testimonial block for project pages
+// Quote with decorative mark, author avatar, project color accent
+
+import Icon from '../icons/Icon.astro'
+
+interface Props {
+  quote: string
+  author: string
+  role?: string
+  projectColor: string
+  projectGradient: string
+}
+
+const { quote, author, role, projectColor, projectGradient } = Astro.props
+const authorInitial = author.charAt(0).toUpperCase()
+---
+
+<blockquote
+  class="glass glass-card"
+  style="padding:32px;border-radius:24px;border-left:3px solid ${projectColor};margin:0;position:relative;"
+>
+  <div style="position:absolute;top:12px;left:28px;font-size:4rem;color:${projectColor};opacity:0.15;font-family:serif;line-height:1;" aria-hidden="true">
+    &ldquo;
+  </div>
+  <div style="position:relative;z-index:1;">
+    <p style="font-style:italic;margin-bottom:16px;opacity:0.85;font-size:1.05rem;line-height:1.7;padding-top:8px;">
+      &ldquo;{quote}&rdquo;
+    </p>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div style={`width:44px;height:44px;border-radius:50%;background:${projectGradient};display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1rem;flex-shrink:0;`}>
+        {authorInitial}
+      </div>
+      <div>
+        <div style="font-weight:600;font-size:0.95rem;color:var(--heading-text);">{author}</div>
+        {role && <div style="font-size:0.8rem;color:var(--muted-text);">{role}</div>}
+      </div>
+    </div>
+  </div>
+</blockquote>

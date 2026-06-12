@@ -1,0 +1,95 @@
+---
+// Icon.astro — Phosphor SVG icon component
+// Renders inline SVG from /icons/{variant}/{name}.svg
+// Falls back to empty span if SVG file not found.
+// IMPORTANT: only the outer <svg> element is mutated (size/color/aria attrs).
+// The SVG body is left untouched so Phosphor's fill="none" backdrop and
+// fill="currentColor" stroke theming are preserved.
+
+import fs from 'node:fs'
+import path from 'node:path'
+
+interface Props {
+  name: string
+  size?: number
+  color?: string
+  variant?: 'regular' | 'bold' | 'fill'
+  class?: string
+  ariaLabel?: string
+}
+
+const {
+  name,
+  size = 24,
+  color = 'currentColor',
+  variant = 'regular',
+  class: className = '',
+  ariaLabel,
+} = Astro.props as Props
+
+const label = ariaLabel || name
+
+let lookupName = name
+let lookupVariant = variant
+
+if (variant === 'bold') {
+  lookupName = `${name}-bold`
+  lookupVariant = 'bold'
+} else if (variant === 'fill') {
+  lookupName = `${name}-fill`
+  lookupVariant = 'fill'
+} else {
+  lookupVariant = 'regular'
+}
+
+const svgDir = path.join(process.cwd(), 'public', 'icons', lookupVariant)
+const svgPath = path.join(svgDir, `${lookupName}.svg`)
+const fallbackPath = path.join(process.cwd(), 'public', 'icons', 'regular', `${name}.svg`)
+
+let svgContent = ''
+let resolvedFrom: 'primary' | 'fallback' | 'none' = 'none'
+let lastError = ''
+
+try {
+  svgContent = fs.readFileSync(svgPath, 'utf-8')
+  resolvedFrom = 'primary'
+} catch (err) {
+  lastError = String((err as NodeJS.ErrnoException).code || err)
+  try {
+    svgContent = fs.readFileSync(fallbackPath, 'utf-8')
+    resolvedFrom = 'fallback'
+  } catch (err2) {
+    lastError += ` / fallback: ${String((err2 as NodeJS.ErrnoException).code || err2)}`
+  }
+}
+
+// Console debug — always log missing icons so the dev can see why an icon
+// isn't rendering. Also log success for the first icon of each name+variant
+// in dev mode (gated by import.meta.env.DEV to keep prod console clean).
+if (!svgContent) {
+  console.error(
+    `[Icon.astro] MISSING icon: name="${name}" variant="${variant}" ` +
+    `tried="${lookupVariant}/${lookupName}.svg" and "regular/${name}.svg" ` +
+    `from cwd="${process.cwd()}". ` +
+    `Run "npm run icons:copy" or add the file to public/icons/${lookupVariant}/.`,
+  )
+}
+
+if (svgContent) {
+  // Only mutate the opening <svg> tag. Do NOT touch any fill="" attributes
+  // inside the SVG body — Phosphor relies on fill="none" for the backdrop
+  // and fill="currentColor" for theming.
+  svgContent = svgContent.replace(
+    /<svg\b/,
+    `<svg fill="${color}" width="${size}" height="${size}" aria-hidden="true"`,
+  )
+}
+---
+
+{
+  svgContent ? (
+    <span class={`phosphor-icon ${className}`.trim()} style={`display:inline-flex;width:${size}px;height:${size}px;`} aria-label={label} role="img" set:html={svgContent} />
+  ) : (
+    <span class={`phosphor-icon phosphor-icon--fallback ${className}`.trim()} style={`display:inline-flex;width:${size}px;height:${size}px;`} aria-label={label} role="img" />
+  )
+}
