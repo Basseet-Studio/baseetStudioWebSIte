@@ -3,13 +3,19 @@
 // Three.js + Vanta are lazy-loaded after page load; skipped entirely on mobile.
 ---
 
-<div id="vanta-bg" aria-hidden="true" role="presentation">
+<div id="vanta-bg" transition:persist transition:name="vanta-bg" aria-hidden="true" role="presentation">
   <div id="vanta-cloud-fog"></div>
   <div id="vanta-clear-sky"></div>
   <div id="vanta-fallback"></div>
 </div>
 
 <script>
+  // The vanta-bg DOM node above is marked transition:persist, so the WebGL
+  // canvas inside it survives view transitions. This script just ensures the
+  // three.js + vanta.clouds vendor scripts are appended to <head> exactly
+  // once per session, then kicks off vanta-init.ts.
+  const CLOUDS_BOOT_FLAG = 'data-baseet-clouds-booted'
+
   function matchesMobile() {
     return (
       /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
@@ -18,15 +24,23 @@
   }
 
   function loadVanta() {
+    if (document.documentElement.hasAttribute(CLOUDS_BOOT_FLAG)) return
+    document.documentElement.setAttribute(CLOUDS_BOOT_FLAG, '')
+
     if (matchesMobile()) {
       document.getElementById('vanta-fallback')!.style.display = 'block'
       return
     }
 
+    if (document.getElementById('baseet-three-script')) return
+
     const threeScript = document.createElement('script')
+    threeScript.id = 'baseet-three-script'
     threeScript.src = '/vendor/three.min.js'
     threeScript.onload = () => {
+      if (document.getElementById('baseet-vanta-script')) return
       const vantaScript = document.createElement('script')
+      vantaScript.id = 'baseet-vanta-script'
       vantaScript.src = '/vendor/vanta.clouds.min.js'
       vantaScript.onload = () => {
         import('./vanta-init.ts').then(m => {

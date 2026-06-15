@@ -1,5 +1,6 @@
 ---
 // Base.astro — Root layout shell with ViewTransitions, VantaBg, AppBar, Footer
+import { ClientRouter } from 'astro:transitions'
 import VantaBg from '../components/background/VantaBg.astro'
 import AppBar from '../components/nav/AppBar.astro'
 import Footer from '../components/shared/Footer.astro'
@@ -203,14 +204,7 @@ const jsonLdWebSite = {
       rel="stylesheet"
     >
 
-    <meta name="astro-view-transitions" content="true" />
-    <script>
-      document.addEventListener('astro:page-load', () => {
-        if (document.startViewTransition) {
-          document.startViewTransition
-        }
-      })
-    </script>
+    <ClientRouter />
 
     <!-- JSON-LD: Organization, LocalBusiness, WebSite -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLdOrganization)} is:inline />
