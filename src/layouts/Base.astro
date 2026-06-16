@@ -138,7 +138,13 @@ const jsonLdWebSite = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script is:inline>
+    <script is:inline data-astro-rerun>
+      // data-astro-rerun: re-execute on every view transition.
+      // Astro's ClientRouter swapRootAttributes() removes all <html> attributes
+      // (including data-theme) when swapping in a new page, and inline <head>
+      // scripts don't re-run by default — so without this, the theme silently
+      // reverts to the CSS default (day / light) after each navigation, which
+      // flashes the persisted app bar to its light colour.
       (() => {
         const STORAGE_KEY = 'baseet-theme'
         let theme = 'day'
