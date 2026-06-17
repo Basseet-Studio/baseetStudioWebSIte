@@ -1,0 +1,400 @@
+---
+// ServiceCard.astro — A single capability card for the services bento grid.
+//
+// One card per capability. Each card carries:
+//   - An oversized translucent number marker ("01", "02", ...) in its corner.
+//     The number is decorative, but stays aria-hidden so screen readers read
+//     the title, not the marker.
+//   - A colored accent strip (per service color), used as a top accent and as
+//     a tinted background tint behind the number marker.
+//   - The service icon (mapped from FA class via resolveIcon).
+//   - Title, tagline, and short description.
+//   - The first 3 sub-services (capped at build time so the card stays a
+//     glance, not a list).
+//   - A "Explore service →" CTA that points to /services/<slug>/.
+//
+// The card is intentionally NOT a glassmorphic surface. It uses the
+// `card-window` token from DESIGN.md so the Vanta clouds stay visible behind
+// it. Border color shifts to the service accent on hover so each card claims
+// its own color in the bento.
+
+import Icon from '../icons/Icon.astro'
+import { resolveIcon } from '../icons/iconMappings'
+
+interface SubService {
+  name: string
+  icon: string
+}
+
+interface Props {
+  // 1-indexed slot in the grid, used to render the "01" overlay.
+  index: number
+  slug: string
+  id: string
+  title: string
+  tagline?: string
+  shortDescription: string
+  color: string
+  gradient: string
+  iconClass: string
+  subServices?: SubService[]
+  ctaLabel: string
+  href: string
+  // 'anchor' cards fill 2x2; 'wide' cards fill 2x1; 'tall' fill 1x2;
+  // 'standard' fill 1x1. Sizes are applied via grid-column / grid-row.
+  size?: 'anchor' | 'wide' | 'tall' | 'standard'
+  // RTL flips the CTA arrow direction. Defaults to arrow-right (LTR).
+  arrowIcon?: string
+}
+
+const {
+  index,
+  slug,
+  id,
+  title,
+  tagline,
+  shortDescription,
+  color,
+  gradient,
+  iconClass,
+  subServices = [],
+  ctaLabel,
+  href,
+  size = 'standard',
+  arrowIcon = 'arrow-right',
+} = Astro.props
+
+const cat = resolveIcon(iconClass || 'fas fa-circle')
+const indexLabel = String(index).padStart(2, '0')
+
+const sizeClass = `service-card--${size}`
+---
+
+<a
+  id={id}
+  href={href}
+  class={`service-card card-window ${sizeClass}`}
+  data-animate="fade-up"
+  style={`--card-accent:${color};`}
+>
+  <div class="service-card__accent" style={`background:${gradient};`} aria-hidden="true"></div>
+  <div class="service-card__number" aria-hidden="true">{indexLabel}</div>
+
+  <div class="service-card__body">
+    <div class="service-card__icon" style={`background:color-mix(in srgb, ${color} 14%, transparent);color:${color};`}>
+      <Icon name={cat.name} variant={cat.variant} size={26} color="currentColor" />
+    </div>
+
+    <div class="service-card__heading">
+      <h2 class="service-card__title">{title}</h2>
+      {tagline && <p class="service-card__tagline">{tagline}</p>}
+    </div>
+
+    <p class="service-card__short">{shortDescription}</p>
+
+    {subServices.length > 0 && (
+      <ul class="service-card__list">
+        {subServices.map((sub) => {
+          const subIcon = resolveIcon(sub.icon || 'fas fa-circle')
+          return (
+            <li class="service-card__list-item">
+              <span class="service-card__list-icon" style={`color:${color};`}>
+                <Icon name={subIcon.name} variant={subIcon.variant} size={14} color="currentColor" />
+              </span>
+              <span>{sub.name}</span>
+            </li>
+          )
+        })}
+      </ul>
+    )}
+
+    <span class="service-card__cta" style={`color:${color};`}>
+          {ctaLabel}
+          <Icon name={arrowIcon} size={14} color="currentColor" />
+        </span>
+  </div>
+</a>
+
+<style>
+  .service-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: 24px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition:
+      transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 0.3s ease;
+  }
+
+  /* The accent strip — full-width, full-height — sits behind the number
+     marker. It's a soft gradient, not a hard bar, so it bleeds into the
+     card surface on hover without a hard edge. */
+  .service-card__accent {
+    position: absolute;
+    inset: 0;
+    opacity: 0.08;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .service-card:hover .service-card__accent {
+    opacity: 0.16;
+  }
+
+  /* Oversized translucent number in the upper-right corner.
+     Editorial pages have used this device for a century; it gives each
+     card a slot number without adding visual noise. */
+  .service-card__number {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    font-family: var(--font-title);
+    font-size: 4rem;
+    line-height: 1;
+    color: color-mix(in srgb, var(--card-accent, var(--color-primary)) 18%, transparent);
+    letter-spacing: -0.02em;
+    user-select: none;
+    pointer-events: none;
+    z-index: 1;
+    transition: color 0.3s ease;
+  }
+
+  [dir="rtl"] .service-card__number {
+    right: auto;
+    left: 22px;
+  }
+
+  .service-card:hover .service-card__number {
+    color: color-mix(in srgb, var(--card-accent, var(--color-primary)) 36%, transparent);
+  }
+
+  .service-card__body {
+    position: relative;
+    z-index: 2;
+    padding: 32px 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+  }
+
+  .service-card__icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .service-card__heading {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .service-card__title {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--heading-text);
+    margin: 0;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+  }
+
+  .service-card__tagline {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--card-accent, var(--color-primary));
+    margin: 0;
+    letter-spacing: -0.005em;
+  }
+
+  .service-card__short {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: var(--muted-text);
+    margin: 0;
+  }
+
+  .service-card__list {
+    list-style: none;
+    padding: 0;
+    margin: 4px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .service-card__list-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.88rem;
+    color: var(--text-primary);
+  }
+
+  .service-card__list-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+  }
+
+  .service-card__cta {
+    margin-top: auto;
+    padding-top: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: transform 0.2s ease;
+  }
+
+  .service-card:hover .service-card__cta {
+    transform: translateX(4px);
+  }
+
+  [dir="rtl"] .service-card:hover .service-card__cta {
+    transform: translateX(-4px);
+  }
+
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--card-window-shadow-hover);
+    border-color: color-mix(in srgb, var(--card-accent, var(--color-primary)) 35%, transparent);
+  }
+
+  /* ===== Sizes ===== */
+  /* The bento uses a 4-col grid. Sizes are applied via grid-column / grid-row
+     on the parent .services-bento. The size classes below are kept here so
+     the parent can use simple nth-child or data attributes. */
+
+  /* Anchor (2x2): top-left. The flagship capability. */
+  .service-card--anchor {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  .service-card--anchor .service-card__title {
+    font-size: 2.2rem;
+  }
+  .service-card--anchor .service-card__number {
+    font-size: 7rem;
+    top: 22px;
+    right: 26px;
+  }
+  .service-card--anchor .service-card__body {
+    padding: 40px 36px 32px;
+    gap: 18px;
+  }
+
+  /* Wide (2x1): horizontal strip. */
+  .service-card--wide {
+    grid-column: span 2;
+  }
+  .service-card--wide .service-card__body {
+    flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 16px 28px;
+  }
+  .service-card--wide .service-card__icon {
+    width: 48px;
+    height: 48px;
+  }
+  .service-card--wide .service-card__heading {
+    flex: 1 1 220px;
+  }
+  .service-card--wide .service-card__short {
+    flex: 1 1 240px;
+  }
+  .service-card--wide .service-card__list {
+    flex-basis: 100%;
+    margin-top: 4px;
+  }
+  .service-card--wide .service-card__cta {
+    margin-top: 0;
+    margin-left: auto;
+    padding-top: 0;
+  }
+  [dir="rtl"] .service-card--wide .service-card__cta {
+    margin-left: 0;
+    margin-right: auto;
+  }
+
+  /* Tall (1x2): vertical column. */
+  .service-card--tall .service-card__body {
+    justify-content: flex-start;
+  }
+
+  /* Reduced motion: skip the lift on hover. */
+  @media (prefers-reduced-motion: reduce) {
+    .service-card,
+    .service-card__cta,
+    .service-card__accent,
+    .service-card__number {
+      transition: none;
+    }
+    .service-card:hover {
+      transform: none;
+    }
+    .service-card:hover .service-card__cta {
+      transform: none;
+    }
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 960px) {
+    .service-card--anchor {
+      grid-column: span 2;
+      grid-row: span 1;
+    }
+    .service-card--anchor .service-card__title {
+      font-size: 1.6rem;
+    }
+    .service-card--anchor .service-card__number {
+      font-size: 4.5rem;
+    }
+    .service-card--anchor .service-card__body {
+      padding: 32px 28px 24px;
+    }
+    .service-card--wide .service-card__body {
+      flex-direction: column;
+    }
+    .service-card--wide .service-card__cta {
+      margin-left: 0;
+      margin-right: auto;
+      margin-top: auto;
+      padding-top: 16px;
+    }
+    [dir="rtl"] .service-card--wide .service-card__cta {
+      margin-right: 0;
+      margin-left: auto;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .service-card {
+      grid-column: 1 / -1 !important;
+      grid-row: auto !important;
+    }
+    .service-card--anchor .service-card__title {
+      font-size: 1.5rem;
+    }
+    .service-card--anchor .service-card__number {
+      font-size: 4rem;
+    }
+    .service-card__body {
+      padding: 28px 24px 22px;
+    }
+  }
+</style>

@@ -8,21 +8,19 @@
 // the "lang note" near the top — better than fake-translated copy that
 // erodes trust with Arabic-speaking prospects.
 //
-// The same build-time data flow as the EN page (getServicesIndex +
-// getAllServices) is used; only the chrome strings swap.
+// Reuses ServicesBento.astro + ServiceCard.astro so the layout is identical
+// to the EN page (with RTL adjustments via the [dir="rtl"] selectors baked
+// into the components).
 import Page from '../../../layouts/Page.astro'
-import Icon from '../../../components/icons/Icon.astro'
-import { resolveIcon } from '../../../components/icons/iconMappings'
 import { getAllServices, getServicesIndex } from '../../../lib/services'
 import servicesIndex from '../../../content/data/services.json'
+import ServicesBento from '../../../components/shared/ServicesBento.astro'
 import ar from '../../../content/i18n/services.json'
 import type { Lang } from '../../../types'
 
 const lang: Lang = 'ar'
 const t = ar.page.index
 
-// Same data wiring as the EN page: sub-services come from the per-slug
-// detail files, capped to 3 per card so the card stays a glance, not a list.
 const subsBySlug: Record<string, Array<{ name: string; icon: string }>> = {}
 for (const detail of getAllServices()) {
   subsBySlug[detail.slug] = (detail.subServices ?? []).slice(0, 3).map((s) => ({
@@ -33,7 +31,10 @@ for (const detail of getAllServices()) {
 
 const servicesData = {
   ...servicesIndex,
-  categories: getServicesIndex(),
+  categories: getServicesIndex().map((c: any) => ({
+    ...c,
+    subServices: subsBySlug[c.slug] ?? [],
+  })),
 }
 
 // Honest content-availability note. The studio hasn't shipped Arabic
@@ -45,110 +46,185 @@ const contentNote =
 ---
 
 <Page title={t.title} description={t.description} section="services" lang={lang}>
-  <section class="mb-16" data-animate="fade-up">
-    <h1 class="text-4xl font-bold mb-4" style="color:var(--heading-text);">
-      {t.titleHead}
+  <section class="services-hero" data-animate="fade-up">
+    <span class="services-hero__eyebrow">
+      <span class="services-hero__eyebrow-dot" aria-hidden="true"></span>
+      {t.titleEyebrow}
+    </span>
+    <h1 class="services-hero__title">
+      ست خدمات.<br/>
+      <span class="services-hero__title-accent">استوديو واحد، من البداية إلى النهاية.</span>
     </h1>
-    <p class="text-lg opacity-70 max-w-2xl" style="color:var(--muted-text);">
-      {t.titleSub}
-    </p>
-    <p class="text-base opacity-60 max-w-3xl mt-2" style="color:var(--muted-text);">
+    <p class="services-hero__lead">
       {t.titleDesc}
     </p>
-    <p class="text-sm opacity-60 max-w-3xl mt-4 p-3 rounded" style="background:color-mix(in srgb, var(--color-primary) 8%, transparent); color:var(--muted-text);">
+
+    <dl class="services-hero__meta">
+      <div class="services-hero__meta-item">
+        <dt>متوسط الشراكة</dt>
+        <dd>3 سنوات</dd>
+      </div>
+      <div class="services-hero__meta-item">
+        <dt>الخدمات</dt>
+        <dd>06</dd>
+      </div>
+      <div class="services-hero__meta-item">
+        <dt>المقر</dt>
+        <dd>أبوظبي، الإمارات</dd>
+      </div>
+    </dl>
+
+    <p class="ar-content-note" role="note">
       {contentNote}
     </p>
   </section>
 
-  <div class="services-grid">
-    {servicesData.categories?.map((category: any) => {
-      const cat = resolveIcon(category.icon || 'fas fa-circle')
-      return (
-        <a
-          id={category.id}
-          href={`/ar/services/${category.slug}/`}
-          class="service-card card-window"
-          data-animate="fade-up"
-          style={`--card-accent:${category.color};`}
-        >
-          <div class="service-card__bar" style={`background:${category.gradient};`}></div>
-          <div class="service-card__body">
-            <div class="service-card__icon" style={`background:color-mix(in srgb, ${category.color} 12%, transparent);color:${category.color};`}>
-              <Icon name={cat.name} variant={cat.variant} size={26} color="currentColor" />
-            </div>
-            <h2 class="service-card__title">{category.title}</h2>
-            {category.tagline && <p class="service-card__tagline">{category.tagline}</p>}
-            <p class="service-card__short">{category.shortDescription}</p>
-            <ul class="service-card__list">
-              {(subsBySlug[category.slug] ?? []).map((sub) => {
-                const subIcon = resolveIcon(sub.icon || 'fas fa-circle')
-                return (
-                  <li class="service-card__list-item">
-                    <span class="service-card__list-icon" style={`color:${category.color};`}>
-                      <Icon name={subIcon.name} variant={subIcon.variant} size={14} color="currentColor" />
-                    </span>
-                    <span>{sub.name}</span>
-                  </li>
-                )
-              })}
-            </ul>
-            <span class="service-card__cta" style={`color:${category.color};`}>
-              {t.cardCta}
-              <Icon name="arrow-left" size={14} color="currentColor" />
-            </span>
-          </div>
-        </a>
-      )
-    })}
-  </div>
-
-  {servicesData.process?.steps?.length > 0 && (
-    <section class="mt-20" id="process" data-animate="fade-up">
-      <h2 class="text-3xl font-bold mb-2 text-center" style="color:var(--heading-text);">
-        {t.processTitle}
-      </h2>
-      <p class="text-center opacity-70 mb-10" style="color:var(--muted-text);">
-        {t.processSub}
-      </p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {servicesData.process.steps.map((step: any) => {
-          const stepIcon = resolveIcon(step.icon || 'fas fa-circle')
-          return (
-            <div class="card-window card-window--tight p-6 text-center" data-animate="fade-up">
-              <div
-                class="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-sm font-bold"
-                style="background: var(--color-primary); color: white;"
-              >
-                {step.number}
-              </div>
-              <div class="mb-3 flex justify-center" style="color: var(--color-primary);">
-                <Icon name={stepIcon.name} variant={stepIcon.variant} size={20} color="currentColor" />
-              </div>
-              <h3 class="font-semibold mb-2" style="color:var(--heading-text);">{step.title}</h3>
-              <p class="text-sm opacity-60" style="color:var(--muted-text);">{step.desc}</p>
-            </div>
-          )
-        })}
-      </div>
-    </section>
-  )}
-
-  {servicesData.cta && (
-    <div class="text-center mt-16 card-window p-12" data-animate="fade-in">
-      <h3 class="text-2xl font-bold mb-2" style="color:var(--heading-text);">{t.ctaTitle}</h3>
-      {servicesData.cta.subtitle && (
-        <p class="text-lg opacity-80 mb-2" style="color:var(--muted-text);">{t.ctaSub}</p>
-      )}
-      {servicesData.cta.description && (
-        <p class="opacity-70 mb-6 max-w-2xl mx-auto" style="color:var(--muted-text);">{t.ctaDesc}</p>
-      )}
-      <a
-        href="/ar/contact/"
-        class="inline-block px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105"
-        style="background: var(--color-primary); color: white;"
-      >
-        {t.ctaButton}
-      </a>
-    </div>
-  )}
+  <ServicesBento
+    categories={servicesData.categories}
+    process={{
+      title: t.processTitle,
+      subtitle: t.processSub,
+      steps: servicesData.process?.steps ?? [],
+    }}
+    cta={{
+      title: t.ctaTitle,
+      subtitle: t.ctaSub,
+      description: t.ctaDesc,
+      button: t.ctaButton,
+    }}
+    copy={{
+          explore: t.cardCta,
+          ctaHref: '/ar/contact/',
+          ctaArrowIcon: 'arrow-left',
+          cardArrowIcon: 'arrow-left',
+        }}
+  />
 </Page>
+
+<style>
+  /* Same hero system as the EN page. The eyebrow uses dir=rtl to flip the
+     breathing-dot position via logical properties. */
+  .services-hero {
+    margin-bottom: 64px;
+    max-width: 880px;
+  }
+
+  .services-hero__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 14px 7px 12px;
+    border-radius: 9999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 22%, transparent);
+    margin-bottom: 24px;
+  }
+
+  .services-hero__eyebrow-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-primary) 60%, transparent);
+    animation: services-pulse 2.4s ease-in-out infinite;
+  }
+
+  [data-theme="night"] .services-hero__eyebrow-dot {
+    animation: none;
+  }
+
+  @keyframes services-pulse {
+    0%, 100% {
+      box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-primary) 60%, transparent);
+    }
+    50% {
+      box-shadow: 0 0 0 8px color-mix(in srgb, var(--color-primary) 0%, transparent);
+    }
+  }
+
+  .services-hero__title {
+    font-size: clamp(2.4rem, 5.4vw, 4.4rem);
+    line-height: 1.18;
+    font-weight: 400;
+    color: var(--heading-text);
+    margin: 0 0 22px;
+    letter-spacing: -0.01em;
+  }
+
+  .services-hero__title-accent {
+    color: var(--color-primary);
+  }
+
+  .services-hero__lead {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: var(--muted-text);
+    margin: 0 0 36px;
+    max-width: 62ch;
+  }
+
+  .services-hero__meta {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, max-content));
+    gap: 56px;
+    margin: 0;
+    padding-top: 28px;
+    border-top: 1px solid var(--divider-color);
+  }
+
+  .services-hero__meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .services-hero__meta-item dt {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted-text);
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .services-hero__meta-item dd {
+    font-family: var(--font-title);
+    font-size: 1.65rem;
+    color: var(--heading-text);
+    margin: 0;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .ar-content-note {
+    margin: 28px 0 0;
+    padding: 14px 18px;
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--color-primary) 7%, transparent);
+    color: var(--muted-text);
+    font-size: 0.85rem;
+    line-height: 1.55;
+  }
+
+  @media (max-width: 720px) {
+    .services-hero__meta {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .services-hero__meta-item dd {
+      font-size: 1.35rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .services-hero__eyebrow-dot {
+      animation: none;
+    }
+  }
+</style>

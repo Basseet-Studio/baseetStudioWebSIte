@@ -1,27 +1,23 @@
 ---
-// /services — index page. Renders one large card per service category with
-// the same themeing (gradient bar, icon, sub-services) as the project cards.
-// Each card now links to /services/<slug>/ for the dedicated detail page.
+// /services — index page.
 //
-// The sub-service list on each card is sourced from the per-slug detail files
-// (services/<slug>.json) via getAllServices() — not from the lightweight
-// services.json index. The lightweight index intentionally omits sub-services
-// to keep the JSONL small; the cards pull what they need at build time.
+// Bento grid (offset, no identical cards) + process timeline + ready CTA.
+// See ServicesBento.astro for the grid + process + CTA components.
+// Per-service sub-service copy still comes from the per-slug detail files
+// so the data layer stays the same as before.
 import Page from '../layouts/Page.astro'
-import Icon from '../components/icons/Icon.astro'
-import { resolveIcon } from '../components/icons/iconMappings'
 import { getAllServices, getServicesIndex } from '../lib/services'
 import servicesIndex from '../content/data/services.json'
+import ServicesBento from '../components/shared/ServicesBento.astro'
 import type { Lang } from '../types'
 
 const lang: 'en' = 'en'
-const description = 'Explore Baseet Studio services — web development, mobile apps, internal tools, SEO, UI/UX design, and cloud & DevOps for ambitious UAE brands.'
+const description =
+  'Explore Baseet Studio services — web development, mobile apps, internal tools, SEO, UI/UX design, and cloud & DevOps for ambitious UAE brands.'
 
-// Build a slug → subService[] map at build time so the card loop can stay
-// cheap. Cap to 3 sub-services per card so each card stays a glance, not a list.
-// The list is sourced from the per-slug detail files (services/<slug>.json) —
-// the lightweight services.json index intentionally omits sub-services to stay
-// small; the cards pull what they need at build time.
+// Same build-time data flow: sub-services come from the per-slug detail
+// files (services/<slug>.json), capped to 3 per card so the card stays a
+// glance, not a list.
 const subsBySlug: Record<string, Array<{ name: string; icon: string }>> = {}
 for (const detail of getAllServices()) {
   subsBySlug[detail.slug] = (detail.subServices ?? []).slice(0, 3).map((s) => ({
@@ -30,240 +26,187 @@ for (const detail of getAllServices()) {
   }))
 }
 
-// The index page reads categories from getServicesIndex() (the lib) and the
-// static page chrome (title, subtitle, process, cta) from services.json.
 const servicesData = {
   ...servicesIndex,
-  categories: getServicesIndex(),
+  categories: getServicesIndex().map((c: any) => ({
+    ...c,
+    subServices: subsBySlug[c.slug] ?? [],
+  })),
 }
 ---
 
 <Page title="Services — Baseet Studio" description={description} section="services" lang={lang}>
-  <section class="mb-16" data-animate="fade-up">
-    <h1 class="text-4xl font-bold mb-4" style="color:var(--heading-text);">
-      {/* TODO: localise this later */}
-      {servicesData.title}
+  {/* Hero — editorial shape. Eyebrow + big headline + lead + meta line that
+      carries real proof (3-year average partnership, the studio's actual
+      retention signal). No "we deliver excellence" copy. */}
+  <section class="services-hero" data-animate="fade-up">
+    <span class="services-hero__eyebrow">
+      <span class="services-hero__eyebrow-dot" aria-hidden="true"></span>
+      What we build
+    </span>
+    <h1 class="services-hero__title">
+      Six capabilities.<br/>
+      <span class="services-hero__title-accent">One studio, end to end.</span>
     </h1>
-    <p class="text-lg opacity-70 max-w-2xl" style="color:var(--muted-text);">
+    <p class="services-hero__lead">
       {/* TODO: localise this later */}
-      {servicesData.subtitle}
+      We don't hand you off between specialists. Web, mobile, internal tools, design, SEO, and cloud — the same small team owns the work from the first sketch to the launch deploy.
     </p>
-    <p class="text-base opacity-60 max-w-3xl mt-2" style="color:var(--muted-text);">
-      {/* TODO: localise this later */}
-      {servicesData.description}
-    </p>
+
+    <dl class="services-hero__meta">
+      <div class="services-hero__meta-item">
+        <dt>Average partnership</dt>
+        <dd>3 years</dd>
+      </div>
+      <div class="services-hero__meta-item">
+        <dt>Capabilities</dt>
+        <dd>06</dd>
+      </div>
+      <div class="services-hero__meta-item">
+        <dt>Based</dt>
+        <dd>Abu Dhabi, UAE</dd>
+      </div>
+    </dl>
   </section>
 
-  <div class="services-grid">
-    {servicesData.categories?.map((category: any) => {
-      const cat = resolveIcon(category.icon || 'fas fa-circle')
-      return (
-        <a
-          id={category.id}
-          href={`/services/${category.slug}/`}
-          class="service-card card-window"
-          data-animate="fade-up"
-          style={`--card-accent:${category.color};`}
-        >
-          <div class="service-card__bar" style={`background:${category.gradient};`}></div>
-          <div class="service-card__body">
-            <div class="service-card__icon" style={`background:color-mix(in srgb, ${category.color} 12%, transparent);color:${category.color};`}>
-              <Icon name={cat.name} variant={cat.variant} size={26} color="currentColor" />
-            </div>
-            <h2 class="service-card__title">{category.title}</h2>
-            {category.tagline && <p class="service-card__tagline">{category.tagline}</p>}
-            <p class="service-card__short">{category.shortDescription}</p>
-            <ul class="service-card__list">
-              {(subsBySlug[category.slug] ?? []).map((sub) => {
-                const subIcon = resolveIcon(sub.icon || 'fas fa-circle')
-                return (
-                  <li class="service-card__list-item">
-                    <span class="service-card__list-icon" style={`color:${category.color};`}>
-                      <Icon name={subIcon.name} variant={subIcon.variant} size={14} color="currentColor" />
-                    </span>
-                    <span>{sub.name}</span>
-                  </li>
-                )
-              })}
-            </ul>
-            <span class="service-card__cta" style={`color:${category.color};`}>
-              Explore service
-              <Icon name="arrow-right" size={14} color="currentColor" />
-            </span>
-          </div>
-        </a>
-      )
-    })}
-  </div>
-
-  {servicesData.process?.steps?.length > 0 && (
-    <section class="mt-20" id="process" data-animate="fade-up">
-      <h2 class="text-3xl font-bold mb-2 text-center" style="color:var(--heading-text);">
-        {/* TODO: localise this later */}
-        {servicesData.process.title}
-      </h2>
-      <p class="text-center opacity-70 mb-10" style="color:var(--muted-text);">
-        {/* TODO: localise this later */}
-        {servicesData.process.subtitle}
-      </p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {servicesData.process.steps.map((step: any) => {
-          const stepIcon = resolveIcon(step.icon || 'fas fa-circle')
-          return (
-            <div class="card-window card-window--tight p-6 text-center" data-animate="fade-up">
-              <div
-                class="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-sm font-bold"
-                style="background: var(--color-primary); color: white;"
-              >
-                {step.number}
-              </div>
-              <div class="mb-3 flex justify-center" style="color: var(--color-primary);">
-                <Icon name={stepIcon.name} variant={stepIcon.variant} size={20} color="currentColor" />
-              </div>
-              <h3 class="font-semibold mb-2" style="color:var(--heading-text);">{step.title}</h3>
-              <p class="text-sm opacity-60" style="color:var(--muted-text);">{step.desc}</p>
-            </div>
-          )
-        })}
-      </div>
-    </section>
-  )}
-
-  {servicesData.cta && (
-    <div class="text-center mt-16 card-window p-12" data-animate="fade-in">
-      <h3 class="text-2xl font-bold mb-2" style="color:var(--heading-text);">{servicesData.cta.title}</h3>
-      {servicesData.cta.subtitle && (
-        <p class="text-lg opacity-80 mb-2" style="color:var(--muted-text);">{servicesData.cta.subtitle}</p>
-      )}
-      {servicesData.cta.description && (
-        <p class="opacity-70 mb-6 max-w-2xl mx-auto" style="color:var(--muted-text);">{servicesData.cta.description}</p>
-      )}
-      <a
-        href="/contact/"
-        class="inline-block px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105"
-        style="background: var(--color-primary); color: white;"
-      >
-        {servicesData.cta.button}
-      </a>
-    </div>
-  )}
+  <ServicesBento
+    categories={servicesData.categories}
+    process={servicesData.process}
+    cta={servicesData.cta}
+    copy={{
+      explore: 'Explore service',
+      ctaHref: '/contact/',
+    }}
+  />
 </Page>
 
 <style>
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 24px;
+  /* =====================================================================
+     Services hero — editorial. Eyebrow + big headline + lead + meta.
+     The eyebrow has a tiny breathing dot that pulses slowly on day mode
+     (only), as a quiet "we're open for work" signal. The meta row uses
+     <dl> so screen readers get label/value pairs, not a string of
+     number-less fragments.
+     ===================================================================== */
+  .services-hero {
+    margin-bottom: 64px;
+    max-width: 880px;
   }
 
-  .service-card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    border-radius: 24px;
-    overflow: hidden;
-    text-decoration: none;
-    color: inherit;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-  }
-
-  .service-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-    border-color: color-mix(in srgb, var(--card-accent, var(--color-primary)) 35%, transparent);
-  }
-
-  .service-card__bar {
-    height: 4px;
-    width: 100%;
-  }
-
-  .service-card__body {
-    padding: 28px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    flex: 1;
-  }
-
-  .service-card__icon {
-    width: 52px;
-    height: 52px;
-    border-radius: 14px;
+  .services-hero__eyebrow {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
+    gap: 10px;
+    padding: 7px 14px 7px 12px;
+    border-radius: 9999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 22%, transparent);
+    margin-bottom: 24px;
   }
 
-  .service-card__title {
-    font-size: 1.35rem;
-    font-weight: 700;
+  .services-hero__eyebrow-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-primary) 60%, transparent);
+    animation: services-pulse 2.4s ease-in-out infinite;
+  }
+
+  [data-theme="night"] .services-hero__eyebrow-dot {
+    animation: none;
+  }
+
+  @keyframes services-pulse {
+    0%, 100% {
+      box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-primary) 60%, transparent);
+    }
+    50% {
+      box-shadow: 0 0 0 8px color-mix(in srgb, var(--color-primary) 0%, transparent);
+    }
+  }
+
+  .services-hero__title {
+    font-size: clamp(2.4rem, 5.4vw, 4.4rem);
+    line-height: 1.04;
+    font-weight: 400;
+    color: var(--heading-text);
+    margin: 0 0 22px;
+    letter-spacing: -0.02em;
+  }
+
+  .services-hero__title-accent {
+    color: var(--color-primary);
+    font-style: italic;
+    /* The italic Rammetto One accent is a brand-voice flourish, not a
+       "make it look editorial" reflex. The base is straight. */
+  }
+
+  [lang="ar"] .services-hero__title-accent,
+  [dir="rtl"] .services-hero__title-accent {
+    font-style: normal;
+  }
+
+  .services-hero__lead {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--muted-text);
+    margin: 0 0 36px;
+    max-width: 62ch;
+  }
+
+  .services-hero__meta {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, max-content));
+    gap: 56px;
+    margin: 0;
+    padding-top: 28px;
+    border-top: 1px solid var(--divider-color);
+  }
+
+  .services-hero__meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .services-hero__meta-item dt {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted-text);
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .services-hero__meta-item dd {
+    font-family: var(--font-title);
+    font-size: 1.65rem;
     color: var(--heading-text);
     margin: 0;
     letter-spacing: -0.01em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
   }
 
-  .service-card__tagline {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--card-accent, var(--color-primary));
-    margin: 0;
-  }
-
-  .service-card__short {
-    font-size: 0.9rem;
-    line-height: 1.6;
-    color: var(--muted-text);
-    margin: 0;
-  }
-
-  .service-card__list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .service-card__list-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 0.88rem;
-    color: var(--text-primary);
-  }
-
-  .service-card__list-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .service-card__cta {
-    margin-top: auto;
-    padding-top: 8px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    transition: transform 0.2s ease;
-  }
-
-  .service-card:hover .service-card__cta {
-    transform: translateX(4px);
-  }
-
-  @media (max-width: 480px) {
-    .services-grid {
-      grid-template-columns: 1fr;
+  @media (max-width: 720px) {
+    .services-hero__meta {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
     }
+    .services-hero__meta-item dd {
+      font-size: 1.35rem;
+    }
+  }
 
-    .service-card__body {
-      padding: 22px;
+  @media (prefers-reduced-motion: reduce) {
+    .services-hero__eyebrow-dot {
+      animation: none;
     }
   }
 </style>
