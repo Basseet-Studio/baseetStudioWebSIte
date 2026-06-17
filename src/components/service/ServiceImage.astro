@@ -1,0 +1,42 @@
+---
+// ServiceImage.astro — Placeholder slot for a real image (screenshot, mockup,
+// or diagram). The page-level data drives the label and the service theme
+// drives the colour. Drop a real <img> in by passing `src` later, or just
+// leave the placeholder as-is until the asset is ready.
+
+interface Props {
+  label?: string
+  src?: string
+  alt?: string
+  aspectRatio?: string
+}
+
+const { label = 'Image placeholder', src, alt, aspectRatio = '16 / 10' } = Astro.props
+---
+
+<figure
+  class="service-image"
+  style={`aspect-ratio:${aspectRatio};`}
+  data-animate="fade-up"
+>
+  {src ? (
+    <img
+      src={src}
+      alt={alt || label}
+      loading="lazy"
+      style="width:100%;height:100%;object-fit:cover;border-radius:inherit;display:block;"
+    />
+  ) : (
+    <>
+      <div class="service-image__icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+          <circle cx="8.5" cy="8.5" r="1.5" />
+          <polyline points="21 15 16 10 5 21" />
+        </svg>
+      </div>
+      <p class="service-image__label">{label}</p>
+      <p class="service-image__hint">Replace with screenshot or mockup</p>
+    </>
+  )}
+</figure>

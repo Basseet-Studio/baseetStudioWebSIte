@@ -1,4 +1,7 @@
 ---
+// /services — index page. Renders one large card per service category with
+// the same themeing (gradient bar, icon, sub-services) as the project cards.
+// Each card now links to /services/<slug>/ for the dedicated detail page.
 import Page from '../layouts/Page.astro'
 import Icon from '../components/icons/Icon.astro'
 import { resolveIcon } from '../components/icons/iconMappings'
@@ -11,59 +14,70 @@ const description = 'Explore Baseet Studio services — web development, mobile 
 ---
 
 <Page title="Services — Baseet Studio" description={description} section="services" lang={lang}>
-  <section class="mb-16">
-    <h1 class="text-4xl font-bold mb-4">
+  <section class="mb-16" data-animate="fade-up">
+    <h1 class="text-4xl font-bold mb-4" style="color:var(--heading-text);">
       {/* TODO: localise this later */}
       {servicesData.title}
     </h1>
-    <p class="text-lg opacity-70 max-w-2xl">
+    <p class="text-lg opacity-70 max-w-2xl" style="color:var(--muted-text);">
       {/* TODO: localise this later */}
       {servicesData.subtitle}
     </p>
-    <p class="text-base opacity-60 max-w-3xl mt-2">
+    <p class="text-base opacity-60 max-w-3xl mt-2" style="color:var(--muted-text);">
       {/* TODO: localise this later */}
       {servicesData.description}
     </p>
   </section>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  <div class="services-grid">
     {servicesData.categories?.map((category: any) => {
       const cat = resolveIcon(category.icon || 'fas fa-circle')
       return (
-        <div id={category.id} class="glass glass-card p-8" data-animate="fade-up" scroll-margin-top="120px">
-          <div class="mb-4" style="color: var(--color-primary); display:inline-flex; align-items:center; justify-content:center; width:48px; height:48px; border-radius:12px; background:color-mix(in srgb, var(--color-primary) 10%, transparent);">
-            <Icon name={cat.name} variant={cat.variant} size={24} color="var(--color-primary)" />
+        <a
+          id={category.id}
+          href={`/services/${category.slug}/`}
+          class="service-card glass glass-card"
+          data-animate="fade-up"
+          style={`--card-accent:${category.color};`}
+        >
+          <div class="service-card__bar" style={`background:${category.gradient};`}></div>
+          <div class="service-card__body">
+            <div class="service-card__icon" style={`background:color-mix(in srgb, ${category.color} 12%, transparent);color:${category.color};`}>
+              <Icon name={cat.name} variant={cat.variant} size={26} color="currentColor" />
+            </div>
+            <h2 class="service-card__title">{category.title}</h2>
+            {category.tagline && <p class="service-card__tagline">{category.tagline}</p>}
+            <p class="service-card__short">{category.shortDescription}</p>
+            <ul class="service-card__list">
+              {category.services?.map((sub: any) => {
+                const subIcon = resolveIcon(sub.icon || 'fas fa-circle')
+                return (
+                  <li class="service-card__list-item">
+                    <span class="service-card__list-icon" style={`color:${category.color};`}>
+                      <Icon name={subIcon.name} variant={subIcon.variant} size={14} color="currentColor" />
+                    </span>
+                    <span>{sub.name}</span>
+                  </li>
+                )
+              })}
+            </ul>
+            <span class="service-card__cta" style={`color:${category.color};`}>
+              Explore service
+              <Icon name="arrow-right" size={14} color="currentColor" />
+            </span>
           </div>
-          <h2 class="text-xl font-semibold mb-2">{category.title}</h2>
-          <p class="text-sm opacity-70 mb-4">{category.shortDesc}</p>
-          <ul class="space-y-2">
-            {category.services?.map((sub: any) => {
-              const subIcon = resolveIcon(sub.icon || 'fas fa-circle')
-              return (
-                <li class="flex items-start gap-2 text-sm opacity-80">
-                  <span style="color: var(--color-primary); display:inline-flex; margin-top:2px;">
-                    <Icon name={subIcon.name} variant={subIcon.variant} size={14} color="var(--color-primary)" />
-                  </span>
-                  <div>
-                    <div class="font-medium opacity-100">{sub.name}</div>
-                    {sub.desc && <div class="opacity-60 text-xs">{sub.desc}</div>}
-                  </div>
-                </li>
-              )
-            })}
-          </ul>
-        </div>
+        </a>
       )
     })}
   </div>
 
   {servicesData.process?.steps?.length > 0 && (
-    <section class="mt-20" data-animate="fade-up">
-      <h2 class="text-3xl font-bold mb-2 text-center">
+    <section class="mt-20" id="process" data-animate="fade-up">
+      <h2 class="text-3xl font-bold mb-2 text-center" style="color:var(--heading-text);">
         {/* TODO: localise this later */}
         {servicesData.process.title}
       </h2>
-      <p class="text-center opacity-70 mb-10">
+      <p class="text-center opacity-70 mb-10" style="color:var(--muted-text);">
         {/* TODO: localise this later */}
         {servicesData.process.subtitle}
       </p>
@@ -79,10 +93,10 @@ const description = 'Explore Baseet Studio services — web development, mobile 
                 {step.number}
               </div>
               <div class="mb-3 flex justify-center" style="color: var(--color-primary);">
-                <Icon name={stepIcon.name} variant={stepIcon.variant} size={20} color="var(--color-primary)" />
+                <Icon name={stepIcon.name} variant={stepIcon.variant} size={20} color="currentColor" />
               </div>
-              <h3 class="font-semibold mb-2">{step.title}</h3>
-              <p class="text-sm opacity-60">{step.desc}</p>
+              <h3 class="font-semibold mb-2" style="color:var(--heading-text);">{step.title}</h3>
+              <p class="text-sm opacity-60" style="color:var(--muted-text);">{step.desc}</p>
             </div>
           )
         })}
@@ -92,12 +106,12 @@ const description = 'Explore Baseet Studio services — web development, mobile 
 
   {servicesData.cta && (
     <div class="text-center mt-16 glass glass-panel p-12" data-animate="fade-in">
-      <h3 class="text-2xl font-bold mb-2">{servicesData.cta.title}</h3>
+      <h3 class="text-2xl font-bold mb-2" style="color:var(--heading-text);">{servicesData.cta.title}</h3>
       {servicesData.cta.subtitle && (
-        <p class="text-lg opacity-80 mb-2">{servicesData.cta.subtitle}</p>
+        <p class="text-lg opacity-80 mb-2" style="color:var(--muted-text);">{servicesData.cta.subtitle}</p>
       )}
       {servicesData.cta.description && (
-        <p class="opacity-70 mb-6 max-w-2xl mx-auto">{servicesData.cta.description}</p>
+        <p class="opacity-70 mb-6 max-w-2xl mx-auto" style="color:var(--muted-text);">{servicesData.cta.description}</p>
       )}
       <a
         href="/contact/"
@@ -109,3 +123,124 @@ const description = 'Explore Baseet Studio services — web development, mobile 
     </div>
   )}
 </Page>
+
+<style>
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+  }
+
+  .service-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    border: 1px solid var(--card-border, rgba(0, 0, 0, 0.06));
+    background: var(--card-bg, #ffffff);
+  }
+
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--card-shadow-hover, 0 12px 40px rgba(0, 0, 0, 0.1));
+    border-color: color-mix(in srgb, var(--card-accent, var(--color-primary)) 35%, transparent);
+  }
+
+  .service-card__bar {
+    height: 4px;
+    width: 100%;
+  }
+
+  .service-card__body {
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    flex: 1;
+  }
+
+  .service-card__icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .service-card__title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--heading-text);
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .service-card__tagline {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--card-accent, var(--color-primary));
+    margin: 0;
+  }
+
+  .service-card__short {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--muted-text);
+    margin: 0;
+  }
+
+  .service-card__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .service-card__list-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.88rem;
+    color: var(--text-primary);
+  }
+
+  .service-card__list-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .service-card__cta {
+    margin-top: auto;
+    padding-top: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: transform 0.2s ease;
+  }
+
+  .service-card:hover .service-card__cta {
+    transform: translateX(4px);
+  }
+
+  @media (max-width: 480px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .service-card__body {
+      padding: 22px;
+    }
+  }
+</style>

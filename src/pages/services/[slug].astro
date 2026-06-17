@@ -1,0 +1,413 @@
+---
+// src/pages/services/[slug].astro — One page per service.
+//
+// Why a single dynamic route: each of the six services shares the same page
+// structure (hero, sub-services, process, deliverables, tech, FAQ, gradient
+// CTA, related services) — only the per-service animation, copy, colour, and
+// sub-service list change. Static-priority routing still works for any
+// hand-rolled /services/<slug>/index.astro file that wants to override the
+// generic layout for a single service.
+//
+// The page also renders a unique hero animation per service (browser window,
+// phone, dashboard, chart, palette, cloud) — chosen by the slug below.
+import ServiceLayout from '../../layouts/Service.astro'
+import Icon from '../../components/icons/Icon.astro'
+import { resolveIcon } from '../../components/icons/iconMappings'
+import ServiceImage from '../../components/service/ServiceImage.astro'
+import { getAllServices, getService, getServicesIndex } from '../../lib/services'
+import type { ServiceDetail } from '../../types'
+
+const lang: 'en' = 'en'
+
+export async function getStaticPaths() {
+  return getServicesIndex().map((summary) => ({
+    params: { slug: summary.slug },
+  }))
+}
+
+const { slug } = Astro.params
+const service = getService(slug as string)
+if (!service) {
+  return Astro.redirect('/404')
+}
+
+const allServices = getAllServices()
+const related = allServices
+  .filter((s) => s.slug !== service.slug)
+  .slice(0, 3)
+
+const description = service.shortDescription
+const iconResolved = resolveIcon(service.icon)
+const metaTitle = `${service.title} — Baseet Studio`
+---
+
+<ServiceLayout
+  title={metaTitle}
+  description={description}
+  slug={service.slug}
+  serviceColor={service.color}
+  serviceGradient={service.gradient}
+  serviceName={service.title}
+  lang={lang}
+>
+  <section class="service-hero" data-animate="fade-up">
+    <div class="service-hero__inner">
+      <div class="service-hero__copy">
+        <a href="/services/" class="service-hero__breadcrumb">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+          All services
+        </a>
+
+        <div class="service-hero__icon" style={`background:${service.gradient};`}>
+          <Icon name={iconResolved.name} variant={iconResolved.variant} size={36} color="white" />
+        </div>
+
+        <span class="service-hero__eyebrow">Service</span>
+        <h1 class="service-hero__title">{service.hero.title}</h1>
+        <p class="service-hero__subtitle">{service.hero.subtitle}</p>
+
+        <div class="service-hero__ctas">
+          <a href={service.hero.cta_primary_link} class="service-hero__cta-primary">
+            {service.hero.cta_primary}
+            <Icon name="arrow-right" size={16} color="currentColor" />
+          </a>
+          {service.hero.cta_secondary && service.hero.cta_secondary_link && (
+            <a href={service.hero.cta_secondary_link} class="service-hero__cta-secondary">
+              {service.hero.cta_secondary}
+            </a>
+          )}
+        </div>
+
+        {service.metrics && service.metrics.length > 0 && (
+          <div class="service-hero__metrics">
+            {service.metrics.map((metric) => (
+              <div class="service-hero__metric">
+                <p class="service-hero__metric-value">{metric.value}</p>
+                <p class="service-hero__metric-label">{metric.label}</p>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <div class="service-hero__visual" aria-hidden="true">
+        {service.slug === 'web' && (
+          <div class="anim-browser">
+            <div class="anim-browser__chrome">
+              <span class="anim-browser__dot"></span>
+              <span class="anim-browser__dot"></span>
+              <span class="anim-browser__dot"></span>
+              <span class="anim-browser__url"></span>
+            </div>
+            <div class="anim-browser__body">
+              <div class="anim-browser__line anim-browser__line--long"></div>
+              <div class="anim-browser__line anim-browser__line--medium"></div>
+              <div class="anim-browser__line anim-browser__line--short"></div>
+              <div class="anim-browser__line anim-browser__line--medium"></div>
+              <div class="anim-browser__line anim-browser__line--long"></div>
+            </div>
+          </div>
+        )}
+
+        {service.slug === 'mobile' && (
+          <div class="anim-phone">
+            <div class="anim-phone__screen">
+              <span class="anim-phone__notch"></span>
+              <div class="anim-phone__screen-track">
+                <div class="anim-phone__screen-card"></div>
+                <div class="anim-phone__screen-card"></div>
+                <div class="anim-phone__screen-card"></div>
+                <div class="anim-phone__screen-card"></div>
+                <div class="anim-phone__screen-card"></div>
+                <div class="anim-phone__screen-card"></div>
+                <div class="anim-phone__screen-card"></div>
+                <div class="anim-phone__screen-card"></div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {service.slug === 'internal' && (
+          <div class="anim-dashboard">
+            <div class="anim-dashboard__tile anim-dashboard__tile--lg">
+              <div>
+                <div class="anim-dashboard__stat">$48.2K</div>
+                <div class="anim-dashboard__stat-label">This week</div>
+              </div>
+              <div class="anim-dashboard__tile--pulse">
+                <span class="anim-dashboard__pulse-dot"></span>
+                Live
+              </div>
+            </div>
+            <div class="anim-dashboard__tile anim-dashboard__tile--bar">
+              <span class="anim-dashboard__bar"></span>
+              <span class="anim-dashboard__bar"></span>
+              <span class="anim-dashboard__bar"></span>
+              <span class="anim-dashboard__bar"></span>
+              <span class="anim-dashboard__bar"></span>
+              <span class="anim-dashboard__bar"></span>
+            </div>
+            <div class="anim-dashboard__tile anim-dashboard__tile--pulse">
+              <span class="anim-dashboard__pulse-dot"></span>
+              3 alerts
+            </div>
+          </div>
+        )}
+
+        {service.slug === 'seo' && (
+          <div class="anim-chart">
+            <div class="anim-chart__lens">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="7" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg>
+            </div>
+            <div class="anim-chart__header">
+              <p class="anim-chart__title">Organic sessions</p>
+              <span class="anim-chart__delta">+142%</span>
+            </div>
+            <div class="anim-chart__bars">
+              <span class="anim-chart__bar"></span>
+              <span class="anim-chart__bar"></span>
+              <span class="anim-chart__bar"></span>
+              <span class="anim-chart__bar"></span>
+              <span class="anim-chart__bar"></span>
+              <span class="anim-chart__bar"></span>
+              <span class="anim-chart__bar"></span>
+              <span class="anim-chart__bar anim-chart__bar--accent"></span>
+            </div>
+          </div>
+        )}
+
+        {service.slug === 'design' && (
+          <div class="anim-palette">
+            <span class="anim-palette__swatch"></span>
+            <span class="anim-palette__swatch"></span>
+            <span class="anim-palette__swatch"></span>
+            <span class="anim-palette__swatch"></span>
+            <span class="anim-palette__swatch"></span>
+            <span class="anim-palette__swatch"></span>
+            <span class="anim-palette__swatch"></span>
+            <span class="anim-palette__swatch"></span>
+            <span class="anim-palette__cursor" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M5.5 3.21V20.8c0 .45.54.67.85.35l4.86-4.86 2.94 6.4c.5.1.81-.3.9-.6l-2.95-6.4h6.4c.45 0 .67-.54.35-.85L6.35 2.85c-.31-.31-.85-.09-.85.36Z" />
+              </svg>
+            </span>
+          </div>
+        )}
+
+        {service.slug === 'cloud' && (
+          <div class="anim-cloud">
+            <div class="anim-cloud__cloud">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M17.5 19a4.5 4.5 0 1 0-1.4-8.78 7 7 0 1 0-11.6 4.78" />
+                <path d="M7 19h11" />
+              </svg>
+            </div>
+            <div class="anim-cloud__pipeline"></div>
+            <div class="anim-cloud__servers">
+              <div class="anim-cloud__server">
+                <span class="anim-cloud__server-dot"></span>
+                <span>api-01</span>
+                <span class="anim-cloud__server-bar"></span>
+              </div>
+              <div class="anim-cloud__server">
+                <span class="anim-cloud__server-dot"></span>
+                <span>web-02</span>
+                <span class="anim-cloud__server-bar"></span>
+              </div>
+              <div class="anim-cloud__server">
+                <span class="anim-cloud__server-dot"></span>
+                <span>db-01</span>
+                <span class="anim-cloud__server-bar"></span>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  {service.subServices && service.subServices.length > 0 && (
+    <section class="service-section" id="sub-services" data-animate="fade-up">
+      <div class="service-section__head">
+        <span class="service-section__eyebrow">What we deliver</span>
+        <h2 class="service-section__title">Sub-services tailored to your stage</h2>
+        <p class="service-section__subtitle">
+          Each {service.title.toLowerCase()} engagement is shaped by the problem in front of us — these are the lanes we typically work in.
+        </p>
+      </div>
+
+      <div class="sub-services">
+        {service.subServices.map((sub) => {
+          const subIcon = resolveIcon(sub.icon)
+          return (
+            <article class="sub-service" data-animate="fade-up">
+              <div class="sub-service__icon">
+                <Icon name={subIcon.name} variant={subIcon.variant} size={24} color="currentColor" />
+              </div>
+              <div>
+                <h3 class="sub-service__title">{sub.name}</h3>
+                <p class="sub-service__short">{sub.desc}</p>
+              </div>
+              <p class="sub-service__long">{sub.longDesc}</p>
+              {sub.bullets && sub.bullets.length > 0 && (
+                <ul class="sub-service__bullets">
+                  {sub.bullets.map((bullet) => <li>{bullet}</li>)}
+                </ul>
+              )}
+              {sub.imageLabel && (
+                <ServiceImage label={sub.imageLabel} aspectRatio="16 / 9" />
+              )}
+            </article>
+          )
+        })}
+      </div>
+    </section>
+  )}
+
+  {service.process && service.process.length > 0 && (
+    <section class="service-section service-section--tight" id="process" data-animate="fade-up">
+      <div class="service-section__head">
+        <span class="service-section__eyebrow">How we work</span>
+        <h2 class="service-section__title">A process that keeps the team aligned</h2>
+        <p class="service-section__subtitle">
+          Short feedback loops, weekly demos, and a real plan you can hold us to.
+        </p>
+      </div>
+
+      <div class="service-process">
+        {service.process.map((step) => {
+          const stepIcon = resolveIcon(step.icon)
+          return (
+            <div class="service-process__step" data-animate="fade-up">
+              <div class="service-process__step-number">
+                <Icon name={stepIcon.name} variant={stepIcon.variant} size={18} color="white" />
+              </div>
+              <h3 class="service-process__step-title">{step.title}</h3>
+              <p class="service-process__step-desc">{step.desc}</p>
+            </div>
+          )
+        })}
+      </div>
+    </section>
+  )}
+
+  {service.deliverables && service.deliverables.length > 0 && (
+    <section class="service-section" id="deliverables" data-animate="fade-up">
+      <div class="service-section__head">
+        <span class="service-section__eyebrow">Deliverables</span>
+        <h2 class="service-section__title">What lands in your inbox</h2>
+        <p class="service-section__subtitle">
+          Concrete artifacts your team keeps and uses — not a PDF that lives on a shared drive.
+        </p>
+      </div>
+
+      <div class="service-deliverables">
+        {service.deliverables.map((deliv) => {
+          const delivIcon = resolveIcon(deliv.icon || 'fas fa-circle')
+          return (
+            <div class="service-deliverable" data-animate="fade-up">
+              <div class="service-deliverable__icon">
+                <Icon name={delivIcon.name} variant={delivIcon.variant} size={22} color="currentColor" />
+              </div>
+              <div class="service-deliverable__copy">
+                <h3>{deliv.title}</h3>
+                <p>{deliv.description}</p>
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    </section>
+  )}
+
+  {service.tech && service.tech.length > 0 && (
+    <section class="service-section service-section--tight" id="tech" data-animate="fade-up">
+      <div class="service-section__head">
+        <span class="service-section__eyebrow">Stack</span>
+        <h2 class="service-section__title">Tools we reach for</h2>
+        <p class="service-section__subtitle">
+          Boring, well-supported, and picked for the job — not the buzz.
+        </p>
+      </div>
+
+      <div class="service-tech">
+        {service.tech.map((tech) => (
+          <span class="service-tech__chip">{tech}</span>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {service.faq && service.faq.length > 0 && (
+    <section class="service-section service-section--tight" id="faq" data-animate="fade-up">
+      <div class="service-section__head">
+        <span class="service-section__eyebrow">FAQ</span>
+        <h2 class="service-section__title">Questions we hear most often</h2>
+      </div>
+
+      <div class="service-faq">
+        {service.faq.map((item) => (
+          <details data-animate="fade-up">
+            <summary>
+              <span>{item.question}</span>
+              <span class="service-faq__chevron" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </span>
+            </summary>
+            <div class="service-faq__answer">{item.answer}</div>
+          </details>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <section class="service-cta" data-animate="fade-up">
+    <div class="service-cta__inner" style={`background:${service.gradient};`}>
+      <span class="service-cta__glow service-cta__glow--tr" aria-hidden="true"></span>
+      <span class="service-cta__glow service-cta__glow--bl" aria-hidden="true"></span>
+      <div class="service-cta__content">
+        <h2 class="service-cta__title">Ready to talk {service.title.toLowerCase()}?</h2>
+        <p class="service-cta__text">
+          Tell us what you are trying to ship. We will reply within one business day with a short take and a clear next step.
+        </p>
+        <a href="/contact/" class="service-cta__button">
+          Start a conversation
+          <Icon name="arrow-right" size={16} color="currentColor" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {related.length > 0 && (
+    <section class="service-section" data-animate="fade-up">
+      <div class="service-section__head">
+        <span class="service-section__eyebrow">Keep exploring</span>
+        <h2 class="service-section__title">Other services teams pair with this one</h2>
+      </div>
+
+      <div class="service-related">
+        {related.map((rel) => {
+          const relIcon = resolveIcon(rel.icon)
+          return (
+            <a href={`/services/${rel.slug}/`} class="service-related__card">
+              <span class="service-related__icon" style={`background:${rel.gradient};color:white;`}>
+                <Icon name={relIcon.name} variant={relIcon.variant} size={22} color="white" />
+              </span>
+              <div>
+                <p class="service-related__title">{rel.title}</p>
+                <p class="service-related__sub">{rel.shortDescription}</p>
+              </div>
+            </a>
+          )
+        })}
+      </div>
+    </section>
+  )}
+</ServiceLayout>

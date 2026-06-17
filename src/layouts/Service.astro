@@ -1,0 +1,50 @@
+---
+// Service.astro — Per-service layout wrapper extending Base.astro
+//
+// Mirrors layouts/Project.astro:
+//   - Injects --service-color and --service-gradient CSS custom properties so
+//     child sections (hero, sub-services, CTAs) can theme themselves with the
+//     service's brand colour via color-mix(in srgb, var(--service-color) X%, …).
+//   - Renders a soft, theme-aware hero wash that fades out as the user scrolls
+//     (the same trick used on project pages — see styles/projects/shared.css
+//     for the rationale).
+//
+// AppBar stays in "standard" mode on service pages (Home / Work / Services /
+// Clients / Contact). The "Services" tab is highlighted by the AppBar's
+// active-state logic. The service-themed breadcrumb + back link live in the
+// page itself, not the AppBar, so the navigation chrome stays simple.
+import Base from './Base.astro'
+import type { Lang } from '../types'
+import '../styles/services.css'
+
+interface Props {
+  title: string
+  description?: string
+  slug: string
+  serviceColor: string
+  serviceGradient: string
+  serviceName: string
+  lang?: Lang
+}
+
+const {
+  title,
+  description,
+  slug,
+  serviceColor,
+  serviceGradient,
+  serviceName,
+  lang = 'en',
+} = Astro.props
+---
+
+<Base title={title} description={description} section="services" lang={lang} slug={slug}>
+  <div
+    style={`--service-color:${serviceColor};--service-gradient:${serviceGradient};`}
+    class="service-wrapper"
+    data-service-name={serviceName}
+  >
+    <div class="service-hero-wash" aria-hidden="true"></div>
+    <slot />
+  </div>
+</Base>

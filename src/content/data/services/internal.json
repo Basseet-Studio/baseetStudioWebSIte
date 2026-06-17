@@ -1,0 +1,161 @@
+{
+  "id": "internal",
+  "slug": "internal",
+  "title": "Internal Tools",
+  "tagline": "Operations software that actually gets used",
+  "color": "#0891B2",
+  "gradient": "linear-gradient(135deg, #0891B2 0%, #22D3EE 100%)",
+  "icon": "fas fa-tools",
+  "shortDescription": "Streamline operations with custom internal solutions",
+  "hero": {
+    "title": "Operations software that actually gets used",
+    "subtitle": "Most internal tools die in a Google Doc. We build the dashboards, CRMs, and automation your team will actually open every morning — fast, opinionated, and tied to the way your business really runs.",
+    "cta_primary": "Map my workflow",
+    "cta_primary_link": "/contact/",
+    "cta_secondary": "See deliverables",
+    "cta_secondary_link": "#deliverables"
+  },
+  "metrics": [
+    { "value": "−40%", "label": "Time on routine ops" },
+    { "value": "1 week", "label": "First usable build" },
+    { "value": "100%", "label": "Auditable actions" }
+  ],
+  "subServices": [
+    {
+      "id": "admin-dashboards",
+      "name": "Admin Dashboards",
+      "icon": "fas fa-tachometer-alt",
+      "desc": "Powerful dashboards to manage your business",
+      "longDesc": "A real command center for your team — not a static report. We build internal dashboards that pull live data from your stack, surface exceptions, and let your operators take action without leaving the page.",
+      "bullets": [
+        "Live data from your DB, warehouse, or SaaS APIs",
+        "Role-based views for ops, finance, and leadership",
+        "Drill-down, filters, and saved views",
+        "Slack and email alerts on the metrics that matter"
+      ],
+      "imageLabel": "Admin dashboard with live KPIs"
+    },
+    {
+      "id": "crm",
+      "name": "CRM Systems",
+      "icon": "fas fa-users-cog",
+      "desc": "Customer relationship management tailored to you",
+      "longDesc": "When Salesforce or HubSpot is overkill, we build a CRM that matches your sales motion. Pipeline stages, follow-ups, contracts, and customer health — exactly what your team needs, and nothing they do not.",
+      "bullets": [
+        "Pipeline, deal stages, and forecasting",
+        "Email, call, and meeting integrations",
+        "Customer health and renewal workflows",
+        "Custom fields and objects without a sales call"
+      ],
+      "imageLabel": "Custom CRM pipeline view"
+    },
+    {
+      "id": "inventory",
+      "name": "Inventory Management",
+      "icon": "fas fa-boxes",
+      "desc": "Track stock, orders, and logistics efficiently",
+      "longDesc": "Inventory is one mistake away from a stockout or a write-off. We build inventory systems that track SKUs across locations, integrate with your POS and marketplace channels, and surface the reorder decisions before they become a problem.",
+      "bullets": [
+        "Multi-location stock and transfers",
+        "POS, Shopify, and marketplace sync",
+        "Lot, serial, and expiry tracking",
+        "Purchase orders and supplier workflows"
+      ],
+      "imageLabel": "Inventory levels and reorder view"
+    },
+    {
+      "id": "automation",
+      "name": "Workflow Automation",
+      "icon": "fas fa-robot",
+      "desc": "Automate repetitive tasks and save time",
+      "longDesc": "We turn the manual steps that eat your week into reliable automations. Lead routing, invoice generation, customer onboarding sequences, and the glue between tools that does not have a Zapier template.",
+      "bullets": [
+        "Visual workflow designer with version history",
+        "Retry, idempotency, and error handling",
+        "Audit log of every action and decision",
+        "Connectors for 200+ SaaS tools out of the box"
+      ],
+      "imageLabel": "Workflow automation canvas"
+    }
+  ],
+  "process": [
+    {
+      "number": "01",
+      "title": "Map the workflow",
+      "desc": "Sit with the team, sketch the steps, and find the highest-leverage bottleneck",
+      "icon": "fas fa-lightbulb"
+    },
+    {
+      "number": "02",
+      "title": "Scope the MVP",
+      "desc": "A tight first cut that ships in a week — the 80% your team will use daily",
+      "icon": "fas fa-bullseye"
+    },
+    {
+      "number": "03",
+      "title": "Build & instrument",
+      "desc": "Type-safe, real database, and a feature-flag system so we can iterate live",
+      "icon": "fas fa-code"
+    },
+    {
+      "number": "04",
+      "title": "Train & hand off",
+      "desc": "Loom walkthroughs, a short guide, and a 30-day window of small tweaks",
+      "icon": "fas fa-graduation-cap"
+    }
+  ],
+  "deliverables": [
+    {
+      "title": "Working internal app",
+      "description": "A deployed app with auth, roles, and an admin area your IT team can own.",
+      "icon": "fas fa-server"
+    },
+    {
+      "title": "Data integrations",
+      "description": "Live connectors to your database, SaaS tools, and spreadsheets.",
+      "icon": "fas fa-plug"
+    },
+    {
+      "title": "Operator training",
+      "description": "Recorded walkthroughs and a written playbook for the day-to-day.",
+      "icon": "fas fa-book-open"
+    },
+    {
+      "title": "Handover & support",
+      "description": "Source code, infrastructure as code, and 30 days of post-launch support.",
+      "icon": "fas fa-handshake"
+    }
+  ],
+  "tech": [
+    "Next.js",
+    "TypeScript",
+    "Postgres",
+    "Prisma",
+    "tRPC",
+    "Tailwind CSS",
+    "Trigger.dev",
+    "Temporal",
+    "Supabase",
+    "Auth.js",
+    "Resend",
+    "Slack API"
+  ],
+  "faq": [
+    {
+      "question": "How is this different from off-the-shelf SaaS?",
+      "answer": "Off-the-shelf SaaS optimizes for the average customer. A custom internal tool optimizes for your exact workflow — and you stop paying per seat as you grow. We recommend SaaS when it is the right answer, and a custom build when it is not."
+    },
+    {
+      "question": "How long until my team can use it?",
+      "answer": "Our target is a usable first build in one to two weeks, with a feature-complete v1 in 6–10 weeks depending on integrations. We ship in weekly increments and demo every Friday."
+    },
+    {
+      "question": "Will my team be able to maintain it?",
+      "answer": "Yes. We pick boring, well-documented stacks, write the README your future team will read, and run a handover sprint where we pair with whoever owns the tool day-to-day."
+    },
+    {
+      "question": "What if the requirements change mid-build?",
+      "answer": "Expected. Our process is built around short feedback loops — weekly demos, shared roadmap, and a feature flag system that lets you turn changes on and off without redeploying."
+    }
+  ]
+}
