@@ -1,56 +1,64 @@
 /* Numu — Habit Tracker */
 /* Floating icons, centered hero, feature carousel */
 
-:root {
-  --project-color: #8B5CF6;
-  --project-gradient: linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%);
-}
-
 /* Floating icons */
 .floating-icon {
-  position: absolute;
-  opacity: 0.08;
-  animation: float 4s ease-in-out infinite;
-  pointer-events: none;
+    position: absolute;
+    opacity: 0.08;
+    animation: float 4s ease-in-out infinite;
+    pointer-events: none;
 }
 
-.floating-icon:nth-child(1) { animation-delay: 0s; }
-.floating-icon:nth-child(2) { animation-delay: 1s; }
-.floating-icon:nth-child(3) { animation-delay: 2s; }
-.floating-icon:nth-child(4) { animation-delay: 0.5s; }
+.floating-icon:nth-child(1) {
+    animation-delay: 0s;
+}
+.floating-icon:nth-child(2) {
+    animation-delay: 1s;
+}
+.floating-icon:nth-child(3) {
+    animation-delay: 2s;
+}
+.floating-icon:nth-child(4) {
+    animation-delay: 0.5s;
+}
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-16px); }
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-16px);
+    }
 }
 
 /* Feature carousel */
 .feature-carousel {
-  display: flex;
-  gap: 24px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding: 16px 0;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 16px 0;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
 }
 
 .feature-carousel::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 
 .carousel-card {
-  flex: 0 0 320px;
-  scroll-snap-align: start;
-  background: var(--card-bg);
-  border-radius: 24px;
-  padding: 28px;
-  box-shadow: var(--card-shadow);
-  border: 1px solid var(--card-border);
+    flex: 0 0 320px;
+    scroll-snap-align: start;
+    background: var(--card-bg);
+    border-radius: 24px;
+    padding: 28px;
+    box-shadow: var(--card-shadow);
+    border: 1px solid var(--card-border);
 }
 
 @media (max-width: 768px) {
-  .carousel-card {
-    flex: 0 0 280px;
-  }
+    .carousel-card {
+        flex: 0 0 280px;
+    }
 }

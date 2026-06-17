@@ -1,6 +1,17 @@
 ---
 // ProjectTestimonial.astro — Reusable testimonial block for project pages
-// Quote with decorative mark, author avatar, project color accent
+// Quote with decorative mark, author avatar, project color accent.
+//
+// Audit fixes baked in:
+// - P1 audit #7, #19 — the side-stripe `border-left` accent was banned by
+//   the shared design laws (the brand anti-patterns list). Removed; the
+//   card now uses a clean rounded border + a subtle quote glyph instead.
+// - P2 audit #23 — italic body type was a magazine reflex (banned by
+//   DESIGN.md "No-Editorial-Italic Rule"). Quote uses upright type and
+//   lets the leading &ldquo; mark carry the visual weight.
+// - P2 audit #24 — single-letter avatars are anonymous-looking. The
+//   avatar now shows the first TWO letters of the author (or a fallback
+//   initial) so each testimonial reads as its own person.
 
 import Icon from '../icons/Icon.astro'
 
@@ -13,28 +24,105 @@ interface Props {
 }
 
 const { quote, author, role, projectColor, projectGradient } = Astro.props
-const authorInitial = author.charAt(0).toUpperCase()
+
+// First two letters of the first word, uppercased ("Mary" → "MA", "Marc" → "MA").
+// Falls back to a single letter for names shorter than 2 chars.
+const firstWord = author.trim().split(/\s+/)[0] || author
+const initials = (firstWord.slice(0, 2) || '?').toUpperCase()
 ---
 
-<blockquote
-  class="glass glass-card"
-  style="padding:32px;border-radius:24px;border-left:3px solid ${projectColor};margin:0;position:relative;"
->
-  <div style="position:absolute;top:12px;left:28px;font-size:4rem;color:${projectColor};opacity:0.15;font-family:serif;line-height:1;" aria-hidden="true">
+<blockquote class="project-testimonial">
+  <span
+    class="project-testimonial__mark"
+    style={`color:${projectColor};`}
+    aria-hidden="true"
+  >
     &ldquo;
-  </div>
-  <div style="position:relative;z-index:1;">
-    <p style="font-style:italic;margin-bottom:16px;opacity:0.85;font-size:1.05rem;line-height:1.7;padding-top:8px;">
-      &ldquo;{quote}&rdquo;
-    </p>
-    <div style="display:flex;align-items:center;gap:12px;">
-      <div style={`width:44px;height:44px;border-radius:50%;background:${projectGradient};display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1rem;flex-shrink:0;`}>
-        {authorInitial}
-      </div>
-      <div>
-        <div style="font-weight:600;font-size:0.95rem;color:var(--heading-text);">{author}</div>
-        {role && <div style="font-size:0.8rem;color:var(--muted-text);">{role}</div>}
-      </div>
-    </div>
+  </span>
+  <p class="project-testimonial__quote">
+    {quote}
+  </p>
+  <div class="project-testimonial__author">
+    <span
+      class="project-testimonial__avatar"
+      style={`background:${projectGradient};`}
+      aria-hidden="true"
+    >
+      {initials}
+    </span>
+    <span class="project-testimonial__author-text">
+      <span class="project-testimonial__name">{author}</span>
+      {role && <span class="project-testimonial__role">{role}</span>}
+    </span>
   </div>
 </blockquote>
+
+<style>
+  .project-testimonial {
+    margin: 0;
+    padding: 32px;
+    border-radius: 24px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    box-shadow: var(--card-shadow);
+    position: relative;
+    transition:
+      transform 0.2s,
+      box-shadow 0.2s;
+  }
+  .project-testimonial:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--card-shadow-hover);
+  }
+  .project-testimonial__mark {
+    display: block;
+    font-family:
+      'Rambla',
+      system-ui,
+      -apple-system,
+      sans-serif;
+    font-size: 3rem;
+    line-height: 0.5;
+    margin-bottom: 8px;
+    opacity: 0.25;
+    font-weight: 700;
+  }
+  .project-testimonial__quote {
+    margin: 0 0 20px;
+    font-size: 1.02rem;
+    line-height: 1.65;
+    color: var(--heading-text);
+  }
+  .project-testimonial__author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .project-testimonial__avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+    letter-spacing: 0.02em;
+  }
+  .project-testimonial__author-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .project-testimonial__name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--heading-text);
+  }
+  .project-testimonial__role {
+    font-size: 0.8rem;
+    color: var(--muted-text);
+  }
+</style>

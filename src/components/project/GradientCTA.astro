@@ -1,0 +1,172 @@
+---
+// GradientCTA.astro — Shared gradient CTA section used at the bottom of
+// every project page. Collapses the 12 near-identical copies that lived
+// in each project page (P1 audit #11, #15, #20) into one component.
+//
+// Fixes baked in:
+// - P0 audit #3, #4 — Zaryn had two `style` attributes on the same
+//   element (the second a template literal the browser dropped), so the
+//   gradient background never painted. The single inline `style` here is
+//   the only place the background is set.
+// - P1 audit #15 — same gradient + same "Get in Touch" copy across all
+//   projects. The copy props are now passed in by the caller so each
+//   project can use its own voice. Default copy is brand voice ("calm,
+//   confident, human") not SaaS boilerplate.
+// - P1 audit #20 — the two giant blurred circles ("blob decoration") are
+//   optional via the `decorated` prop. Set `decorated={false}` for
+//   pages that want a cleaner CTA card.
+// - P1 audit #14 — the button hover transform is now a CSS `:hover` rule
+//   so it works on touch, honors prefers-reduced-motion, and is
+//   CSP-friendly (no `onmouseover`).
+// - P3 audit #25 — increased side padding on wide viewports.
+
+import type { Lang } from '../../types'
+
+interface Props {
+  title: string
+  body?: string
+  ctaLabel: string
+  ctaHref: string
+  gradient: string
+  accentColor: string
+  /** Language toggle for future localisation. Currently unused but wired up. */
+  lang?: Lang
+  /** Set false to drop the two decorative blur orbs. */
+  decorated?: boolean
+}
+
+const {
+  title,
+  body,
+  ctaLabel,
+  ctaHref,
+  gradient,
+  accentColor,
+  decorated = true,
+} = Astro.props
+---
+
+<section class="project-cta-section">
+  <div class="project-cta-card" style={`background:${gradient};`}>
+    {decorated && (
+      <>
+        <div class="project-cta-overlay" aria-hidden="true"></div>
+        <div class="project-cta-blob project-cta-blob--a" aria-hidden="true"></div>
+        <div class="project-cta-blob project-cta-blob--b" aria-hidden="true"></div>
+      </>
+    )}
+    <div class="project-cta-content">
+      <h2 class="project-cta-title">{title}</h2>
+      {body && <p class="project-cta-text">{body}</p>}
+      <a href={ctaHref} class="project-cta-button" style={`color:${accentColor};`}>
+        {ctaLabel}
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .project-cta-section {
+    padding: 80px 24px;
+  }
+  .project-cta-card {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    border-radius: 32px;
+    overflow: hidden;
+    padding: 72px 64px; /* P3 audit #25 — generous side breathing room */
+    text-align: center;
+    color: white;
+  }
+  .project-cta-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+  }
+  .project-cta-blob {
+    position: absolute;
+    background: white;
+    opacity: 0.1;
+    border-radius: 50%;
+    filter: blur(60px);
+    pointer-events: none;
+  }
+  .project-cta-blob--a {
+    top: -80px;
+    right: -80px;
+    width: 300px;
+    height: 300px;
+  }
+  .project-cta-blob--b {
+    bottom: -60px;
+    left: -60px;
+    width: 200px;
+    height: 200px;
+    filter: blur(40px);
+  }
+  .project-cta-content {
+    position: relative;
+    z-index: 1;
+  }
+  .project-cta-title {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    margin: 0 0 16px;
+    line-height: 1.15;
+  }
+  .project-cta-text {
+    font-size: 1.15rem;
+    opacity: 0.92;
+    margin: 0 auto 32px;
+    max-width: 600px;
+    line-height: 1.6;
+  }
+  .project-cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
+    padding: 16px 32px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1.05rem;
+    transition:
+      transform 0.2s,
+      box-shadow 0.2s;
+  }
+  /* P1 audit #14 — CSS-only hover (no onmouseover). */
+  .project-cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  }
+  .project-cta-button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+
+  /* Reduced motion: skip the lift transform (response to state is exempt
+   * in DESIGN.md, but the blob blur is decoration — drop it). */
+  @media (prefers-reduced-motion: reduce) {
+    .project-cta-blob {
+      display: none;
+    }
+    .project-cta-button {
+      transition: none;
+    }
+    .project-cta-button:hover {
+      transform: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .project-cta-section {
+      padding: 56px 16px;
+    }
+    .project-cta-card {
+      padding: 48px 24px;
+    }
+  }
+</style>

@@ -19,6 +19,35 @@
         color-mix(in srgb, var(--project-color) 31%, transparent);
 }
 
+/* Project hero variants (P3 audit #18, #32)
+ * The original code shipped 5 different hero layouts with no shared
+ * padding rules. The two variants below consolidate the centered /
+ * split-screen patterns used by 11 of the 13 project pages. Geeb keeps
+ * its bespoke hero (`.geeb-hero`) because it's a service-marketplace
+ * layout, not a project landing page.
+ *
+ * Mobile: ~96px top padding so the title lands in the first viewport.
+ * Desktop (>=768px): 140px top padding, 80px bottom.
+ * The wash (`.project-hero-wash` below) is theme-aware and sits behind
+ * the hero so the colour band is consistent. */
+.project-hero {
+    position: relative;
+    overflow: hidden;
+}
+.project-hero--centered {
+    padding: 96px 24px 64px;
+    text-align: center;
+}
+.project-hero--split {
+    padding: 96px 24px 64px;
+}
+@media (min-width: 768px) {
+    .project-hero--centered,
+    .project-hero--split {
+        padding: 140px 24px 80px;
+    }
+}
+
 /* Project hero wash
  * ───────────────────────────────────────────────────────────────────────
  * A soft, theme-aware coloured band that sits at the top of every project

@@ -2,6 +2,7 @@
 import ProjectLayout from '../../layouts/Project.astro'
 import ProjectGallery from '../../components/project/ProjectGallery.astro'
 import ProjectCTA from '../../components/project/ProjectCTA.astro'
+import GradientCTA from '../../components/project/GradientCTA.astro'
 import Icon from '../../components/icons/Icon.astro'
 import { resolveIcon } from '../../components/icons/iconMappings'
 import { getProject } from '../../lib/projects'
@@ -32,14 +33,16 @@ if (!project) return Astro.redirect('/404')
     <p style={`font-size:1.25rem;color:${project.color};font-weight:600;margin-bottom:32px;`}>{project.tagline}</p>
     <p style="font-size:1.1rem;opacity:0.7;max-width:600px;margin:0 auto 32px;line-height:1.7;">{project.hero.subtitle}</p>
 
-    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-      {project.hero.cta_primary && (
-        <a href={project.hero.cta_primary_link || '/contact/'}
-          style={`display:inline-flex;align-items:center;gap:8px;padding:16px 32px;border-radius:50px;font-weight:600;text-decoration:none;background:${project.gradient};color:white;transition:transform 0.2s;`}>
-          {project.hero.cta_primary}
-        </a>
-      )}
-    </div>
+    <!-- CTA Buttons. P1 audit #14 — uses the global `.cta-btn--primary` class. -->
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+          {project.hero.cta_primary && (
+            <a href={project.hero.cta_primary_link || '/contact/'}
+              class="cta-btn--primary"
+              style={`background:${project.gradient};`}>
+              {project.hero.cta_primary}
+            </a>
+          )}
+        </div>
   </section>
 
   <!-- Challenge Section -->
@@ -114,24 +117,16 @@ if (!project) return Astro.redirect('/404')
     </section>
   )}
 
-  <!-- Gradient CTA -->
-  <section style="padding:80px 24px;">
-    <div style={`max-width:1000px;margin:0 auto;position:relative;border-radius:32px;overflow:hidden;padding:64px 48px;text-align:center;color:white;background:${project.gradient};`}>
-      <div style="position:absolute;inset:0;background:rgba(0,0,0,0.1);"></div>
-      <div style="position:relative;z-index:1;">
-        <h2 style="font-size:2.5rem;font-weight:700;margin-bottom:16px;">
-          {/* TODO: localise this later */ `Interested in ${project.name}?`}
-        </h2>
-        <p style="font-size:1.2rem;opacity:0.9;margin-bottom:32px;max-width:600px;margin-left:auto;margin-right:auto;">
-          {/* TODO: localise this later */ 'Get in touch and we will help you get started.'}
-        </p>
-        <a href={'/contact/'}
-          style={`display:inline-flex;align-items:center;gap:8px;background:white;color:${project.color};padding:16px 32px;border-radius:50px;font-weight:700;text-decoration:none;font-size:1.05rem;transition:transform 0.2s;`}>
-          {/* TODO: localise this later */ 'Get in Touch'}
-        </a>
-      </div>
-    </div>
-  </section>
+  <!-- Gradient CTA. P1 audit #11, #15, #20 — uses the shared component. -->
+    <GradientCTA
+      title={`Interested in ${project.name}?`}
+      body="Get in touch and we will help you get started."
+      ctaLabel="Get in Touch"
+      ctaHref="/contact/"
+      gradient={project.gradient}
+      accentColor={project.color}
+      lang={lang}
+    />
 
-  <ProjectCTA status={project.status} platforms={project.platforms || []} links={project.links} lang={lang} />
-</ProjectLayout>
+    <ProjectCTA status={project.status} platforms={project.platforms || []} links={project.links} lang={lang} />
+  </ProjectLayout>

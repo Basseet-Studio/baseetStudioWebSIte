@@ -5,6 +5,7 @@ import ProjectCTA from '../../components/project/ProjectCTA.astro'
 import ProjectFeatureCard from '../../components/project/ProjectFeatureCard.astro'
 import ProjectTestimonial from '../../components/project/ProjectTestimonial.astro'
 import ProjectFAQ from '../../components/project/ProjectFAQ.astro'
+import GradientCTA from '../../components/project/GradientCTA.astro'
 import Icon from '../../components/icons/Icon.astro'
 import { resolveIcon } from '../../components/icons/iconMappings'
 import projects from '../../content/data/projects.json'
@@ -26,7 +27,7 @@ if (!project) return Astro.redirect('/404')
        as the user scrolls, instead of cutting off sharply at the bottom
        of the hero. The hero itself is transparent so the wash shows
        through. -->
-  <section class="project-hero" style="padding:140px 24px 80px;position:relative;overflow:hidden;text-align:center;">
+  <section class="project-hero project-hero--centered">
     <!-- Growth/leaf decorations -->
     <div style={`position:absolute;top:12%;left:8%;opacity:0.06;color:${project.color};pointer-events:none;`}>
       <svg width="100" height="100" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
@@ -67,23 +68,24 @@ if (!project) return Astro.redirect('/404')
         {project.hero.subtitle}
       </p>
 
-      <!-- CTA Buttons -->
-      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" data-animate="fade-up">
-        {project.hero.cta_primary && (
-          <a href={project.hero.cta_primary_link || '/contact/'}
-            style={`display:inline-flex;align-items:center;gap:8px;padding:16px 32px;border-radius:50px;font-weight:600;text-decoration:none;background:${project.gradient};color:white;transition:transform 0.2s,box-shadow 0.2s;font-size:1.05rem;`}
-            onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
-            {project.hero.cta_primary}
-          </a>
-        )}
-        {project.hero.cta_secondary && (
-          <a href={project.hero.cta_secondary_link || '#features'}
-            style={`display:inline-flex;align-items:center;gap:8px;padding:16px 32px;border-radius:50px;font-weight:600;text-decoration:none;border:2px solid color-mix(in srgb, ${project.color} 20%, transparent);color:var(--heading-text);transition:transform 0.2s;font-size:1.05rem;`}
-            onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
-            {project.hero.cta_secondary}
-          </a>
-        )}
-      </div>
+      <!-- CTA Buttons. P1 audit #14 — uses the global `.cta-btn--primary` /
+                 `.cta-btn--secondary` classes instead of inline `onmouseover`. -->
+            <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" data-animate="fade-up">
+              {project.hero.cta_primary && (
+                <a href={project.hero.cta_primary_link || '/contact/'}
+                  class="cta-btn--primary"
+                  style={`background:${project.gradient};`}>
+                  {project.hero.cta_primary}
+                </a>
+              )}
+              {project.hero.cta_secondary && (
+                <a href={project.hero.cta_secondary_link || '#features'}
+                  class="cta-btn--secondary"
+                  style={`border-color:color-mix(in srgb, ${project.color} 25%, transparent);`}>
+                  {project.hero.cta_secondary}
+                </a>
+              )}
+            </div>
     </div>
   </section>
 
@@ -139,27 +141,16 @@ if (!project) return Astro.redirect('/404')
     </section>
   )}
 
-  <!-- Gradient CTA -->
-  <section style="padding:80px 24px;">
-    <div style={`max-width:1000px;margin:0 auto;position:relative;border-radius:32px;overflow:hidden;padding:64px 48px;text-align:center;color:white;background:${project.gradient};`}>
-      <div style="position:absolute;inset:0;background:rgba(0,0,0,0.1);"></div>
-      <div style={`position:absolute;top:-80px;right:-80px;width:300px;height:300px;background:white;opacity:0.1;border-radius:50%;filter:blur(60px);`}></div>
-      <div style={`position:absolute;bottom:-60px;left:-60px;width:200px;height:200px;background:white;opacity:0.1;border-radius:50%;filter:blur(40px);`}></div>
-      <div style="position:relative;z-index:1;">
-        <h2 style="font-size:2.5rem;font-weight:700;margin-bottom:16px;">
-          {/* TODO: localise this later */ `Interested in ${project.name}?`}
-        </h2>
-        <p style="font-size:1.2rem;opacity:0.9;margin-bottom:32px;max-width:600px;margin-left:auto;margin-right:auto;">
-          {/* TODO: localise this later */ 'Get in touch and we will help you get started.'}
-        </p>
-        <a href={'/contact/'}
-          style={`display:inline-flex;align-items:center;gap:8px;background:white;color:${project.color};padding:16px 32px;border-radius:50px;font-weight:700;text-decoration:none;font-size:1.05rem;transition:transform 0.2s;`}
-          onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
-          {/* TODO: localise this later */ 'Get in Touch'}
-        </a>
-      </div>
-    </div>
-  </section>
+  <!-- Gradient CTA. P1 audit #11, #15, #20 — uses the shared component. -->
+    <GradientCTA
+      title={`Interested in ${project.name}?`}
+      body="Get in touch and we will help you get started."
+      ctaLabel="Get in Touch"
+      ctaHref="/contact/"
+      gradient={project.gradient}
+      accentColor={project.color}
+      lang={lang}
+    />
 
-  <ProjectCTA status={project.status} platforms={project.platforms || []} links={project.links} lang={lang} />
-</ProjectLayout>
+    <ProjectCTA status={project.status} platforms={project.platforms || []} links={project.links} lang={lang} />
+  </ProjectLayout>

@@ -28,43 +28,39 @@ const statusLabels: Record<string, string> = {
   </section>
 
   <section style="padding:0 24px 80px;max-width:1200px;margin:0 auto;">
-    <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(340px, 1fr));gap:24px;">
-      {getProjectsIndex().map((project: ProjectSummary) => (
-        <a
-          href={`/projects/${project.slug}/`}
-          class="glass glass-card project-card"
-          style="text-decoration:none;color:inherit;border-radius:16px;overflow:hidden;border:1px solid var(--card-border);transition:transform 0.3s,box-shadow 0.3s;"
-        >
-          <div style={`height:4px;background:${project.color};`}></div>
-          <div style="padding:24px;">
-            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:16px;">
-              <div>
-                <h3 style="font-size:1.25rem;font-weight:700;margin-bottom:6px;color:var(--heading-text);">
-                  {project.name}
-                </h3>
-                <p style="font-size:0.9rem;opacity:0.6;">{project.tagline}</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(340px, 1fr));gap:24px;">
+        {getProjectsIndex().map((project: ProjectSummary) => (
+          <a
+            href={`/projects/${project.slug}/`}
+            class="card-window card-window--interactive project-card"
+            style="text-decoration:none;color:inherit;overflow:hidden;"
+          >
+            <div style={`height:4px;background:${project.color};`}></div>
+            <div style="padding:24px;">
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:16px;">
+                <div>
+                  <h3 style="font-size:1.25rem;font-weight:700;margin-bottom:6px;color:var(--heading-text);">
+                    {project.name}
+                  </h3>
+                  <p style="font-size:0.9rem;color:var(--muted-text);">{project.tagline}</p>
+                </div>
+                <span style={`font-size:0.75rem;padding:4px 10px;border-radius:20px;font-weight:600;white-space:nowrap;background:color-mix(in srgb, ${project.color} 12%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 30%, transparent);`}>
+                  {statusLabels[project.status] || project.status}
+                </span>
               </div>
-              <span style={`font-size:0.75rem;padding:4px 10px;border-radius:20px;font-weight:600;white-space:nowrap;background:${project.color}20;color:${project.color};border:1px solid ${project.color}30;`}>
-                {statusLabels[project.status] || project.status}
-              </span>
+
+              {project.platforms && project.platforms.length > 0 && (
+                <div style="display:flex;gap:10px;font-size:1.1rem;color:var(--muted-text);">
+                  {project.platforms.map(p => (
+                    <span title={p.name}>
+                      <Icon name={resolveIcon(p.icon).name} size={18} color="currentColor" />
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
-
-            {project.platforms && project.platforms.length > 0 && (
-              <div style="display:flex;gap:10px;font-size:1.1rem;opacity:0.5;">
-                {project.platforms.map(p => (
-                  <span title={p.name}>
-                    <Icon name={resolveIcon(p.icon).name} size={18} color="currentColor" />
-                  </span>
-                ))}
-              </div>
-            )}
-          </div>
-        </a>
-      ))}
-    </div>
-  </section>
-</Page>
-
-<style>
-  .project-card:hover { transform: translateY(-4px); box-shadow: var(--card-shadow-hover); }
-</style>
+          </a>
+        ))}
+      </div>
+    </section>
+  </Page>

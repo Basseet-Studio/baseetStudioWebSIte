@@ -40,7 +40,10 @@ const visiblePlatforms = platforms.filter(p => realLink(p.name))
       <>
         <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:12px;color:var(--heading-text);">Coming Soon</h2>
         <p style="opacity:0.7;margin-bottom:24px;">Be the first to know when we launch. Join the waitlist for early access.</p>
-        <a href="/contact/" class="cta-btn cta-btn--primary" style="display:inline-block;padding:14px 32px;border-radius:50px;font-weight:600;text-decoration:none;background:var(--project-color, var(--color-primary));color:white;transition:transform 0.2s,box-shadow 0.2s;">
+        {/* P1 audit #14 — uses the global .cta-btn--primary class. The
+            background colour still comes from the per-project
+            --project-color token so the waitlist button matches the page. */}
+        <a href="/contact/" class="cta-btn--primary" style="background:var(--project-color, var(--color-primary));">
           Join the Waitlist
         </a>
       </>
@@ -50,7 +53,7 @@ const visiblePlatforms = platforms.filter(p => realLink(p.name))
       <>
         <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:12px;color:var(--heading-text);">Ready to Deliver</h2>
         <p style="opacity:0.7;margin-bottom:24px;">This product is ready for deployment. Contact us for early access or a personalized demo.</p>
-        <a href="/contact/" class="cta-btn cta-btn--primary" style="display:inline-block;padding:14px 32px;border-radius:50px;font-weight:600;text-decoration:none;background:var(--project-color, var(--color-primary));color:white;transition:transform 0.2s,box-shadow 0.2s;">
+        <a href="/contact/" class="cta-btn--primary" style="background:var(--project-color, var(--color-primary));">
           Request Early Access
         </a>
       </>
@@ -67,8 +70,8 @@ const visiblePlatforms = platforms.filter(p => realLink(p.name))
             return (
               <a
                 href={href}
-                class="cta-btn cta-btn--primary"
-                style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:50px;font-weight:600;text-decoration:none;background:var(--project-color, var(--color-primary));color:white;transition:transform 0.2s,box-shadow 0.2s;"
+                class="cta-btn--primary"
+                style="background:var(--project-color, var(--color-primary));"
               >
                 <Icon name={platformIcons[p.name] || 'arrow-square-out'} size={18} color="white" />
                 {platformLabels[p.name] || p.name}
@@ -95,7 +98,3 @@ const visiblePlatforms = platforms.filter(p => realLink(p.name))
     )}
   </div>
 </section>
-
-<style>
-  .cta-btn--primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
-</style>

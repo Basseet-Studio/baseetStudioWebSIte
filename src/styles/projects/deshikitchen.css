@@ -1,5 +1,5 @@
 /* DeshiKitchen — Restaurant Platform */
-:root {
-  --project-color: #EF4444;
-  --project-gradient: linear-gradient(135deg, #EF4444 0%, #F87171 100%);
-}
+/* Color & gradient come from deshikitchen.json (`color: #EF4444`). The
+ * `ProjectLayout` wrapper sets `--project-color` and `--project-gradient`
+ * inline, so this stylesheet stays empty of color overrides — the JSON
+ * is the single source of truth. */

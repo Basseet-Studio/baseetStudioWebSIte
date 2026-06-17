@@ -1,5 +1,5 @@
 /* MoneyBox — Digital Savings Platform */
-:root {
-  --project-color: #10B981;
-  --project-gradient: linear-gradient(135deg, #10B981 0%, #34D399 100%);
-}
+/* Color & gradient come from moneybox.json (`color: #10B981`). The
+ * `ProjectLayout` wrapper sets `--project-color` and `--project-gradient`
+ * inline, so this stylesheet stays empty of color overrides — the JSON
+ * is the single source of truth. */

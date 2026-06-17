@@ -1,0 +1,121 @@
+---
+// HeroCTA.astro — Shared pill button used in the hero of every project
+// page. Replaces the dozen copies of `onmouseover="this.style.transform..."`
+// scattered through every project page.
+//
+// Audit fixes baked in:
+// - P1 audit #14, #31 — the inline `onmouseover`/`onmouseout` JS hover was
+//   accessibility-negative (no touch, no reduced-motion respect, CSP
+//   unfriendly). All hover states are now CSS `:hover` rules that work on
+//   touch via the same active pseudo-class semantics, honor
+//   prefers-reduced-motion, and require no JS.
+// - P1 audit #11 — collapses another duplicated chunk of hero markup into
+//   one place. The variant prop covers the primary (gradient fill) and
+//   secondary (ghost outline) variants used in every hero.
+
+interface Props {
+  label: string
+  href: string
+  variant?: 'primary' | 'secondary'
+  /** Optional icon to render before the label (Phosphor name). */
+  icon?: string
+  /** Project gradient for the primary variant. */
+  gradient: string
+  /** Project accent color for the secondary variant border. */
+  accentColor: string
+  /** Icon size, in pixels. */
+  iconSize?: number
+}
+
+const {
+  label,
+  href,
+  variant = 'primary',
+  icon,
+  gradient,
+  accentColor,
+  iconSize = 18,
+} = Astro.props
+
+const className =
+  variant === 'primary' ? 'hero-cta hero-cta--primary' : 'hero-cta hero-cta--secondary'
+const styleAttr =
+  variant === 'primary'
+    ? `background:${gradient};`
+    : `border-color:color-mix(in srgb, ${accentColor} 25%, transparent);`
+---
+
+<a href={href} class={className} style={styleAttr}>
+  {
+    icon && (
+      <svg
+        width={iconSize}
+        height={iconSize}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <slot name="icon" />
+      </svg>
+    )
+  }
+  <span>{label}</span>
+</a>
+
+<style>
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 32px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.05rem;
+    text-decoration: none;
+    line-height: 1;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      border-color 0.2s ease;
+    cursor: pointer;
+  }
+  .hero-cta--primary {
+    color: white;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+  .hero-cta--primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+  }
+  .hero-cta--primary:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+  .hero-cta--secondary {
+    color: var(--heading-text);
+    background: transparent;
+    border: 2px solid;
+  }
+  .hero-cta--secondary:hover {
+    transform: translateY(-2px);
+    border-color: var(--heading-text);
+  }
+  .hero-cta--secondary:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+
+  /* Reduced motion: skip the lift transform. */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-cta {
+      transition: none;
+    }
+    .hero-cta:hover {
+      transform: none;
+    }
+  }
+</style>

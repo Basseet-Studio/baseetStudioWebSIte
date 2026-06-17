@@ -5,6 +5,7 @@ import ProjectCTA from '../../components/project/ProjectCTA.astro'
 import ProjectFeatureCard from '../../components/project/ProjectFeatureCard.astro'
 import ProjectTestimonial from '../../components/project/ProjectTestimonial.astro'
 import ProjectFAQ from '../../components/project/ProjectFAQ.astro'
+import GradientCTA from '../../components/project/GradientCTA.astro'
 import Icon from '../../components/icons/Icon.astro'
 import { resolveIcon } from '../../components/icons/iconMappings'
 import { getProject } from '../../lib/projects'
@@ -23,29 +24,28 @@ if (!project) return Astro.redirect('/404')
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/src/styles/projects/chopshop.css" />
 
-  <!-- Hero: The coloured background wash now lives in shared.css
-       (`.project-hero-wash`) so it is theme-aware and fades out gradually
-       as the user scrolls, instead of cutting off sharply at the bottom
-       of the hero. The hero itself is transparent so the wash shows
-       through. -->
-  <section class="project-hero" style="padding:140px 24px 80px;position:relative;overflow:hidden;text-align:center;">
-    <!-- Product tag decorations -->
-    <div style={`position:absolute;top:10%;right:5%;opacity:0.08;transform:rotate(15deg);font-size:8rem;color:${project.color};pointer-events:none;`}>
-      <Icon name="tag" size={128} color={project.color} />
+  <!-- Hero. P3 audit #17 — the old `tag` decoration was unrelated to the
+       product (ChopShop is e-commerce). Replaced with shopping-bag and
+       storefront icons that reinforce the brand. P3 audit #18 + #32 —
+       the hero uses the responsive `.project-hero--centered` class which
+       collapses padding to ~96px on phones so the title lands in the
+       first viewport instead of below the fold. The coloured background
+       wash (`.project-hero-wash`) lives in shared.css and is theme-aware. -->
+  <section class="project-hero project-hero--centered">
+    <div style={`position:absolute;top:10%;right:5%;opacity:0.08;transform:rotate(15deg);color:${project.color};pointer-events:none;`}>
+      <Icon name="shopping-bag" size={120} color={project.color} />
     </div>
-    <div style={`position:absolute;bottom:15%;left:8%;opacity:0.06;transform:rotate(-10deg);font-size:6rem;color:${project.color};pointer-events:none;`}>
-      <Icon name="truck" size={96} color={project.color} />
+    <div style={`position:absolute;bottom:15%;left:8%;opacity:0.06;transform:rotate(-10deg);color:${project.color};pointer-events:none;`}>
+      <Icon name="storefront" size={96} color={project.color} />
     </div>
 
     <div style="max-width:800px;margin:0 auto;position:relative;z-index:1;">
-      <!-- Shopping bag icon -->
       <div style="display:flex;justify-content:center;margin-bottom:28px;" data-animate="fade-up">
         <div style={`width:96px;height:96px;border-radius:24px;background:${project.gradient};display:flex;align-items:center;justify-content:center;box-shadow:0 12px 40px -10px color-mix(in srgb, ${project.color} 30%, transparent);`}>
           <Icon name={resolveIcon(project.iconClass).name} size={40} color="white" />
         </div>
       </div>
 
-      <!-- Name + Tagline -->
       <h1 style="font-size:3.2rem;font-weight:700;color:var(--heading-text);font-family:'Outfit',sans-serif;margin-bottom:8px;letter-spacing:-0.02em;" data-animate="fade-up">
         {project.name}
       </h1>
@@ -53,7 +53,6 @@ if (!project) return Astro.redirect('/404')
         {project.tagline}
       </p>
 
-      <!-- Status Badge -->
       <div style="margin-bottom:28px;" data-animate="fade-up">
         <span style={`display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);font-family:'DM Sans',sans-serif;`}>
           <Icon name="check-circle" size={16} color={project.color} />
@@ -61,7 +60,6 @@ if (!project) return Astro.redirect('/404')
         </span>
       </div>
 
-      <!-- Title + Subtitle -->
       <h2 style="font-size:2rem;font-weight:700;color:var(--heading-text);margin-bottom:20px;line-height:1.3;font-family:'Outfit',sans-serif;" data-animate="fade-up">
         {project.hero.title}
       </h2>
@@ -69,19 +67,22 @@ if (!project) return Astro.redirect('/404')
         {project.hero.subtitle}
       </p>
 
-      <!-- CTA Buttons -->
+      <!-- CTA Buttons. P1 audit #14 — uses the global `.cta-btn--primary` /
+           `.cta-btn--secondary` classes (defined in global.css) instead of
+           inline `onmouseover` JS. CSS hover works on touch, honors
+           prefers-reduced-motion, and is CSP-friendly. -->
       <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" data-animate="fade-up">
         {project.hero.cta_primary && (
           <a href={project.hero.cta_primary_link || '/contact/'}
-            style={`display:inline-flex;align-items:center;gap:8px;padding:16px 32px;border-radius:50px;font-weight:600;text-decoration:none;background:${project.gradient};color:white;transition:transform 0.2s,box-shadow 0.2s;font-size:1.05rem;font-family:'Outfit',sans-serif;`}
-            onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+            class="cta-btn--primary"
+            style={`background:${project.gradient};`}>
             {project.hero.cta_primary}
           </a>
         )}
         {project.hero.cta_secondary && (
           <a href={project.hero.cta_secondary_link || '#features'}
-            style={`display:inline-flex;align-items:center;gap:8px;padding:16px 32px;border-radius:50px;font-weight:600;text-decoration:none;border:2px solid color-mix(in srgb, ${project.color} 20%, transparent);color:var(--heading-text);transition:transform 0.2s;font-size:1.05rem;font-family:'DM Sans',sans-serif;`}
-            onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+            class="cta-btn--secondary"
+            style={`border-color:color-mix(in srgb, ${project.color} 25%, transparent);`}>
             {project.hero.cta_secondary}
           </a>
         )}
@@ -141,27 +142,17 @@ if (!project) return Astro.redirect('/404')
     </section>
   )}
 
-  <!-- Gradient CTA -->
-  <section style="padding:80px 24px;">
-    <div style={`max-width:1000px;margin:0 auto;position:relative;border-radius:32px;overflow:hidden;padding:64px 48px;text-align:center;color:white;background:${project.gradient};`}>
-      <div style="position:absolute;inset:0;background:rgba(0,0,0,0.1);"></div>
-      <div style={`position:absolute;top:-80px;right:-80px;width:300px;height:300px;background:white;opacity:0.1;border-radius:50%;filter:blur(60px);`}></div>
-      <div style={`position:absolute;bottom:-60px;left:-60px;width:200px;height:200px;background:white;opacity:0.1;border-radius:50%;filter:blur(40px);`}></div>
-      <div style="position:relative;z-index:1;">
-        <h2 style="font-size:2.5rem;font-weight:700;margin-bottom:16px;font-family:'Outfit',sans-serif;">
-          {/* TODO: localise this later */ `Interested in ${project.name}?`}
-        </h2>
-        <p style="font-size:1.2rem;opacity:0.9;margin-bottom:32px;max-width:600px;margin-left:auto;margin-right:auto;font-family:'DM Sans',sans-serif;">
-          {/* TODO: localise this later */ 'Get in touch and we will help you get started.'}
-        </p>
-        <a href={'/contact/'}
-          style={`display:inline-flex;align-items:center;gap:8px;background:white;color:${project.color};padding:16px 32px;border-radius:50px;font-weight:700;text-decoration:none;font-size:1.05rem;transition:transform 0.2s;`}
-          onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
-          {/* TODO: localise this later */ 'Get in Touch'}
-        </a>
-      </div>
-    </div>
-  </section>
+  <!-- Gradient CTA. P1 audit #11, #15, #20 — was a copy-pasted block; now
+       uses the shared <GradientCTA> component. -->
+  <GradientCTA
+    title={`Interested in ${project.name}?`}
+    body="Get in touch and we will help you get started."
+    ctaLabel="Get in Touch"
+    ctaHref="/contact/"
+    gradient={project.gradient}
+    accentColor={project.color}
+    lang={lang}
+  />
 
   <ProjectCTA status={project.status} platforms={project.platforms || []} links={project.links} lang={lang} />
 </ProjectLayout>

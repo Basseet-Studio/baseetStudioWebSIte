@@ -1,43 +1,48 @@
 /* Zaryn — All-In-One Business Management */
-/* Bento grid layout, dashboard mockup, bento cards */
-
-:root {
-  --project-color: #F97316;
-  --project-gradient: linear-gradient(135deg, #F97316 0%, #FB923C 100%);
-}
+/* Color & gradient come from zaryn.json (`color: #F97316`). The
+ * `ProjectLayout` wrapper sets `--project-color` and `--project-gradient`
+ * inline, so this stylesheet stays empty of color overrides — the JSON
+ * is the single source of truth (see audit fix #33 for the original
+ * font-weights mismatch).
+ *
+ * The bento grid and bento card rules are scoped to zaryn only because
+ * the bento layout is unique to zaryn (every other project page uses the
+ * shared ProjectFeatureCard component). */
 
 /* Bento Grid */
 .bento-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
 }
 
 .bento-card {
-  background: var(--card-bg);
-  border-radius: 24px;
-  padding: 28px;
-  box-shadow: var(--card-shadow);
-  border: 1px solid var(--card-border);
-  transition: transform 0.3s, box-shadow 0.3s;
+    background: var(--card-bg);
+    border-radius: 24px;
+    padding: 28px;
+    box-shadow: var(--card-shadow);
+    border: 1px solid var(--card-border);
+    transition:
+        transform 0.3s,
+        box-shadow 0.3s;
 }
 
 .bento-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--card-shadow-hover);
+    transform: translateY(-4px);
+    box-shadow: var(--card-shadow-hover);
 }
 
 .bento-large {
-  grid-column: span 2;
-  grid-row: span 2;
+    grid-column: span 2;
+    grid-row: span 2;
 }
 
 @media (max-width: 768px) {
-  .bento-grid {
-    grid-template-columns: 1fr;
-  }
-  .bento-large {
-    grid-column: span 1;
-    grid-row: span 1;
-  }
+    .bento-grid {
+        grid-template-columns: 1fr;
+    }
+    .bento-large {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
 }

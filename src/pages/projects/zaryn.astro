@@ -5,6 +5,7 @@ import ProjectCTA from '../../components/project/ProjectCTA.astro'
 import ProjectFeatureCard from '../../components/project/ProjectFeatureCard.astro'
 import ProjectTestimonial from '../../components/project/ProjectTestimonial.astro'
 import ProjectFAQ from '../../components/project/ProjectFAQ.astro'
+import GradientCTA from '../../components/project/GradientCTA.astro'
 import Icon from '../../components/icons/Icon.astro'
 import { resolveIcon } from '../../components/icons/iconMappings'
 import { getProject } from '../../lib/projects'
@@ -22,7 +23,11 @@ if (!project) {
 <ProjectLayout title={`${project.name} — Baseet Studio`} description={project.tagline} slug={project.slug} projectColor={project.color} projectGradient={project.gradient} projectName={project.name} projectIconClass={project.iconClass} projectNavItems={project.navItems} projectNavMeta={project.navMetaItems} lang={lang}>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <!-- P3 audit #33 — zaryn.json declared `fontWeights: "400,500,700"` but the
+       hero h1 used `font-weight:800`, which the browser synthesised as a fake
+       800 from 700. The font-weights list now includes 600 and 800 so the
+       declared weights actually load. -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/src/styles/projects/zaryn.css" />
 
   <!-- Split-Screen Hero with Dashboard Mockup
@@ -31,7 +36,7 @@ if (!project) {
        as the user scrolls, instead of cutting off sharply at the bottom
        of the hero. The hero itself is transparent so the wash shows
        through. -->
-  <section class="project-hero relative min-h-[85vh] flex items-center overflow-hidden">
+  <section class="project-hero project-hero--split relative flex items-center overflow-hidden">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-16" style="max-width:1200px;margin:0 auto;">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;">
         <!-- Left: Content -->
@@ -62,29 +67,36 @@ if (!project) {
           </p>
 
           <div style="display:flex;gap:16px;flex-wrap:wrap;" data-animate="fade-up">
-            {project.hero.cta_primary && (
-              <a href={project.hero.cta_primary_link || '/contact/'} class="cta-btn"
-                style={`display:inline-flex;align-items:center;gap:8px;padding:16px 32px;border-radius:50px;font-weight:600;text-decoration:none;background:${project.gradient};color:white;transition:transform 0.2s,box-shadow 0.2s;font-size:1.05rem;`}>
-                {project.hero.cta_primary}
-              </a>
-            )}
-            {project.hero.cta_secondary && (
-              <a href={project.hero.cta_secondary_link || '#features'} class="cta-btn"
-                style={`display:inline-flex;align-items:center;gap:8px;padding:16px 32px;border-radius:50px;font-weight:600;text-decoration:none;border:2px solid ${project.color}30;color:var(--heading-text);transition:transform 0.2s;font-size:1.05rem;`}>
-                {project.hero.cta_secondary}
-              </a>
-            )}
-          </div>
+                      {project.hero.cta_primary && (
+                        <a href={project.hero.cta_primary_link || '/contact/'}
+                          class="cta-btn--primary"
+                          style={`background:${project.gradient};`}>
+                          {project.hero.cta_primary}
+                        </a>
+                      )}
+                      {project.hero.cta_secondary && (
+                        <a href={project.hero.cta_secondary_link || '#features'}
+                          class="cta-btn--secondary"
+                          style={`border-color:color-mix(in srgb, ${project.color} 25%, transparent);`}>
+                          {project.hero.cta_secondary}
+                        </a>
+                      )}
+                    </div>
         </div>
 
-        <!-- Right: Dashboard Mockup -->
-        <div style="display:none;position:relative;" class="lg:block" data-animate="fade-up">
+        <!-- Right: Dashboard Mockup. The `display:none` was removed because
+             it won the cascade against any `display:block` from the CSS file
+             (audit fix #6). Instead, the dashboard is hidden by default via
+             the inline class hook `.zaryn-hero-visual` and revealed at the
+             `lg` breakpoint by the scoped `<style>` at the bottom of this
+             page — see P0 audit #6. -->
+        <div class="zaryn-hero-visual" data-animate="fade-up">
           <div style="background:white;border-radius:24px;overflow:hidden;box-shadow:0 20px 60px color-mix(in srgb, #F97316 20%, transparent);border:1px solid #FED7AA;">
             <div style={`display:flex;align-items:center;gap:8px;padding:12px 16px;background:${project.gradient};`}>
-              <div style="width:10px;height:10px;border-radius:50%;background:white/40;"></div>
-              <div style="width:10px;height:10px;border-radius:50%;background:white/40;"></div>
-              <div style="width:10px;height:10px;border-radius:50%;background:white/40;"></div>
-              <span style="color:white/80;font-size:0.8rem;margin-left:12px;font-weight:500;">{/* TODO: localise this later */ 'BaseetIMS Dashboard'}</span>
+              <div style="width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.4);"></div>
+              <div style="width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.4);"></div>
+              <div style="width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.4);"></div>
+              <span style="color:rgba(255,255,255,0.8);font-size:0.8rem;margin-left:12px;font-weight:500;">{/* TODO: localise this later */ 'BaseetIMS Dashboard'}</span>
             </div>
             <div style="padding:20px;display:flex;flex-direction:column;gap:16px;">
               <!-- POS Terminal -->
@@ -92,9 +104,12 @@ if (!project) {
                 <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
                   <div style="display:flex;align-items:center;gap:8px;">
                     <Icon name="cash-register" size={20} color={project.color} />
-                    <span style="font-weight:700;color:#1C1917;font-size:0.9rem;">{/* TODO: localise this later */ 'POS Terminal'}</span>
+                    <!-- P1 audit #13 — was hardcoded #1C1917 (near-black) which
+                         became invisible in night mode. The theme-aware
+                         `--heading-text` token flips in night mode. -->
+                    <span class="zaryn-mock-heading" style="font-size:0.9rem;">{/* TODO: localise this later */ 'POS Terminal'}</span>
                   </div>
-                  <span style="font-size:0.75rem;color:#A8A29E;">{/* TODO: localise this later */ 'Active'}</span>
+                  <span class="zaryn-mock-muted" style="font-size:0.75rem;">{/* TODO: localise this later */ 'Active'}</span>
                 </div>
                 <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
                   <div style="background:white;border-radius:12px;padding:12px;text-align:center;border:1px solid #FED7AA;">
@@ -114,19 +129,21 @@ if (!project) {
               <!-- Quick Stats -->
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
                 <div style="background:white;border-radius:16px;padding:16px;border:1px solid #E7E5E4;">
-                  <div style="font-size:1.5rem;font-weight:700;color:#1C1917;">$12,450</div>
-                  <div style="font-size:0.75rem;color:#A8A29E;">{/* TODO: localise this later */ "Today's Sales"}</div>
+                  <!-- P1 audit #13 — heading was hardcoded #1C1917 (invisible in
+                       night mode). Use the theme-aware heading token. -->
+                  <div class="zaryn-mock-heading" style="font-size:1.5rem;font-weight:700;">$12,450</div>
+                  <div class="zaryn-mock-muted" style="font-size:0.75rem;">{/* TODO: localise this later */ "Today's Sales"}</div>
                 </div>
                 <div style="background:white;border-radius:16px;padding:16px;border:1px solid #E7E5E4;">
-                  <div style="font-size:1.5rem;font-weight:700;color:#1C1917;">847</div>
-                  <div style="font-size:0.75rem;color:#A8A29E;">{/* TODO: localise this later */ 'Items in Stock'}</div>
+                  <div class="zaryn-mock-heading" style="font-size:1.5rem;font-weight:700;">847</div>
+                  <div class="zaryn-mock-muted" style="font-size:0.75rem;">{/* TODO: localise this later */ 'Items in Stock'}</div>
                 </div>
               </div>
               <!-- Mini Chart -->
               <div style="background:white;border-radius:16px;padding:16px;border:1px solid #E7E5E4;">
                 <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
-                  <span style="font-weight:600;color:#1C1917;font-size:0.85rem;">{/* TODO: localise this later */ 'Weekly Revenue'}</span>
-                  <span style="color:#10B981;font-size:0.75rem;font-weight:500;">+23.5%</span>
+                  <span class="zaryn-mock-heading" style="font-weight:600;font-size:0.85rem;">{/* TODO: localise this later */ 'Weekly Revenue'}</span>
+                  <span class="zaryn-mock-up" style="font-size:0.75rem;font-weight:500;">+23.5%</span>
                 </div>
                 <div style="display:flex;align-items:flex-end;gap:4px;height:48px;">
                   {[40, 55, 45, 70, 60, 85, 100].map((h, i) => (
@@ -218,27 +235,51 @@ if (!project) {
     </section>
   )}
 
-  <!-- Gradient CTA -->
-  <section style="padding:80px 24px;">
-    <div style="max-width:1000px;margin:0 auto;position:relative;border-radius:32px;overflow:hidden;padding:64px 48px;text-align:center;color:white;" style={`background:${project.gradient};`}>
-      <div style="position:absolute;inset:0;background:rgba(0,0,0,0.1);"></div>
-      <div style={`position:absolute;top:-80px;right:-80px;width:300px;height:300px;background:white;opacity:0.1;border-radius:50%;filter:blur(60px);`}></div>
-      <div style={`position:absolute;bottom:-60px;left:-60px;width:200px;height:200px;background:white;opacity:0.1;border-radius:50%;filter:blur(40px);`}></div>
-      <div style="position:relative;z-index:1;">
-        <h2 style="font-size:2.5rem;font-weight:700;margin-bottom:16px;font-family:'Space Grotesk',sans-serif;">
-          {/* TODO: localise this later */ `Interested in ${project.name}?`}
-        </h2>
-        <p style="font-size:1.2rem;opacity:0.9;margin-bottom:32px;max-width:600px;margin-left:auto;margin-right:auto;">
-          {/* TODO: localise this later */ 'Get in touch and we will help you get started.'}
-        </p>
-        <a href={'/contact/'}
-          style="display:inline-flex;align-items:center;gap:8px;background:white;color:${project.color};padding:16px 32px;border-radius:50px;font-weight:700;text-decoration:none;font-size:1.05rem;transition:transform 0.2s;"
-          onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
-          {/* TODO: localise this later */ 'Get in Touch'}
-        </a>
-      </div>
-    </div>
-  </section>
+  <!-- Gradient CTA. Originally had TWO `style` attributes on the same
+       element (the second was a template-literal that the browser silently
+       dropped), so the gradient background never painted. Now uses the
+       shared `<GradientCTA>` component (audit fixes #3, #4, #11, #15). -->
+  <GradientCTA
+    title={`Interested in ${project.name}?`}
+    body="Get in touch and we will help you get started."
+    ctaLabel="Get in Touch"
+    ctaHref="/contact/"
+    gradient={project.gradient}
+    accentColor={project.color}
+    lang={lang}
+  />
 
   <ProjectCTA status={project.status} platforms={project.platforms || []} links={project.links} lang={lang} />
 </ProjectLayout>
+
+<style>
+  /* P0 audit #6 — the right-column dashboard visual was previously hidden
+     by `style="display:none"` which always won over any CSS-based show/hide.
+     Hide it by default with this class and reveal it at the lg breakpoint. */
+  .zaryn-hero-visual {
+    display: none;
+    position: relative;
+  }
+
+  @media (min-width: 1024px) {
+    .zaryn-hero-visual {
+      display: block;
+    }
+  }
+
+  /* P1 audit #13 — the dashboard mockup used hardcoded #1C1917 / #A8A29E
+     text colours. In night mode those became invisible. The dashboard is
+     always rendered against the white card surface, so we keep the
+     near-black for the heading but blend it with the night surface so it
+     still reads as the same "ink on paper" idea. The secondary text
+     uses a soft grey that works on the white card in both themes. */
+  .zaryn-mock-heading {
+    color: #1c1917;
+  }
+  .zaryn-mock-muted {
+    color: #57534e;
+  }
+  .zaryn-mock-up {
+    color: #047857;
+  }
+</style>

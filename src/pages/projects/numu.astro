@@ -19,8 +19,12 @@ if (!project) return Astro.redirect('/404')
 
 <ProjectLayout title={`${project.name} — Baseet Studio`} description={project.tagline} slug={project.slug} projectColor={project.color} projectGradient={project.gradient} projectName={project.name} projectIconClass={project.iconClass} projectNavItems={project.navItems} projectNavMeta={project.navMetaItems} lang={lang}>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&family=Nunito:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- P3 audit #33 — the h1 below used font-weight:800 but Quicksand was
+         loaded with only 600+700. The browser synthesised a fake 800 from
+         700. 800 is now in the weights list so the declared weight actually
+         loads. -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700;800&family=Nunito:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/src/styles/projects/numu.css" />
 
   <!-- Centered Hero with Floating Icons.
@@ -31,20 +35,23 @@ if (!project) return Astro.redirect('/404')
        ended in a hard line at the hero boundary — now the wash is the
        only colour layer, so the transition into the gallery is a smooth
        gradient instead of a cut. -->
-  <section class="project-hero relative min-h-[80vh] flex items-center overflow-hidden">
-    <!-- Floating habit icons -->
-    <div class="floating-icon" style={`top:15%;left:10%;font-size:3rem;color:${project.color};`}>
-      <Icon name="fire" size={48} color={project.color} />
-    </div>
-    <div class="floating-icon" style={`top:35%;right:12%;font-size:2.5rem;color:${project.color};`}>
-      <Icon name="check-circle" size={40} color={project.color} />
-    </div>
-    <div class="floating-icon" style={`bottom:25%;left:18%;font-size:3.5rem;color:${project.color};`}>
-      <Icon name="chart-bar" size={52} color={project.color} />
-    </div>
-    <div class="floating-icon" style={`bottom:15%;right:10%;font-size:2.5rem;color:${project.color};`}>
-      <Icon name="bell" size={40} color={project.color} />
-    </div>
+  <section class="project-hero project-hero--centered relative flex items-center overflow-hidden">
+    <!-- Floating habit icons. P3 audit #39 — the inline `font-size` on the
+             wrapper did nothing because `<Icon size={...}>` is a fixed pixel
+             size on the SVG. Removed; position + colour is all the wrapper
+             needs to do. -->
+        <div class="floating-icon" style={`top:15%;left:10%;color:${project.color};`}>
+          <Icon name="fire" size={48} color={project.color} />
+        </div>
+        <div class="floating-icon" style={`top:35%;right:12%;color:${project.color};`}>
+          <Icon name="check-circle" size={40} color={project.color} />
+        </div>
+        <div class="floating-icon" style={`bottom:25%;left:18%;color:${project.color};`}>
+          <Icon name="chart-bar" size={52} color={project.color} />
+        </div>
+        <div class="floating-icon" style={`bottom:15%;right:10%;color:${project.color};`}>
+          <Icon name="bell" size={40} color={project.color} />
+        </div>
 
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-16" style="max-width:1200px;margin:0 auto;">
       <div style="max-width:700px;margin:0 auto;text-align:center;">
@@ -54,7 +61,7 @@ if (!project) return Astro.redirect('/404')
           </div>
         </div>
 
-        <h1 style="font-size:2.8rem;font-weight:800;color:var(--heading-text);margin-bottom:8px;font-family:'Quicksand',sans-serif;" data-animate="fade-up">
+        <h1 style="font-size:2.8rem;font-weight:800;color:var(--heading-text);margin-bottom:8px;font-family:'Quicksand',sans-serif;letter-spacing:-0.02em;" data-animate="fade-up">
           {project.name}
         </h1>
         <p style={`font-size:1.3rem;font-weight:600;color:${project.color};margin-bottom:20px;`} data-animate="fade-up">
@@ -71,24 +78,28 @@ if (!project) return Astro.redirect('/404')
         <h2 style="font-size:1.8rem;font-weight:700;color:var(--heading-text);margin-bottom:20px;line-height:1.3;" data-animate="fade-up">
           {project.hero.title}
         </h2>
-        <p style="font-size:1.1rem;opacity:0.7;margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto;line-height:1.7;" data-animate="fade-up">
+        <p style="font-size:1.1rem;color:var(--muted-text);margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto;line-height:1.7;" data-animate="fade-up">
           {project.hero.subtitle}
         </p>
 
-        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" data-animate="fade-up">
-          {project.hero.cta_primary && (
-            <a href={project.hero.cta_primary_link || '/contact/'}
-              style={`display:inline-flex;align-items:center;gap:8px;padding:16px 32px;border-radius:50px;font-weight:700;text-decoration:none;background:${project.gradient};color:white;transition:transform 0.2s,box-shadow 0.2s;font-size:1.05rem;font-family:'Quicksand',sans-serif;`}>
-              {project.hero.cta_primary}
-            </a>
-          )}
-          {project.hero.cta_secondary && (
-            <a href={project.hero.cta_secondary_link || '#features'}
-              style={`display:inline-flex;align-items:center;gap:8px;padding:16px 32px;border-radius:50px;font-weight:600;text-decoration:none;border:2px solid color-mix(in srgb, ${project.color} 30%, transparent);color:var(--heading-text);transition:transform 0.2s;font-size:1.05rem;`}>
-              {project.hero.cta_secondary}
-            </a>
-          )}
-        </div>
+        <!-- CTA Buttons. P1 audit #14 — uses the global `.cta-btn--primary` /
+                       `.cta-btn--secondary` classes instead of inline `onmouseover`. -->
+                  <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" data-animate="fade-up">
+                    {project.hero.cta_primary && (
+                      <a href={project.hero.cta_primary_link || '/contact/'}
+                        class="cta-btn--primary"
+                        style={`background:${project.gradient};`}>
+                        {project.hero.cta_primary}
+                      </a>
+                    )}
+                    {project.hero.cta_secondary && (
+                      <a href={project.hero.cta_secondary_link || '#features'}
+                        class="cta-btn--secondary"
+                        style={`border-color:color-mix(in srgb, ${project.color} 30%, transparent);`}>
+                        {project.hero.cta_secondary}
+                      </a>
+                    )}
+                  </div>
       </div>
     </div>
   </section>
@@ -123,7 +134,7 @@ if (!project) return Astro.redirect('/404')
                 <Icon name={resolveIcon(feature.icon).name} size={24} color="white" />
               </div>
               <h3 style="font-size:1.15rem;font-weight:700;margin-bottom:8px;color:var(--heading-text);">{feature.title}</h3>
-              <p style="font-size:0.9rem;opacity:0.7;line-height:1.6;">{feature.description}</p>
+              <p style="font-size:0.9rem;color:var(--muted-text);line-height:1.6;">{feature.description}</p>
             </div>
           ))}
         </div>

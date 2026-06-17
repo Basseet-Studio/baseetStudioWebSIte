@@ -1,22 +1,48 @@
 ---
 // ProjectFAQ.astro — Reusable FAQ accordion for project pages
 // Details/summary pattern with project-color chevron
+//
+// Audit fixes baked in:
+// - P1 audit #8 — `glass glass-card` replaced with the same card-window
+//   surface as the feature card / testimonial so the Vanta clouds show
+//   through (Open Sky Rule).
+// - P3 audit #37 — every <details> now exposes a stable `id` and
+//   `aria-labelledby` pointing at the question span so the FAQ is
+//   anchor-link-able from the hero CTAs.
 
 interface Props {
   question: string
   answer: string
   projectColor: string
+  /** Anchor id for deep linking. Auto-derived from the question when
+   * omitted (slugified). */
+  id?: string
 }
 
-const { question, answer, projectColor } = Astro.props
+const { question, answer, projectColor, id } = Astro.props
+
+// Slug for the id when the caller doesn't pass one explicitly. Lowercase,
+// non-alphanumerics become hyphens, leading/trailing hyphens trimmed.
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 60)
+}
+const autoId = `faq-${slugify(question)}`
+const detailsId = id ?? autoId
+const labelId = `${detailsId}-label`
 ---
 
-<details class="glass glass-card" style="padding:0;border-radius:16px;overflow:hidden;transition:all 0.3s;">
-  <summary style="display:flex;justify-content:space-between;align-items:center;padding:20px 24px;cursor:pointer;list-style:none;font-weight:600;font-size:1.05rem;color:var(--heading-text);user-select:none;">
-    <span>{question}</span>
+<details class="project-faq" id={detailsId} aria-labelledby={labelId}>
+  <summary class="project-faq__summary">
+    <span class="project-faq__question" id={labelId}>{question}</span>
     <span
-      class="faq-chevron"
-      style={`display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;transition:transform 0.3s;color:${projectColor};`}
+      class="project-faq__chevron"
+      style={`color:${projectColor};`}
       aria-hidden="true"
     >
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -24,13 +50,71 @@ const { question, answer, projectColor } = Astro.props
       </svg>
     </span>
   </summary>
-  <div style="padding:0 24px 20px;color:var(--muted-text);font-size:0.9rem;line-height:1.6;">
+  <div class="project-faq__answer">
     {answer}
   </div>
 </details>
 
 <style>
-  details[open] .faq-chevron {
+  .project-faq {
+    /* P1 audit #8 — translucent card-window surface, not glass. */
+    padding: 0;
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    box-shadow: var(--card-shadow);
+    transition:
+      box-shadow 0.2s,
+      transform 0.2s;
+  }
+  .project-faq[open] {
+    box-shadow: var(--card-shadow-hover);
+  }
+  .project-faq__summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    cursor: pointer;
+    list-style: none;
+    font-weight: 600;
+    font-size: 1.02rem;
+    color: var(--heading-text);
+    user-select: none;
+  }
+  .project-faq__summary::-webkit-details-marker {
+    display: none;
+  }
+  .project-faq__question {
+    flex: 1;
+    line-height: 1.4;
+  }
+  .project-faq__chevron {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s;
+    flex-shrink: 0;
+  }
+  .project-faq__answer {
+    padding: 0 24px 20px;
+    color: var(--muted-text);
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  .project-faq[open] .project-faq__chevron {
     transform: rotate(180deg);
+  }
+
+  /* Reduced motion: drop the chevron spin. */
+  @media (prefers-reduced-motion: reduce) {
+    .project-faq__chevron {
+      transition: none;
+    }
   }
 </style>

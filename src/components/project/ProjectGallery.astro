@@ -5,9 +5,21 @@ interface Props {
   projectSlug: string
   projectColor: string
   projectName?: string
+  /** Override the section title. Defaults to "Screenshots". */
+  title?: string
 }
 
-const { screenshots, galleryType, projectSlug, projectColor, projectName } = Astro.props
+const {
+  screenshots,
+  galleryType,
+  projectSlug,
+  projectColor,
+  projectName,
+  // P3 audit #38 — "Screenshots" was a hardcoded English string without the
+  // TODO marker the rest of the project pages use. Now configurable so
+  // the section title can be swapped when the i18n work lands.
+  title = 'Screenshots',
+} = Astro.props
 const isWeb = galleryType === 'web'
 
 // Pulled from project data via the `projectName` prop. Fallback to the slug
@@ -17,7 +29,7 @@ const displayName = projectName || projectSlug
 
 <section id="gallery" style="padding:64px 24px;max-width:1200px;margin:0 auto;" data-animate="fade-up">
   <h2 style="text-align:center;font-size:2rem;margin-bottom:48px;color:var(--heading-text);">
-    Screenshots
+    {/* TODO: localise this later */ title}
   </h2>
   <div class={`project-gallery project-gallery--${galleryType}`}>
     {screenshots.map((src, i) => (

@@ -1,5 +1,6 @@
 /* ChopShop — E-Commerce Platform */
-:root {
-  --project-color: #F59E0B;
-  --project-gradient: linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%);
-}
+/* Color & gradient come from chopshop.json (`color: #E11D48`). The
+ * `ProjectLayout` wrapper sets `--project-color` and `--project-gradient`
+ * inline, so this stylesheet stays empty of color overrides — the JSON
+ * is the single source of truth (see audit fix #1).
+ */

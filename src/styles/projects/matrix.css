@@ -1,5 +1,5 @@
 /* Matrix — Futuristic Project Platform */
-:root {
-  --project-color: #06B6D4;
-  --project-gradient: linear-gradient(135deg, #06B6D4 0%, #22D3EE 100%);
-}
+/* Color & gradient come from matrix.json (`color: #06B6D4`). The
+ * `ProjectLayout` wrapper sets `--project-color` and `--project-gradient`
+ * inline, so this stylesheet stays empty of color overrides — the JSON
+ * is the single source of truth. */

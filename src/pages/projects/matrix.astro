@@ -5,6 +5,7 @@ import ProjectCTA from '../../components/project/ProjectCTA.astro'
 import ProjectFeatureCard from '../../components/project/ProjectFeatureCard.astro'
 import ProjectTestimonial from '../../components/project/ProjectTestimonial.astro'
 import ProjectFAQ from '../../components/project/ProjectFAQ.astro'
+import GradientCTA from '../../components/project/GradientCTA.astro'
 import Icon from '../../components/icons/Icon.astro'
 import { resolveIcon } from '../../components/icons/iconMappings'
 import { getProject } from '../../lib/projects'
@@ -20,27 +21,23 @@ if (!project) return Astro.redirect('/404')
 <ProjectLayout title={`${project.name} — Baseet Studio`} description={project.tagline} slug={project.slug} projectColor={project.color} projectGradient={project.gradient} projectName={project.name} projectIconClass={project.iconClass} projectNavItems={project.navItems} projectNavMeta={project.navMetaItems} lang={lang}>
   <link rel="stylesheet" href="/src/styles/projects/matrix.css" />
 
-  <!-- Hero: The coloured background wash now lives in shared.css
-       (`.project-hero-wash`) so it is theme-aware and fades out gradually
-       as the user scrolls, instead of cutting off sharply at the bottom
-       of the hero. The dark-neon aesthetic of Matrix is preserved through
-       the grid overlay, glow orbs, and the neon shadow stack on the icon
-       and CTAs — those still render the same in both modes. -->
-  <section class="project-hero" style="padding:140px 24px 80px;position:relative;overflow:hidden;text-align:center;">
-    <!-- Grid overlay -->
+  <!-- Hero. P3 audit #18 + #32 — uses the responsive
+       `.project-hero--centered` class (96px mobile padding, 140px
+       desktop). The coloured background wash is theme-aware via
+       `.project-hero-wash` in shared.css. Matrix keeps its dark-neon
+       aesthetic through the grid overlay, glow orb, and shadow stack
+       on the icon — those still render the same in both modes. -->
+  <section class="project-hero project-hero--centered">
     <div style="position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px, rgba(255,255,255,0.06) 1px, transparent 0);background-size:40px 40px;opacity:0.6;"></div>
-    <!-- Glow orbs -->
     <div style={`position:absolute;top:-20%;left:50%;transform:translateX(-50%);width:600px;height:600px;border-radius:50%;background:radial-gradient(circle, color-mix(in srgb, ${project.color} 15%, transparent) 0%, transparent 70%);filter:blur(60px);pointer-events:none;`}></div>
 
     <div style="max-width:800px;margin:0 auto;position:relative;z-index:1;">
-      <!-- Icon with glow -->
       <div style="display:flex;justify-content:center;margin-bottom:28px;" data-animate="fade-up">
         <div style={`width:96px;height:96px;border-radius:24px;background:${project.gradient};display:flex;align-items:center;justify-content:center;box-shadow:0 0 40px color-mix(in srgb, ${project.color} 40%, transparent), 0 0 80px color-mix(in srgb, ${project.color} 20%, transparent), 0 8px 32px rgba(0,0,0,0.4);position:relative;`}>
           <Icon name={resolveIcon(project.iconClass).name} size={40} color="white" />
         </div>
       </div>
 
-      <!-- Name + Tagline -->
       <h1 style="font-size:3.2rem;font-weight:700;color:var(--heading-text);margin-bottom:8px;letter-spacing:-0.02em;" data-animate="fade-up">
         {project.name}
       </h1>
@@ -48,7 +45,6 @@ if (!project) return Astro.redirect('/404')
         {project.tagline}
       </p>
 
-      <!-- Status Badge -->
       <div style="margin-bottom:28px;" data-animate="fade-up">
         <span style={`display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 25%, transparent);box-shadow:0 0 16px color-mix(in srgb, ${project.color} 10%, transparent);`}>
           <Icon name="clock" size={16} color={project.color} />
@@ -56,29 +52,28 @@ if (!project) return Astro.redirect('/404')
         </span>
       </div>
 
-      <!-- Title + Subtitle -->
       <h2 style="font-size:2rem;font-weight:700;color:var(--heading-text);margin-bottom:20px;line-height:1.3;" data-animate="fade-up">
         {project.hero.title}
       </h2>
-      <p style="font-size:1.1rem;opacity:0.7;margin-bottom:36px;max-width:580px;margin-left:auto;margin-right:auto;line-height:1.7;" data-animate="fade-up">
+      <p style="font-size:1.1rem;color:var(--muted-text);margin-bottom:36px;max-width:580px;margin-left:auto;margin-right:auto;line-height:1.7;" data-animate="fade-up">
         {project.hero.subtitle}
       </p>
 
-      <!-- CTA Buttons with neon styling -->
+      <!-- CTA Buttons. P1 audit #14 — uses the global `.cta-btn--primary` /
+           `.cta-btn--secondary` classes. The neon Matrix shadow lives in
+           scoped styles below (`.matrix-cta-primary` adds the extra glow
+           the brand needs). -->
       <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" data-animate="fade-up">
         {project.hero.cta_primary && (
           <a href={project.hero.cta_primary_link || '/contact/'}
-            style={`display:inline-flex;align-items:center;gap:8px;padding:16px 32px;border-radius:50px;font-weight:700;text-decoration:none;background:${project.gradient};box-shadow:0 0 24px color-mix(in srgb, ${project.color} 30%, transparent), 0 4px 16px rgba(0,0,0,0.3);color:white;transition:transform 0.2s,box-shadow 0.2s;font-size:1.05rem;`}
-            onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 0 32px color-mix(in srgb, ${project.color} 45%, transparent), 0 6px 20px rgba(0,0,0,0.4)';"
-            onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 0 24px color-mix(in srgb, ${project.color} 30%, transparent), 0 4px 16px rgba(0,0,0,0.3)';">
+            class="cta-btn--primary matrix-cta-primary"
+            style={`background:${project.gradient};`}>
             {project.hero.cta_primary}
           </a>
         )}
         {project.hero.cta_secondary && (
           <a href={project.hero.cta_secondary_link || '#features'}
-            style="display:inline-flex;align-items:center;gap:8px;padding:16px 32px;border-radius:50px;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,0.15);color:var(--heading-text);transition:transform 0.2s,border-color 0.2s;font-size:1.05rem;backdrop-filter:blur(8px);"
-            onmouseover="this.style.transform='translateY(-2px)';this.style.borderColor='rgba(255,255,255,0.35)';"
-            onmouseout="this.style.transform='translateY(0)';this.style.borderColor='rgba(255,255,255,0.15)';">
+            class="cta-btn--secondary matrix-cta-secondary">
             {project.hero.cta_secondary}
           </a>
         )}
@@ -138,27 +133,43 @@ if (!project) return Astro.redirect('/404')
     </section>
   )}
 
-  <!-- Gradient CTA -->
-  <section style="padding:80px 24px;">
-    <div style={`max-width:1000px;margin:0 auto;position:relative;border-radius:32px;overflow:hidden;padding:64px 48px;text-align:center;color:white;background:${project.gradient};`}>
-      <div style="position:absolute;inset:0;background:rgba(0,0,0,0.1);"></div>
-      <div style={`position:absolute;top:-80px;right:-80px;width:300px;height:300px;background:white;opacity:0.1;border-radius:50%;filter:blur(60px);`}></div>
-      <div style={`position:absolute;bottom:-60px;left:-60px;width:200px;height:200px;background:white;opacity:0.1;border-radius:50%;filter:blur(40px);`}></div>
-      <div style="position:relative;z-index:1;">
-        <h2 style="font-size:2.5rem;font-weight:700;margin-bottom:16px;">
-          {/* TODO: localise this later */ `Interested in ${project.name}?`}
-        </h2>
-        <p style="font-size:1.2rem;opacity:0.9;margin-bottom:32px;max-width:600px;margin-left:auto;margin-right:auto;">
-          {/* TODO: localise this later */ 'Get in touch and we will help you get started.'}
-        </p>
-        <a href={'/contact/'}
-          style={`display:inline-flex;align-items:center;gap:8px;background:white;color:${project.color};padding:16px 32px;border-radius:50px;font-weight:700;text-decoration:none;font-size:1.05rem;transition:transform 0.2s;`}
-          onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
-          {/* TODO: localise this later */ 'Get in Touch'}
-        </a>
-      </div>
-    </div>
-  </section>
+  <!-- Gradient CTA. P1 audit #11, #15, #20 — uses the shared component. -->
+  <GradientCTA
+    title={`Interested in ${project.name}?`}
+    body="Get in touch and we will help you get started."
+    ctaLabel="Get in Touch"
+    ctaHref="/contact/"
+    gradient={project.gradient}
+    accentColor={project.color}
+    lang={lang}
+  />
 
   <ProjectCTA status={project.status} platforms={project.platforms || []} links={project.links} lang={lang} />
 </ProjectLayout>
+
+<style>
+  /* Matrix-only neon glow on the hero CTA. Replaces the inline
+   * `onmouseover`/`onmouseout` JS that previously toggled box-shadow. */
+  .matrix-cta-primary {
+    box-shadow:
+      0 0 24px color-mix(in srgb, var(--project-color) 30%, transparent),
+      0 4px 16px rgba(0, 0, 0, 0.3);
+  }
+  .matrix-cta-primary:hover {
+    box-shadow:
+      0 0 32px color-mix(in srgb, var(--project-color) 45%, transparent),
+      0 6px 20px rgba(0, 0, 0, 0.4);
+  }
+  .matrix-cta-secondary {
+    border-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+  }
+  .matrix-cta-secondary:hover {
+    border-color: rgba(255, 255, 255, 0.35);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .matrix-cta-secondary {
+      backdrop-filter: none;
+    }
+  }
+</style>

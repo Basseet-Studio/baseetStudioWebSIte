@@ -1,11 +1,19 @@
 /* Medev — Medical Education Platform */
-:root {
-  --project-color: #3B82F6;
-  --project-gradient: linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%);
+/* Color & gradient come from medev.json (`color: #0A6E74`). The
+ * `ProjectLayout` wrapper sets `--project-color` and `--project-gradient`
+ * inline, so this stylesheet stays empty of color overrides — the JSON
+ * is the single source of truth (see audit fix #2).
+ *
+ * The right-column hero visual is rendered with `class="medev-hero-visual"`
+ * and toggled at the `lg` breakpoint via the rule below. The page template
+ * no longer sets `display:none` inline (see audit fix #6).
+ */
+.medev-hero-visual {
+    display: none;
 }
 
-.medev-hero-visual { display: none; }
-
 @media (min-width: 1024px) {
-  .medev-hero-visual { display: block; }
+    .medev-hero-visual {
+        display: block;
+    }
 }
