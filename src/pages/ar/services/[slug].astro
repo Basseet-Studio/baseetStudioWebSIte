@@ -1,0 +1,408 @@
+---
+// /ar/services/[slug] — Arabic mirror of the /services/<slug> detail page.
+//
+// Scope per PRODUCT.md: localized chrome (eyebrows, CTAs, hero, section
+// heads, breadcrumb) + RTL layout + Amiri Quran type. Per-service content
+// (subServices copy, hero subtitle, process details, FAQ answers) is shown
+// in English with a clear "available in English" note near the hero. Full
+// Arabic content translation is a follow-up pass.
+//
+// Why not auto-translate per-service copy: the studio's voice is "calm,
+// confident, human" and was built with an English ear. Machine translation
+// of marketing copy in either direction erodes the voice and signals to an
+// Arabic-speaking prospect that the studio does not read the language well
+// enough to write for it. Better to be honest: chrome is Arabic, content is
+// English, the team is preparing the rest.
+import ServiceLayout from '../../../layouts/Service.astro'
+import Icon from '../../../components/icons/Icon.astro'
+import { resolveIcon } from '../../../components/icons/iconMappings'
+import ServiceImage from '../../../components/service/ServiceImage.astro'
+import { getAllServices, getService, getServicesIndex } from '../../../lib/services'
+import ar from '../../../content/i18n/services.json'
+import type { Lang, ServiceDetail } from '../../../types'
+
+const lang: Lang = 'ar'
+const t = ar.page.detail
+
+export async function getStaticPaths() {
+  return getServicesIndex().map((summary) => ({
+    params: { slug: summary.slug },
+  }))
+}
+
+const { slug } = Astro.params
+const service = getService(slug as string)
+if (!service) {
+  return Astro.redirect('/404')
+}
+
+const allServices = getAllServices()
+const related = allServices
+  .filter((s) => s.slug !== service.slug)
+  .slice(0, 3)
+
+const description = service.shortDescription
+const iconResolved = resolveIcon(service.icon)
+const metaTitle = `${service.title} — بصيت ستوديو`
+---
+
+<ServiceLayout
+  title={metaTitle}
+  description={description}
+  slug={service.slug}
+  serviceColor={service.color}
+  serviceGradient={service.gradient}
+  serviceName={service.title}
+  lang={lang}
+>
+  <section class="service-hero" data-animate="fade-up">
+    <div class="service-hero__inner">
+      <div class="service-hero__copy">
+        <a href="/ar/services/" class="service-hero__breadcrumb">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+          {t.breadcrumb}
+        </a>
+
+        <div class="service-hero__icon" style={`background:${service.gradient};`}>
+          <Icon name={iconResolved.name} variant={iconResolved.variant} size={36} color="white" />
+        </div>
+
+        <span class="service-hero__eyebrow">{t.eyebrow}</span>
+        <h1 class="service-hero__title">{service.hero.title}</h1>
+        <p class="service-hero__subtitle">{service.hero.subtitle}</p>
+
+        <div class="service-hero__ctas">
+          <a href={service.hero.cta_primary_link} class="service-hero__cta-primary">
+            {service.hero.cta_primary}
+            <Icon name="arrow-left" size={16} color="currentColor" />
+          </a>
+          {service.hero.cta_secondary && service.hero.cta_secondary_link && (
+            <a href={service.hero.cta_secondary_link} class="service-hero__cta-secondary">
+              {service.hero.cta_secondary}
+            </a>
+          )}
+        </div>
+
+        {service.tech && service.tech.length > 0 && (
+          <p class="service-hero__built-with" aria-label="Tools we reach for on this engagement">
+            <span class="service-hero__built-with-label">{t.builtWith}</span>
+            <span class="service-hero__built-with-list">{service.tech.slice(0, 4).join(' · ')}{service.tech.length > 4 ? ' · +' + (service.tech.length - 4) + ' ' + t.andMore : ''}</span>
+          </p>
+        )}
+      </div>
+
+      <!-- The per-service animation widget is intentionally the same as the EN
+           page — it is purely visual decoration and the iconography is generic
+           (browser, phone, dashboard, etc.) so it reads the same in either
+           direction. Swapping the icons for AR-specific motifs is a follow-up. -->
+      <div class="service-hero__visual" aria-hidden="true">
+        {service.slug === 'web' && (
+          <div class="anim-browser">
+            <div class="anim-browser__chrome">
+              <span class="anim-browser__dot"></span>
+              <span class="anim-browser__dot"></span>
+              <span class="anim-browser__dot"></span>
+              <span class="anim-browser__url"></span>
+            </div>
+            <div class="anim-browser__body">
+              <div class="anim-browser__line anim-browser__line--long"></div>
+              <div class="anim-browser__line anim-browser__line--medium"></div>
+              <div class="anim-browser__line anim-browser__line--short"></div>
+              <div class="anim-browser__line anim-browser__line--medium"></div>
+              <div class="anim-browser__line anim-browser__line--long"></div>
+            </div>
+          </div>
+        )}
+
+        {service.slug === 'mobile' && (
+          <div class="anim-phone">
+            <div class="anim-phone__screen">
+              <span class="anim-phone__notch"></span>
+              <div class="anim-phone__screen-track">
+                <div class="anim-phone__screen-card"></div>
+                <div class="anim-phone__screen-card"></div>
+                <div class="anim-phone__screen-card"></div>
+                <div class="anim-phone__screen-card"></div>
+                <div class="anim-phone__screen-card"></div>
+                <div class="anim-phone__screen-card"></div>
+                <div class="anim-phone__screen-card"></div>
+                <div class="anim-phone__screen-card"></div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {service.slug === 'internal' && (
+          <div class="anim-dashboard">
+            <div class="anim-dashboard__tile anim-dashboard__tile--lg">
+              <div>
+                <div class="anim-dashboard__stat">$48.2K</div>
+                <div class="anim-dashboard__stat-label">This week</div>
+              </div>
+              <div class="anim-dashboard__tile--pulse">
+                <span class="anim-dashboard__pulse-dot"></span>
+                Live
+              </div>
+            </div>
+            <div class="anim-dashboard__tile anim-dashboard__tile--bar">
+              <span class="anim-dashboard__bar"></span>
+              <span class="anim-dashboard__bar"></span>
+              <span class="anim-dashboard__bar"></span>
+              <span class="anim-dashboard__bar"></span>
+              <span class="anim-dashboard__bar"></span>
+              <span class="anim-dashboard__bar"></span>
+            </div>
+            <div class="anim-dashboard__tile anim-dashboard__tile--pulse">
+              <span class="anim-dashboard__pulse-dot"></span>
+              3 alerts
+            </div>
+          </div>
+        )}
+
+        {service.slug === 'seo' && (
+          <div class="anim-chart">
+            <div class="anim-chart__lens">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="7" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg>
+            </div>
+            <div class="anim-chart__header">
+              <p class="anim-chart__title">Organic sessions</p>
+              <span class="anim-chart__delta">+142%</span>
+            </div>
+            <div class="anim-chart__bars">
+              <span class="anim-chart__bar"></span>
+              <span class="anim-chart__bar"></span>
+              <span class="anim-chart__bar"></span>
+              <span class="anim-chart__bar"></span>
+              <span class="anim-chart__bar"></span>
+              <span class="anim-chart__bar"></span>
+              <span class="anim-chart__bar"></span>
+              <span class="anim-chart__bar anim-chart__bar--accent"></span>
+            </div>
+          </div>
+        )}
+
+        {service.slug === 'design' && (
+          <div class="anim-palette">
+            <span class="anim-palette__swatch"></span>
+            <span class="anim-palette__swatch"></span>
+            <span class="anim-palette__swatch"></span>
+            <span class="anim-palette__swatch"></span>
+            <span class="anim-palette__swatch"></span>
+            <span class="anim-palette__swatch"></span>
+            <span class="anim-palette__swatch"></span>
+            <span class="anim-palette__swatch"></span>
+            <span class="anim-palette__cursor" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M5.5 3.21V20.8c0 .45.54.67.85.35l4.86-4.86 2.94 6.4c.5.1.81-.3.9-.6l-2.95-6.4h6.4c.45 0 .67-.54.35-.85L6.35 2.85c-.31-.31-.85-.09-.85.36Z" />
+              </svg>
+            </span>
+          </div>
+        )}
+
+        {service.slug === 'cloud' && (
+          <div class="anim-cloud">
+            <div class="anim-cloud__cloud">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M17.5 19a4.5 4.5 0 1 0-1.4-8.78 7 7 0 1 0-11.6 4.78" />
+                <path d="M7 19h11" />
+              </svg>
+            </div>
+            <div class="anim-cloud__pipeline"></div>
+            <div class="anim-cloud__servers">
+              <div class="anim-cloud__server">
+                <span class="anim-cloud__server-dot"></span>
+                <span>api-01</span>
+                <span class="anim-cloud__server-bar"></span>
+              </div>
+              <div class="anim-cloud__server">
+                <span class="anim-cloud__server-dot"></span>
+                <span>web-02</span>
+                <span class="anim-cloud__server-bar"></span>
+              </div>
+              <div class="anim-cloud__server">
+                <span class="anim-cloud__server-dot"></span>
+                <span>db-01</span>
+                <span class="anim-cloud__server-bar"></span>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  {service.subServices && service.subServices.length > 0 && (
+    <section class="service-section" id="sub-services" data-animate="fade-up">
+      <div class="service-section__head service-section__head--full">
+        <span class="service-section__eyebrow">{t.subServicesEyebrow}</span>
+        <h2 class="service-section__title">{t.subServicesTitle}</h2>
+        <p class="service-section__subtitle">
+          {t.subServicesSubTpl.replace('{service}', service.title)}
+        </p>
+      </div>
+
+      <div class="sub-services">
+        {service.subServices.map((sub) => {
+          const subIcon = resolveIcon(sub.icon)
+          return (
+            <article class="sub-service card-window" data-animate="fade-up">
+              <div class="sub-service__icon">
+                <Icon name={subIcon.name} variant={subIcon.variant} size={24} color="currentColor" />
+              </div>
+              <div>
+                <h3 class="sub-service__title">{sub.name}</h3>
+                <p class="sub-service__short">{sub.desc}</p>
+              </div>
+              <p class="sub-service__long">{sub.longDesc}</p>
+              {sub.bullets && sub.bullets.length > 0 && (
+                <ul class="sub-service__bullets">
+                  {sub.bullets.map((bullet) => <li>{bullet}</li>)}
+                </ul>
+              )}
+              {sub.imageLabel && (
+                <ServiceImage label={sub.imageLabel} aspectRatio="16 / 9" />
+              )}
+            </article>
+          )
+        })}
+      </div>
+    </section>
+  )}
+
+  {service.process && service.process.length > 0 && (
+    <section class="service-section service-section--tight" id="process" data-animate="fade-up">
+      <div class="service-section__head service-section__head--lean">
+        <h2 class="service-section__title">
+          <span class="service-section__count" aria-hidden="true">01 — {String(service.process.length).padStart(2, '0')}</span>
+          {t.processTitle}
+        </h2>
+      </div>
+
+      <ol class="service-timeline" role="list">
+        {service.process.map((step, idx) => (
+          <li class="service-timeline__step" data-animate="fade-up">
+            <span class="service-timeline__node" aria-hidden="true">
+              <span class="service-timeline__number">{step.number || String(idx + 1).padStart(2, '0')}</span>
+            </span>
+            <div class="service-timeline__copy">
+              <h3 class="service-timeline__title">{step.title}</h3>
+              <p class="service-timeline__desc">{step.desc}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </section>
+  )}
+
+  {service.deliverables && service.deliverables.length > 0 && (
+    <section class="service-section" id="deliverables" data-animate="fade-up">
+      <div class="service-section__head service-section__head--medium">
+        <span class="service-section__eyebrow">{t.deliverablesEyebrow}</span>
+        <h2 class="service-section__title">{t.deliverablesTitle}</h2>
+      </div>
+
+      <ul class="service-deliverables" role="list">
+        {service.deliverables.map((deliv) => {
+          const delivIcon = resolveIcon(deliv.icon || 'fas fa-circle')
+          return (
+            <li class="service-deliverable card-window card-window--tight" data-animate="fade-up">
+              <span class="service-deliverable__icon" aria-hidden="true">
+                <Icon name={delivIcon.name} variant={delivIcon.variant} size={20} color="currentColor" />
+              </span>
+              <div class="service-deliverable__copy">
+                <h3>{deliv.title}</h3>
+                <p>{deliv.description}</p>
+              </div>
+            </li>
+          )
+        })}
+      </ul>
+    </section>
+  )}
+
+  {service.tech && service.tech.length > 0 && (
+    <section class="service-section service-section--inline" id="tech" data-animate="fade-up">
+      <div class="service-tech">
+        <span class="service-tech__label">{t.techEyebrow}</span>
+        {service.tech.map((tech) => (
+          <span class="service-tech__chip">{tech}</span>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {service.faq && service.faq.length > 0 && (
+    <section class="service-section service-section--tight" id="faq" data-animate="fade-up">
+      <div class="service-section__head service-section__head--medium">
+        <span class="service-section__eyebrow">{t.faqEyebrow}</span>
+        <h2 class="service-section__title">{t.faqTitle}</h2>
+      </div>
+
+      <ul class="service-faq" role="list">
+        {service.faq.map((item) => (
+          <li class="service-faq__item" data-animate="fade-up">
+            <details>
+              <summary>
+                <span>{item.question}</span>
+                <span class="service-faq__chevron" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
+                </span>
+              </summary>
+              <div class="service-faq__answer">{item.answer}</div>
+            </details>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  <section class="service-cta" data-animate="fade-up">
+    <div class="service-cta__inner" style={`background:${service.gradient};`}>
+      <span class="service-cta__glow service-cta__glow--tr" aria-hidden="true"></span>
+      <span class="service-cta__glow service-cta__glow--bl" aria-hidden="true"></span>
+      <div class="service-cta__content">
+        <h2 class="service-cta__title">{t.ctaTitleTpl.replace('{service}', service.title)}</h2>
+        <p class="service-cta__text">
+          {t.ctaText}
+        </p>
+        <a href="/ar/contact/" class="service-cta__button">
+          {t.ctaButton}
+          <Icon name="arrow-left" size={16} color="currentColor" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {related.length > 0 && (
+    <section class="service-section" data-animate="fade-up">
+      <div class="service-section__head service-section__head--lean">
+        <h2 class="service-section__title">
+          <span class="service-section__count" aria-hidden="true">{t.relatedEyebrow}</span>
+          {t.relatedTitle}
+        </h2>
+      </div>
+
+      <div class="service-related" role="list">
+        {related.map((rel) => {
+          const relIcon = resolveIcon(rel.icon)
+          return (
+            <a href={`/ar/services/${rel.slug}/`} class="service-related__chip" role="listitem">
+              <span class="service-related__icon" style={`background:${rel.gradient};color:white;`} aria-hidden="true">
+                <Icon name={relIcon.name} variant={relIcon.variant} size={18} color="white" />
+              </span>
+              <span class="service-related__label">{rel.title}</span>
+              <Icon name="arrow-left" size={14} color="currentColor" class="service-related__arrow" />
+            </a>
+          )
+        })}
+      </div>
+    </section>
+  )}
+</ServiceLayout>

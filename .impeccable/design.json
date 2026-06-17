@@ -1,0 +1,446 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-17T00:00:00.000Z",
+  "title": "Design System: Baseet Studio",
+  "extensions": {
+    "colorMeta": {
+      "cobalt": {
+        "role": "primary",
+        "displayName": "Cobalt",
+        "canonical": "oklch(50% 0.16 265)",
+        "tonalRamp": [
+          "oklch(15% 0.04 265)",
+          "oklch(25% 0.08 265)",
+          "oklch(35% 0.12 265)",
+          "oklch(45% 0.15 265)",
+          "oklch(50% 0.16 265)",
+          "oklch(65% 0.14 265)",
+          "oklch(80% 0.10 265)",
+          "oklch(95% 0.04 265)"
+        ]
+      },
+      "marigold": {
+        "role": "primary",
+        "displayName": "Marigold",
+        "canonical": "oklch(88% 0.16 90)",
+        "tonalRamp": [
+          "oklch(15% 0.04 90)",
+          "oklch(30% 0.10 90)",
+          "oklch(50% 0.16 90)",
+          "oklch(70% 0.18 90)",
+          "oklch(88% 0.16 90)",
+          "oklch(92% 0.12 90)",
+          "oklch(96% 0.08 90)",
+          "oklch(98% 0.04 90)"
+        ]
+      },
+      "cyan-drift": {
+        "role": "service",
+        "displayName": "Cyan Drift",
+        "canonical": "oklch(70% 0.14 230)",
+        "tonalRamp": [
+          "oklch(15% 0.04 230)",
+          "oklch(28% 0.08 230)",
+          "oklch(42% 0.12 230)",
+          "oklch(56% 0.14 230)",
+          "oklch(70% 0.14 230)",
+          "oklch(82% 0.10 230)",
+          "oklch(92% 0.06 230)",
+          "oklch(97% 0.03 230)"
+        ]
+      },
+      "cyan-glacial": {
+        "role": "service",
+        "displayName": "Cyan Glacial",
+        "canonical": "oklch(58% 0.13 215)",
+        "tonalRamp": [
+          "oklch(15% 0.04 215)",
+          "oklch(28% 0.08 215)",
+          "oklch(42% 0.11 215)",
+          "oklch(50% 0.13 215)",
+          "oklch(58% 0.13 215)",
+          "oklch(72% 0.10 215)",
+          "oklch(86% 0.07 215)",
+          "oklch(95% 0.03 215)"
+        ]
+      },
+      "verdant": {
+        "role": "service",
+        "displayName": "Verdant",
+        "canonical": "oklch(60% 0.18 145)",
+        "tonalRamp": [
+          "oklch(15% 0.04 145)",
+          "oklch(28% 0.08 145)",
+          "oklch(42% 0.14 145)",
+          "oklch(52% 0.17 145)",
+          "oklch(60% 0.18 145)",
+          "oklch(75% 0.14 145)",
+          "oklch(88% 0.08 145)",
+          "oklch(96% 0.03 145)"
+        ]
+      },
+      "plum": {
+        "role": "service",
+        "displayName": "Plum",
+        "canonical": "oklch(58% 0.20 310)",
+        "tonalRamp": [
+          "oklch(15% 0.04 310)",
+          "oklch(28% 0.08 310)",
+          "oklch(40% 0.14 310)",
+          "oklch(50% 0.18 310)",
+          "oklch(58% 0.20 310)",
+          "oklch(72% 0.16 310)",
+          "oklch(86% 0.10 310)",
+          "oklch(95% 0.04 310)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "oklch(18% 0.005 240)",
+        "tonalRamp": [
+          "oklch(8% 0.003 240)",
+          "oklch(15% 0.005 240)",
+          "oklch(25% 0.005 240)",
+          "oklch(40% 0.005 240)",
+          "oklch(55% 0.005 240)",
+          "oklch(70% 0.005 240)",
+          "oklch(85% 0.005 240)",
+          "oklch(96% 0.005 240)"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Ink Soft",
+        "canonical": "oklch(20% 0.005 50)",
+        "tonalRamp": [
+          "oklch(10% 0.003 50)",
+          "oklch(18% 0.005 50)",
+          "oklch(28% 0.005 50)",
+          "oklch(42% 0.005 50)",
+          "oklch(58% 0.005 50)",
+          "oklch(72% 0.005 50)",
+          "oklch(86% 0.005 50)",
+          "oklch(96% 0.005 50)"
+        ]
+      },
+      "slate-mist": {
+        "role": "neutral",
+        "displayName": "Slate Mist",
+        "canonical": "oklch(82% 0.01 230)",
+        "tonalRamp": [
+          "oklch(20% 0.01 230)",
+          "oklch(35% 0.01 230)",
+          "oklch(50% 0.01 230)",
+          "oklch(65% 0.01 230)",
+          "oklch(82% 0.01 230)",
+          "oklch(90% 0.008 230)",
+          "oklch(95% 0.005 230)",
+          "oklch(98% 0.003 230)"
+        ]
+      },
+      "bone": {
+        "role": "neutral",
+        "displayName": "Bone",
+        "canonical": "oklch(92% 0.005 80)",
+        "tonalRamp": [
+          "oklch(20% 0.005 80)",
+          "oklch(35% 0.005 80)",
+          "oklch(50% 0.005 80)",
+          "oklch(70% 0.005 80)",
+          "oklch(85% 0.005 80)",
+          "oklch(92% 0.005 80)",
+          "oklch(96% 0.003 80)",
+          "oklch(99% 0.002 80)"
+        ]
+      },
+      "day-mist": {
+        "role": "surface",
+        "displayName": "Day Mist",
+        "canonical": "oklch(97% 0.012 235)",
+        "tonalRamp": [
+          "oklch(20% 0.01 235)",
+          "oklch(40% 0.01 235)",
+          "oklch(60% 0.01 235)",
+          "oklch(80% 0.012 235)",
+          "oklch(90% 0.012 235)",
+          "oklch(95% 0.012 235)",
+          "oklch(97% 0.012 235)",
+          "oklch(99% 0.006 235)"
+        ]
+      },
+      "night-sky": {
+        "role": "surface",
+        "displayName": "Night Sky",
+        "canonical": "oklch(18% 0.03 250)",
+        "tonalRamp": [
+          "oklch(8% 0.02 250)",
+          "oklch(12% 0.025 250)",
+          "oklch(15% 0.028 250)",
+          "oklch(18% 0.03 250)",
+          "oklch(22% 0.03 250)",
+          "oklch(28% 0.03 250)",
+          "oklch(40% 0.025 250)",
+          "oklch(60% 0.02 250)"
+        ]
+      },
+      "muted-stone": {
+        "role": "neutral",
+        "displayName": "Muted Stone",
+        "canonical": "oklch(55% 0.01 60)",
+        "tonalRamp": [
+          "oklch(20% 0.005 60)",
+          "oklch(35% 0.008 60)",
+          "oklch(45% 0.01 60)",
+          "oklch(55% 0.01 60)",
+          "oklch(68% 0.008 60)",
+          "oklch(80% 0.005 60)",
+          "oklch(92% 0.003 60)",
+          "oklch(98% 0.001 60)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Rammetto One",
+        "purpose": "Display headings and section hero h1. Single weight, never bolded. Carries the page's typographic statement."
+      },
+      "body": {
+        "displayName": "Rambla",
+        "purpose": "All body, subtitles, paragraphs, and inline text. Four weights (400/500/600/700). Quiet and warm."
+      },
+      "body-strong": {
+        "displayName": "Rambla Bold",
+        "purpose": "Headings and emphasized inline copy. Pairs with Rammetto One for the studio's two-tier hierarchy."
+      },
+      "arabic": {
+        "displayName": "Amiri Quran",
+        "purpose": "All text when [lang=ar] or [dir=rtl] is set on <html>. Activates automatically; no per-component switch."
+      }
+    },
+    "shadows": [
+      {
+        "name": "card-lift",
+        "value": "0 4px 20px rgba(0, 0, 0, 0.06)",
+        "purpose": "Resting state of every card-window. Soft, ambient, almost invisible. The page is mostly flat."
+      },
+      {
+        "name": "card-hover",
+        "value": "0 12px 40px rgba(0, 0, 0, 0.10)",
+        "purpose": "Hover state. Pairs with translateY(-4px). Never colored."
+      },
+      {
+        "name": "cta-lift",
+        "value": "0 8px 30px color-mix(in srgb, var(--service-color) 40%, transparent)",
+        "purpose": "Primary button hover. Tinted by the active service color."
+      },
+      {
+        "name": "hero-halo",
+        "value": "filter: blur(60px) over a low-opacity service-color circle",
+        "purpose": "The hero's atmospheric layer. The only filter:blur in the system. Drifts at a different rate than the Vanta clouds."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-standard",
+        "value": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "purpose": "Default easing for state transitions. The Material standard, used throughout nav and cards."
+      },
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Decorative entrance motion. Hero halos, scroll-driven reveals, the parallax-sky layer."
+      },
+      {
+        "name": "duration-fast",
+        "value": "200ms",
+        "purpose": "Hover, focus, link color changes."
+      },
+      {
+        "name": "duration-base",
+        "value": "300ms",
+        "purpose": "Card lift, button lift, nav-link background swap."
+      },
+      {
+        "name": "duration-view-transition",
+        "value": "300ms",
+        "purpose": "Astro view-transition cross-fade between routes."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "900px" },
+      { "name": "xl", "value": "1200px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Cobalt pill for the page's primary call to action. Used on the home hero and the services CTA strip.",
+      "html": "<a href=\"/contact/\" class=\"ds-btn-primary\">Start a conversation</a>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 9999px; background: var(--color-primary, #496BC1); color: #ffffff; font-family: var(--font-body); font-weight: 600; font-size: 1rem; text-decoration: none; transition: transform 200ms ease, box-shadow 200ms ease; box-shadow: 0 8px 30px color-mix(in srgb, var(--color-primary, #496BC1) 40%, transparent); } .ds-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px color-mix(in srgb, var(--color-primary, #496BC1) 50%, transparent); } .ds-btn-primary:focus-visible { outline: 2px solid var(--color-primary, #496BC1); outline-offset: 3px; }"
+    },
+    {
+      "name": "Service-Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary-service",
+      "description": "Per-service gradient pill for detail-page heroes. The background is a 135deg linear from the deeper to the lighter service color.",
+      "html": "<a href=\"/contact/\" class=\"ds-btn-service\">Start your project<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><line x1=\"5\" y1=\"12\" x2=\"19\" y2=\"12\"/><polyline points=\"12 5 19 12 12 19\"/></svg></a>",
+      "css": ".ds-btn-service { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 9999px; background: linear-gradient(135deg, var(--service-color, #496BC1) 0%, color-mix(in srgb, var(--service-color, #496BC1) 60%, white) 100%); color: #ffffff; font-family: var(--font-body); font-weight: 600; font-size: 1rem; text-decoration: none; transition: transform 200ms ease, box-shadow 200ms ease; box-shadow: 0 10px 30px -10px color-mix(in srgb, var(--service-color, #496BC1) 50%, transparent); } .ds-btn-service:hover { transform: translateY(-2px); box-shadow: 0 16px 40px -10px color-mix(in srgb, var(--service-color, #496BC1) 60%, transparent); } .ds-btn-service:focus-visible { outline: 2px solid var(--service-color, #496BC1); outline-offset: 3px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Outline pill that pairs with the primary. Used for \"See the process\" / \"See deliverables\" type secondary actions.",
+      "html": "<a href=\"#process\" class=\"ds-btn-secondary\">See the process</a>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; gap: 8px; padding: 14px 24px; border-radius: 9999px; background: var(--card-window-day, rgba(255, 255, 255, 0.72)); color: var(--heading-text, #1c1917); font-family: var(--font-body); font-weight: 500; font-size: 1rem; text-decoration: none; border: 1px solid color-mix(in srgb, var(--service-color, #496BC1) 25%, transparent); backdrop-filter: blur(8px); transition: transform 200ms ease, border-color 200ms ease; } .ds-btn-secondary:hover { transform: translateY(-2px); border-color: var(--service-color, #496BC1); } .ds-btn-secondary:focus-visible { outline: 2px solid var(--service-color, #496BC1); outline-offset: 3px; }"
+    },
+    {
+      "name": "App Bar Nav Link",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Pill-shaped link inside the floating app bar. Active state uses an 8% cobalt background; the background is the affordance, no underline.",
+      "html": "<a href=\"/services/\" class=\"ds-nav-link ds-nav-link--active\">Services</a>",
+      "css": ".ds-nav-link { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 25px; color: var(--text-secondary, rgba(23, 29, 28, 0.72)); font-family: var(--font-body); font-weight: 500; font-size: 0.875rem; text-decoration: none; transition: color 200ms ease, background 200ms ease; } .ds-nav-link:hover { color: var(--text-primary, #171d1c); background: var(--interactive-hover, rgba(0, 0, 0, 0.06)); } .ds-nav-link--active { background: rgba(73, 107, 193, 0.08); color: var(--color-primary, #496BC1); font-weight: 600; } .ds-nav-link:focus-visible { outline: 2px solid var(--color-primary, #496BC1); outline-offset: 3px; }"
+    },
+    {
+      "name": "Card as Window (Panel)",
+      "kind": "card",
+      "refersTo": "card-window",
+      "description": "The default card shape. Translucent surface + 1px cloud-tinted border + soft shadow. The clouds show through.",
+      "html": "<article class=\"ds-card-window\"><h3>Card title</h3><p>Body copy lives here, capped at 65 to 75 characters per line so the eye does not lose its place.</p></article>",
+      "css": ".ds-card-window { background: var(--card-window-day, rgba(255, 255, 255, 0.72)); color: var(--heading-text, #1c1917); border: 1px solid var(--card-border-day, rgba(0, 0, 0, 0.06)); border-radius: 24px; padding: 32px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06); font-family: var(--font-body); transition: transform 300ms ease, box-shadow 300ms ease, border-color 300ms ease; } .ds-card-window h3 { margin: 0 0 12px; font-weight: 700; font-size: 1.25rem; } .ds-card-window p { margin: 0; font-size: 0.95rem; line-height: 1.6; color: var(--muted-text, #78716c); max-width: 65ch; } .ds-card-window:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.10); border-color: color-mix(in srgb, var(--service-color, var(--color-primary, #496BC1)) 35%, transparent); }"
+    },
+    {
+      "name": "Card as Window (Compact)",
+      "kind": "card",
+      "refersTo": "card-window-tight",
+      "description": "The compact card for deliverable and process list items. Same translucent surface, 18px radius, 22px padding.",
+      "html": "<div class=\"ds-card-window-compact\"><div class=\"ds-card-window-compact__icon\" aria-hidden=\"true\"></div><div><h3>Title</h3><p>One short sentence, 60 to 80 characters max.</p></div></div>",
+      "css": ".ds-card-window-compact { display: flex; gap: 16px; padding: 22px; border-radius: 18px; background: var(--card-window-day, rgba(255, 255, 255, 0.72)); color: var(--heading-text, #1c1917); border: 1px solid var(--card-border-day, rgba(0, 0, 0, 0.06)); font-family: var(--font-body); transition: transform 250ms ease; } .ds-card-window-compact:hover { transform: translateY(-2px); } .ds-card-window-compact__icon { width: 44px; height: 44px; border-radius: 12px; background: color-mix(in srgb, var(--service-color, var(--color-primary, #496BC1)) 12%, transparent); color: var(--service-color, var(--color-primary, #496BC1)); flex-shrink: 0; } .ds-card-window-compact h3 { margin: 0 0 4px; font-size: 1rem; font-weight: 700; } .ds-card-window-compact p { margin: 0; font-size: 0.88rem; line-height: 1.55; color: var(--muted-text, #78716c); }"
+    },
+    {
+      "name": "Eyebrow Chip",
+      "kind": "chip",
+      "refersTo": "eyebrow-chip",
+      "description": "A tiny uppercase label that sits above section titles. Transparent background, 22% border, service-tinted text. Never a primary badge.",
+      "html": "<span class=\"ds-eyebrow-chip\">Service</span>",
+      "css": ".ds-eyebrow-chip { display: inline-block; padding: 6px 14px; border-radius: 9999px; font-family: var(--font-body); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--service-color, var(--color-primary, #496BC1)); background: color-mix(in srgb, var(--service-color, var(--color-primary, #496BC1)) 10%, transparent); border: 1px solid color-mix(in srgb, var(--service-color, var(--color-primary, #496BC1)) 22%, transparent); }"
+    },
+    {
+      "name": "Tech Chip",
+      "kind": "chip",
+      "refersTo": "chip-bg-day",
+      "description": "Opaque chip for the tools section. Stable surface so the label reads at a glance; hovers into the active service color.",
+      "html": "<span class=\"ds-tech-chip\">Astro</span>",
+      "css": ".ds-tech-chip { display: inline-block; padding: 8px 18px; border-radius: 9999px; font-family: var(--font-body); font-size: 0.85rem; font-weight: 500; background: var(--chip-bg-day, #f5f5f4); color: var(--chip-text-day, #78716c); border: 1px solid var(--chip-border-day, #e7e5e4); transition: transform 200ms ease, border-color 200ms ease, color 200ms ease; } .ds-tech-chip:hover { transform: translateY(-2px); border-color: var(--service-color, var(--color-primary, #496BC1)); color: var(--service-color, var(--color-primary, #496BC1)); }"
+    },
+    {
+      "name": "Form Input",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Stable opaque input field. The only opaque surface in the system: typing needs a stable ground, not a window into clouds.",
+      "html": "<input type=\"text\" id=\"name\" name=\"name\" class=\"ds-input\" placeholder=\"Your name\" required>",
+      "css": ".ds-input { display: block; width: 100%; padding: 12px 16px; border-radius: 12px; background: var(--chip-bg-day, #f5f5f4); color: var(--text-primary, #171d1c); border: 1px solid var(--chip-border-day, #e7e5e4); font-family: var(--font-body); font-size: 0.95rem; line-height: 1.5; transition: border-color 200ms ease, background 200ms ease; } .ds-input::placeholder { color: var(--muted-stone, #78716c); opacity: 0.7; } .ds-input:focus-visible { outline: 2px solid var(--color-primary, #496BC1); outline-offset: 2px; border-color: var(--color-primary, #496BC1); } .ds-input[aria-invalid=\"true\"] { border-color: #b91c1c; color: #b91c1c; }"
+    },
+    {
+      "name": "Metric Tile",
+      "kind": "card",
+      "refersTo": "metric-tile",
+      "description": "The single anchor number tile. Used at most once per page; never as a 3-up metric strip. The studio commits to one number it can defend.",
+      "html": "<div class=\"ds-metric-tile\"><p class=\"ds-metric-tile__value\">100</p><p class=\"ds-metric-tile__label\">Lighthouse score on the Geeb marketing site</p></div>",
+      "css": ".ds-metric-tile { padding: 18px 14px; border-radius: 16px; background: color-mix(in srgb, var(--service-color, var(--color-primary, #496BC1)) 4%, transparent); color: var(--service-color, var(--color-primary, #496BC1)); border: 1px solid color-mix(in srgb, var(--service-color, var(--color-primary, #496BC1)) 20%, transparent); backdrop-filter: blur(8px); text-align: center; font-family: var(--font-body); } .ds-metric-tile__value { margin: 0; font-size: 1.6rem; font-weight: 700; letter-spacing: -0.01em; line-height: 1; } .ds-metric-tile__label { margin: 6px 0 0; font-size: 0.78rem; font-weight: 500; line-height: 1.4; color: var(--muted-text, #78716c); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Open Sky Page",
+    "overview": "The page is the sky. The Vanta clouds are the dominant surface; everything else is type and small color accents floating on them. The studio's work appears as windows into the sky, not objects blocking it. The system is calm, confident, and human. It refuses the obvious moves: no 3-up hero metric strips, no glassmorphism as default, no identical card grids, no gradient text, no dark mode by default. The page is mostly page. Density and saturation are earned, not granted.",
+    "keyCharacteristics": [
+      "Cloud-first: every foreground decision is made to belong in the same air as the Vanta clouds, not pasted on top of them.",
+      "Translucent, never heavy: surfaces are lightly tinted and minimally frosted. The clouds show through.",
+      "Type carries the hierarchy: display headings (Rammetto One) do the work. Body (Rambla) stays quiet.",
+      "Per-service color is accent, not armor: the six service colors are used as small highlights, not full-card fills.",
+      "Spacious and warm: generous padding, generous line height, generous color. The page should feel easy to be in."
+    ],
+    "rules": [
+      {
+        "name": "The Open Sky Rule",
+        "body": "The Vanta clouds are the canvas. Foreground elements must let the clouds breathe through them. A surface that obscures the clouds is the wrong surface.",
+        "section": "colors"
+      },
+      {
+        "name": "The Accent-Only Rule",
+        "body": "Per-service color is used at 10% of a surface or less. It earns its rarity. The cobalt, marigold, and plum are seasoning, not paint.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Accent Rule",
+        "body": "No screen carries more than 10% of its surface in any single accent color. The cobalt, marigold, and per-service tints are seasoning. If a service color starts to feel 'loud,' the tint is too saturated, not the layout.",
+        "section": "colors"
+      },
+      {
+        "name": "The No-Black Rule",
+        "body": "Never #000 or #fff. Every neutral is tinted 1 to 2% toward the brand hue. The day page reads as blue-white, not gray; the night page reads as blue-black, not black.",
+        "section": "colors"
+      },
+      {
+        "name": "The Cloud-Tint Rule",
+        "body": "A surface that obscures the Vanta clouds is the wrong surface. Cards and chips are translucent (72% day / 62% night), never opaque. Borders are 1px and tinted, never black.",
+        "section": "colors"
+      },
+      {
+        "name": "The Single-Weight Display Rule",
+        "body": "Rammetto One exists in one weight. The page does not font-weight: 700 on display elements. The single weight IS the emphasis. Pairing Rammetto One 400 with bold markup is a typo; remove the markup.",
+        "section": "typography"
+      },
+      {
+        "name": "The No-Editorial-Italic Rule",
+        "body": "No italic display type. No italic body. The voice is concrete, not literary. Italics read as costume.",
+        "section": "typography"
+      },
+      {
+        "name": "The 65ch Body Rule",
+        "body": "Body copy caps at 65 to 75 characters per line. The wider it goes, the more the eye loses its place.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-By-Default Rule",
+        "body": "Surfaces are flat at rest. Shadow appears as a response to state (hover, focus, elevation), never as decoration. A card that has a shadow and no hover state is wrong.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Translucent-Elevation Rule",
+        "body": "Elevation comes from a translucent surface and a soft shadow, not from a saturated color fill. The sky shows through every elevated surface.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do let the Vanta clouds be the page's primary visual. The clouds are not decoration; they are the canvas.",
+      "Do use card-as-window for every card: translucent, 1px cloud-tinted border, soft shadow, no fill that obscures the clouds.",
+      "Do use a single display weight (Rammetto One 400). Never bold the display.",
+      "Do cap body copy at 65 to 75 characters per line. The wider it goes, the more the eye loses its place.",
+      "Do use the per-service color as accent: 10% of a surface or less. Cobalt, marigold, and the service colors are seasoning.",
+      "Do honor prefers-reduced-motion. Hero halos, scroll transitions, and the typewriter effect all collapse to static.",
+      "Do ship WCAG 2.1 AA contrast in both day and night modes, including the tinted surfaces and the service color texts.",
+      "Do commit to the parallax-sky hero treatment. The clouds are the motion; the foreground is mostly still."
+    ],
+    "donts": [
+      "Don't use backdrop-filter: blur(20px) saturate(180%) as a default. The clouds are already filtered; doubling it produces the heavy-glass tell.",
+      "Don't ship a 3-up hero metric strip. The big-number, small-label, supporting-stats pattern is the SaaS metric template; refuse it.",
+      "Don't ship six CSS-only hero animations. The current six widgets do the same job. Distill.",
+      "Don't ship card grids of identical icon + heading + text + CTA tiles. Vary the shape: accent, panel, thread, no card at all.",
+      "Don't ship a hero with gradient text. Decorative, never meaningful. Use a single solid color, or weight, or size.",
+      "Don't ship a dark mode by default. The studio's home opens in day mode; the user toggles night. The studio is not a developer tool.",
+      "Don't ship the project page structure (FAQ, deliverables, process, tech, related) with the same service-section__head repeated seven times. Vary the section shape so the page has rhythm.",
+      "Don't ship placeholder boxes that say 'Replace with screenshot or mockup.' A studio that sells visual work should ship the visuals, or remove the slot.",
+      "Don't ship identical card grids. The category-reflex check: a six-card grid of services is the first training reflex; rework the layout until it isn't.",
+      "Don't ship the agency-speak anti-references listed in PRODUCT.md: 'we deliver excellence,' 'trusted by 10,000+ companies,' 'unlimited revisions,' 'supercharge your workflow,' 'we don't just X, we Y.'",
+      "Don't ship the editorial-typographic reflex. The brand is not a magazine; do not default to display-italic + small-mono + ruled-separators.",
+      "Don't ship em dashes. Use commas, colons, semicolons, periods, parentheses, or --."
+    ]
+  }
+}

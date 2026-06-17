@@ -80,15 +80,11 @@ const metaTitle = `${service.title} — Baseet Studio`
           )}
         </div>
 
-        {service.metrics && service.metrics.length > 0 && (
-          <div class="service-hero__metrics">
-            {service.metrics.map((metric) => (
-              <div class="service-hero__metric">
-                <p class="service-hero__metric-value">{metric.value}</p>
-                <p class="service-hero__metric-label">{metric.label}</p>
-              </div>
-            ))}
-          </div>
+        {service.tech && service.tech.length > 0 && (
+          <p class="service-hero__built-with" aria-label="Tools we reach for on this engagement">
+            <span class="service-hero__built-with-label">Built with</span>
+            <span class="service-hero__built-with-list">{service.tech.slice(0, 4).join(' · ')}{service.tech.length > 4 ? ' · +' + (service.tech.length - 4) + ' more' : ''}</span>
+          </p>
         )}
       </div>
 
@@ -233,7 +229,7 @@ const metaTitle = `${service.title} — Baseet Studio`
 
   {service.subServices && service.subServices.length > 0 && (
     <section class="service-section" id="sub-services" data-animate="fade-up">
-      <div class="service-section__head">
+      <div class="service-section__head service-section__head--full">
         <span class="service-section__eyebrow">What we deliver</span>
         <h2 class="service-section__title">Sub-services tailored to your stage</h2>
         <p class="service-section__subtitle">
@@ -245,7 +241,7 @@ const metaTitle = `${service.title} — Baseet Studio`
         {service.subServices.map((sub) => {
           const subIcon = resolveIcon(sub.icon)
           return (
-            <article class="sub-service" data-animate="fade-up">
+            <article class="sub-service card-window" data-animate="fade-up">
               <div class="sub-service__icon">
                 <Icon name={subIcon.name} variant={subIcon.variant} size={24} color="currentColor" />
               </div>
@@ -271,71 +267,59 @@ const metaTitle = `${service.title} — Baseet Studio`
 
   {service.process && service.process.length > 0 && (
     <section class="service-section service-section--tight" id="process" data-animate="fade-up">
-      <div class="service-section__head">
-        <span class="service-section__eyebrow">How we work</span>
-        <h2 class="service-section__title">A process that keeps the team aligned</h2>
-        <p class="service-section__subtitle">
-          Short feedback loops, weekly demos, and a real plan you can hold us to.
-        </p>
+      <div class="service-section__head service-section__head--lean">
+        <h2 class="service-section__title">
+          <span class="service-section__count" aria-hidden="true">01 — {String(service.process.length).padStart(2, '0')}</span>
+          A process that keeps the team aligned
+        </h2>
       </div>
 
-      <div class="service-process">
-        {service.process.map((step) => {
-          const stepIcon = resolveIcon(step.icon)
-          return (
-            <div class="service-process__step" data-animate="fade-up">
-              <div class="service-process__step-number">
-                <Icon name={stepIcon.name} variant={stepIcon.variant} size={18} color="white" />
-              </div>
-              <h3 class="service-process__step-title">{step.title}</h3>
-              <p class="service-process__step-desc">{step.desc}</p>
+      <ol class="service-timeline" role="list">
+        {service.process.map((step, idx) => (
+          <li class="service-timeline__step" data-animate="fade-up">
+            <span class="service-timeline__node" aria-hidden="true">
+              <span class="service-timeline__number">{step.number || String(idx + 1).padStart(2, '0')}</span>
+            </span>
+            <div class="service-timeline__copy">
+              <h3 class="service-timeline__title">{step.title}</h3>
+              <p class="service-timeline__desc">{step.desc}</p>
             </div>
-          )
-        })}
-      </div>
+          </li>
+        ))}
+      </ol>
     </section>
   )}
 
   {service.deliverables && service.deliverables.length > 0 && (
     <section class="service-section" id="deliverables" data-animate="fade-up">
-      <div class="service-section__head">
+      <div class="service-section__head service-section__head--medium">
         <span class="service-section__eyebrow">Deliverables</span>
         <h2 class="service-section__title">What lands in your inbox</h2>
-        <p class="service-section__subtitle">
-          Concrete artifacts your team keeps and uses — not a PDF that lives on a shared drive.
-        </p>
       </div>
 
-      <div class="service-deliverables">
+      <ul class="service-deliverables" role="list">
         {service.deliverables.map((deliv) => {
           const delivIcon = resolveIcon(deliv.icon || 'fas fa-circle')
           return (
-            <div class="service-deliverable" data-animate="fade-up">
-              <div class="service-deliverable__icon">
-                <Icon name={delivIcon.name} variant={delivIcon.variant} size={22} color="currentColor" />
-              </div>
+            <li class="service-deliverable card-window card-window--tight" data-animate="fade-up">
+              <span class="service-deliverable__icon" aria-hidden="true">
+                <Icon name={delivIcon.name} variant={delivIcon.variant} size={20} color="currentColor" />
+              </span>
               <div class="service-deliverable__copy">
                 <h3>{deliv.title}</h3>
                 <p>{deliv.description}</p>
               </div>
-            </div>
+            </li>
           )
         })}
-      </div>
+      </ul>
     </section>
   )}
 
   {service.tech && service.tech.length > 0 && (
-    <section class="service-section service-section--tight" id="tech" data-animate="fade-up">
-      <div class="service-section__head">
-        <span class="service-section__eyebrow">Stack</span>
-        <h2 class="service-section__title">Tools we reach for</h2>
-        <p class="service-section__subtitle">
-          Boring, well-supported, and picked for the job — not the buzz.
-        </p>
-      </div>
-
+    <section class="service-section service-section--inline" id="tech" data-animate="fade-up">
       <div class="service-tech">
+        <span class="service-tech__label">Stack</span>
         {service.tech.map((tech) => (
           <span class="service-tech__chip">{tech}</span>
         ))}
@@ -345,26 +329,28 @@ const metaTitle = `${service.title} — Baseet Studio`
 
   {service.faq && service.faq.length > 0 && (
     <section class="service-section service-section--tight" id="faq" data-animate="fade-up">
-      <div class="service-section__head">
+      <div class="service-section__head service-section__head--medium">
         <span class="service-section__eyebrow">FAQ</span>
         <h2 class="service-section__title">Questions we hear most often</h2>
       </div>
 
-      <div class="service-faq">
+      <ul class="service-faq" role="list">
         {service.faq.map((item) => (
-          <details data-animate="fade-up">
-            <summary>
-              <span>{item.question}</span>
-              <span class="service-faq__chevron" aria-hidden="true">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="6 9 12 15 18 9" />
-                </svg>
-              </span>
-            </summary>
-            <div class="service-faq__answer">{item.answer}</div>
-          </details>
+          <li class="service-faq__item" data-animate="fade-up">
+            <details>
+              <summary>
+                <span>{item.question}</span>
+                <span class="service-faq__chevron" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
+                </span>
+              </summary>
+              <div class="service-faq__answer">{item.answer}</div>
+            </details>
+          </li>
         ))}
-      </div>
+      </ul>
     </section>
   )}
 
@@ -387,23 +373,23 @@ const metaTitle = `${service.title} — Baseet Studio`
 
   {related.length > 0 && (
     <section class="service-section" data-animate="fade-up">
-      <div class="service-section__head">
-        <span class="service-section__eyebrow">Keep exploring</span>
-        <h2 class="service-section__title">Other services teams pair with this one</h2>
+      <div class="service-section__head service-section__head--lean">
+        <h2 class="service-section__title">
+          <span class="service-section__count" aria-hidden="true">Keep exploring</span>
+          Other services teams pair with this one
+        </h2>
       </div>
 
-      <div class="service-related">
+      <div class="service-related" role="list">
         {related.map((rel) => {
           const relIcon = resolveIcon(rel.icon)
           return (
-            <a href={`/services/${rel.slug}/`} class="service-related__card">
-              <span class="service-related__icon" style={`background:${rel.gradient};color:white;`}>
-                <Icon name={relIcon.name} variant={relIcon.variant} size={22} color="white" />
+            <a href={`/services/${rel.slug}/`} class="service-related__chip" role="listitem">
+              <span class="service-related__icon" style={`background:${rel.gradient};color:white;`} aria-hidden="true">
+                <Icon name={relIcon.name} variant={relIcon.variant} size={18} color="white" />
               </span>
-              <div>
-                <p class="service-related__title">{rel.title}</p>
-                <p class="service-related__sub">{rel.shortDescription}</p>
-              </div>
+              <span class="service-related__label">{rel.title}</span>
+              <Icon name="arrow-right" size={14} color="currentColor" class="service-related__arrow" />
             </a>
           )
         })}

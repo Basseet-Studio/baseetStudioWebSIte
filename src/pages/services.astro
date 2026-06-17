@@ -2,15 +2,40 @@
 // /services — index page. Renders one large card per service category with
 // the same themeing (gradient bar, icon, sub-services) as the project cards.
 // Each card now links to /services/<slug>/ for the dedicated detail page.
+//
+// The sub-service list on each card is sourced from the per-slug detail files
+// (services/<slug>.json) via getAllServices() — not from the lightweight
+// services.json index. The lightweight index intentionally omits sub-services
+// to keep the JSONL small; the cards pull what they need at build time.
 import Page from '../layouts/Page.astro'
 import Icon from '../components/icons/Icon.astro'
 import { resolveIcon } from '../components/icons/iconMappings'
-import servicesData from '../content/data/services.json'
+import { getAllServices, getServicesIndex } from '../lib/services'
+import servicesIndex from '../content/data/services.json'
 import type { Lang } from '../types'
-
 
 const lang: 'en' = 'en'
 const description = 'Explore Baseet Studio services — web development, mobile apps, internal tools, SEO, UI/UX design, and cloud & DevOps for ambitious UAE brands.'
+
+// Build a slug → subService[] map at build time so the card loop can stay
+// cheap. Cap to 3 sub-services per card so each card stays a glance, not a list.
+// The list is sourced from the per-slug detail files (services/<slug>.json) —
+// the lightweight services.json index intentionally omits sub-services to stay
+// small; the cards pull what they need at build time.
+const subsBySlug: Record<string, Array<{ name: string; icon: string }>> = {}
+for (const detail of getAllServices()) {
+  subsBySlug[detail.slug] = (detail.subServices ?? []).slice(0, 3).map((s) => ({
+    name: s.name,
+    icon: s.icon,
+  }))
+}
+
+// The index page reads categories from getServicesIndex() (the lib) and the
+// static page chrome (title, subtitle, process, cta) from services.json.
+const servicesData = {
+  ...servicesIndex,
+  categories: getServicesIndex(),
+}
 ---
 
 <Page title="Services — Baseet Studio" description={description} section="services" lang={lang}>
@@ -36,7 +61,7 @@ const description = 'Explore Baseet Studio services — web development, mobile 
         <a
           id={category.id}
           href={`/services/${category.slug}/`}
-          class="service-card glass glass-card"
+          class="service-card card-window"
           data-animate="fade-up"
           style={`--card-accent:${category.color};`}
         >
@@ -49,7 +74,7 @@ const description = 'Explore Baseet Studio services — web development, mobile 
             {category.tagline && <p class="service-card__tagline">{category.tagline}</p>}
             <p class="service-card__short">{category.shortDescription}</p>
             <ul class="service-card__list">
-              {category.services?.map((sub: any) => {
+              {(subsBySlug[category.slug] ?? []).map((sub) => {
                 const subIcon = resolveIcon(sub.icon || 'fas fa-circle')
                 return (
                   <li class="service-card__list-item">
@@ -85,7 +110,7 @@ const description = 'Explore Baseet Studio services — web development, mobile 
         {servicesData.process.steps.map((step: any) => {
           const stepIcon = resolveIcon(step.icon || 'fas fa-circle')
           return (
-            <div class="glass glass-card p-6 text-center" data-animate="fade-up">
+            <div class="card-window card-window--tight p-6 text-center" data-animate="fade-up">
               <div
                 class="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-sm font-bold"
                 style="background: var(--color-primary); color: white;"
@@ -105,7 +130,7 @@ const description = 'Explore Baseet Studio services — web development, mobile 
   )}
 
   {servicesData.cta && (
-    <div class="text-center mt-16 glass glass-panel p-12" data-animate="fade-in">
+    <div class="text-center mt-16 card-window p-12" data-animate="fade-in">
       <h3 class="text-2xl font-bold mb-2" style="color:var(--heading-text);">{servicesData.cta.title}</h3>
       {servicesData.cta.subtitle && (
         <p class="text-lg opacity-80 mb-2" style="color:var(--muted-text);">{servicesData.cta.subtitle}</p>
@@ -135,18 +160,16 @@ const description = 'Explore Baseet Studio services — web development, mobile 
     position: relative;
     display: flex;
     flex-direction: column;
-    border-radius: 20px;
+    border-radius: 24px;
     overflow: hidden;
     text-decoration: none;
     color: inherit;
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-    border: 1px solid var(--card-border, rgba(0, 0, 0, 0.06));
-    background: var(--card-bg, #ffffff);
   }
 
   .service-card:hover {
     transform: translateY(-4px);
-    box-shadow: var(--card-shadow-hover, 0 12px 40px rgba(0, 0, 0, 0.1));
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
     border-color: color-mix(in srgb, var(--card-accent, var(--color-primary)) 35%, transparent);
   }
 

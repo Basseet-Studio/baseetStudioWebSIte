@@ -1,120 +1,137 @@
 :root {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 
-  --color-primary: #496BC1;
-  --color-secondary: #C2CCCF;
-  --color-accent: #FBCD37;
-  --color-dark: #171D1C;
-  --color-light: #EBEBEB;
+    --color-primary: #496bc1;
+    --color-secondary: #c2cccf;
+    --color-accent: #fbcd37;
+    --color-dark: #171d1c;
+    --color-light: #ebebeb;
 
-  /* Theme tokens (day default) */
-  --bg-page: #f4f8fc;
-  --bg-elevated: rgba(255, 255, 255, 0.7);
-  --bg-elevated-strong: rgba(255, 255, 255, 0.9);
-  --text-primary: #171d1c;
-  --text-secondary: rgba(23, 29, 28, 0.72);
-  --text-inverse: #ffffff;
-  --border-soft: rgba(0, 0, 0, 0.12);
-  --border-strong: rgba(0, 0, 0, 0.22);
-  --shadow-soft: 0 10px 34px rgba(16, 26, 44, 0.12);
-  --interactive-hover: rgba(0, 0, 0, 0.06);
-  --surface-soft: rgba(255, 255, 255, 0.06);
-  --surface-strong: rgba(255, 255, 255, 0.14);
-  --overlay-backdrop: rgba(15, 20, 33, 0.45);
-  --on-brand: #ffffff;
-  /* Footer in day mode: the footer surface is transparent + backdrop-blurred, so
+    /* Theme tokens (day default) */
+    --bg-page: #f4f8fc;
+    --bg-elevated: rgba(255, 255, 255, 0.7);
+    --bg-elevated-strong: rgba(255, 255, 255, 0.9);
+    --text-primary: #171d1c;
+    --text-secondary: rgba(23, 29, 28, 0.72);
+    --text-inverse: #ffffff;
+    --border-soft: rgba(0, 0, 0, 0.12);
+    --border-strong: rgba(0, 0, 0, 0.22);
+    --shadow-soft: 0 10px 34px rgba(16, 26, 44, 0.12);
+    --interactive-hover: rgba(0, 0, 0, 0.06);
+    --surface-soft: rgba(255, 255, 255, 0.06);
+    --surface-strong: rgba(255, 255, 255, 0.14);
+    --overlay-backdrop: rgba(15, 20, 33, 0.45);
+    --on-brand: #ffffff;
+    /* Footer in day mode: the footer surface is transparent + backdrop-blurred, so
      the underlying light page bg (#f4f8fc) shows through. The text must therefore
      be DARK to stay readable. Night mode (below) keeps the light text on the dark
      page. */
-  --footer-bg: transparent;
-  --footer-border: rgba(23, 29, 28, 0.14);
-  --footer-text-primary: rgba(23, 29, 28, 0.92);
-  --footer-text-muted: rgba(23, 29, 28, 0.7);
-  --footer-text-soft: rgba(23, 29, 28, 0.5);
-  --footer-chip-bg: rgba(23, 29, 28, 0.08);
+    --footer-bg: transparent;
+    --footer-border: rgba(23, 29, 28, 0.14);
+    --footer-text-primary: rgba(23, 29, 28, 0.92);
+    --footer-text-muted: rgba(23, 29, 28, 0.7);
+    --footer-text-soft: rgba(23, 29, 28, 0.5);
+    --footer-chip-bg: rgba(23, 29, 28, 0.08);
 
-  --space-xs: 4px;
-  --space-sm: 8px;
-  --space-md: 16px;
-  --space-lg: 24px;
-  --space-xl: 48px;
-  --space-2xl: 64px;
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 48px;
+    --space-2xl: 64px;
 
-  /* Motion timing tokens (also used in focus rings & hover transitions) */
-  --transition-fast: 200ms ease;
-  --transition-base: 300ms ease;
+    /* Motion timing tokens (also used in focus rings & hover transitions) */
+    --transition-fast: 200ms ease;
+    --transition-base: 300ms ease;
 
-  --vanta-sky: #87CEEB;
-  --vanta-cloud: #ffffff;
-  --vanta-cloud-shadow: #496bc1;
+    --vanta-sky: #87ceeb;
+    --vanta-cloud: #ffffff;
+    --vanta-cloud-shadow: #496bc1;
 
-  /* Semantic tokens for neutral UI surfaces */
-  --heading-text: #1c1917;
-  --muted-text: #78716c;
-  --page-section-bg: #f8f7f5;
-  --card-bg: #ffffff;
-  --card-border: rgba(0, 0, 0, 0.06);
-  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-  --card-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.1);
-  --chip-bg: #f5f5f4;
-  --chip-text: #78716c;
-  --chip-border: #e7e5e4;
-  --divider-color: rgba(0, 0, 0, 0.08);
-  --gallery-border: rgba(0, 0, 0, 0.08);
-  --gallery-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    /* Semantic tokens for neutral UI surfaces */
+    --heading-text: #1c1917;
+    --muted-text: #78716c;
+    --page-section-bg: #f8f7f5;
+    --card-bg: #ffffff;
+    --card-border: rgba(0, 0, 0, 0.06);
+    --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    --card-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.1);
+    --chip-bg: #f5f5f4;
+    --chip-text: #78716c;
+    --chip-border: #e7e5e4;
+    --divider-color: rgba(0, 0, 0, 0.08);
+    --gallery-border: rgba(0, 0, 0, 0.08);
+    --gallery-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
 
-  /* Type system — Rammetto One (titles), Rambla (body), Amiri Quran (Arabic, future).
+    /* Card-as-Window tokens (per DESIGN.md, "The Open Sky Rule"). Surfaces
+     here must let the Vanta clouds show through; opacity ≤72% day, ≤62% night.
+     1px cloud-tinted border (not solid black/white). */
+    --card-window-bg: rgba(255, 255, 255, 0.72);
+    --card-window-border: rgba(0, 0, 0, 0.06);
+    --card-window-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    --card-window-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.1);
+    --card-window-radius: 24px;
+    --card-window-radius-tight: 18px;
+
+    /* Type system — Rammetto One (titles), Rambla (body), Amiri Quran (Arabic, future).
      Tokens live here so component styles and inline styles can reach for the same
      fonts. Amiri Quran is reserved for the future /ar/ mirror — the [dir="rtl"] /
      [lang="ar"] selectors below swap the whole stack to it as soon as Arabic content
      lands. */
-  --font-title: 'Rammetto One', system-ui, -apple-system, sans-serif;
-  --font-body: 'Rambla', system-ui, -apple-system, sans-serif;
-  --font-arabic: 'Amiri Quran', 'Amiri', 'Noto Naskh Arabic', serif;
+    --font-title: "Rammetto One", system-ui, -apple-system, sans-serif;
+    --font-body: "Rambla", system-ui, -apple-system, sans-serif;
+    --font-arabic: "Amiri Quran", "Amiri", "Noto Naskh Arabic", serif;
 }
 
-[data-theme='night'] {
-  --bg-page: #0f1726;
-  --bg-elevated: rgba(10, 16, 28, 0.68);
-  --bg-elevated-strong: rgba(8, 12, 22, 0.82);
-  --text-primary: #ebeff8;
-  --text-secondary: rgba(235, 239, 248, 0.74);
-  --text-inverse: #ffffff;
-  --border-soft: rgba(255, 255, 255, 0.18);
-  --border-strong: rgba(255, 255, 255, 0.3);
-  --shadow-soft: 0 10px 34px rgba(0, 0, 0, 0.45);
-  --interactive-hover: rgba(255, 255, 255, 0.12);
-  --surface-soft: rgba(255, 255, 255, 0.1);
-  --surface-strong: rgba(255, 255, 255, 0.2);
-  --overlay-backdrop: rgba(4, 8, 16, 0.65);
-  --on-brand: #ffffff;
-  --footer-bg: #131b28;
-  --footer-border: rgba(255, 255, 255, 0.14);
-  --footer-text-primary: rgba(255, 255, 255, 0.95);
-  --footer-text-muted: rgba(255, 255, 255, 0.72);
-  --footer-text-soft: rgba(255, 255, 255, 0.52);
+[data-theme="night"] {
+    --bg-page: #0f1726;
+    --bg-elevated: rgba(10, 16, 28, 0.68);
+    --bg-elevated-strong: rgba(8, 12, 22, 0.82);
+    --text-primary: #ebeff8;
+    --text-secondary: rgba(235, 239, 248, 0.74);
+    --text-inverse: #ffffff;
+    --border-soft: rgba(255, 255, 255, 0.18);
+    --border-strong: rgba(255, 255, 255, 0.3);
+    --shadow-soft: 0 10px 34px rgba(0, 0, 0, 0.45);
+    --interactive-hover: rgba(255, 255, 255, 0.12);
+    --surface-soft: rgba(255, 255, 255, 0.1);
+    --surface-strong: rgba(255, 255, 255, 0.2);
+    --overlay-backdrop: rgba(4, 8, 16, 0.65);
+    --on-brand: #ffffff;
+    --footer-bg: #131b28;
+    --footer-border: rgba(255, 255, 255, 0.14);
+    --footer-text-primary: rgba(255, 255, 255, 0.95);
+    --footer-text-muted: rgba(255, 255, 255, 0.72);
+    --footer-text-soft: rgba(255, 255, 255, 0.52);
 
-  /* Vanta clouds: dim the sky and tint the cloud shadows for a moody night
+    /* Vanta clouds: dim the sky and tint the cloud shadows for a moody night
      sky. The vanta-init.ts reads these vars at init time. */
-  --vanta-sky: #1a2540;
-  --vanta-cloud: #6a7894;
-  --vanta-cloud-shadow: #0a0e18;
-  --footer-chip-bg: rgba(255, 255, 255, 0.12);
+    --vanta-sky: #1a2540;
+    --vanta-cloud: #6a7894;
+    --vanta-cloud-shadow: #0a0e18;
+    --footer-chip-bg: rgba(255, 255, 255, 0.12);
 
-  /* Semantic tokens for neutral UI surfaces (night) */
-  --heading-text: #ebeff8;
-  --muted-text: rgba(235, 239, 248, 0.62);
-  --page-section-bg: rgba(15, 23, 38, 0.4);
-  --card-bg: rgba(10, 16, 28, 0.68);
-  --card-border: rgba(255, 255, 255, 0.12);
-  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
-  --card-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.5);
-  --chip-bg: rgba(255, 255, 255, 0.08);
-  --chip-text: rgba(235, 239, 248, 0.74);
-  --chip-border: rgba(255, 255, 255, 0.1);
-  --divider-color: rgba(255, 255, 255, 0.1);
-  --gallery-border: rgba(255, 255, 255, 0.1);
-  --gallery-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+    /* Semantic tokens for neutral UI surfaces (night) */
+    --heading-text: #ebeff8;
+    --muted-text: rgba(235, 239, 248, 0.62);
+    --page-section-bg: rgba(15, 23, 38, 0.4);
+    --card-bg: rgba(10, 16, 28, 0.68);
+    --card-border: rgba(255, 255, 255, 0.12);
+    --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+    --card-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.5);
+    --chip-bg: rgba(255, 255, 255, 0.08);
+    --chip-text: rgba(235, 239, 248, 0.74);
+    --chip-border: rgba(255, 255, 255, 0.1);
+    --divider-color: rgba(255, 255, 255, 0.1);
+    --gallery-border: rgba(255, 255, 255, 0.1);
+    --gallery-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+
+    /* Card-as-Window night overrides. Same intent as day: 62% translucency,
+     1px cloud-tinted border, soft ambient shadow. */
+    --card-window-bg: rgba(10, 16, 28, 0.62);
+    --card-window-border: rgba(255, 255, 255, 0.1);
+    --card-window-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+    --card-window-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.5);
 }
 
 /* Project pages: each project uses a light pastel hero gradient (set inline on
@@ -124,60 +141,104 @@
    The wash sits ABOVE the gradient and BELOW the content (z-index 1).
    pointer-events: none so it never blocks clicks. */
 .project-wrapper {
-  position: relative;
+    position: relative;
 }
 .project-wrapper > * {
-  position: relative;
-  z-index: 2;
+    position: relative;
+    z-index: 2;
 }
-[data-theme='night'] .project-wrapper::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  /* Three stacked layers, all semi-transparent so the vanta clouds + floating
+[data-theme="night"] .project-wrapper::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    /* Three stacked layers, all semi-transparent so the vanta clouds + floating
      project animations (leaves, paper notes, kitchen, etc.) stay visible:
        1. Project colour wash — a tinted top-to-bottom gradient in the project's
           own colour, low opacity, so the project identity still reads.
        2. Soft dark gradient — fades the upper third darker for hero contrast.
        3. Radial halo behind the hero — a centred glow in the project colour. */
-  background:
-    linear-gradient(180deg,
-      color-mix(in srgb, var(--project-color, var(--color-primary)) 22%, rgba(8, 12, 22, 0.55)) 0%,
-      color-mix(in srgb, var(--project-color, var(--color-primary)) 10%, rgba(8, 12, 22, 0.35)) 30%,
-      color-mix(in srgb, var(--project-color, var(--color-primary)) 18%, rgba(8, 12, 22, 0.5)) 100%),
-    radial-gradient(ellipse 70% 50% at 50% 25%, color-mix(in srgb, var(--project-color, var(--color-primary)) 30%, transparent) 0%, transparent 70%),
-    rgba(8, 12, 22, 0.25);
-  pointer-events: none;
-  z-index: 1;
+    background:
+        linear-gradient(
+            180deg,
+            color-mix(
+                    in srgb,
+                    var(--project-color, var(--color-primary)) 22%,
+                    rgba(8, 12, 22, 0.55)
+                )
+                0%,
+            color-mix(
+                    in srgb,
+                    var(--project-color, var(--color-primary)) 10%,
+                    rgba(8, 12, 22, 0.35)
+                )
+                30%,
+            color-mix(
+                    in srgb,
+                    var(--project-color, var(--color-primary)) 18%,
+                    rgba(8, 12, 22, 0.5)
+                )
+                100%
+        ),
+        radial-gradient(
+            ellipse 70% 50% at 50% 25%,
+            color-mix(
+                    in srgb,
+                    var(--project-color, var(--color-primary)) 30%,
+                    transparent
+                )
+                0%,
+            transparent 70%
+        ),
+        rgba(8, 12, 22, 0.25);
+    pointer-events: none;
+    z-index: 1;
 }
 
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  font-family: var(--font-body);
-  background: transparent;
-  color: var(--text-primary);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    font-family: var(--font-body);
+    background: transparent;
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6 {
-  font-family: var(--font-title);
-  font-weight: 400; /* Rammetto One is a single-weight display face */
-  letter-spacing: -0.01em;
-  color: var(--heading-text);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    font-family: var(--font-title);
+    font-weight: 400; /* Rammetto One is a single-weight display face */
+    letter-spacing: -0.01em;
+    color: var(--heading-text);
 }
 
-h1 { font-size: 2.5rem; }
-h2 { font-size: 2rem; }
-h3 { font-size: 1.5rem; }
-h4 { font-size: 1.25rem; }
+h1 {
+    font-size: 2.5rem;
+}
+h2 {
+    font-size: 2rem;
+}
+h3 {
+    font-size: 1.5rem;
+}
+h4 {
+    font-size: 1.25rem;
+}
 
 /* Future Arabic mirror: when the /ar/ pages are added they will set
    <html lang="ar" dir="rtl">, which triggers the selectors below to swap
@@ -185,63 +246,105 @@ h4 { font-size: 1.25rem; }
    attributes on the root <html>, so this block is dormant. */
 [lang="ar"] body,
 [dir="rtl"] body {
-  font-family: var(--font-arabic);
-  line-height: 1.8;
+    font-family: var(--font-arabic);
+    line-height: 1.8;
 }
 
-[lang="ar"] h1, [lang="ar"] h2, [lang="ar"] h3,
-[lang="ar"] h4, [lang="ar"] h5, [lang="ar"] h6,
-[dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3,
-[dir="rtl"] h4, [dir="rtl"] h5, [dir="rtl"] h6 {
-  font-family: var(--font-arabic);
-  font-weight: 400;
-  letter-spacing: 0;
+[lang="ar"] h1,
+[lang="ar"] h2,
+[lang="ar"] h3,
+[lang="ar"] h4,
+[lang="ar"] h5,
+[lang="ar"] h6,
+[dir="rtl"] h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] h4,
+[dir="rtl"] h5,
+[dir="rtl"] h6 {
+    font-family: var(--font-arabic);
+    font-weight: 400;
+    letter-spacing: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
 }
 
 /* Footer social icon hover — explicit transition so the chip-bg swap animates
    within 200ms (per FR-030). The :hover rule itself is inlined in Footer.astro
    because the chip-bg uses CSS custom properties. */
 .footer-social-icon {
-  transition: background var(--transition-fast), transform var(--transition-fast);
+    transition:
+        background var(--transition-fast),
+        transform var(--transition-fast);
 }
 
 /* Logo mark in the app bar */
 .app-bar__logo-mark {
-  width: 22px;
-  height: 22px;
-  flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
 }
 
 .skip-to-content {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  padding: 8px 16px;
-  background: var(--color-primary);
-  color: white;
-  z-index: 10000;
-  border-radius: 4px;
-  text-decoration: none;
-  font-size: 0.875rem;
-  transform: translateY(-100%);
-  transition: transform 0.2s ease;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    padding: 8px 16px;
+    background: var(--color-primary);
+    color: white;
+    z-index: 10000;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.875rem;
+    transform: translateY(-100%);
+    transition: transform 0.2s ease;
 }
 
 .skip-to-content:focus {
-  transform: translateY(0);
+    transform: translateY(0);
+}
+
+/* =========================================================================
+   Card-as-Window utility (per DESIGN.md, "The Open Sky Rule")
+   -------------------------------------------------------------------------
+   A surface that obscures the Vanta clouds is the wrong surface. Every
+   card on the site that floats on the sky background should use this
+   class (or one of its variants) so the clouds stay visible through the
+   surface. Translucent (72% day / 62% night), 1px cloud-tinted border,
+   soft ambient shadow, no backdrop-filter (the clouds are already there;
+   doubling the blur produces the heavy-glass tell we refuse).
+   ========================================================================= */
+.card-window {
+    background: var(--card-window-bg);
+    border: 1px solid var(--card-window-border);
+    border-radius: var(--card-window-radius);
+    box-shadow: var(--card-window-shadow);
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.card-window--tight {
+    border-radius: var(--card-window-radius-tight);
+    padding: 22px;
+}
+
+a.card-window:hover,
+.card-window--interactive:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--card-window-shadow-hover);
 }
