@@ -1,0 +1,328 @@
+---
+// ProximityProjects.astro — scattered project tiles with TWO effects:
+//   1. Proximity scale grid  (docs/refrences/proximity scale grid)
+//      On mousemove, every tile scales 1 → 1.6 based on its distance to
+//      the cursor (gsap.utils.mapRange into a 0..1 proximity, gsap.to
+//      with overwrite:true). On mouseleave, every tile eases back to 1.
+//   2. Morph on hover         (docs/refrences/morph svg)
+//      On hover/focus, GSAP's MorphSVGPlugin morphs the icon's first
+//      <path> into the project name — pre-rendered as a single-path
+//      SVG by scripts/build-project-name-svgs.mjs into
+//      /projects/names/{slug}.svg. The decor (<line>, <rect>, …) fades
+//      out in sync so the morph is clean.
+//
+// IMPORTANT: We don't use the shared `Icon.astro` component here because
+// it wraps the SVG in a <span class="phosphor-icon">. That span is not
+// a valid SVG child, so the browser hoists it out of the outer <svg>,
+// which leaves svg.px__icon empty and breaks the morph selector.
+//
+// Instead, we read the icon SVG file at build time, extract its inner
+// children (the <rect>, <line>, <path>, <polyline>, <circle>, <polygon>
+// elements), and inject them directly into svg.px__icon via set:html.
+// Now the icon's shapes are real SVG children of svg.px__icon and the
+// morph script can operate on them with a flat querySelector('path').
+//
+// Markup contract with src/scripts/morph-projects.ts:
+//   <a class="px__tile" data-px-tile data-px-card
+//      data-name-src="/projects/names/{slug}.svg"
+//      style="--x:..;--y:..;--r:..;--px-color:#xxx;">
+//     <span class="px__art">
+//       <svg class="px__icon" viewBox="0 0 256 256" data-px-icon>
+//         <rect …/> <line …/> <path d="…"/> …  ← direct children
+//       </svg>
+//       <span class="px__label">{name}</span>
+//     </span>
+//   </a>
+
+import fs from 'node:fs'
+import path from 'node:path'
+import { resolveIcon } from '../icons/iconMappings'
+import type { Lang, ProjectSummary } from '../../types'
+
+interface Props {
+  projects: ProjectSummary[]
+  lang?: Lang
+}
+
+const { projects, lang = 'en' } = Astro.props
+
+// Scattered positions for the proximity grid (from the reference: each
+// card sits at its own --x, --y with its own --r rotation). 7 cards
+// spread across a 720px-tall stage — wider gaps and more vertical room
+// than the reference so the tiles can breathe.
+const POSITIONS = [
+  { x: '4%',   y: '6%',  r: '-3deg' },
+  { x: '30%',  y: '2%',  r: '3deg'  },
+  { x: '56%',  y: '8%',  r: '-2deg' },
+  { x: '84%',  y: '4%',  r: '4deg'  },
+  { x: '10%',  y: '52%', r: '2deg'  },
+  { x: '44%',  y: '48%', r: '-4deg' },
+  { x: '78%',  y: '54%', r: '1deg'  },
+]
+
+function posFor(i: number) {
+  return POSITIONS[i % POSITIONS.length]
+}
+
+// Read the icon's SVG file and return the INNER content (everything
+// between the opening <svg …> and closing </svg>). Returns '' if the
+// file is missing — the morph script will then log a warning and skip
+// the card instead of crashing the whole grid.
+function readIconInner(iconName: string, variant: 'regular' | 'bold' | 'fill' = 'regular'): string {
+  const fileName =
+    variant === 'regular' ? iconName : variant === 'bold' ? `${iconName}-bold` : `${iconName}-fill`
+  const iconPath = path.join(process.cwd(), 'public', 'icons', variant, `${fileName}.svg`)
+  try {
+    const content = fs.readFileSync(iconPath, 'utf-8')
+    // Capture everything between the first opening <svg …> and the last </svg>.
+    const m = content.match(/<svg\b[^>]*>([\s\S]*?)<\/svg>/)
+    if (!m) {
+      console.warn(`[ProximityProjects] ${iconPath}: no <svg> wrapper found`)
+      return ''
+    }
+    return m[1]
+  } catch (err) {
+    console.warn(`[ProximityProjects] could not read ${iconPath}:`, (err as NodeJS.ErrnoException).code)
+    return ''
+  }
+}
+---
+
+<section class="px" id="px-stage" aria-labelledby="px-heading">
+  <h2 class="px__heading" id="px-heading">Our Projects</h2>
+  <p class="px__hint">move your cursor over the grid</p>
+
+  <div class="px__stage" data-px-stage>
+    <div class="px__grid">
+      {projects.map((project, i) => {
+        const icon = resolveIcon(project.iconClass)
+        const pos = posFor(i)
+        const innerSvg = readIconInner(icon.name, icon.variant ?? 'regular')
+        return (
+          <a
+            href={`/projects/${project.slug}/`}
+            class="px__tile"
+            role="listitem"
+            data-px-tile
+            data-px-card
+            data-name-src={`/projects/names/${project.slug}.svg`}
+            aria-label={`View ${project.name}`}
+            style={`--x: ${pos.x}; --y: ${pos.y}; --r: ${pos.r}; --px-color: ${project.color};`}
+          >
+            <span class="px__art">
+              <span class="px__art-icon">
+                <svg
+                  class="px__icon"
+                  viewBox="0 0 256 256"
+                  xmlns="http://www.w3.org/2000/svg"
+                  data-px-icon
+                  aria-hidden="true"
+                  set:html={innerSvg}
+                />
+              </span>
+              <span class="px__label">{project.name}</span>
+            </span>
+          </a>
+        )
+      })}
+    </div>
+  </div>
+</section>
+
+<style>
+  .px {
+    padding: 80px 24px 64px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .px__heading {
+    font-family: 'Rammetto One', 'Rambla', system-ui, sans-serif;
+    font-size: clamp(1.8rem, 3.6vw, 2.6rem);
+    text-align: center;
+    margin: 0 0 8px;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+
+  .px__hint {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    font-family: 'Fraktion Mono', 'Rambla', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0 0 32px;
+  }
+
+  /* ── Stage ── */
+  .px__stage {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    height: 720px;
+    margin: 0 auto;
+  }
+
+  /* ── Grid — scattered layout via custom properties ── */
+  .px__grid {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* ── Tile ── */
+  .px__tile {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    rotate: var(--r, 0deg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 98px;
+    text-decoration: none;
+    color: var(--text-primary);
+    transform-origin: center center;
+    will-change: transform;
+  }
+
+  .px__art {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .px__art-icon {
+    width: 67px;
+    height: 67px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    color: var(--text-primary);
+    background: transparent;
+    transition:
+      color 320ms ease,
+      background-color 320ms ease,
+      box-shadow 320ms ease;
+  }
+
+  .px__icon {
+    width: 100%;
+    height: 100%;
+    display: block;
+    color: currentColor;
+    fill: none;
+  }
+
+  /* The Phosphor icon's inner shapes use stroke=currentColor so the
+     per-tile color cascades into the icon strokes. */
+  .px__icon :global(path),
+  .px__icon :global(line),
+  .px__icon :global(rect),
+  .px__icon :global(circle),
+  .px__icon :global(polygon),
+  .px__icon :global(polyline) {
+    stroke: currentColor;
+  }
+
+  .px__tile:hover .px__art-icon,
+  .px__tile:focus-visible .px__art-icon {
+    color: var(--px-color);
+    background: color-mix(in srgb, var(--px-color) 14%, transparent);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--px-color) 18%, transparent);
+    outline: none;
+  }
+
+  .px__label {
+    font-family: 'Rambla', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    transition: color 320ms ease;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .px__tile:hover .px__label,
+  .px__tile:focus-visible .px__label {
+    color: var(--text-primary);
+  }
+
+  @media (max-width: 720px) {
+    .px__stage {
+      height: auto;
+    }
+    .px__grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px 32px;
+    }
+    .px__tile {
+      position: static;
+      rotate: 0deg;
+    }
+  }
+</style>
+
+<script>
+  import gsap from 'gsap'
+  console.log('[proximity] script loaded')
+  import('../../scripts/morph-projects').then((m) => {
+    // ── Effect 1: Proximity Scale Grid ───────────────────────────────
+    const stage = document.querySelector<HTMLElement>('[data-px-stage]')
+    if (stage) {
+      const tiles = gsap.utils.toArray<HTMLElement>('[data-px-tile]')
+      const radius = 200
+      const maxScale = 1.6
+      const dur = 0.35
+      console.log('[proximity] stage found, tiles:', tiles.length, 'radius:', radius, 'maxScale:', maxScale)
+
+      stage.addEventListener('mousemove', (e) => {
+        const mx = e.clientX
+        const my = e.clientY
+        tiles.forEach((tile) => {
+          const r = tile.getBoundingClientRect()
+          const d = Math.hypot(
+            mx - (r.left + r.width / 2),
+            my - (r.top + r.height / 2),
+          )
+          const p = gsap.utils.clamp(0, 1, gsap.utils.mapRange(0, radius, 1, 0, d))
+          gsap.to(tile, {
+            scale: 1 + (maxScale - 1) * p,
+            overwrite: true,
+            ease: 'power2.out',
+          })
+        })
+      })
+
+      stage.addEventListener('mouseleave', () => {
+        console.log('[proximity] mouseleave — resetting all tiles to scale 1')
+        tiles.forEach((tile) => {
+          gsap.to(tile, {
+            scale: 1,
+            duration: dur * 2,
+            overwrite: true,
+            ease: 'power2.out',
+          })
+        })
+      })
+    } else {
+      console.warn('[proximity] no [data-px-stage] found')
+    }
+
+    // ── Effect 2: Morph SVG on hover/focus ──────────────────────────
+    const run = () => m.default.init()
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', run, { once: true })
+    } else {
+      run()
+    }
+    document.addEventListener('astro:page-load', run)
+    document.addEventListener('astro:before-swap', () => m.default.destroy())
+  })
+</script>

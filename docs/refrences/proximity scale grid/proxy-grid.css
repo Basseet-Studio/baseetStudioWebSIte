@@ -1,0 +1,252 @@
+
+@font-face {
+  font-display: block; font-family: Mori; font-style: normal; font-weight: 400;
+  src: url(https://assets.codepen.io/16327/PPMori-Regular.woff) format("woff");
+}
+@font-face {
+  font-display: block; font-family: Mori; font-style: normal; font-weight: 600;
+  src: url(https://assets.codepen.io/16327/PPMori-SemiBold.woff) format("woff");
+}
+@font-face {
+  font-display: block; font-family: Fraktion Mono; font-style: normal; font-weight: 400;
+  src: url(https://assets.codepen.io/16327/PPFraktionMono-Bold.woff) format("woff");
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --green: #0ae448;
+  --lt-green: #abff84;
+  --dark: #0e100f;
+  --light: #fffce1;
+  --pink: #fec5fb;
+  --shock-pink: #f100cb;
+  --orange: #ff8709;
+  --lilac: #9d95ff;
+  --blue: #00bae2;
+  --grey: #191919;
+  --surface75: #bbbaa6;
+  --surface50: #7c7c6f;
+  --surface25: #42433d;
+}
+
+html, body {
+  width: 100%; height: 100%;
+  background: var(--dark);
+  font-family: Mori, sans-serif;
+  color: var(--light);
+  overflow-x: hidden;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48px 24px 80px;
+  gap: 36px;
+}
+
+/* ── Header ── */
+.header { text-align: center; max-width: 560px; }
+.header h1 {
+  font-weight: 600;
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  color: var(--light);
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+.header p {
+  font-size: 0.86rem;
+  color: var(--surface50);
+  line-height: 1.55;
+}
+.header code {
+  font-family: Fraktion Mono, monospace;
+  font-size: 0.8em;
+  color: var(--green);
+  background: rgba(10,228,72,0.08);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+/* ── Controls ── */
+.controls {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-end;
+}
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.control-group label {
+  font-family: Fraktion Mono, monospace;
+  font-size: 0.6rem;
+  color: var(--surface50);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.control-group input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--surface25);
+  border: none;
+  padding: 0;
+  min-width: 130px;
+  cursor: pointer;
+  outline: none;
+}
+.control-group input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--green);
+  cursor: pointer;
+  border: 2px solid var(--dark);
+}
+.range-value {
+  font-family: Fraktion Mono, monospace;
+  font-size: 0.6rem;
+  color: var(--green);
+  text-align: right;
+}
+
+/* ── Stage ── */
+.stage {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  cursor: crosshair;
+}
+.stage-label {
+  font-family: Fraktion Mono, monospace;
+  font-size: 0.54rem;
+  color: var(--surface25);
+  position: absolute;
+  bottom: -20px;
+  right: 14px;
+  pointer-events: none;
+}
+
+/* ── Grid — scattered layout via custom properties ── */
+.grid {
+  position: relative;
+  width: 100%;
+  height: 620px;
+  pointer-events: none;
+}
+
+/* ── Card ── */
+.card {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  rotate: var(--r, 0deg);
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transform-origin: center center;
+  pointer-events: none;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+.card-icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+.card-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.card-title {
+  font-family: Mori, sans-serif;
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--light);
+  display: inline-block;
+  text-align: center;
+}
+
+.card-tag {
+  font-family: Fraktion Mono, monospace;
+  font-size: 0.54rem;
+  color: var(--surface25);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ── Description ── */
+.description {
+  max-width: 600px;
+  width: 100%;
+  background: var(--grey);
+  border: 1px solid var(--surface25);
+  border-radius: 12px;
+  padding: 22px 26px;
+}
+.description h3 {
+  font-family: Fraktion Mono, monospace;
+  font-size: 0.66rem;
+  font-weight: 400;
+  color: var(--surface50);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+}
+.description p {
+  font-size: 0.82rem;
+  color: var(--surface50);
+  line-height: 1.6;
+}
+.description code {
+  font-family: Fraktion Mono, monospace;
+  font-size: 0.78em;
+  color: var(--green);
+  background: rgba(10,228,72,0.08);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+/* ── Code Block ── */
+.code-section { max-width: 600px; width: 100%; }
+.code-section h3 {
+  font-family: Fraktion Mono, monospace;
+  font-size: 0.66rem;
+  font-weight: 400;
+  color: var(--surface50);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+.code-block {
+  background: var(--grey);
+  border: 1px solid var(--surface25);
+  border-radius: 12px;
+  padding: 20px 24px;
+  font-family: Fraktion Mono, monospace;
+  font-size: 0.62rem;
+  line-height: 1.65;
+  color: var(--surface75);
+  overflow-x: auto;
+  white-space: pre;
+  tab-size: 2;
+}
+.code-block .kw { color: var(--green); }
+.code-block .str { color: var(--light); }
+.code-block .num { color: var(--orange); }
+.code-block .cm { color: var(--surface25); }
+.code-block .fn { color: var(--lilac); }

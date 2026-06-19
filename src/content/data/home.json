@@ -5,13 +5,37 @@
     "image": "/images/home/hero/bill-sitting.png",
     "buttons": [
       { "text": "Start a project", "link": "#subscribe", "type": "primary" },
-      { "text": "See our work", "link": "#featured-projects", "type": "secondary" }
+      {
+        "text": "See our work",
+        "link": "#featured-projects",
+        "type": "secondary"
+      }
     ],
     "items": [
-      { "icon": "fas fa-laptop-code", "color": "#B45309", "title": "Web Platforms", "text": "Production-grade websites and dashboards built with modern frameworks" },
-      { "icon": "fas fa-mobile-alt", "color": "#F59E0B", "title": "Mobile Apps", "text": "iOS and Android apps that feel native and load fast" },
-      { "icon": "fas fa-paint-brush", "color": "#EA580C", "title": "UI / UX Design", "text": "Interfaces that turn first-time visitors into long-term users" },
-      { "icon": "fas fa-rocket", "color": "#D97706", "title": "Go-to-Market", "text": "From launch plan to growth experiments, end to end" }
+      {
+        "icon": "fas fa-laptop-code",
+        "color": "#B45309",
+        "title": "Web Platforms",
+        "text": "Production-grade websites and dashboards built with modern frameworks"
+      },
+      {
+        "icon": "fas fa-mobile-alt",
+        "color": "#F59E0B",
+        "title": "Mobile Apps",
+        "text": "iOS and Android apps that feel native and load fast"
+      },
+      {
+        "icon": "fas fa-paint-brush",
+        "color": "#EA580C",
+        "title": "UI / UX Design",
+        "text": "Interfaces that turn first-time visitors into long-term users"
+      },
+      {
+        "icon": "fas fa-rocket",
+        "color": "#D97706",
+        "title": "Go-to-Market",
+        "text": "From launch plan to growth experiments, end to end"
+      }
     ]
   },
   "features": [
@@ -81,9 +105,7 @@
       "tagline": "Intelligent data, on tap",
       "description": "A unified data intelligence platform offering real-time analytics, automated workflows, and predictive insights for modern teams.",
       "iconClass": "fas fa-database",
-      "platforms": [
-        { "name": "Web", "icon": "fas fa-globe" }
-      ],
+      "platforms": [{ "name": "Web", "icon": "fas fa-globe" }],
       "features": [
         "Real-time analytics",
         "Automated ETL pipelines",
@@ -101,9 +123,7 @@
       "tagline": "Run your business like a pro",
       "description": "All-in-one point of sale, inventory, and analytics. Trusted by retailers and restaurants worldwide, branded for your business.",
       "iconClass": "fas fa-cash-register",
-      "platforms": [
-        { "name": "Web", "icon": "fas fa-globe" }
-      ],
+      "platforms": [{ "name": "Web", "icon": "fas fa-globe" }],
       "features": [
         "POS terminal",
         "Multi-location inventory",
@@ -121,9 +141,7 @@
       "tagline": "Authentic Bangladeshi cuisine, on demand",
       "description": "A full-stack restaurant ordering platform with 3D hero, real-time order tracking, social proof, Stripe payments, and a comprehensive admin dashboard.",
       "iconClass": "fas fa-utensils",
-      "platforms": [
-        { "name": "Web", "icon": "fas fa-globe" }
-      ],
+      "platforms": [{ "name": "Web", "icon": "fas fa-globe" }],
       "features": [
         "3D hero with R3F",
         "Real-time order tracking",
@@ -155,6 +173,45 @@
       "color": "#B45309",
       "gradient": "linear-gradient(135deg, #B45309 0%, #F59E0B 100%)",
       "status": "Coming Soon"
+    },
+    {
+      "name": "PhotoRestore AI",
+      "slug": "photorestore-ai",
+      "type": "branded",
+      "tagline": "Restore old photos with AI",
+      "description": "Bring faded, damaged, and black-and-white photos back to life with on-device AI restoration, colorization, and enhancement.",
+      "iconClass": "fas fa-wand-magic-sparkles",
+      "platforms": [{ "name": "Web", "icon": "fas fa-globe" }],
+      "features": [
+        "AI restoration",
+        "Auto colorization",
+        "Scratch & damage repair",
+        "Before / after slider"
+      ],
+      "color": "#6366F1",
+      "gradient": "linear-gradient(135deg, #6366F1 0%, #818CF8 100%)",
+      "status": "Live"
+    },
+    {
+      "name": "Medev",
+      "slug": "medev",
+      "type": "branded",
+      "tagline": "Healthcare. Simplified.",
+      "description": "A clinic + patient platform that unifies appointments, records, and follow-ups into a single, doctor-friendly workflow.",
+      "iconClass": "fas fa-hospital",
+      "platforms": [
+        { "name": "Web", "icon": "fas fa-globe" },
+        { "name": "Docker", "icon": "fab fa-docker" }
+      ],
+      "features": [
+        "Patient records",
+        "Smart scheduling",
+        "e-Prescriptions",
+        "Doctor dashboard"
+      ],
+      "color": "#0A6E74",
+      "gradient": "linear-gradient(135deg, #0A6E74 0%, #14B8A6 100%)",
+      "status": "Ready to Deliver"
     }
   ],
   "team": [

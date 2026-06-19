@@ -1,0 +1,143 @@
+
+
+<div class="header">
+  <h1>Proximity Scale Grid</h1>
+  <p>
+    Scattered items that scale up based on cursor proximity.
+  </p>
+</div>
+
+<div class="controls">
+  <div class="control-group">
+    <label>Radius</label>
+    <input type="range" id="ctrlRadius" min="80" max="400" value="200" step="10">
+    <span class="range-value" id="valRadius">200px</span>
+  </div>
+  <div class="control-group">
+    <label>Max Scale</label>
+    <input type="range" id="ctrlScale" min="1.2" max="4" value="2.5" step="0.1">
+    <span class="range-value" id="valScale">2.50×</span>
+  </div>
+  <div class="control-group">
+    <label>Duration</label>
+    <input type="range" id="ctrlDur" min="0.1" max="1" value="0.35" step="0.05">
+    <span class="range-value" id="valDur">0.35s</span>
+  </div>
+</div>
+
+<div class="stage" id="stage">
+  <div class="grid">
+
+    <div class="card" style="--x:5%;  --y:8%;  --r:-3deg">
+      <div class="card-icon"><img src="https://assets.codepen.io/16327/2D-keyframe.png" alt=""></div>
+      <span class="card-title">gsap.to()</span>
+    </div>
+
+    <div class="card" style="--x:28%; --y:2%;  --r:2deg">
+      <div class="card-icon"><img src="https://assets.codepen.io/16327/2D-flower.png" alt=""></div>
+      <span class="card-title">gsap.from()</span>
+    </div>
+
+    <div class="card" style="--x:55%; --y:5%;  --r:-1deg">
+      <div class="card-icon"><img src="https://assets.codepen.io/16327/2D-diamond.png" alt=""></div>
+      <span class="card-title">gsap.fromTo()</span>
+    </div>
+
+    <div class="card" style="--x:80%; --y:3%;  --r:4deg">
+      <div class="card-icon"><img src="https://assets.codepen.io/16327/2D-circle.png" alt=""></div>
+      <span class="card-title">gsap.set()</span>
+    </div>
+
+    <div class="card" style="--x:12%; --y:32%; --r:2deg">
+      <div class="card-icon"><img src="https://assets.codepen.io/16327/2D-star.png" alt=""></div>
+      <span class="card-title">timeline()</span>
+    </div>
+
+    <div class="card" style="--x:40%; --y:28%; --r:-4deg">
+      <div class="card-icon"><img src="https://assets.codepen.io/16327/2D-circles.png" alt=""></div>
+      <span class="card-title">stagger</span>
+    </div>
+
+    <div class="card" style="--x:68%; --y:30%; --r:1deg">
+      <div class="card-icon"><img src="https://assets.codepen.io/16327/2D-sparkle.png" alt=""></div>
+      <span class="card-title">ScrollTrigger</span>
+    </div>
+
+    <div class="card" style="--x:3%;  --y:58%; --r:-2deg">
+      <div class="card-icon"><img src="https://assets.codepen.io/16327/2D-wobble.png" alt=""></div>
+      <span class="card-title">ease</span>
+    </div>
+
+    <div class="card" style="--x:30%; --y:55%; --r:3deg">
+      <div class="card-icon"><img src="https://assets.codepen.io/16327/3D-hoop.png" alt=""></div>
+      <span class="card-title">Flip</span>
+    </div>
+
+    <div class="card" style="--x:58%; --y:60%; --r:-3deg">
+      <div class="card-icon"><img src="https://assets.codepen.io/16327/2D-morph.png" alt=""></div>
+      <span class="card-title">MotionPath</span>
+    </div>
+
+    <div class="card" style="--x:82%; --y:55%; --r:2deg">
+      <div class="card-icon"><img src="https://assets.codepen.io/16327/2D-label.png" alt=""></div>
+      <span class="card-title">SplitText</span>
+    </div>
+
+    <div class="card" style="--x:18%; --y:82%; --r:-1deg">
+      <div class="card-icon"><img src="https://assets.codepen.io/16327/2D-lock.png" alt=""></div>
+      <span class="card-title">overwrite</span>
+    </div>
+
+    <div class="card" style="--x:48%; --y:85%; --r:3deg">
+      <div class="card-icon"><img src="https://assets.codepen.io/16327/3D-cone.png" alt=""></div>
+      <span class="card-title">defaults()</span>
+    </div>
+
+    <div class="card" style="--x:75%; --y:80%; --r:-2deg">
+      <div class="card-icon"><img src="https://assets.codepen.io/16327/2D-windmill.png" alt=""></div>
+      <span class="card-title">killTweensOf()</span>
+    </div>
+
+  </div>
+  <span class="stage-label">move cursor over grid</span>
+</div>
+
+<div class="description">
+  <h3>How it works</h3>
+  <p>
+    Cards are positioned with CSS custom properties (<code>--x</code>, <code>--y</code>, <code>--r</code>)
+    for a scattered layout. The <code>.stage</code> captures <code>mousemove</code> and computes
+    each card's distance via <code>Math.hypot</code>, mapped through
+    <code>gsap.utils.mapRange</code> into a 0→1 proximity. At the radius edge the scale is 1 —
+    no snap, just a smooth wave. Each card gets a single <code>gsap.to()</code> with
+    <code>overwrite: true</code>.
+  </p>
+</div>
+
+<div class="code-section">
+  <h3>Core Logic</h3>
+  <div class="code-block"><span class="kw">const</span> stage = document.<span class="fn">querySelector</span>(<span class="str">".stage"</span>);
+<span class="kw">const</span> cards = gsap.utils.<span class="fn">toArray</span>(<span class="str">".card"</span>);
+
+stage.<span class="fn">addEventListener</span>(<span class="str">"mousemove"</span>, (e) => {
+  cards.<span class="fn">forEach</span>((card) => {
+    <span class="kw">const</span> r = card.<span class="fn">getBoundingClientRect</span>();
+    <span class="kw">const</span> d = Math.<span class="fn">hypot</span>(
+      e.clientX - (r.left + r.width / <span class="num">2</span>),
+      e.clientY - (r.top + r.height / <span class="num">2</span>)
+    );
+    <span class="kw">const</span> p = gsap.utils.<span class="fn">clamp</span>(<span class="num">0</span>, <span class="num">1</span>,
+      gsap.utils.<span class="fn">mapRange</span>(<span class="num">0</span>, radius, <span class="num">1</span>, <span class="num">0</span>, d)
+    );
+    gsap.<span class="fn">to</span>(card, {
+      scale: <span class="num">1</span> + (maxScale - <span class="num">1</span>) * p,
+      duration: dur,
+      overwrite: <span class="kw">true</span>,
+      ease: <span class="str">"power2.out"</span>
+    });
+  });
+});</div>
+</div>
+
+
+
