@@ -29,3 +29,5 @@ assets/jsconfig.json
 # Optional: if you use Netlify or Vercel, ignore their local folders
 .netlify/
 .vercel/
+.astro
+dist

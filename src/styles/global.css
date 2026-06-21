@@ -298,6 +298,13 @@ h4 {
     flex-shrink: 0;
 }
 
+/* The clover logo is rendered via <img> so it cannot inherit currentColor
+   from the surrounding text. In night mode the SVG's default black stroke
+   disappears against the dark glass app bar, so invert it. */
+[data-theme="night"] .app-bar__logo-mark {
+    filter: invert(1);
+}
+
 .skip-to-content {
     position: absolute;
     top: 8px;

@@ -4,14 +4,42 @@
     "text": "Baseet Studio designs, builds, and ships apps and platforms for ambitious teams. We turn rough ideas into reliable products that customers come back to.",
     "image": "/images/home/hero/bill-sitting.png",
     "buttons": [
-      { "text": "Start a project", "link": "#subscribe", "type": "primary" },
-      { "text": "See our work", "link": "#featured-projects", "type": "secondary" }
+      {
+        "text": "Start a project",
+        "link": "#subscribe",
+        "type": "primary"
+      },
+      {
+        "text": "See our work",
+        "link": "#featured-projects",
+        "type": "secondary"
+      }
     ],
     "items": [
-      { "icon": "fas fa-laptop-code", "color": "#B45309", "title": "Web Platforms", "text": "Production-grade websites and dashboards built with modern frameworks" },
-      { "icon": "fas fa-mobile-alt", "color": "#F59E0B", "title": "Mobile Apps", "text": "iOS and Android apps that feel native and load fast" },
-      { "icon": "fas fa-paint-brush", "color": "#EA580C", "title": "UI / UX Design", "text": "Interfaces that turn first-time visitors into long-term users" },
-      { "icon": "fas fa-rocket", "color": "#D97706", "title": "Go-to-Market", "text": "From launch plan to growth experiments, end to end" }
+      {
+        "icon": "fas fa-laptop-code",
+        "color": "#B45309",
+        "title": "Web Platforms",
+        "text": "Production-grade websites and dashboards built with modern frameworks"
+      },
+      {
+        "icon": "fas fa-mobile-alt",
+        "color": "#F59E0B",
+        "title": "Mobile Apps",
+        "text": "iOS and Android apps that feel native and load fast"
+      },
+      {
+        "icon": "fas fa-paint-brush",
+        "color": "#EA580C",
+        "title": "UI / UX Design",
+        "text": "Interfaces that turn first-time visitors into long-term users"
+      },
+      {
+        "icon": "fas fa-rocket",
+        "color": "#D97706",
+        "title": "Go-to-Market",
+        "text": "From launch plan to growth experiments, end to end"
+      }
     ]
   },
   "features": [
@@ -61,8 +89,14 @@
       "description": "A beautiful habit-tracking app for iOS and Android. Streaks, check-ins, analytics, and smart reminders that keep you consistent.",
       "iconClass": "fas fa-chart-line",
       "platforms": [
-        { "name": "iOS", "icon": "fab fa-apple" },
-        { "name": "Android", "icon": "fab fa-android" }
+        {
+          "name": "iOS",
+          "icon": "fab fa-apple"
+        },
+        {
+          "name": "Android",
+          "icon": "fab fa-android"
+        }
       ],
       "features": [
         "Habit streaks",
@@ -82,7 +116,10 @@
       "description": "A unified data intelligence platform offering real-time analytics, automated workflows, and predictive insights for modern teams.",
       "iconClass": "fas fa-database",
       "platforms": [
-        { "name": "Web", "icon": "fas fa-globe" }
+        {
+          "name": "Web",
+          "icon": "fas fa-globe"
+        }
       ],
       "features": [
         "Real-time analytics",
@@ -102,7 +139,10 @@
       "description": "All-in-one point of sale, inventory, and analytics. Trusted by retailers and restaurants worldwide, branded for your business.",
       "iconClass": "fas fa-cash-register",
       "platforms": [
-        { "name": "Web", "icon": "fas fa-globe" }
+        {
+          "name": "Web",
+          "icon": "fas fa-globe"
+        }
       ],
       "features": [
         "POS terminal",
@@ -122,7 +162,10 @@
       "description": "A full-stack restaurant ordering platform with 3D hero, real-time order tracking, social proof, Stripe payments, and a comprehensive admin dashboard.",
       "iconClass": "fas fa-utensils",
       "platforms": [
-        { "name": "Web", "icon": "fas fa-globe" }
+        {
+          "name": "Web",
+          "icon": "fas fa-globe"
+        }
       ],
       "features": [
         "3D hero with R3F",
@@ -142,9 +185,18 @@
       "description": "A B2C platform connecting customers with verified vendors and service pros for plumbing, electrical, handyman, cleaning, and more.",
       "iconClass": "fas fa-wrench",
       "platforms": [
-        { "name": "iOS", "icon": "fab fa-apple" },
-        { "name": "Android", "icon": "fab fa-android" },
-        { "name": "Web", "icon": "fas fa-globe" }
+        {
+          "name": "iOS",
+          "icon": "fab fa-apple"
+        },
+        {
+          "name": "Android",
+          "icon": "fab fa-android"
+        },
+        {
+          "name": "Web",
+          "icon": "fas fa-globe"
+        }
       ],
       "features": [
         "Verified pros",
@@ -162,7 +214,7 @@
       "name": "Mohamed Abdallah",
       "role": "Founder / Product Lead / PM / Senior Engineer",
       "bio": "Founder and product lead combining deep engineering expertise with product strategy to shape high-quality software products.",
-      "image": "/images/home/team/mohamed-abdallah.jpg",
+      "image": "/images/home/team/mohamed-abdallah_hu_4b2d62d9a458ff8a.jpg",
       "social": {
         "github": "https://github.com/mohamed-a-elobaid",
         "linkedin": "https://www.linkedin.com/in/mohamed-abdalla-elobaid-29937b227/",
@@ -173,7 +225,7 @@
       "name": "Asadur Rahman",
       "role": "Tech Lead / System Architect",
       "bio": "Tech lead and systems architect focused on designing scalable distributed systems and robust cloud infrastructure.",
-      "image": "/images/home/team/asadur-rahman.png",
+      "image": "/images/home/team/asadur-rahman_hu_b31e675ed02455bf.png",
       "social": {
         "github": "https://github.com/ViX3L",
         "linkedin": "https://www.linkedin.com/in/vix3l/",
@@ -184,7 +236,7 @@
       "name": "Ariyan Rehman",
       "role": "Product Experience & Docs Engineer",
       "bio": "Ensures product experience and documentation excellence by focusing on UX, developer docs, and content-driven workflows.",
-      "image": "/images/home/team/ariyan-rehman.jpg",
+      "image": "/images/home/team/ariyan-rehman_hu_d336e79470b98c99.jpg",
       "social": {
         "github": "https://github.com/ariyangd",
         "linkedin": "https://www.linkedin.com/in/ariyangd/",
@@ -193,9 +245,9 @@
     },
     {
       "name": "Dibakar Sutra Dhar",
-      "role": "Backend Engineer & Data Engineer",
-      "bio": "Backend engineer specializing in distributed systems and scalable server solutions for web & cloud applications.",
-      "image": "/images/home/team/dibakar-sutradhar.JPG",
+      "role": "Data & Backend Engineer",
+      "bio": "Data engineer specializing in distributed systems and scalable server solutions for web & cloud applications.",
+      "image": "/images/home/team/dibakar-sutradhar_hu_74e528cb4da48397.JPG",
       "social": {
         "github": "https://github.com/dibakarsutradhar",
         "linkedin": "https://www.linkedin.com/in/dibakarsutradhar/",
@@ -204,8 +256,14 @@
     }
   ],
   "clients": [
-    { "name": "Portia Grid", "image": "" },
-    { "name": "Iyat", "image": "" }
+    {
+      "name": "Portia Grid",
+      "image": ""
+    },
+    {
+      "name": "Iyat",
+      "image": ""
+    }
   ],
   "highlights": [
     {
@@ -229,5 +287,8 @@
       "icon": "fas fa-users"
     }
   ],
-  "clouds": { "enable": true, "enableOnMobile": false }
+  "clouds": {
+    "enable": true,
+    "enableOnMobile": false
+  }
 }
