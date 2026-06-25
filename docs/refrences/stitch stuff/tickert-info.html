@@ -1,0 +1,363 @@
+
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aether — Avant-Garde Digital Agency</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&amp;family=Inter:wght@400;500&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#f9f9f9",
+                    "primary-container": "#1c1b1b",
+                    "outline-variant": "#c4c7c7",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed": "#dbe2fa",
+                    "on-primary-fixed-variant": "#474646",
+                    "on-primary-container": "#858383",
+                    "on-primary": "#ffffff",
+                    "primary": "#000000",
+                    "primary-fixed-dim": "#c9c6c5",
+                    "tertiary-fixed-dim": "#bfc6dd",
+                    "on-tertiary-fixed": "#141b2c",
+                    "on-secondary-fixed": "#1a1c1f",
+                    "on-tertiary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-tertiary-container": "#7c8399",
+                    "secondary": "#5d5e63",
+                    "surface-container": "#eeeeee",
+                    "surface-tint": "#5f5e5e",
+                    "surface-container-highest": "#e2e2e2",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#f0f1f1",
+                    "on-secondary-container": "#616267",
+                    "secondary-fixed": "#e2e2e7",
+                    "secondary-fixed-dim": "#c6c6cb",
+                    "surface-container-high": "#e8e8e8",
+                    "on-error": "#ffffff",
+                    "tertiary": "#000000",
+                    "on-background": "#1a1c1c",
+                    "surface-dim": "#dadada",
+                    "primary-fixed": "#e5e2e1",
+                    "on-secondary-fixed-variant": "#45474b",
+                    "surface-container-low": "#f3f3f4",
+                    "on-error-container": "#93000a",
+                    "on-surface-variant": "#444748",
+                    "inverse-primary": "#c9c6c5",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#dfdfe4",
+                    "inverse-surface": "#2f3131",
+                    "surface-variant": "#e2e2e2",
+                    "on-primary-fixed": "#1c1b1b",
+                    "on-tertiary-fixed-variant": "#3f4759",
+                    "outline": "#747878",
+                    "surface": "#f9f9f9",
+                    "surface-bright": "#f9f9f9",
+                    "on-surface": "#1a1c1c",
+                    "tertiary-container": "#141b2c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "fluid-overlap": "-4rem",
+                    "section-gap": "12rem",
+                    "safe-area": "6vw",
+                    "element-gap": "2rem"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Syne"],
+                    "display-xl-mobile": ["Syne"],
+                    "display-xl": ["Syne"],
+                    "headline-lg": ["Syne"],
+                    "body-lg": ["Inter"],
+                    "label-mono": ["JetBrains Mono"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-xl-mobile": ["56px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "display-xl": ["120px", {"lineHeight": "110px", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                    "headline-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "32px", "fontWeight": "400"}],
+                    "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #f9f9f9; overflow-x: hidden; cursor: crosshair; }
+        .glass-panel { backdrop-filter: blur(40px); border: 1px solid rgba(255, 255, 255, 0.2); }
+        .organic-blob-1 { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+        .organic-blob-2 { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+        .organic-blob-3 { border-radius: 50% 50% 20% 80% / 25% 80% 20% 75%; }
+        .parallax-target { transition: transform 0.1s ease-out; }
+        .text-outline { -webkit-text-stroke: 1px currentColor; color: transparent; }
+        .fluid-hover:hover { filter: contrast(1.2); transform: translateY(-4px) scale(1.02); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        
+        .ticket-perforation {
+            background-image: radial-gradient(circle, transparent 70%, #f9f9f9 70%);
+            background-size: 20px 20px;
+            background-position: 0 0;
+            background-repeat: repeat-y;
+        }
+        .ticket-shape {
+            position: relative;
+            background: white;
+            clip-path: polygon(
+                0 0, 100% 0, 100% 100%, 0 100%, 
+                0 65%, 15px 60%, 15px 40%, 0 35%
+            );
+        }
+        .ticket-notch-left {
+            position: absolute;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 60px;
+            background: #f9f9f9;
+            border-radius: 0 40px 40px 0;
+            z-index: 10;
+        }
+        .ticket-notch-right {
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 60px;
+            background: #f9f9f9;
+            border-radius: 40px 0 0 40px;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 right-0 z-50 flex justify-center w-full">
+<nav class="bg-surface-container-low/40 backdrop-blur-2xl rounded-full mt-6 mx-auto w-fit px-8 py-4 border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.1)] flex items-center gap-8">
+<div class="font-display-xl text-headline-lg font-bold tracking-tighter text-primary">Aether</div>
+<div class="hidden md:flex gap-6">
+<a class="font-headline-sm text-headline-sm tracking-tight text-on-surface-variant font-medium hover:text-primary transition-all duration-500 hover:scale-105" href="#">Work</a>
+<a class="font-headline-sm text-headline-sm tracking-tight text-on-surface-variant font-medium hover:text-primary transition-all duration-500 hover:scale-105" href="#">Studio</a>
+<a class="font-headline-sm text-headline-sm tracking-tight text-on-surface-variant font-medium hover:text-primary transition-all duration-500 hover:scale-105" href="#">Journal</a>
+<a class="font-headline-sm text-headline-sm tracking-tight text-on-surface-variant font-medium hover:text-primary transition-all duration-500 hover:scale-105" href="#">Contact</a>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-full font-headline-sm text-headline-sm tracking-tight scale-95 transition-transform duration-300 ease-out hover:scale-100">Inquire</button>
+</nav>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center justify-center pt-24">
+<div class="absolute inset-0 z-0 overflow-hidden">
+<img alt="A dreamy sky with clouds" class="w-full h-full object-cover opacity-60 scale-110 blur-sm brightness-105" src="https://lh3.googleusercontent.com/aida/AP1WRLsXD3utYyvbuFu8X32LK_6b4FcG0gc17a3WJrOqLUCPDl4gRKC93NnO8Lh_uZjOB3WpzuuzIIdY1c2dv0QAg-g0fH3umCL5kCo9BJuVGlMaNkvuSc3Wtfwu4xi7hWUEk58erV37bLg3kHtoDN8VS3sl_31viQhQaUwTFhMYTDA1GSwLDdbV0Ax0e_NprTpXYPKWrDlFNh_U4W1z4kt_uiYp1cvr7Du_ml6TU8m98D2_ImTSP1cqGiwselI"/>
+<div class="absolute top-[10%] -left-[5%] w-96 h-96 bg-tertiary-fixed/30 organic-blob-1 blur-3xl animate-pulse"></div>
+<div class="absolute bottom-[20%] -right-[10%] w-[30rem] h-[30rem] bg-secondary-fixed/20 organic-blob-2 blur-3xl"></div>
+</div>
+<div class="relative z-10 px-safe-area w-full max-w-7xl">
+<div class="flex flex-col items-start gap-0">
+<span class="font-label-mono text-label-mono uppercase tracking-[0.3em] mb-4 text-secondary ml-4">Established 2024</span>
+<h1 class="relative">
+<div class="font-display-xl text-display-xl-mobile md:text-display-xl text-primary leading-none -mb-4 tracking-tighter">Elevate</div>
+<div class="font-display-xl text-display-xl-mobile md:text-display-xl italic text-outline ml-[10%] md:ml-[15%] leading-none -mb-4 tracking-tighter mix-blend-difference">Your</div>
+<div class="font-display-xl text-display-xl-mobile md:text-display-xl text-primary leading-none ml-[5%] md:ml-[25%] tracking-tighter">Vision</div>
+</h1>
+</div>
+<div class="absolute right-0 bottom-0 md:right-[10%] md:-bottom-24 w-64 md:w-80 glass-panel p-8 organic-blob-3 shadow-2xl transition-transform duration-700 hover:rotate-3 cursor-default">
+<p class="font-body-lg text-body-lg text-on-surface-variant italic mb-6">"We dissolve the boundary between digital utility and artistic sensory experience."</p>
+<div class="flex items-center gap-3">
+<div class="w-12 h-[1px] bg-primary"></div>
+<span class="font-label-mono text-label-mono">Curated Flow</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Studio Section: Boarding Pass Redesign -->
+<section class="py-section-gap px-safe-area relative overflow-hidden bg-background">
+<!-- Background sky for the ticket to float over -->
+<div class="absolute inset-0 opacity-20 pointer-events-none">
+<img alt="background" class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida/AP1WRLsXD3utYyvbuFu8X32LK_6b4FcG0gc17a3WJrOqLUCPDl4gRKC93NnO8Lh_uZjOB3WpzuuzIIdY1c2dv0QAg-g0fH3umCL5kCo9BJuVGlMaNkvuSc3Wtfwu4xi7hWUEk58erV37bLg3kHtoDN8VS3sl_31viQhQaUwTFhMYTDA1GSwLDdbV0Ax0e_NprTpXYPKWrDlFNh_U4W1z4kt_uiYp1cvr7Du_ml6TU8m98D2_ImTSP1cqGiwselI"/>
+</div>
+<div class="max-w-7xl mx-auto relative z-10">
+<div class="mb-24 flex justify-between items-end">
+<h2 class="font-headline-lg text-headline-lg max-w-md">Our practice is the art of <span class="italic font-normal">distillation</span>.</h2>
+<span class="font-label-mono text-label-mono text-secondary mb-2">[ Studio — Phase 01 ]</span>
+</div>
+<div class="flex justify-center items-center py-12">
+<!-- Boarding Pass Component -->
+<div class="relative w-full max-w-5xl group transition-all duration-700 hover:-translate-y-4">
+<!-- Shadow -->
+<div class="absolute inset-4 bg-black/5 blur-2xl rounded-2xl"></div>
+<div class="relative bg-white flex flex-col md:flex-row overflow-hidden rounded-2xl shadow-2xl border border-black/5">
+<!-- Left Notches (Visual) -->
+<div class="ticket-notch-left hidden md:block"></div>
+<!-- Main Content Area -->
+<div class="flex-grow p-10 md:p-14 border-b md:border-b-0 md:border-right border-dashed border-gray-200 relative">
+<div class="flex justify-between items-start mb-16">
+<div class="space-y-1">
+<p class="font-label-mono text-[10px] uppercase text-secondary">Carrier</p>
+<h3 class="font-display-xl text-headline-lg leading-none tracking-tighter">AETHER</h3>
+</div>
+<div class="text-right">
+<p class="font-label-mono text-[10px] uppercase text-secondary">Gate</p>
+<p class="font-headline-sm">STRATOSPHERE</p>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-12 mb-16">
+<div class="space-y-1">
+<p class="font-label-mono text-[10px] uppercase text-secondary">From</p>
+<p class="font-headline-sm">UTILITY</p>
+<p class="font-label-mono text-[10px] text-secondary">BASE_CODE.01</p>
+</div>
+<div class="flex flex-col items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-primary/20" data-icon="flight_takeoff">flight_takeoff</span>
+<div class="w-full h-px bg-dashed border-t border-dashed border-gray-300 my-2"></div>
+<p class="font-label-mono text-[8px] uppercase tracking-widest">Aesthetic Precision</p>
+</div>
+<div class="space-y-1 text-right md:text-left">
+<p class="font-label-mono text-[10px] uppercase text-secondary">To</p>
+<p class="font-headline-sm">SENSORY</p>
+<p class="font-label-mono text-[10px] text-secondary">VIBE_SHIFT.99</p>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-12">
+<div>
+<p class="font-label-mono text-[10px] uppercase text-secondary">Boarding Details</p>
+<p class="font-body-md font-medium mt-2">STUDIO CULTURE</p>
+</div>
+<div>
+<p class="font-label-mono text-[10px] uppercase text-secondary">Passenger Class</p>
+<p class="font-body-md font-medium mt-2">AVANT-GARDE</p>
+</div>
+<div class="hidden md:block">
+<p class="font-label-mono text-[10px] uppercase text-secondary">Collective</p>
+<p class="font-body-md font-medium mt-2">AETHER COLLECTIVE</p>
+</div>
+</div>
+</div>
+<!-- Perforation Line -->
+<div class="w-px border-l-2 border-dashed border-gray-200 relative hidden md:block">
+<div class="absolute -top-4 -left-4 w-8 h-8 bg-background rounded-full"></div>
+<div class="absolute -bottom-4 -left-4 w-8 h-8 bg-background rounded-full"></div>
+</div>
+<!-- Ticket Stub -->
+<div class="md:w-80 bg-surface-container-low/30 p-10 md:p-14 flex flex-col justify-between relative overflow-hidden">
+<!-- Right Notch -->
+<div class="ticket-notch-right hidden md:block"></div>
+<div class="space-y-8">
+<div class="space-y-1">
+<p class="font-label-mono text-[10px] uppercase text-secondary">Flight</p>
+<p class="font-headline-sm">AE-2024</p>
+</div>
+<div class="space-y-1">
+<p class="font-label-mono text-[10px] uppercase text-secondary">Seat</p>
+<p class="font-headline-sm">INFINITY</p>
+</div>
+<div class="space-y-1">
+<p class="font-label-mono text-[10px] uppercase text-secondary">Boarding Time</p>
+<p class="font-headline-sm">NOW</p>
+</div>
+</div>
+<div class="mt-12 flex flex-col items-center gap-4">
+<!-- Barcode visual -->
+<div class="w-full h-16 bg-black flex gap-[2px] p-1 items-stretch">
+<div class="bg-white flex-grow"></div><div class="bg-white w-[1px]"></div><div class="bg-white flex-grow"></div><div class="bg-white w-[3px]"></div><div class="bg-white flex-grow"></div><div class="bg-white w-[1px]"></div><div class="bg-white flex-grow"></div><div class="bg-white w-[4px]"></div><div class="bg-white flex-grow"></div><div class="bg-white w-[1px]"></div><div class="bg-white flex-grow"></div><div class="bg-white w-[2px]"></div><div class="bg-white flex-grow"></div><div class="bg-white w-[1px]"></div><div class="bg-white flex-grow"></div>
+</div>
+<p class="font-label-mono text-[9px] tracking-[0.4em] text-secondary">1001-AETHER-2024-STUDIO</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-section-gap px-safe-area relative bg-primary-container text-on-primary overflow-hidden">
+<div class="max-w-4xl mx-auto text-center relative z-10 py-24">
+<h2 class="font-display-xl text-display-xl-mobile md:text-headline-lg mb-12 tracking-tighter">Ready to <span class="italic font-normal">transcend</span> the grid?</h2>
+<div class="flex flex-col md:flex-row items-center justify-center gap-element-gap">
+<a class="group relative px-12 py-6 bg-on-primary text-primary rounded-full font-headline-sm text-headline-sm transition-all duration-500 overflow-hidden hover:scale-105 active:scale-95" href="#">
+<span class="relative z-10">Start a Project</span>
+<div class="absolute inset-0 bg-surface-container-high translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
+</a>
+<a class="font-label-mono text-label-mono border-b border-on-primary/30 pb-1 hover:border-on-primary transition-colors" href="#">See our Portfolio</a>
+</div>
+</div>
+</section>
+<!-- Featured Media Section -->
+<section class="py-section-gap px-safe-area">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+<div class="md:col-span-7">
+<div class="relative group">
+<img class="w-full h-[600px] object-cover rounded-xl shadow-2xl transition-transform duration-1000 group-hover:scale-[1.02]" data-alt="Minimalist workspace" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBv_ep6xRmY_8QICDCjcZSyDrXNOsWbqCsar5wPciTCVdpW71FmIzd_xYAa2uca1afi2heNSSww5HWKwlCxKwguR1OWsUwofT2LA9K7t9Jqhfwwv5SjtWa1kZsw12Hqy1QhxurMRCLgv5G2LRgh5HJlP_HF-oGScD4PaDFpwRq9fU2o0a1qnj5NEq-PPqX33LUhlQlYAh4S3qGO9YQ71DSQVfzryEPIycJ3rUmOTGetSyj5xezonHVx-N2Bk4nvH5Hcm8ZnqabkC0"/>
+<div class="absolute -bottom-10 -right-10 w-48 h-48 bg-tertiary organic-blob-2 flex items-center justify-center text-on-tertiary animate-[spin_10s_linear_infinite]">
+<span class="font-label-mono text-[10px] uppercase text-center px-4 leading-tight">Studio Culture // Aesthetic Precision // Studio Culture</span>
+</div>
+</div>
+</div>
+<div class="md:col-span-5 md:pl-12">
+<h4 class="font-label-mono text-label-mono text-secondary mb-6">[ The Journal ]</h4>
+<h3 class="font-headline-lg text-headline-lg mb-8 leading-tight">Finding beauty in the <span class="italic font-normal">void</span>.</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-12 max-w-md">Our latest editorial explores how negative space in UI design influences user heart rate and cognitive load.</p>
+<a class="flex items-center gap-4 group" href="#">
+<span class="w-12 h-12 flex items-center justify-center rounded-full border border-outline group-hover:bg-primary group-hover:text-on-primary transition-all duration-500">
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</span>
+<span class="font-headline-sm text-headline-sm group-hover:ml-2 transition-all duration-500">Read Journal</span>
+</a>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 px-safe border-t border-outline-variant/30 mt-section-gap bg-transparent">
+<div class="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto gap-element-gap">
+<div class="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tighter">Aether</div>
+<div class="flex gap-8">
+<a class="font-label-mono text-label-mono uppercase tracking-[0.2em] text-secondary hover:text-primary transition-colors duration-300" href="#">Privacy</a>
+<a class="font-label-mono text-label-mono uppercase tracking-[0.2em] text-secondary hover:text-primary transition-colors duration-300" href="#">Terms</a>
+<a class="font-label-mono text-label-mono uppercase tracking-[0.2em] text-secondary hover:text-primary transition-colors duration-300" href="#">Instagram</a>
+<a class="font-label-mono text-label-mono uppercase tracking-[0.2em] text-secondary hover:text-primary transition-colors duration-300" href="#">LinkedIn</a>
+</div>
+<div class="font-label-mono text-label-mono uppercase tracking-[0.2em] text-secondary">©2024 Aether Agency. All rights reserved.</div>
+</div>
+</footer>
+<script>
+        document.addEventListener('mousemove', (e) => {
+            const x = (window.innerWidth / 2 - e.pageX) / 50;
+            const y = (window.innerHeight / 2 - e.pageY) / 50;
+            const targets = document.querySelectorAll('.parallax-target, .organic-blob-1, .organic-blob-2');
+            targets.forEach((el, index) => {
+                const depth = (index + 1) * 0.5;
+                el.style.transform = `translate(${x * depth}px, ${y * depth}px)`;
+            });
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-12');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section > div').forEach(el => {
+            el.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-12');
+            observer.observe(el);
+        });
+    </script>
+</body></html>

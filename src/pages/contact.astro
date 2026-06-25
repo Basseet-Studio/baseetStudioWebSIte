@@ -154,8 +154,9 @@ const timezoneLabel = 'GST (UTC+4)'
   </section>
 
   {/* =====================================================================
-       Form — wider home. Two-column layout for short fields (name + email,
-       phone + subject) to break the monotonous vertical stack.
+       Form — paper letter / postcard treatment (paper-post-contact ref).
+       The ContactForm component renders the letter, the stamp, and the
+       social stamps row all in one block.
        ===================================================================== */}
   <section class="form-section" data-animate="fade-up">
     <header class="form-section__head">
@@ -169,42 +170,6 @@ const timezoneLabel = 'GST (UTC+4)'
       </p>
     </header>
     <ContactForm actionUrl={linksData.forms.contact_form_url} lang={lang} />
-  </section>
-
-  {/* =====================================================================
-       Social strip — quiet line at the bottom. No "Follow Us" heading;
-       the icons + platform names carry the message.
-       ===================================================================== */}
-  <section class="social-strip" data-animate="fade-up" aria-label="Find us elsewhere">
-    <span class="social-strip__label">Find us elsewhere</span>
-    <ul class="social-strip__list">
-      {Object.entries(linksData.social).filter(([, url]) => url && url !== '#').map(([platform, url]) => {
-        const socialIcons: { [key: string]: string } = {
-          instagram: 'instagram-logo',
-          linkedin: 'linkedin-logo',
-          twitter: 'x-logo',
-          github: 'github-logo',
-          dribbble: 'dribbble-logo',
-          facebook: 'facebook-logo',
-          youtube: 'youtube-logo',
-          tiktok: 'tiktok-logo',
-        }
-        return (
-          <li>
-            <a
-              href={url}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="social-strip__link"
-              aria-label={platform}
-            >
-              <Icon name={socialIcons[platform] || 'globe'} size={18} variant="fill" color="currentColor" />
-              <span class="social-strip__name">{platform}</span>
-            </a>
-          </li>
-        )
-      })}
-    </ul>
   </section>
 </Page>
 
@@ -558,64 +523,9 @@ const timezoneLabel = 'GST (UTC+4)'
 
   /* The ContactForm uses a single-column layout today; the rest of the page
      is doing the work to feel spacious. The form keeps the canvas
-     (card-window) without glassmorphism so it sits cleanly in the layout. */
+     (card-window) without glassmorphism so it sits cleanly in the layout.
 
-  /* =====================================================================
-     Social strip — quiet, single horizontal line.
-     ===================================================================== */
-  .social-strip {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 24px 32px;
-    padding: 24px 32px;
-    border-top: 1px solid var(--divider-color);
-    border-bottom: 1px solid var(--divider-color);
-  }
-
-  .social-strip__label {
-    font-size: 0.74rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--muted-text);
-    font-weight: 600;
-    flex-shrink: 0;
-  }
-
-  .social-strip__list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 18px 24px;
-  }
-
-  .social-strip__link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-size: 0.88rem;
-    font-weight: 500;
-    transition: color 0.2s ease;
-  }
-
-  .social-strip__link:hover {
-    color: var(--heading-text);
-  }
-
-  .social-strip__name {
-    text-transform: capitalize;
-  }
-
-  @media (max-width: 560px) {
-    .social-strip {
-      padding: 20px 24px;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 14px;
-    }
-  }
+   The social-strip block was removed — social links now live inside
+   the ContactForm as floating stamps (see ContactForm.astro for the
+   paper-stamp treatment). */
 </style>

@@ -1,0 +1,40 @@
+ <h2 className="mt-2 font-display text-4xl font-bold leading-[0.95] md:text-6xl">
+              Four things,<br />done properly.
+            </h2>
+          </div>
+          <Link to="/services" className="hidden text-sm font-medium underline underline-offset-4 md:block">
+            All services →
+          </Link>
+        </div>
+
+        <div className="mt-8 grid grid-cols-12 gap-5">
+          <Pillar
+            n="01"
+            t="Product design"
+            d="Interfaces with a point of view. We sketch, prototype, pressure-test."
+            className="col-span-12 md:col-span-6 lg:col-span-5 md:-rotate-1"
+            bg="bg-[color-mix(in_oklab,var(--peach)_55%,white)]"
+          />
+          <Pillar
+            n="02"
+            t="Native mobile"
+            d="iOS, Android, React Native — we pick the right tool and ship to both stores."
+            className="col-span-12 md:col-span-6 lg:col-span-7 md:rotate-1"
+            bg="bg-[color-mix(in_oklab,var(--sky)_70%,white)]"
+          />
+          <Pillar
+            n="03"
+            t="Web platforms"
+            d="Type-safe stacks, edge runtimes, payments, auth — the unglamorous stuff that matters."
+            className="col-span-12 md:col-span-6 lg:col-span-7 md:rotate-1"
+            bg="bg-white/90"
+          />
+          <Pillar
+            n="04"
+            t="Brand systems"
+            d="Tokens, motion, voice. The system that keeps your product feeling like itself."
+            className="col-span-12 md:col-span-6 lg:col-span-5 md:-rotate-1"
+            bg="bg-[color-mix(in_oklab,var(--blush)_45%,white)]"
+          />
+        </div>
+      </section>

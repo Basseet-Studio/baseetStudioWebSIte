@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aether — Contact</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&amp;family=Inter:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;family=Syne:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#f9f9f9",
+                        "primary-container": "#1c1b1b",
+                        "outline-variant": "#c4c7c7",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#dbe2fa",
+                        "on-primary-fixed-variant": "#474646",
+                        "on-primary-container": "#858383",
+                        "on-primary": "#ffffff",
+                        "primary": "#000000",
+                        "primary-fixed-dim": "#c9c6c5",
+                        "tertiary-fixed-dim": "#bfc6dd",
+                        "on-tertiary-fixed": "#141b2c",
+                        "on-secondary-fixed": "#1a1c1f",
+                        "on-tertiary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#7c8399",
+                        "secondary": "#5d5e63",
+                        "surface-container": "#eeeeee",
+                        "surface-tint": "#5f5e5e",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#f0f1f1",
+                        "on-secondary-container": "#616267",
+                        "secondary-fixed": "#e2e2e7",
+                        "secondary-fixed-dim": "#c6c6cb",
+                        "surface-container-high": "#e8e8e8",
+                        "on-error": "#ffffff",
+                        "tertiary": "#000000",
+                        "on-background": "#1a1c1c",
+                        "surface-dim": "#dadada",
+                        "primary-fixed": "#e5e2e1",
+                        "on-secondary-fixed-variant": "#45474b",
+                        "surface-container-low": "#f3f3f4",
+                        "on-error-container": "#93000a",
+                        "on-surface-variant": "#444748",
+                        "inverse-primary": "#c9c6c5",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#dfdfe4",
+                        "inverse-surface": "#2f3131",
+                        "surface-variant": "#e2e2e2",
+                        "on-primary-fixed": "#1c1b1b",
+                        "on-tertiary-fixed-variant": "#3f4759",
+                        "outline": "#747878",
+                        "surface": "#f9f9f9",
+                        "surface-bright": "#f9f9f9",
+                        "on-surface": "#1a1c1c",
+                        "tertiary-container": "#141b2c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "fluid-overlap": "-4rem",
+                        "section-gap": "12rem",
+                        "safe-area": "6vw",
+                        "element-gap": "2rem"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Syne"],
+                        "display-xl-mobile": ["Syne"],
+                        "display-xl": ["Syne"],
+                        "headline-lg": ["Syne"],
+                        "body-lg": ["Inter"],
+                        "label-mono": ["JetBrains Mono"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "display-xl-mobile": ["56px", { "lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "display-xl": ["120px", { "lineHeight": "110px", "letterSpacing": "-0.04em", "fontWeight": "800" }],
+                        "headline-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "32px", "fontWeight": "400" }],
+                        "label-mono": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "28px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #f9f9f9;
+            overflow-x: hidden;
+        }
+        
+        @keyframes float-drift {
+            0% { transform: translate(0, 0) rotate(0.5deg); }
+            33% { transform: translate(15px, -10px) rotate(-0.2deg); }
+            66% { transform: translate(-10px, 15px) rotate(0.4deg); }
+            100% { transform: translate(0, 0) rotate(0.5deg); }
+        }
+
+        .letter-container {
+            animation: float-drift 8s ease-in-out infinite;
+            box-shadow: 0 40px 100px -20px rgba(0,0,0,0.15);
+        }
+
+        .airmail-border {
+            background: repeating-linear-gradient(
+                -45deg,
+                #d93025,
+                #d93025 20px,
+                #ffffff 20px,
+                #ffffff 40px,
+                #1a73e8 40px,
+                #1a73e8 60px,
+                #ffffff 60px,
+                #ffffff 80px
+            );
+            padding: 8px;
+        }
+
+        .stamp-vintage {
+            border: 2px dashed #000;
+            padding: 4px;
+            position: relative;
+        }
+        .stamp-vintage::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border: 2px dotted #000;
+            opacity: 0.3;
+        }
+
+        .dashed-input {
+            background: transparent;
+            border: none;
+            border-bottom: 2px dashed rgba(0,0,0,0.2);
+            padding: 0.75rem 0;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+        .dashed-input:focus {
+            outline: none;
+            border-bottom-color: #000;
+            box-shadow: none;
+        }
+
+        .vertical-divider {
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.1) 20%, rgba(0,0,0,0.1) 80%, transparent);
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 right-0 z-50 flex justify-center w-full">
+<nav class="bg-surface-container-low/40 backdrop-blur-2xl rounded-full mt-6 mx-auto w-fit px-8 py-4 border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.1)] flex items-center gap-8">
+<span class="font-display-xl text-headline-lg font-bold tracking-tighter text-primary">Aether</span>
+<div class="hidden md:flex gap-6">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-all duration-500 hover:scale-105" href="#">Work</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-all duration-500 hover:scale-105" href="#">Studio</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-all duration-500 hover:scale-105" href="#">Journal</a>
+<a class="text-primary font-bold border-b border-primary transition-all duration-500 hover:scale-105" href="#">Contact</a>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-full font-bold hover:scale-105 transition-transform">Inquire</button>
+</nav>
+</header>
+<main class="relative min-h-screen w-full flex flex-col items-center justify-center pt-32 pb-24 px-safe overflow-hidden">
+<!-- Cloud Background Asset -->
+<div class="fixed inset-0 z-0 scale-110">
+<img alt="Ethereal background of soft wispy white clouds" class="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida/AP1WRLsXD3utYyvbuFu8X32LK_6b4FcG0gc17a3WJrOqLUCPDl4gRKC93NnO8Lh_uZjOB3WpzuuzIIdY1c2dv0QAg-g0fH3umCL5kCo9BJuVGlMaNkvuSc3Wtfwu4xi7hWUEk58erV37bLg3kHtoDN8VS3sl_31viQhQaUwTFhMYTDA1GSwLDdbV0Ax0e_NprTpXYPKWrDlFNh_U4W1z4kt_uiYp1cvr7Du_ml6TU8m98D2_ImTSP1cqGiwselI"/>
+</div>
+<!-- Headline -->
+<div class="relative z-10 w-full max-w-7xl px-safe mb-12">
+<h1 class="font-display-xl text-display-xl-mobile md:text-display-xl text-primary leading-none opacity-90 tracking-tighter">
+                Let's <span class="block md:inline italic font-normal">correspond.</span>
+</h1>
+</div>
+<!-- The Letter/Postcard -->
+<div class="relative z-20 w-full max-w-5xl px-safe">
+<div class="letter-container airmail-border rounded-sm">
+<div class="bg-[#fdfbf7] p-8 md:p-16 min-h-[600px] flex flex-col md:flex-row gap-12 relative overflow-hidden">
+<!-- Vintage Stamp -->
+<div class="absolute top-12 right-12 stamp-vintage flex flex-col items-center justify-center w-24 h-28 bg-white/50 backdrop-blur-sm transform rotate-6 border-black/20">
+<span class="font-label-mono text-[10px] text-primary/60 mb-1 uppercase">Aether Post</span>
+<div class="w-12 h-12 bg-primary flex items-center justify-center rounded-full text-on-primary">
+<span class="material-symbols-outlined text-2xl">eco</span>
+</div>
+<span class="font-display-xl text-xl mt-2 tracking-tighter">24¢</span>
+</div>
+<!-- Left Column: Message -->
+<div class="flex-1 flex flex-col">
+<div class="mb-12">
+<span class="font-label-mono text-label-mono text-secondary uppercase mb-4 block">The Subject</span>
+<h2 class="font-headline-lg text-headline-sm md:text-headline-lg mb-8">A New Chapter</h2>
+</div>
+<form class="space-y-10 flex-1">
+<div class="relative">
+<label class="font-label-mono text-[10px] uppercase text-secondary/60 absolute -top-4">Message</label>
+<textarea class="dashed-input font-body-lg text-body-lg placeholder:text-outline-variant resize-none" placeholder="What story shall we write together?" rows="6"></textarea>
+</div>
+<div class="flex flex-wrap gap-4">
+<span class="font-label-mono text-[10px] uppercase text-secondary/60 w-full mb-2">Intent</span>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="rounded-none border-primary text-primary focus:ring-0" type="checkbox"/>
+<span class="font-body-md group-hover:underline">Branding</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="rounded-none border-primary text-primary focus:ring-0" type="checkbox"/>
+<span class="font-body-md group-hover:underline">Digital</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="rounded-none border-primary text-primary focus:ring-0" type="checkbox"/>
+<span class="font-body-md group-hover:underline">Motion</span>
+</label>
+</div>
+</form>
+</div>
+<!-- Vertical Divider -->
+<div class="hidden md:block vertical-divider"></div>
+<!-- Right Column: Sender/Action -->
+<div class="w-full md:w-80 flex flex-col justify-between">
+<div class="space-y-12">
+<div class="relative">
+<span class="font-label-mono text-label-mono text-secondary uppercase mb-4 block">Sender</span>
+<div class="space-y-6">
+<div class="relative">
+<input class="dashed-input font-body-md placeholder:text-outline-variant italic" placeholder="Your Name" type="text"/>
+</div>
+<div class="relative">
+<input class="dashed-input font-body-md placeholder:text-outline-variant italic" placeholder="Return Address (Email)" type="email"/>
+</div>
+</div>
+</div>
+<div class="pt-8">
+<span class="font-label-mono text-label-mono text-secondary uppercase mb-4 block">Recipient</span>
+<p class="font-body-md leading-relaxed text-secondary/80">
+                                    Aether Collective<br/>
+                                    Level 88, Atmosphere Drive<br/>
+                                    The Sky, Earth
+                                </p>
+</div>
+</div>
+<div class="mt-12 flex flex-col items-center">
+<button class="w-full bg-primary text-on-primary py-8 px-4 font-headline-sm uppercase tracking-widest hover:bg-secondary transition-colors duration-500 shadow-xl" type="submit">
+                                Post Inquiry
+                            </button>
+<p class="mt-4 font-label-mono text-[10px] text-secondary/40 uppercase tracking-tighter">Signed, Sealed, Delivered.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Decorative Label -->
+<div class="absolute bottom-10 right-safe hidden md:block z-10 rotate-90 origin-right">
+<span class="font-label-mono text-label-mono text-primary/40 uppercase tracking-[0.5em]">Aether — Airmail — Priority</span>
+</div>
+</main>
+<!-- Footer -->
+<footer class="relative z-20 w-full py-12 px-safe border-t border-outline-variant/30 bg-white">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-element-gap">
+<span class="font-headline-sm text-headline-sm text-on-surface">Aether</span>
+<div class="flex gap-8">
+<a class="font-label-mono text-label-mono uppercase tracking-[0.2em] text-secondary hover:text-primary transition-colors" href="#">Instagram</a>
+<a class="font-label-mono text-label-mono uppercase tracking-[0.2em] text-secondary hover:text-primary transition-colors" href="#">LinkedIn</a>
+<a class="font-label-mono text-label-mono uppercase tracking-[0.2em] text-secondary hover:text-primary transition-colors" href="#">Privacy</a>
+</div>
+<span class="font-label-mono text-label-mono uppercase tracking-[0.2em] text-secondary">©2024 Aether Agency.</span>
+</div>
+</footer>
+</body></html>

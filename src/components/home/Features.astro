@@ -10,6 +10,11 @@ interface Props {
 }
 
 const { features, lang = 'en' } = Astro.props
+
+// Each capability card links to the live services index page.
+// The /services/ route renders the same capability grid from
+// ServicesBento.astro + the process timeline + the CTA card.
+const servicesHref = '/services/'
 ---
 
 <section class="features" data-animate="fade-slide-up">
@@ -18,14 +23,23 @@ const { features, lang = 'en' } = Astro.props
     {features.map((feature) => {
       const icon = resolveIcon(feature.icon)
       return (
-      <div class="features__card glass glass-card" data-animate="fade-slide-up">
+      <a
+        href={servicesHref}
+        class="features__card glass glass-card"
+        data-animate="fade-slide-up"
+        aria-label={`Learn more about ${feature.pretitle}`}
+      >
         <div class="features__icon-wrap">
           <Icon name={icon.name} variant={icon.variant} size={32} color="var(--text-primary)" />
         </div>
         <p class="features__pretitle">{feature.pretitle}</p>
         <h3 class="features__title" set:html={parseBold(feature.title)} />
         <p class="features__text">{feature.text}</p>
-      </div>
+        <span class="features__cta" aria-hidden="true">
+          Explore service
+          <Icon name="arrow-right" size={14} color="currentColor" />
+        </span>
+      </a>
     )})}
   </div>
 </section>
@@ -52,9 +66,13 @@ const { features, lang = 'en' } = Astro.props
   }
 
   .features__card {
+    display: flex;
+    flex-direction: column;
     padding: 28px 22px;
     border-radius: 16px;
     text-align: center;
+    text-decoration: none;
+    color: inherit;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
@@ -101,6 +119,27 @@ const { features, lang = 'en' } = Astro.props
     line-height: 1.55;
   }
 
+  .features__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: auto;
+    padding-top: 16px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    transition: transform 0.2s ease;
+  }
+
+  .features__card:hover .features__cta {
+    transform: translateX(4px);
+  }
+
+  [dir="rtl"] .features__card:hover .features__cta {
+    transform: translateX(-4px);
+  }
+
   @media (max-width: 900px) {
     .features__grid {
       grid-template-columns: repeat(2, 1fr);
@@ -114,6 +153,17 @@ const { features, lang = 'en' } = Astro.props
 
     .features {
       padding: 60px 16px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .features__card,
+    .features__cta {
+      transition: none;
+    }
+    .features__card:hover,
+    .features__card:hover .features__cta {
+      transform: none;
     }
   }
 </style>

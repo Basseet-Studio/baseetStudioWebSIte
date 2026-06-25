@@ -73,13 +73,19 @@
     --card-window-radius: 24px;
     --card-window-radius-tight: 18px;
 
-    /* Type system — Rammetto One (titles), Rambla (body), Amiri Quran (Arabic, future).
-     Tokens live here so component styles and inline styles can reach for the same
-     fonts. Amiri Quran is reserved for the future /ar/ mirror — the [dir="rtl"] /
-     [lang="ar"] selectors below swap the whole stack to it as soon as Arabic content
-     lands. */
+    /* Type system — Rammetto One (titles), Rambla (body), Syne (display,
+     used by the home hero + the airline ticket section — taken from
+     docs/refrences/stitch stuff/tickert-info.html), JetBrains Mono (small
+     mono labels — also from the ticket reference), Amiri Quran (Arabic,
+     future).
+     Tokens live here so component styles and inline styles can reach for
+     the same fonts. Amiri Quran is reserved for the future /ar/ mirror —
+     the [dir="rtl"] / [lang="ar"] selectors below swap the whole stack to
+     it as soon as Arabic content lands. */
     --font-title: "Rammetto One", system-ui, -apple-system, sans-serif;
     --font-body: "Rambla", system-ui, -apple-system, sans-serif;
+    --font-display: "Syne", system-ui, -apple-system, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
     --font-arabic: "Amiri Quran", "Amiri", "Noto Naskh Arabic", serif;
 }
 

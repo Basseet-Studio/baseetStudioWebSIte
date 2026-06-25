@@ -23,8 +23,5 @@
     "gsap": "^3.15.0",
     "tailwindcss": "^3.4.19",
     "three": "^0.184.0"
-  },
-  "devDependencies": {
-    "opentype.js": "^2.0.0"
   }
 }

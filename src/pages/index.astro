@@ -9,18 +9,25 @@ import Team from '../components/home/Team.astro'
 import Highlights from '../components/home/Highlights.astro'
 import homeData from '../content/data/home.json'
 import clientsData from '../content/data/clients.json'
+import { SOURCE_SVGS } from '../lib/sourceSvgs'
 import type { Lang } from '../types'
 
 
 const lang: 'en' = 'en'
 const description = 'Baseet Studio is a digital product studio in Abu Dhabi building mobile apps, web platforms, and digital experiences for ambitious brands.'
+
+// Only show projects that have hi-res source SVGs wired up in SOURCE_SVGS.
+// Other projects still exist in home.json + have their own detail pages —
+// we just don't render them in the home morph grid until the source files
+// are ready.
+const morphProjects = homeData.projects.filter((p) => SOURCE_SVGS[p.slug])
 ---
 
 <Page title="Baseet Studio" description={description} section="home" lang={lang}>
   <Hero data={homeData.hero} lang={lang} />
-  <Features features={homeData.features} lang={lang} />
-  <ProximityProjects projects={homeData.projects} lang={lang} />
   <Highlights highlights={homeData.highlights} lang={lang} />
+  <Features features={homeData.features} lang={lang} />
+  <ProximityProjects projects={morphProjects} lang={lang} />
   <Clients clients={clientsData.clients} lang={lang} />
   <Team members={homeData.team} lang={lang} />
 </Page>

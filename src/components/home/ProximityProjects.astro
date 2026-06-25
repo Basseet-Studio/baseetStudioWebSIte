@@ -5,22 +5,20 @@
 //      the cursor (gsap.utils.mapRange into a 0..1 proximity, gsap.to
 //      with overwrite:true). On mouseleave, every tile eases back to 1.
 //   2. Morph on hover         (docs/refrences/morph svg)
-//      On hover/focus, GSAP's MorphSVGPlugin morphs the icon's first
-//      <path> into the project name — pre-rendered as a single-path
-//      SVG by scripts/build-project-name-svgs.mjs into
-//      /projects/names/{slug}.svg. The decor (<line>, <rect>, …) fades
-//      out in sync so the morph is clean.
+//      On hover/focus, GSAP's MorphSVGPlugin morphs the icon's primary
+//      <path> into the project name — pre-rendered at build time by
+//      scripts/build-project-name-svgs.mjs from the user's hi-res
+//      source name SVGs into /projects/names/{slug}.svg. The other paths
+//      fade out in sync so the morph is clean.
 //
-// IMPORTANT: We don't use the shared `Icon.astro` component here because
-// it wraps the SVG in a <span class="phosphor-icon">. That span is not
-// a valid SVG child, so the browser hoists it out of the outer <svg>,
-// which leaves svg.px__icon empty and breaks the morph selector.
-//
-// Instead, we read the icon SVG file at build time, extract its inner
-// children (the <rect>, <line>, <path>, <polyline>, <circle>, <polygon>
-// elements), and inject them directly into svg.px__icon via set:html.
-// Now the icon's shapes are real SVG children of svg.px__icon and the
-// morph script can operate on them with a flat querySelector('path').
+// Icon source: instead of Phosphor glyphs, we use the user's hi-res
+// source logo SVGs from "source svgs/" (mapped via SOURCE_SVGS). At
+// build time we:
+//   - walk the source SVG depth-first, applying <g transform="…">
+//   - skip <defs>, <style>, <filter>, gradients, and decorative backdrop <rect>s
+//   - convert every kept shape (path/line/circle/rect/ellipse/polyline/polygon)
+//     into a normalised <path d="…"> that fits inside the 0..256 viewBox
+//   - inject the resulting <path> children straight into svg.px__icon
 //
 // Markup contract with src/scripts/morph-projects.ts:
 //   <a class="px__tile" data-px-tile data-px-card
@@ -28,7 +26,7 @@
 //      style="--x:..;--y:..;--r:..;--px-color:#xxx;">
 //     <span class="px__art">
 //       <svg class="px__icon" viewBox="0 0 256 256" data-px-icon>
-//         <rect …/> <line …/> <path d="…"/> …  ← direct children
+//         <path d="…"/> <path d="…"/> …  ← direct children
 //       </svg>
 //       <span class="px__label">{name}</span>
 //     </span>
@@ -36,7 +34,7 @@
 
 import fs from 'node:fs'
 import path from 'node:path'
-import { resolveIcon } from '../icons/iconMappings'
+import { SOURCE_SVGS, readSourceSvgInner, parseViewBox } from '../../lib/sourceSvgs'
 import type { Lang, ProjectSummary } from '../../types'
 
 interface Props {
@@ -64,26 +62,47 @@ function posFor(i: number) {
   return POSITIONS[i % POSITIONS.length]
 }
 
-// Read the icon's SVG file and return the INNER content (everything
-// between the opening <svg …> and closing </svg>). Returns '' if the
-// file is missing — the morph script will then log a warning and skip
-// the card instead of crashing the whole grid.
-function readIconInner(iconName: string, variant: 'regular' | 'bold' | 'fill' = 'regular'): string {
-  const fileName =
-    variant === 'regular' ? iconName : variant === 'bold' ? `${iconName}-bold` : `${iconName}-fill`
-  const iconPath = path.join(process.cwd(), 'public', 'icons', variant, `${fileName}.svg`)
-  try {
-    const content = fs.readFileSync(iconPath, 'utf-8')
-    // Capture everything between the first opening <svg …> and the last </svg>.
-    const m = content.match(/<svg\b[^>]*>([\s\S]*?)<\/svg>/)
-    if (!m) {
-      console.warn(`[ProximityProjects] ${iconPath}: no <svg> wrapper found`)
-      return ''
-    }
-    return m[1]
-  } catch (err) {
-    console.warn(`[ProximityProjects] could not read ${iconPath}:`, (err as NodeJS.ErrnoException).code)
+// Read the source logo SVG and emit markup that fits inside the icon
+// container's viewBox. The viewBox is the wordmark's natural aspect
+// ratio (e.g. 186×73 for NUMU) — set up by readViewBox() — so morphSVG
+// can interpolate between the logo path and the name path 1:1.
+//
+// We inject the source SVG's inner shapes as-is (wrapped in a fit-matrix
+// <g>) so the brand mark renders exactly as the Figma designer exported
+// it — fills, fill-rule, glyph counters and all. The morph script then
+// picks the primary path (by bbox area × d-length) to morph into the
+// outlined wordmark.
+function readLogoInner(slug: string, viewBoxW: number, viewBoxH: number): string {
+  const entry = SOURCE_SVGS[slug]
+  if (!entry) {
+    console.warn(`[ProximityProjects] no SOURCE_SVGS entry for slug "${slug}" — skipping`)
     return ''
+  }
+  const filePath = path.join(process.cwd(), entry.logo)
+  try {
+    const svg = fs.readFileSync(filePath, 'utf-8')
+    return readSourceSvgInner(svg, viewBoxW, viewBoxH, 0.08)
+  } catch (err) {
+    console.warn(
+      `[ProximityProjects] could not read ${filePath}:`,
+      (err as NodeJS.ErrnoException).message,
+    )
+    return ''
+  }
+}
+
+// Read the source name SVG and return [w, h] of its viewBox so the icon
+// container can use the same viewBox for morphSVG 1:1 interpolation.
+function readViewBox(slug: string): [number, number] | null {
+  const entry = SOURCE_SVGS[slug]
+  if (!entry) return null
+  const filePath = path.join(process.cwd(), entry.name)
+  try {
+    const svg = fs.readFileSync(filePath, 'utf-8')
+    const [, , w, h] = parseViewBox(svg)
+    return [w, h]
+  } catch {
+    return null
   }
 }
 ---
@@ -95,9 +114,9 @@ function readIconInner(iconName: string, variant: 'regular' | 'bold' | 'fill' = 
   <div class="px__stage" data-px-stage>
     <div class="px__grid">
       {projects.map((project, i) => {
-        const icon = resolveIcon(project.iconClass)
         const pos = posFor(i)
-        const innerSvg = readIconInner(icon.name, icon.variant ?? 'regular')
+        const vb = readViewBox(project.slug) ?? [256, 256]
+        const innerSvg = readLogoInner(project.slug, vb[0], vb[1])
         return (
           <a
             href={`/projects/${project.slug}/`}
@@ -113,7 +132,7 @@ function readIconInner(iconName: string, variant: 'regular' | 'bold' | 'fill' = 
               <span class="px__art-icon">
                 <svg
                   class="px__icon"
-                  viewBox="0 0 256 256"
+                  viewBox={`0 0 ${vb[0]} ${vb[1]}`}
                   xmlns="http://www.w3.org/2000/svg"
                   data-px-icon
                   aria-hidden="true"
@@ -210,17 +229,24 @@ function readIconInner(iconName: string, variant: 'regular' | 'bold' | 'fill' = 
     height: 100%;
     display: block;
     color: currentColor;
-    fill: none;
   }
 
-  /* The Phosphor icon's inner shapes use stroke=currentColor so the
-     per-tile color cascades into the icon strokes. */
-  .px__icon :global(path),
+  /* The source brand marks come out of Figma as filled <path>s with
+     fill-rule="evenodd" (the "O" in NUMO has a counter via evenodd). We
+     paint them with currentColor so the per-tile --px-color cascades
+     into the brand mark. Strokes are kept as currentColor too — Figma
+     exports include a thin stroke that we want to inherit. */
+  .px__icon :global(path) {
+    fill: currentColor;
+    stroke: currentColor;
+  }
   .px__icon :global(line),
   .px__icon :global(rect),
   .px__icon :global(circle),
+  .px__icon :global(ellipse),
   .px__icon :global(polygon),
   .px__icon :global(polyline) {
+    fill: currentColor;
     stroke: currentColor;
   }
 

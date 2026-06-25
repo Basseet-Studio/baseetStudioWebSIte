@@ -4,18 +4,21 @@
 // by `src/components/home/ProximityProjects.astro`.
 //
 // Approach:
-//   1. Build-time: scripts/build-project-name-svgs.mjs emits one tiny
-//      single-path SVG per project name → /projects/names/{slug}.svg.
+//   1. Build-time: scripts/build-project-name-svgs.mjs emits one tiny SVG
+//      per project name → /projects/names/{slug}.svg. Each file holds the
+//      hand-crafted wordmark geometry from the user's "source svgs/"
+//      directory, normalised into a 0..256 viewBox.
 //   2. Runtime: per card, we run MorphSVGPlugin.convertToPath() with a
 //      SCOPED selector so every <line>/<rect>/<circle>/<polygon>/
-//      <polyline> inside that card's icon SVG becomes a <path>.
-//   3. We filter out the Phosphor BACKDROP (the 256x256 rect with no
-//      fill/stroke that sits behind every icon — after convertToPath
-//      it's a 256x256 box outline that the user would otherwise see
-//      morphing into the name). Then we pick the path with the LONGEST
-//      d attribute as the morph source — that picks the most complex /
-//      most "icon-like" shape (e.g. for chart-line: the data line, not
-//      the L-shaped axis).
+//      <polyline> inside that card's icon SVG becomes a <path>. (The
+//      icons are already all paths — but we keep the call as a safety
+//      net in case a source contains a stray circle/rect.)
+//   3. We filter out any near-full-bleed backdrop path (legacy safety
+//      net for the old Phosphor icons). Then we pick the primary path
+//      using `bbox area × 1000 + d-length` as a score, so the morph
+//      starts from the most "icon-like" path of the brand mark (the main
+//      stroke), not a tiny detail (like a steam-node circle in the
+//      DeshiKitchen mark).
 //   4. We fetch each name SVG once (cached) and attach hover/focus/
 //      touch listeners.
 //   5. On hover: GSAP's morphSVG tweens the primary path into the
@@ -29,7 +32,7 @@
 //   <a class="px__tile" data-px-card data-name-src="/projects/names/{slug}.svg">
 //     <span class="px__art">
 //       <svg class="px__icon" viewBox="0 0 256 256" data-px-icon>
-//         <rect …/> <line …/> <path d="…"/> <polyline …/> …  ← direct children
+//         <path d="…"/> <path d="…"/> …  ← direct children
 //       </svg>
 //       <span class="px__label">{name}</span>
 //     </span>
@@ -119,15 +122,11 @@ function attachMorph(card: HTMLElement, targetD: string): void {
     return;
   }
 
-  // ── Identify the Phosphor backdrop ─────────────────────────────────
-  // Every Phosphor icon ships with a 256x256 <rect fill="none"> that
-  // pads the viewBox. After convertToPath() it becomes a 256x256 box
-  // outline — and our .px__icon CSS sets stroke=currentColor on every
-  // path, so it renders as a 1px square frame around the icon in the
-  // rest state. We:
-  //   1. set its opacity to 0 permanently (no frame in any state), and
-  //   2. exclude it from `paths` / `decor` so leave tweens don't bring
-  //      it back.
+  // ── Identify any backdrop-like path (legacy Phosphor + safety net) ──
+  // Phosphor icons used to ship with a 256x256 <rect fill="none"> that
+  // padded the viewBox. We no longer use Phosphor (the icons come from
+  // the user's hi-res source SVGs), but keep this filter as a safety net
+  // for any source that happens to contain a near-full-bleed path.
   const isBackdrop = (p: SVGPathElement): boolean => {
     try {
       const b = p.getBBox();
@@ -140,15 +139,31 @@ function attachMorph(card: HTMLElement, targetD: string): void {
   const visiblePaths = paths.filter((p) => !isBackdrop(p));
   const pathsForMorph = visiblePaths.length > 0 ? visiblePaths : paths;
 
-  // ── Pick the morph source: choose the most complex remaining path. ──
-  // Skip the backdrop, then pick the path with the LONGEST d attribute
-  // (most points/segments = most icon-like shape — e.g. for chart-line,
-  // the data line, not the L-shaped axis).
+  // ── Pick the morph source: choose the most "icon-like" remaining path. ──
+  // We score each path by (bbox area × 1000) + d-attribute length. Bbox area
+  // wins when paths are short bezier-curve circles (which have inflated d
+  // length but tiny geometry), so the morph starts from the main mark of
+  // the brand mark rather than a small detail.
   const pool = pathsForMorph;
-  let primary: SVGPathElement = pool[0];
-  for (const p of pool) {
+  const score = (p: SVGPathElement): number => {
+    let area = 0;
+    try {
+      const b = p.getBBox();
+      area = b.width * b.height;
+    } catch {
+      // ignore
+    }
     const dLen = (p.getAttribute("d") || "").length;
-    if (dLen > (primary.getAttribute("d") || "").length) primary = p;
+    return area * 1000 + dLen;
+  };
+  let primary: SVGPathElement = pool[0];
+  let primaryScore = score(primary);
+  for (const p of pool) {
+    const s = score(p);
+    if (s > primaryScore) {
+      primary = p;
+      primaryScore = s;
+    }
   }
   try {
     const b = primary.getBBox();

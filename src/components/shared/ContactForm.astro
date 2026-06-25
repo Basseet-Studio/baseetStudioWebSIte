@@ -3,9 +3,16 @@
 // The actionUrl is inlined into the client script via define:vars so the
 // network call always uses the real endpoint (no DOM lookup that can fail).
 //
-// Visual: card-window surface (NOT glass — see absolute bans in DESIGN.md)
-// with input fields that share a single class so the styles live in one
-// place. Submit button is a primary pill, no Tailwind class soup.
+// Visual: the form is styled like a paper letter / postcard, taken from
+// docs/refrences/stitch stuff/paper-post-contact.html — an airmail border
+// (red / white / blue diagonal stripes), cream paper background, a vintage
+// stamp in the corner, and dashed underline inputs. The whole letter
+// drifts gently (improved on the reference's float-drift keyframes so it
+// reads as paper floating in still air rather than a wobble).
+//
+// Per FR-032/033/034 the worker URL comes from links.json.forms.contact_form_url
+// and is inlined here at build time.
+
 import Icon from '../icons/Icon.astro'
 import type { Lang } from '../../types'
 
@@ -17,96 +24,174 @@ interface Props {
 const { actionUrl, lang = 'en' } = Astro.props
 ---
 
-<div class="contact-form card-window p-8 md:p-10" data-animate="fade-up">
-  <form id="contact-form" class="contact-form__fields">
-    <div class="contact-form__field">
-      <label for="contact-name" class="contact-form__label">
-        {/* TODO: localise this later */}
-        Your Name *
-      </label>
-      <input
-        type="text"
-        id="contact-name"
-        name="name"
-        required
-        minlength="2"
-        class="contact-form__input"
-        placeholder="John Doe"
-      />
+<div class="contact-form" data-animate="fade-up">
+  <div class="contact-form__airmail" aria-hidden="true">
+    <span class="contact-form__airmail-stripe"></span>
+    <span class="contact-form__airmail-stripe"></span>
+    <span class="contact-form__airmail-stripe"></span>
+  </div>
+
+  <div class="contact-form__letter">
+    {/* Vintage stamp — sits in the top-right corner, slightly rotated.
+        Houses the studio mark + the "letter rate". */}
+    <div class="contact-form__stamp" aria-hidden="true">
+      <span class="contact-form__stamp-text">BASEET&nbsp;POST</span>
+      <span class="contact-form__stamp-mark">
+        <Icon name="paper-plane-tilt" size={26} color="#fff" />
+      </span>
+      <span class="contact-form__stamp-rate">∞¢</span>
     </div>
 
-    <div class="contact-form__field">
-      <label for="contact-email" class="contact-form__label">
-        {/* TODO: localise this later */}
-        Email Address *
-      </label>
-      <input
-        type="email"
-        id="contact-email"
-        name="email"
-        required
-        class="contact-form__input"
-        placeholder="john@example.com"
-      />
-    </div>
+    <form id="contact-form" class="contact-form__fields">
+      {/* ===== Left column — message + intent ===== */}
+      <div class="contact-form__col contact-form__col--left">
+        <div class="contact-form__subject">
+          <span class="contact-form__label-mono">The Subject</span>
+          <h2 class="contact-form__subject-title">A New Chapter</h2>
+        </div>
 
-    <div class="contact-form__field">
-      <label for="contact-phone" class="contact-form__label">
-        {/* TODO: localise this later */}
-        Phone (optional)
-      </label>
-      <input
-        type="tel"
-        id="contact-phone"
-        name="phone"
-        class="contact-form__input"
-        placeholder="+971 50 123 4567"
-      />
-    </div>
+        <div class="contact-form__field contact-form__field--full contact-form__field--message">
+          <textarea
+            id="contact-message"
+            name="message"
+            required
+            minlength="10"
+            rows="7"
+            class="contact-form__dashed contact-form__dashed--textarea"
+            placeholder="What story shall we write together?"
+          ></textarea>
+          <span class="contact-form__label-floating">Message</span>
+        </div>
 
-    <div class="contact-form__field">
-      <label for="contact-subject" class="contact-form__label">
-        {/* TODO: localise this later */}
-        Subject *
-      </label>
-      <input
-        type="text"
-        id="contact-subject"
-        name="subject"
-        required
-        minlength="3"
-        class="contact-form__input"
-        placeholder="Project inquiry"
-      />
-    </div>
+        <div class="contact-form__field contact-form__field--full">
+          <span class="contact-form__label-mono">Intent</span>
+          <div class="contact-form__intent">
+            {['Branding', 'Digital', 'Mobile', 'Strategy'].map((label) => (
+              <label class="contact-form__intent-chip">
+                <input type="checkbox" name="intent" value={label.toLowerCase()} />
+                <span>{label}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+      </div>
 
-    <div class="contact-form__field contact-form__field--full">
-      <label for="contact-message" class="contact-form__label">
-        {/* TODO: localise this later */}
-        Message *
-      </label>
-      <textarea
-        id="contact-message"
-        name="message"
-        required
-        minlength="10"
-        rows="5"
-        class="contact-form__input contact-form__textarea"
-        placeholder="Tell us about your project..."
-      ></textarea>
-    </div>
+      {/* Vertical divider between columns */}
+      <div class="contact-form__divider" aria-hidden="true"></div>
 
-    <div id="contact-form-status" class="contact-form__status" role="status" aria-live="polite"></div>
+      {/* ===== Right column — sender + recipient + submit ===== */}
+      <div class="contact-form__col contact-form__col--right">
+        <div class="contact-form__field-group">
+          <span class="contact-form__label-mono">Sender</span>
+          <div class="contact-form__field">
+            <input
+              type="text"
+              id="contact-name"
+              name="name"
+              required
+              minlength="2"
+              class="contact-form__dashed"
+              placeholder="Your Name"
+            />
+          </div>
+          <div class="contact-form__field">
+            <input
+              type="email"
+              id="contact-email"
+              name="email"
+              required
+              class="contact-form__dashed"
+              placeholder="Return Address (Email)"
+            />
+          </div>
+          <div class="contact-form__field">
+            <input
+              type="tel"
+              id="contact-phone"
+              name="phone"
+              class="contact-form__dashed"
+              placeholder="Phone (optional)"
+            />
+          </div>
+          <div class="contact-form__field">
+            <input
+              type="text"
+              id="contact-subject"
+              name="subject"
+              required
+              minlength="3"
+              class="contact-form__dashed"
+              placeholder="Subject"
+            />
+          </div>
+        </div>
 
-    <button
-      type="submit"
-      class="contact-form__submit"
-    >
-      {/* TODO: localise this later */}
-      Send Message
-      <Icon name="paper-plane-tilt" size={16} color="white" />
-    </button>
-  </form>
+        <div class="contact-form__recipient">
+          <span class="contact-form__label-mono">Recipient</span>
+          <p class="contact-form__recipient-copy">
+            Baseet Studio<br />
+            Abu Dhabi, UAE<br />
+            baseet.socials@gmail.com
+          </p>
+        </div>
+
+        <div class="contact-form__submit-wrap">
+          <button type="submit" class="contact-form__submit">
+            Post Inquiry
+          </button>
+          <p class="contact-form__submit-note">
+            Signed, sealed, delivered.
+          </p>
+        </div>
+
+        <div id="contact-form-status" class="contact-form__status" role="status" aria-live="polite"></div>
+      </div>
+    </form>
+
+    {/* Decorative airmail priority line, sitting along the bottom edge */}
+    <span class="contact-form__priority" aria-hidden="true">
+      Baseet · Airmail · Priority
+    </span>
+  </div>
+
+  {/* ===== Social stamps row — floating mini-stamps with the platform
+      icons. They use the paper-post-contact stamp treatment (dashed
+      border + slightly rotated) and animate like paper drifting. ===== */}
+  <div class="contact-form__stamps" aria-label="Find us on social">
+    <span class="contact-form__stamps-label">Post a letter. Or find us elsewhere.</span>
+    <ul class="contact-form__stamps-list">
+      <li class="contact-form__stamps-item" style="--rot:-3deg;--delay:0s;">
+        <a href="https://instagram.com/baseet.studio" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <Icon name="instagram-logo" size={28} color="currentColor" />
+          <span>IG</span>
+        </a>
+      </li>
+      <li class="contact-form__stamps-item" style="--rot:2deg;--delay:0.4s;">
+        <a href="https://linkedin.com/company/baseetstudios" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <Icon name="linkedin-logo" size={28} color="currentColor" />
+          <span>IN</span>
+        </a>
+      </li>
+      <li class="contact-form__stamps-item" style="--rot:-2deg;--delay:0.8s;">
+        <a href="https://twitter.com/baseetstudios" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+          <Icon name="x-logo" size={28} color="currentColor" />
+          <span>X</span>
+        </a>
+      </li>
+      <li class="contact-form__stamps-item" style="--rot:3deg;--delay:1.2s;">
+        <a href="https://github.com/baseetstudios" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <Icon name="github-logo" size={28} color="currentColor" />
+          <span>GH</span>
+        </a>
+      </li>
+      <li class="contact-form__stamps-item" style="--rot:-1deg;--delay:1.6s;">
+        <a href="https://tiktok.com/@baseet.studio" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+          <Icon name="tiktok-logo" size={28} color="currentColor" />
+          <span>TT</span>
+        </a>
+      </li>
+    </ul>
+  </div>
 </div>
 
 <script define:vars={{ actionUrl }}>
@@ -127,12 +212,17 @@ const { actionUrl, lang = 'en' } = Astro.props
     e.preventDefault();
     console.log('[ContactForm] Submit intercepted. Worker URL:', actionUrl);
 
+    // Gather checked intent chips
+    const intentEls = form.querySelectorAll('input[name="intent"]:checked');
+    const intent = Array.from(intentEls).map((el) => /** @type {HTMLInputElement} */ (el).value);
+
     const formData = {
       name: form.querySelector('[name="name"]')?.value.trim(),
       email: form.querySelector('[name="email"]')?.value.trim(),
       phone: form.querySelector('[name="phone"]')?.value.trim() || undefined,
       subject: form.querySelector('[name="subject"]')?.value.trim(),
       message: form.querySelector('[name="message"]')?.value.trim(),
+      intent,
       lang: document.body.dataset.lang || 'en',
     };
     console.log('[ContactForm] Payload:', formData);
@@ -207,144 +297,626 @@ const { actionUrl, lang = 'en' } = Astro.props
 </script>
 
 <style>
-  /* The contact form lives inside a card-window. Inputs are simple,
-     consistent, theme-aware (day / night via the existing tokens). */
-
-  .contact-form__fields {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 22px 28px;
+  /* =============================================================
+     Tokens — paper-post-contact cream surface + airmail stripes.
+     Theme-aware: cream paper in day, deep navy in night.
+     ============================================================= */
+  .contact-form {
+    /* CSS variables used by the letter + airmail + stamp treatments */
+    --paper-cream: #fdfbf7;
+    --paper-cream-edge: #e8e2d2;
+    --paper-ink: #1c1a16;
+    --paper-muted: #5a5448;
+    --paper-line: rgba(28, 26, 22, 0.16);
+    --airmail-red: #d93025;
+    --airmail-blue: #1a73e8;
+    --airmail-bg: #fdfbf7;
   }
 
-  /* The full-width fields (message, submit, status) span both columns. */
-  .contact-form__field--full,
-  .contact-form__status,
-  .contact-form__submit {
-    grid-column: 1 / -1;
+  [data-theme="night"] .contact-form {
+    --paper-cream: #14202b;
+    --paper-cream-edge: #1f2d3a;
+    --paper-ink: #f0ece1;
+    --paper-muted: rgba(240, 236, 225, 0.62);
+    --paper-line: rgba(240, 236, 225, 0.18);
+    --airmail-bg: #14202b;
   }
 
-  @media (max-width: 640px) {
-    .contact-form__fields {
-      grid-template-columns: 1fr;
-    }
-    .contact-form__field--full,
-    .contact-form__status,
-      .contact-form__submit {
-      grid-column: 1 / -1;
-    }
+  /* ===== Floating drift — improved on the reference keyframes so the
+     letter reads as paper suspended in still air, not as a wobble.
+     Three nested loops with different amplitudes + periods. ===== */
+  @keyframes contact-float {
+    0%   { transform: translate(0, 0) rotate(0deg); }
+    25%  { transform: translate(6px, -8px) rotate(-0.18deg); }
+    50%  { transform: translate(-4px, -12px) rotate(0.12deg); }
+    75%  { transform: translate(-7px, -4px) rotate(-0.08deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
   }
 
-  .contact-form__field {
+  @keyframes contact-stamp-float {
+    0%   { transform: translate(0, 0) rotate(var(--rot, 0deg)); }
+    33%  { transform: translate(4px, -6px) rotate(calc(var(--rot, 0deg) - 0.4deg)); }
+    66%  { transform: translate(-5px, 4px) rotate(calc(var(--rot, 0deg) + 0.3deg)); }
+    100% { transform: translate(0, 0) rotate(var(--rot, 0deg)); }
+  }
+
+  /* =============================================================
+     Airmail border — repeating diagonal red / white / blue stripes.
+     Implemented as 3 stacked diagonal stripes via background-image
+     so the borders can vary in width without producing hard seams.
+     ============================================================= */
+  .contact-form__airmail {
+    position: relative;
+    padding: 10px;
+    background: var(--paper-cream);
+    border-radius: 6px;
+    overflow: hidden;
+    /* Soft long shadow under the letter — sets it on the cloud bg */
+    box-shadow:
+      0 50px 100px -20px rgba(0, 0, 0, 0.18),
+      0 30px 60px -30px rgba(0, 0, 0, 0.12);
+    animation: contact-float 9s ease-in-out infinite;
+  }
+
+  .contact-form__airmail-stripe {
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      -45deg,
+      var(--airmail-red) 0,
+      var(--airmail-red) 18px,
+      var(--airmail-bg) 18px,
+      var(--airmail-bg) 36px,
+      var(--airmail-blue) 36px,
+      var(--airmail-blue) 54px,
+      var(--airmail-bg) 54px,
+      var(--airmail-bg) 72px
+    );
+    opacity: 1;
+    pointer-events: none;
+  }
+
+  /* All three stripes layered with reduced opacity to soften the look
+     and avoid the harsh primary palette. The bottom stripe provides a
+     3rd colour repeat to break up the rhythm. */
+  .contact-form__airmail-stripe:nth-child(1) { opacity: 0.95; }
+  .contact-form__airmail-stripe:nth-child(2) {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      transparent 0,
+      transparent 9px,
+      var(--airmail-bg) 9px,
+      var(--airmail-bg) 18px,
+      transparent 18px,
+      transparent 27px
+    );
+    opacity: 0.55;
+    mix-blend-mode: overlay;
+  }
+  .contact-form__airmail-stripe:nth-child(3) {
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.0) 0%,
+      rgba(0, 0, 0, 0.05) 100%
+    );
+    mix-blend-mode: multiply;
+  }
+
+  /* =============================================================
+     Letter paper — the cream card inside the airmail border.
+     ============================================================= */
+  .contact-form__letter {
+    position: relative;
+    background: var(--paper-cream);
+    color: var(--paper-ink);
+    padding: 56px 56px 48px;
+    min-height: 600px;
+    border-radius: 2px;
+  }
+
+  /* =============================================================
+     Vintage stamp — top-right corner, slightly rotated, dashed border
+     treatment from the reference.
+     ============================================================= */
+  .contact-form__stamp {
+    position: absolute;
+    top: 32px;
+    right: 32px;
+    width: 110px;
+    height: 124px;
+    background: color-mix(in srgb, var(--paper-cream) 80%, white);
+    border: 2px dashed var(--paper-ink);
+    padding: 8px 6px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    align-items: center;
+    justify-content: space-between;
+    transform: rotate(6deg);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    z-index: 3;
   }
 
-  .contact-form__label {
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    color: var(--muted-text);
+  /* The dotted outer ring from the reference's stamp-vintage::before */
+  .contact-form__stamp::before {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    border: 2px dotted color-mix(in srgb, var(--paper-ink) 30%, transparent);
+    pointer-events: none;
   }
 
-  .contact-form__input {
-    width: 100%;
-    padding: 14px 16px;
-    border-radius: 12px;
-    border: 1px solid var(--border-soft);
-    background: var(--bg-elevated);
-    color: var(--text-primary);
-    font: inherit;
-    font-size: 0.95rem;
-    line-height: 1.4;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-    outline: none;
+  .contact-form__stamp-text {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: color-mix(in srgb, var(--paper-ink) 60%, transparent);
   }
 
-  .contact-form__input::placeholder {
-    color: var(--muted-text);
-    opacity: 0.7;
-  }
-
-  .contact-form__input:hover {
-    border-color: var(--border-strong);
-  }
-
-  .contact-form__input:focus-visible {
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 22%, transparent);
-  }
-
-  .contact-form__textarea {
-    resize: vertical;
-    min-height: 140px;
-    line-height: 1.55;
-  }
-
-  .contact-form__submit {
+  .contact-form__stamp-mark {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: var(--paper-ink);
+    color: var(--paper-cream);
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    padding: 16px 28px;
-    border-radius: 9999px;
-    background: var(--color-primary);
-    color: #fff;
+  }
+
+  .contact-form__stamp-rate {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--paper-ink);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  /* =============================================================
+     Form grid — 2 columns + vertical divider
+     ============================================================= */
+  .contact-form__fields {
+    display: grid;
+    grid-template-columns: 1.4fr 1px 1fr;
+    gap: 56px;
+    align-items: stretch;
+  }
+
+  .contact-form__col {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    min-width: 0;
+  }
+
+  /* Vertical dashed divider — fades in/out top and bottom like the
+     reference's vertical-divider element. */
+  .contact-form__divider {
+    width: 1px;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      var(--paper-line) 18%,
+      var(--paper-line) 82%,
+      transparent 100%
+    );
+  }
+
+  /* ----- Subject block (top of left column) ----- */
+  .contact-form__subject {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .contact-form__subject-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+    font-weight: 700;
+    color: var(--paper-ink);
+    margin: 0;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+  }
+
+  /* ----- Mono label (uppercase tracked) ----- */
+  .contact-form__label-mono {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--paper-muted);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  /* Floating label that sits above the textarea — matches the
+     reference's "Message" label */
+  .contact-form__label-floating {
+    position: absolute;
+    top: -14px;
+    left: 0;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: color-mix(in srgb, var(--paper-muted) 70%, transparent);
+  }
+
+  /* ----- Dashed inputs (no border, only bottom dashed) ----- */
+  .contact-form__field {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact-form__field--message {
+    position: relative;
+  }
+
+  .contact-form__field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .contact-form__dashed {
+    background: transparent;
     border: none;
-    font-weight: 600;
+    border-bottom: 1.5px dashed var(--paper-line);
+    padding: 10px 0;
+    width: 100%;
+    color: var(--paper-ink);
+    font-family: var(--font-body);
     font-size: 1rem;
+    line-height: 1.5;
+    transition: border-color 0.3s ease;
+    outline: none;
+    border-radius: 0;
+  }
+
+  .contact-form__dashed::placeholder {
+    color: color-mix(in srgb, var(--paper-muted) 70%, transparent);
+    font-style: italic;
+  }
+
+  .contact-form__dashed:hover {
+    border-bottom-color: color-mix(in srgb, var(--paper-ink) 50%, transparent);
+  }
+
+  .contact-form__dashed:focus {
+    border-bottom-color: var(--paper-ink);
+    box-shadow: none;
+  }
+
+  .contact-form__dashed--textarea {
+    resize: vertical;
+    min-height: 160px;
+    line-height: 1.55;
+    padding-top: 16px;
+  }
+
+  /* ----- Intent chips ----- */
+  .contact-form__intent {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 18px;
+    margin-top: 4px;
+  }
+
+  .contact-form__intent-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     cursor: pointer;
-    box-shadow: 0 6px 20px color-mix(in srgb, var(--color-primary) 25%, transparent);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--paper-ink);
+    transition: opacity 0.2s ease;
+  }
+
+  .contact-form__intent-chip:hover {
+    text-decoration: underline;
+  }
+
+  .contact-form__intent-chip input {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid var(--paper-ink);
+    border-radius: 2px;
+    background: transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .contact-form__intent-chip input:checked {
+    background: var(--paper-ink);
+  }
+
+  .contact-form__intent-chip input:checked::after {
+    content: "";
+    width: 8px;
+    height: 4px;
+    border-left: 2px solid var(--paper-cream);
+    border-bottom: 2px solid var(--paper-cream);
+    transform: rotate(-45deg) translate(1px, -1px);
+  }
+
+  /* ----- Recipient block ----- */
+  .contact-form__recipient {
     margin-top: 8px;
   }
 
+  .contact-form__recipient-copy {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: color-mix(in srgb, var(--paper-muted) 85%, transparent);
+    margin: 0;
+    font-style: italic;
+  }
+
+  /* ----- Submit ----- */
+  .contact-form__submit-wrap {
+    margin-top: auto;
+    padding-top: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .contact-form__submit {
+    width: 100%;
+    background: var(--paper-ink);
+    color: var(--paper-cream);
+    padding: 22px 16px;
+    border: none;
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.32em;
+    cursor: pointer;
+    box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.35);
+    transition: background 0.4s ease, transform 0.2s ease;
+  }
+
   .contact-form__submit:hover {
+    background: var(--paper-muted);
     transform: translateY(-2px);
-    box-shadow: 0 12px 28px color-mix(in srgb, var(--color-primary) 35%, transparent);
   }
 
   .contact-form__submit:focus-visible {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 3px;
+    outline: 2px solid var(--paper-ink);
+    outline-offset: 4px;
   }
 
+  .contact-form__submit-note {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    color: color-mix(in srgb, var(--paper-muted) 70%, transparent);
+    text-transform: uppercase;
+    letter-spacing: 0.24em;
+    margin: 0;
+  }
+
+  /* ----- Status messages ----- */
   .contact-form__status {
-    margin-top: 4px;
-    padding: 12px 16px;
-    border-radius: 12px;
-    font-size: 0.9rem;
-    line-height: 1.5;
-    border: 1px solid var(--border-soft);
-    background: var(--bg-elevated);
-    color: var(--text-secondary);
+    margin-top: 8px;
+    padding: 10px 14px;
+    border: 1.5px dashed var(--paper-line);
+    background: color-mix(in srgb, var(--paper-ink) 5%, transparent);
+    color: var(--paper-ink);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    border-radius: 2px;
     display: none;
   }
 
-  .contact-form__status:not([hidden]) {
-    display: block;
-  }
-
+  .contact-form__status:not([hidden]) { display: block; }
   .contact-form__status[data-type="success"] {
-    background: color-mix(in srgb, var(--color-primary) 10%, transparent);
-    border-color: color-mix(in srgb, var(--color-primary) 30%, transparent);
-    color: var(--heading-text);
+    border-color: color-mix(in srgb, #16a34a 50%, transparent);
+    background: color-mix(in srgb, #16a34a 8%, transparent);
   }
-
   .contact-form__status[data-type="pending"] {
-    background: color-mix(in srgb, var(--color-accent) 10%, transparent);
-    border-color: color-mix(in srgb, var(--color-accent) 30%, transparent);
-    color: var(--heading-text);
+    border-color: color-mix(in srgb, var(--airmail-blue) 50%, transparent);
+    background: color-mix(in srgb, var(--airmail-blue) 8%, transparent);
+  }
+  .contact-form__status[data-type="error"] {
+    border-color: color-mix(in srgb, var(--airmail-red) 50%, transparent);
+    background: color-mix(in srgb, var(--airmail-red) 8%, transparent);
   }
 
-  .contact-form__status[data-type="error"] {
-    background: color-mix(in srgb, #d64545 12%, transparent);
-    border-color: color-mix(in srgb, #d64545 35%, transparent);
-    color: var(--heading-text);
+  /* =============================================================
+     Decorative priority line — sits along the bottom edge of the
+     letter, vertical rotated text. References "Aether — Airmail —
+     Priority" from the original.
+     ============================================================= */
+  .contact-form__priority {
+    position: absolute;
+    right: 18px;
+    bottom: 90px;
+    transform: rotate(-90deg);
+    transform-origin: right bottom;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--paper-muted) 60%, transparent);
+    pointer-events: none;
+  }
+
+  /* =============================================================
+     Social stamps — small floating stamp cards with the platform
+     icons + the paper drift animation. Each stamp rotates slightly
+     and has its own animation delay so the row reads as a stack of
+     cards tossed on the desk, not as a rigid grid.
+     ============================================================= */
+  .contact-form__stamps {
+    margin-top: 48px;
+    padding: 32px 24px;
+    border-top: 1.5px dashed var(--paper-line);
+  }
+
+  .contact-form__stamps-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.24em;
+    color: var(--paper-muted);
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .contact-form__stamps-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 28px 32px;
+  }
+
+  .contact-form__stamps-item {
+    --rot: 0deg;
+    --delay: 0s;
+  }
+
+  .contact-form__stamps-item a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    width: 84px;
+    height: 92px;
+    padding: 12px 8px 8px;
+    background: var(--paper-cream);
+    border: 2px dashed var(--paper-line);
+    color: var(--paper-ink);
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    transform: rotate(var(--rot));
+    box-shadow: 0 8px 18px -8px rgba(0, 0, 0, 0.2);
+    animation: contact-stamp-float 6s ease-in-out infinite;
+    animation-delay: var(--delay);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+  }
+
+  /* The dotted outer ring from the reference's stamp treatment */
+  .contact-form__stamps-item a::before {
+    content: "";
+    position: absolute;
+    inset: -5px;
+    border: 1.5px dotted color-mix(in srgb, var(--paper-ink) 25%, transparent);
+    pointer-events: none;
+  }
+
+  .contact-form__stamps-item a:hover {
+    transform: rotate(0deg) translateY(-3px);
+    box-shadow: 0 14px 26px -8px rgba(0, 0, 0, 0.3);
+    color: var(--color-primary, var(--paper-ink));
+  }
+
+  .contact-form__stamps-item a:focus-visible {
+    outline: 2px solid var(--paper-ink);
+    outline-offset: 4px;
+  }
+
+  /* =============================================================
+     Responsive
+     ============================================================= */
+  @media (max-width: 880px) {
+    .contact-form__fields {
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+
+    .contact-form__divider {
+      width: auto;
+      height: 1px;
+      background: linear-gradient(
+        to right,
+        transparent 0%,
+        var(--paper-line) 18%,
+        var(--paper-line) 82%,
+        transparent 100%
+      );
+    }
+
+    .contact-form__letter {
+      padding: 40px 32px 36px;
+    }
+
+    .contact-form__stamp {
+      top: 20px;
+      right: 20px;
+      width: 88px;
+      height: 100px;
+    }
+
+    .contact-form__priority {
+      display: none;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .contact-form__airmail {
+      padding: 6px;
+    }
+
+    .contact-form__letter {
+      padding: 36px 24px 28px;
+      min-height: 0;
+    }
+
+    .contact-form__stamp {
+      position: relative;
+      top: 0;
+      right: 0;
+      margin: 0 auto 24px;
+      width: 88px;
+      height: 100px;
+    }
+
+    .contact-form__col {
+      gap: 24px;
+    }
+
+    .contact-form__stamps {
+      padding: 24px 16px;
+      margin-top: 36px;
+    }
+
+    .contact-form__stamps-list {
+      gap: 18px 20px;
+    }
+
+    .contact-form__stamps-item a {
+      width: 72px;
+      height: 80px;
+      padding: 10px 6px 6px;
+      font-size: 0.55rem;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .contact-form__input,
+    .contact-form__airmail,
+    .contact-form__stamps-item a {
+      animation: none;
+    }
     .contact-form__submit {
       transition: none;
     }
