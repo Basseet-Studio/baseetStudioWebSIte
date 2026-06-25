@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <!-- CSS Styles for theme response -->
+  <style>
+    :root {
+      --bg-color-start: #FCF9F2;
+      --bg-color-end: #F4EFE3;
+      --border-color: #E6DFD3;
+      --text-primary: #1F7A43;
+      --text-secondary: #5C6F62;
+      --badge-bg: #1F7A43;
+      --badge-text: #F8F0DD;
+      --shadow-color: rgba(31, 122, 67, 0.08);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-color-start: #14241C;
+        --bg-color-end: #0D1813;
+        --border-color: #22382D;
+        --text-primary: #58C082;
+        --text-secondary: #8CA093;
+        --badge-bg: #58C082;
+        --badge-text: #0D1813;
+        --shadow-color: rgba(0, 0, 0, 0.3);
+      }
+    }
+    .bg-panel { fill: url(#bgGradient); transition: fill 0.3s ease; }
+    .border-stroke { stroke: var(--border-color); transition: stroke 0.3s ease; }
+    .txt-main { fill: var(--text-primary); transition: fill 0.3s ease; }
+    .txt-sub { fill: var(--text-secondary); transition: fill 0.3s ease; }
+    .badge-rect { fill: var(--badge-bg); transition: fill 0.3s ease; }
+    .badge-txt { fill: var(--badge-text); transition: fill 0.3s ease; }
+  </style>
+
+  <!-- Definitions for Gradients and Filters -->
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="var(--bg-color-start)" />
+      <stop offset="100%" stop-color="var(--bg-color-end)" />
+    </linearGradient>
+
+    <!-- Emblem Gradients -->
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#059669" />
+      <stop offset="100%" stop-color="#064E3B" />
+    </linearGradient>
+    <linearGradient id="mintGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34D399" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#0284C7" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FBBF24" />
+      <stop offset="100%" stop-color="#D97706" />
+    </linearGradient>
+
+    <!-- Modern Drop Shadow Filter -->
+    <filter id="premium-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="var(--shadow-color)" flood-opacity="1" />
+    </filter>
+  </defs>
+
+  <!-- Squircle Backdrop -->
+  <rect x="16" y="16" width="480" height="480" rx="96" class="bg-panel border-stroke" stroke-width="4" />
+
+  <!-- Emblem Group with Drop Shadow -->
+  <g filter="url(#premium-shadow)">
+    <!-- Vertical Spine (F stem / Book Spine) -->
+    <path d="M 178,92 C 178,82 186,74 196,74 L 204,74 C 214,74 222,82 222,92 L 222,238 C 222,254 213,266 197,266 C 185,266 178,257 178,246 Z" fill="url(#greenGrad)" />
+    
+    <!-- Top Wave (F upper bar / Open Page) -->
+    <path d="M 238,87 C 270,87 308,100 336,118 C 344,124 344,134 336,140 L 329,145 C 320,152 308,150 299,141 C 280,125 258,118 238,118 C 230,118 224,114 224,106 L 224,99 C 224,91 230,87 238,87 Z" fill="url(#mintGrad)" />
+    
+    <!-- Middle Wave (F lower bar / Telecom Signal Wave) -->
+    <path d="M 238,138 C 265,138 298,148 322,164 C 330,169 330,179 322,184 L 316,188 C 307,194 296,192 288,184 C 272,170 254,164 238,164 C 230,164 224,160 224,152 L 224,147 C 224,139 230,138 238,138 Z" fill="url(#blueGrad)" />
+    
+    <!-- Overlapping MFS / Flexiload Nodes -->
+    <circle cx="242" cy="216" r="16" fill="url(#goldGrad)" />
+    <circle cx="272" cy="216" r="11" fill="url(#goldGrad)" opacity="0.88" />
+  </g>
+
+  <!-- Typography -->
+  <!-- Main Title -->
+  <text x="256" y="338" class="txt-main" font-family="system-ui, -apple-system, sans-serif" font-size="44" font-weight="800" letter-spacing="0.08em" text-anchor="middle">FARUK</text>
+  
+  <!-- Subtitle -->
+  <text x="256" y="375" class="txt-sub" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="700" letter-spacing="0.28em" text-anchor="middle">LIBRARY &amp; TELECOM</text>
+  
+  <!-- System Badge -->
+  <g>
+    <rect x="224" y="398" width="64" height="22" rx="11" class="badge-rect" />
+    <text x="256" y="409" class="badge-txt" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="800" letter-spacing="0.1em" text-anchor="middle" dominant-baseline="central">IMS</text>
+  </g>
+</svg>

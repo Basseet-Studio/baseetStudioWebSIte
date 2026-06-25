@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Drop Shadow for the main squircle -->
+    <filter id="dropShadow" x="0" y="0" width="512" height="512" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#090d16" flood-opacity="0.45" />
+    </filter>
+
+    <!-- Glowing effect for stars and slider -->
+    <filter id="glowFilter" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    
+    <!-- Slightly smaller glow for smaller stars -->
+    <filter id="smallGlowFilter" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <!-- Gradients -->
+    <linearGradient id="darkGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+
+    <linearGradient id="brandGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#ec4899" />
+    </linearGradient>
+
+    <linearGradient id="primaryGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#818cf8" />
+      <stop offset="100%" stop-color="#4f46e5" />
+    </linearGradient>
+
+    <linearGradient id="secondaryGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f472b6" />
+      <stop offset="100%" stop-color="#db2777" />
+    </linearGradient>
+
+    <linearGradient id="sepiaSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4b3d30" />
+      <stop offset="100%" stop-color="#2e251e" />
+    </linearGradient>
+
+    <linearGradient id="restoredSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#111827" />
+      <stop offset="100%" stop-color="#1e1b4b" />
+    </linearGradient>
+
+    <linearGradient id="goldGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fbbf24" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+
+    <linearGradient id="glassGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.0" />
+    </linearGradient>
+
+    <linearGradient id="sliderGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ec4899" />
+      <stop offset="50%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#6366f1" />
+    </linearGradient>
+
+    <linearGradient id="wandHandleGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#475569" />
+      <stop offset="100%" stop-color="#cbd5e1" />
+    </linearGradient>
+
+    <!-- Clipping Paths -->
+    <!-- Clip content to the main rounded square (squircle) -->
+    <clipPath id="squircleClip">
+      <rect x="48" y="48" width="416" height="416" rx="88" />
+    </clipPath>
+
+    <!-- Split screens diagonally from top (220, 0) to bottom (280, 512) -->
+    <clipPath id="leftSide">
+      <polygon points="0,0 220,0 280,512 0,512" />
+    </clipPath>
+    <clipPath id="rightSide">
+      <polygon points="220,0 512,0 512,512 280,512" />
+    </clipPath>
+  </defs>
+
+  <!-- CSS Styles and Animations -->
+  <style>
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.95; }
+      50% { transform: scale(1.08); opacity: 1; filter: drop-shadow(0 0 12px rgba(236, 72, 153, 0.6)); }
+    }
+    @keyframes sparkleAnim {
+      0%, 100% { opacity: 0.2; transform: scale(0.7); }
+      50% { opacity: 1; transform: scale(1.25); }
+    }
+    @keyframes scanAnim {
+      0%, 100% { transform: translate(-3px, 0); }
+      50% { transform: translate(3px, 0); }
+    }
+    @keyframes floatAnim {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+    
+    .pulse-element {
+      animation: pulse 3s ease-in-out infinite;
+      transform-origin: 256px 256px;
+    }
+    .sparkle-1 {
+      animation: sparkleAnim 2s ease-in-out infinite;
+      transform-origin: 360px 130px;
+    }
+    .sparkle-2 {
+      animation: sparkleAnim 2.5s ease-in-out infinite;
+      transform-origin: 410px 200px;
+      animation-delay: 0.5s;
+    }
+    .sparkle-3 {
+      animation: sparkleAnim 3s ease-in-out infinite;
+      transform-origin: 330px 270px;
+      animation-delay: 1s;
+    }
+    .sparkle-4 {
+      animation: sparkleAnim 1.8s ease-in-out infinite;
+      transform-origin: 440px 310px;
+      animation-delay: 0.2s;
+    }
+    .scan-line {
+      animation: scanAnim 4s ease-in-out infinite;
+    }
+    .floating-wand {
+      animation: floatAnim 4s ease-in-out infinite;
+    }
+  </style>
+
+  <!-- Main Squircle Backdrop with Shadow & Border -->
+  <rect x="48" y="48" width="416" height="416" rx="88" fill="url(#darkGrad)" stroke="url(#brandGrad)" stroke-width="4" filter="url(#dropShadow)" />
+  <!-- Inner Chamfer Highlight -->
+  <rect x="50" y="50" width="412" height="412" rx="86" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.15" pointer-events="none" />
+
+  <!-- CLIPPED LANDSCAPE GRAPHICS -->
+  <g clip-path="url(#squircleClip)">
+    
+    <!-- 1. LEFT SIDE - OLD, DAMAGED VINTAGE PHOTO -->
+    <g clip-path="url(#leftSide)">
+      <!-- Dull Sepia Sky -->
+      <rect x="48" y="48" width="416" height="416" fill="url(#sepiaSky)" />
+      
+      <!-- Faded Sun -->
+      <circle cx="256" cy="190" r="55" fill="#8c7b70" opacity="0.45" />
+      
+      <!-- Mountain 1 (Back) -->
+      <path d="M 48,464 L 210,240 L 372,464 Z" fill="#5c4e43" opacity="0.7" />
+      
+      <!-- Mountain 2 (Foreground) -->
+      <path d="M 150,464 L 320,290 L 464,464 Z" fill="#453930" opacity="0.8" />
+      
+      <!-- Dust spots -->
+      <circle cx="90" cy="150" r="1.5" fill="#2a1f18" opacity="0.5" />
+      <circle cx="140" cy="280" r="2.5" fill="#2a1f18" opacity="0.4" />
+      <circle cx="110" cy="380" r="1" fill="#8c7565" opacity="0.6" />
+      <circle cx="180" cy="120" r="1.5" fill="#8c7565" opacity="0.5" />
+      
+      <!-- Crack lines with beveled highlights -->
+      <!-- Crack 1 -->
+      <path d="M 60,100 L 90,140 L 75,200 L 115,250 L 95,310 L 140,370" stroke="#1d1510" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.65" />
+      <path d="M 61,101 L 91,141 L 76,201 L 116,251 L 96,311 L 141,371" stroke="#8c7565" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.4" />
+      
+      <!-- Crack 2 -->
+      <path d="M 160,50 L 135,110 L 175,160 L 145,220" stroke="#1d1510" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.6" />
+      <path d="M 161,51 L 136,111 L 176,161 L 146,221" stroke="#8c7565" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.45" />
+    </g>
+
+    <!-- 2. RIGHT SIDE - GLOWING RESTORED AI PHOTO -->
+    <g clip-path="url(#rightSide)">
+      <!-- Midnight Sky -->
+      <rect x="48" y="48" width="416" height="416" fill="url(#restoredSky)" />
+      
+      <!-- Glowing Sun -->
+      <circle cx="256" cy="190" r="55" fill="url(#goldGrad)" filter="url(#glowFilter)" opacity="0.85" />
+      <circle cx="256" cy="190" r="55" fill="#ffffff" opacity="0.25" />
+      
+      <!-- Mountain 1 (Back) -->
+      <path d="M 48,464 L 210,240 L 372,464 Z" fill="url(#primaryGrad)" opacity="0.85" />
+      
+      <!-- Mountain 2 (Foreground) -->
+      <path d="M 150,464 L 320,290 L 464,464 Z" fill="url(#secondaryGrad)" />
+      <path d="M 150,464 L 320,290 L 464,464 Z" fill="#ffffff" opacity="0.05" />
+
+      <!-- Glowing AI Sparkles -->
+      <!-- Sparkle 1 -->
+      <path class="sparkle-1" d="M 360,110 Q 360,130 380,130 Q 360,130 360,150 Q 360,130 340,130 Q 360,130 360,110 Z" fill="#ffffff" filter="url(#smallGlowFilter)" />
+      <!-- Sparkle 2 -->
+      <path class="sparkle-2" d="M 410,185 Q 410,200 425,200 Q 410,200 410,215 Q 410,200 395,200 Q 410,200 410,185 Z" fill="#f472b6" filter="url(#smallGlowFilter)" />
+      <!-- Sparkle 3 -->
+      <path class="sparkle-3" d="M 330,258 Q 330,270 342,270 Q 330,270 330,282 Q 330,270 318,270 Q 330,270 330,258 Z" fill="#818cf8" filter="url(#smallGlowFilter)" />
+      <!-- Sparkle 4 -->
+      <path class="sparkle-4" d="M 440,303 Q 440,310 447,310 Q 440,310 440,317 Q 440,310 433,310 Q 440,310 440,303 Z" fill="#ffffff" opacity="0.8" />
+    </g>
+    
+    <!-- 3. GLOWING SLIDER AND AI WAND -->
+    <!-- Diagonal Scanning Line -->
+    <line class="scan-line" x1="220" y1="48" x2="280" y2="464" stroke="url(#sliderGrad)" stroke-width="5" filter="url(#glowFilter)" />
+    <line class="scan-line" x1="220" y1="48" x2="280" y2="464" stroke="#ffffff" stroke-width="1.5" />
+
+    <!-- Magic Wand (placed on top for visual effect) -->
+    <g class="floating-wand">
+      <!-- Wand Handle -->
+      <polygon points="107,397 113,403 233,283 227,277" fill="url(#wandHandleGrad)" />
+      <!-- Metal Collar -->
+      <polygon points="227,277 233,283 243,273 237,267" fill="url(#goldGrad)" />
+      <!-- Crystal Tip -->
+      <polygon points="240,274 246,280 240,286 234,280" fill="#ffffff" filter="url(#smallGlowFilter)" />
+      
+      <!-- Central Large AI Sparkle -->
+      <path class="pulse-element" d="M 256,206 Q 256,256 306,256 Q 256,256 256,306 Q 256,256 206,256 Q 256,256 256,206 Z" fill="url(#brandGrad)" filter="url(#glowFilter)" />
+      <path class="pulse-element" d="M 256,221 Q 256,256 291,256 Q 256,256 256,291 Q 256,256 221,256 Q 256,256 256,221 Z" fill="#ffffff" />
+    </g>
+
+    <!-- Glass Swoosh Highlight for Glossy App Icon look -->
+    <path d="M 48,160 C 150,160 300,90 464,160 L 464,48 A 88,88 0 0 0 376,48 L 136,48 A 88,88 0 0 0 48,136 Z" fill="url(#glassGrad)" opacity="0.12" pointer-events="none" />
+  </g>
+</svg>
