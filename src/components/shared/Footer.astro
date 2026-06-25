@@ -11,85 +11,102 @@ const socialPlatforms = [
   { key: 'instagram', icon: 'instagram-logo' },
   { key: 'tiktok', icon: 'tiktok-logo' },
 ]
+
+interface Props {
+  /**
+   * Compact mode strips the footer down to just Projects + Services,
+   * laid out horizontally in a single row. Used on the contact page
+   * where the contact info + social already appear in the form above.
+   */
+  compact?: boolean
+}
+
+const { compact = false } = Astro.props
 ---
 
-<footer class="footer">
+<footer class={`footer ${compact ? 'footer--compact' : ''}`}>
   <div class="footer__container">
 
-    <!-- === Column 1: Brand === -->
-    <div class="footer__col footer__col--brand">
-      <a href="/" class="footer__logo">
-        <svg class="footer__logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" aria-hidden="true"><rect width="256" height="256" fill="none"/><path d="M128,120s90-96,0-96S128,120,128,120Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/><path d="M128,120s-96-90-96,0S128,120,128,120Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/><path d="M128,120s-90,96,0,96S128,120,128,120Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/><path d="M128,120s96,90,96,0S128,120,128,120Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/><path d="M128,120s64,56,80,120" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/></svg>
-        Baseet Studio
-      </a>
-      <p class="footer__tagline">Digital product studio based in Abu Dhabi.</p>
-      <div class="footer__address">
-        <Icon name="map-pin" size={14} color="currentColor" />
-        <span>{linksData.contact.address}</span>
-      </div>
-      <div class="footer__social">
-        {socialPlatforms.map(item => {
-          const url = linksData.social[item.key as keyof typeof linksData.social]
-          if (!url || url === '#') return null
-          return (
-            <a href={url} target="_blank" rel="noopener noreferrer"
-              class="footer-social-icon"
-              aria-label={item.key}>
-              <Icon name={item.icon} size={16} variant="fill" color="currentColor" />
-            </a>
-          )
-        })}
-      </div>
-    </div>
-
-    <!-- === Column 2: Services === -->
-    <div class="footer__col">
-      <h4 class="footer__heading">Services</h4>
-      <ul class="footer__links">
-        {servicesData.categories.map(cat => (
-          <li>
-            <a href={`/services/#${cat.id}`}>{cat.title}</a>
-          </li>
-        ))}
-      </ul>
-    </div>
-
-    <!-- === Column 3: Company === -->
-    <div class="footer__col">
-      <h4 class="footer__heading">Company</h4>
-      <ul class="footer__links">
-        {footerData.links.map(link => (
-          <li>
-            <a href={link.url}>{link.label}</a>
-          </li>
-        ))}
-      </ul>
-    </div>
-
-    <!-- === Column 4: Contact === -->
-    <div class="footer__col">
-      <h4 class="footer__heading">Get in Touch</h4>
-      <ul class="footer__links">
-        <li>
-          <a href={linksData.contact.email_link}>
-            <Icon name="envelope" size={14} color="currentColor" />
-            {linksData.contact.email}
+    {compact ? (
+      /* === Compact mode (used on the contact page) ===
+         Only Projects + Services, laid out horizontally in a single
+         row, no brand block, no contact column, no social icons. */
+      <nav class="footer__compact" aria-label="Site sections">
+        <div class="footer__compact-group">
+          <h4 class="footer__heading">Projects</h4>
+          <ul class="footer__compact-list">
+            {footerData.links
+              .filter(link => link.label === 'Projects')
+              .map(link => (
+                <li><a href={link.url}>{link.label}</a></li>
+              ))}
+          </ul>
+        </div>
+        <div class="footer__compact-group">
+          <h4 class="footer__heading">Services</h4>
+          <ul class="footer__compact-list">
+            {servicesData.categories.map(cat => (
+              <li>
+                <a href={`/services/#${cat.id}`}>{cat.title}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </nav>
+    ) : (
+      /* === Default mode ===
+         Brand + Services only. The Company column was removed per the
+         site redesign; the Contact column was moved into the
+         ContactForm recipient block. */
+      <>
+        <div class="footer__col footer__col--brand">
+          <a href="/" class="footer__logo">
+            <svg class="footer__logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" aria-hidden="true"><rect width="256" height="256" fill="none"/><path d="M128,120s90-96,0-96S128,120,128,120Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/><path d="M128,120s-96-90-96,0S128,120,128,120Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/><path d="M128,120s-90,96,0,96S128,120,128,120Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/><path d="M128,120s96,90,96,0S128,120,128,120Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/><path d="M128,120s64,56,80,120" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/></svg>
+            Baseet Studio
           </a>
-        </li>
-        <li>
-          <a href={linksData.contact.phone_link}>
-            <Icon name="phone" size={14} color="currentColor" />
-            {linksData.contact.phone}
-          </a>
-        </li>
-        <li>
-          <a href={linksData.contact.whatsapp_link} target="_blank" rel="noopener noreferrer">
-            <Icon name="whatsapp-logo" size={14} variant="fill" color="currentColor" />
-            WhatsApp
-          </a>
-        </li>
-      </ul>
-    </div>
+          <p class="footer__tagline">Digital product studio based in Abu Dhabi.</p>
+          <div class="footer__address">
+            <Icon name="map-pin" size={14} color="currentColor" />
+            <span>{linksData.contact.address}</span>
+          </div>
+          <div class="footer__social">
+            {socialPlatforms.map(item => {
+              const url = linksData.social[item.key as keyof typeof linksData.social]
+              if (!url || url === '#') return null
+              return (
+                <a href={url} target="_blank" rel="noopener noreferrer"
+                  class="footer-social-icon"
+                  aria-label={item.key}>
+                  <Icon name={item.icon} size={16} variant="fill" color="currentColor" />
+                </a>
+              )
+            })}
+          </div>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__heading">Services</h4>
+          <ul class="footer__links">
+            {servicesData.categories.map(cat => (
+              <li>
+                <a href={`/services/#${cat.id}`}>{cat.title}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__heading">Projects</h4>
+          <ul class="footer__links">
+            {footerData.links
+              .filter(link => link.label === 'Projects')
+              .map(link => (
+                <li><a href={link.url}>{link.label}</a></li>
+              ))}
+          </ul>
+        </div>
+      </>
+    )}
 
   </div>
 
@@ -120,8 +137,64 @@ const socialPlatforms = [
     margin: 0 auto;
     padding: 64px 24px 40px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 1.4fr 1fr 1fr;
     gap: 48px;
+  }
+
+  /* Compact mode (used on the contact page): single horizontal row of
+     Projects + Services, no brand block, no contact, no social. Tighter
+     padding so it doesn't dominate the page. */
+  .footer--compact .footer__container {
+    grid-template-columns: 1fr;
+    padding: 32px 24px 24px;
+    gap: 20px;
+  }
+
+  .footer__compact {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 80px;
+    flex-wrap: wrap;
+  }
+
+  .footer__compact-group {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 16px;
+  }
+
+  .footer__compact-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+  }
+
+  .footer__compact-list a {
+    color: var(--footer-text-muted);
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .footer__compact-list a:hover {
+    color: var(--footer-text-primary);
+  }
+
+  .footer--compact .footer__heading {
+    margin: 0;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--footer-text-soft);
+    font-weight: 600;
   }
 
   .footer__col--brand {
@@ -283,12 +356,27 @@ const socialPlatforms = [
   /* === Responsive === */
   @media (max-width: 1023px) {
     .footer__container {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr 1fr;
       gap: 40px;
     }
     .footer__col--brand {
       grid-column: 1 / -1;
       padding-right: 0;
+    }
+
+    .footer--compact .footer__container {
+      grid-template-columns: 1fr;
+    }
+    .footer__compact {
+      gap: 24px;
+    }
+    .footer__compact-group {
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .footer__compact-list {
+      justify-content: center;
     }
   }
 
@@ -325,6 +413,17 @@ const socialPlatforms = [
     .footer-back-to-top {
       bottom: 20px;
       right: 20px;
+    }
+
+    .footer__compact {
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .footer__compact-list {
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
     }
   }
 </style>

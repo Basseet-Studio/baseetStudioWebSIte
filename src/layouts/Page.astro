@@ -7,12 +7,20 @@ interface Props {
   description?: string
   section: Section
   lang?: Lang
+  /** Render the footer in compact (Projects + Services only) mode. */
+  footerCompact?: boolean
 }
 
-const { title, description, section, lang = 'en' } = Astro.props
+const { title, description, section, lang = 'en', footerCompact = false } = Astro.props
 ---
 
-<Base title={title} description={description} section={section} lang={lang}>
+<Base
+  title={title}
+  description={description}
+  section={section}
+  lang={lang}
+  footerCompact={footerCompact}
+>
   <div class="page-content" style="max-width:1200px;margin:0 auto;padding:120px 24px 64px;">
     <slot />
   </div>

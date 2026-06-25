@@ -1,6 +1,7 @@
 // global.ts — Global GSAP animations with ViewTransitions lifecycle support
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { init as initPaperWobble, destroy as destroyPaperWobble } from './paper-wobble'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -52,8 +53,10 @@ function destroyAnimations(): void {
 
 export function init(): void {
   animateElements()
+  initPaperWobble()
 }
 
 export function destroy(): void {
   destroyAnimations()
+  destroyPaperWobble()
 }

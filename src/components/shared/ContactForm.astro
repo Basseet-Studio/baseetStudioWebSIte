@@ -25,21 +25,59 @@ const { actionUrl, lang = 'en' } = Astro.props
 ---
 
 <div class="contact-form" data-animate="fade-up">
-  <div class="contact-form__airmail" aria-hidden="true">
+  <div class="contact-form__airmail" data-paper-wobble aria-hidden="true">
     <span class="contact-form__airmail-stripe"></span>
     <span class="contact-form__airmail-stripe"></span>
     <span class="contact-form__airmail-stripe"></span>
   </div>
 
   <div class="contact-form__letter">
-    {/* Vintage stamp — sits in the top-right corner, slightly rotated.
-        Houses the studio mark + the "letter rate". */}
-    <div class="contact-form__stamp" aria-hidden="true">
-      <span class="contact-form__stamp-text">BASEET&nbsp;POST</span>
-      <span class="contact-form__stamp-mark">
-        <Icon name="paper-plane-tilt" size={26} color="#fff" />
-      </span>
-      <span class="contact-form__stamp-rate">∞¢</span>
+    {/* ===== Top-right corner cluster: the vintage "BASEET POST" stamp
+        sits at the corner, and a row of 5 social-media mail-stamps
+        flanks it. Both rotate slightly and have their own float keyframes
+        so the corner reads as a stack of cards dropped on the envelope. ===== */}
+    <div class="contact-form__corner">
+      {/* The vintage "BASEET POST" stamp is decorative — only the social
+          links inside this cluster are interactive. */}
+      <div class="contact-form__stamp" aria-hidden="true">
+        <span class="contact-form__stamp-text">BASEET&nbsp;POST</span>
+        <span class="contact-form__stamp-mark">
+          <Icon name="paper-plane-tilt" size={26} color="#fff" />
+        </span>
+        <span class="contact-form__stamp-rate">∞¢</span>
+      </div>
+      <ul class="contact-form__social-stamps" aria-label="Find us on social">
+        <li class="contact-form__social-stamp" style="--rot:-4deg;--delay:0s;">
+          <a href="https://instagram.com/baseet.studio" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <Icon name="instagram-logo" size={22} color="currentColor" />
+            <span>IG</span>
+          </a>
+        </li>
+        <li class="contact-form__social-stamp" style="--rot:3deg;--delay:0.3s;">
+          <a href="https://linkedin.com/company/baseetstudios" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <Icon name="linkedin-logo" size={22} color="currentColor" />
+            <span>IN</span>
+          </a>
+        </li>
+        <li class="contact-form__social-stamp" style="--rot:-2deg;--delay:0.6s;">
+          <a href="https://twitter.com/baseetstudios" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+            <Icon name="x-logo" size={22} color="currentColor" />
+            <span>X</span>
+          </a>
+        </li>
+        <li class="contact-form__social-stamp" style="--rot:4deg;--delay:0.9s;">
+          <a href="https://github.com/baseetstudios" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <Icon name="github-logo" size={22} color="currentColor" />
+            <span>GH</span>
+          </a>
+        </li>
+        <li class="contact-form__social-stamp" style="--rot:-1deg;--delay:1.2s;">
+          <a href="https://tiktok.com/@baseet.studio" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+            <Icon name="tiktok-logo" size={22} color="currentColor" />
+            <span>TT</span>
+          </a>
+        </li>
+      </ul>
     </div>
 
     <form id="contact-form" class="contact-form__fields">
@@ -128,18 +166,71 @@ const { actionUrl, lang = 'en' } = Astro.props
 
         <div class="contact-form__recipient">
           <span class="contact-form__label-mono">Recipient</span>
-          <p class="contact-form__recipient-copy">
-            Baseet Studio<br />
-            Abu Dhabi, UAE<br />
-            baseet.socials@gmail.com
-          </p>
+          <ul class="contact-form__recipient-list">
+            <li class="contact-form__recipient-name">
+              {/* Agency name — handwritten font. */}
+              <a href="/" class="contact-form__recipient-link contact-form__recipient-link--hand">Baseet Studio</a>
+            </li>
+            <li>
+              <a
+                href="https://maps.google.com/?q=Abu+Dhabi+UAE"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="contact-form__recipient-link"
+                aria-label="Open Abu Dhabi, UAE in Google Maps"
+              >
+                Abu Dhabi, UAE
+              </a>
+            </li>
+            <li>
+              <a
+                href="mailto:baseet.socials@gmail.com"
+                class="contact-form__recipient-link"
+                aria-label="Email Baseet Studio"
+              >
+                baseet.socials@gmail.com
+              </a>
+            </li>
+            <li>
+              <a
+                href="tel:+971507566474"
+                class="contact-form__recipient-link"
+                aria-label="Call Baseet Studio"
+              >
+                +971 50 756 6474
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://wa.me/971507566474"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="contact-form__recipient-link"
+                aria-label="Open WhatsApp chat with Baseet Studio"
+              >
+                WhatsApp chat
+              </a>
+            </li>
+            <li>
+              {/* Location is currently a placeholder anchor until the
+                  studio's exact pin is provided. */}
+              <a
+                href="#"
+                class="contact-form__recipient-link contact-form__recipient-link--placeholder"
+                aria-label="Studio location (coming soon)"
+                title="Studio location — coming soon"
+              >
+                Studio location · coming soon
+              </a>
+            </li>
+          </ul>
         </div>
 
         <div class="contact-form__submit-wrap">
           <button type="submit" class="contact-form__submit">
             Post Inquiry
           </button>
-          <p class="contact-form__submit-note">
+          <p class="contact-form__submit-note contact-form__submit-note--hand">
             Signed, sealed, delivered.
           </p>
         </div>
@@ -152,45 +243,6 @@ const { actionUrl, lang = 'en' } = Astro.props
     <span class="contact-form__priority" aria-hidden="true">
       Baseet · Airmail · Priority
     </span>
-  </div>
-
-  {/* ===== Social stamps row — floating mini-stamps with the platform
-      icons. They use the paper-post-contact stamp treatment (dashed
-      border + slightly rotated) and animate like paper drifting. ===== */}
-  <div class="contact-form__stamps" aria-label="Find us on social">
-    <span class="contact-form__stamps-label">Post a letter. Or find us elsewhere.</span>
-    <ul class="contact-form__stamps-list">
-      <li class="contact-form__stamps-item" style="--rot:-3deg;--delay:0s;">
-        <a href="https://instagram.com/baseet.studio" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-          <Icon name="instagram-logo" size={28} color="currentColor" />
-          <span>IG</span>
-        </a>
-      </li>
-      <li class="contact-form__stamps-item" style="--rot:2deg;--delay:0.4s;">
-        <a href="https://linkedin.com/company/baseetstudios" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-          <Icon name="linkedin-logo" size={28} color="currentColor" />
-          <span>IN</span>
-        </a>
-      </li>
-      <li class="contact-form__stamps-item" style="--rot:-2deg;--delay:0.8s;">
-        <a href="https://twitter.com/baseetstudios" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-          <Icon name="x-logo" size={28} color="currentColor" />
-          <span>X</span>
-        </a>
-      </li>
-      <li class="contact-form__stamps-item" style="--rot:3deg;--delay:1.2s;">
-        <a href="https://github.com/baseetstudios" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-          <Icon name="github-logo" size={28} color="currentColor" />
-          <span>GH</span>
-        </a>
-      </li>
-      <li class="contact-form__stamps-item" style="--rot:-1deg;--delay:1.6s;">
-        <a href="https://tiktok.com/@baseet.studio" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
-          <Icon name="tiktok-logo" size={28} color="currentColor" />
-          <span>TT</span>
-        </a>
-      </li>
-    </ul>
   </div>
 </div>
 
@@ -404,6 +456,10 @@ const { actionUrl, lang = 'en' } = Astro.props
 
   /* =============================================================
      Letter paper — the cream card inside the airmail border.
+     The realistic paper filter (defined in PaperFilters.astro and
+     mounted by Base.astro) gives the surface its fibre + grain.
+     The .paper-surface class is also exposed on its own so other
+     paper elements (e.g. the stamp, the social stamps) can opt in.
      ============================================================= */
   .contact-form__letter {
     position: relative;
@@ -412,19 +468,37 @@ const { actionUrl, lang = 'en' } = Astro.props
     padding: 56px 56px 48px;
     min-height: 600px;
     border-radius: 2px;
+    /* Apply the realistic paper filter — fibres + grain + slight
+       edge displacement. Filter is defined in PaperFilters.astro
+       (mounted once per page by Base.astro). */
+    filter: url(#paper-realistic);
   }
 
   /* =============================================================
-     Vintage stamp — top-right corner, slightly rotated, dashed border
-     treatment from the reference.
+     Top-right corner cluster — the vintage stamp + the row of
+     social-media mail-stamps sit together in the upper-right
+     corner, slightly overlapping like a stack of cards.
+     ============================================================= */
+  .contact-form__corner {
+    position: absolute;
+    top: 28px;
+    right: 28px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    z-index: 4;
+  }
+
+  /* =============================================================
+     Vintage stamp — sits in the top-right corner, slightly rotated.
+     Houses the studio mark + the "letter rate". Kept cream-white
+     so it reads as a stamp even against the paper letter.
      ============================================================= */
   .contact-form__stamp {
-    position: absolute;
-    top: 32px;
-    right: 32px;
-    width: 110px;
-    height: 124px;
-    background: color-mix(in srgb, var(--paper-cream) 80%, white);
+    position: relative;
+    width: 96px;
+    height: 110px;
+    background: color-mix(in srgb, var(--paper-cream) 70%, white);
     border: 2px dashed var(--paper-ink);
     padding: 8px 6px;
     display: flex;
@@ -433,7 +507,8 @@ const { actionUrl, lang = 'en' } = Astro.props
     justify-content: space-between;
     transform: rotate(6deg);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-    z-index: 3;
+    flex-shrink: 0;
+    animation: contact-stamp-float 7s ease-in-out infinite;
   }
 
   /* The dotted outer ring from the reference's stamp-vintage::before */
@@ -447,15 +522,15 @@ const { actionUrl, lang = 'en' } = Astro.props
 
   .contact-form__stamp-text {
     font-family: var(--font-mono);
-    font-size: 0.55rem;
+    font-size: 0.5rem;
     text-transform: uppercase;
     letter-spacing: 0.14em;
     color: color-mix(in srgb, var(--paper-ink) 60%, transparent);
   }
 
   .contact-form__stamp-mark {
-    width: 54px;
-    height: 54px;
+    width: 46px;
+    height: 46px;
     border-radius: 50%;
     background: var(--paper-ink);
     color: var(--paper-cream);
@@ -466,7 +541,7 @@ const { actionUrl, lang = 'en' } = Astro.props
 
   .contact-form__stamp-rate {
     font-family: var(--font-display);
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: var(--paper-ink);
     line-height: 1;
     letter-spacing: -0.02em;
@@ -648,17 +723,66 @@ const { actionUrl, lang = 'en' } = Astro.props
     transform: rotate(-45deg) translate(1px, -1px);
   }
 
-  /* ----- Recipient block ----- */
+  /* ----- Recipient block — every line is a clickable link. The
+     agency name and the signature below the submit button use
+     the handwriting font; the rest stay mono. ----- */
   .contact-form__recipient {
     margin-top: 8px;
   }
 
-  .contact-form__recipient-copy {
+  .contact-form__recipient-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .contact-form__recipient-name {
+    margin-bottom: 2px;
+  }
+
+  .contact-form__recipient-link {
     font-family: var(--font-body);
     font-size: 0.95rem;
-    line-height: 1.7;
-    color: color-mix(in srgb, var(--paper-muted) 85%, transparent);
-    margin: 0;
+    line-height: 1.6;
+    color: var(--paper-ink);
+    text-decoration: none;
+    border-bottom: 1px dashed color-mix(in srgb, var(--paper-line) 80%, transparent);
+    padding-bottom: 1px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .contact-form__recipient-link:hover {
+    color: var(--color-primary, var(--paper-ink));
+    border-bottom-color: currentColor;
+  }
+
+  .contact-form__recipient-link:focus-visible {
+    outline: 2px solid var(--paper-ink);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Agency name + signature use the handwriting font */
+  .contact-form__recipient-link--hand {
+    font-family: var(--font-handwriting);
+    font-size: 1.85rem;
+    line-height: 1;
+    font-weight: 600;
+    border-bottom: none;
+    color: var(--paper-ink);
+    letter-spacing: 0.005em;
+  }
+
+  .contact-form__recipient-link--hand:hover {
+    color: var(--color-primary, var(--paper-ink));
+  }
+
+  /* Placeholder for the studio pin (exact coords TBD) */
+  .contact-form__recipient-link--placeholder {
+    color: color-mix(in srgb, var(--paper-muted) 80%, transparent);
     font-style: italic;
   }
 
@@ -705,6 +829,17 @@ const { actionUrl, lang = 'en' } = Astro.props
     text-transform: uppercase;
     letter-spacing: 0.24em;
     margin: 0;
+  }
+
+  /* The signature line under the submit button uses the handwriting
+     font — it reads as a real closing flourish. */
+  .contact-form__submit-note--hand {
+    font-family: var(--font-handwriting);
+    font-size: 1.35rem;
+    text-transform: none;
+    letter-spacing: 0.005em;
+    color: color-mix(in srgb, var(--paper-ink) 75%, transparent);
+    line-height: 1;
   }
 
   /* ----- Status messages ----- */
@@ -754,85 +889,65 @@ const { actionUrl, lang = 'en' } = Astro.props
   }
 
   /* =============================================================
-     Social stamps — small floating stamp cards with the platform
-     icons + the paper drift animation. Each stamp rotates slightly
-     and has its own animation delay so the row reads as a stack of
-     cards tossed on the desk, not as a rigid grid.
+     Social stamps — small mail-stamps stacked to the LEFT of the
+     vintage "BASEET POST" stamp in the top-right corner of the
+     letter. Each is a mini card with a dashed border + the
+     platform icon + a 2-letter label, rotated slightly and
+     animated like paper drifting.
      ============================================================= */
-  .contact-form__stamps {
-    margin-top: 48px;
-    padding: 32px 24px;
-    border-top: 1.5px dashed var(--paper-line);
-  }
-
-  .contact-form__stamps-label {
-    display: block;
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.24em;
-    color: var(--paper-muted);
-    text-align: center;
-    margin-bottom: 28px;
-  }
-
-  .contact-form__stamps-list {
+  .contact-form__social-stamps {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 28px 32px;
+    flex-direction: column;
+    gap: 6px;
   }
 
-  .contact-form__stamps-item {
+  .contact-form__social-stamp {
     --rot: 0deg;
     --delay: 0s;
   }
 
-  .contact-form__stamps-item a {
+  .contact-form__social-stamp a {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 4px;
-    width: 84px;
-    height: 92px;
-    padding: 12px 8px 8px;
-    background: var(--paper-cream);
-    border: 2px dashed var(--paper-line);
+    gap: 6px;
+    padding: 6px 10px 6px 8px;
+    background: color-mix(in srgb, var(--paper-cream) 70%, white);
+    border: 1.5px dashed var(--paper-line);
     color: var(--paper-ink);
     text-decoration: none;
     font-family: var(--font-mono);
-    font-size: 0.6rem;
+    font-size: 0.55rem;
     text-transform: uppercase;
     letter-spacing: 0.16em;
     transform: rotate(var(--rot));
-    box-shadow: 0 8px 18px -8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 12px -6px rgba(0, 0, 0, 0.2);
     animation: contact-stamp-float 6s ease-in-out infinite;
     animation-delay: var(--delay);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
     position: relative;
+    white-space: nowrap;
   }
 
-  /* The dotted outer ring from the reference's stamp treatment */
-  .contact-form__stamps-item a::before {
+  .contact-form__social-stamp a::before {
     content: "";
     position: absolute;
-    inset: -5px;
-    border: 1.5px dotted color-mix(in srgb, var(--paper-ink) 25%, transparent);
+    inset: -3px;
+    border: 1px dotted color-mix(in srgb, var(--paper-ink) 20%, transparent);
     pointer-events: none;
   }
 
-  .contact-form__stamps-item a:hover {
-    transform: rotate(0deg) translateY(-3px);
-    box-shadow: 0 14px 26px -8px rgba(0, 0, 0, 0.3);
+  .contact-form__social-stamp a:hover {
+    transform: rotate(0deg) translateY(-2px);
+    box-shadow: 0 10px 18px -6px rgba(0, 0, 0, 0.3);
     color: var(--color-primary, var(--paper-ink));
   }
 
-  .contact-form__stamps-item a:focus-visible {
+  .contact-form__social-stamp a:focus-visible {
     outline: 2px solid var(--paper-ink);
-    outline-offset: 4px;
+    outline-offset: 3px;
   }
 
   /* =============================================================
@@ -860,11 +975,26 @@ const { actionUrl, lang = 'en' } = Astro.props
       padding: 40px 32px 36px;
     }
 
-    .contact-form__stamp {
+    /* Corner cluster shrinks and pulls in slightly on tablet */
+    .contact-form__corner {
       top: 20px;
       right: 20px;
-      width: 88px;
-      height: 100px;
+      gap: 10px;
+    }
+
+    .contact-form__stamp {
+      width: 80px;
+      height: 92px;
+      padding: 6px 4px;
+    }
+
+    .contact-form__stamp-mark {
+      width: 36px;
+      height: 36px;
+    }
+
+    .contact-form__stamp-rate {
+      font-size: 1.05rem;
     }
 
     .contact-form__priority {
@@ -882,33 +1012,42 @@ const { actionUrl, lang = 'en' } = Astro.props
       min-height: 0;
     }
 
-    .contact-form__stamp {
+    /* On small screens the corner cluster moves out of the corner and
+       sits as a centered banner at the top of the letter — the stamp +
+       social stamps line up in a row instead of stacking. */
+    .contact-form__corner {
       position: relative;
       top: 0;
       right: 0;
-      margin: 0 auto 24px;
-      width: 88px;
-      height: 100px;
+      margin: 0 auto 28px;
+      flex-direction: column-reverse;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .contact-form__stamp {
+      width: 80px;
+      height: 92px;
+    }
+
+    .contact-form__social-stamps {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
     }
 
     .contact-form__col {
       gap: 24px;
     }
 
-    .contact-form__stamps {
-      padding: 24px 16px;
-      margin-top: 36px;
+    .contact-form__recipient-link--hand {
+      font-size: 1.6rem;
     }
 
-    .contact-form__stamps-list {
-      gap: 18px 20px;
-    }
-
-    .contact-form__stamps-item a {
-      width: 72px;
-      height: 80px;
-      padding: 10px 6px 6px;
-      font-size: 0.55rem;
+    .contact-form__submit-note--hand {
+      font-size: 1.15rem;
     }
   }
 

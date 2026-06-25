@@ -151,22 +151,15 @@ const slotIcons = [
         </div>
       </div>
 
-      <div class="ticket__stub-barcode" aria-hidden="true">
-        <span style="flex:3"></span>
-        <span style="flex:1"></span>
-        <span style="flex:4"></span>
-        <span style="flex:1"></span>
-        <span style="flex:2"></span>
-        <span style="flex:1"></span>
-        <span style="flex:5"></span>
-        <span style="flex:1"></span>
-        <span style="flex:3"></span>
-        <span style="flex:1"></span>
-        <span style="flex:4"></span>
-        <span style="flex:1"></span>
-        <span style="flex:2"></span>
-        <span style="flex:1"></span>
-        <span style="flex:3"></span>
+      <div class="ticket__stub-qr" aria-label="QR code — easter egg, leads elsewhere">
+        {/* QR code image goes here. Drop a square PNG/SVG (e.g. qr.png or
+            qr.svg) into /public/ and replace the <span> placeholder below
+            with <img src="/qr.png" alt="" />. Currently sized at 168×168
+            so a 512×512 source renders cleanly. */}
+        <span class="ticket__stub-qr-placeholder" aria-hidden="true">
+          <Icon name="barcode" size={72} color="currentColor" />
+          <span class="ticket__stub-qr-hint">scan me</span>
+        </span>
       </div>
       <span class="ticket__stub-code">1001-BASEET-2026-STUDIO</span>
     </aside>
@@ -271,27 +264,39 @@ const slotIcons = [
     pointer-events: none;
   }
 
-  /* Half-circle notches at the edges. They sit on top of the ticket
-     surface and use the page bg colour so they look cut-out.
+  /* Half-circle notches at the edges. Bumped to 44×88 (was 28×56) so the
+     cut-out reads at a glance, and made transparent so the Vanta clouds
+     show through — they become real "windows" in the ticket rather than
+     painted cut-outs. The notches sit above the ticket body so they
+     punch through both the border and the surface.
      On narrow screens the layout collapses to one column and the
      notches are hidden. */
   .ticket__notch {
     position: absolute;
     top: 50%;
-    width: 28px;
-    height: 56px;
+    width: 44px;
+    height: 88px;
     transform: translateY(-50%);
-    background: var(--bg-page);
+    background: transparent;
+    /* Solid border matches the ticket so the notch reads as an opening
+       cut into the card. Inset shadow gives the cut edge a slight inner
+       lip. */
+    border-top: 1px solid var(--card-window-border);
+    border-bottom: 1px solid var(--card-window-border);
     z-index: 3;
     pointer-events: none;
   }
   .ticket__notch--left {
-    left: -14px;
-    border-radius: 0 28px 28px 0;
+    left: -22px;
+    border-right: 1px solid var(--card-window-border);
+    border-radius: 0 44px 44px 0;
+    box-shadow: inset -8px 0 12px -8px rgba(0, 0, 0, 0.18);
   }
   .ticket__notch--right {
-    right: -14px;
-    border-radius: 28px 0 0 28px;
+    right: -22px;
+    border-left: 1px solid var(--card-window-border);
+    border-radius: 44px 0 0 44px;
+    box-shadow: inset 8px 0 12px -8px rgba(0, 0, 0, 0.18);
   }
 
   /* Perforation circles — round dots that flank the dashed line and
@@ -300,7 +305,8 @@ const slotIcons = [
     position: absolute;
     width: 18px;
     height: 18px;
-    background: var(--bg-page);
+    background: transparent;
+    border: 1px solid var(--card-window-border);
     border-radius: 50%;
     z-index: 4;
     pointer-events: none;
@@ -511,17 +517,49 @@ const slotIcons = [
     gap: 18px;
   }
 
-  .ticket__stub-barcode {
+  /* QR code area — placeholder for the user's image (easter-egg QR).
+     Swap the inner <span class="ticket__stub-qr-placeholder"> for an
+     <img src="/qr.png" alt="" /> when the asset is ready. The frame
+     stays so the layout doesn't shift. */
+  .ticket__stub-qr {
     display: flex;
-    align-items: stretch;
-    gap: 2px;
-    height: 56px;
-    background: var(--heading-text);
-    padding: 4px;
-  }
-  .ticket__stub-barcode > span {
-    display: block;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    max-width: 168px;
+    margin: 0 auto;
     background: var(--bg-page);
+    border: 1px solid var(--card-window-border);
+    border-radius: 6px;
+    padding: 8px;
+    color: var(--muted-text);
+  }
+
+  .ticket__stub-qr img,
+  .ticket__stub-qr svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+  }
+
+  .ticket__stub-qr-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    width: 100%;
+    height: 100%;
+    color: color-mix(in srgb, var(--muted-text) 70%, transparent);
+  }
+
+  .ticket__stub-qr-hint {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    text-transform: uppercase;
+    letter-spacing: 0.24em;
   }
 
   .ticket__stub-code {

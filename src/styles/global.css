@@ -86,6 +86,7 @@
     --font-body: "Rambla", system-ui, -apple-system, sans-serif;
     --font-display: "Syne", system-ui, -apple-system, sans-serif;
     --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    --font-handwriting: "Caveat", "Kalam", cursive;
     --font-arabic: "Amiri Quran", "Amiri", "Noto Naskh Arabic", serif;
 }
 

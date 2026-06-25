@@ -4,6 +4,7 @@ import { ClientRouter } from 'astro:transitions'
 import VantaBg from '../components/background/VantaBg.astro'
 import AppBar from '../components/nav/AppBar.astro'
 import Footer from '../components/shared/Footer.astro'
+import PaperFilters from '../components/shared/PaperFilters.astro'
 import type { Lang, Section, NavItem } from '../types'
 
 import '../styles/global.css'
@@ -26,6 +27,8 @@ interface Props {
   slug?: string
   projectNavItems?: NavItem[]
   projectNavMeta?: NavItem[]
+  /** Render the footer in compact (Projects + Services only) mode. */
+  footerCompact?: boolean
 }
 
 const {
@@ -43,6 +46,7 @@ const {
   slug,
   projectNavItems,
   projectNavMeta,
+  footerCompact = false,
 } = Astro.props
 
 // Canonical + hreflang URLs (relative path on the canonical Site URL).
@@ -211,7 +215,7 @@ const jsonLdWebSite = {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-      href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=JetBrains+Mono:wght@400;500&family=Rambla:wght@400;500;600;700&family=Rammetto+One&family=Syne:wght@400;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Caveat:wght@500;600;700&family=JetBrains+Mono:wght@400;500&family=Rambla:wght@400;500;600;700&family=Rammetto+One&family=Syne:wght@400;600;700;800&display=swap"
       rel="stylesheet"
     >
 
@@ -224,6 +228,7 @@ const jsonLdWebSite = {
   </head>
   <body data-page={section} data-lang={lang}>
     <a href="#main-content" class="skip-to-content">Skip to content</a>
+    <PaperFilters />
     <VantaBg />
     <AppBar lang={lang} slug={slug} projectName={projectName} projectColor={projectColor} projectIconClass={projectIconClass} projectNavItems={projectNavItems} projectNavMeta={projectNavMeta} />
 
@@ -231,7 +236,7 @@ const jsonLdWebSite = {
       <slot />
     </main>
 
-    <Footer />
+    <Footer compact={footerCompact} />
 
     <script>
       import('../animations/global.ts').then(m => {
