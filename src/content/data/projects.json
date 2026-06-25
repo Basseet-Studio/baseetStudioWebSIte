@@ -16,6 +16,26 @@
     ]
   },
   {
+    "slug": "moneybox",
+    "name": "MoneyBox",
+    "tagline": "Your money, organised.",
+    "color": "#16A34A",
+    "gradient": "linear-gradient(135deg, #16A34A 0%, #4ADE80 100%)",
+    "status": "Live",
+    "iconClass": "fas fa-piggy-bank",
+    "icon": null,
+    "platforms": [
+      {
+        "name": "iOS",
+        "icon": "fab fa-apple"
+      },
+      {
+        "name": "Android",
+        "icon": "fab fa-android"
+      }
+    ]
+  },
+  {
     "slug": "geeb",
     "name": "Geeb",
     "tagline": "Trusted Home-Service Pros, On Demand",

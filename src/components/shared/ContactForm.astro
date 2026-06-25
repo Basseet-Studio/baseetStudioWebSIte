@@ -25,27 +25,27 @@ const { actionUrl, lang = 'en' } = Astro.props
 ---
 
 <div class="contact-form" data-animate="fade-up">
-  <div class="contact-form__airmail" data-paper-wobble aria-hidden="true">
-    <span class="contact-form__airmail-stripe"></span>
-    <span class="contact-form__airmail-stripe"></span>
-    <span class="contact-form__airmail-stripe"></span>
-  </div>
+  <div class="contact-form__envelope" data-paper-wobble>
+    {/* ===== Paper backdrop — sits BEHIND the letter content so the
+        grain/fibres never paint over the text. The SVG paper filter is
+        applied to this layer only. ===== */}
+    <div class="contact-form__paper" aria-hidden="true"></div>
 
-  <div class="contact-form__letter">
-    {/* ===== Top-right corner cluster: the vintage "BASEET POST" stamp
-        sits at the corner, and a row of 5 social-media mail-stamps
-        flanks it. Both rotate slightly and have their own float keyframes
-        so the corner reads as a stack of cards dropped on the envelope. ===== */}
-    <div class="contact-form__corner">
-      {/* The vintage "BASEET POST" stamp is decorative — only the social
-          links inside this cluster are interactive. */}
-      <div class="contact-form__stamp" aria-hidden="true">
-        <span class="contact-form__stamp-text">BASEET&nbsp;POST</span>
-        <span class="contact-form__stamp-mark">
-          <Icon name="paper-plane-tilt" size={26} color="#fff" />
-        </span>
-        <span class="contact-form__stamp-rate">∞¢</span>
-      </div>
+    <div class="contact-form__letter">
+      {/* ===== Top-right corner cluster: the vintage "BASEET POST" stamp
+          sits at the corner, and a row of 5 social-media mail-stamps
+          flanks it. Both rotate slightly and have their own float keyframes
+          so the corner reads as a stack of cards dropped on the envelope. ===== */}
+      <div class="contact-form__corner">
+        {/* The vintage "BASEET POST" stamp is decorative — only the social
+            links inside this cluster are interactive. */}
+        <div class="contact-form__stamp" aria-hidden="true">
+          <span class="contact-form__stamp-text">BASEET&nbsp;POST</span>
+          <span class="contact-form__stamp-mark">
+            <Icon name="paper-plane-tilt" size={26} color="#fff" />
+          </span>
+          <span class="contact-form__stamp-rate">∞¢</span>
+        </div>
       <ul class="contact-form__social-stamps" aria-label="Find us on social">
         <li class="contact-form__social-stamp" style="--rot:-4deg;--delay:0s;">
           <a href="https://instagram.com/baseet.studio" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
@@ -243,6 +243,7 @@ const { actionUrl, lang = 'en' } = Astro.props
     <span class="contact-form__priority" aria-hidden="true">
       Baseet · Airmail · Priority
     </span>
+    </div>
   </div>
 </div>
 
@@ -393,85 +394,106 @@ const { actionUrl, lang = 'en' } = Astro.props
   }
 
   /* =============================================================
-     Airmail border — repeating diagonal red / white / blue stripes.
-     Implemented as 3 stacked diagonal stripes via background-image
-     so the borders can vary in width without producing hard seams.
+     Envelope — the OUTER container. The airmail stripes are its
+     border (::before with a repeating-linear-gradient), so the
+     stripes are part of the envelope itself, not a floating bar.
+     Single angle (-45deg) on every stripe variant — consistent
+     pattern around the whole envelope.
      ============================================================= */
-  .contact-form__airmail {
+  .contact-form__envelope {
     position: relative;
-    padding: 10px;
-    background: var(--paper-cream);
+    padding: 16px;
+    background: var(--airmail-bg);
     border-radius: 6px;
-    overflow: hidden;
-    /* Soft long shadow under the letter — sets it on the cloud bg */
+    /* Soft long shadow under the envelope — sets it on the cloud bg */
     box-shadow:
       0 50px 100px -20px rgba(0, 0, 0, 0.18),
       0 30px 60px -30px rgba(0, 0, 0, 0.12);
     animation: contact-float 9s ease-in-out infinite;
   }
 
-  .contact-form__airmail-stripe {
+  /* Airmail border: same -45deg angle on every side. Uses a single
+     repeating-linear-gradient on ::before, masked by the envelope's
+     border so the pattern wraps cleanly around all four edges. */
+  .contact-form__envelope::before {
+    content: "";
     position: absolute;
     inset: 0;
+    border-radius: inherit;
+    padding: 16px;
     background-image: repeating-linear-gradient(
       -45deg,
       var(--airmail-red) 0,
-      var(--airmail-red) 18px,
-      var(--airmail-bg) 18px,
-      var(--airmail-bg) 36px,
-      var(--airmail-blue) 36px,
-      var(--airmail-blue) 54px,
-      var(--airmail-bg) 54px,
-      var(--airmail-bg) 72px
+      var(--airmail-red) 14px,
+      var(--airmail-bg) 14px,
+      var(--airmail-bg) 28px,
+      var(--airmail-blue) 28px,
+      var(--airmail-blue) 42px,
+      var(--airmail-bg) 42px,
+      var(--airmail-bg) 56px
     );
-    opacity: 1;
+    /* Mask the gradient so it only shows in the padding area (the
+       border) — the centre is cut out by the letter covering it. */
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
     pointer-events: none;
   }
 
-  /* All three stripes layered with reduced opacity to soften the look
-     and avoid the harsh primary palette. The bottom stripe provides a
-     3rd colour repeat to break up the rhythm. */
-  .contact-form__airmail-stripe:nth-child(1) { opacity: 0.95; }
-  .contact-form__airmail-stripe:nth-child(2) {
-    background-image: repeating-linear-gradient(
-      -45deg,
-      transparent 0,
-      transparent 9px,
-      var(--airmail-bg) 9px,
-      var(--airmail-bg) 18px,
-      transparent 18px,
-      transparent 27px
-    );
-    opacity: 0.55;
-    mix-blend-mode: overlay;
-  }
-  .contact-form__airmail-stripe:nth-child(3) {
+  /* Subtle dark vignette along the bottom edge of the stripes so
+     the envelope doesn't read as a flat clip-art cut-out. */
+  .contact-form__envelope::after {
+    content: "";
+    position: absolute;
+    inset: 16px;
+    border-radius: 2px;
     background: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0.0) 0%,
       rgba(0, 0, 0, 0.05) 100%
     );
     mix-blend-mode: multiply;
+    pointer-events: none;
+    z-index: 1;
   }
 
   /* =============================================================
-     Letter paper — the cream card inside the airmail border.
-     The realistic paper filter (defined in PaperFilters.astro and
-     mounted by Base.astro) gives the surface its fibre + grain.
-     The .paper-surface class is also exposed on its own so other
-     paper elements (e.g. the stamp, the social stamps) can opt in.
+     Paper backdrop — the cream + fibre layer that sits BEHIND the
+     letter content. The SVG paper filter is applied here so the
+     grain/fibres never paint over the text (text lives in __letter,
+     which sits above this layer). z-index 0 so the text in __letter
+     (z-index auto, in stacking order) renders on top.
+     ============================================================= */
+  .contact-form__paper {
+    position: absolute;
+    inset: 16px; /* matches envelope padding so paper sits inside the airmail border */
+    border-radius: 2px;
+    background: var(--paper-cream);
+    /* The realistic paper filter — fibres + grain + slight edge
+       displacement. Defined in PaperFilters.astro (mounted once per
+       page by Base.astro). */
+    filter: url(#paper-realistic);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* =============================================================
+     Letter — the actual content card. No filter on this element
+     (the paper texture comes from .contact-form__paper behind it),
+     so the text/inputs render cleanly on top of the grain.
      ============================================================= */
   .contact-form__letter {
     position: relative;
-    background: var(--paper-cream);
     color: var(--paper-ink);
     padding: 56px 56px 48px;
     min-height: 600px;
     border-radius: 2px;
-    /* Apply the realistic paper filter — fibres + grain + slight
-       edge displacement. Filter is defined in PaperFilters.astro
-       (mounted once per page by Base.astro). */
-    filter: url(#paper-realistic);
+    z-index: 2; /* above the paper backdrop */
   }
 
   /* =============================================================
@@ -1003,8 +1025,20 @@ const { actionUrl, lang = 'en' } = Astro.props
   }
 
   @media (max-width: 560px) {
-    .contact-form__airmail {
-      padding: 6px;
+    .contact-form__envelope {
+      padding: 10px;
+    }
+
+    .contact-form__envelope::before {
+      padding: 10px;
+    }
+
+    .contact-form__envelope::after {
+      inset: 10px;
+    }
+
+    .contact-form__paper {
+      inset: 10px;
     }
 
     .contact-form__letter {
@@ -1052,7 +1086,7 @@ const { actionUrl, lang = 'en' } = Astro.props
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .contact-form__airmail,
+    .contact-form__envelope,
     .contact-form__stamps-item a {
       animation: none;
     }

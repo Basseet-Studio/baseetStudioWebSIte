@@ -24,8 +24,28 @@ export interface SourceSvgSet {
 
 export const SOURCE_SVGS: Record<string, SourceSvgSet> = {
   numu: {
-    logo: "source svgs/figma-exports/numu-figma-logo.svg",
-    name: "source svgs/figma-exports/numu-figma-name.svg",
+    logo: "source svgs/numu-logo.svg",
+    name: "source svgs/numu-name.svg",
+  },
+  matrix: {
+    logo: "source svgs/matrix-logo.svg",
+    name: "source svgs/matrix-name.svg",
+  },
+  geeb: {
+    logo: "source svgs/geeb-logo.svg",
+    name: "source svgs/geeb-name.svg",
+  },
+  deshikitchen: {
+    logo: "source svgs/deshikitchen-logo.svg",
+    name: "source svgs/deshikitchen-name.svg",
+  },
+  moneybox: {
+    logo: "source svgs/moneyBox-logo.svg",
+    name: "source svgs/moneyBox-name.svg",
+  },
+  "photorestore-ai": {
+    logo: "source svgs/aiphotorestore-logo.svg",
+    name: "source svgs/aiphotorestore-name.svg",
   },
 };
 

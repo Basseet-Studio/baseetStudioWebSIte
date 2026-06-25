@@ -153,6 +153,21 @@
       "status": "Live"
     },
     {
+      "name": "MoneyBox",
+      "slug": "moneybox",
+      "type": "branded",
+      "tagline": "Your money, organised.",
+      "description": "A personal finance tracker with budgets, goals, and clean reporting.",
+      "iconClass": "fas fa-piggy-bank",
+      "platforms": [
+        { "name": "iOS", "icon": "fab fa-apple" },
+        { "name": "Android", "icon": "fab fa-android" }
+      ],
+      "color": "#16A34A",
+      "gradient": "linear-gradient(135deg, #16A34A 0%, #4ADE80 100%)",
+      "status": "Live"
+    },
+    {
       "name": "Geeb",
       "slug": "geeb",
       "type": "branded",

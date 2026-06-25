@@ -55,57 +55,73 @@ const { compact = false } = Astro.props
       </nav>
     ) : (
       /* === Default mode ===
-         Brand + Services only. The Company column was removed per the
-         site redesign; the Contact column was moved into the
-         ContactForm recipient block. */
-      <>
-        <div class="footer__col footer__col--brand">
+         One horizontal row. Brand on the left (tight), Services +
+         Projects + contact shortcut in the middle, social on the right.
+         No multi-column "grid of empty boxes" — uses the width well. */
+      <div class="footer__row">
+        <div class="footer__brand">
           <a href="/" class="footer__logo">
             <svg class="footer__logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" aria-hidden="true"><rect width="256" height="256" fill="none"/><path d="M128,120s90-96,0-96S128,120,128,120Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/><path d="M128,120s-96-90-96,0S128,120,128,120Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/><path d="M128,120s-90,96,0,96S128,120,128,120Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/><path d="M128,120s96,90,96,0S128,120,128,120Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/><path d="M128,120s64,56,80,120" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/></svg>
-            Baseet Studio
+            <span class="footer__logo-text">
+              <strong>Baseet Studio</strong>
+              <em>Digital product studio · Abu Dhabi</em>
+            </span>
           </a>
-          <p class="footer__tagline">Digital product studio based in Abu Dhabi.</p>
-          <div class="footer__address">
-            <Icon name="map-pin" size={14} color="currentColor" />
-            <span>{linksData.contact.address}</span>
-          </div>
-          <div class="footer__social">
-            {socialPlatforms.map(item => {
-              const url = linksData.social[item.key as keyof typeof linksData.social]
-              if (!url || url === '#') return null
-              return (
-                <a href={url} target="_blank" rel="noopener noreferrer"
-                  class="footer-social-icon"
-                  aria-label={item.key}>
-                  <Icon name={item.icon} size={16} variant="fill" color="currentColor" />
-                </a>
-              )
-            })}
-          </div>
         </div>
 
-        <div class="footer__col">
-          <h4 class="footer__heading">Services</h4>
-          <ul class="footer__links">
-            {servicesData.categories.map(cat => (
-              <li>
-                <a href={`/services/#${cat.id}`}>{cat.title}</a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div class="footer__col">
-          <h4 class="footer__heading">Projects</h4>
-          <ul class="footer__links">
-            {footerData.links
-              .filter(link => link.label === 'Projects')
-              .map(link => (
-                <li><a href={link.url}>{link.label}</a></li>
+        <nav class="footer__nav" aria-label="Footer">
+          <div class="footer__nav-group">
+            <h4 class="footer__heading">Services</h4>
+            <ul class="footer__links footer__links--inline">
+              {servicesData.categories.map(cat => (
+                <li>
+                  <a href={`/services/#${cat.id}`}>{cat.title}</a>
+                </li>
               ))}
-          </ul>
+            </ul>
+          </div>
+
+          <div class="footer__nav-group">
+            <h4 class="footer__heading">Projects</h4>
+            <ul class="footer__links footer__links--inline">
+              {footerData.links
+                .filter(link => link.label === 'Projects')
+                .map(link => (
+                  <li><a href={link.url}>{link.label}</a></li>
+                ))}
+            </ul>
+          </div>
+
+          <div class="footer__nav-group">
+            <h4 class="footer__heading">Contact</h4>
+            <ul class="footer__links footer__links--inline">
+              <li>
+                <a href="/contact/" class="footer__contact-link">Write to us</a>
+              </li>
+              <li>
+                <a href={linksData.contact.email_link} class="footer__contact-link">Email</a>
+              </li>
+              <li>
+                <a href={linksData.contact.whatsapp_link} target="_blank" rel="noopener noreferrer" class="footer__contact-link">WhatsApp</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <div class="footer__social">
+          {socialPlatforms.map(item => {
+            const url = linksData.social[item.key as keyof typeof linksData.social]
+            if (!url || url === '#') return null
+            return (
+              <a href={url} target="_blank" rel="noopener noreferrer"
+                class="footer-social-icon"
+                aria-label={item.key}>
+                <Icon name={item.icon} size={16} variant="fill" color="currentColor" />
+              </a>
+            )
+          })}
         </div>
-      </>
+      </div>
     )}
 
   </div>
@@ -135,19 +151,13 @@ const { compact = false } = Astro.props
   .footer__container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 64px 24px 40px;
-    display: grid;
-    grid-template-columns: 1.4fr 1fr 1fr;
-    gap: 48px;
+    padding: 32px 24px 24px; /* tight, not 64px+40px */
   }
 
   /* Compact mode (used on the contact page): single horizontal row of
-     Projects + Services, no brand block, no contact, no social. Tighter
-     padding so it doesn't dominate the page. */
+     Projects + Services, no brand block, no contact, no social. */
   .footer--compact .footer__container {
-    grid-template-columns: 1fr;
-    padding: 32px 24px 24px;
-    gap: 20px;
+    padding: 28px 24px 20px;
   }
 
   .footer__compact {
@@ -155,7 +165,7 @@ const { compact = false } = Astro.props
     flex-direction: row;
     align-items: flex-start;
     justify-content: center;
-    gap: 80px;
+    gap: 64px;
     flex-wrap: wrap;
   }
 
@@ -190,61 +200,127 @@ const { compact = false } = Astro.props
 
   .footer--compact .footer__heading {
     margin: 0;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: var(--footer-text-soft);
     font-weight: 600;
   }
 
-  .footer__col--brand {
-    padding-right: 24px;
+  /* =============================================================
+     Default mode — one horizontal row.
+     Brand (left) · nav groups (centre) · social (right).
+     Uses the full width instead of stacking empty columns.
+     ============================================================= */
+  .footer__row {
+    display: grid;
+    grid-template-columns: minmax(220px, 1.2fr) auto auto;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .footer__brand {
+    display: flex;
+    align-items: center;
   }
 
   .footer__logo {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     color: var(--footer-text-primary);
-    font-weight: 700;
-    font-size: 1.125rem;
     text-decoration: none;
-    margin-bottom: 12px;
   }
 
   .footer__logo-mark {
-    width: 24px;
-    height: 24px;
+    width: 26px;
+    height: 26px;
     flex-shrink: 0;
   }
 
-  .footer__tagline {
-    color: var(--footer-text-muted);
-    font-size: 0.8rem;
-    line-height: 1.6;
-    margin: 0 0 14px;
-    max-width: 260px;
+  .footer__logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
   }
 
-  .footer__address {
+  .footer__logo-text strong {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--footer-text-primary);
+    font-family: var(--font-title);
+    letter-spacing: -0.005em;
+  }
+
+  .footer__logo-text em {
+    font-style: normal;
+    font-size: 0.72rem;
+    color: var(--footer-text-muted);
+    font-weight: 400;
+  }
+
+  .footer__nav {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 36px;
+    flex-wrap: wrap;
+  }
+
+  .footer__nav-group {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  .footer__heading {
+    color: var(--footer-text-soft);
+    font-size: 0.7rem;
+    font-weight: 600;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .footer__links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 16px;
+  }
+
+  .footer__links--inline {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4px 14px;
+  }
+
+  .footer__links a {
     color: var(--footer-text-muted);
-    font-size: 0.8rem;
-    margin-bottom: 20px;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .footer__links a:hover {
+    color: var(--footer-text-primary);
+  }
+
+  .footer__contact-link {
+    font-size: 0.85rem;
   }
 
   .footer__social {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     flex-wrap: wrap;
+    justify-content: flex-end;
   }
 
   .footer-social-icon {
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     background: var(--footer-chip-bg);
     color: var(--footer-text-primary);
@@ -259,47 +335,16 @@ const { compact = false } = Astro.props
     transform: translateY(-1px);
   }
 
-  .footer__heading {
-    color: var(--footer-text-primary);
-    font-size: 0.85rem;
-    font-weight: 600;
-    margin: 0 0 16px;
-    letter-spacing: 0.02em;
-  }
-
-  .footer__links {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .footer__links a {
-    color: var(--footer-text-muted);
-    font-size: 0.8rem;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transition: color var(--transition-fast);
-  }
-
-  .footer__links a:hover {
-    color: var(--footer-text-primary);
-  }
-
   .footer__bottom {
     border-top: 1px solid var(--footer-border);
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px 24px 24px;
+    margin: 16px auto 0;
+    padding: 14px 24px 16px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
   }
 
   .footer__copyright {
@@ -355,25 +400,33 @@ const { compact = false } = Astro.props
 
   /* === Responsive === */
   @media (max-width: 1023px) {
-    .footer__container {
+    .footer__row {
       grid-template-columns: 1fr 1fr;
-      gap: 40px;
-    }
-    .footer__col--brand {
-      grid-column: 1 / -1;
-      padding-right: 0;
+      gap: 24px;
     }
 
-    .footer--compact .footer__container {
-      grid-template-columns: 1fr;
+    .footer__brand {
+      grid-column: 1 / -1;
+      justify-content: flex-start;
     }
-    .footer__compact {
+
+    .footer__nav {
+      grid-column: 1 / -1;
       gap: 24px;
+    }
+
+    .footer__social {
+      grid-column: 1 / -1;
+      justify-content: flex-start;
+    }
+
+    .footer__compact {
+      gap: 32px;
     }
     .footer__compact-group {
       flex-direction: column;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
     .footer__compact-list {
       justify-content: center;
@@ -382,33 +435,28 @@ const { compact = false } = Astro.props
 
   @media (max-width: 639px) {
     .footer__container {
+      padding: 24px 16px 16px;
+    }
+    .footer__row {
       grid-template-columns: 1fr;
-      gap: 36px;
-      padding: 48px 20px 32px;
+      gap: 20px;
     }
-    .footer__col--brand {
-      grid-column: auto;
-      text-align: center;
-    }
-    .footer__tagline {
-      max-width: 100%;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .footer__address {
-      justify-content: center;
-    }
+    .footer__brand,
+    .footer__nav,
     .footer__social {
-      justify-content: center;
+      grid-column: auto;
+      justify-content: flex-start;
     }
-    .footer__heading {
-      text-align: center;
+    .footer__nav {
+      gap: 16px;
     }
-    .footer__links {
-      align-items: center;
+    .footer__nav-group {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
     }
     .footer__bottom {
-      padding: 16px 20px 20px;
+      padding: 12px 16px 14px;
     }
     .footer-back-to-top {
       bottom: 20px;
