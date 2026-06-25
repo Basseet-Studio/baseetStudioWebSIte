@@ -1,0 +1,138 @@
+---
+// PaperFilters.astro — Defines SVG <filter> primitives for realistic paper
+// textures. Mount once per page (in Page.astro or Base.astro). Hidden SVG
+// container — these are pure filter definitions, no rendering cost unless
+// an element references them via `filter: url(#paper-...)`.
+//
+// Three variants exposed:
+//   #paper-aged       — soft warm noise overlay (cream tint)
+//   #paper-crumple    — low-frequency fibre warp + edge displacement
+//   #paper-realistic  — layered fibres + grain + subtle warp (recommended)
+//
+// Native SVG filters are GPU-composited, scalable, theme-controllable via
+// CSS variables (since the host element's background picks up the var),
+// and ~0 KB on the JS bundle. No library required.
+---
+
+<svg
+  width="0"
+  height="0"
+  aria-hidden="true"
+  style="position:absolute;width:0;height:0;overflow:hidden"
+>
+  <defs>
+    <!-- 1. Aged parchment: a soft warm noise overlay. Cheap (one
+         feTurbulence pass, low octaves) — ideal for subtle paper feel
+         without warping the shape of the element it sits on. -->
+    <filter id="paper-aged" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence
+        type="fractalNoise"
+        baseFrequency="0.85"
+        numOctaves="2"
+        seed="7"
+        stitchTiles="stitch"
+      />
+      <feColorMatrix
+        values="0 0 0 0 0.96
+                0 0 0 0 0.92
+                0 0 0 0 0.82
+                0 0 0 0.22 0"
+      />
+    </filter>
+
+    <!-- 2. Crumpled paper: low-frequency fibres warp the source's
+         edges, high-frequency grain sits on top. Most aggressive of
+         the three — use only when you want clear "this was folded"
+         energy. -->
+    <filter
+      id="paper-crumple"
+      x="-5%"
+      y="-5%"
+      width="110%"
+      height="110%"
+    >
+      <feTurbulence
+        type="fractalNoise"
+        baseFrequency="0.012 0.02"
+        numOctaves="3"
+        seed="3"
+        result="fibres"
+      />
+      <feTurbulence
+        type="fractalNoise"
+        baseFrequency="0.9"
+        numOctaves="2"
+        seed="11"
+        result="grain"
+      />
+      <feDisplacementMap
+        in="SourceGraphic"
+        in2="fibres"
+        scale="8"
+        xChannelSelector="R"
+        yChannelSelector="G"
+        result="warped"
+      />
+      <feComposite
+        in="grain"
+        in2="warped"
+        operator="arithmetic"
+        k1="0"
+        k2="0.3"
+        k3="0.7"
+        k4="0"
+      />
+    </filter>
+
+    <!-- 3. Realistic paper (recommended default): layered fibres at
+         two scales, slight warm tint, gentle edge displacement.
+         Looks like real paper without warping text badly. -->
+    <filter
+      id="paper-realistic"
+      x="-2%"
+      y="-2%"
+      width="104%"
+      height="104%"
+    >
+      <feTurbulence
+        type="fractalNoise"
+        baseFrequency="0.04"
+        numOctaves="4"
+        seed="1"
+        result="macro"
+      />
+      <feTurbulence
+        type="fractalNoise"
+        baseFrequency="0.9"
+        numOctaves="2"
+        seed="5"
+        result="micro"
+      />
+      <feColorMatrix
+        in="micro"
+        values="0 0 0 0 0.85
+                0 0 0 0 0.78
+                0 0 0 0 0.65
+                0 0 0 0.18 0"
+        result="tinted"
+      />
+      <feComposite
+        in="tinted"
+        in2="macro"
+        operator="arithmetic"
+        k1="0"
+        k2="0.5"
+        k3="0.5"
+        k4="0"
+        result="combined"
+      />
+      <feDisplacementMap
+        in="SourceGraphic"
+        in2="combined"
+        scale="3"
+        xChannelSelector="R"
+        yChannelSelector="G"
+      />
+    </filter>
+  </defs>
+</svg>
