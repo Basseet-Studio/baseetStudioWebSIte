@@ -25,18 +25,50 @@ let state: NavState = {
 
 let rafId: number | null = null;
 let bar: HTMLElement | null = null;
+let mobileAbort: AbortController | null = null;
+let hoverTriggerInitialized = false;
 
 function getPageContext(): string {
   return document.body.dataset.page || "home";
 }
 
+function normalizePath(path: string): string {
+  return path.replace(/\/$/, "") || "/";
+}
+
 function updateActiveLink(context: string): void {
-  if (state.isProject) return;
-  document
-    .querySelectorAll(".app-bar__link.active")
-    .forEach((l) => l.classList.remove("active"));
-  const link = document.querySelector(`.app-bar__link[data-page="${context}"]`);
-  link?.classList.add("active");
+  const links = document.querySelectorAll<HTMLAnchorElement>(
+    "#app-bar-links .app-bar__link",
+  );
+  links.forEach((l) => {
+    l.classList.remove("active");
+    l.removeAttribute("aria-current");
+  });
+
+  if (state.isProject) {
+    const current = normalizePath(window.location.pathname);
+    links.forEach((link) => {
+      const href = link.getAttribute("href");
+      if (!href) return;
+      const linkPath = normalizePath(
+        new URL(href, window.location.origin).pathname,
+      );
+      if (current === linkPath) {
+        link.classList.add("active");
+        link.setAttribute("aria-current", "page");
+      }
+    });
+    return;
+  }
+
+  const navKey = context === "projects" ? "work" : context;
+  const link = document.querySelector<HTMLAnchorElement>(
+    `#app-bar-links .app-bar__link[data-page="${navKey}"]`,
+  );
+  if (link) {
+    link.classList.add("active");
+    link.setAttribute("aria-current", "page");
+  }
 }
 
 function updateVisibility(): void {
@@ -84,6 +116,9 @@ function showOnHover(): void {
 }
 
 function setupHoverTrigger(): void {
+  if (hoverTriggerInitialized) return;
+  hoverTriggerInitialized = true;
+
   const triggerZone = document.createElement("div");
   triggerZone.id = "app-bar-hover-trigger";
   triggerZone.style.cssText =
@@ -185,6 +220,10 @@ function resetScrollState(): void {
 // =========== MOBILE SIDEBAR LOGIC ===========
 
 function setupMobileSidebar(): void {
+  mobileAbort?.abort();
+  mobileAbort = new AbortController();
+  const { signal } = mobileAbort;
+
   const toggle = document.getElementById("mobile-toggle");
 
   if (!toggle || !bar) return;
@@ -207,32 +246,44 @@ function setupMobileSidebar(): void {
     document.body.style.overflow = "";
   }
 
-  toggle.addEventListener("click", (e) => {
-    e.preventDefault();
-    if (bar!.classList.contains("app-bar--mobile-expanded")) {
-      closeSidebar();
-    } else {
-      openSidebar();
-    }
-  });
+  toggle.addEventListener(
+    "click",
+    (e) => {
+      e.preventDefault();
+      if (bar!.classList.contains("app-bar--mobile-expanded")) {
+        closeSidebar();
+      } else {
+        openSidebar();
+      }
+    },
+    { signal },
+  );
 
-  document.addEventListener("keydown", (e) => {
-    if (
-      e.key === "Escape" &&
-      bar!.classList.contains("app-bar--mobile-expanded")
-    ) {
-      closeSidebar();
-    }
-  });
+  document.addEventListener(
+    "keydown",
+    (e) => {
+      if (
+        e.key === "Escape" &&
+        bar!.classList.contains("app-bar--mobile-expanded")
+      ) {
+        closeSidebar();
+      }
+    },
+    { signal },
+  );
 
-  window.addEventListener("resize", () => {
-    if (
-      window.innerWidth >= 992 &&
-      bar!.classList.contains("app-bar--mobile-expanded")
-    ) {
-      closeSidebar();
-    }
-  });
+  window.addEventListener(
+    "resize",
+    () => {
+      if (
+        window.innerWidth >= 992 &&
+        bar!.classList.contains("app-bar--mobile-expanded")
+      ) {
+        closeSidebar();
+      }
+    },
+    { signal },
+  );
 }
 
 // =========== DUPLICATE APP BAR FIX ===========
@@ -261,6 +312,42 @@ function updatePageContext(): void {
   updateActiveLink(state.pageContext);
 }
 
+function syncAppBarFromNewDocument(newDocument: Document): void {
+  const newBar = newDocument.getElementById("app-bar");
+  const oldBar = document.getElementById("app-bar");
+  if (!newBar || !oldBar) return;
+
+  oldBar.className = newBar.className;
+  oldBar.setAttribute("dir", newBar.getAttribute("dir") || "ltr");
+  oldBar.setAttribute(
+    "aria-label",
+    newBar.getAttribute("aria-label") || "Main navigation",
+  );
+  oldBar.setAttribute(
+    "data-is-project",
+    newBar.getAttribute("data-is-project") || "false",
+  );
+
+  const projectColor = newBar.getAttribute("data-project-color");
+  if (projectColor) {
+    oldBar.setAttribute("data-project-color", projectColor);
+  } else {
+    oldBar.removeAttribute("data-project-color");
+  }
+
+  oldBar.style.cssText = newBar.style.cssText;
+  oldBar.innerHTML = newBar.innerHTML;
+}
+
+function rebindAfterSwap(): void {
+  bar = document.getElementById("app-bar");
+  if (!bar) return;
+
+  setupMobileSidebar();
+  updatePageContext();
+  startScrollTracking();
+}
+
 export function init(): void {
   bar = document.getElementById("app-bar");
   if (!bar) return;
@@ -282,6 +369,8 @@ export function init(): void {
 
 export function destroy(): void {
   stopScrollTracking();
+  mobileAbort?.abort();
+  mobileAbort = null;
   document.body.style.overflow = "";
   if (bar) {
     bar.classList.remove("app-bar--mobile-expanded");
@@ -298,9 +387,11 @@ document.addEventListener("astro:page-load", () => {
   });
 });
 
-document.addEventListener("astro:before-swap", () => {
+document.addEventListener("astro:before-swap", (event) => {
   withNoTransition(() => {
     destroy();
+    syncAppBarFromNewDocument(event.newDocument);
+    rebindAfterSwap();
   });
 });
 

@@ -18,6 +18,8 @@
 //   - public/projects/names/{slug}.svg
 //     Same paths as the source, same viewBox, but with fill/stroke swapped
 //     to currentColor so the morph target tints with the tile's color.
+//   - public/projects/logos/{slug}.svg
+//     Copy of the source logo for the project app bar <img> tag.
 // -----------------------------------------------------------------------------
 
 import fs from "node:fs";
@@ -28,6 +30,7 @@ import { SOURCE_SVGS, parseViewBox } from "../src/lib/sourceSvgs.ts";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = path.resolve(__dirname, "..");
 const OUT_DIR = path.join(PROJECT_ROOT, "public", "projects", "names");
+const LOGO_OUT_DIR = path.join(PROJECT_ROOT, "public", "projects", "logos");
 
 function buildWordmarkSvg(sourceSvg) {
   const [vbX, vbY, vbW, vbH] = parseViewBox(sourceSvg);
@@ -53,6 +56,7 @@ function buildWordmarkSvg(sourceSvg) {
 function main() {
   const force = process.argv.includes("--force");
   fs.mkdirSync(OUT_DIR, { recursive: true });
+  fs.mkdirSync(LOGO_OUT_DIR, { recursive: true });
 
   const slugs = Object.keys(SOURCE_SVGS);
   if (slugs.length === 0) {
@@ -63,12 +67,13 @@ function main() {
   let written = 0;
   let skipped = 0;
   let failed = 0;
+  let logosWritten = 0;
 
   for (const slug of slugs) {
     const outPath = path.join(OUT_DIR, `${slug}.svg`);
+    const logoOutPath = path.join(LOGO_OUT_DIR, `${slug}.svg`);
     if (!force && fs.existsSync(outPath)) {
       skipped++;
-      continue;
     }
 
     const entry = SOURCE_SVGS[slug];
@@ -77,6 +82,28 @@ function main() {
       failed++;
       continue;
     }
+
+    // Emit logo copy for the project app bar.
+    const logoSourcePath = path.join(PROJECT_ROOT, entry.logo);
+    try {
+      if (force || !fs.existsSync(logoOutPath)) {
+        fs.copyFileSync(logoSourcePath, logoOutPath);
+        logosWritten++;
+        console.log(
+          `[names:build]   ${slug}-logo.svg  ←  ${entry.logo}`,
+        );
+      }
+    } catch (err) {
+      console.error(
+        `[names:build] could not copy logo ${entry.logo}: ${err.message}`,
+      );
+      failed++;
+    }
+
+    if (!force && fs.existsSync(outPath)) {
+      continue;
+    }
+
     const sourcePath = path.join(PROJECT_ROOT, entry.name);
     let svg;
     try {
@@ -106,8 +133,8 @@ function main() {
   }
 
   console.log(
-    `[names:build] Done. Wrote ${written}, skipped ${skipped}, failed ${failed}. ` +
-      `Output: ${path.relative(PROJECT_ROOT, OUT_DIR)}/`,
+    `[names:build] Done. Wrote ${written} names, ${logosWritten} logos, skipped ${skipped}, failed ${failed}. ` +
+      `Output: ${path.relative(PROJECT_ROOT, OUT_DIR)}/, ${path.relative(PROJECT_ROOT, LOGO_OUT_DIR)}/`,
   );
 
   if (failed > 0) process.exit(1);

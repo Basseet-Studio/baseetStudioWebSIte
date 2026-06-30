@@ -8,6 +8,7 @@
 import ThemeSwitcher from '../shared/ThemeSwitcher.astro'
 import Icon from '../icons/Icon.astro'
 import { resolveIcon } from '../icons/iconMappings'
+import { SOURCE_SVGS } from '../../lib/sourceSvgs'
 import type { Lang, NavItem } from '../../types'
 import links from '../../content/data/links.json'
 
@@ -76,11 +77,23 @@ const standardNav: StandardNavEntry[] = standardNavData.map(item => {
   return { label: item.label, url, dataKey: item.key, isActive: normalizedPath === url }
 })
 
-// Meta items for project pages: Projects + Contact Us, side by side inline.
-const projectMetaData: { key: string; label: string; url: string }[] = [
-  { key: 'projects', label: 'Projects', url: '/projects/' },
+// Meta items for project pages: Work + Contact (from JSON when provided).
+type ProjectMetaEntry = { key: string; label: string; url: string }
+const defaultProjectMeta: ProjectMetaEntry[] = [
+  { key: 'work', label: 'Work', url: '/projects/' },
   { key: 'contact', label: 'Contact', url: '/contact/' },
 ]
+const projectMeta: ProjectMetaEntry[] = isProject && projectNavMeta?.length
+  ? projectNavMeta.map((item) => ({
+      key: (item.i18nKey || item.label).toLowerCase().replace(/[^a-z0-9-]/g, '-'),
+      label: item.label,
+      url: item.url,
+    }))
+  : defaultProjectMeta
+
+const projectLogoSrc = slug && SOURCE_SVGS[slug]
+  ? `/projects/logos/${slug}.svg`
+  : null
 
 // Per FR-032: hide social icons when URL is "#", empty, or missing.
 const socialIconMap: Record<string, string> = {
@@ -126,7 +139,11 @@ const socialLinks = (['instagram', 'linkedin', 'github', 'twitter'] as const)
 
         {/* Project icon + name — no container chip, just the icon next to the name. Coloured with the project colour. */}
         <a href={projectRoot} class="app-bar__project-mark" style={`color:${projectColor || 'var(--color-primary)'}`} aria-label={`${projectName || 'Project'} home`}>
-          <Icon name={projectIconResolved.name} variant={projectIconResolved.variant} size={22} color="currentColor" />
+          {projectLogoSrc ? (
+            <img src={projectLogoSrc} alt="" class="app-bar__project-logo" width="22" height="22" aria-hidden="true" />
+          ) : (
+            <Icon name={projectIconResolved.name} variant={projectIconResolved.variant} size={22} color="currentColor" />
+          )}
           {projectName && <span class="app-bar__project-name">{projectName}</span>}
         </a>
       </>
@@ -165,10 +182,10 @@ const socialLinks = (['instagram', 'linkedin', 'github', 'twitter'] as const)
           ))}
     </ul>
 
-    {/* Project meta items (Projects + Contact) — inline on project pages */}
+    {/* Project meta items (Work + Contact) — inline on project pages */}
     {isProject && (
       <ul class="app-bar__meta">
-        {projectMetaData.map(meta => (
+        {projectMeta.map(meta => (
           <li>
             <a
               href={meta.url}

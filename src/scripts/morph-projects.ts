@@ -122,22 +122,15 @@ function attachMorph(card: HTMLElement, targetD: string): void {
     return;
   }
 
-  // ── Identify any backdrop-like path (legacy Phosphor + safety net) ──
-  // Phosphor icons used to ship with a 256x256 <rect fill="none"> that
-  // padded the viewBox. We no longer use Phosphor (the icons come from
-  // the user's hi-res source SVGs), but keep this filter as a safety net
-  // for any source that happens to contain a near-full-bleed path.
-  const isBackdrop = (p: SVGPathElement): boolean => {
-    try {
-      const b = p.getBBox();
-      return b.x <= 1 && b.y <= 1 && b.width >= 254 && b.height >= 254;
-    } catch {
-      return false;
-    }
-  };
-  paths.filter(isBackdrop).forEach((p) => gsap.set(p, { opacity: 0 }));
-  const visiblePaths = paths.filter((p) => !isBackdrop(p));
-  const pathsForMorph = visiblePaths.length > 0 ? visiblePaths : paths;
+  // NOTE: we deliberately do NOT hide "full-bleed" paths anymore. The old
+  // code flagged any path whose bbox was (x<=1, y<=1, w>=254, h>=254) as a
+  // legacy Phosphor backdrop <rect> and set its opacity to 0. The icons now
+  // come from the user's source SVGs with their own viewBox (~500×500), so a
+  // single-path brand mark that fills the canvas (numu's leaf, matrix, geeb)
+  // matched that test and was hidden — which is why every icon except the
+  // multi-path DeshiKitchen mark was invisible. All paths stay visible.
+  const visiblePaths = paths;
+  const pathsForMorph = paths;
 
   // ── Pick the morph source: choose the most "icon-like" remaining path. ──
   // We score each path by (bbox area × 1000) + d-attribute length. Bbox area

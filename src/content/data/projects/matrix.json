@@ -95,19 +95,19 @@
       "i18nKey": "project_nav_demo"
     },
     {
-      "label": "Terms",
+      "label": "Privacy Policy",
       "url": "terms/",
       "i18nKey": "project_nav_terms"
     }
   ],
   "navMetaItems": [
     {
-      "label": "Baseet",
-      "url": "/",
-      "i18nKey": "project_nav_baseet"
+      "label": "Work",
+      "url": "/projects/",
+      "i18nKey": "nav_work"
     },
     {
-      "label": "Contact Us",
+      "label": "Contact",
       "url": "/contact/",
       "i18nKey": "nav_contact"
     }
