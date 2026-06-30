@@ -6,6 +6,7 @@ import { getProjectsIndex, type ProjectSummary } from '../../lib/projects'
 
 const lang: 'en' = 'en'
 const description = 'Explore the Baseet Studio portfolio — mobile apps, web platforms, and digital products built for clients across the UAE and beyond.'
+const projects = getProjectsIndex()
 
 const statusLabels: Record<string, string> = {
   'Coming Soon': 'Coming Soon',
@@ -18,49 +19,348 @@ const statusLabels: Record<string, string> = {
 ---
 
 <Page title="Projects — Baseet Studio" description={description} section="projects" lang={lang}>
-  <section style="padding:100px 24px 64px;text-align:center;" data-animate="fade-up">
-    <h1 style="font-size:3rem;font-weight:700;margin-bottom:16px;color:var(--heading-text);">
-      Our Projects
-    </h1>
-    <p style="font-size:1.25rem;max-width:600px;margin:0 auto;opacity:0.7;">
-      We build digital products that transform ideas into reality.
-    </p>
-  </section>
+  <div class="proj-index" data-proj-index>
+    <header class="proj-index__hero">
+      <p class="proj-index__eyebrow" data-proj-hero-item>Portfolio</p>
+      <h1 class="proj-index__title" data-proj-hero-item>Our Projects</h1>
+      <p class="proj-index__lede" data-proj-hero-item>
+        We build digital products that transform ideas into reality — scroll the runway.
+      </p>
+      <div class="proj-index__meter" aria-hidden="true">
+        <span class="proj-index__meter-fill" data-proj-meter></span>
+      </div>
+    </header>
 
-  <section style="padding:0 24px 80px;max-width:1200px;margin:0 auto;">
-      <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(340px, 1fr));gap:24px;">
-        {getProjectsIndex().map((project: ProjectSummary) => (
-          <a
-            href={`/projects/${project.slug}/`}
-            class="card-window card-window--interactive project-card"
-            style="text-decoration:none;color:inherit;overflow:hidden;"
-          >
-            <div style={`height:4px;background:${project.color};`}></div>
-            <div style="padding:24px;">
-              <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:16px;">
-                <div>
-                  <h3 style="font-size:1.25rem;font-weight:700;margin-bottom:6px;color:var(--heading-text);">
-                    {project.name}
-                  </h3>
-                  <p style="font-size:0.9rem;color:var(--muted-text);">{project.tagline}</p>
-                </div>
-                <span style={`font-size:0.75rem;padding:4px 10px;border-radius:20px;font-weight:600;white-space:nowrap;background:color-mix(in srgb, ${project.color} 12%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 30%, transparent);`}>
-                  {statusLabels[project.status] || project.status}
-                </span>
+    <div class="proj-index__track" data-proj-track>
+      {projects.map((project: ProjectSummary, i) => (
+        <article
+          class="proj-card"
+          data-proj-card
+          data-proj-color={project.color}
+          style={`--proj-accent: ${project.color}; --proj-i: ${i};`}
+        >
+          <a href={`/projects/${project.slug}/`} class="proj-card__link card-window card-window--interactive">
+            <div class="proj-card__accent" aria-hidden="true"></div>
+            <div class="proj-card__inner">
+              <div class="proj-card__meta">
+                <span class="proj-card__index" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                <span class="proj-card__status">{statusLabels[project.status] || project.status}</span>
               </div>
-
+              <h2 class="proj-card__name">{project.name}</h2>
+              <p class="proj-card__tagline">{project.tagline}</p>
               {project.platforms && project.platforms.length > 0 && (
-                <div style="display:flex;gap:10px;font-size:1.1rem;color:var(--muted-text);">
-                  {project.platforms.map(p => (
+                <div class="proj-card__platforms">
+                  {project.platforms.map((p) => (
                     <span title={p.name}>
                       <Icon name={resolveIcon(p.icon).name} size={18} color="currentColor" />
                     </span>
                   ))}
                 </div>
               )}
+              <span class="proj-card__cta">
+                View project
+                <Icon name="arrow-right" size={14} color="currentColor" />
+              </span>
             </div>
           </a>
-        ))}
-      </div>
-    </section>
-  </Page>
+        </article>
+      ))}
+    </div>
+  </div>
+</Page>
+
+<style>
+  .proj-index {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 0 96px;
+  }
+
+  .proj-index__hero {
+    text-align: center;
+    padding: 24px 0 56px;
+    position: relative;
+  }
+
+  .proj-index__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    margin: 0 0 14px;
+  }
+
+  .proj-index__title {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    font-weight: 700;
+    color: var(--heading-text);
+    margin: 0 0 16px;
+    letter-spacing: -0.03em;
+    line-height: 1.02;
+  }
+
+  .proj-index__lede {
+    font-size: 1.15rem;
+    color: var(--muted-text);
+    max-width: 52ch;
+    margin: 0 auto 28px;
+    line-height: 1.55;
+  }
+
+  .proj-index__meter {
+    width: min(320px, 70%);
+    height: 3px;
+    margin: 0 auto;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--muted-text) 18%, transparent);
+    overflow: hidden;
+  }
+
+  .proj-index__meter-fill {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--color-primary), color-mix(in srgb, var(--color-primary) 40%, #f59e0b));
+    transform-origin: left center;
+    transform: scaleX(0);
+  }
+
+  .proj-index__track {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    position: relative;
+  }
+
+  .proj-card {
+    position: relative;
+    will-change: transform, opacity;
+  }
+
+  .proj-card__link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden;
+    border-radius: var(--card-window-radius);
+    transform-origin: center center;
+  }
+
+  .proj-card__accent {
+    height: 5px;
+    background: var(--proj-accent);
+    transform-origin: left center;
+    transform: scaleX(0.15);
+  }
+
+  .proj-card__inner {
+    padding: 28px 28px 26px;
+    display: grid;
+    gap: 10px;
+  }
+
+  .proj-card__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .proj-card__index {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    color: color-mix(in srgb, var(--proj-accent) 70%, var(--muted-text));
+  }
+
+  .proj-card__status {
+    font-size: 0.72rem;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+    white-space: nowrap;
+    background: color-mix(in srgb, var(--proj-accent) 12%, transparent);
+    color: var(--proj-accent);
+    border: 1px solid color-mix(in srgb, var(--proj-accent) 28%, transparent);
+  }
+
+  .proj-card__name {
+    font-family: var(--font-title);
+    font-size: clamp(1.35rem, 2.4vw, 1.65rem);
+    font-weight: 700;
+    color: var(--heading-text);
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .proj-card__tagline {
+    font-size: 0.95rem;
+    color: var(--muted-text);
+    margin: 0;
+    line-height: 1.5;
+    max-width: 56ch;
+  }
+
+  .proj-card__platforms {
+    display: flex;
+    gap: 10px;
+    font-size: 1.05rem;
+    color: var(--muted-text);
+    margin-top: 4px;
+  }
+
+  .proj-card__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--proj-accent);
+    opacity: 0.85;
+    transition: gap 0.25s ease, opacity 0.25s ease;
+  }
+
+  .proj-card__link:hover .proj-card__cta,
+  .proj-card__link:focus-visible .proj-card__cta {
+    gap: 12px;
+    opacity: 1;
+  }
+
+  @media (max-width: 640px) {
+    .proj-index__hero {
+      padding-bottom: 40px;
+    }
+
+    .proj-card__inner {
+      padding: 22px 20px 20px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .proj-card,
+    .proj-card__accent,
+    .proj-index__meter-fill {
+      will-change: auto;
+    }
+  }
+</style>
+
+<script>
+  import gsap from 'gsap'
+  import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+  gsap.registerPlugin(ScrollTrigger)
+
+  let triggers: ScrollTrigger[] = []
+
+  function killAll(): void {
+    triggers.forEach((t) => t.kill())
+    triggers = []
+    ScrollTrigger.getAll().forEach((st) => {
+      if (st.vars?.id?.toString().startsWith('proj-index')) st.kill()
+    })
+  }
+
+  function initProjectsScroll(): void {
+    killAll()
+
+    const root = document.querySelector<HTMLElement>('[data-proj-index]')
+    if (!root) return
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      root.querySelectorAll('[data-proj-card]').forEach((card) => {
+        gsap.set(card, { opacity: 1, x: 0, rotate: 0 })
+      })
+      return
+    }
+
+    const heroItems = gsap.utils.toArray<HTMLElement>('[data-proj-hero-item]')
+    const cards = gsap.utils.toArray<HTMLElement>('[data-proj-card]')
+    const meter = root.querySelector<HTMLElement>('[data-proj-meter]')
+    const track = root.querySelector<HTMLElement>('[data-proj-track]')
+
+    gsap.from(heroItems, {
+      y: 36,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.12,
+      ease: 'power3.out',
+      delay: 0.1,
+    })
+
+    if (meter && track) {
+      const meterSt = ScrollTrigger.create({
+        id: 'proj-index-meter',
+        trigger: track,
+        start: 'top 80%',
+        end: 'bottom 20%',
+        scrub: 0.6,
+        onUpdate: (self) => {
+          gsap.to(meter, { scaleX: self.progress, duration: 0.2, overwrite: true })
+        },
+      })
+      triggers.push(meterSt)
+    }
+
+    cards.forEach((card, i) => {
+      const accent = card.querySelector<HTMLElement>('.proj-card__accent')
+      const fromX = i % 2 === 0 ? -72 : 72
+      const fromRot = i % 2 === 0 ? -2.2 : 2.2
+
+      const st = ScrollTrigger.create({
+        id: `proj-index-card-${i}`,
+        trigger: card,
+        start: 'top 88%',
+        once: true,
+        onEnter: () => {
+          gsap.fromTo(
+            card,
+            { opacity: 0, x: fromX, rotate: fromRot, scale: 0.96 },
+            {
+              opacity: 1,
+              x: 0,
+              rotate: 0,
+              scale: 1,
+              duration: 0.85,
+              ease: 'power3.out',
+            },
+          )
+          if (accent) {
+            gsap.fromTo(
+              accent,
+              { scaleX: 0 },
+              { scaleX: 1, duration: 0.9, ease: 'power2.out', delay: 0.08 },
+            )
+          }
+        },
+      })
+      triggers.push(st)
+
+      const scrubSt = ScrollTrigger.create({
+        id: `proj-index-scrub-${i}`,
+        trigger: card,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 0.8,
+        onUpdate: (self) => {
+          const p = self.progress
+          const drift = (p - 0.5) * 18
+          gsap.set(card, { y: drift, rotate: (i % 2 === 0 ? 0.6 : -0.6) * (p - 0.5) })
+        },
+      })
+      triggers.push(scrubSt)
+    })
+
+    ScrollTrigger.refresh()
+  }
+
+  initProjectsScroll()
+  document.addEventListener('astro:page-load', initProjectsScroll)
+  document.addEventListener('astro:before-swap', killAll)
+</script>

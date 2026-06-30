@@ -68,11 +68,6 @@ const slotIcons = [
         Sits behind everything, never touches the Vanta layer above. */}
     <div class="ticket__shadow" aria-hidden="true"></div>
 
-    {/* Perforation circles that frame the dashed line between main ticket
-        and stub. Rendered outside the dashed border so they sit on top. */}
-    <span class="ticket__perf ticket__perf--top" aria-hidden="true"></span>
-    <span class="ticket__perf ticket__perf--bottom" aria-hidden="true"></span>
-
     {/* ===== Main ticket body (left) ===== */}
     <div class="ticket__main">
       {/* Header row: Carrier + Gate */}
@@ -217,84 +212,59 @@ const slotIcons = [
   }
 
   /* =============================================================
-     Ticket — the boarding pass card.
-     Two columns on desktop, single column on mobile. The notches
-     live on the OUTSIDE edges so the dashed perforation stays
-     visible between the two halves.
+     Ticket — boarding pass. Uses card-window tokens (day/night) per
+     DESIGN.md; subtle stock tint only — clouds still show through.
      ============================================================= */
   .ticket {
     position: relative;
     display: grid;
     grid-template-columns: 1fr 280px;
-    background: var(--card-window-bg);
+    --ticket-stub-w: 280px;
+    --ticket-perf-x: calc(100% - var(--ticket-stub-w));
+    /* Theme-aware stock — mixes card-window with a whisper of paper */
+    --ticket-surface: color-mix(in srgb, var(--card-window-bg) 82%, var(--bg-page));
+    --ticket-stub-surface: color-mix(in srgb, var(--color-primary) 5%, var(--card-window-bg));
+    --ticket-detail-surface: color-mix(in srgb, var(--color-primary) 6%, transparent);
+    --ticket-detail-border: color-mix(in srgb, var(--color-primary) 12%, transparent);
+    background: var(--ticket-surface);
     border: 1px solid var(--card-window-border);
     border-radius: 22px;
     box-shadow: var(--card-window-shadow);
     overflow: visible;
     backdrop-filter: none;
-    /* REAL notches: a CSS mask punches the half-circles out of the
-       ticket itself. The page background (Vanta clouds) shows through
-       the actual gap, not through a painted overlay. The mask is a
-       solid white layer with two transparent radial-gradient circles
-       carved out at the left/right midpoints — those transparent
-       regions become "holes" in the ticket.
-       The matching border-radius on the mask matches the card's
-       rounded corners so the silhouette stays clean. */
     --notch-r: 30px;
+    --perf-r: 10px;
     -webkit-mask:
       radial-gradient(circle var(--notch-r) at left 50%, transparent 98%, #000 100%),
       radial-gradient(circle var(--notch-r) at right 50%, transparent 98%, #000 100%),
+      radial-gradient(circle var(--perf-r) at var(--ticket-perf-x) 0%, transparent 98%, #000 100%),
+      radial-gradient(circle var(--perf-r) at var(--ticket-perf-x) 100%, transparent 98%, #000 100%),
       linear-gradient(#000, #000);
     -webkit-mask-composite: source-in;
     mask:
       radial-gradient(circle var(--notch-r) at left 50%, transparent 98%, #000 100%),
       radial-gradient(circle var(--notch-r) at right 50%, transparent 98%, #000 100%),
+      radial-gradient(circle var(--perf-r) at var(--ticket-perf-x) 0%, transparent 98%, #000 100%),
+      radial-gradient(circle var(--perf-r) at var(--ticket-perf-x) 100%, transparent 98%, #000 100%),
       linear-gradient(#000, #000);
     mask-composite: intersect;
   }
 
-  /* The shadow plate — a soft blurred slab sitting just behind the
-     ticket. It is the only "background" piece on this section, and
-     it sits BEHIND the ticket (z-index -1) so it never paints over
-     the Vanta clouds. */
+  [data-theme="night"] .ticket {
+    --ticket-surface: color-mix(in srgb, var(--card-window-bg) 90%, var(--bg-page));
+    --ticket-stub-surface: color-mix(in srgb, var(--color-primary) 8%, var(--card-window-bg));
+    --ticket-detail-surface: color-mix(in srgb, var(--color-primary) 10%, transparent);
+    --ticket-detail-border: color-mix(in srgb, var(--color-primary) 18%, transparent);
+  }
+
   .ticket__shadow {
     position: absolute;
     inset: 18px;
-    background: rgba(0, 0, 0, 0.05);
+    background: color-mix(in srgb, var(--heading-text) 6%, transparent);
     filter: blur(28px);
     border-radius: 22px;
     z-index: -1;
     pointer-events: none;
-  }
-
-  /* The notches themselves are part of the ticket's mask (see .ticket).
-     The notches are REAL cut-outs — the Vanta clouds behind the
-     ticket show through the gap. No overlay divs needed. */
-
-  /* Perforation circles — round dots that flank the dashed line and
-     sit on top of the border, matching the ticket reference. These
-     are also real cut-outs: they're masked with a radial-gradient
-     so the page background shows through them too. */
-  .ticket__perf {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    z-index: 4;
-    pointer-events: none;
-    /* The page bg shows through the circle; the 1px border sits on top
-       via box-shadow inset so the edge of the cut-out reads. */
-    box-shadow:
-      inset 0 0 0 1px var(--card-window-border),
-      inset 0 0 0 20px var(--bg-page);
-  }
-  .ticket__perf--top {
-    top: -10px;
-    left: calc(100% - 280px - 10px);
-  }
-  .ticket__perf--bottom {
-    bottom: -10px;
-    left: calc(100% - 280px - 10px);
   }
 
   /* =============================================================
@@ -336,8 +306,9 @@ const slotIcons = [
     align-items: center;
   }
   .ticket__row--details {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 18px;
+    align-items: stretch;
   }
 
   .ticket__cell {
@@ -356,6 +327,7 @@ const slotIcons = [
   }
 
   .ticket__eyebrow {
+    font-family: var(--font-mono);
     font-size: 0.62rem;
     text-transform: uppercase;
     letter-spacing: 0.18em;
@@ -364,40 +336,46 @@ const slotIcons = [
   }
 
   .ticket__carrier {
-    font-family: var(--font-title);
-    font-size: 1.45rem;
-    letter-spacing: 0.02em;
+    font-family: var(--font-display);
+    font-size: clamp(1.35rem, 2.8vw, 1.65rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
     margin: 0;
     color: var(--heading-text);
     line-height: 1;
+    text-transform: uppercase;
   }
 
   .ticket__gate {
     font-family: var(--font-title);
     font-size: 1.05rem;
     color: var(--heading-text);
-    letter-spacing: 0.02em;
+    letter-spacing: 0.06em;
     line-height: 1.1;
+    text-transform: uppercase;
   }
 
   .ticket__value {
     font-family: var(--font-title);
     font-size: 1rem;
     color: var(--heading-text);
-    letter-spacing: 0.02em;
+    letter-spacing: 0.06em;
     line-height: 1.15;
+    text-transform: uppercase;
   }
 
   .ticket__value--route {
-    font-size: clamp(1.4rem, 2.4vw, 1.8rem);
-    letter-spacing: 0.04em;
+    font-family: var(--font-title);
+    font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+    letter-spacing: 0.08em;
     line-height: 1;
   }
 
   .ticket__code {
-    font-size: 0.65rem;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
     color: var(--muted-text);
-    letter-spacing: 0.18em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     font-variant-numeric: tabular-nums;
     margin-top: 2px;
@@ -421,6 +399,7 @@ const slotIcons = [
   }
 
   .ticket__route-cap {
+    font-family: var(--font-mono);
     font-size: 0.55rem;
     text-transform: uppercase;
     letter-spacing: 0.22em;
@@ -428,16 +407,17 @@ const slotIcons = [
     white-space: nowrap;
   }
 
-  /* ----- Detail slot (per highlight) ----- */
+  /* ----- Detail slot (per highlight) — equal grid cells ----- */
   .ticket__detail {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    padding: 14px 14px;
+    padding: 14px;
     border-radius: 14px;
-    background: color-mix(in srgb, var(--color-primary) 5%, transparent);
-    border: 1px solid color-mix(in srgb, var(--color-primary) 10%, transparent);
+    background: var(--ticket-detail-surface);
+    border: 1px solid var(--ticket-detail-border);
     min-width: 0;
+    height: 100%;
   }
 
   .ticket__detail-icon {
@@ -450,27 +430,29 @@ const slotIcons = [
     background: color-mix(in srgb, var(--color-primary) 14%, transparent);
     color: var(--color-primary);
     margin-bottom: 6px;
+    flex-shrink: 0;
   }
 
   .ticket__detail-metric {
-    font-family: var(--font-title);
-    font-size: 1.55rem;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
     line-height: 1;
     color: var(--heading-text);
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
   }
 
   .ticket__detail-label {
-    font-size: 0.72rem;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.04em;
     color: var(--muted-text);
-    line-height: 1.35;
+    line-height: 1.4;
+    margin-top: auto;
   }
 
-  /* =============================================================
-     Stub
-     ============================================================= */
   .ticket__perf-line {
-    display: none; /* border pseudo on main is enough on desktop */
+    display: none;
   }
 
   .ticket__stub {
@@ -480,7 +462,7 @@ const slotIcons = [
     flex-direction: column;
     justify-content: space-between;
     gap: 28px;
-    background: color-mix(in srgb, var(--color-primary) 4%, transparent);
+    background: var(--ticket-stub-surface);
     border-radius: 0 22px 22px 0;
     min-width: 0;
   }
@@ -499,6 +481,7 @@ const slotIcons = [
 
   .ticket__stub-code {
     display: block;
+    font-family: var(--font-mono);
     font-size: 0.58rem;
     letter-spacing: 0.34em;
     text-transform: uppercase;
@@ -514,17 +497,11 @@ const slotIcons = [
   @media (max-width: 860px) {
     .ticket {
       grid-template-columns: 1fr;
-      /* Disable the side-notches on mobile — the ticket collapses to
-         a single column and the silhouette doesn't need them. */
+      --ticket-perf-x: 50%;
       -webkit-mask:
         linear-gradient(#000, #000);
       mask:
         linear-gradient(#000, #000);
-    }
-
-    .ticket__perf--top,
-    .ticket__perf--bottom {
-      display: none;
     }
 
     .ticket__main {
@@ -544,7 +521,7 @@ const slotIcons = [
     }
 
     .ticket__row--details {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .ticket__row--route {

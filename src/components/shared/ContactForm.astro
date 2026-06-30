@@ -25,12 +25,8 @@ const { actionUrl, lang = 'en' } = Astro.props
 ---
 
 <div class="contact-form" data-animate="fade-up">
-  <div class="contact-form__envelope" data-paper-wobble>
-    {/* ===== Paper backdrop — sits BEHIND the letter content so the
-        grain/fibres never paint over the text. The SVG paper filter is
-        applied to this layer only. ===== */}
+  <div class="contact-form__envelope" data-contact-envelope>
     <div class="contact-form__paper" aria-hidden="true"></div>
-
     <div class="contact-form__letter">
       {/* ===== Top-right corner cluster: the vintage "BASEET POST" stamp
           sits at the corner, and a row of 5 social-media mail-stamps
@@ -349,6 +345,20 @@ const { actionUrl, lang = 'en' } = Astro.props
   }
 </script>
 
+<script>
+  import('../../animations/contact-envelope').then((m) => {
+    const run = () => m.init()
+    const stop = () => m.destroy()
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', run, { once: true })
+    } else {
+      run()
+    }
+    document.addEventListener('astro:page-load', run)
+    document.addEventListener('astro:before-swap', stop)
+  })
+</script>
+
 <style>
   /* =============================================================
      Tokens — paper-post-contact cream surface + airmail stripes.
@@ -375,41 +385,18 @@ const { actionUrl, lang = 'en' } = Astro.props
     --airmail-bg: #14202b;
   }
 
-  /* ===== Floating drift — improved on the reference keyframes so the
-     letter reads as paper suspended in still air, not as a wobble.
-     Three nested loops with different amplitudes + periods. ===== */
-  @keyframes contact-float {
-    0%   { transform: translate(0, 0) rotate(0deg); }
-    25%  { transform: translate(6px, -8px) rotate(-0.18deg); }
-    50%  { transform: translate(-4px, -12px) rotate(0.12deg); }
-    75%  { transform: translate(-7px, -4px) rotate(-0.08deg); }
-    100% { transform: translate(0, 0) rotate(0deg); }
-  }
-
-  @keyframes contact-stamp-float {
-    0%   { transform: translate(0, 0) rotate(var(--rot, 0deg)); }
-    33%  { transform: translate(4px, -6px) rotate(calc(var(--rot, 0deg) - 0.4deg)); }
-    66%  { transform: translate(-5px, 4px) rotate(calc(var(--rot, 0deg) + 0.3deg)); }
-    100% { transform: translate(0, 0) rotate(var(--rot, 0deg)); }
-  }
-
-  /* =============================================================
-     Envelope — the OUTER container. The airmail stripes are its
-     border (::before with a repeating-linear-gradient), so the
-     stripes are part of the envelope itself, not a floating bar.
-     Single angle (-45deg) on every stripe variant — consistent
-     pattern around the whole envelope.
-     ============================================================= */
+  /* ===== Envelope — one cohesive paper surface with airmail border ===== */
   .contact-form__envelope {
     position: relative;
     padding: 16px;
-    background: var(--airmail-bg);
+    background: var(--paper-cream);
     border-radius: 6px;
-    /* Soft long shadow under the envelope — sets it on the cloud bg */
     box-shadow:
-      0 50px 100px -20px rgba(0, 0, 0, 0.18),
-      0 30px 60px -30px rgba(0, 0, 0, 0.12);
-    animation: contact-float 9s ease-in-out infinite;
+      0 1px 0 color-mix(in srgb, white 55%, transparent) inset,
+      0 50px 100px -24px rgba(28, 22, 14, 0.22),
+      0 24px 48px -28px rgba(28, 22, 14, 0.14);
+    transform-style: preserve-3d;
+    will-change: transform;
   }
 
   /* Airmail border: same -45deg angle on every side. Uses a single
@@ -445,55 +432,41 @@ const { actionUrl, lang = 'en' } = Astro.props
     pointer-events: none;
   }
 
-  /* Subtle dark vignette along the bottom edge of the stripes so
-     the envelope doesn't read as a flat clip-art cut-out. */
+  /* Subtle vignette on the paper face */
   .contact-form__envelope::after {
     content: "";
     position: absolute;
     inset: 16px;
     border-radius: 2px;
     background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.0) 0%,
-      rgba(0, 0, 0, 0.05) 100%
+      180deg,
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(0, 0, 0, 0.04) 100%
     );
     mix-blend-mode: multiply;
     pointer-events: none;
     z-index: 1;
   }
 
-  /* =============================================================
-     Paper backdrop — the cream + fibre layer that sits BEHIND the
-     letter content. The SVG paper filter is applied here so the
-     grain/fibres never paint over the text (text lives in __letter,
-     which sits above this layer). z-index 0 so the text in __letter
-     (z-index auto, in stacking order) renders on top.
-     ============================================================= */
+  /* Paper fibre layer — static, moves with the envelope as one piece */
   .contact-form__paper {
     position: absolute;
-    inset: 16px; /* matches envelope padding so paper sits inside the airmail border */
+    inset: 16px;
     border-radius: 2px;
     background: var(--paper-cream);
-    /* The realistic paper filter — fibres + grain + slight edge
-       displacement. Defined in PaperFilters.astro (mounted once per
-       page by Base.astro). */
     filter: url(#paper-realistic);
     pointer-events: none;
     z-index: 0;
   }
 
-  /* =============================================================
-     Letter — the actual content card. No filter on this element
-     (the paper texture comes from .contact-form__paper behind it),
-     so the text/inputs render cleanly on top of the grain.
-     ============================================================= */
   .contact-form__letter {
     position: relative;
     color: var(--paper-ink);
     padding: 56px 56px 48px;
     min-height: 600px;
     border-radius: 2px;
-    z-index: 2; /* above the paper backdrop */
+    z-index: 2;
+    background: transparent;
   }
 
   /* =============================================================
@@ -520,7 +493,7 @@ const { actionUrl, lang = 'en' } = Astro.props
     position: relative;
     width: 96px;
     height: 110px;
-    background: color-mix(in srgb, var(--paper-cream) 70%, white);
+    background: color-mix(in srgb, var(--paper-cream) 82%, #fff8ef);
     border: 2px dashed var(--paper-ink);
     padding: 8px 6px;
     display: flex;
@@ -528,9 +501,8 @@ const { actionUrl, lang = 'en' } = Astro.props
     align-items: center;
     justify-content: space-between;
     transform: rotate(6deg);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 6px 16px rgba(28, 22, 14, 0.14);
     flex-shrink: 0;
-    animation: contact-stamp-float 7s ease-in-out infinite;
   }
 
   /* The dotted outer ring from the reference's stamp-vintage::before */
@@ -936,7 +908,7 @@ const { actionUrl, lang = 'en' } = Astro.props
     align-items: center;
     gap: 6px;
     padding: 6px 10px 6px 8px;
-    background: color-mix(in srgb, var(--paper-cream) 70%, white);
+    background: color-mix(in srgb, var(--paper-cream) 82%, #fff8ef);
     border: 1.5px dashed var(--paper-line);
     color: var(--paper-ink);
     text-decoration: none;
@@ -945,9 +917,7 @@ const { actionUrl, lang = 'en' } = Astro.props
     text-transform: uppercase;
     letter-spacing: 0.16em;
     transform: rotate(var(--rot));
-    box-shadow: 0 4px 12px -6px rgba(0, 0, 0, 0.2);
-    animation: contact-stamp-float 6s ease-in-out infinite;
-    animation-delay: var(--delay);
+    box-shadow: 0 3px 10px -6px rgba(28, 22, 14, 0.18);
     transition: transform 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
     position: relative;
     white-space: nowrap;
@@ -1086,9 +1056,8 @@ const { actionUrl, lang = 'en' } = Astro.props
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .contact-form__envelope,
-    .contact-form__stamps-item a {
-      animation: none;
+    .contact-form__envelope {
+      will-change: auto;
     }
     .contact-form__submit {
       transition: none;

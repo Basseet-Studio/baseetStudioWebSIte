@@ -1,0 +1,2 @@
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/contact-envelope.BIKzbHn7.js","assets/index.CzGW6FVa.js"])))=>i.map(i=>d[i]);
+import{_ as n}from"./preload-helper.BlTxHScW.js";n(()=>import("./contact-envelope.BIKzbHn7.js"),__vite__mapDeps([0,1])).then(t=>{const e=()=>t.init(),o=()=>t.destroy();document.readyState==="loading"?document.addEventListener("DOMContentLoaded",e,{once:!0}):e(),document.addEventListener("astro:page-load",e),document.addEventListener("astro:before-swap",o)});
