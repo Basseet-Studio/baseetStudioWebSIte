@@ -2,8 +2,9 @@
 
 :root {
     --nav-top-offset: 16px;
-    --nav-max-width: 900px;
+    --nav-max-width: 980px;
     --nav-side-padding: 32px;
+    --nav-mobile-breakpoint: 720px;
     --nav-transition: 300ms ease;
     --nav-bg: var(--bg-elevated);
     --nav-border: var(--border-soft);
@@ -493,7 +494,7 @@
     transform: translateX(-50%) translateY(calc(-100% - 32px));
 }
 
-@media (max-width: 992px) {
+@media (max-width: 720px) {
     .app-bar--hidden {
         transform: translateX(-50%) translateY(calc(-100% + 6px));
     }
@@ -513,12 +514,39 @@
 }
 
 /* =========== RESPONSIVE =========== */
-@media (max-width: 992px) {
+/* Compact inline nav: tighter padding so all links fit before the hamburger kicks in */
+@media (max-width: 860px) and (min-width: 721px) {
+    .app-bar__inner {
+        padding: 10px 16px;
+        gap: 2px;
+    }
+
+    .app-bar__link {
+        padding: 7px 10px;
+        font-size: 0.8125rem;
+    }
+
+    .app-bar__meta {
+        margin-left: 8px;
+        padding-left: 8px;
+    }
+
+    .app-bar__link--meta {
+        padding: 6px 10px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 720px) {
     .app-bar {
         max-width: calc(100vw - 30px);
     }
 
     .app-bar__links {
+        display: none;
+    }
+
+    .app-bar__meta {
         display: none;
     }
 

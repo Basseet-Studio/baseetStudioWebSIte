@@ -13,6 +13,16 @@ interface Props {
 }
 
 const { clients, lang = 'en' } = Astro.props
+
+/** Trim long quotes so home cards stay balanced in height. */
+function excerptQuote(quote: string, maxLen = 200): string {
+  const trimmed = quote.trim()
+  if (!trimmed) return ''
+  if (trimmed.length <= maxLen) return trimmed
+  const cut = trimmed.slice(0, maxLen)
+  const lastSpace = cut.lastIndexOf(' ')
+  return `${lastSpace > 0 ? cut.slice(0, lastSpace) : cut}…`
+}
 ---
 
 <section class="clients" data-animate="fade-slide-up">
@@ -21,19 +31,22 @@ const { clients, lang = 'en' } = Astro.props
 
   <div class="clients__grid">
     {clients.map((client) => {
-      const accent = client.color ?? 'var(--accent, #B45309)'
-      const quote = client.testimonial?.quote?.trim() ?? ''
+      const accent = client.color ?? '#B45309'
+      const quote = excerptQuote(client.testimonial?.quote ?? '')
       const author = client.testimonial?.author?.trim() ?? ''
       const role = client.testimonial?.role?.trim() ?? ''
       return (
-        <figure class="clients__card glass glass-card" style={`border-top: 3px solid ${accent}`}>
-          <h3 class="clients__card-name">{client.name}</h3>
+        <figure class="clients__card" style={`--client-accent: ${accent}`}>
+          <header class="clients__card-head">
+            <span class="clients__accent" aria-hidden="true"></span>
+            <h3 class="clients__card-name">{client.name}</h3>
+          </header>
           {quote ? (
-            <blockquote class="clients__quote" style={`border-left: 3px solid ${accent}`}>
+            <blockquote class="clients__quote">
               <p>&ldquo;{quote}&rdquo;</p>
               {(author || role) && (
-                <footer>
-                  {author && <span class="clients__author">&mdash; {author}</span>}
+                <footer class="clients__attribution">
+                  {author && <cite class="clients__author">{author}</cite>}
                   {role && <span class="clients__role">{role}</span>}
                 </footer>
               )}
@@ -47,24 +60,25 @@ const { clients, lang = 'en' } = Astro.props
 
 <style>
   .clients {
-    padding: 80px 24px;
+    padding: 64px 24px;
     max-width: 1100px;
     margin: 0 auto;
   }
 
   .clients__heading {
-    font-size: 2rem;
-    font-weight: 700;
+    font-family: var(--font-display, 'Rammetto One', system-ui, sans-serif);
+    font-size: clamp(1.6rem, 3vw, 2rem);
+    font-weight: 400;
     color: var(--heading-text);
     text-align: center;
-    margin: 0 0 6px;
+    margin: 0 0 8px;
   }
 
   .clients__sub {
     font-size: 0.95rem;
     color: var(--muted-text);
     text-align: center;
-    margin: 0 0 48px;
+    margin: 0 0 40px;
     max-width: 420px;
     margin-left: auto;
     margin-right: auto;
@@ -72,71 +86,107 @@ const { clients, lang = 'en' } = Astro.props
 
   .clients__grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 28px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    align-items: stretch;
   }
 
   .clients__card {
-    padding: 28px;
-    border-radius: 16px;
+    margin: 0;
+    padding: 24px 26px 26px;
+    border-radius: var(--card-window-radius, 24px);
+    background: var(--card-window-bg);
+    border: 1px solid var(--card-window-border);
+    box-shadow: var(--card-window-shadow);
     display: flex;
     flex-direction: column;
-    gap: 14px;
-    margin: 0;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    gap: 16px;
+    transition:
+      transform var(--transition-base, 300ms ease),
+      box-shadow var(--transition-base, 300ms ease);
   }
 
   .clients__card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--card-shadow-hover);
+    transform: translateY(-3px);
+    box-shadow: var(--card-window-shadow-hover);
+  }
+
+  .clients__card-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .clients__accent {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--client-accent);
+    flex-shrink: 0;
   }
 
   .clients__card-name {
-    font-size: 1.15rem;
+    font-size: 1.05rem;
     font-weight: 700;
     color: var(--heading-text);
     margin: 0;
+    line-height: 1.2;
   }
 
   .clients__quote {
     margin: 0;
-    padding: 12px 16px;
-    border-radius: 8px;
-    background: var(--surface-soft);
-    font-size: 0.95rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    font-style: italic;
+    padding: 0;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    flex: 1;
   }
 
   .clients__quote p {
-    margin: 0 0 8px;
+    margin: 0;
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
   }
 
-  .clients__quote footer {
-    font-style: normal;
-    font-size: 0.8rem;
-    color: var(--text-primary);
+  .clients__attribution {
+    margin-top: auto;
     display: flex;
     flex-direction: column;
     gap: 2px;
+    font-style: normal;
   }
 
   .clients__author {
+    font-size: 0.8125rem;
     font-weight: 600;
+    font-style: normal;
+    color: var(--heading-text);
   }
 
   .clients__role {
-    color: var(--muted-text);
     font-size: 0.75rem;
+    color: var(--muted-text);
   }
 
   @media (max-width: 768px) {
     .clients__grid {
       grid-template-columns: 1fr;
     }
+
     .clients {
-      padding: 60px 16px;
+      padding: 48px 16px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .clients__card:hover {
+      transform: none;
     }
   }
 </style>

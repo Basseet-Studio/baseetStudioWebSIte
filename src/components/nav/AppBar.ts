@@ -2,6 +2,7 @@
 
 const HIDE_THRESHOLD = 100;
 const HYSTERESIS = 50;
+const MOBILE_BREAKPOINT = 720;
 
 interface NavState {
   visible: boolean;
@@ -109,7 +110,7 @@ function withNoTransition(fn: () => void): void {
 
 function showOnHover(): void {
   if (!bar || state.reducedMotion) return;
-  if (window.scrollY > HIDE_THRESHOLD && window.innerWidth >= 992) {
+  if (window.scrollY > HIDE_THRESHOLD && window.innerWidth >= MOBILE_BREAKPOINT) {
     state.visible = true;
     updateVisibility();
   }
@@ -134,7 +135,7 @@ function setupHoverTrigger(): void {
 
   triggerZone.addEventListener("mouseleave", () => {
     hoverTimeout = window.setTimeout(() => {
-      if (window.scrollY > HIDE_THRESHOLD && window.innerWidth >= 992) {
+      if (window.scrollY > HIDE_THRESHOLD && window.innerWidth >= MOBILE_BREAKPOINT) {
         state.visible = false;
         updateVisibility();
       }
@@ -156,7 +157,7 @@ function handleScroll(): void {
     return;
   }
 
-  const isMobile = window.innerWidth < 992;
+  const isMobile = window.innerWidth < MOBILE_BREAKPOINT;
 
   const delta = currentScrollY - state.lastScrollY;
   state.lastScrollY = currentScrollY;
@@ -276,7 +277,7 @@ function setupMobileSidebar(): void {
     "resize",
     () => {
       if (
-        window.innerWidth >= 992 &&
+        window.innerWidth >= MOBILE_BREAKPOINT &&
         bar!.classList.contains("app-bar--mobile-expanded")
       ) {
         closeSidebar();
