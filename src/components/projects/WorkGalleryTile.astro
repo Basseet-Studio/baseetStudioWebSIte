@@ -3,11 +3,10 @@ import type { ProjectIndexCard } from '../../lib/projects'
 
 interface Props {
   project: ProjectIndexCard
-  statusLabel: string
   layoutClass: string
 }
 
-const { project, statusLabel, layoutClass } = Astro.props
+const { project, layoutClass } = Astro.props
 const hasVideo = Boolean(project.previewVideo)
 ---
 
@@ -46,14 +45,6 @@ const hasVideo = Boolean(project.previewVideo)
     <span class="wg__zip-frame" data-zip-frame aria-hidden="true"></span>
 
     <span class="wg__copy">
-      <span class="wg__meta">
-        <span class="wg__status">{statusLabel}</span>
-        {project.platforms?.length > 0 && (
-          <span class="wg__platforms">
-            {project.platforms.map((p) => p.name).join(' · ')}
-          </span>
-        )}
-      </span>
       <span class="wg__name">{project.name}</span>
       <span class="wg__tagline">{project.tagline}</span>
     </span>
@@ -141,32 +132,6 @@ const hasVideo = Boolean(project.previewVideo)
     display: grid;
     gap: 6px;
     pointer-events: none;
-  }
-
-  .wg__meta {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 10px 14px;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.82);
-  }
-
-  .wg__status {
-    padding: 3px 8px;
-    border-radius: var(--r-small, 12px);
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-  }
-
-  .wg__platforms {
-    opacity: 0.9;
-    text-transform: none;
-    letter-spacing: 0;
-    font-weight: 500;
   }
 
   .wg__name {

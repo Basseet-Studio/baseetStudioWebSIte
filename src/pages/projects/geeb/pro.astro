@@ -192,7 +192,7 @@ const proCategories = [
         </button>
 
         <p class="geeb-pro-form__note">
-          By submitting you agree to Geeb's pro terms. We will never share your details with third parties.
+          By submitting you agree to <a href={`/${lang === 'ar' ? 'ar/' : ''}projects/geeb/terms/vendors/`}>Geeb's pro terms</a>. We will never share your details with third parties.
         </p>
       </form>
 
@@ -238,18 +238,4 @@ const proCategories = [
       </div>
     </div>
   </section>
-
-  <!-- Subpage navigation -->
-  <nav class="geeb-subnav" aria-label="Geeb pages">
-    <div class="geeb-subnav__inner">
-      <a href={`/${lang === 'ar' ? 'ar/' : ''}projects/geeb/features/`} class="geeb-subnav__link">
-        <Icon name="arrow-left" size={16} color="currentColor" />
-        Features
-      </a>
-      <a href={`/${lang === 'ar' ? 'ar/' : ''}projects/geeb/faq/`} class="geeb-subnav__link">
-        FAQ
-        <Icon name="arrow-right" size={16} color="currentColor" />
-      </a>
-    </div>
-  </nav>
 </ProjectLayout>

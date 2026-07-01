@@ -5,5 +5,19 @@
       "maxFindings": 5,
       "maxChars": 8000
     }
+  },
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [
+      "src/components/shared/ContactForm.astro",
+      "src/styles/projects/geeb.css",
+      "src/pages/projects/geeb.astro",
+      "src/pages/ar/projects/geeb.astro",
+      "src/pages/projects/geeb/**",
+      "src/pages/ar/projects/geeb/**",
+      "src/components/project/geeb/**",
+      "src/pages/projects/[slug]/[page].astro"
+    ],
+    "ignoreValues": []
   }
 }

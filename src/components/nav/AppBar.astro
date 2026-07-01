@@ -34,7 +34,8 @@ const {
 const isProject = !!projectName && !!(projectNavItems && projectNavItems.length > 0)
 const pathname = Astro.url.pathname.replace(/\/$/, '') || '/'
 
-const projectRoot = `/projects/${slug || ''}`.replace(/\/$/, '') || '/'
+const langPrefix = lang === 'ar' ? '/ar' : ''
+const projectRoot = `${langPrefix}/projects/${slug || ''}`.replace(/\/$/, '') || '/'
 
 // Project nav: build absolute URLs and compute active state per item.
 // Home is the default active when on the bare project root.
@@ -46,7 +47,7 @@ const projectNav: ProjectNavEntry[] = isProject && projectNavItems
       const fullUrl = url === '' ? projectRoot + '/' : `${projectRoot}/${url}`.replace(/\/$/, '') || '/'
       const isActive =
         (url === '' && (pathname === projectRoot || pathname === projectRoot + '/')) ||
-        (url !== '' && (pathname === fullUrl || pathname === fullUrl + '/'))
+        (url !== '' && (pathname === fullUrl || pathname === fullUrl + '/' || pathname.startsWith(fullUrl + '/')))
       return {
         ...item,
         fullUrl,

@@ -8,22 +8,9 @@ const description =
   'Products we build in-house — mobile apps, web platforms, and tools shipped from Abu Dhabi.'
 const projects = getProjectsForIndex()
 
-const statusLabels: Record<string, string> = {
-  'Coming Soon': 'In development',
-  Live: 'Shipped',
-  Completed: 'Shipped',
-  Confidential: 'Private',
-  'MVP Proof of Concept': 'Early build',
-  'Ready to Deliver': 'Available on demand',
-}
-
 const anchor = projects.find((p) => p.indexTier === 'anchor')
 const flagship = projects.filter((p) => p.indexTier === 'flagship')
 const more = projects.filter((p) => p.indexTier === 'more')
-
-function statusLabel(status: string): string {
-  return statusLabels[status] || status
-}
 
 const mosaicClass: Record<string, string> = {
   deshikitchen: 'wg--deshikitchen',
@@ -51,7 +38,6 @@ const labClass: Record<string, string> = {
       {anchor && (
         <WorkGalleryTile
           project={anchor}
-          statusLabel={statusLabel(anchor.status)}
           layoutClass="wg--matrix"
         />
       )}
@@ -61,7 +47,6 @@ const labClass: Record<string, string> = {
           {flagship.map((project) => (
             <WorkGalleryTile
               project={project}
-              statusLabel={statusLabel(project.status)}
               layoutClass={mosaicClass[project.slug] ?? 'wg--default'}
             />
           ))}
@@ -75,7 +60,6 @@ const labClass: Record<string, string> = {
             {more.map((project) => (
               <WorkGalleryTile
                 project={project}
-                statusLabel={statusLabel(project.status)}
                 layoutClass={labClass[project.slug] ?? 'wg--lab'}
               />
             ))}

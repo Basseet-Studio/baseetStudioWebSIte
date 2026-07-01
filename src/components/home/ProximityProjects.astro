@@ -1,40 +1,7 @@
 ---
-// ProximityProjects.astro — scattered project tiles with TWO effects:
-//   1. Proximity scale grid  (docs/refrences/proximity scale grid)
-//      On mousemove, every tile scales 1 → 1.6 based on its distance to
-//      the cursor (gsap.utils.mapRange into a 0..1 proximity, gsap.to
-//      with overwrite:true). On mouseleave, every tile eases back to 1.
-//   2. Morph on hover         (docs/refrences/morph svg)
-//      On hover/focus, GSAP's MorphSVGPlugin morphs the icon's primary
-//      <path> into the project name — pre-rendered at build time by
-//      scripts/build-project-name-svgs.mjs from the user's hi-res
-//      source name SVGs into /projects/names/{slug}.svg. The other paths
-//      fade out in sync so the morph is clean.
-//
-// Icon source: instead of Phosphor glyphs, we use the user's hi-res
-// source logo SVGs from "source svgs/" (mapped via SOURCE_SVGS). At
-// build time we:
-//   - walk the source SVG depth-first, applying <g transform="…">
-//   - skip <defs>, <style>, <filter>, gradients, and decorative backdrop <rect>s
-//   - convert every kept shape (path/line/circle/rect/ellipse/polyline/polygon)
-//     into a normalised <path d="…"> that fits inside the 0..256 viewBox
-//   - inject the resulting <path> children straight into svg.px__icon
-//
-// Markup contract with src/scripts/morph-projects.ts:
-//   <a class="px__tile" data-px-tile data-px-card
-//      data-name-src="/projects/names/{slug}.svg"
-//      style="--x:..;--y:..;--r:..;--px-color:#xxx;">
-//     <span class="px__art">
-//       <svg class="px__icon" viewBox="0 0 256 256" data-px-icon>
-//         <path d="…"/> <path d="…"/> …  ← direct children
-//       </svg>
-//       <span class="px__label">{name}</span>
-//     </span>
-//   </a>
+// Home projects grid — logo + name per tile, using the same built logo
+// SVGs as the work page app bar (/projects/logos/{slug}.svg).
 
-import fs from 'node:fs'
-import path from 'node:path'
-import { SOURCE_SVGS, readSourceSvgInner, parseViewBox } from '../../lib/sourceSvgs'
 import type { Lang, ProjectSummary } from '../../types'
 
 interface Props {
@@ -43,109 +10,36 @@ interface Props {
 }
 
 const { projects, lang = 'en' } = Astro.props
-
-// Scattered positions for the proximity grid (from the reference: each
-// card sits at its own --x, --y with its own --r rotation). 7 cards
-// spread across a 720px-tall stage — wider gaps and more vertical room
-// than the reference so the tiles can breathe.
-const POSITIONS = [
-  { x: '4%',   y: '6%',  r: '-3deg' },
-  { x: '30%',  y: '2%',  r: '3deg'  },
-  { x: '56%',  y: '8%',  r: '-2deg' },
-  { x: '84%',  y: '4%',  r: '4deg'  },
-  { x: '10%',  y: '52%', r: '2deg'  },
-  { x: '44%',  y: '48%', r: '-4deg' },
-  { x: '78%',  y: '54%', r: '1deg'  },
-]
-
-function posFor(i: number) {
-  return POSITIONS[i % POSITIONS.length]
-}
-
-// Read the source logo SVG and emit markup that fits inside the icon
-// container's viewBox. The viewBox is the wordmark's natural aspect
-// ratio (e.g. 186×73 for NUMU) — set up by readViewBox() — so morphSVG
-// can interpolate between the logo path and the name path 1:1.
-//
-// We inject the source SVG's inner shapes as-is (wrapped in a fit-matrix
-// <g>) so the brand mark renders exactly as the Figma designer exported
-// it — fills, fill-rule, glyph counters and all. The morph script then
-// picks the primary path (by bbox area × d-length) to morph into the
-// outlined wordmark.
-function readLogoInner(slug: string, viewBoxW: number, viewBoxH: number): string {
-  const entry = SOURCE_SVGS[slug]
-  if (!entry) {
-    console.warn(`[ProximityProjects] no SOURCE_SVGS entry for slug "${slug}" — skipping`)
-    return ''
-  }
-  const filePath = path.join(process.cwd(), entry.logo)
-  try {
-    const svg = fs.readFileSync(filePath, 'utf-8')
-    return readSourceSvgInner(svg, viewBoxW, viewBoxH, 0.08)
-  } catch (err) {
-    console.warn(
-      `[ProximityProjects] could not read ${filePath}:`,
-      (err as NodeJS.ErrnoException).message,
-    )
-    return ''
-  }
-}
-
-// Read the source name SVG and return [w, h] of its viewBox so the icon
-// container can use the same viewBox for morphSVG 1:1 interpolation.
-function readViewBox(slug: string): [number, number] | null {
-  const entry = SOURCE_SVGS[slug]
-  if (!entry) return null
-  const filePath = path.join(process.cwd(), entry.name)
-  try {
-    const svg = fs.readFileSync(filePath, 'utf-8')
-    const [, , w, h] = parseViewBox(svg)
-    return [w, h]
-  } catch {
-    return null
-  }
-}
 ---
 
 <section class="px" id="px-stage" aria-labelledby="px-heading">
   <h2 class="px__heading" id="px-heading">Our Projects</h2>
-  <p class="px__hint">move your cursor over the grid</p>
 
-  <div class="px__stage" data-px-stage>
-    <div class="px__grid">
-      {projects.map((project, i) => {
-        const pos = posFor(i)
-        const vb = readViewBox(project.slug) ?? [256, 256]
-        const innerSvg = readLogoInner(project.slug, vb[0], vb[1])
-        return (
-          <a
-            href={`/projects/${project.slug}/`}
-            class="px__tile"
-            role="listitem"
-            data-px-tile
-            data-px-card
-            data-name-src={`/projects/names/${project.slug}.svg`}
-            aria-label={`View ${project.name}`}
-            style={`--x: ${pos.x}; --y: ${pos.y}; --r: ${pos.r}; --px-color: ${project.color};`}
-          >
-            <span class="px__art">
-              <span class="px__art-icon">
-                <svg
-                  class="px__icon"
-                  viewBox={`0 0 ${vb[0]} ${vb[1]}`}
-                  xmlns="http://www.w3.org/2000/svg"
-                  data-px-icon
-                  aria-hidden="true"
-                  set:html={innerSvg}
-                />
-              </span>
-              <span class="px__label">{project.name}</span>
-            </span>
-          </a>
-        )
-      })}
-    </div>
-  </div>
+  <ul class="px__grid" role="list">
+    {projects.map((project) => (
+      <li class="px__item">
+        <a
+          href={`/projects/${project.slug}/`}
+          class="px__tile"
+          aria-label={`View ${project.name}`}
+          style={`--px-color: ${project.color};`}
+        >
+          <span class="px__logo-wrap">
+            <img
+              class="px__logo"
+              src={`/projects/logos/${project.slug}.svg`}
+              alt=""
+              width="72"
+              height="72"
+              loading="lazy"
+              decoding="async"
+            />
+          </span>
+          <span class="px__label">{project.name}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
 </section>
 
 <style>
@@ -159,183 +53,98 @@ function readViewBox(slug: string): [number, number] | null {
     font-family: 'Rammetto One', 'Rambla', system-ui, sans-serif;
     font-size: clamp(1.8rem, 3.6vw, 2.6rem);
     text-align: center;
-    margin: 0 0 8px;
+    margin: 0 0 40px;
     color: var(--text-primary);
     letter-spacing: -0.01em;
   }
 
-  .px__hint {
-    text-align: center;
-    color: var(--text-secondary);
-    font-size: 0.82rem;
-    font-family: 'Fraktion Mono', 'Rambla', monospace;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin: 0 0 32px;
-  }
-
-  /* ── Stage ── */
-  .px__stage {
-    position: relative;
-    width: 100%;
-    max-width: 1200px;
-    height: 720px;
-    margin: 0 auto;
-  }
-
-  /* ── Grid — scattered layout via custom properties ── */
   .px__grid {
-    position: relative;
-    width: 100%;
-    height: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: clamp(24px, 4vw, 40px);
+    justify-items: center;
   }
 
-  /* ── Tile ── */
+  .px__item {
+    width: 100%;
+    max-width: 140px;
+  }
+
   .px__tile {
-    position: absolute;
-    left: var(--x);
-    top: var(--y);
-    rotate: var(--r, 0deg);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
-    width: 98px;
+    gap: 12px;
     text-decoration: none;
     color: var(--text-primary);
-    transform-origin: center center;
-    will-change: transform;
+    transition: color 0.25s ease, transform 0.25s ease;
   }
 
-  .px__art {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .px__art-icon {
+  .px__logo-wrap {
     width: 87px;
     height: 87px;
     display: grid;
     place-items: center;
-    color: var(--text-primary);
-    transition: color 320ms ease;
   }
 
-  .px__icon {
-    width: 100%;
-    height: 100%;
+  .px__logo {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
     display: block;
-    color: currentColor;
-  }
-
-  /* The source brand marks come out of Figma as filled <path>s with
-     fill-rule="evenodd" (the "O" in NUMO has a counter via evenodd). We
-     paint them with currentColor so the per-tile --px-color cascades
-     into the brand mark. Strokes are kept as currentColor too — Figma
-     exports include a thin stroke that we want to inherit. */
-  .px__icon :global(path) {
-    fill: currentColor;
-    stroke: currentColor;
-  }
-  .px__icon :global(line),
-  .px__icon :global(rect),
-  .px__icon :global(circle),
-  .px__icon :global(ellipse),
-  .px__icon :global(polygon),
-  .px__icon :global(polyline) {
-    fill: currentColor;
-    stroke: currentColor;
-  }
-
-  .px__tile:hover .px__art-icon,
-  .px__tile:focus-visible .px__art-icon {
-    color: var(--px-color);
-    outline: none;
+    transition: transform 0.25s ease;
   }
 
   .px__label {
-    display: none;
+    font-family: 'Rambla', system-ui, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.2;
+    color: var(--text-secondary);
+    transition: color 0.25s ease;
+  }
+
+  .px__tile:hover,
+  .px__tile:focus-visible {
+    transform: translateY(-2px);
+    outline: none;
+  }
+
+  .px__tile:hover .px__logo,
+  .px__tile:focus-visible .px__logo {
+    transform: scale(1.06);
   }
 
   .px__tile:hover .px__label,
   .px__tile:focus-visible .px__label {
-    color: var(--text-primary);
+    color: var(--px-color);
   }
 
-  @media (max-width: 720px) {
-    .px__stage {
-      height: auto;
+  .px__tile:focus-visible .px__logo-wrap {
+    outline: 2px solid var(--px-color);
+    outline-offset: 4px;
+    border-radius: var(--r-small, 12px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .px__tile,
+    .px__logo,
+    .px__label {
+      transition: none;
     }
-    .px__grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 24px 32px;
+
+    .px__tile:hover,
+    .px__tile:focus-visible {
+      transform: none;
     }
-    .px__tile {
-      position: static;
-      rotate: 0deg;
+
+    .px__tile:hover .px__logo,
+    .px__tile:focus-visible .px__logo {
+      transform: none;
     }
   }
 </style>
-
-<script>
-  import gsap from 'gsap'
-  console.log('[proximity] script loaded')
-  import('../../scripts/morph-projects').then((m) => {
-    // ── Effect 1: Proximity Scale Grid ───────────────────────────────
-    const stage = document.querySelector<HTMLElement>('[data-px-stage]')
-    if (stage) {
-      const tiles = gsap.utils.toArray<HTMLElement>('[data-px-tile]')
-      const radius = 200
-      const maxScale = 2.24
-      const dur = 0.35
-      console.log('[proximity] stage found, tiles:', tiles.length, 'radius:', radius, 'maxScale:', maxScale)
-
-      stage.addEventListener('mousemove', (e) => {
-        const mx = e.clientX
-        const my = e.clientY
-        tiles.forEach((tile) => {
-          const r = tile.getBoundingClientRect()
-          const d = Math.hypot(
-            mx - (r.left + r.width / 2),
-            my - (r.top + r.height / 2),
-          )
-          const p = gsap.utils.clamp(0, 1, gsap.utils.mapRange(0, radius, 1, 0, d))
-          gsap.to(tile, {
-            scale: 1 + (maxScale - 1) * p,
-            overwrite: true,
-            ease: 'power2.out',
-          })
-        })
-      })
-
-      stage.addEventListener('mouseleave', () => {
-        console.log('[proximity] mouseleave — resetting all tiles to scale 1')
-        tiles.forEach((tile) => {
-          gsap.to(tile, {
-            scale: 1,
-            duration: dur * 2,
-            overwrite: true,
-            ease: 'power2.out',
-          })
-        })
-      })
-    } else {
-      console.warn('[proximity] no [data-px-stage] found')
-    }
-
-    // ── Effect 2: Morph SVG on hover/focus ──────────────────────────
-    const run = () => m.default.init()
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', run, { once: true })
-    } else {
-      run()
-    }
-    document.addEventListener('astro:page-load', run)
-    document.addEventListener('astro:before-swap', () => m.default.destroy())
-  })
-</script>

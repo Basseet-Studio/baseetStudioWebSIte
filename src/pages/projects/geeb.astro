@@ -1,7 +1,6 @@
 ---
 import ProjectLayout from '../../layouts/Project.astro'
 import ProjectGallery from '../../components/project/ProjectGallery.astro'
-import ProjectCTA from '../../components/project/ProjectCTA.astro'
 import ProjectFeatureCard from '../../components/project/ProjectFeatureCard.astro'
 import ProjectTestimonial from '../../components/project/ProjectTestimonial.astro'
 import ProjectFAQ from '../../components/project/ProjectFAQ.astro'
@@ -89,18 +88,31 @@ const howItWorks = [
     <div class="geeb-hero__float geeb-hero__float--4"><Icon name="gear" size={26} color="currentColor" /></div>
 
     <div class="geeb-hero__inner">
-      <!-- Brand mark: wrench on gradient square -->
-      <div class="geeb-hero__mark" data-animate="fade-up">
-        <div class="geeb-hero__mark-icon">
-          <Icon name={resolveIcon(project.iconClass).name} size={44} color="white" />
+      <div class="geeb-hero__brand" data-animate="fade-up">
+        <div class="geeb-hero__brand-mark">
+          <img
+            src="/projects/logos/geeb.svg"
+            alt=""
+            width="44"
+            height="44"
+            class="geeb-hero__brand-logo"
+            decoding="async"
+          />
         </div>
-        <span class="geeb-hero__mark-label">Geeb</span>
+        <img
+          src="/projects/names/geeb.svg"
+          alt=""
+          width="140"
+          height="40"
+          class="geeb-hero__brand-wordmark"
+          decoding="async"
+          aria-hidden="true"
+        />
+        <span class="geeb-sr-only">{project.name}</span>
       </div>
 
-      <h1 class="geeb-hero__name" data-animate="fade-up">{project.name}</h1>
       <p class="geeb-hero__tagline" data-animate="fade-up">{project.tagline}</p>
 
-      <!-- Status badge -->
       <div class="geeb-hero__status" data-animate="fade-up">
         <span class="geeb-pill">
           <Icon name="hourglass" size={14} color="currentColor" />
@@ -108,7 +120,7 @@ const howItWorks = [
         </span>
       </div>
 
-      <h2 class="geeb-hero__title" data-animate="fade-up">{project.hero.title}</h2>
+      <h1 class="geeb-hero__title" data-animate="fade-up">{project.hero.title}</h1>
       <p class="geeb-hero__subtitle" data-animate="fade-up">{project.hero.subtitle}</p>
 
       <div class="geeb-hero__ctas" data-animate="fade-up">
@@ -126,29 +138,9 @@ const howItWorks = [
         )}
       </div>
 
-      <!-- Trust ribbon: ratings + verified pros count -->
-      <div class="geeb-hero__trust" data-animate="fade-up">
-        <div class="geeb-trust-item">
-          <div class="geeb-trust-stars" aria-label="4.9 out of 5 stars">
-            <Icon name="star" size={14} color="currentColor" />
-            <Icon name="star" size={14} color="currentColor" />
-            <Icon name="star" size={14} color="currentColor" />
-            <Icon name="star" size={14} color="currentColor" />
-            <Icon name="star" size={14} color="currentColor" />
-          </div>
-          <span class="geeb-trust-label">4.9 average rating</span>
-        </div>
-        <div class="geeb-trust-divider"></div>
-        <div class="geeb-trust-item">
-          <span class="geeb-trust-strong">2,400+</span>
-          <span class="geeb-trust-label">verified pros</span>
-        </div>
-        <div class="geeb-trust-divider"></div>
-        <div class="geeb-trust-item">
-          <span class="geeb-trust-strong">30-day</span>
-          <span class="geeb-trust-label">workmanship guarantee</span>
-        </div>
-      </div>
+      <p class="geeb-hero__trust geeb-hero__trust--inline" data-animate="fade-up">
+        Verified pros · Upfront pricing · 30-day guarantee
+      </p>
     </div>
   </section>
 
@@ -361,6 +353,4 @@ const howItWorks = [
       </div>
     </div>
   </section>
-
-  <ProjectCTA status={project.status} platforms={project.platforms || []} links={project.links} lang={lang} />
 </ProjectLayout>

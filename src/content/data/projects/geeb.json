@@ -111,6 +111,16 @@
       "label": "FAQ",
       "url": "faq/",
       "i18nKey": "project_nav_faq"
+    },
+    {
+      "label": "Terms",
+      "url": "terms/",
+      "i18nKey": "project_nav_terms"
+    },
+    {
+      "label": "Privacy",
+      "url": "privacy/",
+      "i18nKey": "project_nav_privacy"
     }
   ],
   "navMetaItems": [

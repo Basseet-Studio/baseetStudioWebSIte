@@ -77,11 +77,19 @@ const { actionUrl, lang = 'en' } = Astro.props
     </div>
 
     <form id="contact-form" class="contact-form__fields">
-      {/* ===== Left column — message + intent ===== */}
+      {/* ===== Left column — subject, message, intent, sender ===== */}
       <div class="contact-form__col contact-form__col--left">
         <div class="contact-form__subject">
           <span class="contact-form__label-mono">The Subject</span>
-          <h2 class="contact-form__subject-title">A New Chapter</h2>
+          <div class="contact-form__field contact-form__field--subject">
+            <input
+              type="text"
+              id="contact-subject"
+              name="subject"
+              class="contact-form__dashed contact-form__dashed--subject"
+              placeholder="A New Chapter"
+            />
+          </div>
         </div>
 
         <div class="contact-form__field contact-form__field--full contact-form__field--message">
@@ -108,13 +116,7 @@ const { actionUrl, lang = 'en' } = Astro.props
             ))}
           </div>
         </div>
-      </div>
 
-      {/* Vertical divider between columns */}
-      <div class="contact-form__divider" aria-hidden="true"></div>
-
-      {/* ===== Right column — sender + recipient + submit ===== */}
-      <div class="contact-form__col contact-form__col--right">
         <div class="contact-form__field-group">
           <span class="contact-form__label-mono">Sender</span>
           <div class="contact-form__field">
@@ -133,7 +135,6 @@ const { actionUrl, lang = 'en' } = Astro.props
               type="email"
               id="contact-email"
               name="email"
-              required
               class="contact-form__dashed"
               placeholder="Return Address (Email)"
             />
@@ -144,22 +145,17 @@ const { actionUrl, lang = 'en' } = Astro.props
               id="contact-phone"
               name="phone"
               class="contact-form__dashed"
-              placeholder="Phone (optional)"
-            />
-          </div>
-          <div class="contact-form__field">
-            <input
-              type="text"
-              id="contact-subject"
-              name="subject"
-              required
-              minlength="3"
-              class="contact-form__dashed"
-              placeholder="Subject"
+              placeholder="Phone (if no email)"
             />
           </div>
         </div>
+      </div>
 
+      {/* Vertical divider between columns */}
+      <div class="contact-form__divider" aria-hidden="true"></div>
+
+      {/* ===== Right column — recipient + submit ===== */}
+      <div class="contact-form__col contact-form__col--right">
         <div class="contact-form__recipient">
           <span class="contact-form__label-mono">Recipient</span>
           <ul class="contact-form__recipient-list">
@@ -267,25 +263,34 @@ const { actionUrl, lang = 'en' } = Astro.props
 
     const formData = {
       name: form.querySelector('[name="name"]')?.value.trim(),
-      email: form.querySelector('[name="email"]')?.value.trim(),
+      email: form.querySelector('[name="email"]')?.value.trim() || undefined,
       phone: form.querySelector('[name="phone"]')?.value.trim() || undefined,
-      subject: form.querySelector('[name="subject"]')?.value.trim(),
+      subject: form.querySelector('[name="subject"]')?.value.trim() || undefined,
       message: form.querySelector('[name="message"]')?.value.trim(),
       intent,
       lang: document.body.dataset.lang || 'en',
     };
     console.log('[ContactForm] Payload:', formData);
 
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneDigits = (formData.phone || '').replace(/\D/g, '');
+    const hasValidEmail = Boolean(formData.email && emailPattern.test(formData.email));
+    const hasValidPhone = phoneDigits.length >= 7 && phoneDigits.length <= 15;
+
     if (!formData.name || formData.name.length < 2) {
       showStatus('Please enter your name.', 'error');
       return;
     }
-    if (!formData.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      showStatus('Please enter a valid email.', 'error');
+    if (!hasValidEmail && !hasValidPhone) {
+      showStatus('Please enter a valid email or phone number so we can reach you.', 'error');
       return;
     }
-    if (!formData.subject || formData.subject.length < 3) {
-      showStatus('Please enter a subject.', 'error');
+    if (formData.email && !hasValidEmail) {
+      showStatus('Please enter a valid email address.', 'error');
+      return;
+    }
+    if (formData.phone && !hasValidPhone) {
+      showStatus('Please enter a valid phone number.', 'error');
       return;
     }
     if (!formData.message || formData.message.length < 10) {
@@ -578,14 +583,27 @@ const { actionUrl, lang = 'en' } = Astro.props
     gap: 6px;
   }
 
-  .contact-form__subject-title {
+  .contact-form__field--subject {
+    margin-top: 2px;
+    overflow: visible;
+  }
+
+  .contact-form__dashed--subject {
     font-family: var(--font-display);
-    font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+    font-size: clamp(2.4rem, 4.5vw, 3.4rem);
     font-weight: 700;
-    color: var(--paper-ink);
-    margin: 0;
-    letter-spacing: -0.01em;
-    line-height: 1.15;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    padding: 10px 0 14px;
+    min-height: 1.3em;
+    border-bottom: 1.5px dashed var(--paper-line);
+  }
+
+  .contact-form__dashed--subject::placeholder {
+    color: color-mix(in srgb, var(--paper-muted) 55%, transparent);
+    font-style: normal;
+    font-weight: 700;
+    font-size: clamp(2.4rem, 4.5vw, 3.4rem);
   }
 
   /* ----- Mono label (uppercase tracked) ----- */
@@ -628,6 +646,19 @@ const { actionUrl, lang = 'en' } = Astro.props
     display: flex;
     flex-direction: column;
     gap: 14px;
+  }
+
+  .contact-form__field-group .contact-form__dashed {
+    font-size: clamp(1.15rem, 2vw, 1.35rem);
+    font-weight: 600;
+    padding: 12px 0;
+  }
+
+  .contact-form__field-group .contact-form__dashed::placeholder {
+    font-size: clamp(1.15rem, 2vw, 1.35rem);
+    font-weight: 600;
+    font-style: normal;
+    color: color-mix(in srgb, var(--paper-muted) 65%, transparent);
   }
 
   .contact-form__dashed {
@@ -721,7 +752,7 @@ const { actionUrl, lang = 'en' } = Astro.props
      agency name and the signature below the submit button use
      the handwriting font; the rest stay mono. ----- */
   .contact-form__recipient {
-    margin-top: 8px;
+    margin-top: 0;
   }
 
   .contact-form__recipient-list {
