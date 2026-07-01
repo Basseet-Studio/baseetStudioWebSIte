@@ -14,6 +14,8 @@
 import type { Project } from '../types'
 import projectsIndexRaw from '../content/data/projects.json'
 
+export type ProjectIndexTier = 'anchor' | 'flagship' | 'more'
+
 export interface ProjectSummary {
   slug: string
   name: string
@@ -21,9 +23,18 @@ export interface ProjectSummary {
   color: string
   gradient: string
   status: string
-  iconClass?: string
+  iconClass?: string | null
   icon?: string | null
   platforms: Array<{ name: string; icon: string }>
+  indexHidden?: boolean
+  indexTier?: ProjectIndexTier
+  previewImage?: string
+  previewVideo?: string | null
+}
+
+export interface ProjectIndexCard extends ProjectSummary {
+  previewImage: string
+  previewVideo?: string | null
 }
 
 // Eagerly load every per-project file at build time. Vite resolves the glob
@@ -46,6 +57,26 @@ const index = projectsIndexRaw as ProjectSummary[]
 /** Ordered list of project summaries for the index page. */
 export function getProjectsIndex(): ProjectSummary[] {
   return index
+}
+
+function resolvePreviewImage(summary: ProjectSummary): string {
+  if (summary.previewImage) return summary.previewImage
+  const full = projectsBySlug[summary.slug]
+  if (full?.screenshots?.[0]) return full.screenshots[0]
+  if (summary.icon) return summary.icon
+  return ''
+}
+
+/** Visible projects for /projects with resolved preview media. */
+export function getProjectsForIndex(): ProjectIndexCard[] {
+  return index
+    .filter((p) => !p.indexHidden)
+    .map((summary) => ({
+      ...summary,
+      previewImage: resolvePreviewImage(summary),
+      previewVideo: summary.previewVideo ?? null,
+    }))
+    .filter((p) => p.previewImage)
 }
 
 /** Full project data for a given slug, or undefined if it doesn't exist. */

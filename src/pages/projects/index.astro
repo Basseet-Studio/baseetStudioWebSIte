@@ -1,267 +1,282 @@
 ---
 import Page from '../../layouts/Page.astro'
-import Icon from '../../components/icons/Icon.astro'
-import { resolveIcon } from '../../components/icons/iconMappings'
-import { getProjectsIndex, type ProjectSummary } from '../../lib/projects'
+import WorkGalleryTile from '../../components/projects/WorkGalleryTile.astro'
+import { getProjectsForIndex } from '../../lib/projects'
 
 const lang: 'en' = 'en'
-const description = 'Explore the Baseet Studio portfolio — mobile apps, web platforms, and digital products built for clients across the UAE and beyond.'
-const projects = getProjectsIndex()
+const description =
+  'Products we build in-house — mobile apps, web platforms, and tools shipped from Abu Dhabi.'
+const projects = getProjectsForIndex()
 
 const statusLabels: Record<string, string> = {
-  'Coming Soon': 'Coming Soon',
-  'Live': 'Live',
-  'Completed': 'Completed',
-  'Confidential': 'Confidential',
-  'MVP Proof of Concept': 'MVP PoC',
-  'Ready to Deliver': 'Ready to Deliver',
+  'Coming Soon': 'In development',
+  Live: 'Shipped',
+  Completed: 'Shipped',
+  Confidential: 'Private',
+  'MVP Proof of Concept': 'Early build',
+  'Ready to Deliver': 'Available on demand',
+}
+
+const anchor = projects.find((p) => p.indexTier === 'anchor')
+const flagship = projects.filter((p) => p.indexTier === 'flagship')
+const more = projects.filter((p) => p.indexTier === 'more')
+
+function statusLabel(status: string): string {
+  return statusLabels[status] || status
+}
+
+const mosaicClass: Record<string, string> = {
+  deshikitchen: 'wg--deshikitchen',
+  moneybox: 'wg--moneybox',
+  numu: 'wg--numu',
+  'photorestore-ai': 'wg--photorestore',
+  'medical-education-app': 'wg--mai',
+}
+
+const labClass: Record<string, string> = {
+  geeb: 'wg--geeb',
+  chopshop: 'wg--chopshop',
+  zaryn: 'wg--zaryn',
 }
 ---
 
 <Page title="Projects — Baseet Studio" description={description} section="projects" lang={lang}>
-  <div class="proj-index" data-proj-index>
-    <header class="proj-index__hero">
-      <p class="proj-index__eyebrow" data-proj-hero-item>Portfolio</p>
-      <h1 class="proj-index__title" data-proj-hero-item>Our Projects</h1>
-      <p class="proj-index__lede" data-proj-hero-item>
-        We build digital products that transform ideas into reality.
-      </p>
+  <div class="work-wall" data-work-wall>
+    <header class="work-wall__intro">
+      <p class="work-wall__kicker" data-wall-intro>Baseet Studio</p>
+      <h1 class="work-wall__title" data-wall-intro>Our work</h1>
     </header>
 
-    <div class="proj-index__track">
-      {projects.map((project: ProjectSummary, i) => (
-        <article
-          class="proj-card"
-          data-proj-card
-          data-proj-color={project.color}
-          style={`--proj-accent: ${project.color}; --proj-i: ${i};`}
-        >
-          <a href={`/projects/${project.slug}/`} class="proj-card__link card-window card-window--interactive">
-            <div class="proj-card__inner">
-              <div class="proj-card__meta">
-                <span class="proj-card__index" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
-                <span class="proj-card__status">{statusLabels[project.status] || project.status}</span>
-              </div>
-              <h2 class="proj-card__name">
-                <span class="proj-card__name-row">
-                  {project.icon ? (
-                    <img
-                      src={project.icon}
-                      alt=""
-                      class="proj-card__icon proj-card__icon--img"
-                      width="32"
-                      height="32"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  ) : project.iconClass ? (
-                    <span class="proj-card__icon proj-card__icon--glyph" aria-hidden="true">
-                      <Icon name={resolveIcon(project.iconClass).name} size={28} color={project.color} />
-                    </span>
-                  ) : null}
-                  <span>{project.name}</span>
-                </span>
-              </h2>
-              <p class="proj-card__tagline">{project.tagline}</p>
-              {project.platforms && project.platforms.length > 0 && (
-                <div class="proj-card__platforms">
-                  {project.platforms.map((p) => (
-                    <span title={p.name}>
-                      <Icon name={resolveIcon(p.icon).name} size={18} color="currentColor" />
-                    </span>
-                  ))}
-                </div>
-              )}
-              <span class="proj-card__cta">
-                View project
-                <Icon name="arrow-right" size={14} color="currentColor" />
-              </span>
-            </div>
-          </a>
-        </article>
-      ))}
+    <div class="work-wall__canvas" aria-label="Project gallery">
+      {anchor && (
+        <WorkGalleryTile
+          project={anchor}
+          statusLabel={statusLabel(anchor.status)}
+          layoutClass="wg--matrix"
+        />
+      )}
+
+      {flagship.length > 0 && (
+        <div class="work-wall__mosaic" aria-label="Core products">
+          {flagship.map((project) => (
+            <WorkGalleryTile
+              project={project}
+              statusLabel={statusLabel(project.status)}
+              layoutClass={mosaicClass[project.slug] ?? 'wg--default'}
+            />
+          ))}
+        </div>
+      )}
+
+      {more.length > 0 && (
+        <div class="work-wall__lab" aria-label="More in development">
+          <p class="work-wall__lab-label" data-wall-intro>Also in the lab</p>
+          <div class="work-wall__lab-grid">
+            {more.map((project) => (
+              <WorkGalleryTile
+                project={project}
+                statusLabel={statusLabel(project.status)}
+                layoutClass={labClass[project.slug] ?? 'wg--lab'}
+              />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
+
+    <footer class="work-wall__foot">
+      <a href="/contact/" class="work-wall__foot-link">Building something? Talk to us →</a>
+    </footer>
   </div>
 </Page>
 
 <style>
-  .proj-index {
-    max-width: 1100px;
+  .work-wall {
+    --wg-radius: var(--r-small, 12px);
+    --r-small: 12px;
+    --wall-gap: clamp(8px, 1.2vw, 12px);
+
+    width: min(96vw, 1360px);
     margin: 0 auto;
-    padding: 0 0 96px;
+    padding: 0 0 clamp(80px, 12vw, 120px);
   }
 
-  .proj-index__hero {
-    text-align: center;
-    padding: 24px 0 56px;
-    position: relative;
+  .work-wall__intro {
+    padding: 4px 0 clamp(24px, 4vw, 40px);
   }
 
-  .proj-index__eyebrow {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.22em;
+  .work-wall__kicker {
+    margin: 0 0 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--color-primary);
-    margin: 0 0 14px;
   }
 
-  .proj-index__title {
-    font-family: var(--font-display);
-    font-size: clamp(2.4rem, 5vw, 3.6rem);
-    font-weight: 700;
-    color: var(--heading-text);
-    margin: 0 0 16px;
+  .work-wall__title {
+    margin: 0;
+    font-family: var(--font-title);
+    font-size: clamp(2.6rem, 7vw, 4.2rem);
+    font-weight: 400;
+    line-height: 0.98;
     letter-spacing: -0.03em;
-    line-height: 1.02;
+    color: var(--heading-text);
+    text-wrap: balance;
   }
 
-  .proj-index__lede {
-    font-size: 1.15rem;
-    color: var(--muted-text);
-    max-width: 52ch;
-    margin: 0 auto;
-    line-height: 1.55;
-  }
-
-  .proj-index__track {
+  .work-wall__canvas {
     display: flex;
     flex-direction: column;
-    gap: 28px;
-    position: relative;
+    gap: var(--wall-gap);
   }
 
-  .proj-card {
-    position: relative;
-    will-change: transform, opacity;
+  /* Matrix — full-width row */
+  .work-wall__canvas :global(.wg--matrix) {
+    height: clamp(300px, 48vh, 520px);
   }
 
-  .proj-card__link {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-    overflow: hidden;
-    border-radius: var(--card-window-radius);
-    transform-origin: center center;
+  .work-wall__canvas :global(.wg--matrix .wg__name) {
+    font-size: clamp(2.2rem, 5.5vw, 4rem);
   }
 
-  .proj-card__inner {
-    padding: 28px 28px 26px;
-    display: grid;
-    gap: 10px;
-  }
-
-  .proj-card__meta {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-  }
-
-  .proj-card__index {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.14em;
-    color: color-mix(in srgb, var(--proj-accent) 70%, var(--muted-text));
-  }
-
-  .proj-card__status {
-    font-size: 0.72rem;
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-weight: 600;
-    white-space: nowrap;
-    background: color-mix(in srgb, var(--proj-accent) 12%, transparent);
-    color: var(--proj-accent);
-    border: 1px solid color-mix(in srgb, var(--proj-accent) 28%, transparent);
-  }
-
-  .proj-card__name {
-    font-family: var(--font-title);
-    font-size: clamp(1.35rem, 2.4vw, 1.65rem);
-    font-weight: 700;
-    color: var(--heading-text);
-    margin: 0;
-    letter-spacing: -0.01em;
-  }
-
-  .proj-card__name-row {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .proj-card__icon {
-    flex-shrink: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .proj-card__icon--img {
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
-    object-fit: cover;
-  }
-
-  .proj-card__icon--glyph {
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
-    background: color-mix(in srgb, var(--proj-accent) 12%, transparent);
-    border: 1px solid color-mix(in srgb, var(--proj-accent) 22%, transparent);
-  }
-
-  .proj-card__tagline {
-    font-size: 0.95rem;
-    color: var(--muted-text);
-    margin: 0;
-    line-height: 1.5;
-    max-width: 56ch;
-  }
-
-  .proj-card__platforms {
-    display: flex;
-    gap: 10px;
-    font-size: 1.05rem;
-    color: var(--muted-text);
-    margin-top: 4px;
-  }
-
-  .proj-card__cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 8px;
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--proj-accent);
-    opacity: 0.85;
-    transition: gap 0.25s ease, opacity 0.25s ease;
-  }
-
-  .proj-card__link:hover .proj-card__cta,
-  .proj-card__link:focus-visible .proj-card__cta {
-    gap: 12px;
+  .work-wall__canvas :global(.wg--matrix .wg__tagline) {
     opacity: 1;
+    transform: none;
   }
 
-  @media (max-width: 640px) {
-    .proj-index__hero {
-      padding-bottom: 40px;
+  /*
+   * Mosaic — explicit 4×12 grid so every cell is filled edge-to-edge.
+   * Row heights are equal fractions; tiles stretch to 100% height.
+   */
+  .work-wall__mosaic {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-rows: repeat(4, minmax(0, 1fr));
+    gap: var(--wall-gap);
+    height: clamp(560px, 68vw, 760px);
+    min-height: 0;
+  }
+
+  .work-wall__mosaic :global(.wg) {
+    min-height: 0;
+    height: 100%;
+  }
+
+  .work-wall__mosaic :global(.wg--deshikitchen) {
+    grid-column: 1 / 8;
+    grid-row: 1 / 4;
+  }
+
+  .work-wall__mosaic :global(.wg--deshikitchen .wg__name) {
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+  }
+
+  .work-wall__mosaic :global(.wg--moneybox) {
+    grid-column: 8 / -1;
+    grid-row: 1 / 3;
+  }
+
+  .work-wall__mosaic :global(.wg--numu) {
+    grid-column: 8 / -1;
+    grid-row: 3 / 4;
+  }
+
+  .work-wall__mosaic :global(.wg--photorestore) {
+    grid-column: 1 / 6;
+    grid-row: 4 / 5;
+  }
+
+  .work-wall__mosaic :global(.wg--mai) {
+    grid-column: 6 / -1;
+    grid-row: 4 / 5;
+  }
+
+  .work-wall__mosaic :global(.wg--moneybox .wg__name) {
+    font-size: clamp(1.3rem, 2.2vw, 1.75rem);
+  }
+
+  .work-wall__mosaic :global(.wg--numu .wg__name),
+  .work-wall__mosaic :global(.wg--photorestore .wg__name),
+  .work-wall__mosaic :global(.wg--mai .wg__name) {
+    font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+  }
+
+  /* Lab — equal three-column grid, aligned heights */
+  .work-wall__lab {
+    margin-top: clamp(16px, 3vw, 28px);
+  }
+
+  .work-wall__lab-label {
+    margin: 0 0 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--muted-text);
+  }
+
+  .work-wall__lab-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--wall-gap);
+    height: clamp(300px, 40vw, 420px);
+  }
+
+  .work-wall__lab-grid :global(.wg) {
+    min-height: 0;
+    height: 100%;
+  }
+
+  .work-wall__lab-grid :global(.wg__name) {
+    font-size: clamp(1.25rem, 2.2vw, 1.55rem);
+  }
+
+  .work-wall__foot {
+    margin-top: clamp(40px, 6vw, 64px);
+    text-align: center;
+  }
+
+  .work-wall__foot-link {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-decoration: none;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-primary) 35%, transparent);
+    padding-bottom: 2px;
+    transition: border-color 0.25s ease, color 0.25s ease;
+  }
+
+  .work-wall__foot-link:hover,
+  .work-wall__foot-link:focus-visible {
+    border-color: var(--color-primary);
+    color: var(--heading-text);
+  }
+
+  @media (max-width: 900px) {
+    .work-wall__mosaic {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      height: auto;
     }
 
-    .proj-card__inner {
-      padding: 22px 20px 20px;
+    .work-wall__mosaic :global(.wg) {
+      grid-column: 1 / -1 !important;
+      grid-row: auto !important;
+      height: clamp(200px, 52vw, 320px) !important;
+    }
+
+    .work-wall__lab-grid {
+      grid-template-columns: 1fr;
+      height: auto;
+    }
+
+    .work-wall__lab-grid :global(.wg) {
+      height: clamp(260px, 58vw, 380px);
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .proj-card {
-      will-change: auto;
+    .work-wall__foot-link {
+      transition: none;
     }
   }
 </style>
@@ -274,65 +289,92 @@ const statusLabels: Record<string, string> = {
 
   let triggers: ScrollTrigger[] = []
 
-  function killAll(): void {
+  function killWallMotion(): void {
     triggers.forEach((t) => t.kill())
     triggers = []
-    ScrollTrigger.getAll().forEach((st) => {
-      if (st.vars?.id?.toString().startsWith('proj-index')) st.kill()
+  }
+
+  function initZipBorders(root: HTMLElement): void {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const radius = getComputedStyle(root).getPropertyValue('--wg-radius').trim() || '12px'
+    const closed = `inset(calc(100% - 2px) 0 0 0 round ${radius})`
+    const open = `inset(0 round ${radius})`
+
+    root.querySelectorAll<HTMLElement>('[data-wg-tile]').forEach((tile) => {
+      const frame = tile.querySelector<HTMLElement>('[data-zip-frame]')
+      if (!frame) return
+
+      gsap.set(frame, { clipPath: closed })
+
+      if (reduced) {
+        const toggle = (on: boolean) => tile.classList.toggle('is-zipped', on)
+        tile.addEventListener('mouseenter', () => toggle(true))
+        tile.addEventListener('mouseleave', () => toggle(false))
+        tile.addEventListener('focusin', () => toggle(true))
+        tile.addEventListener('focusout', () => toggle(false))
+        return
+      }
+
+      const tl = gsap.timeline({ paused: true, defaults: { ease: 'power2.inOut', duration: 0.5 } })
+      tl.to(frame, { clipPath: open })
+
+      tile.addEventListener('mouseenter', () => tl.play())
+      tile.addEventListener('mouseleave', () => tl.reverse())
+      tile.addEventListener('focusin', () => tl.play())
+      tile.addEventListener('focusout', () => tl.reverse())
     })
   }
 
-  function initProjectsScroll(): void {
-    killAll()
+  function initWorkWall(): void {
+    killWallMotion()
 
-    const root = document.querySelector<HTMLElement>('[data-proj-index]')
+    const root = document.querySelector<HTMLElement>('[data-work-wall]')
     if (!root) return
 
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      root.querySelectorAll('[data-proj-card]').forEach((card) => {
-        gsap.set(card, { opacity: 1, y: 0 })
-      })
-      return
-    }
+    initZipBorders(root)
 
-    const heroItems = gsap.utils.toArray<HTMLElement>('[data-proj-hero-item]')
-    const cards = gsap.utils.toArray<HTMLElement>('[data-proj-card]')
+    root.querySelectorAll<HTMLVideoElement>('video.wg__visual').forEach((video) => {
+      const tile = video.closest('.wg')
+      if (!tile) return
 
-    gsap.from(heroItems, {
-      y: 24,
-      opacity: 0,
-      duration: 0.7,
-      stagger: 0.1,
-      ease: 'power2.out',
-      delay: 0.1,
+      const play = () => video.play().catch(() => {})
+      const pause = () => {
+        video.pause()
+        video.currentTime = 0
+      }
+
+      tile.addEventListener('mouseenter', play)
+      tile.addEventListener('mouseleave', pause)
+      tile.addEventListener('focusin', play)
+      tile.addEventListener('focusout', pause)
     })
 
-    cards.forEach((card, i) => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    gsap.from(root.querySelectorAll('[data-wall-intro]'), {
+      y: 14,
+      opacity: 0,
+      duration: 0.55,
+      stagger: 0.06,
+      ease: 'power2.out',
+    })
+
+    const matrixVisual = root.querySelector<HTMLElement>('.wg--matrix .wg__visual')
+    if (matrixVisual) {
       const st = ScrollTrigger.create({
-        id: `proj-index-card-${i}`,
-        trigger: card,
-        start: 'top 90%',
-        once: true,
-        onEnter: () => {
-          gsap.fromTo(
-            card,
-            { opacity: 0, y: 20 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.55,
-              ease: 'power2.out',
-            },
-          )
+        trigger: root.querySelector('.wg--matrix'),
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 0.5,
+        onUpdate: (self) => {
+          gsap.set(matrixVisual, { y: (self.progress - 0.5) * 16 })
         },
       })
       triggers.push(st)
-    })
-
-    ScrollTrigger.refresh()
+    }
   }
 
-  initProjectsScroll()
-  document.addEventListener('astro:page-load', initProjectsScroll)
-  document.addEventListener('astro:before-swap', killAll)
+  initWorkWall()
+  document.addEventListener('astro:page-load', initWorkWall)
+  document.addEventListener('astro:before-swap', killWallMotion)
 </script>

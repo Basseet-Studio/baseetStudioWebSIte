@@ -1,0 +1,226 @@
+---
+import type { ProjectIndexCard } from '../../lib/projects'
+
+interface Props {
+  project: ProjectIndexCard
+  statusLabel: string
+  layoutClass: string
+}
+
+const { project, statusLabel, layoutClass } = Astro.props
+const hasVideo = Boolean(project.previewVideo)
+---
+
+<a
+  href={`/projects/${project.slug}/`}
+  class:list={['wg', layoutClass]}
+  data-wg-tile
+  style={`--wg-accent: ${project.color};`}
+>
+  <span class="wg__frame">
+    <span class="wg__media">
+      {hasVideo ? (
+        <video
+          class="wg__visual"
+          src={project.previewVideo!}
+          poster={project.previewImage}
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          aria-hidden="true"
+        />
+      ) : (
+        <img
+          class="wg__visual"
+          src={project.previewImage}
+          alt=""
+          loading="lazy"
+          decoding="async"
+        />
+      )}
+    </span>
+
+    <span class="wg__tint" aria-hidden="true"></span>
+
+    <span class="wg__zip-frame" data-zip-frame aria-hidden="true"></span>
+
+    <span class="wg__copy">
+      <span class="wg__meta">
+        <span class="wg__status">{statusLabel}</span>
+        {project.platforms?.length > 0 && (
+          <span class="wg__platforms">
+            {project.platforms.map((p) => p.name).join(' · ')}
+          </span>
+        )}
+      </span>
+      <span class="wg__name">{project.name}</span>
+      <span class="wg__tagline">{project.tagline}</span>
+    </span>
+  </span>
+</a>
+
+<style>
+  .wg {
+    display: block;
+    height: 100%;
+    min-height: 0;
+    text-decoration: none;
+    color: #fff;
+    position: relative;
+    outline: none;
+    border-radius: var(--wg-radius, var(--r-small, 12px));
+  }
+
+  .wg__frame {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    min-height: inherit;
+    overflow: hidden;
+    border-radius: inherit;
+    background: color-mix(in srgb, var(--wg-accent) 8%, rgba(8, 12, 20, 0.35));
+    transform: translateZ(0);
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .wg__media {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    border-radius: inherit;
+  }
+
+  .wg__visual {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+    border-radius: inherit;
+    transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+  }
+
+  .wg__tint {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+    background: linear-gradient(
+      180deg,
+      transparent 28%,
+      rgba(6, 10, 18, 0.48) 68%,
+      rgba(6, 10, 18, 0.9) 100%
+    );
+    pointer-events: none;
+  }
+
+  /* Rounded border — bottom edge at rest, clips open to full frame on hover (GSAP) */
+  .wg__zip-frame {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    border-radius: inherit;
+    border: 2px solid var(--wg-accent);
+    pointer-events: none;
+    clip-path: inset(calc(100% - 2px) 0 0 0 round var(--wg-radius, var(--r-small, 12px)));
+  }
+
+  .wg.is-zipped .wg__zip-frame {
+    clip-path: inset(0 round var(--wg-radius, var(--r-small, 12px)));
+  }
+
+  .wg__copy {
+    position: absolute;
+    inset: auto 0 0 0;
+    z-index: 2;
+    padding: clamp(16px, 3vw, 28px);
+    display: grid;
+    gap: 6px;
+    pointer-events: none;
+  }
+
+  .wg__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 14px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.82);
+  }
+
+  .wg__status {
+    padding: 3px 8px;
+    border-radius: var(--r-small, 12px);
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .wg__platforms {
+    opacity: 0.9;
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 500;
+  }
+
+  .wg__name {
+    font-family: var(--font-title);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+  }
+
+  .wg__tagline {
+    font-size: clamp(0.85rem, 1.6vw, 0.98rem);
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.78);
+    max-width: 36ch;
+    opacity: 0;
+    transform: translateY(8px);
+    transition:
+      opacity 0.4s ease,
+      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .wg:hover .wg__frame,
+  .wg:focus-visible .wg__frame {
+    transform: translateY(-3px);
+  }
+
+  .wg:hover .wg__visual,
+  .wg:focus-visible .wg__visual {
+    transform: scale(1.04);
+  }
+
+  .wg:hover .wg__tagline,
+  .wg:focus-visible .wg__tagline {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .wg:focus-visible .wg__frame {
+    outline: 2px solid rgba(255, 255, 255, 0.85);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .wg__frame,
+    .wg__visual,
+    .wg__tagline {
+      transition: none;
+    }
+
+    .wg__tagline {
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>
