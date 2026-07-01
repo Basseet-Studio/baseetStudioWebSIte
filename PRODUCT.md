@@ -61,5 +61,4 @@ Refuse these patterns, even when they are the obvious move for a digital agency 
 
 ## Out of scope for now
 
-- DESIGN.md is not written yet. Run `impeccable document` to generate it from the existing CSS tokens (`src/styles/global.css`, `src/styles/glass.css`, `src/styles/services.css`) and per-service color data. Until then, this PRODUCT.md is the only context file future commands will read.
 - The six service hero animations (`anim-browser`, `anim-phone`, `anim-dashboard`, `anim-chart`, `anim-palette`, `anim-cloud`) are flagged for review under the "spacious, not sparse" and "warm, never clinical" principles. Likely outcome: distill to one committed treatment rather than six similar widgets.

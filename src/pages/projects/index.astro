@@ -24,14 +24,11 @@ const statusLabels: Record<string, string> = {
       <p class="proj-index__eyebrow" data-proj-hero-item>Portfolio</p>
       <h1 class="proj-index__title" data-proj-hero-item>Our Projects</h1>
       <p class="proj-index__lede" data-proj-hero-item>
-        We build digital products that transform ideas into reality — scroll the runway.
+        We build digital products that transform ideas into reality.
       </p>
-      <div class="proj-index__meter" aria-hidden="true">
-        <span class="proj-index__meter-fill" data-proj-meter></span>
-      </div>
     </header>
 
-    <div class="proj-index__track" data-proj-track>
+    <div class="proj-index__track">
       {projects.map((project: ProjectSummary, i) => (
         <article
           class="proj-card"
@@ -40,13 +37,31 @@ const statusLabels: Record<string, string> = {
           style={`--proj-accent: ${project.color}; --proj-i: ${i};`}
         >
           <a href={`/projects/${project.slug}/`} class="proj-card__link card-window card-window--interactive">
-            <div class="proj-card__accent" aria-hidden="true"></div>
             <div class="proj-card__inner">
               <div class="proj-card__meta">
                 <span class="proj-card__index" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
                 <span class="proj-card__status">{statusLabels[project.status] || project.status}</span>
               </div>
-              <h2 class="proj-card__name">{project.name}</h2>
+              <h2 class="proj-card__name">
+                <span class="proj-card__name-row">
+                  {project.icon ? (
+                    <img
+                      src={project.icon}
+                      alt=""
+                      class="proj-card__icon proj-card__icon--img"
+                      width="32"
+                      height="32"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ) : project.iconClass ? (
+                    <span class="proj-card__icon proj-card__icon--glyph" aria-hidden="true">
+                      <Icon name={resolveIcon(project.iconClass).name} size={28} color={project.color} />
+                    </span>
+                  ) : null}
+                  <span>{project.name}</span>
+                </span>
+              </h2>
               <p class="proj-card__tagline">{project.tagline}</p>
               {project.platforms && project.platforms.length > 0 && (
                 <div class="proj-card__platforms">
@@ -105,27 +120,8 @@ const statusLabels: Record<string, string> = {
     font-size: 1.15rem;
     color: var(--muted-text);
     max-width: 52ch;
-    margin: 0 auto 28px;
-    line-height: 1.55;
-  }
-
-  .proj-index__meter {
-    width: min(320px, 70%);
-    height: 3px;
     margin: 0 auto;
-    border-radius: 999px;
-    background: color-mix(in srgb, var(--muted-text) 18%, transparent);
-    overflow: hidden;
-  }
-
-  .proj-index__meter-fill {
-    display: block;
-    width: 100%;
-    height: 100%;
-    border-radius: inherit;
-    background: linear-gradient(90deg, var(--color-primary), color-mix(in srgb, var(--color-primary) 40%, #f59e0b));
-    transform-origin: left center;
-    transform: scaleX(0);
+    line-height: 1.55;
   }
 
   .proj-index__track {
@@ -147,13 +143,6 @@ const statusLabels: Record<string, string> = {
     overflow: hidden;
     border-radius: var(--card-window-radius);
     transform-origin: center center;
-  }
-
-  .proj-card__accent {
-    height: 5px;
-    background: var(--proj-accent);
-    transform-origin: left center;
-    transform: scaleX(0.15);
   }
 
   .proj-card__inner {
@@ -194,6 +183,34 @@ const statusLabels: Record<string, string> = {
     color: var(--heading-text);
     margin: 0;
     letter-spacing: -0.01em;
+  }
+
+  .proj-card__name-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .proj-card__icon {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .proj-card__icon--img {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  .proj-card__icon--glyph {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--proj-accent) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--proj-accent) 22%, transparent);
   }
 
   .proj-card__tagline {
@@ -243,9 +260,7 @@ const statusLabels: Record<string, string> = {
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .proj-card,
-    .proj-card__accent,
-    .proj-index__meter-fill {
+    .proj-card {
       will-change: auto;
     }
   }
@@ -275,86 +290,43 @@ const statusLabels: Record<string, string> = {
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       root.querySelectorAll('[data-proj-card]').forEach((card) => {
-        gsap.set(card, { opacity: 1, x: 0, rotate: 0 })
+        gsap.set(card, { opacity: 1, y: 0 })
       })
       return
     }
 
     const heroItems = gsap.utils.toArray<HTMLElement>('[data-proj-hero-item]')
     const cards = gsap.utils.toArray<HTMLElement>('[data-proj-card]')
-    const meter = root.querySelector<HTMLElement>('[data-proj-meter]')
-    const track = root.querySelector<HTMLElement>('[data-proj-track]')
 
     gsap.from(heroItems, {
-      y: 36,
+      y: 24,
       opacity: 0,
-      duration: 0.8,
-      stagger: 0.12,
-      ease: 'power3.out',
+      duration: 0.7,
+      stagger: 0.1,
+      ease: 'power2.out',
       delay: 0.1,
     })
 
-    if (meter && track) {
-      const meterSt = ScrollTrigger.create({
-        id: 'proj-index-meter',
-        trigger: track,
-        start: 'top 80%',
-        end: 'bottom 20%',
-        scrub: 0.6,
-        onUpdate: (self) => {
-          gsap.to(meter, { scaleX: self.progress, duration: 0.2, overwrite: true })
-        },
-      })
-      triggers.push(meterSt)
-    }
-
     cards.forEach((card, i) => {
-      const accent = card.querySelector<HTMLElement>('.proj-card__accent')
-      const fromX = i % 2 === 0 ? -72 : 72
-      const fromRot = i % 2 === 0 ? -2.2 : 2.2
-
       const st = ScrollTrigger.create({
         id: `proj-index-card-${i}`,
         trigger: card,
-        start: 'top 88%',
+        start: 'top 90%',
         once: true,
         onEnter: () => {
           gsap.fromTo(
             card,
-            { opacity: 0, x: fromX, rotate: fromRot, scale: 0.96 },
+            { opacity: 0, y: 20 },
             {
               opacity: 1,
-              x: 0,
-              rotate: 0,
-              scale: 1,
-              duration: 0.85,
-              ease: 'power3.out',
+              y: 0,
+              duration: 0.55,
+              ease: 'power2.out',
             },
           )
-          if (accent) {
-            gsap.fromTo(
-              accent,
-              { scaleX: 0 },
-              { scaleX: 1, duration: 0.9, ease: 'power2.out', delay: 0.08 },
-            )
-          }
         },
       })
       triggers.push(st)
-
-      const scrubSt = ScrollTrigger.create({
-        id: `proj-index-scrub-${i}`,
-        trigger: card,
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: 0.8,
-        onUpdate: (self) => {
-          const p = self.progress
-          const drift = (p - 0.5) * 18
-          gsap.set(card, { y: drift, rotate: (i % 2 === 0 ? 0.6 : -0.6) * (p - 0.5) })
-        },
-      })
-      triggers.push(scrubSt)
     })
 
     ScrollTrigger.refresh()
