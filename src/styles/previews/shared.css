@@ -9,20 +9,59 @@
   background-color: var(--wg-preview-bg, transparent);
 }
 
+/* App-shell previews render at a fixed design size, then scale to the tile */
+.preview-stage[data-preview-type='matrix'],
+.preview-stage[data-preview-type='baseetims'] {
+  container-type: size;
+}
+
+.preview-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: top left;
+  overflow: hidden;
+  display: flex;
+  min-height: 0;
+}
+
+.preview-canvas--matrix {
+  --preview-design-w: 760;
+  --preview-design-h: 400;
+  width: calc(var(--preview-design-w) * 1px);
+  height: calc(var(--preview-design-h) * 1px);
+  transform: scale(min(100cqw / var(--preview-design-w), 100cqh / var(--preview-design-h)));
+}
+
+.preview-canvas--ims {
+  --preview-design-w: 700;
+  --preview-design-h: 380;
+  width: calc(var(--preview-design-w) * 1px);
+  height: calc(var(--preview-design-h) * 1px);
+  transform: scale(min(100cqw / var(--preview-design-w), 100cqh / var(--preview-design-h)));
+}
+
 .preview-ghost {
   position: absolute;
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: #fff;
-  border: 2px solid #111;
+  background: var(--preview-ghost-bg, #fff);
+  border: 2px solid var(--preview-ghost-border, #111);
   pointer-events: none;
   z-index: 50;
   transition:
     left 0.7s cubic-bezier(0.4, 0, 0.2, 1),
     top 0.7s cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 0.25s;
+    opacity 0.25s,
+    background 0.25s,
+    border-color 0.25s;
   transform: translate(-2px, -2px);
+}
+
+[data-theme='night'] .preview-ghost {
+  --preview-ghost-bg: #e5e7eb;
+  --preview-ghost-border: #374151;
 }
 
 .preview-ghost--pulse {

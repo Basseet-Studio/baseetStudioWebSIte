@@ -1,7 +1,7 @@
 import { bindLiveGhost, createAutoLoop, createGhostCursor } from './ghostCursor'
 import type { PreviewController } from './types'
 
-type Column = 'backlog' | 'todo' | 'doing' | 'review' | 'testing' | 'done'
+type Column = 'todo' | 'doing' | 'review' | 'done'
 type Priority = 'high' | 'medium' | 'critical'
 
 interface Card {
@@ -11,14 +11,12 @@ interface Card {
   priority: Priority
 }
 
-const COLUMNS: Column[] = ['backlog', 'todo', 'doing', 'review', 'testing', 'done']
+const COLUMNS: Column[] = ['todo', 'doing', 'review', 'done']
 
 const COLUMN_LABELS: Record<Column, string> = {
-  backlog: 'Backlog',
   todo: 'To Do',
   doing: 'In Prog',
   review: 'Review',
-  testing: 'Testing',
   done: 'Done',
 }
 
@@ -36,14 +34,12 @@ export function initMatrixPreview(root: HTMLElement): PreviewController {
   const unbindLive = bindLiveGhost(root, ghost)
 
   let cards: Card[] = [
-    { id: 1, title: 'Docs collab', col: 'backlog', priority: 'medium' },
+    { id: 1, title: 'Docs collab', col: 'todo', priority: 'medium' },
     { id: 2, title: 'Fix auth sync', col: 'todo', priority: 'high' },
-    { id: 3, title: 'Header btn', col: 'todo', priority: 'medium' },
-    { id: 4, title: 'Find bugs', col: 'doing', priority: 'critical' },
-    { id: 5, title: 'CRDT sync', col: 'doing', priority: 'high' },
-    { id: 6, title: 'Pricing copy', col: 'review', priority: 'medium' },
-    { id: 7, title: 'Deploy API', col: 'testing', priority: 'high' },
-    { id: 8, title: 'QA pass', col: 'done', priority: 'medium' },
+    { id: 3, title: 'Find bugs', col: 'doing', priority: 'critical' },
+    { id: 4, title: 'CRDT sync', col: 'doing', priority: 'high' },
+    { id: 5, title: 'Pricing copy', col: 'review', priority: 'medium' },
+    { id: 6, title: 'QA pass', col: 'done', priority: 'medium' },
   ]
 
   function nextColumn(col: Column): Column {
@@ -58,6 +54,8 @@ export function initMatrixPreview(root: HTMLElement): PreviewController {
       const count = cards.filter((c) => c.col === col).length
       label.textContent = `${COLUMN_LABELS[col]} (${count})`
     })
+    const taskCount = root.querySelector<HTMLElement>('[data-task-count]')
+    if (taskCount) taskCount.textContent = `${cards.length} tasks`
   }
 
   function render(): void {

@@ -12,7 +12,13 @@
     --nav-text: var(--text-primary);
     --nav-text-muted: var(--text-secondary);
     --nav-active-bg: rgba(73, 107, 193, 0.08);
+    --nav-active-text: var(--color-primary);
     --nav-hover-bg: var(--interactive-hover);
+}
+
+[data-theme="night"] {
+    --nav-active-bg: rgba(120, 154, 230, 0.2);
+    --nav-active-text: #a8c0f5;
 }
 
 /* =========== BASE CONTAINER =========== */
@@ -54,7 +60,11 @@
 }
 
 .app-bar:hover {
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+    box-shadow: var(--nav-shadow);
+}
+
+[data-theme="night"] .app-bar:hover {
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.42);
 }
 
 /* =========== INNER LAYOUT =========== */
@@ -195,7 +205,7 @@
 
 .app-bar__link.active {
     background: var(--nav-active-bg);
-    color: var(--color-primary, #496bc1);
+    color: var(--nav-active-text, var(--color-primary));
     font-weight: 600;
 }
 
@@ -379,20 +389,20 @@
     background: transparent;
     border: none;
     width: 100%;
-    color: var(--text-primary, #171d1c);
+    color: var(--nav-text);
     font-weight: 600;
     transition: all 0.2s ease;
 }
 
 .app-bar--mobile-expanded .app-bar__links .app-bar__link:hover {
-    background: var(--interactive-hover, rgba(0, 0, 0, 0.04));
-    color: var(--text-primary, #171d1c);
+    background: var(--nav-hover-bg);
+    color: var(--nav-text);
     transform: none;
 }
 
 .app-bar--mobile-expanded .app-bar__links .app-bar__link.active {
-    background: rgba(73, 107, 193, 0.12);
-    color: var(--color-primary, #496bc1);
+    background: var(--nav-active-bg);
+    color: var(--nav-active-text, var(--color-primary));
 }
 
 .app-bar--mobile-expanded .app-bar__actions {
@@ -430,8 +440,8 @@
     text-align: center;
     padding: 6px;
     font-size: 0.8rem;
-    color: var(--text-primary, #171d1c);
-    opacity: 0.6;
+    color: var(--nav-text);
+    opacity: 0.72;
 }
 
 .app-bar--mobile-expanded .app-bar__actions .lang-switcher:hover {
@@ -446,7 +456,7 @@
     justify-content: center;
     align-items: center;
     padding: 12px 0 4px;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    border-top: 1px solid var(--border-soft);
     margin-top: auto;
 }
 
@@ -464,7 +474,7 @@
 }
 
 .app-bar__social-link {
-    color: rgba(23, 29, 28, 0.6);
+    color: var(--nav-text-muted);
     font-size: 1.2rem;
     width: 40px;
     height: 40px;
@@ -476,8 +486,8 @@
 }
 
 .app-bar__social-link:hover {
-    color: #171d1c;
-    background: rgba(0, 0, 0, 0.06);
+    color: var(--nav-text);
+    background: var(--nav-hover-bg);
     transform: scale(1.1);
 }
 
@@ -599,7 +609,7 @@
 /* =========== BACKDROP-FILTER FALLBACK =========== */
 @supports not (backdrop-filter: blur(1px)) {
     .app-bar {
-        background: rgba(255, 255, 255, 0.95);
+        background: var(--bg-elevated-strong);
     }
 
     .app-bar--mobile-expanded ~ .app-bar__overlay {

@@ -1,12 +1,12 @@
-/* Zaryn — All-In-One Business Management */
-/* Color & gradient come from zaryn.json (`color: #F97316`). The
+/* BaseetIMS — All-In-One Business Management */
+/* Color & gradient come from baseetims.json (`color: #F97316`). The
  * `ProjectLayout` wrapper sets `--project-color` and `--project-gradient`
  * inline, so this stylesheet stays empty of color overrides — the JSON
  * is the single source of truth (see audit fix #33 for the original
  * font-weights mismatch).
  *
- * The bento grid and bento card rules are scoped to zaryn only because
- * the bento layout is unique to zaryn (every other project page uses the
+ * The bento grid and bento card rules are scoped to baseetims only because
+ * the bento layout is unique to baseetims (every other project page uses the
  * shared ProjectFeatureCard component). */
 
 /* Bento Grid */

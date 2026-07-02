@@ -1,0 +1,80 @@
+---
+import ProjectLayout from '../../layouts/Project.astro'
+import ProjectCTA from '../../components/project/ProjectCTA.astro'
+import GradientCTA from '../../components/project/GradientCTA.astro'
+import { getProject } from '../../lib/projects'
+
+const lang: 'en' = 'en'
+const slug = 'jemeti'
+const project = getProject(slug)
+if (!project) return Astro.redirect('/404')
+---
+
+<ProjectLayout
+  title={`${project.name} — Baseet Studio`}
+  description={project.tagline}
+  slug={project.slug}
+  projectColor={project.color}
+  projectGradient={project.gradient}
+  projectName={project.name}
+  projectIconClass={project.iconClass}
+  projectNavItems={project.navItems}
+  projectNavMeta={project.navMetaItems}
+  lang={lang}
+>
+  <section style="padding:140px 24px 64px;max-width:900px;margin:0 auto;text-align:center;" data-animate="fade-up">
+    <a href="/projects/" style={`display:inline-flex;align-items:center;gap:8px;color:${project.color};text-decoration:none;font-weight:500;margin-bottom:32px;`}>
+      ← Back to Projects
+    </a>
+
+    <div style={`width:80px;height:80px;border-radius:16px;background:${project.gradient};display:flex;align-items:center;justify-content:center;margin:0 auto 24px;box-shadow:0 10px 30px color-mix(in srgb, ${project.color} 25%, transparent);overflow:hidden;`}>
+      {project.icon ? (
+        <img src={project.icon} alt="" width="48" height="48" style="display:block;" />
+      ) : (
+        <span style="font-size:2rem;font-weight:700;color:white;">J</span>
+      )}
+    </div>
+
+    <h1 style="font-size:2.8rem;font-weight:700;color:var(--heading-text);margin-bottom:8px;font-family:var(--font-title);">{project.name}</h1>
+    <p style={`font-size:1.25rem;color:${project.color};font-weight:600;margin-bottom:32px;`}>{project.tagline}</p>
+    <p style="font-size:1.1rem;color:var(--muted-text);max-width:600px;margin:0 auto 32px;line-height:1.7;">{project.hero.subtitle}</p>
+
+    {project.hero.cta_primary && (
+      <a
+        href={project.hero.cta_primary_link || '/contact/'}
+        class="cta-btn--primary"
+        style={`background:${project.gradient};`}
+      >
+        {project.hero.cta_primary}
+      </a>
+    )}
+  </section>
+
+  {project.features && project.features.length > 0 && (
+    <section style="padding:48px 24px;max-width:900px;margin:0 auto;">
+      <h2 style="text-align:center;font-size:1.75rem;font-weight:700;color:var(--heading-text);margin-bottom:32px;font-family:var(--font-title);">
+        Planned features
+      </h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;">
+        {project.features.map((feature) => (
+          <div class="glass glass-card" style="padding:24px;border-radius:18px;" data-animate="fade-up">
+            <h3 style="font-size:1.05rem;font-weight:700;color:var(--heading-text);margin-bottom:8px;">{feature.title}</h3>
+            <p style="font-size:0.95rem;color:var(--muted-text);line-height:1.6;">{feature.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <GradientCTA
+    title={`Interested in ${project.name}?`}
+    body="We're building Jemeti with real shop owners. Get in touch for early access."
+    ctaLabel="Get in Touch"
+    ctaHref="/contact/"
+    gradient={project.gradient}
+    accentColor={project.color}
+    lang={lang}
+  />
+
+  <ProjectCTA status={project.status} platforms={project.platforms || []} links={project.links} lang={lang} />
+</ProjectLayout>

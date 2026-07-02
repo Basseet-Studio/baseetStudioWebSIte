@@ -24,7 +24,7 @@
     "contact_form_url": "https://baseet-form-handler.baseetstudio.workers.dev"
   },
   "projects": {
-    "zaryn": { "ios": "#", "android": "#", "web": "#" },
+    "baseetims": { "ios": "#", "android": "#", "web": "#" },
     "medev": { "ios": "#", "android": "#", "web": "#" },
     "chopshop": { "ios": "#", "android": "#", "web": "#" },
     "deshikitchen": { "ios": "#", "android": "#", "web": "https://deshikitchen.com" },

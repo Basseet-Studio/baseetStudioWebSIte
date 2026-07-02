@@ -3,15 +3,25 @@
 // with a '/' separator so the visual reads as "either/or". Good padding
 // around the pair. Click anywhere on the button to toggle.
 import Icon from '../icons/Icon.astro'
+import { t } from '../../lib/i18n'
+import type { Lang } from '../../types'
+
+interface Props {
+  lang?: Lang
+}
+
+const { lang = 'en' } = Astro.props
 ---
 
 <button
   type="button"
   class="theme-switcher"
   id="theme-switcher"
-  aria-label="Switch to night mode"
+  aria-label={t('theme_switch_to_night', lang)}
   aria-pressed="false"
-  title="Toggle theme"
+  title={t('theme_toggle', lang)}
+  data-label-day={t('theme_switch_to_day', lang)}
+  data-label-night={t('theme_switch_to_night', lang)}
 >
   <Icon name="sun" size={16} color="currentColor" />
   <span class="theme-switcher__sep" aria-hidden="true">/</span>
@@ -19,20 +29,21 @@ import Icon from '../icons/Icon.astro'
 </button>
 
 <script>
-  const STORAGE_KEY = 'baseet-theme'
+  import { THEME_STORAGE_KEY, applyTheme, type SiteTheme } from '../../lib/theme'
 
-  function getCurrentTheme(): 'day' | 'night' {
-    const root = document.documentElement
-    return root.getAttribute('data-theme') === 'night' ? 'night' : 'day'
+  function getCurrentTheme(): SiteTheme {
+    return document.documentElement.getAttribute('data-theme') === 'night' ? 'night' : 'day'
   }
 
   function updateThemeSwitchUI() {
     const button = document.getElementById('theme-switcher')
     if (!button) return
-    const theme = getCurrentTheme()
-    const isNight = theme === 'night'
+    const isNight = getCurrentTheme() === 'night'
     button.setAttribute('aria-pressed', String(isNight))
-    button.setAttribute('aria-label', isNight ? 'Switch to day mode' : 'Switch to night mode')
+    button.setAttribute(
+      'aria-label',
+      isNight ? button.dataset.labelDay || 'Switch to day mode' : button.dataset.labelNight || 'Switch to night mode',
+    )
   }
 
   function initThemeSwitcher() {
@@ -40,11 +51,10 @@ import Icon from '../icons/Icon.astro'
     if (!button) return
     updateThemeSwitchUI()
     button.onclick = () => {
-      const root = document.documentElement
-      const nextTheme: 'day' | 'night' = getCurrentTheme() === 'night' ? 'day' : 'night'
-      root.setAttribute('data-theme', nextTheme)
+      const nextTheme: SiteTheme = getCurrentTheme() === 'night' ? 'day' : 'night'
+      applyTheme(nextTheme)
       try {
-        localStorage.setItem(STORAGE_KEY, nextTheme)
+        localStorage.setItem(THEME_STORAGE_KEY, nextTheme)
       } catch {
         /* ignore */
       }
@@ -66,7 +76,7 @@ import Icon from '../icons/Icon.astro'
     gap: 10px;
     padding: 10px 14px;
     border: 1px solid var(--border-soft);
-    border-radius: 10px;
+    border-radius: var(--card-window-radius-tight, 18px);
     background: var(--bg-elevated);
     color: var(--text-primary);
     cursor: pointer;

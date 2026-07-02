@@ -1,0 +1,437 @@
+---
+import PreviewShell from './PreviewShell.astro'
+
+const sidebarItems = [
+  { label: 'Dashboard', active: true },
+  { label: 'POS', active: false },
+  { label: 'Inventory', active: false },
+  { label: 'Flexiload', active: false },
+]
+
+const alerts = [
+  { label: 'Low stock', value: '5', tone: 'warn' },
+  { label: 'Overdue', value: '11', tone: 'danger' },
+]
+
+const kpiLabels = [
+  { key: 'revenue', label: 'Revenue' },
+  { key: 'cash', label: 'Cash' },
+  { key: 'profit', label: 'Profit' },
+  { key: 'flexi', label: 'Flexi' },
+  { key: 'due', label: 'Due' },
+]
+---
+
+<PreviewShell label="Interactive preview: BaseetIMS shop dashboard" class="ims-preview" previewType="baseetims">
+  <div class="preview-canvas preview-canvas--ims ims-preview__canvas">
+    <aside class="ims-preview__sidebar" aria-hidden="true">
+      <span class="ims-preview__brand">BaseetIMS</span>
+      {sidebarItems.map((item) => (
+        <span class:list={['ims-preview__nav', item.active && 'ims-preview__nav--active']}>
+          {item.label}
+        </span>
+      ))}
+    </aside>
+
+    <div class="ims-preview__main">
+      <header class="ims-preview__topbar" aria-hidden="true">
+        <span class="ims-preview__search">Search products, barcodes…</span>
+        <span class="ims-preview__status">● Online</span>
+        <span class="ims-preview__pos-btn">POS</span>
+      </header>
+
+      <div class="ims-preview__body">
+        <div class="ims-preview__dash-head" aria-hidden="true">
+          <span class="ims-preview__dash-title">Dashboard</span>
+          <span class="ims-preview__dash-date">Today's summary</span>
+        </div>
+
+        <div class="ims-preview__alerts" aria-hidden="true">
+          {alerts.map((a) => (
+            <div class:list={['ims-preview__alert', `ims-preview__alert--${a.tone}`]}>
+              <span class="ims-preview__alert-val">{a.value}</span>
+              <span class="ims-preview__alert-label">{a.label}</span>
+            </div>
+          ))}
+        </div>
+
+        <div class="ims-preview__kpis" data-kpis>
+          {kpiLabels.map((k) => (
+            <div class="ims-preview__kpi" data-kpi={k.key}>
+              <span class="ims-preview__kpi-label">{k.label}</span>
+              <span class="ims-preview__kpi-value" data-kpi-value={k.key}>0</span>
+            </div>
+          ))}
+        </div>
+
+        <div class="ims-preview__lower">
+          <div class="ims-preview__chart-wrap">
+            <span class="ims-preview__chart-title">Daily sales (7d)</span>
+            <svg class="ims-preview__chart" data-chart aria-hidden="true"></svg>
+          </div>
+          <div class="ims-preview__shops">
+            <div class="ims-preview__shops-tabs" aria-hidden="true">
+              <span class="ims-preview__tab ims-preview__tab--active">Shops</span>
+              <span class="ims-preview__tab">Stock</span>
+            </div>
+            <div class="ims-preview__shop-header" aria-hidden="true">
+              <span>Shop</span>
+              <span>Sales</span>
+            </div>
+            <div class="ims-preview__shop-list" data-shop-list></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</PreviewShell>
+
+<style>
+  .ims-preview__canvas {
+    --ims-bg: #0c1014;
+    --ims-sidebar: #080b0e;
+    --ims-card: #141a20;
+    --ims-card-raised: #1a2229;
+    --ims-border: #243038;
+    --ims-green: #10b981;
+    --ims-text: #e8edf2;
+    --ims-muted: #7a8a96;
+    --ims-chart-line: #10b981;
+    --ims-warn: #f59e0b;
+    --ims-danger: #ef4444;
+    background: var(--ims-bg);
+    font-family: var(--font-body);
+    display: flex;
+    color: var(--ims-text);
+  }
+
+  :global([data-theme='day']) .ims-preview__canvas {
+    --ims-bg: #0e1216;
+    --ims-sidebar: #0a0d10;
+    --ims-card: #161c22;
+    --ims-card-raised: #1c242c;
+    --ims-border: #2a3540;
+  }
+
+  .ims-preview__sidebar {
+    flex: 0 0 108px;
+    background: var(--ims-sidebar);
+    border-right: 1px solid var(--ims-border);
+    padding: 10px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    pointer-events: none;
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  .ims-preview__brand {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--ims-green);
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+
+  .ims-preview__nav {
+    font-size: 10px;
+    color: var(--ims-muted);
+    padding: 5px 7px;
+    border-radius: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .ims-preview__nav--active {
+    background: #123d2e;
+    color: var(--ims-green);
+    font-weight: 600;
+  }
+
+  .ims-preview__main {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .ims-preview__topbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 10px;
+    border-bottom: 1px solid var(--ims-border);
+    background: var(--ims-card);
+    pointer-events: none;
+    flex-shrink: 0;
+  }
+
+  .ims-preview__search {
+    flex: 1;
+    font-size: 10px;
+    color: var(--ims-muted);
+    background: var(--ims-bg);
+    border: 1px solid var(--ims-border);
+    border-radius: 5px;
+    padding: 5px 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+  }
+
+  .ims-preview__status {
+    font-size: 10px;
+    color: var(--ims-green);
+    flex-shrink: 0;
+  }
+
+  .ims-preview__pos-btn {
+    font-size: 10px;
+    font-weight: 600;
+    color: #fff;
+    background: var(--ims-green);
+    border-radius: 4px;
+    padding: 4px 8px;
+    flex-shrink: 0;
+  }
+
+  .ims-preview__body {
+    flex: 1;
+    min-height: 0;
+    padding: 8px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    overflow: hidden;
+  }
+
+  .ims-preview__dash-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+
+  .ims-preview__dash-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ims-text);
+  }
+
+  .ims-preview__dash-date {
+    font-size: 10px;
+    color: var(--ims-muted);
+  }
+
+  .ims-preview__alerts {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .ims-preview__alert {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--ims-card);
+    border: 1px solid var(--ims-border);
+    border-radius: 5px;
+    padding: 5px 8px;
+    min-width: 0;
+  }
+
+  .ims-preview__alert-val {
+    font-size: 13px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .ims-preview__alert--warn .ims-preview__alert-val {
+    color: var(--ims-warn);
+  }
+
+  .ims-preview__alert--danger .ims-preview__alert-val {
+    color: var(--ims-danger);
+  }
+
+  .ims-preview__alert-label {
+    font-size: 10px;
+    color: var(--ims-muted);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .ims-preview__kpis {
+    display: flex;
+    gap: 5px;
+    flex-shrink: 0;
+  }
+
+  .ims-preview__kpi {
+    flex: 1;
+    min-width: 0;
+    background: var(--ims-card);
+    border: 1px solid var(--ims-border);
+    border-radius: 5px;
+    padding: 6px 7px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .ims-preview__kpi-label {
+    font-size: 8px;
+    color: var(--ims-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .ims-preview__kpi-value {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--ims-green);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .ims-preview__kpi[data-kpi='due'] .ims-preview__kpi-value {
+    color: var(--ims-danger);
+  }
+
+  .ims-preview__lower {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    gap: 6px;
+  }
+
+  .ims-preview__chart-wrap {
+    flex: 1.15;
+    min-width: 0;
+    background: var(--ims-card);
+    border: 1px solid var(--ims-border);
+    border-radius: 5px;
+    padding: 7px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-height: 0;
+  }
+
+  .ims-preview__chart-title {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--ims-muted);
+    flex-shrink: 0;
+  }
+
+  .ims-preview__chart {
+    flex: 1;
+    width: 100%;
+    min-height: 48px;
+    display: block;
+    overflow: visible;
+  }
+
+  .ims-preview__shops {
+    flex: 0.85;
+    min-width: 0;
+    background: var(--ims-card);
+    border: 1px solid var(--ims-border);
+    border-radius: 5px;
+    padding: 7px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  .ims-preview__shops-tabs {
+    display: flex;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  .ims-preview__tab {
+    font-size: 9px;
+    color: var(--ims-muted);
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+
+  .ims-preview__tab--active {
+    background: var(--ims-card-raised);
+    color: var(--ims-text);
+    font-weight: 600;
+  }
+
+  .ims-preview__shop-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 8px;
+    font-weight: 600;
+    color: var(--ims-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+    padding: 0 2px;
+  }
+
+  .ims-preview__shop-list {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    scrollbar-width: none;
+  }
+
+  .ims-preview__shop-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  :global(.ims-preview__shop-row) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    padding: 4px 6px;
+    border-radius: 4px;
+    color: var(--ims-muted);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    flex-shrink: 0;
+  }
+
+  :global(.ims-preview__shop-row-name) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+    min-width: 0;
+  }
+
+  :global(.ims-preview__shop-row-sales) {
+    font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
+    color: var(--ims-green);
+    font-weight: 600;
+  }
+
+  :global(.ims-preview__shop-row--active) {
+    background: #123d2e;
+    color: var(--ims-green);
+  }
+
+  :global(.ims-preview__shop-row--active .ims-preview__shop-row-name) {
+    font-weight: 600;
+  }
+</style>

@@ -1,0 +1,318 @@
+---
+// ServiceRow.astro — Editorial zigzag row for the /services index.
+// Layout + shape from docs/refrences/nice-services.tsx; colors/fonts from the site tokens.
+
+import Icon from '../icons/Icon.astro'
+import { resolveIcon } from '../icons/iconMappings'
+
+interface SubService {
+  name: string
+  icon: string
+}
+
+interface Props {
+  index: number
+  title: string
+  tagline?: string
+  shortDescription: string
+  color: string
+  gradient: string
+  iconClass: string
+  subServices?: SubService[]
+  ctaLabel: string
+  href: string
+  arrowIcon?: string
+}
+
+const {
+  index,
+  title,
+  tagline,
+  shortDescription,
+  color,
+  gradient,
+  iconClass,
+  subServices = [],
+  ctaLabel,
+  href,
+  arrowIcon = 'arrow-right',
+} = Astro.props
+
+const cat = resolveIcon(iconClass || 'fas fa-circle')
+const indexLabel = String(index).padStart(2, '0')
+const reversed = index % 2 === 1
+---
+
+<article
+  class:list={['service-row', { 'service-row--reversed': reversed }]}
+  data-animate="fade-up"
+  style={`--row-accent:${color};`}
+>
+  <div class="service-row__panel-col">
+    <div class="service-row__panel card-window">
+      <div class="service-row__panel-gradient" style={`background:${gradient};`} aria-hidden="true"></div>
+      <span class="service-row__numeral" aria-hidden="true">{indexLabel}</span>
+      <div class="service-row__icon-badge" style={`background:${color};`}>
+        <Icon name={cat.name} variant={cat.variant} size={20} color="#fff" />
+      </div>
+      <span class="service-row__chip">Capability</span>
+    </div>
+  </div>
+
+  <div class="service-row__copy-col">
+    {tagline && (
+      <p class="service-row__eyebrow">{tagline}</p>
+    )}
+    <h2 class="service-row__title">
+      <a href={href} class="service-row__title-link">{title}</a>
+    </h2>
+    <p class="service-row__desc">{shortDescription}</p>
+
+    {subServices.length > 0 && (
+      <ul class="service-row__tags">
+        {subServices.map((sub) => (
+          <li class="service-row__tag">{sub.name}</li>
+        ))}
+      </ul>
+    )}
+
+    <a href={href} class="service-row__cta">
+      <span class="service-row__cta-text">{ctaLabel}</span>
+      <span class="service-row__cta-icon">
+        <Icon name={arrowIcon} size={16} color="currentColor" />
+      </span>
+    </a>
+  </div>
+</article>
+
+<style>
+  .service-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    gap: 40px;
+  }
+
+  @media (min-width: 1024px) {
+    .service-row {
+      grid-template-columns: 5fr 7fr;
+      gap: 64px;
+    }
+
+    .service-row--reversed .service-row__panel-col {
+      order: 2;
+    }
+
+    .service-row--reversed .service-row__copy-col {
+      order: 1;
+      padding-inline-end: 32px;
+    }
+
+    .service-row:not(.service-row--reversed) .service-row__copy-col {
+      padding-inline-start: 16px;
+    }
+  }
+
+  .service-row__panel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: var(--card-window-radius);
+    padding: 32px;
+  }
+
+  @media (min-width: 640px) {
+    .service-row__panel {
+      aspect-ratio: 5 / 4;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .service-row__panel {
+      aspect-ratio: 4 / 5;
+    }
+  }
+
+  .service-row__panel-gradient {
+    position: absolute;
+    inset: 0;
+    opacity: 0.12;
+    pointer-events: none;
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--row-accent, var(--color-primary)) 30%, transparent) 0%,
+      transparent 55%,
+      color-mix(in srgb, var(--heading-text) 6%, transparent) 100%
+    ) !important;
+  }
+
+  .service-row__numeral {
+    font-family: var(--font-title);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: color-mix(in srgb, var(--row-accent, var(--color-primary)) 55%, var(--heading-text));
+    font-size: clamp(9rem, 22vw, 18rem);
+    user-select: none;
+    pointer-events: none;
+    position: relative;
+    z-index: 1;
+  }
+
+  .service-row__icon-badge {
+    position: absolute;
+    bottom: 24px;
+    inset-inline-start: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 16px;
+    color: #fff;
+    box-shadow: var(--card-window-shadow);
+    z-index: 2;
+  }
+
+  .service-row__chip {
+    position: absolute;
+    top: 24px;
+    inset-inline-end: 24px;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted-text);
+    background: var(--chip-bg);
+    border: 1px solid var(--chip-border);
+    z-index: 2;
+  }
+
+  .service-row__eyebrow {
+    margin: 0;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted-text);
+  }
+
+  .service-row__title {
+    margin: 16px 0 0;
+    font-family: var(--font-title);
+    font-size: clamp(2rem, 4.5vw, 3.75rem);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--heading-text);
+  }
+
+  .service-row__title-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .service-row__title-link:hover {
+    color: var(--row-accent, var(--color-primary));
+  }
+
+  .service-row__desc {
+    margin: 24px 0 0;
+    max-width: 36rem;
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--muted-text);
+  }
+
+  .service-row__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 32px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .service-row__tag {
+    padding: 6px 16px;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    background: var(--chip-bg);
+    border: 1px solid var(--chip-border);
+  }
+
+  .service-row__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 40px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--heading-text);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .service-row__cta:hover {
+    color: var(--row-accent, var(--color-primary));
+  }
+
+  .service-row__cta-text {
+    position: relative;
+  }
+
+  .service-row__cta-text::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform-origin: left;
+    transition: transform 0.5s ease;
+  }
+
+  [dir="rtl"] .service-row__cta-text::after {
+    transform-origin: right;
+  }
+
+  .service-row__cta:hover .service-row__cta-text::after {
+    transform: scaleX(0);
+  }
+
+  .service-row__cta-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--divider-color);
+    background: var(--card-window-bg);
+    transition:
+      background var(--transition-fast),
+      color var(--transition-fast),
+      border-color var(--transition-fast);
+  }
+
+  .service-row__cta:hover .service-row__cta-icon {
+    background: var(--row-accent, var(--color-primary));
+    border-color: transparent;
+    color: #fff;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .service-row__cta-text::after,
+    .service-row__cta-icon {
+      transition: none;
+    }
+  }
+</style>

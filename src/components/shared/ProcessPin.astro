@@ -1,0 +1,446 @@
+---
+// ProcessPin.astro — "How we work" lateral pin indicator (GSAP ScrollTrigger).
+// Effect from docs/refrences/Lateral Pin Indicator/; six steps; theme-aware tokens.
+
+import Icon from '../icons/Icon.astro'
+import { resolveIcon } from '../icons/iconMappings'
+
+interface ProcessStep {
+  number: string
+  title: string
+  desc: string
+  lead?: string
+  icon: string
+}
+
+interface Props {
+  title: string
+  subtitle: string
+  steps: ProcessStep[]
+  eyebrow?: string
+}
+
+const { title, subtitle, steps, eyebrow = 'How we work' } = Astro.props
+const stepCount = steps.length
+---
+
+<section class="process-pin" id="process" data-process-pin data-step-count={stepCount}>
+  <div class="process-pin__pin">
+    <header class="process-pin__head">
+      <span class="process-pin__eyebrow">{eyebrow}</span>
+      <h2 class="process-pin__title">{title}</h2>
+      <p class="process-pin__subtitle">{subtitle}</p>
+    </header>
+
+    <div class="process-pin__content">
+      <nav class="process-pin__nav" aria-label={eyebrow}>
+        <div class="process-pin__rail" aria-hidden="true">
+          <div class="process-pin__fill"></div>
+        </div>
+        <ol class="process-pin__list">
+          {steps.map((step, i) => (
+            <li
+              class="process-pin__list-item"
+              data-step-index={i}
+              aria-current={i === 0 ? 'step' : undefined}
+            >
+              <span class="process-pin__list-num">{step.number}</span>
+              <span class="process-pin__list-label">{step.title}</span>
+            </li>
+          ))}
+        </ol>
+      </nav>
+
+      <div class="process-pin__slides" aria-live="polite">
+        {steps.map((step, i) => {
+          const stepIcon = resolveIcon(step.icon || 'fas fa-circle')
+          return (
+            <article
+              class="process-pin__slide card-window"
+              data-slide-index={i}
+              aria-hidden={i !== 0}
+            >
+              <div class="process-pin__slide-head">
+                <span class="process-pin__slide-num" aria-hidden="true">{step.number}</span>
+                <div class="process-pin__slide-meta">
+                  <div class="process-pin__slide-icon">
+                    <Icon name={stepIcon.name} variant={stepIcon.variant} size={20} color="currentColor" />
+                  </div>
+                  <span class="process-pin__slide-of">
+                    Step {step.number} of {String(stepCount).padStart(2, '0')}
+                  </span>
+                </div>
+              </div>
+              <h3 class="process-pin__slide-title">{step.title}</h3>
+              {step.lead && <p class="process-pin__slide-lead">{step.lead}</p>}
+              <p class="process-pin__slide-desc">{step.desc}</p>
+            </article>
+          )
+        })}
+      </div>
+    </div>
+  </div>
+
+  {/* Reduced-motion fallback: static stacked cards */}
+  <ol class="process-pin__static">
+    {steps.map((step) => {
+      const stepIcon = resolveIcon(step.icon || 'fas fa-circle')
+      return (
+        <li class="process-pin__static-card card-window">
+          <div class="process-pin__slide-head">
+            <span class="process-pin__slide-num" aria-hidden="true">{step.number}</span>
+            <div class="process-pin__slide-meta">
+              <div class="process-pin__slide-icon">
+                <Icon name={stepIcon.name} variant={stepIcon.variant} size={20} color="currentColor" />
+              </div>
+              <span class="process-pin__slide-of">Step {step.number}</span>
+            </div>
+          </div>
+          <h3 class="process-pin__slide-title">{step.title}</h3>
+          {step.lead && <p class="process-pin__slide-lead">{step.lead}</p>}
+          <p class="process-pin__slide-desc">{step.desc}</p>
+        </li>
+      )
+    })}
+  </ol>
+</section>
+
+<script>
+  import { init as initProcessPin, destroy as destroyProcessPin } from '../../animations/process-pin'
+
+  const boot = () => {
+    destroyProcessPin()
+    initProcessPin()
+  }
+
+  boot()
+  document.addEventListener('astro:page-load', boot)
+  document.addEventListener('astro:after-swap', boot)
+</script>
+
+<style>
+  .process-pin {
+    margin-top: 96px;
+  }
+
+  /* Pin wrapper — header + journey pin together */
+  .process-pin__pin {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100svh - 110px);
+    padding-bottom: 24px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .process-pin__pin {
+      display: none;
+    }
+  }
+
+  .process-pin__head {
+    max-width: 40rem;
+    margin-bottom: clamp(24px, 4vh, 40px);
+    flex-shrink: 0;
+  }
+
+  .process-pin__eyebrow {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 9999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    margin-bottom: 18px;
+    color: var(--color-primary);
+    background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 22%, transparent);
+  }
+
+  .process-pin__title {
+    margin: 0 0 12px;
+    font-family: var(--font-title);
+    font-size: clamp(2rem, 4vw, 3.75rem);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--heading-text);
+  }
+
+  .process-pin__subtitle {
+    margin: 0;
+    max-width: 36rem;
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--muted-text);
+  }
+
+  /* Pin section — hidden when reduced motion */
+  .process-pin__content {
+    display: flex;
+    align-items: stretch;
+    gap: 24px;
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+
+  .process-pin__nav {
+    position: relative;
+    flex: 0 0 auto;
+    padding-inline-start: 20px;
+    min-width: 0;
+  }
+
+  .process-pin__rail {
+    position: absolute;
+    top: 0;
+    inset-inline-start: 0;
+    width: 2px;
+    height: 100%;
+    background: var(--divider-color);
+    overflow: hidden;
+  }
+
+  .process-pin__fill {
+    position: absolute;
+    top: 0;
+    inset-inline-start: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--color-primary);
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+
+  .process-pin__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(20px, 4vh, 36px);
+  }
+
+  .process-pin__list-item {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    cursor: default;
+    color: var(--muted-text);
+    transition: color 0.3s ease;
+  }
+
+  .process-pin__list-item.is-active {
+    color: var(--color-primary);
+  }
+
+  .process-pin__list-num {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    opacity: 0.7;
+    flex-shrink: 0;
+  }
+
+  .process-pin__list-label {
+    font-size: clamp(0.95rem, 2.2vw, 1.35rem);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .process-pin__slides {
+    position: relative;
+    flex: 1 1 auto;
+    min-height: 320px;
+  }
+
+  .process-pin__slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(24px, 4vw, 48px);
+    border-radius: var(--card-window-radius);
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .process-pin__slide-head {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .process-pin__slide-num {
+    font-family: var(--font-title);
+    font-size: clamp(4rem, 12vw, 8rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: color-mix(in srgb, var(--color-primary) 45%, var(--heading-text));
+  }
+
+  .process-pin__slide-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .process-pin__slide-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 16px;
+    background: var(--color-primary);
+    color: #fff;
+    box-shadow: var(--card-window-shadow);
+  }
+
+  .process-pin__slide-of {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted-text);
+  }
+
+  .process-pin__slide-title {
+    margin: 24px 0 0;
+    font-family: var(--font-title);
+    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--heading-text);
+  }
+
+  .process-pin__slide-lead {
+    margin: 16px 0 0;
+    max-width: 36rem;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--muted-text);
+  }
+
+  .process-pin__slide-desc {
+    margin: 16px 0 0;
+    max-width: 36rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--muted-text);
+  }
+
+  /* Static fallback */
+  .process-pin__static {
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .process-pin__static {
+      display: flex;
+    }
+  }
+
+  .process-pin__static-card {
+    padding: 28px 24px;
+    border-radius: var(--card-window-radius);
+  }
+
+  /* Mobile layout */
+  @media (max-width: 720px) {
+    .process-pin__pin {
+      min-height: calc(100svh - 96px);
+      padding-bottom: 16px;
+    }
+
+    .process-pin__head {
+      margin-bottom: 20px;
+    }
+
+    .process-pin__title {
+      font-size: clamp(1.6rem, 6vw, 2.25rem);
+    }
+
+    .process-pin__subtitle {
+      font-size: 0.95rem;
+    }
+
+    .process-pin__content {
+      flex-direction: column;
+      gap: 16px;
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .process-pin__nav {
+      padding-inline-start: 14px;
+      width: 100%;
+      flex-shrink: 0;
+    }
+
+    .process-pin__list {
+      gap: 10px;
+    }
+
+    .process-pin__list-label {
+      font-size: 0.85rem;
+    }
+
+    .process-pin__slides {
+      flex: 1 1 auto;
+      min-height: 0;
+    }
+
+    .process-pin__slide {
+      padding: 20px 16px;
+      justify-content: flex-start;
+      overflow-y: auto;
+    }
+
+    .process-pin__slide-num {
+      font-size: 3rem;
+    }
+
+    .process-pin__slide-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+    }
+
+    .process-pin__slide-title {
+      font-size: 1.5rem;
+    }
+
+    .process-pin__slide-lead {
+      font-size: 1rem;
+    }
+
+    .process-pin__slide-desc {
+      font-size: 0.9rem;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .process-pin__list-item {
+      gap: 6px;
+    }
+
+    .process-pin__list-num {
+      display: none;
+    }
+  }
+</style>

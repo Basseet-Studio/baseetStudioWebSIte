@@ -7,4 +7,10 @@ export default defineConfig({
   integrations: [tailwind(), sitemap()],
   output: 'static',
   build: { assets: 'assets' },
+  redirects: {
+    '/projects/zaryn': '/projects/baseetims/',
+    '/projects/zaryn/features': '/projects/baseetims/features/',
+    '/projects/zaryn/demo': '/projects/baseetims/demo/',
+    '/projects/zaryn/terms': '/projects/baseetims/terms/',
+  },
 })

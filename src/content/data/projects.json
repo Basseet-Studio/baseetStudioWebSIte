@@ -84,22 +84,32 @@
     "previewVideo": null
   },
   {
-    "slug": "medical-education-app",
-    "name": "MAI",
-    "tagline": "AI-powered medical education platform.",
-    "color": "#0F766E",
-    "gradient": "linear-gradient(135deg, #0F766E 0%, #14B8A6 100%)",
-    "status": "Coming Soon",
-    "iconClass": "fas fa-stethoscope",
+    "slug": "baseetims",
+    "name": "BaseetIMS",
+    "tagline": "Inventory management built for small shops.",
+    "color": "#10B981",
+    "gradient": "linear-gradient(135deg, #059669 0%, #34D399 100%)",
+    "status": "Ready to Deliver",
+    "iconClass": "fas fa-cash-register",
     "icon": null,
-    "platforms": [
-      { "name": "iOS", "icon": "fab fa-apple" },
-      { "name": "Android", "icon": "fab fa-android" },
-      { "name": "Web", "icon": "fas fa-globe" },
-      { "name": "Desktop", "icon": "fas fa-desktop" }
-    ],
+    "platforms": [{ "name": "Web", "icon": "fas fa-globe" }],
     "indexTier": "flagship",
-    "previewImage": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1600&q=80",
+    "previewImage": "/images/projects/baseetims/1.png",
+    "previewVideo": null,
+    "previewInteractive": "baseetims"
+  },
+  {
+    "slug": "jemeti",
+    "name": "Jemeti",
+    "tagline": "Workshops and maintenance shops, managed.",
+    "color": "#DC2626",
+    "gradient": "linear-gradient(135deg, #DC2626 0%, #EF4444 100%)",
+    "status": "Coming Soon",
+    "iconClass": null,
+    "icon": "/images/projects/jemeti-icon.svg",
+    "platforms": [{ "name": "Web", "icon": "fas fa-globe" }],
+    "indexTier": "flagship",
+    "previewImage": "/images/projects/jemeti-icon.svg",
     "previewVideo": null
   },
   {
@@ -139,17 +149,22 @@
     "previewVideo": null
   },
   {
-    "slug": "zaryn",
-    "name": "Zaryn",
-    "tagline": "All-in-one business management.",
-    "color": "#C2410C",
-    "gradient": "linear-gradient(135deg, #C2410C 0%, #EA580C 100%)",
-    "status": "Ready to Deliver",
-    "iconClass": "fas fa-cash-register",
+    "slug": "medical-education-app",
+    "name": "MAI",
+    "tagline": "AI-powered medical education platform.",
+    "color": "#0F766E",
+    "gradient": "linear-gradient(135deg, #0F766E 0%, #14B8A6 100%)",
+    "status": "Coming Soon",
+    "iconClass": "fas fa-stethoscope",
     "icon": null,
-    "platforms": [{ "name": "Web", "icon": "fas fa-globe" }],
+    "platforms": [
+      { "name": "iOS", "icon": "fab fa-apple" },
+      { "name": "Android", "icon": "fab fa-android" },
+      { "name": "Web", "icon": "fas fa-globe" },
+      { "name": "Desktop", "icon": "fas fa-desktop" }
+    ],
     "indexTier": "more",
-    "previewImage": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=80",
+    "previewImage": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1600&q=80",
     "previewVideo": null
   },
   {

@@ -1,5 +1,6 @@
 ---
 import type { Lang } from '../../types'
+import { t } from '../../lib/i18n'
 
 interface ClientData {
   name: string
@@ -26,8 +27,8 @@ function excerptQuote(quote: string, maxLen = 200): string {
 ---
 
 <section class="clients" data-animate="fade-slide-up">
-  <h2 class="clients__heading">Trusted By</h2>
-  <p class="clients__sub">What our clients say about working with us</p>
+  <h2 class="clients__heading">{t('home_clients_title', lang)}</h2>
+  <p class="clients__sub">{t('home_clients_subtitle_long', lang)}</p>
 
   <div class="clients__grid">
     {clients.map((client) => {

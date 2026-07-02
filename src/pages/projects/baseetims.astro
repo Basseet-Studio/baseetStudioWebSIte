@@ -13,7 +13,7 @@ import type { Project } from '../../types'
 
 
 const lang: 'en' = 'en'
-const slug = 'zaryn'
+const slug = 'baseetims'
 const project = getProject(slug)
 if (!project) {
   return Astro.redirect('/404')
@@ -28,7 +28,7 @@ if (!project) {
        800 from 700. The font-weights list now includes 600 and 800 so the
        declared weights actually load. -->
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/src/styles/projects/zaryn.css" />
+  <link rel="stylesheet" href="/src/styles/projects/baseetims.css" />
 
   <!-- Split-Screen Hero with Dashboard Mockup
        The coloured background wash now lives in shared.css
@@ -87,11 +87,11 @@ if (!project) {
         <!-- Right: Dashboard Mockup. The `display:none` was removed because
              it won the cascade against any `display:block` from the CSS file
              (audit fix #6). Instead, the dashboard is hidden by default via
-             the inline class hook `.zaryn-hero-visual` and revealed at the
+             the inline class hook `.baseetims-hero-visual` and revealed at the
              `lg` breakpoint by the scoped `<style>` at the bottom of this
              page — see P0 audit #6. -->
-        <div class="zaryn-hero-visual" data-animate="fade-up">
-          <div style="background:white;border-radius:24px;overflow:hidden;box-shadow:0 20px 60px color-mix(in srgb, #F97316 20%, transparent);border:1px solid #FED7AA;">
+        <div class="baseetims-hero-visual" data-animate="fade-up">
+          <div style="background:white;border-radius:24px;overflow:hidden;box-shadow:0 20px 60px color-mix(in srgb, var(--project-color) 20%, transparent);border:1px solid color-mix(in srgb, var(--project-color) 25%, transparent);">
             <div style={`display:flex;align-items:center;gap:8px;padding:12px 16px;background:${project.gradient};`}>
               <div style="width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.4);"></div>
               <div style="width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.4);"></div>
@@ -100,27 +100,27 @@ if (!project) {
             </div>
             <div style="padding:20px;display:flex;flex-direction:column;gap:16px;">
               <!-- POS Terminal -->
-              <div style={`background:linear-gradient(135deg, #FFF7ED, #FFEDD5);border-radius:16px;padding:20px;border:1px solid #FED7AA;`}>
+              <div style={`background:linear-gradient(135deg, color-mix(in srgb, var(--project-color) 8%, white), color-mix(in srgb, var(--project-color) 15%, white));border-radius:16px;padding:20px;border:1px solid color-mix(in srgb, var(--project-color) 25%, transparent);`}>
                 <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
                   <div style="display:flex;align-items:center;gap:8px;">
                     <Icon name="cash-register" size={20} color={project.color} />
                     <!-- P1 audit #13 — was hardcoded #1C1917 (near-black) which
                          became invisible in night mode. The theme-aware
                          `--heading-text` token flips in night mode. -->
-                    <span class="zaryn-mock-heading" style="font-size:0.9rem;">{/* TODO: localise this later */ 'POS Terminal'}</span>
+                    <span class="baseetims-mock-heading" style="font-size:0.9rem;">{/* TODO: localise this later */ 'Dashboard'}</span>
                   </div>
-                  <span class="zaryn-mock-muted" style="font-size:0.75rem;">{/* TODO: localise this later */ 'Active'}</span>
+                  <span class="baseetims-mock-muted" style="font-size:0.75rem;">{/* TODO: localise this later */ 'Live'}</span>
                 </div>
                 <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
-                  <div style="background:white;border-radius:12px;padding:12px;text-align:center;border:1px solid #FED7AA;">
+                  <div style="background:white;border-radius:12px;padding:12px;text-align:center;border:1px solid color-mix(in srgb, var(--project-color) 25%, transparent);">
                     <Icon name="barcode" size={18} color={project.color} />
                     <div style="font-size:0.7rem;color:#57534E;margin-top:4px;">{/* TODO: localise this later */ 'Scan'}</div>
                   </div>
-                  <div style="background:white;border-radius:12px;padding:12px;text-align:center;border:1px solid #FED7AA;">
+                  <div style="background:white;border-radius:12px;padding:12px;text-align:center;border:1px solid color-mix(in srgb, var(--project-color) 25%, transparent);">
                     <Icon name="credit-card" size={18} color={project.color} />
                     <div style="font-size:0.7rem;color:#57534E;margin-top:4px;">{/* TODO: localise this later */ 'Payment'}</div>
                   </div>
-                  <div style="background:white;border-radius:12px;padding:12px;text-align:center;border:1px solid #FED7AA;">
+                  <div style="background:white;border-radius:12px;padding:12px;text-align:center;border:1px solid color-mix(in srgb, var(--project-color) 25%, transparent);">
                     <Icon name="printer" size={18} color={project.color} />
                     <div style="font-size:0.7rem;color:#57534E;margin-top:4px;">{/* TODO: localise this later */ 'Receipt'}</div>
                   </div>
@@ -131,23 +131,23 @@ if (!project) {
                 <div style="background:white;border-radius:16px;padding:16px;border:1px solid #E7E5E4;">
                   <!-- P1 audit #13 — heading was hardcoded #1C1917 (invisible in
                        night mode). Use the theme-aware heading token. -->
-                  <div class="zaryn-mock-heading" style="font-size:1.5rem;font-weight:700;">$12,450</div>
-                  <div class="zaryn-mock-muted" style="font-size:0.75rem;">{/* TODO: localise this later */ "Today's Sales"}</div>
+                  <div class="baseetims-mock-heading" style="font-size:1.5rem;font-weight:700;">BDT 2,840</div>
+                  <div class="baseetims-mock-muted" style="font-size:0.75rem;">{/* TODO: localise this later */ 'Cash Collected'}</div>
                 </div>
                 <div style="background:white;border-radius:16px;padding:16px;border:1px solid #E7E5E4;">
-                  <div class="zaryn-mock-heading" style="font-size:1.5rem;font-weight:700;">847</div>
-                  <div class="zaryn-mock-muted" style="font-size:0.75rem;">{/* TODO: localise this later */ 'Items in Stock'}</div>
+                  <div class="baseetims-mock-heading" style="font-size:1.5rem;font-weight:700;">BDT 145</div>
+                  <div class="baseetims-mock-muted" style="font-size:0.75rem;">{/* TODO: localise this later */ 'Flexiload Commission'}</div>
                 </div>
               </div>
               <!-- Mini Chart -->
               <div style="background:white;border-radius:16px;padding:16px;border:1px solid #E7E5E4;">
                 <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
-                  <span class="zaryn-mock-heading" style="font-weight:600;font-size:0.85rem;">{/* TODO: localise this later */ 'Weekly Revenue'}</span>
-                  <span class="zaryn-mock-up" style="font-size:0.75rem;font-weight:500;">+23.5%</span>
+                  <span class="baseetims-mock-heading" style="font-weight:600;font-size:0.85rem;">{/* TODO: localise this later */ 'Daily Sales Trend'}</span>
+                  <span class="baseetims-mock-up" style="font-size:0.75rem;font-weight:500;">+23.5%</span>
                 </div>
                 <div style="display:flex;align-items:flex-end;gap:4px;height:48px;">
                   {[40, 55, 45, 70, 60, 85, 100].map((h, i) => (
-                    <div style={`flex:1;border-radius:4px 4px 0 0;height:${h}%;${i >= 5 ? `background:${project.color};` : 'background:#FED7AA;'}`}></div>
+                    <div style={`flex:1;border-radius:4px 4px 0 0;height:${h}%;${i >= 5 ? `background:${project.color};` : 'background:color-mix(in srgb, var(--project-color) 25%, transparent);'}`}></div>
                   ))}
                 </div>
               </div>
@@ -160,7 +160,7 @@ if (!project) {
 
   <!-- Bento Grid Features -->
   {project.features && project.features.length > 0 && (
-    <section id="features" style="padding:80px 24px;background:linear-gradient(to bottom, #FFFBF7, white);">
+    <section id="features" style="padding:80px 24px;background:linear-gradient(to bottom, var(--page-section-bg), white);">
       <div style="max-width:1200px;margin:0 auto;">
         <div style="text-align:center;margin-bottom:64px;" data-animate="fade-up">
           <span style={`display:inline-block;padding:8px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);margin-bottom:16px;`}>
@@ -256,13 +256,13 @@ if (!project) {
   /* P0 audit #6 — the right-column dashboard visual was previously hidden
      by `style="display:none"` which always won over any CSS-based show/hide.
      Hide it by default with this class and reveal it at the lg breakpoint. */
-  .zaryn-hero-visual {
+  .baseetims-hero-visual {
     display: none;
     position: relative;
   }
 
   @media (min-width: 1024px) {
-    .zaryn-hero-visual {
+    .baseetims-hero-visual {
       display: block;
     }
   }
@@ -273,13 +273,13 @@ if (!project) {
      near-black for the heading but blend it with the night surface so it
      still reads as the same "ink on paper" idea. The secondary text
      uses a soft grey that works on the white card in both themes. */
-  .zaryn-mock-heading {
+  .baseetims-mock-heading {
     color: #1c1917;
   }
-  .zaryn-mock-muted {
+  .baseetims-mock-muted {
     color: #57534e;
   }
-  .zaryn-mock-up {
+  .baseetims-mock-up {
     color: #047857;
   }
 </style>

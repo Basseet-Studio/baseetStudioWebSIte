@@ -117,21 +117,21 @@
       "status": "Coming Soon"
     },
     {
-      "name": "Zaryn",
-      "slug": "zaryn",
+      "name": "BaseetIMS",
+      "slug": "baseetims",
       "type": "branded",
-      "tagline": "Run your business like a pro",
-      "description": "All-in-one point of sale, inventory, and analytics. Trusted by retailers and restaurants worldwide, branded for your business.",
+      "tagline": "Inventory management for small shops",
+      "description": "Multi-shop inventory, POS, flexiload commissions, and daily sales — built for small retail businesses.",
       "iconClass": "fas fa-cash-register",
       "platforms": [{ "name": "Web", "icon": "fas fa-globe" }],
       "features": [
-        "POS terminal",
-        "Multi-location inventory",
-        "Customer loyalty",
-        "21+ reports"
+        "Multi-shop dashboard",
+        "Inventory & POS",
+        "Flexiload & MFS",
+        "Sales trends"
       ],
-      "color": "#F97316",
-      "gradient": "linear-gradient(135deg, #F97316 0%, #FB923C 100%)",
+      "color": "#10B981",
+      "gradient": "linear-gradient(135deg, #059669 0%, #34D399 100%)",
       "status": "Ready to Deliver"
     },
     {

@@ -303,6 +303,7 @@ h4 {
     width: 22px;
     height: 22px;
     flex-shrink: 0;
+    color: var(--nav-text, var(--text-primary));
 }
 
 .skip-to-content {

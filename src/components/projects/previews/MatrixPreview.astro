@@ -2,68 +2,286 @@
 import PreviewShell from './PreviewShell.astro'
 
 const columns = [
-  { id: 'backlog', label: 'Backlog' },
   { id: 'todo', label: 'To Do' },
   { id: 'doing', label: 'In Prog' },
   { id: 'review', label: 'Review' },
-  { id: 'testing', label: 'Testing' },
   { id: 'done', label: 'Done' },
+]
+
+const sidebarNav = [
+  { label: 'Tasks', active: true },
+  { label: 'Projects', active: false },
+  { label: 'Calendar', active: false },
 ]
 ---
 
 <PreviewShell label="Interactive preview: Matrix task board" class="mx-preview" previewType="matrix">
-  <div class="mx-preview__header">
-    <span class="mx-preview__brand">matrix</span>
-    <svg class="mx-preview__icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-      <path d="M6 3v12M18 9V3M6 21v-6M18 15v6M6 15h12M6 9h12" />
-    </svg>
-  </div>
-  <div class="mx-preview__board" data-board>
-    {columns.map((col) => (
-      <div class="mx-preview__col" data-col={col.id}>
-        <div class="mx-preview__col-label" data-col-label={col.id}>{col.label}</div>
-        <div class="mx-preview__body" data-body={col.id}></div>
+  <div class="preview-canvas preview-canvas--matrix mx-preview__canvas">
+    <aside class="mx-preview__sidebar" aria-hidden="true">
+      <div class="mx-preview__sidebar-user">
+        <span class="mx-preview__avatar">M</span>
+        <span class="mx-preview__user-name">mohamed</span>
       </div>
-    ))}
+      <nav class="mx-preview__sidebar-nav">
+        {sidebarNav.map((item) => (
+          <span class:list={['mx-preview__nav-item', item.active && 'mx-preview__nav-item--active']}>
+            {item.label}
+          </span>
+        ))}
+      </nav>
+    </aside>
+
+    <div class="mx-preview__main">
+      <header class="mx-preview__topbar" aria-hidden="true">
+        <span class="mx-preview__search">Search tasks, projects…</span>
+        <span class="mx-preview__top-actions">
+          <span class="mx-preview__new-btn">+ New</span>
+          <span class="mx-preview__sun">☀</span>
+        </span>
+      </header>
+
+      <div class="mx-preview__content">
+        <div class="mx-preview__page-head">
+          <div class="mx-preview__page-head-left">
+            <span class="mx-preview__page-title">All Tasks</span>
+            <span class="mx-preview__page-meta" data-task-count>6 tasks</span>
+          </div>
+          <div class="mx-preview__toolbar" aria-hidden="true">
+            <span class="mx-preview__toolbar-pill mx-preview__toolbar-pill--active">Board</span>
+            <span class="mx-preview__toolbar-pill">List</span>
+            <span class="mx-preview__toolbar-btn">Filter</span>
+          </div>
+        </div>
+
+        <div class="mx-preview__board" data-board>
+          {columns.map((col) => (
+            <div class="mx-preview__col" data-col={col.id}>
+              <div class="mx-preview__col-label" data-col-label={col.id}>{col.label}</div>
+              <div class="mx-preview__body" data-body={col.id}></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   </div>
 </PreviewShell>
 
 <style>
-  /* Screenshot ref: light workspace #F9FAFB */
-  .mx-preview {
-    --mx-bg: #f9fafb;
+  .mx-preview__canvas {
+    --mx-bg: #f3f4f6;
+    --mx-sidebar-bg: #ffffff;
+    --mx-topbar-bg: #ffffff;
+    --mx-content-bg: #f9fafb;
     --mx-brand: #2563eb;
+    --mx-brand-soft: #dbeafe;
     --mx-muted: #6b7280;
+    --mx-border: #e5e7eb;
+    --mx-card-bg: #ffffff;
+    --mx-card-text: #1f2937;
+    --mx-shell-text: #111827;
     background-color: var(--mx-bg);
     font-family: var(--font-body);
-    padding: clamp(8px, 2vw, 12px);
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+    color: var(--mx-shell-text);
   }
 
-  .mx-preview__header {
+  :global([data-theme='night']) .mx-preview__canvas {
+    --mx-bg: #151820;
+    --mx-sidebar-bg: #1a1f2b;
+    --mx-topbar-bg: #1a1f2b;
+    --mx-content-bg: #151820;
+    --mx-brand: #60a5fa;
+    --mx-brand-soft: #1e3a5f;
+    --mx-muted: #94a3b8;
+    --mx-border: #2a3140;
+    --mx-card-bg: #222836;
+    --mx-card-text: #e2e8f0;
+    --mx-shell-text: #f1f5f9;
+  }
+
+  .mx-preview__sidebar {
+    flex: 0 0 118px;
+    background: var(--mx-sidebar-bg);
+    border-right: 1px solid var(--mx-border);
+    padding: 10px 8px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 8px;
+    pointer-events: none;
+    min-height: 0;
+  }
+
+  .mx-preview__sidebar-user {
+    display: flex;
     align-items: center;
+    gap: 6px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--mx-border);
+  }
+
+  .mx-preview__avatar {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--mx-brand);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
   }
 
-  .mx-preview__brand {
-    font-size: clamp(10px, 1.4vw, 12px);
+  .mx-preview__user-name {
+    font-size: 11px;
     font-weight: 600;
-    color: var(--mx-brand);
-    letter-spacing: 0.03em;
-    text-transform: lowercase;
+    color: var(--mx-shell-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  .mx-preview__icon {
+  .mx-preview__sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .mx-preview__nav-item {
+    font-size: 11px;
     color: var(--mx-muted);
+    padding: 5px 7px;
+    border-radius: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .mx-preview__nav-item--active {
+    background: var(--mx-brand-soft);
+    color: var(--mx-brand);
+    font-weight: 600;
+  }
+
+  .mx-preview__main {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    background: var(--mx-content-bg);
+    min-height: 0;
+  }
+
+  .mx-preview__topbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 10px;
+    background: var(--mx-topbar-bg);
+    border-bottom: 1px solid var(--mx-border);
+    flex-shrink: 0;
+    pointer-events: none;
+  }
+
+  .mx-preview__search {
+    flex: 1;
+    font-size: 11px;
+    color: var(--mx-muted);
+    background: var(--mx-bg);
+    border: 1px solid var(--mx-border);
+    border-radius: 999px;
+    padding: 5px 10px;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .mx-preview__top-actions {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-shrink: 0;
+  }
+
+  .mx-preview__new-btn {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--mx-shell-text);
+    border: 1px solid var(--mx-border);
+    border-radius: 5px;
+    padding: 3px 7px;
+    background: var(--mx-card-bg);
+  }
+
+  .mx-preview__sun {
+    font-size: 13px;
+    line-height: 1;
+  }
+
+  .mx-preview__content {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 8px 10px 10px;
+    gap: 6px;
+  }
+
+  .mx-preview__page-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    gap: 8px;
+  }
+
+  .mx-preview__page-head-left {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    min-width: 0;
+  }
+
+  .mx-preview__page-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--mx-shell-text);
+  }
+
+  .mx-preview__page-meta {
+    font-size: 11px;
+    color: var(--mx-muted);
+  }
+
+  .mx-preview__toolbar {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+    pointer-events: none;
+  }
+
+  .mx-preview__toolbar-pill,
+  .mx-preview__toolbar-btn {
+    font-size: 10px;
+    color: var(--mx-muted);
+    padding: 3px 7px;
+    border-radius: 4px;
+    border: 1px solid var(--mx-border);
+    background: var(--mx-card-bg);
+  }
+
+  .mx-preview__toolbar-pill--active {
+    background: var(--mx-brand-soft);
+    color: var(--mx-brand);
+    border-color: transparent;
+    font-weight: 600;
   }
 
   .mx-preview__board {
     display: flex;
-    gap: clamp(4px, 0.8vw, 6px);
+    gap: 7px;
     flex: 1;
     min-height: 0;
     overflow-x: auto;
@@ -71,7 +289,6 @@ const columns = [
     scroll-snap-type: x proximity;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
-    padding-bottom: 2px;
   }
 
   .mx-preview__board::-webkit-scrollbar {
@@ -79,59 +296,68 @@ const columns = [
   }
 
   .mx-preview__col {
-    flex: 0 0 clamp(68px, 15%, 88px);
+    flex: 1 1 0;
     min-width: 0;
     display: flex;
     flex-direction: column;
     scroll-snap-align: start;
+    min-height: 0;
   }
 
   .mx-preview__col-label {
-    font-size: clamp(7px, 1vw, 9px);
+    font-size: 11px;
     font-weight: 600;
     color: var(--mx-muted);
-    margin-bottom: 3px;
+    margin-bottom: 5px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    flex-shrink: 0;
   }
 
   .mx-preview__body {
     flex: 1;
-    min-height: 20px;
+    min-height: 0;
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 5px;
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+
+  .mx-preview__body::-webkit-scrollbar {
+    display: none;
   }
 
   :global(.mx-preview__card) {
-    background: #fff;
+    background: var(--mx-card-bg);
     border-radius: 6px;
-    padding: 4px 5px;
-    font-size: clamp(7px, 1vw, 9px);
+    padding: 6px 7px;
+    font-size: 11px;
     cursor: grab;
-    line-height: 1.25;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
-    border-left: 2px solid var(--mx-border, #3b82f6);
+    line-height: 1.3;
+    border: 1px solid var(--mx-border);
+    border-left: 3px solid var(--mx-border-pri, #3b82f6);
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 4px;
+    flex-shrink: 0;
   }
 
   :global(.mx-preview__card--high) {
-    --mx-border: #3b82f6;
+    --mx-border-pri: #3b82f6;
   }
 
   :global(.mx-preview__card--medium) {
-    --mx-border: #f59e0b;
+    --mx-border-pri: #f59e0b;
   }
 
   :global(.mx-preview__card--critical) {
-    --mx-border: #ef4444;
+    --mx-border-pri: #ef4444;
   }
 
   :global(.mx-preview__card-title) {
-    color: #1f2937;
+    color: var(--mx-card-text);
     font-weight: 600;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -140,9 +366,9 @@ const columns = [
 
   :global(.mx-preview__pri) {
     align-self: flex-start;
-    font-size: clamp(6px, 0.85vw, 8px);
+    font-size: 9px;
     font-weight: 600;
-    padding: 1px 4px;
+    padding: 2px 5px;
     border-radius: 4px;
   }
 
@@ -159,5 +385,20 @@ const columns = [
   :global(.mx-preview__pri--critical) {
     background: #fce7f3;
     color: #db2777;
+  }
+
+  :global([data-theme='night'] .mx-preview__pri--high) {
+    background: #3d2020;
+    color: #fca5a5;
+  }
+
+  :global([data-theme='night'] .mx-preview__pri--medium) {
+    background: #3d3020;
+    color: #fcd34d;
+  }
+
+  :global([data-theme='night'] .mx-preview__pri--critical) {
+    background: #3d2030;
+    color: #f9a8d4;
   }
 </style>

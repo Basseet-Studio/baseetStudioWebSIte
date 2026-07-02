@@ -6,6 +6,7 @@ import AppBar from '../components/nav/AppBar.astro'
 import Footer from '../components/shared/Footer.astro'
 import PaperFilters from '../components/shared/PaperFilters.astro'
 import type { Lang, Section, NavItem } from '../types'
+import { t } from '../lib/i18n'
 
 import '../styles/global.css'
 import '../styles/glass.css'
@@ -142,29 +143,7 @@ const jsonLdWebSite = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script is:inline data-astro-rerun>
-      // data-astro-rerun: re-execute on every view transition.
-      // Astro's ClientRouter swapRootAttributes() removes all <html> attributes
-      // (including data-theme) when swapping in a new page, and inline <head>
-      // scripts don't re-run by default — so without this, the theme silently
-      // reverts to the CSS default (day / light) after each navigation, which
-      // flashes the persisted app bar to its light colour.
-      (() => {
-        const STORAGE_KEY = 'baseet-theme'
-        let theme = 'day'
-        try {
-          const saved = localStorage.getItem(STORAGE_KEY)
-          if (saved === 'day' || saved === 'night') {
-            theme = saved
-          } else {
-            const now = new Date()
-            const hour = now.getHours() + now.getMinutes() / 60
-            theme = (hour >= 4.5 && hour < 20) ? 'day' : 'night'
-          }
-        } catch {}
-        document.documentElement.setAttribute('data-theme', theme)
-      })()
-    </script>
+    <script is:inline src="/theme-boot.js" data-astro-rerun></script>
 
     <!-- Primary meta -->
     <title>{title}</title>
@@ -227,7 +206,7 @@ const jsonLdWebSite = {
     <script type="application/ld+json" set:html={JSON.stringify(jsonLdWebSite)} is:inline />
   </head>
   <body data-page={section} data-lang={lang}>
-    <a href="#main-content" class="skip-to-content">Skip to content</a>
+    <a href="#main-content" class="skip-to-content">{t('skip_to_content', lang)}</a>
     <PaperFilters />
     <VantaBg />
     <AppBar lang={lang} slug={slug} projectName={projectName} projectColor={projectColor} projectIconClass={projectIconClass} projectNavItems={projectNavItems} projectNavMeta={projectNavMeta} />

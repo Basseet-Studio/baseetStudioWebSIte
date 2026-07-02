@@ -10,7 +10,7 @@
       "color": "#496BC1",
       "gradient": "linear-gradient(135deg, #496BC1 0%, #6B8AD9 100%)",
       "title": "Web Development",
-      "shortDescription": "Modern, responsive websites and web applications",
+      "shortDescription": "Modern, responsive websites and web applications built on stacks we actually maintain — not throwaway templates.",
       "tagline": "Websites that work as hard as you do"
     },
     {
@@ -20,7 +20,7 @@
       "color": "#FBCD37",
       "gradient": "linear-gradient(135deg, #F59E0B 0%, #FBCD37 100%)",
       "title": "Mobile Development",
-      "shortDescription": "Native and cross-platform mobile applications",
+      "shortDescription": "Native and cross-platform apps designed for the small screen first, then everything else.",
       "tagline": "Apps people keep on their home screen"
     },
     {
@@ -30,7 +30,7 @@
       "color": "#0891B2",
       "gradient": "linear-gradient(135deg, #0891B2 0%, #22D3EE 100%)",
       "title": "Internal Tools",
-      "shortDescription": "Streamline operations with custom internal solutions",
+      "shortDescription": "Dashboards, CRMs, and back-office tools your team opens on Monday morning without complaining.",
       "tagline": "Operations software that actually gets used"
     },
     {
@@ -40,7 +40,7 @@
       "color": "#16A34A",
       "gradient": "linear-gradient(135deg, #16A34A 0%, #4ADE80 100%)",
       "title": "SEO & Marketing",
-      "shortDescription": "Get found online and grow your audience",
+      "shortDescription": "Technical SEO, content, and local search — measured by pipeline, not vanity rankings.",
       "tagline": "Be the brand searchers actually find"
     },
     {
@@ -50,7 +50,7 @@
       "color": "#AF52DE",
       "gradient": "linear-gradient(135deg, #AF52DE 0%, #D8A0F5 100%)",
       "title": "UI/UX Design",
-      "shortDescription": "Beautiful, intuitive interfaces users love",
+      "shortDescription": "Interfaces shaped by real user sessions, not moodboards. Beautiful because it's clear.",
       "tagline": "Design that earns its second tap"
     },
     {
@@ -60,48 +60,54 @@
       "color": "#0EA5E9",
       "gradient": "linear-gradient(135deg, #0369A1 0%, #38BDF8 100%)",
       "title": "Cloud & DevOps",
-      "shortDescription": "Scalable infrastructure and deployment",
+      "shortDescription": "Scalable infrastructure, CI/CD, and monitoring so releases stop being scary events.",
       "tagline": "Ship faster, sleep better"
     }
   ],
   "process": {
-    "title": "How We Work",
-    "subtitle": "Our proven process delivers results",
+    "title": "A six-step climb, not a checklist.",
+    "subtitle": "Scroll through the same journey we take with every partner — from the first \"what if\" conversation to the moment your product is live and looked after.",
     "steps": [
       {
         "number": "01",
         "title": "Discovery",
-        "desc": "We learn about your business, goals, and challenges",
+        "lead": "We start by listening.",
+        "desc": "Workshops, stakeholder interviews, and a hard look at the numbers. We leave with a shared understanding of the problem worth solving.",
         "icon": "fas fa-lightbulb"
       },
       {
         "number": "02",
         "title": "Planning",
-        "desc": "We create a detailed roadmap and technical specifications",
+        "lead": "A roadmap you can defend.",
+        "desc": "Scope, milestones, and a technical spec written in plain English. No surprise line items three months in.",
         "icon": "fas fa-map"
       },
       {
         "number": "03",
         "title": "Design",
-        "desc": "We craft beautiful, user-centered designs",
+        "lead": "Pixels with a point of view.",
+        "desc": "From low-fi flows to a polished interface system. Every screen earns its place.",
         "icon": "fas fa-pencil-alt"
       },
       {
         "number": "04",
         "title": "Development",
-        "desc": "We build your solution with clean, maintainable code",
+        "lead": "Code you can hand off.",
+        "desc": "Typed, tested, and reviewed. We write it so the next engineer — yours or ours — thanks us.",
         "icon": "fas fa-code"
       },
       {
         "number": "05",
         "title": "Testing",
-        "desc": "We rigorously test across devices and scenarios",
+        "lead": "Break it before users do.",
+        "desc": "Automated suites, real-device passes, and accessibility audits before anything ships.",
         "icon": "fas fa-vial"
       },
       {
         "number": "06",
         "title": "Launch",
-        "desc": "We deploy and provide ongoing support",
+        "lead": "Live — and looked after.",
+        "desc": "Zero-downtime deploys, monitoring dashboards, and a support cadence that outlives the launch week.",
         "icon": "fas fa-rocket"
       }
     ]

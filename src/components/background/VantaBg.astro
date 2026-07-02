@@ -28,7 +28,8 @@
     document.documentElement.setAttribute(CLOUDS_BOOT_FLAG, '')
 
     if (matchesMobile()) {
-      document.getElementById('vanta-fallback')!.style.display = 'block'
+      const fallback = document.getElementById('vanta-fallback')
+      if (fallback) fallback.style.display = 'block'
       return
     }
 
@@ -56,6 +57,11 @@
       document.head.appendChild(vantaScript)
     }
     document.head.appendChild(threeScript)
+  }
+
+  function showMobileFallback() {
+    const fallback = document.getElementById('vanta-fallback')
+    if (fallback) fallback.style.display = 'block'
   }
 
   if (document.readyState === 'complete') {
@@ -101,6 +107,6 @@
     display: none;
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, #0d1117 0%, #161b22 100%);
+    background: linear-gradient(180deg, var(--bg-page) 0%, var(--card-bg) 100%);
   }
 </style>

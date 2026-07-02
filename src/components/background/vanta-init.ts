@@ -1,5 +1,7 @@
 // vanta-init.ts — Vanta CLOUDS initialization with persistence across ViewTransitions
 
+import { applyTheme, getHourFromDate, getUiThemeForHour, readSavedTheme } from '../../lib/theme'
+
 let vantaEffect: any = null;
 let initialised = false;
 let scrollTicking = false;
@@ -213,6 +215,11 @@ function initOnce(): void {
       mouseEase: true,
     });
     initialised = true;
+
+    // Keep UI tokens aligned with sky brightness when the user has not set a manual theme.
+    if (!readSavedTheme()) {
+      applyTheme(getUiThemeForHour(getHourFromDate(now)));
+    }
   } catch {
     showFallback();
   }

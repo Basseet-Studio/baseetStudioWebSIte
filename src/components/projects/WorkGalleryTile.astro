@@ -3,6 +3,7 @@ import type { ProjectIndexCard } from '../../lib/projects'
 import MatrixPreview from './previews/MatrixPreview.astro'
 import MoneyBoxPreview from './previews/MoneyBoxPreview.astro'
 import NumuPreview from './previews/NumuPreview.astro'
+import BaseetIMSPreview from './previews/BaseetIMSPreview.astro'
 
 interface Props {
   project: ProjectIndexCard
@@ -14,19 +15,47 @@ const hasVideo = Boolean(project.previewVideo)
 const isInteractive = Boolean(project.previewInteractive)
 const projectHref = `/projects/${project.slug}/`
 
-const previewBackgrounds: Record<string, string> = {
-  matrix: '#f9fafb',
+const previewBgDay: Record<string, string> = {
+  matrix: '#f3f4f6',
   moneybox: '#faf8f5',
   numu: '#f5f5fa',
+  baseetims: '#0c1014',
 }
 
-const previewBg = project.previewInteractive
-  ? previewBackgrounds[project.previewInteractive]
+const previewBgNight: Record<string, string> = {
+  matrix: '#151820',
+  moneybox: '#1a2420',
+  numu: '#1e1a28',
+  baseetims: '#0c1014',
+}
+
+/* Light-tone previews use dark caption text; dark-tone previews use light captions */
+const previewTone: Record<string, 'light' | 'dark'> = {
+  matrix: 'light',
+  moneybox: 'light',
+  numu: 'light',
+  baseetims: 'dark',
+}
+
+const previewBgDayVal = project.previewInteractive
+  ? previewBgDay[project.previewInteractive]
+  : undefined
+const previewBgNightVal = project.previewInteractive
+  ? previewBgNight[project.previewInteractive]
+  : undefined
+const previewToneVal = project.previewInteractive
+  ? previewTone[project.previewInteractive]
   : undefined
 
-const tileClasses = ['wg', layoutClass, isInteractive && 'wg--interactive']
-const tileStyle = previewBg
-  ? `--wg-accent: ${project.color}; --wg-preview-bg: ${previewBg};`
+const tileClasses = [
+  'wg',
+  layoutClass,
+  isInteractive && 'wg--interactive',
+  isInteractive && previewToneVal === 'light' && 'wg--preview-light',
+  isInteractive && previewToneVal === 'dark' && 'wg--preview-dark',
+]
+const tileStyle = previewBgDayVal
+  ? `--wg-accent: ${project.color}; --wg-preview-bg-day: ${previewBgDayVal}; --wg-preview-bg-night: ${previewBgNightVal ?? previewBgDayVal}; --wg-preview-bg: ${previewBgDayVal};`
   : `--wg-accent: ${project.color};`
 const TileTag = isInteractive ? 'article' : 'a'
 const tileAttrs = isInteractive
@@ -47,6 +76,7 @@ const tileAttrs = isInteractive
           {project.previewInteractive === 'matrix' && <MatrixPreview />}
           {project.previewInteractive === 'moneybox' && <MoneyBoxPreview />}
           {project.previewInteractive === 'numu' && <NumuPreview />}
+          {project.previewInteractive === 'baseetims' && <BaseetIMSPreview />}
         </>
       ) : hasVideo ? (
         <video
@@ -139,12 +169,21 @@ const tileAttrs = isInteractive
     background: var(--wg-preview-bg);
   }
 
+  :global([data-theme='night']) .wg--interactive .wg__frame {
+    --wg-preview-bg: var(--wg-preview-bg-night, var(--wg-preview-bg-day));
+    background: var(--wg-preview-bg);
+  }
+
   .wg--interactive :global(.preview-stage) {
     position: relative;
     z-index: 2;
     width: 100%;
     height: 100%;
     background-color: var(--wg-preview-bg);
+  }
+
+  :global([data-theme='night']) .wg--interactive :global(.preview-stage) {
+    background-color: var(--wg-preview-bg-night, var(--wg-preview-bg-day));
   }
 
   .wg__tint {
@@ -164,13 +203,44 @@ const tileAttrs = isInteractive
   .wg--interactive .wg__tint {
     z-index: 3;
     top: auto;
-    height: 42%;
-    background: linear-gradient(
-      180deg,
-      transparent 0%,
-      color-mix(in srgb, var(--wg-preview-bg) 0%, rgba(6, 10, 18, 0.5)) 40%,
-      rgba(6, 10, 18, 0.85) 100%
-    );
+    height: 38%;
+    background: var(--wg-preview-bg);
+    opacity: 0.94;
+  }
+
+  .wg--interactive.wg--preview-dark .wg__tint {
+    background: var(--wg-preview-bg);
+    opacity: 0.9;
+  }
+
+  .wg--preview-light .wg__name {
+    color: var(--heading-text);
+    text-shadow: none;
+  }
+
+  .wg--preview-light .wg__tagline {
+    color: var(--muted-text);
+  }
+
+  .wg--preview-light .wg__open {
+    color: var(--wg-accent);
+  }
+
+  .wg--preview-light .wg__link:focus-visible {
+    outline-color: var(--wg-accent);
+  }
+
+  .wg--preview-dark .wg__name {
+    color: var(--text-inverse);
+    text-shadow: none;
+  }
+
+  .wg--preview-dark .wg__tagline {
+    color: var(--text-secondary);
+  }
+
+  .wg--preview-dark .wg__open {
+    color: var(--wg-accent);
   }
 
   .wg__zip-frame {

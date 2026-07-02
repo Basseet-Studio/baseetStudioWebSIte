@@ -1,0 +1,71 @@
+{
+  "name": "Jemeti",
+  "slug": "jemeti",
+  "type": "branded",
+  "tagline": "Workshops and maintenance shops, managed",
+  "description": "## About Jemeti\n\nJemeti helps workshop and maintenance shop owners schedule jobs, track parts, and manage customer vehicles — all from one place.\n\n### Built for Service Shops\n\nFrom oil changes to full rebuilds, Jemeti keeps work orders, technician assignments, and parts inventory organised.\n\n### Coming Soon\n\nWe're building Jemeti with real shop owners. Get in touch if you'd like early access.\n",
+  "icon": "/images/projects/jemeti-icon.svg",
+  "iconClass": null,
+  "color": "#DC2626",
+  "gradient": "linear-gradient(135deg, #DC2626 0%, #EF4444 100%)",
+  "status": "Coming Soon",
+  "layoutVariant": "default",
+  "fontHeading": "Space Grotesk",
+  "fontBody": "Inter",
+  "appType": "web",
+  "brandName": "Jemeti",
+  "bgEffect": "none",
+  "hero": {
+    "title": "Your Workshop, Organised",
+    "subtitle": "Job scheduling, parts tracking, and customer management for maintenance and repair shops.",
+    "cta_primary": "Get Early Access",
+    "cta_primary_link": "/contact",
+    "cta_secondary": null,
+    "cta_secondary_link": null
+  },
+  "features": [
+    {
+      "title": "Work Orders",
+      "description": "Create, assign, and track jobs from intake to completion.",
+      "icon": "fas fa-clipboard-list"
+    },
+    {
+      "title": "Parts Inventory",
+      "description": "Know what's on the shelf before you promise a repair date.",
+      "icon": "fas fa-wrench"
+    },
+    {
+      "title": "Customer Vehicles",
+      "description": "Service history, reminders, and notes per vehicle.",
+      "icon": "fas fa-car"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "Web",
+      "icon": "fas fa-globe",
+      "version": "Web App",
+      "link": "#"
+    }
+  ],
+  "navItems": [
+    {
+      "label": "Home",
+      "url": "",
+      "i18nKey": "project_nav_home"
+    }
+  ],
+  "navMetaItems": [
+    {
+      "label": "Work",
+      "url": "/projects/",
+      "i18nKey": "nav_work"
+    },
+    {
+      "label": "Contact",
+      "url": "/contact/",
+      "i18nKey": "nav_contact"
+    }
+  ],
+  "faq": []
+}

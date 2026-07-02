@@ -3,6 +3,7 @@ import Icon from '../icons/Icon.astro'
 import { resolveIcon } from '../icons/iconMappings'
 import { parseBold } from '../../utils/markup'
 import type { Lang } from '../../types'
+import { t } from '../../lib/i18n'
 
 interface Props {
   features: Array<{ icon: string; pretitle: string; title: string; text: string }>
@@ -18,7 +19,7 @@ const servicesHref = '/services/'
 ---
 
 <section class="features" data-animate="fade-slide-up">
-  <h2 class="features__heading">Our Services</h2>
+  <h2 class="features__heading">{t('home_services_title', lang)}</h2>
   <div class="features__grid">
     {features.map((feature) => {
       const icon = resolveIcon(feature.icon)
@@ -36,7 +37,7 @@ const servicesHref = '/services/'
         <h3 class="features__title" set:html={parseBold(feature.title)} />
         <p class="features__text">{feature.text}</p>
         <span class="features__cta" aria-hidden="true">
-          Explore service
+          {t('home_services_cta', lang)}
           <Icon name="arrow-right" size={14} color="currentColor" />
         </span>
       </a>

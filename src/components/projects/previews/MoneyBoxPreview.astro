@@ -27,11 +27,27 @@ import PreviewShell from './PreviewShell.astro'
   .mb-preview {
     --mb-bg: #faf8f5;
     --mb-teal: #2d7d5e;
+    --mb-card-bg: #ffffff;
+    --mb-card-text: #1a1a1a;
+    --mb-card-border: rgba(45, 125, 94, 0.25);
+    --mb-log-text: #3b3b3b;
+    --mb-nav-bg: #ffffff;
+    --mb-nav-text: #6b7280;
     background-color: var(--mb-bg);
     font-family: var(--font-body);
     display: flex;
     flex-direction: column;
     min-height: 100%;
+  }
+
+  :global([data-theme='night']) .mb-preview {
+    --mb-bg: #1a2420;
+    --mb-card-bg: #222c28;
+    --mb-card-text: #dce3df;
+    --mb-card-border: #2e3d36;
+    --mb-log-text: #9caaa4;
+    --mb-nav-bg: #1e2824;
+    --mb-nav-text: #8a9a92;
   }
 
   .mb-preview__header {
@@ -80,12 +96,12 @@ import PreviewShell from './PreviewShell.astro'
   }
 
   :global(.mb-preview__row) {
-    background: #fff;
-    border: 1.5px solid rgba(45, 125, 94, 0.25);
+    background: var(--mb-card-bg);
+    border: 1.5px solid var(--mb-card-border);
     border-radius: 8px;
     padding: clamp(5px, 1.2vw, 8px);
     font-size: clamp(9px, 1.3vw, 11px);
-    color: #1a1a1a;
+    color: var(--mb-card-text);
     transition: opacity 0.3s ease;
   }
 
@@ -138,7 +154,7 @@ import PreviewShell from './PreviewShell.astro'
   :global(.mb-preview__log) {
     font-size: clamp(8px, 1.1vw, 10px);
     min-height: 14px;
-    color: #3b3b3b;
+    color: var(--mb-log-text);
   }
 
   :global(.mb-preview__log--fade) {
@@ -160,10 +176,10 @@ import PreviewShell from './PreviewShell.astro'
     display: flex;
     justify-content: space-around;
     padding: 6px 4px 8px;
-    background: #fff;
-    border-top: 1px solid rgba(45, 125, 94, 0.15);
+    background: var(--mb-nav-bg);
+    border-top: 1px solid var(--mb-card-border);
     font-size: clamp(7px, 1vw, 9px);
-    color: #6b7280;
+    color: var(--mb-nav-text);
   }
 
   .mb-preview__nav-item--active {

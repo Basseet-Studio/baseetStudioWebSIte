@@ -2,19 +2,14 @@
 // ServicesBento.astro — The full /services index layout.
 //
 // Three parts:
-//   1. The capability bento — an offset grid where some cards span 2 cols,
-//      some span 2 rows. No two cards have the same dimensions on desktop.
-//      This is a deliberate refusal of the identical-card-grid template
-//      tell called out in DESIGN.md.
-//   2. The process timeline — a vertical numbered timeline replacing the
-//      hero-metric "6 identical numbered tiles" template. Each step gets
-//      its own row with a connector line.
+//   1. Editorial zigzag service rows (layout from nice-services.tsx reference).
+//   2. Lateral pin process journey (GSAP ScrollTrigger pin indicator).
 //   3. The CTA — a single composed card with copy on the left and a primary
 //      action on the right, instead of a centered stacked card.
 
 import Icon from '../icons/Icon.astro'
-import { resolveIcon } from '../icons/iconMappings'
-import ServiceCard from './ServiceCard.astro'
+import ServiceRow from './ServiceRow.astro'
+import ProcessPin from './ProcessPin.astro'
 
 interface SubService {
   name: string
@@ -37,6 +32,7 @@ interface ProcessStep {
   number: string
   title: string
   desc: string
+  lead?: string
   icon: string
 }
 
@@ -55,95 +51,53 @@ interface Props {
     steps: ProcessStep[]
   }
   cta?: CTA
-  // Localised chrome strings. Defaults match the EN copy in services.json.
   copy: {
-      eyebrow?: string
-      intro?: string
-      explore?: string
-      ctaHref: string
-      ctaArrowIcon?: string // 'arrow-right' | 'arrow-left' — bottom CTA arrow
-      cardArrowIcon?: string // 'arrow-right' | 'arrow-left' — per-card CTA arrow
-    }
+    eyebrow?: string
+    intro?: string
+    explore?: string
+    ctaHref: string
+    ctaArrowIcon?: string
+    cardArrowIcon?: string
+  }
 }
-
-// Pre-defined size slots. The grid is 4 cols × 3 rows. Each category gets
-// the next size in order, cycling when we run out. The arrangement is
-// intentional: anchor at top-left, wide strips on the right column, tall
-// strip balancing, smalls filling the gaps.
-const SIZE_ORDER: Array<'anchor' | 'wide' | 'tall' | 'standard'> = [
-  'anchor', // Web — flagship, top-left, big
-  'wide',   // Mobile — wide strip top-right
-  'tall',   // Internal — tall column right side
-  'standard', // SEO — small
-  'wide',   // Design — wide strip bottom-left
-  'standard', // Cloud — small (final slot)
-]
 
 const { categories, process, cta, copy } = Astro.props
 const arrowIcon = copy.ctaArrowIcon ?? 'arrow-right'
 const cardArrowIcon = copy.cardArrowIcon ?? arrowIcon
+const isAr = copy.ctaHref.includes('/ar/')
 ---
 
 {/* =====================================================================
-     Part 1 — Capability bento
+     Part 1 — Editorial zigzag services
      ===================================================================== */}
-<div class="services-bento">
+<div class="services-rows">
   {categories.map((category, i) => (
-    <ServiceCard
-          index={i + 1}
-          id={category.id}
-          slug={category.slug}
-          title={category.title}
-          tagline={category.tagline}
-          shortDescription={category.shortDescription}
-          color={category.color}
-          gradient={category.gradient}
-          iconClass={category.icon}
-          subServices={category.subServices?.slice(0, 3) ?? []}
-          ctaLabel={copy.explore ?? 'Explore service'}
-          href={`/services/${category.slug}/`}
-          size={SIZE_ORDER[i % SIZE_ORDER.length]}
-          arrowIcon={cardArrowIcon}
-        />
+    <ServiceRow
+      index={i + 1}
+      title={category.title}
+      tagline={category.tagline}
+      shortDescription={category.shortDescription}
+      color={category.color}
+      gradient={category.gradient}
+      iconClass={category.icon}
+      subServices={category.subServices?.slice(0, 3) ?? []}
+      ctaLabel={copy.explore ?? 'Explore service'}
+      href={isAr ? `/ar/services/${category.slug}/` : `/services/${category.slug}/`}
+      arrowIcon={cardArrowIcon}
+    />
   ))}
 </div>
 
 {/* =====================================================================
-     Part 2 — Process timeline
+     Part 2 — Lateral pin process journey
      ===================================================================== */}
 {process && process.steps && process.steps.length > 0 && (
-  <section class="process-timeline" id="process" data-animate="fade-up">
-    <header class="process-timeline__head">
-      <span class="eyebrow-chip" style="background:color-mix(in srgb, var(--color-primary) 10%, transparent); color:var(--color-primary); border:1px solid color-mix(in srgb, var(--color-primary) 22%, transparent);">
-        How we work
-      </span>
-      <h2 class="process-timeline__title">{process.title}</h2>
-      <p class="process-timeline__subtitle">{process.subtitle}</p>
-    </header>
-
-    <ol class="process-timeline__list">
-      {process.steps.map((step, i) => {
-        const stepIcon = resolveIcon(step.icon || 'fas fa-circle')
-        return (
-          <li class="process-step" data-animate="fade-up">
-            <div class="process-step__rail" aria-hidden="true">
-              <span class="process-step__node">
-                <Icon name={stepIcon.name} variant={stepIcon.variant} size={16} color="currentColor" />
-              </span>
-              {i < process.steps.length - 1 && <span class="process-step__line"></span>}
-            </div>
-            <div class="process-step__copy">
-              <div class="process-step__meta">
-                <span class="process-step__number">{step.number}</span>
-                <h3 class="process-step__title">{step.title}</h3>
-              </div>
-              <p class="process-step__desc">{step.desc}</p>
-            </div>
-          </li>
-        )
-      })}
-    </ol>
-  </section>
+  <ProcessPin
+    eyebrow={copy.eyebrow ?? 'How we work'}
+    title={process.title}
+    subtitle={process.subtitle}
+    steps={process.steps}
+  />
 )}
 
 {/* =====================================================================
@@ -179,35 +133,10 @@ const cardArrowIcon = copy.cardArrowIcon ?? arrowIcon
 )}
 
 <style>
-  /* ===== Bento grid ===== */
-  .services-bento {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: minmax(220px, auto);
-    gap: 20px;
-  }
-
-  @media (max-width: 960px) {
-    .services-bento {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-    }
-  }
-
-  @media (max-width: 560px) {
-    .services-bento {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  /* ===== Process timeline ===== */
-  .process-timeline {
-    margin-top: 96px;
-  }
-
-  .process-timeline__head {
-    max-width: 640px;
-    margin: 0 0 48px;
+  .services-rows {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(80px, 12vw, 160px);
   }
 
   .eyebrow-chip {
@@ -220,160 +149,6 @@ const cardArrowIcon = copy.cardArrowIcon ?? arrowIcon
     margin-bottom: 18px;
   }
 
-  .process-timeline__title {
-    font-size: 2.25rem;
-    font-weight: 400;
-    color: var(--heading-text);
-    margin: 0 0 12px;
-    letter-spacing: -0.01em;
-    line-height: 1.15;
-  }
-
-  .process-timeline__subtitle {
-    font-size: 1.05rem;
-    color: var(--muted-text);
-    margin: 0;
-    max-width: 520px;
-    line-height: 1.5;
-  }
-
-  .process-timeline__list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .process-step {
-    display: grid;
-    grid-template-columns: 56px 1fr;
-    gap: 24px;
-    padding: 24px 0;
-    align-items: flex-start;
-  }
-
-  /* Offset the inner copy for odd steps to break the visual rhythm.
-     Even: copy starts at column 1; odd: copy starts at column 2 with the
-     rail pushed right. The result is a staggered timeline. */
-  .process-step:nth-child(odd) .process-step__copy {
-    padding-left: 0;
-  }
-  .process-step:nth-child(even) {
-    grid-template-columns: 56px 1fr 80px 1fr;
-  }
-  .process-step:nth-child(even) .process-step__copy {
-    grid-column: 4;
-  }
-  .process-step:nth-child(even) .process-step__rail {
-    grid-column: 1;
-    grid-row: 1;
-  }
-
-  .process-step__rail {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 8px;
-  }
-
-  .process-step__node {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: color-mix(in srgb, var(--color-primary) 10%, transparent);
-    color: var(--color-primary);
-    border: 1px solid color-mix(in srgb, var(--color-primary) 22%, transparent);
-    font-weight: 600;
-    z-index: 2;
-    flex-shrink: 0;
-  }
-
-  .process-step__line {
-    flex: 1;
-    width: 2px;
-    min-height: 56px;
-    background: linear-gradient(
-      to bottom,
-      color-mix(in srgb, var(--color-primary) 28%, transparent) 0%,
-      color-mix(in srgb, var(--color-primary) 8%, transparent) 100%
-    );
-    margin-top: 8px;
-  }
-
-  [dir="rtl"] .process-step__line {
-    background: linear-gradient(
-      to bottom,
-      color-mix(in srgb, var(--color-primary) 28%, transparent) 0%,
-      color-mix(in srgb, var(--color-primary) 8%, transparent) 100%
-    );
-  }
-
-  .process-step__copy {
-    padding-top: 8px;
-  }
-
-  .process-step__meta {
-    display: flex;
-    align-items: baseline;
-    gap: 14px;
-    margin-bottom: 6px;
-  }
-
-  .process-step__number {
-    font-family: var(--font-title);
-    font-size: 1.15rem;
-    color: var(--color-primary);
-    letter-spacing: 0.02em;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .process-step__title {
-    font-size: 1.25rem;
-    font-weight: 400;
-    color: var(--heading-text);
-    margin: 0;
-    letter-spacing: -0.005em;
-  }
-
-  .process-step__desc {
-    font-size: 0.95rem;
-    line-height: 1.55;
-    color: var(--muted-text);
-    margin: 0;
-    max-width: 56ch;
-  }
-
-  /* Responsive: collapse the even/odd stagger on small screens. */
-  @media (max-width: 720px) {
-    .process-step,
-    .process-step:nth-child(even) {
-      grid-template-columns: 44px 1fr;
-      gap: 16px;
-    }
-    .process-step__copy,
-    .process-step:nth-child(even) .process-step__copy {
-      grid-column: 2;
-    }
-    .process-step__rail,
-    .process-step:nth-child(even) .process-step__rail {
-      grid-column: 1;
-    }
-    .process-step__node {
-      width: 38px;
-      height: 38px;
-    }
-    .process-timeline__title {
-      font-size: 1.85rem;
-    }
-  }
-
-  /* ===== CTA ===== */
   .ready-to-ship {
     margin-top: 96px;
   }
@@ -384,12 +159,11 @@ const cardArrowIcon = copy.cardArrowIcon ?? arrowIcon
     gap: 48px;
     align-items: center;
     padding: 56px 56px;
-    border-radius: 28px;
+    border-radius: var(--card-window-radius);
     position: relative;
     overflow: hidden;
   }
 
-  /* A soft warm halo behind the eyebrow + button. Uses accent (marigold). */
   .ready-to-ship__inner::before {
     content: "";
     position: absolute;
