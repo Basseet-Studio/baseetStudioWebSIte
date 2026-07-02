@@ -1,0 +1,115 @@
+---
+import PreviewShell from './PreviewShell.astro'
+---
+
+<PreviewShell label="Interactive preview: Numu habit tracker" class="nu-preview" previewType="numu">
+  <div class="nu-preview__list" data-habit-list></div>
+</PreviewShell>
+
+<style>
+  /* Screenshot ref: pale lavender screen #F5F5FA */
+  .nu-preview {
+    --nu-bg: #f5f5fa;
+    background-color: var(--nu-bg);
+    font-family: var(--font-body);
+    padding: clamp(8px, 1.8vw, 12px);
+    overflow-y: auto;
+  }
+
+  .nu-preview__list {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(5px, 1.2vw, 8px);
+  }
+
+  :global(.nu-preview__card) {
+    background: #fff;
+    border-radius: 12px;
+    padding: clamp(6px, 1.4vw, 9px);
+    box-shadow: 0 2px 8px rgba(60, 40, 90, 0.07);
+  }
+
+  :global(.nu-preview__head) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+  }
+
+  :global(.nu-preview__meta) {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+  }
+
+  :global(.nu-preview__icon) {
+    width: clamp(18px, 3vw, 22px);
+    height: clamp(18px, 3vw, 22px);
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(10px, 1.5vw, 12px);
+    flex-shrink: 0;
+  }
+
+  :global(.nu-preview__icon--water) {
+    background: #eeedfe;
+    color: #7f77dd;
+  }
+
+  :global(.nu-preview__icon--read) {
+    background: #faece7;
+    color: #d85a30;
+  }
+
+  :global(.nu-preview__name) {
+    font-size: clamp(9px, 1.3vw, 11px);
+    color: #2c2c2a;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  :global(.nu-preview__streak) {
+    font-size: clamp(9px, 1.3vw, 11px);
+    color: #ba7517;
+    flex-shrink: 0;
+  }
+
+  :global(.nu-preview__days) {
+    display: flex;
+    gap: 3px;
+  }
+
+  :global(.nu-preview__day) {
+    width: clamp(12px, 2vw, 16px);
+    height: clamp(12px, 2vw, 16px);
+    border-radius: 5px;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  :global(.nu-preview__day--done) {
+    background: #97c459;
+  }
+
+  :global(.nu-preview__day--missed) {
+    background: #f0997b;
+  }
+
+  :global(.nu-preview__day--today) {
+    outline: 2px solid #af52de;
+    outline-offset: 1px;
+  }
+
+  :global(.nu-preview__score) {
+    font-size: clamp(8px, 1.1vw, 10px);
+    color: #5f5e5a;
+    margin-top: 5px;
+  }
+</style>

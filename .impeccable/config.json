@@ -16,7 +16,10 @@
       "src/pages/projects/geeb/**",
       "src/pages/ar/projects/geeb/**",
       "src/components/project/geeb/**",
-      "src/pages/projects/[slug]/[page].astro"
+      "src/pages/projects/[slug]/[page].astro",
+      "src/components/projects/previews/**",
+      "src/styles/previews/**",
+      "src/scripts/previews/**"
     ],
     "ignoreValues": []
   }

@@ -1,0 +1,65 @@
+import type { PreviewController } from './types'
+
+type PreviewType = 'matrix' | 'moneybox' | 'numu'
+
+const controllers = new WeakMap<HTMLElement, PreviewController>()
+
+async function loadInit(type: PreviewType) {
+  switch (type) {
+    case 'matrix':
+      return (await import('./matrix')).initMatrixPreview
+    case 'moneybox':
+      return (await import('./moneybox')).initMoneyBoxPreview
+    case 'numu':
+      return (await import('./numu')).initNumuPreview
+  }
+}
+
+function mountPreview(root: HTMLElement, type: PreviewType): void {
+  if (controllers.has(root)) return
+  void loadInit(type).then((init) => {
+    if (controllers.has(root)) return
+    controllers.set(root, init(root))
+    root.dataset.previewMounted = 'true'
+  })
+}
+
+function unmountPreview(root: HTMLElement): void {
+  const ctrl = controllers.get(root)
+  if (ctrl) {
+    ctrl.destroy()
+    controllers.delete(root)
+    delete root.dataset.previewMounted
+  }
+}
+
+export function initPreviewLoader(scope: ParentNode = document): () => void {
+  const roots = scope.querySelectorAll<HTMLElement>('[data-preview-type]')
+  if (roots.length === 0) return () => {}
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const el = entry.target as HTMLElement
+        const type = el.dataset.previewType as PreviewType | undefined
+        if (!type) return
+        if (entry.isIntersecting) mountPreview(el, type)
+      })
+    },
+    { root: null, threshold: 0.1 },
+  )
+
+  roots.forEach((root) => observer.observe(root))
+
+  function onBeforeSwap(): void {
+    roots.forEach(unmountPreview)
+    observer.disconnect()
+  }
+
+  document.addEventListener('astro:before-swap', onBeforeSwap)
+
+  return () => {
+    onBeforeSwap()
+    document.removeEventListener('astro:before-swap', onBeforeSwap)
+  }
+}

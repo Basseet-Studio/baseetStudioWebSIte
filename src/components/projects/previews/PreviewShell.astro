@@ -1,0 +1,24 @@
+---
+/** Shared shell for interactive project previews — fills the gallery tile media area. */
+interface Props {
+  label: string
+  class?: string
+  previewType: 'matrix' | 'moneybox' | 'numu'
+}
+
+const { label, class: className = '', previewType } = Astro.props
+---
+
+<div
+  class:list={['preview-stage', className]}
+  role="region"
+  aria-label={label}
+  data-preview-type={previewType}
+>
+  <slot />
+  <div class="preview-ghost" data-ghost aria-hidden="true"></div>
+</div>
+
+<style is:global>
+  @import '../../../styles/previews/shared.css';
+</style>

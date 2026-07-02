@@ -15,6 +15,7 @@ import type { Project } from '../types'
 import projectsIndexRaw from '../content/data/projects.json'
 
 export type ProjectIndexTier = 'anchor' | 'flagship' | 'more'
+export type PreviewInteractive = 'matrix' | 'moneybox' | 'numu'
 
 export interface ProjectSummary {
   slug: string
@@ -30,6 +31,7 @@ export interface ProjectSummary {
   indexTier?: ProjectIndexTier
   previewImage?: string
   previewVideo?: string | null
+  previewInteractive?: PreviewInteractive | null
 }
 
 export interface ProjectIndexCard extends ProjectSummary {

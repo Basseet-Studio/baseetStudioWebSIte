@@ -268,14 +268,18 @@ const labClass: Record<string, string> = {
 <script>
   import gsap from 'gsap'
   import { ScrollTrigger } from 'gsap/ScrollTrigger'
+  import { initPreviewLoader } from '../../scripts/previews/preview-loader'
 
   gsap.registerPlugin(ScrollTrigger)
 
   let triggers: ScrollTrigger[] = []
+  let teardownPreviews: (() => void) | undefined
 
   function killWallMotion(): void {
     triggers.forEach((t) => t.kill())
     triggers = []
+    teardownPreviews?.()
+    teardownPreviews = undefined
   }
 
   function initZipBorders(root: HTMLElement): void {
@@ -305,7 +309,9 @@ const labClass: Record<string, string> = {
       tile.addEventListener('mouseenter', () => tl.play())
       tile.addEventListener('mouseleave', () => tl.reverse())
       tile.addEventListener('focusin', () => tl.play())
-      tile.addEventListener('focusout', () => tl.reverse())
+      tile.addEventListener('focusout', (e) => {
+        if (!tile.contains(e.relatedTarget as Node)) tl.reverse()
+      })
     })
   }
 
@@ -316,6 +322,7 @@ const labClass: Record<string, string> = {
     if (!root) return
 
     initZipBorders(root)
+    teardownPreviews = initPreviewLoader(root)
 
     root.querySelectorAll<HTMLVideoElement>('video.wg__visual').forEach((video) => {
       const tile = video.closest('.wg')
@@ -343,10 +350,11 @@ const labClass: Record<string, string> = {
       ease: 'power2.out',
     })
 
-    const matrixVisual = root.querySelector<HTMLElement>('.wg--matrix .wg__visual')
-    if (matrixVisual) {
+    const matrixTile = root.querySelector<HTMLElement>('.wg--matrix')
+    const matrixVisual = matrixTile?.querySelector<HTMLElement>('.wg__visual:not(.wg__fallback)')
+    if (matrixVisual && !matrixTile?.classList.contains('wg--interactive')) {
       const st = ScrollTrigger.create({
-        trigger: root.querySelector('.wg--matrix'),
+        trigger: matrixTile,
         start: 'top bottom',
         end: 'bottom top',
         scrub: 0.5,

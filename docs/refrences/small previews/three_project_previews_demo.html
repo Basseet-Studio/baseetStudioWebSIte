@@ -1,0 +1,349 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Bangers&family=Comic+Neue:wght@400;700&family=Quicksand:wght@500;600&display=swap">
+<style>
+@keyframes gpulse{0%{box-shadow:0 0 0 0 rgba(0,0,0,.35)}100%{box-shadow:0 0 0 14px rgba(0,0,0,0)}}
+.ghost{position:absolute;width:16px;height:16px;border-radius:50%;background:#fff;border:2px solid #111;pointer-events:none;z-index:50;transition:left .7s cubic-bezier(.4,0,.2,1),top .7s cubic-bezier(.4,0,.2,1),opacity .25s;transform:translate(-2px,-2px)}
+.ghost.gpulse{animation:gpulse .35s ease-out}
+.stage{position:relative;width:212px;height:212px;border-radius:18px;overflow:hidden;flex:0 0 auto}
+.mxcard{border-radius:5px;padding:5px 7px;font-size:11px;cursor:grab;margin-bottom:6px;line-height:1.3}
+.mxcol{flex:1;min-width:0;display:flex;flex-direction:column}
+.mxbody{flex:1;min-height:20px}
+.cbtn{font-family:'Comic Neue',cursive;font-weight:700;font-size:11px;border:2px solid #111;border-radius:6px;padding:3px 7px;cursor:pointer;color:#111;}
+.cbtn:active{transform:translate(2px,2px)}
+.moneyRow{transition:transform .3s ease,opacity .3s ease}
+.hcard{background:#fff;border-radius:14px;padding:8px 9px;margin-bottom:7px;box-shadow:0 2px 8px rgba(60,40,90,.07)}
+.hday{width:16px;height:16px;border-radius:5px;cursor:pointer;transition:background .2s}
+.fadein{animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+</style>
+<h2 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">Three live interactive previews: a kanban task board, a shared money pool tracker, and a habit tracker, each with an autonomous cursor that hands control to you on hover</h2>
+<div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center;padding:1rem 0 0.5rem;">
+
+<div id="stageMatrix" class="stage" style="background:#12141c;font-family:'JetBrains Mono',monospace;padding:10px;box-sizing:border-box;">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+    <span style="color:#9ee6ff;font-size:11px;font-weight:600;letter-spacing:.03em;">matrix</span>
+    <span style="color:#4b5263;font-size:11px;"><i class="ti ti-git-branch" aria-hidden="true" style="font-size:12px"></i></span>
+  </div>
+  <div style="display:flex;gap:6px;height:158px;">
+    <div class="mxcol" data-col="todo">
+      <div style="color:#6b7280;font-size:11px;margin-bottom:5px;">to do</div>
+      <div class="mxbody" data-body="todo"></div>
+    </div>
+    <div class="mxcol" data-col="doing">
+      <div style="color:#6b7280;font-size:11px;margin-bottom:5px;">doing</div>
+      <div class="mxbody" data-body="doing"></div>
+    </div>
+    <div class="mxcol" data-col="done">
+      <div style="color:#6b7280;font-size:11px;margin-bottom:5px;">done</div>
+      <div class="mxbody" data-body="done"></div>
+    </div>
+  </div>
+  <div class="ghost" id="ghostMatrix" style="left:90px;top:90px;"></div>
+</div>
+
+<div id="stageMoney" class="stage" style="background:#cdf5c0;font-family:'Comic Neue',cursive;padding:10px;box-sizing:border-box;border:3px solid #111;">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px;">
+    <span style="font-family:'Bangers',cursive;font-size:19px;letter-spacing:.02em;color:#111;">MONEY BOX</span>
+    <i class="ti ti-pig-money" aria-hidden="true" style="font-size:15px;color:#111;"></i>
+  </div>
+  <svg id="poolChart" viewBox="0 0 192 34" style="width:100%;height:34px;display:block;overflow:visible;"></svg>
+  <div id="reqList" style="margin:6px 0 4px;"></div>
+  <div id="moneyLog" style="font-size:11px;color:#3b3b3b;min-height:14px;"></div>
+  <div class="ghost" id="ghostMoney" style="left:90px;top:90px;"></div>
+</div>
+
+<div id="stageHabit" class="stage" style="background:#f1ecfb;font-family:'Quicksand',sans-serif;padding:10px;box-sizing:border-box;">
+  <div id="habitList"></div>
+  <div class="ghost" id="ghostHabit" style="left:90px;top:90px;"></div>
+</div>
+
+</div>
+<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:2px;">
+<button onclick="sendPrompt('I approve these three previews, let\'s write the implementation spec now')">approve, write the spec ↗</button>
+<button onclick="sendPrompt('Let\'s tweak the styling on one of the previews before we spec it')">tweak a style first ↗</button>
+</div>
+<script>
+function relCenter(stage, el){
+  var sr = stage.getBoundingClientRect();
+  var er = el.getBoundingClientRect();
+  return {x: er.left - sr.left + er.width/2 - 8, y: er.top - sr.top + er.height/2 - 8};
+}
+function ghostTo(ghost, pos){ ghost.style.left = pos.x+'px'; ghost.style.top = pos.y+'px'; }
+function ghostClick(ghost){ ghost.classList.add('gpulse'); setTimeout(function(){ ghost.classList.remove('gpulse'); }, 350); }
+function setupLive(stage, ghost){
+  stage.dataset.live = '0';
+  stage.addEventListener('mouseenter', function(){ stage.dataset.live='1'; ghost.style.opacity='0'; });
+  stage.addEventListener('mouseleave', function(){ stage.dataset.live='0'; ghost.style.opacity='1'; });
+}
+function autoLoop(stage, stepFn, delay){
+  function tick(){
+    if(stage.dataset.live === '1'){ setTimeout(tick, 500); return; }
+    stepFn(function(){ setTimeout(tick, delay); });
+  }
+  setTimeout(tick, 900);
+}
+
+var stageMatrix = document.getElementById('stageMatrix');
+var ghostMatrix = document.getElementById('ghostMatrix');
+setupLive(stageMatrix, ghostMatrix);
+var mxCards = [
+  {id:1,title:'Fix auth sync',col:'todo',pri:'#e24b4a'},
+  {id:2,title:'Header button',col:'todo',pri:'#ba7517'},
+  {id:3,title:'Find bugs',col:'doing',pri:'#e24b4a'},
+  {id:4,title:'Pricing copy',col:'done',pri:'#639922'}
+];
+function renderMatrix(){
+  ['todo','doing','done'].forEach(function(col){
+    var body = stageMatrix.querySelector('.mxbody[data-body="'+col+'"]');
+    body.innerHTML = '';
+    mxCards.filter(function(c){return c.col===col;}).forEach(function(c){
+      var d = document.createElement('div');
+      d.className = 'mxcard';
+      d.draggable = true;
+      d.dataset.cardId = c.id;
+      d.style.background = '#1e2230';
+      d.style.borderLeft = '3px solid '+c.pri;
+      d.style.color = '#e5e7eb';
+      d.textContent = c.title;
+      d.addEventListener('dragstart', function(e){ e.dataTransfer.setData('text/plain', c.id); });
+      body.appendChild(d);
+    });
+  });
+}
+stageMatrix.querySelectorAll('.mxcol').forEach(function(colEl){
+  colEl.addEventListener('dragover', function(e){ e.preventDefault(); });
+  colEl.addEventListener('drop', function(e){
+    e.preventDefault();
+    var id = parseInt(e.dataTransfer.getData('text/plain'), 10);
+    var card = mxCards.find(function(c){return c.id===id;});
+    if(card){ card.col = colEl.dataset.col; renderMatrix(); }
+  });
+});
+renderMatrix();
+autoLoop(stageMatrix, function(done){
+  var card = mxCards[Math.floor(Math.random()*mxCards.length)];
+  var cols = ['todo','doing','done'].filter(function(c){return c!==card.col;});
+  var target = cols[Math.floor(Math.random()*cols.length)];
+  var cardEl = stageMatrix.querySelector('[data-card-id="'+card.id+'"]');
+  if(!cardEl){ done(); return; }
+  ghostTo(ghostMatrix, relCenter(stageMatrix, cardEl));
+  setTimeout(function(){
+    ghostClick(ghostMatrix);
+    setTimeout(function(){
+      var targetBody = stageMatrix.querySelector('.mxbody[data-body="'+target+'"]');
+      ghostTo(ghostMatrix, relCenter(stageMatrix, targetBody));
+      setTimeout(function(){
+        ghostClick(ghostMatrix);
+        card.col = target;
+        renderMatrix();
+        done();
+      }, 700);
+    }, 300);
+  }, 700);
+}, 1400);
+
+var stageMoney = document.getElementById('stageMoney');
+var ghostMoney = document.getElementById('ghostMoney');
+setupLive(stageMoney, ghostMoney);
+var poolHistory = [3120, 3180, 3260, 3210, 3340, 3450];
+function currentPool(){ return poolHistory[poolHistory.length-1]; }
+function expectedPool(){ return Math.round(currentPool() * 1.13); }
+function renderChart(){
+  var svg = document.getElementById('poolChart');
+  var expected = expectedPool();
+  var all = poolHistory.concat([expected]);
+  var min = Math.min.apply(null, all), max = Math.max.apply(null, all);
+  if(max === min){ max = min + 1; }
+  var w = 192, h = 28, padTop = 2;
+  var n = poolHistory.length;
+  var stepX = (w-34)/(n-1);
+  var pts = poolHistory.map(function(v,i){
+    var x = i*stepX;
+    var y = padTop + (h-padTop)*(1-(v-min)/(max-min));
+    return [x,y];
+  });
+  var last = pts[pts.length-1];
+  var expX = w, expY = padTop + (h-padTop)*(1-(expected-min)/(max-min));
+  var solid = pts.map(function(p){return p[0]+','+p[1];}).join(' ');
+  var ns = 'http://www.w3.org/2000/svg';
+  svg.innerHTML = '';
+  var line1 = document.createElementNS(ns,'polyline');
+  line1.setAttribute('points', solid);
+  line1.setAttribute('fill','none');
+  line1.setAttribute('stroke','#111');
+  line1.setAttribute('stroke-width','2.5');
+  line1.setAttribute('stroke-linecap','round');
+  line1.setAttribute('stroke-linejoin','round');
+  svg.appendChild(line1);
+  var line2 = document.createElementNS(ns,'line');
+  line2.setAttribute('x1', last[0]); line2.setAttribute('y1', last[1]);
+  line2.setAttribute('x2', expX); line2.setAttribute('y2', expY);
+  line2.setAttribute('stroke','#111'); line2.setAttribute('stroke-width','2');
+  line2.setAttribute('stroke-dasharray','3,3');
+  svg.appendChild(line2);
+  var dot = document.createElementNS(ns,'circle');
+  dot.setAttribute('cx', last[0]); dot.setAttribute('cy', last[1]); dot.setAttribute('r','3');
+  dot.setAttribute('fill','#111');
+  svg.appendChild(dot);
+  var t1 = document.createElementNS(ns,'text');
+  t1.setAttribute('x', Math.min(last[0]+4, 128)); t1.setAttribute('y', Math.max(last[1]-5,10));
+  t1.setAttribute('font-family',"'Comic Neue',cursive"); t1.setAttribute('font-weight','700');
+  t1.setAttribute('font-size','11'); t1.setAttribute('fill','#111');
+  t1.textContent = '$'+currentPool();
+  svg.appendChild(t1);
+  var t2 = document.createElementNS(ns,'text');
+  t2.setAttribute('x', Math.max(expX-32,0)); t2.setAttribute('y', Math.max(expY-6,10));
+  t2.setAttribute('font-family',"'Comic Neue',cursive"); t2.setAttribute('font-size','9');
+  t2.setAttribute('fill','#3b6d11');
+  t2.textContent = 'exp $'+expected;
+  svg.appendChild(t2);
+}
+var requestPool = [
+  {type:'withdraw',name:'Kareem',amount:15},
+  {type:'deposit',name:'Meena',amount:20},
+  {type:'withdraw',name:'Ahmed',amount:5},
+  {type:'deposit',name:'Sara',amount:12},
+  {type:'withdraw',name:'Lina',amount:8},
+  {type:'deposit',name:'Omar',amount:18}
+];
+var pendingQueue = requestPool.slice(0,3);
+var poolPointer = 3;
+function renderQueue(){
+  var el = document.getElementById('reqList');
+  el.innerHTML = '';
+  pendingQueue.slice(0,2).forEach(function(item, i){
+    var row = document.createElement('div');
+    row.className = 'fadein moneyRow';
+    row.style.background = '#fff';
+    row.style.border = '2.5px solid #111';
+    row.style.borderRadius = '8px';
+    row.style.padding = i===0 ? '6px 7px' : '5px 7px';
+    row.style.marginBottom = '6px';
+    if(i===0){
+      row.style.boxShadow = '3px 3px 0 #111';
+      var label = item.type==='withdraw' ? item.name+' is withdrawing $'+item.amount : item.name+' contributed $'+item.amount;
+      var btnHtml = item.type==='withdraw'
+        ? '<div style="display:flex;gap:6px;"><button class="cbtn" id="approveBtn" style="background:#97c459;">approve</button><button class="cbtn" id="rejectBtn" style="background:#f0997b;">reject</button></div>'
+        : '<button class="cbtn" id="confirmBtn" style="background:#85b7eb;">confirm receiving</button>';
+      row.innerHTML = '<div style="font-size:12px;font-weight:700;color:#111;margin-bottom:6px;">'+label+'</div>'+btnHtml;
+    } else {
+      row.style.boxShadow = '2px 2px 0 #111';
+      row.style.opacity = '0.5';
+      var label2 = item.type==='withdraw' ? item.name+' wants $'+item.amount : item.name+' sent $'+item.amount;
+      row.innerHTML = '<div style="font-size:11px;color:#111;">'+label2+'</div>';
+    }
+    el.appendChild(row);
+  });
+  if(pendingQueue[0].type === 'withdraw'){
+    document.getElementById('approveBtn').addEventListener('click', function(){ resolveRequest('approve'); });
+    document.getElementById('rejectBtn').addEventListener('click', function(){ resolveRequest('reject'); });
+  } else {
+    document.getElementById('confirmBtn').addEventListener('click', function(){ resolveRequest('confirm'); });
+  }
+}
+function setLog(text, color){
+  var el = document.getElementById('moneyLog');
+  el.className = 'fadein';
+  el.style.color = color;
+  el.textContent = text;
+}
+function resolveRequest(action){
+  var item = pendingQueue[0];
+  if(action === 'approve'){
+    poolHistory.push(currentPool() - item.amount);
+    setLog(item.name+"'s withdrawal approved -$"+item.amount, '#993c1d');
+  } else if(action === 'reject'){
+    setLog(item.name+"'s withdrawal rejected", '#a32d2d');
+  } else if(action === 'confirm'){
+    poolHistory.push(currentPool() + item.amount);
+    setLog('confirmed +$'+item.amount+' from '+item.name, '#3b6d11');
+  }
+  if(poolHistory.length > 7){ poolHistory.shift(); }
+  pendingQueue.shift();
+  pendingQueue.push(requestPool[poolPointer % requestPool.length]);
+  poolPointer++;
+  renderChart();
+  renderQueue();
+}
+renderChart();
+renderQueue();
+autoLoop(stageMoney, function(done){
+  var top = pendingQueue[0];
+  var btnId = top.type === 'withdraw' ? (Math.random() < 0.75 ? 'approveBtn' : 'rejectBtn') : 'confirmBtn';
+  var btn = document.getElementById(btnId);
+  if(!btn){ done(); return; }
+  ghostTo(ghostMoney, relCenter(stageMoney, btn));
+  setTimeout(function(){
+    ghostClick(ghostMoney);
+    resolveRequest(btnId === 'approveBtn' ? 'approve' : btnId === 'rejectBtn' ? 'reject' : 'confirm');
+    done();
+  }, 750);
+}, 3000);
+
+var stageHabit = document.getElementById('stageHabit');
+var ghostHabit = document.getElementById('ghostHabit');
+setupLive(stageHabit, ghostHabit);
+var habits = [
+  {id:1,name:'Drink water',icon:'ti-droplet',color:'#7f77dd',bg:'#eeedfe',days:[true,false,true,true,false,true,false]},
+  {id:2,name:'Read 10 pages',icon:'ti-book',color:'#d85a30',bg:'#faece7',days:[true,true,false,true,true,false,false]}
+];
+function calcStreak(days){
+  var s = 0;
+  for(var i=days.length-1;i>=0;i--){ if(days[i]) s++; else break; }
+  return s;
+}
+function renderHabits(){
+  var list = document.getElementById('habitList');
+  list.innerHTML = '';
+  habits.forEach(function(h){
+    var card = document.createElement('div');
+    card.className = 'hcard';
+    var streak = calcStreak(h.days);
+    var score = Math.round(h.days.filter(Boolean).length/7*100);
+    var head = document.createElement('div');
+    head.style.display = 'flex';
+    head.style.alignItems = 'center';
+    head.style.justifyContent = 'space-between';
+    head.style.marginBottom = '6px';
+    head.innerHTML = '<div style="display:flex;align-items:center;gap:6px;"><div style="width:22px;height:22px;border-radius:7px;background:'+h.bg+';color:'+h.color+';display:flex;align-items:center;justify-content:center;"><i class="ti '+h.icon+'" aria-hidden="true" style="font-size:13px"></i></div><span style="font-size:11px;color:#2c2c2a;">'+h.name+'</span></div><span style="font-size:11px;color:#ba7517;"><i class="ti ti-flame" aria-hidden="true" style="font-size:12px;vertical-align:-1px"></i> '+streak+'</span>';
+    card.appendChild(head);
+    var row = document.createElement('div');
+    row.style.display = 'flex';
+    row.style.gap = '3px';
+    h.days.forEach(function(done, idx){
+      var sq = document.createElement('div');
+      sq.className = 'hday';
+      sq.dataset.habitId = h.id;
+      sq.dataset.dayIdx = idx;
+      sq.style.background = done ? '#97c459' : '#f0997b';
+      row.appendChild(sq);
+      sq.addEventListener('click', function(){ toggleDay(h.id, idx); });
+    });
+    card.appendChild(row);
+    var scoreRow = document.createElement('div');
+    scoreRow.style.fontSize = '11px';
+    scoreRow.style.color = '#5f5e5a';
+    scoreRow.style.marginTop = '5px';
+    scoreRow.textContent = score+'% score';
+    card.appendChild(scoreRow);
+    list.appendChild(card);
+  });
+}
+function toggleDay(id, idx){
+  var h = habits.find(function(x){return x.id===id;});
+  h.days[idx] = !h.days[idx];
+  renderHabits();
+}
+renderHabits();
+autoLoop(stageHabit, function(done){
+  var h = habits[Math.floor(Math.random()*habits.length)];
+  var idx = Math.floor(Math.random()*h.days.length);
+  var sq = stageHabit.querySelector('.hday[data-habit-id="'+h.id+'"][data-day-idx="'+idx+'"]');
+  if(!sq){ done(); return; }
+  ghostTo(ghostHabit, relCenter(stageHabit, sq));
+  setTimeout(function(){
+    ghostClick(ghostHabit);
+    toggleDay(h.id, idx);
+    done();
+  }, 700);
+}, 1800);
+</script>

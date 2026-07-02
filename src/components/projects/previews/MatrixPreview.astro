@@ -1,0 +1,163 @@
+---
+import PreviewShell from './PreviewShell.astro'
+
+const columns = [
+  { id: 'backlog', label: 'Backlog' },
+  { id: 'todo', label: 'To Do' },
+  { id: 'doing', label: 'In Prog' },
+  { id: 'review', label: 'Review' },
+  { id: 'testing', label: 'Testing' },
+  { id: 'done', label: 'Done' },
+]
+---
+
+<PreviewShell label="Interactive preview: Matrix task board" class="mx-preview" previewType="matrix">
+  <div class="mx-preview__header">
+    <span class="mx-preview__brand">matrix</span>
+    <svg class="mx-preview__icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <path d="M6 3v12M18 9V3M6 21v-6M18 15v6M6 15h12M6 9h12" />
+    </svg>
+  </div>
+  <div class="mx-preview__board" data-board>
+    {columns.map((col) => (
+      <div class="mx-preview__col" data-col={col.id}>
+        <div class="mx-preview__col-label" data-col-label={col.id}>{col.label}</div>
+        <div class="mx-preview__body" data-body={col.id}></div>
+      </div>
+    ))}
+  </div>
+</PreviewShell>
+
+<style>
+  /* Screenshot ref: light workspace #F9FAFB */
+  .mx-preview {
+    --mx-bg: #f9fafb;
+    --mx-brand: #2563eb;
+    --mx-muted: #6b7280;
+    background-color: var(--mx-bg);
+    font-family: var(--font-body);
+    padding: clamp(8px, 2vw, 12px);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .mx-preview__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .mx-preview__brand {
+    font-size: clamp(10px, 1.4vw, 12px);
+    font-weight: 600;
+    color: var(--mx-brand);
+    letter-spacing: 0.03em;
+    text-transform: lowercase;
+  }
+
+  .mx-preview__icon {
+    color: var(--mx-muted);
+  }
+
+  .mx-preview__board {
+    display: flex;
+    gap: clamp(4px, 0.8vw, 6px);
+    flex: 1;
+    min-height: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 2px;
+  }
+
+  .mx-preview__board::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mx-preview__col {
+    flex: 0 0 clamp(68px, 15%, 88px);
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    scroll-snap-align: start;
+  }
+
+  .mx-preview__col-label {
+    font-size: clamp(7px, 1vw, 9px);
+    font-weight: 600;
+    color: var(--mx-muted);
+    margin-bottom: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .mx-preview__body {
+    flex: 1;
+    min-height: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  :global(.mx-preview__card) {
+    background: #fff;
+    border-radius: 6px;
+    padding: 4px 5px;
+    font-size: clamp(7px, 1vw, 9px);
+    cursor: grab;
+    line-height: 1.25;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+    border-left: 2px solid var(--mx-border, #3b82f6);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  :global(.mx-preview__card--high) {
+    --mx-border: #3b82f6;
+  }
+
+  :global(.mx-preview__card--medium) {
+    --mx-border: #f59e0b;
+  }
+
+  :global(.mx-preview__card--critical) {
+    --mx-border: #ef4444;
+  }
+
+  :global(.mx-preview__card-title) {
+    color: #1f2937;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  :global(.mx-preview__pri) {
+    align-self: flex-start;
+    font-size: clamp(6px, 0.85vw, 8px);
+    font-weight: 600;
+    padding: 1px 4px;
+    border-radius: 4px;
+  }
+
+  :global(.mx-preview__pri--high) {
+    background: #fee2e2;
+    color: #dc2626;
+  }
+
+  :global(.mx-preview__pri--medium) {
+    background: #fef3c7;
+    color: #d97706;
+  }
+
+  :global(.mx-preview__pri--critical) {
+    background: #fce7f3;
+    color: #db2777;
+  }
+</style>

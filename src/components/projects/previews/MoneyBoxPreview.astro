@@ -1,0 +1,176 @@
+---
+import PreviewShell from './PreviewShell.astro'
+---
+
+<PreviewShell label="Interactive preview: MoneyBox group financing" class="mb-preview" previewType="moneybox">
+  <div class="mb-preview__header">
+    <div class="mb-preview__header-text">
+      <span class="mb-preview__title">Group Pool</span>
+      <span class="mb-preview__balance" data-balance>3,450 د.إ</span>
+    </div>
+  </div>
+  <div class="mb-preview__body">
+    <svg class="mb-preview__chart" data-chart aria-hidden="true"></svg>
+    <div class="mb-preview__queue" data-queue></div>
+    <div class="mb-preview__log" data-log></div>
+  </div>
+  <nav class="mb-preview__nav" aria-hidden="true">
+    <span class="mb-preview__nav-item">Home</span>
+    <span class="mb-preview__nav-item">Personal</span>
+    <span class="mb-preview__nav-item mb-preview__nav-item--active">Group</span>
+    <span class="mb-preview__nav-item">Settings</span>
+  </nav>
+</PreviewShell>
+
+<style>
+  /* Screenshot ref: cream body #FAF8F5, teal header #2D7D5E */
+  .mb-preview {
+    --mb-bg: #faf8f5;
+    --mb-teal: #2d7d5e;
+    background-color: var(--mb-bg);
+    font-family: var(--font-body);
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+  }
+
+  .mb-preview__header {
+    background: var(--mb-teal, #2d7d5e);
+    padding: clamp(8px, 1.8vw, 12px) clamp(10px, 2vw, 14px);
+    color: #fff;
+  }
+
+  .mb-preview__header-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .mb-preview__title {
+    font-size: clamp(10px, 1.5vw, 13px);
+    font-weight: 700;
+  }
+
+  .mb-preview__balance {
+    font-size: clamp(14px, 2.2vw, 18px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .mb-preview__body {
+    flex: 1;
+    padding: clamp(6px, 1.5vw, 10px);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-height: 0;
+  }
+
+  .mb-preview__chart {
+    width: 100%;
+    height: clamp(28px, 5vw, 36px);
+    display: block;
+    overflow: visible;
+  }
+
+  .mb-preview__queue {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  :global(.mb-preview__row) {
+    background: #fff;
+    border: 1.5px solid rgba(45, 125, 94, 0.25);
+    border-radius: 8px;
+    padding: clamp(5px, 1.2vw, 8px);
+    font-size: clamp(9px, 1.3vw, 11px);
+    color: #1a1a1a;
+    transition: opacity 0.3s ease;
+  }
+
+  :global(.mb-preview__row--active) {
+    box-shadow: 0 2px 6px rgba(45, 125, 94, 0.12);
+  }
+
+  :global(.mb-preview__row--muted) {
+    opacity: 0.55;
+    font-size: clamp(8px, 1.1vw, 10px);
+  }
+
+  :global(.mb-preview__row-label) {
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+
+  :global(.mb-preview__actions) {
+    display: flex;
+    gap: 5px;
+  }
+
+  :global(.mb-preview__btn) {
+    font-family: var(--font-body);
+    font-size: clamp(8px, 1.1vw, 10px);
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    padding: 3px 8px;
+    cursor: pointer;
+    color: #fff;
+  }
+
+  :global(.mb-preview__btn--approve) {
+    background: var(--mb-teal, #2d7d5e);
+  }
+
+  :global(.mb-preview__btn--reject) {
+    background: #c45c4a;
+  }
+
+  :global(.mb-preview__btn--confirm) {
+    background: #3d8b6e;
+  }
+
+  :global(.mb-preview__btn:active) {
+    transform: scale(0.97);
+  }
+
+  :global(.mb-preview__log) {
+    font-size: clamp(8px, 1.1vw, 10px);
+    min-height: 14px;
+    color: #3b3b3b;
+  }
+
+  :global(.mb-preview__log--fade) {
+    animation: mbLogFade 0.3s ease;
+  }
+
+  @keyframes mbLogFade {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .mb-preview__nav {
+    display: flex;
+    justify-content: space-around;
+    padding: 6px 4px 8px;
+    background: #fff;
+    border-top: 1px solid rgba(45, 125, 94, 0.15);
+    font-size: clamp(7px, 1vw, 9px);
+    color: #6b7280;
+  }
+
+  .mb-preview__nav-item--active {
+    color: var(--mb-teal, #2d7d5e);
+    font-weight: 700;
+    background: rgba(45, 125, 94, 0.12);
+    border-radius: 6px;
+    padding: 2px 6px;
+  }
+</style>
