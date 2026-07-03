@@ -1,0 +1,137 @@
+/* Minimal shell CSS mirroring src/components/background/VantaBg.astro + theme tokens
+   from src/styles/global.css that affect how clouds read behind UI. */
+
+:root {
+  --bg-page: #f4f8fc;
+  --card-bg: #ffffff;
+  --text-primary: #171d1c;
+  --border-soft: rgba(0, 0, 0, 0.12);
+  --bg-elevated: rgba(255, 255, 255, 0.7);
+
+  --vanta-sky: #87ceeb;
+  --vanta-cloud: #ffffff;
+  --vanta-cloud-shadow: #496bc1;
+
+  /* Card-as-Window — surfaces must stay translucent so clouds show through */
+  --card-window-bg: rgba(255, 255, 255, 0.72);
+  --card-window-border: rgba(0, 0, 0, 0.06);
+  --card-window-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  --card-window-radius: 24px;
+}
+
+[data-theme="night"] {
+  --bg-page: #0f1726;
+  --card-bg: rgba(10, 16, 28, 0.68);
+  --text-primary: #ebeff8;
+  --border-soft: rgba(255, 255, 255, 0.18);
+  --bg-elevated: rgba(10, 16, 28, 0.68);
+
+  --vanta-sky: #1a2540;
+  --vanta-cloud: #6a7894;
+  --vanta-cloud-shadow: #0a0e18;
+
+  --card-window-bg: rgba(10, 16, 28, 0.62);
+  --card-window-border: rgba(255, 255, 255, 0.1);
+  --card-window-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  background: transparent;
+  color: var(--text-primary);
+}
+
+#vanta-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200vh;
+  z-index: 0;
+  pointer-events: none;
+  contain: layout style paint;
+  transform: translateZ(0);
+}
+
+#vanta-bg canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+#vanta-cloud-fog,
+#vanta-clear-sky {
+  display: none;
+}
+
+#vanta-fallback {
+  display: none;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, var(--bg-page) 0%, var(--card-bg) 100%);
+}
+
+.preview-main {
+  position: relative;
+  z-index: 1;
+  min-height: 220vh;
+  padding: 24px;
+}
+
+.preview-panel {
+  max-width: 640px;
+  margin: 0 auto 24px;
+  padding: 24px;
+  border-radius: var(--card-window-radius);
+  background: var(--card-window-bg);
+  border: 1px solid var(--card-window-border);
+  box-shadow: var(--card-window-shadow);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.preview-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.preview-toolbar button {
+  padding: 10px 14px;
+  border-radius: 18px;
+  border: 1px solid var(--border-soft);
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.preview-toolbar button:hover {
+  transform: translateY(-1px);
+}
+
+.preview-note {
+  opacity: 0.72;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

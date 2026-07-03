@@ -1,17 +1,24 @@
 import type { AutoLoop, AutoLoopStep, GhostCursor } from './types'
 
 const GHOST_OFFSET = 8
+const ARROW_GHOST_OFFSET = 4
+
+function ghostOffset(container: HTMLElement): number {
+  const type = container.dataset.previewType
+  return type === 'matrix' || type === 'baseetims' ? ARROW_GHOST_OFFSET : GHOST_OFFSET
+}
 
 function prefersReducedMotion(): boolean {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches
 }
 
 export function relCenter(stage: HTMLElement, el: Element): { x: number; y: number } {
+  const offset = ghostOffset(stage)
   const sr = stage.getBoundingClientRect()
   const er = el.getBoundingClientRect()
   return {
-    x: er.left - sr.left + er.width / 2 - GHOST_OFFSET,
-    y: er.top - sr.top + er.height / 2 - GHOST_OFFSET,
+    x: er.left - sr.left + er.width / 2 - offset,
+    y: er.top - sr.top + er.height / 2 - offset,
   }
 }
 

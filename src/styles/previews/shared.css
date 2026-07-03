@@ -59,6 +59,67 @@
   transform: translate(-2px, -2px);
 }
 
+/* Matrix + BaseetIMS — tiny arrow pointer instead of a dot */
+.preview-stage[data-preview-type='matrix'] .preview-ghost,
+.preview-stage[data-preview-type='baseetims'] .preview-ghost {
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background: transparent;
+  border: none;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--preview-ghost-border, #111);
+  transform: translate(0, -50%);
+}
+
+.preview-stage[data-preview-type='matrix'] .preview-ghost::before,
+.preview-stage[data-preview-type='baseetims'] .preview-ghost::before {
+  content: '›';
+  display: block;
+  text-shadow:
+    0 0 0 var(--preview-ghost-bg, #fff),
+    0 0 2px var(--preview-ghost-bg, #fff),
+    1px 1px 0 var(--preview-ghost-bg, #fff),
+    -1px -1px 0 var(--preview-ghost-bg, #fff);
+}
+
+[data-theme='night'] .preview-stage[data-preview-type='matrix'] .preview-ghost,
+[data-theme='night'] .preview-stage[data-preview-type='baseetims'] .preview-ghost {
+  color: var(--preview-ghost-border, #374151);
+}
+
+[data-theme='night'] .preview-stage[data-preview-type='matrix'] .preview-ghost::before,
+[data-theme='night'] .preview-stage[data-preview-type='baseetims'] .preview-ghost::before {
+  text-shadow:
+    0 0 0 var(--preview-ghost-bg, #e5e7eb),
+    0 0 2px var(--preview-ghost-bg, #e5e7eb),
+    1px 1px 0 var(--preview-ghost-bg, #e5e7eb),
+    -1px -1px 0 var(--preview-ghost-bg, #e5e7eb);
+}
+
+.preview-stage[data-preview-type='matrix'] .preview-ghost--pulse,
+.preview-stage[data-preview-type='baseetims'] .preview-ghost--pulse {
+  animation: previewGhostArrowPulse 0.35s ease-out;
+}
+
+@keyframes previewGhostArrowPulse {
+  0% {
+    transform: translate(0, -50%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(2px, -50%) scale(0.92);
+    opacity: 0.75;
+  }
+  100% {
+    transform: translate(0, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
 [data-theme='night'] .preview-ghost {
   --preview-ghost-bg: #e5e7eb;
   --preview-ghost-border: #374151;
@@ -83,6 +144,11 @@
   }
 
   .preview-ghost--pulse {
+    animation: none;
+  }
+
+  .preview-stage[data-preview-type='matrix'] .preview-ghost--pulse,
+  .preview-stage[data-preview-type='baseetims'] .preview-ghost--pulse {
     animation: none;
   }
 }

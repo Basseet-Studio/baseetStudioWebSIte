@@ -30,7 +30,15 @@
     "footer_projects": "Projects",
     "footer_write_us": "Write to us",
     "footer_visiting": "Visiting from {country}",
-    "footer_device": "on {device}"
+    "footer_device": "on {device}",
+    "project_nav_home": "Home",
+    "project_nav_features": "Features",
+    "project_nav_demo": "Demo",
+    "project_nav_terms": "Terms",
+    "project_nav_pro": "Pro",
+    "project_nav_faq": "FAQ",
+    "project_nav_privacy": "Privacy",
+    "project_nav_download": "Download"
   },
   "ar": {
     "nav_home": "الرئيسية",
@@ -63,6 +71,14 @@
     "footer_projects": "المشاريع",
     "footer_write_us": "راسلنا",
     "footer_visiting": "زائر من {country}",
-    "footer_device": "على {device}"
+    "footer_device": "على {device}",
+    "project_nav_home": "الرئيسية",
+    "project_nav_features": "الميزات",
+    "project_nav_demo": "عرض تجريبي",
+    "project_nav_terms": "الشروط",
+    "project_nav_pro": "برو",
+    "project_nav_faq": "الأسئلة الشائعة",
+    "project_nav_privacy": "الخصوصية",
+    "project_nav_download": "تحميل"
   }
 }
