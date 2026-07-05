@@ -1,15 +1,32 @@
-import { bootCloudscapeFromDom, getCloudscapeRuntime } from './cloudscape-runtime'
+import {
+  bootCloudscapeFromDom,
+  getCloudscapeRuntime,
+  readSceneConfigFromWindow,
+} from './cloudscape-runtime'
 import type { CloudSettings } from './types'
 
 export function boot(): void {
   bootCloudscapeFromDom()
 }
 
-/** Re-sync scroll/camera when canvas persisted across view transitions. */
-export function refreshAfterNavigation(): void {
+/** Re-sync scene when canvas persisted across view transitions. */
+export async function refreshAfterNavigation(): Promise<void> {
   const runtime = getCloudscapeRuntime()
   if (!runtime) return
-  runtime.scrollDriver.tick({ force: true, source: 'page-load-refresh' })
+
+  if (!runtime.bridge.getIsTransitioning()) {
+    runtime.scrollDriver.tick({ force: true, source: 'page-load-refresh' })
+    return
+  }
+
+  const config = readSceneConfigFromWindow()
+  if (!config) {
+    runtime.bridge.forceEndTransition()
+    runtime.scrollDriver.tick({ force: true, source: 'page-load-recovery' })
+    return
+  }
+
+  await runtime.bridge.onAfterSwap(config)
 }
 
 export function setCloudscapeTheme(theme: 'day' | 'night'): void {

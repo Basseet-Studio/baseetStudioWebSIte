@@ -122,6 +122,8 @@ export interface SceneConfig {
     exportDate?: string
     settingsHash?: string
   }
+  /** Internal WebGL resolution multiplier (0.75–1). CSS canvas stays full viewport. */
+  renderScale?: number
 }
 
 export interface EvaluatedSceneState {

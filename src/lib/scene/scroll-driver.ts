@@ -23,6 +23,8 @@ export function getScrollProgress(): number {
 
 export function createScrollDriver(options: {
   onProgress: (progress: number, meta: ScrollDriverMeta) => void
+  /** When true, scroll events are ignored — caller drives tick() from the render loop. */
+  externalTick?: boolean
   throttle?: 'raf' | 'none'
 }): ScrollDriver {
   const onProgress = options.onProgress
@@ -42,6 +44,7 @@ export function createScrollDriver(options: {
   }
 
   function onScroll(): void {
+    if (options.externalTick) return
     if (options.throttle === 'none') {
       tick({ source: 'scroll' })
       return
@@ -56,13 +59,6 @@ export function createScrollDriver(options: {
 
   function onResize(): void {
     tick({ source: 'resize', force: true })
-  }
-
-  function onAfterSwap(): void {
-    lastProgress = -1
-    requestAnimationFrame(() => {
-      tick({ source: 'astro:after-swap', force: true })
-    })
   }
 
   function onSectionProgress(event: Event): void {
@@ -82,7 +78,6 @@ export function createScrollDriver(options: {
       attached = true
       window.addEventListener('scroll', onScroll, { passive: true })
       window.addEventListener('resize', onResize)
-      document.addEventListener('astro:after-swap', onAfterSwap)
       document.addEventListener('baseet:section-progress', onSectionProgress)
       tick({ source: 'attach', force: true })
     },
@@ -91,7 +86,6 @@ export function createScrollDriver(options: {
       attached = false
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', onResize)
-      document.removeEventListener('astro:after-swap', onAfterSwap)
       document.removeEventListener('baseet:section-progress', onSectionProgress)
     },
     tick,

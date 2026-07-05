@@ -60,8 +60,6 @@
       return
     }
 
-    showDebugOverlay()
-
     if (matchesMobile()) {
       showFallback()
       return
@@ -77,7 +75,16 @@
       return
     }
 
+    showDebugOverlay()
     import('../../lib/scene/cloudscape-boot.ts').then((m) => m.boot())
+  }
+
+  function refreshIfBooted(): void {
+    if (!document.documentElement.hasAttribute(CLOUDSCAPE_BOOT_FLAG)) return
+    showDebugOverlay()
+    import('../../lib/scene/cloudscape-boot.ts')
+      .then((m) => m.refreshAfterNavigation())
+      .catch(() => {})
   }
 
   if (document.readyState === 'loading') {
@@ -86,7 +93,7 @@
     scheduleBoot()
   }
 
-  document.addEventListener('astro:page-load', showDebugOverlay)
+  document.addEventListener('astro:page-load', refreshIfBooted)
 </script>
 
 <style is:global>

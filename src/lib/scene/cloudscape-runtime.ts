@@ -131,15 +131,33 @@ function pushDebugSnapshot(
 }
 
 export function readSceneConfigFromWindow(): SceneConfig | null {
-  const win = window as Window & { __BASEET_SCENE_CONFIG__?: SceneConfig }
-  if (win.__BASEET_SCENE_CONFIG__) return win.__BASEET_SCENE_CONFIG__
   const raw = document.body.getAttribute('data-scene-config')
-  if (!raw) return null
-  try {
-    return JSON.parse(raw) as SceneConfig
-  } catch {
-    return null
+  if (raw) {
+    try {
+      const parsed = JSON.parse(raw) as SceneConfig
+      ;(window as Window & { __BASEET_SCENE_CONFIG__?: SceneConfig }).__BASEET_SCENE_CONFIG__ =
+        parsed
+      return parsed
+    } catch {
+      /* fall through */
+    }
   }
+  const win = window as Window & { __BASEET_SCENE_CONFIG__?: SceneConfig }
+  return win.__BASEET_SCENE_CONFIG__ ?? null
+}
+
+const RENDER_SCALE_STEPS = [0.75, 0.85, 1] as const
+
+function waitAnimationFrames(count: number): Promise<void> {
+  return new Promise((resolve) => {
+    let remaining = count
+    function step(): void {
+      remaining -= 1
+      if (remaining <= 0) resolve()
+      else requestAnimationFrame(step)
+    }
+    requestAnimationFrame(step)
+  })
 }
 
 export function initCloudscape(opts: {
@@ -159,9 +177,12 @@ export function initCloudscape(opts: {
     alpha: true,
     powerPreference: 'high-performance',
   })
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+  renderer.setPixelRatio(1)
   renderer.setClearColor(0x0b1b2b, 1)
   renderer.autoClear = false
+
+  let baseRenderScale = Math.min(1, Math.max(0.75, readNumber(config.renderScale, 1)))
+  let currentRenderScale = baseRenderScale
 
   const mainCamera = new THREE.PerspectiveCamera(
     config.entryCamera.fov,
@@ -249,20 +270,83 @@ export function initCloudscape(opts: {
     lastProgress: 0,
     pageClouds: { ...(config.clouds || {}) },
     pageLighting: { ...(config.lighting || {}) },
+    lowFpsSince: 0,
+    highFpsSince: 0,
+  }
+
+  const composeScratch = {
+    skyColor: new THREE.Color('#6fa8dc'),
+    cloudColor: new THREE.Color('#ffffff'),
+    lightColor: new THREE.Color('#ffffff'),
+    sunDir: new THREE.Vector3(),
+    cameraPos: new THREE.Vector3(),
+    cameraTarget: new THREE.Vector3(),
   }
 
   let themeIntervalId: ReturnType<typeof setInterval> | null = null
   let colorSchemeMq: MediaQueryList | null = null
   let onColorSchemeChange: ((event: MediaQueryListEvent) => void) | null = null
 
+  function stepDownRenderScale(): void {
+    const idx = RENDER_SCALE_STEPS.findIndex((s) => s >= currentRenderScale - 0.001)
+    if (idx > 0) {
+      currentRenderScale = RENDER_SCALE_STEPS[idx - 1]
+      resize()
+      sceneLog('perf', `renderScale stepped down to ${currentRenderScale}`)
+    }
+  }
+
+  function stepUpRenderScale(): void {
+    const idx = RENDER_SCALE_STEPS.findIndex((s) => s >= currentRenderScale - 0.001)
+    if (idx < RENDER_SCALE_STEPS.length - 1) {
+      const next = Math.min(RENDER_SCALE_STEPS[idx + 1], baseRenderScale)
+      if (next > currentRenderScale + 0.001) {
+        currentRenderScale = next
+        resize()
+        sceneLog('perf', `renderScale stepped up to ${currentRenderScale}`)
+      }
+    }
+  }
+
+  function updateAdaptiveRenderScale(): void {
+    const fps = state.fps
+    if (fps <= 0) return
+    const now = performance.now()
+
+    if (fps < 50) {
+      if (state.lowFpsSince === 0) state.lowFpsSince = now
+      if (now - state.lowFpsSince >= 2000) {
+        stepDownRenderScale()
+        state.lowFpsSince = 0
+        state.highFpsSince = 0
+      }
+    } else {
+      state.lowFpsSince = 0
+    }
+
+    if (fps > 58) {
+      if (state.highFpsSince === 0) state.highFpsSince = now
+      if (now - state.highFpsSince >= 5000) {
+        stepUpRenderScale()
+        state.highFpsSince = 0
+        state.lowFpsSince = 0
+      }
+    } else {
+      state.highFpsSince = 0
+    }
+  }
+
   function resize(): void {
-    const w = opts.canvas.clientWidth || window.innerWidth
-    const h = opts.canvas.clientHeight || window.innerHeight
-    renderer.setSize(w, h, false)
-    mainCamera.aspect = w / h
+    const displayW = opts.canvas.clientWidth || window.innerWidth
+    const displayH = opts.canvas.clientHeight || window.innerHeight
+    const pixelW = Math.max(1, Math.round(displayW * currentRenderScale))
+    const pixelH = Math.max(1, Math.round(displayH * currentRenderScale))
+    renderer.setPixelRatio(1)
+    renderer.setSize(pixelW, pixelH, false)
+    mainCamera.aspect = displayW / Math.max(1, displayH)
     mainCamera.updateProjectionMatrix()
-    backgroundMaterial.uniforms.iResolution.value.set(w, h)
-    const targets = ensureCloudRenderTargets(w, h, behindTarget, middleTarget)
+    backgroundMaterial.uniforms.iResolution.value.set(pixelW, pixelH)
+    const targets = ensureCloudRenderTargets(pixelW, pixelH, behindTarget, middleTarget)
     behindTarget = targets.behind
     middleTarget = targets.middle
   }
@@ -307,15 +391,10 @@ export function initCloudscape(opts: {
     const clouds = state.clouds
     const lighting = state.lighting
     const cam = state.currentCamera
+    const scratch = composeScratch
 
-    const scratch = {
-      skyColor: new THREE.Color('#6fa8dc'),
-      cloudColor: new THREE.Color('#ffffff'),
-      lightColor: new THREE.Color('#ffffff'),
-      sunDir: new THREE.Vector3(),
-      cameraPos: new THREE.Vector3(cam.position[0], cam.position[1], cam.position[2]),
-      cameraTarget: new THREE.Vector3(cam.target[0], cam.target[1], cam.target[2]),
-    }
+    scratch.cameraPos.set(cam.position[0], cam.position[1], cam.position[2])
+    scratch.cameraTarget.set(cam.target[0], cam.target[1], cam.target[2])
 
     sunDirectionFromAngles(
       readNumber(lighting.azimuth, 45),
@@ -409,6 +488,7 @@ export function initCloudscape(opts: {
     const now = performance.now()
     if (now - state.lastFpsTime >= 1000) {
       state.fps = state.frame
+      updateAdaptiveRenderScale()
       state.frame = 0
       state.lastFpsTime = now
     }
@@ -426,11 +506,16 @@ export function initCloudscape(opts: {
       state.pageLighting = { ...(next.lighting || {}) }
       state.clouds = { ...state.pageClouds }
       state.lighting = { ...state.pageLighting }
+      baseRenderScale = Math.min(1, Math.max(0.75, readNumber(next.renderScale, 1)))
+      currentRenderScale = baseRenderScale
+      state.lowFpsSince = 0
+      state.highFpsSince = 0
       cameraController.setConfig(next)
       objectRegistry.setAnchorIndex(next.scrollAnchors)
       objectRegistry.registerAll(next.objects)
       objectRegistry.queuePreload(next.objects)
       syncSkyTheme()
+      resize()
     },
     renderFrame,
   }
@@ -446,10 +531,12 @@ export function initCloudscape(opts: {
     objectRegistry.onScrollProgress(progress)
     objectRegistry.applyVisibility(evaluated.objectCommands)
     if (Math.abs(progress - state.lastProgress) > 0.01) {
-      sceneLog(
-        'scroll',
-        `progress=${(progress * 100).toFixed(1)}% anchor=${evaluated.activeAnchorId} objects=${JSON.stringify(evaluated.objectCommands.show || [])}`,
-      )
+      if (isSceneDebugEnabled()) {
+        sceneLog(
+          'scroll',
+          `progress=${(progress * 100).toFixed(1)}% anchor=${evaluated.activeAnchorId} objects=${JSON.stringify(evaluated.objectCommands.show || [])}`,
+        )
+      }
       state.lastProgress = progress
     }
     pushDebugSnapshot(
@@ -463,7 +550,10 @@ export function initCloudscape(opts: {
     )
   }
 
-  const scrollDriver = createScrollDriver({ onProgress: onScrollProgress })
+  const scrollDriver = createScrollDriver({
+    onProgress: onScrollProgress,
+    externalTick: true,
+  })
 
   bridge = createPageTransitionBridge({
     sceneRuntime,
@@ -499,16 +589,35 @@ export function initCloudscape(opts: {
           }
         }
       }
-      const next = readSceneConfigFromWindow()
-      if (next) void bridge.onAfterSwap(next)
+      void (async () => {
+        const next = readSceneConfigFromWindow()
+        if (!next) return
+        await bridge.onAfterSwap(next)
+        await waitAnimationFrames(2)
+        scrollDriver.tick({ force: true, source: 'after-swap-settle' })
+      })()
     })
 
     document.addEventListener('astro:page-load', () => {
       bridge.onPageLoad()
+      window.setTimeout(() => {
+        if (bridge.getIsTransitioning()) {
+          sceneWarn('nav', 'stuck isTransitioning after page-load — force clearing')
+          bridge.forceEndTransition()
+          scrollDriver.tick({ force: true, source: 'page-load-recovery' })
+        }
+      }, 100)
     })
 
     document.addEventListener('visibilitychange', () => {
-      paused = document.hidden
+      if (document.hidden) {
+        paused = true
+        stopLoop()
+      } else {
+        paused = false
+        startLoop()
+        scrollDriver.tick({ force: true, source: 'visible' })
+      }
     })
 
     window.addEventListener('resize', resize)
@@ -521,9 +630,22 @@ export function initCloudscape(opts: {
     colorSchemeMq.addEventListener('change', onColorSchemeChange)
   }
 
-  function loop(): void {
-    if (!paused) sceneRuntime.renderFrame()
-    rafId = requestAnimationFrame(loop)
+  function startLoop(): void {
+    if (rafId !== null) return
+    const tick = (): void => {
+      rafId = requestAnimationFrame(tick)
+      if (paused) return
+      scrollDriver.tick({ source: 'render-loop' })
+      sceneRuntime.renderFrame()
+    }
+    rafId = requestAnimationFrame(tick)
+  }
+
+  function stopLoop(): void {
+    if (rafId !== null) {
+      cancelAnimationFrame(rafId)
+      rafId = null
+    }
   }
 
   resize()
@@ -533,10 +655,10 @@ export function initCloudscape(opts: {
   sceneLog('boot', `entry camera z=${config.entryCamera.position[2]}`)
   scrollDriver.tick({ force: true, source: 'init' })
   attachLifecycle()
-  rafId = requestAnimationFrame(loop)
+  startLoop()
 
   function destroy(): void {
-    if (rafId) cancelAnimationFrame(rafId)
+    stopLoop()
     scrollDriver.detach()
     window.removeEventListener('resize', resize)
     if (themeIntervalId) clearInterval(themeIntervalId)

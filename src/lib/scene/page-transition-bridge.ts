@@ -45,6 +45,7 @@ export interface PageTransitionBridge {
   onAfterSwap: (nextConfig: SceneConfig) => Promise<void>
   onPageLoad: () => void
   getIsTransitioning: () => boolean
+  forceEndTransition: () => void
 }
 
 export function createPageTransitionBridge(deps: {
@@ -54,32 +55,63 @@ export function createPageTransitionBridge(deps: {
   objectRegistry: Pick<ObjectRegistry, 'unloadWhere' | 'queuePreload'>
 }): PageTransitionBridge {
   let isTransitioning = false
+  let navGeneration = 0
+  let activeLerpCancel: (() => void) | null = null
+
+  function cancelActiveLerp(): void {
+    if (activeLerpCancel) {
+      activeLerpCancel()
+      activeLerpCancel = null
+    }
+  }
 
   async function onAfterSwap(nextConfig: SceneConfig): Promise<void> {
-    deps.sceneRuntime.setPageConfig(nextConfig)
-    deps.scrollDriver.reset()
+    const generation = navGeneration
+    cancelActiveLerp()
 
-    const transition = nextConfig.transition?.entry
-    const exitState = readExitState()
+    try {
+      deps.sceneRuntime.setPageConfig(nextConfig)
+      deps.scrollDriver.reset()
 
-    if (transition) {
-      const fromCam =
-        transition.from === 'exit-camera' && exitState?.camera
-          ? exitState.camera
-          : exitState?.camera || deps.cameraController.getEntryCamera()
-      const toCam = transition.camera || deps.cameraController.getEntryCamera()
-      const duration = transition.durationMs || 1000
-      const easing = EASING[transition.easing || 'easeInOutCubic'] || EASING.easeInOutCubic
-      await runCameraLerp(deps.sceneRuntime, fromCam, toCam, duration, easing)
+      const transition = nextConfig.transition?.entry
+      const exitState = readExitState()
+
+      if (transition) {
+        const fromCam =
+          transition.from === 'exit-camera' && exitState?.camera
+            ? exitState.camera
+            : exitState?.camera || deps.cameraController.getEntryCamera()
+        const toCam = transition.camera || deps.cameraController.getEntryCamera()
+        const duration = transition.durationMs || 1000
+        const easing = EASING[transition.easing || 'easeInOutCubic'] || EASING.easeInOutCubic
+        const lerp = runCameraLerp(
+          deps.sceneRuntime,
+          fromCam,
+          toCam,
+          duration,
+          easing,
+          () => generation === navGeneration,
+        )
+        activeLerpCancel = lerp.cancel
+        await lerp.promise
+        activeLerpCancel = null
+      }
+
+      if (generation !== navGeneration) return
+
+      deps.objectRegistry.queuePreload(nextConfig.objects)
+      deps.scrollDriver.tick({ force: true, source: 'after-swap' })
+    } finally {
+      if (generation === navGeneration) {
+        isTransitioning = false
+      }
     }
-
-    deps.objectRegistry.queuePreload(nextConfig.objects)
-    isTransitioning = false
-    deps.scrollDriver.tick({ force: true, source: 'after-swap' })
   }
 
   return {
     onBeforeSwap(ctx) {
+      navGeneration += 1
+      cancelActiveLerp()
       isTransitioning = true
       writeExitState({
         path: location.pathname,
@@ -98,6 +130,11 @@ export function createPageTransitionBridge(deps: {
       })
     },
     getIsTransitioning: () => isTransitioning,
+    forceEndTransition() {
+      navGeneration += 1
+      cancelActiveLerp()
+      isTransitioning = false
+    },
   }
 }
 
@@ -107,19 +144,52 @@ function runCameraLerp(
   toCam: CameraPose,
   durationMs: number,
   easeFn: (t: number) => number,
-): Promise<void> {
+  isActive: () => boolean,
+): { promise: Promise<void>; cancel: () => void } {
   const t0 = performance.now()
-  return new Promise((resolve) => {
-    function frame(now: number) {
+  let rafId: number | null = null
+  let settled = false
+
+  let resolvePromise: (() => void) | null = null
+
+  function finish(): void {
+    if (settled) return
+    settled = true
+    if (rafId !== null) {
+      cancelAnimationFrame(rafId)
+      rafId = null
+    }
+    resolvePromise?.()
+    resolvePromise = null
+  }
+
+  const promise = new Promise<void>((resolve) => {
+    resolvePromise = resolve
+
+    function frame(now: number): void {
+      if (!isActive()) {
+        finish()
+        return
+      }
+
       const t = easeFn(Math.min((now - t0) / durationMs, 1))
       sceneRuntime.applyCamera(lerpCamera(fromCam, toCam, t))
       sceneRuntime.renderFrame()
+
       if (t < 1) {
-        requestAnimationFrame(frame)
+        rafId = requestAnimationFrame(frame)
       } else {
-        resolve()
+        finish()
       }
     }
-    requestAnimationFrame(frame)
+
+    rafId = requestAnimationFrame(frame)
   })
+
+  return {
+    promise,
+    cancel: () => {
+      finish()
+    },
+  }
 }
