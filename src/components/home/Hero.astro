@@ -16,7 +16,7 @@ const { data, lang = 'en' } = Astro.props
 const titleHtml = parseBold(data.title)
 ---
 
-<section class="hero" data-animate="fade-slide-up">
+<section class="hero" data-scroll-anchor="home-hero" data-scroll-anchor-progress="0" data-animate="fade-slide-up">
   <div class="hero__inner">
     <span class="hero__eyebrow">
       {/* TODO: localise this later */}

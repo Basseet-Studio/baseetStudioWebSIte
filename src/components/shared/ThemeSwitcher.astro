@@ -59,9 +59,9 @@ const { lang = 'en' } = Astro.props
         /* ignore */
       }
       updateThemeSwitchUI()
-      import('../background/vanta-init.ts')
-        .then(m => m.setVantaTheme(nextTheme))
-        .catch(err => console.warn('[ThemeSwitcher] vanta theme update failed:', err))
+      import('../../lib/scene/cloudscape-boot.ts')
+        .then((m) => m.setCloudscapeTheme(nextTheme))
+        .catch((err) => console.warn('[ThemeSwitcher] cloudscape theme update failed:', err))
     }
   }
 

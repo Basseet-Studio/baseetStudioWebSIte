@@ -1,7 +1,8 @@
 ---
-// Base.astro — Root layout shell with ViewTransitions, VantaBg, AppBar, Footer
+// Base.astro — Root layout shell with ViewTransitions, CloudscapeBg, AppBar, Footer
 import { ClientRouter } from 'astro:transitions'
-import VantaBg from '../components/background/VantaBg.astro'
+import CloudscapeBg from '../components/background/CloudscapeBg.astro'
+import { resolveSceneConfig } from '../lib/scene/resolve-scene-config'
 import AppBar from '../components/nav/AppBar.astro'
 import Footer from '../components/shared/Footer.astro'
 import PaperFilters from '../components/shared/PaperFilters.astro'
@@ -53,6 +54,8 @@ const {
 // Canonical + hreflang URLs (relative path on the canonical Site URL).
 const siteOrigin = Astro.site?.toString().replace(/\/$/, '') ?? 'https://baseetstudio.com'
 const pathname = Astro.url.pathname
+const sceneConfig = resolveSceneConfig(pathname)
+const sceneConfigJson = JSON.stringify(sceneConfig)
 const stripped = pathname.replace(/\/$/, '') || '/'
 const enPath = stripped
 const arPath = stripped === '/' ? '/ar' : `/ar${stripped}`
@@ -205,10 +208,15 @@ const jsonLdWebSite = {
     <script type="application/ld+json" set:html={JSON.stringify(jsonLdLocalBusiness)} is:inline />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLdWebSite)} is:inline />
   </head>
-  <body data-page={section} data-lang={lang}>
+  <body
+    data-page={section}
+    data-lang={lang}
+    data-scene-renderer={sceneConfig.renderer}
+    data-scene-config={sceneConfigJson}
+  >
     <a href="#main-content" class="skip-to-content">{t('skip_to_content', lang)}</a>
     <PaperFilters />
-    <VantaBg />
+    <CloudscapeBg />
     <AppBar lang={lang} slug={slug} projectName={projectName} projectColor={projectColor} projectIconClass={projectIconClass} projectNavItems={projectNavItems} projectNavMeta={projectNavMeta} />
 
     <main transition:animate="fade" transition:name="content" id="main-content" style="position:relative;z-index:1;min-height:100vh;">
@@ -216,6 +224,10 @@ const jsonLdWebSite = {
     </main>
 
     <Footer compact={footerCompact} />
+
+    <script define:vars={{ sceneConfig }}>
+      window.__BASEET_SCENE_CONFIG__ = sceneConfig
+    </script>
 
     <script>
       import('../animations/global.ts').then(m => {

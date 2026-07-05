@@ -18,7 +18,7 @@ const { features, lang = 'en' } = Astro.props
 const servicesHref = '/services/'
 ---
 
-<section class="features" data-animate="fade-slide-up">
+<section class="features" data-scroll-anchor="home-features" data-scroll-anchor-progress="0.30" data-animate="fade-slide-up">
   <h2 class="features__heading">{t('home_services_title', lang)}</h2>
   <div class="features__grid">
     {features.map((feature) => {

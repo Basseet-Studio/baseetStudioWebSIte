@@ -13,7 +13,7 @@ interface Props {
 const { projects, lang = 'en' } = Astro.props
 ---
 
-<section class="px" id="px-stage" aria-labelledby="px-heading">
+<section class="px" id="px-stage" data-scroll-anchor="home-projects" data-scroll-anchor-progress="0.48" aria-labelledby="px-heading">
   <h2 class="px__heading" id="px-heading">{t('home_projects_title', lang)}</h2>
 
   <ul class="px__grid" role="list">

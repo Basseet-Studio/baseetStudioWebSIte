@@ -1,0 +1,152 @@
+---
+// CloudscapeBg.astro — WebGL cloudscape background (camera + clouds + GLB objects)
+---
+
+<div
+  id="cloudscape-bg"
+  transition:persist
+  transition:name="cloudscape-bg"
+  aria-hidden="true"
+  role="presentation"
+>
+  <canvas id="cloudscape-canvas" class="cloudscape-canvas"></canvas>
+  <div id="cloudscape-fallback" class="cloudscape-fallback" aria-hidden="true"></div>
+</div>
+
+<div id="scene-debug" class="scene-debug" hidden>
+  <div class="scene-debug__row">
+    <span>scroll </span><span data-scene-progress>0</span><span>%</span>
+    <span> · anchor </span><span data-scene-anchor>—</span>
+    <span> · fps </span><span data-scene-fps>—</span>
+  </div>
+  <div class="scene-debug__row">
+    <span>cam </span><span data-scene-cam-pos>12.1, 2.1, 4.7</span>
+    <span> · z </span><span data-scene-cam-z>4.7</span>
+    <span> · density </span><span data-scene-density>0.1</span>
+  </div>
+  <div class="scene-debug__row">
+    <span>objects </span><span data-scene-objects>none</span>
+  </div>
+  <pre id="scene-debug-log" class="scene-debug__log" aria-live="polite"></pre>
+</div>
+
+<script>
+  const CLOUDSCAPE_BOOT_FLAG = 'data-baseet-cloudscape-booted'
+
+  function matchesMobile(): boolean {
+    return (
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+      || window.innerWidth < 600
+    )
+  }
+
+  function showFallback(): void {
+    const fallback = document.getElementById('cloudscape-fallback')
+    if (fallback) fallback.style.display = 'block'
+  }
+
+  function showDebugOverlay(): void {
+    import('../../lib/scene/scene-debug.ts').then((m) => {
+      if (m.isSceneDebugEnabled()) m.showSceneDebugPanel()
+    })
+  }
+
+  function scheduleBoot(): void {
+    if (document.documentElement.hasAttribute(CLOUDSCAPE_BOOT_FLAG)) {
+      showDebugOverlay()
+      import('../../lib/scene/cloudscape-boot.ts')
+        .then((m) => m.refreshAfterNavigation())
+        .catch(() => {})
+      return
+    }
+
+    showDebugOverlay()
+
+    if (matchesMobile()) {
+      showFallback()
+      return
+    }
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      showFallback()
+      return
+    }
+
+    if (document.body.dataset.sceneRenderer !== 'cloudscape') {
+      showFallback()
+      return
+    }
+
+    import('../../lib/scene/cloudscape-boot.ts').then((m) => m.boot())
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', scheduleBoot)
+  } else {
+    scheduleBoot()
+  }
+
+  document.addEventListener('astro:page-load', showDebugOverlay)
+</script>
+
+<style is:global>
+  #cloudscape-bg {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+    contain: layout style paint;
+    background: transparent;
+  }
+
+  .cloudscape-canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    pointer-events: none;
+  }
+
+  .cloudscape-fallback {
+    display: none;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, var(--bg-page) 0%, var(--card-bg) 100%);
+  }
+
+  .scene-debug {
+    position: fixed;
+    bottom: 8px;
+    left: 8px;
+    z-index: 9999;
+    font: 11px/1.45 monospace;
+    background: rgba(0, 0, 0, 0.72);
+    color: #fff;
+    padding: 8px 10px;
+    border-radius: var(--card-window-radius-tight, 18px);
+    pointer-events: none;
+    max-width: min(96vw, 520px);
+  }
+
+  .scene-debug__row {
+    margin-bottom: 2px;
+  }
+
+  .scene-debug__log {
+    margin: 6px 0 0;
+    padding: 6px 0 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    font: 10px/1.35 monospace;
+    white-space: pre-wrap;
+    max-height: 120px;
+    overflow: hidden;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  [data-scroll-anchor].is-active-anchor {
+    outline: 1px dashed rgba(255, 255, 255, 0.35);
+    outline-offset: 8px;
+  }
+</style>

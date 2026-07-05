@@ -1,10 +1,10 @@
-// Shared day/night theme resolution — kept in sync with vanta-init.ts sky anchors.
+// Shared day/night theme resolution — used by sky-theme.ts and theme-boot.js.
 
 export const THEME_STORAGE_KEY = 'baseet-theme'
 
 export type SiteTheme = 'day' | 'night'
 
-/** Matches vanta-init.ts anchor hours. */
+/** Anchor hours for sky color interpolation. */
 export const ANCHOR_HOUR_NIGHT = 0
 export const ANCHOR_HOUR_BRIGHT_SHIFT = 4.5
 export const ANCHOR_HOUR_DAY = 14

@@ -1,0 +1,86 @@
+{
+  "appId": "cloudscape-editor",
+  "canvas": {
+    "size": {
+      "height": 1080,
+      "unit": "px",
+      "width": 1920
+    }
+  },
+  "exportedAt": "2026-07-05T07:33:02.161Z",
+  "source": "toolcraft-settings",
+  "timeline": {
+    "currentTimeSeconds": 5.2342999999972335,
+    "durationSeconds": 10,
+    "expanded": false,
+    "isLooping": true,
+    "isPlaying": false
+  },
+  "values": {
+    "canvas.aspectRatio": {
+      "height": 9,
+      "mode": "preset",
+      "value": "16:9",
+      "width": 16
+    },
+    "canvas.size.width": 1920,
+    "canvas.size.height": 1080,
+    "canvas.renderScale": 1,
+    "clouds.density": 0.1,
+    "clouds.speed": 1,
+    "clouds.skyColor": {
+      "hex": "#6FA8DC"
+    },
+    "clouds.cloudColor": {
+      "hex": "#FFFFFF"
+    },
+    "clouds.noise": 0.4,
+    "clouds.verticalSpread": 0.6,
+    "lighting.azimuth": 62,
+    "lighting.elevation": 59,
+    "lighting.intensity": 0,
+    "lighting.fogDensity": 0.76,
+    "objects.labels": [],
+    "object.transform.cloudDepth": "middle",
+    "object.transform.positionX": -13.5,
+    "object.transform.positionY": 0.8,
+    "object.transform.positionZ": 0,
+    "object.transform.scale": 10,
+    "object.transform.rotationY": 0,
+    "overlay.headline.visible": true,
+    "overlay.cards.visible": true,
+    "overlay.headline.text": "Design skies that convert.",
+    "overlay.headline.font": {
+      "color": "#FFFFFF",
+      "fontId": "inter",
+      "fontSize": 64,
+      "fontWeight": "700",
+      "letterSpacing": "normal",
+      "lineHeight": "normal",
+      "opacity": 100,
+      "textCase": "original"
+    },
+    "overlay.cards.items": [
+      "Adaptive lighting",
+      "Layered depth clouds",
+      "One-click export"
+    ],
+    "camera.position.x": 12.1,
+    "camera.position.y": 2.1,
+    "camera.position.z": 4.7,
+    "camera.target.x": -10.8,
+    "camera.target.y": -0.1,
+    "camera.target.z": 0,
+    "camera.fov": 50,
+    "scroll.progress": 0,
+    "export.includeBackground": true,
+    "scene.background": {
+      "hex": "#146BC2"
+    },
+    "export.image.format": "png",
+    "export.image.resolution": "4k",
+    "export.video.format": "webm",
+    "export.video.resolution": "current"
+  },
+  "version": 1
+}
