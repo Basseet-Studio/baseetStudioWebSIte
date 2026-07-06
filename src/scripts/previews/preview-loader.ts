@@ -45,10 +45,14 @@ export function initPreviewLoader(scope: ParentNode = document): () => void {
         const el = entry.target as HTMLElement
         const type = el.dataset.previewType as PreviewType | undefined
         if (!type) return
-        if (entry.isIntersecting) mountPreview(el, type)
+        if (entry.isIntersecting) {
+          mountPreview(el, type)
+        } else {
+          unmountPreview(el)
+        }
       })
     },
-    { root: null, threshold: 0.1 },
+    { root: null, rootMargin: '64px 0px', threshold: 0 },
   )
 
   roots.forEach((root) => observer.observe(root))

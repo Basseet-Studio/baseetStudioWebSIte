@@ -18,7 +18,7 @@ import {
   registerCloudscapeThemeCallback,
   type SkyThemeUpdate,
 } from './sky-theme'
-import { applyTheme, readSavedTheme } from '../theme'
+import { applyTheme } from '../theme'
 import type { CameraPose, CloudSettings, LightingSettings, SceneConfig } from './types'
 
 export interface CloudscapeRuntime {
@@ -375,9 +375,7 @@ export function initCloudscape(opts: {
       { ...state.pageClouds, ...update.clouds },
       { ...state.pageLighting, ...update.lighting },
     )
-    if (!readSavedTheme()) {
-      applyTheme(update.uiTheme)
-    }
+    applyTheme(update.uiTheme)
     const progress = scrollDriver.getProgress()
     const evaluated = cameraController.evaluateAtProgress(progress)
     sceneRuntime.applyClouds(evaluated.clouds)
@@ -386,7 +384,7 @@ export function initCloudscape(opts: {
 
   function syncSkyTheme(): void {
     if (isDebugSkyLocked()) return
-    applyResolvedSkyToRuntime(state.pageClouds, state.pageLighting, readSavedTheme())
+    applyResolvedSkyToRuntime(state.pageClouds, state.pageLighting)
   }
 
   function composeFrame(): void {

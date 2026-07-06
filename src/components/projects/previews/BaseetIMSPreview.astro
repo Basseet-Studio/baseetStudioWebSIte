@@ -88,29 +88,43 @@ const kpiLabels = [
 
 <style>
   .ims-preview__canvas {
-    --ims-bg: #0c1014;
-    --ims-sidebar: #080b0e;
-    --ims-card: #141a20;
-    --ims-card-raised: #1a2229;
-    --ims-border: #243038;
-    --ims-green: #10b981;
-    --ims-text: #e8edf2;
-    --ims-muted: #7a8a96;
+    --ims-bg: #f4f6f8;
+    --ims-sidebar: #ffffff;
+    --ims-card: #ffffff;
+    --ims-card-raised: #f1f5f4;
+    --ims-border: #e2e8f0;
+    --ims-green: #059669;
+    --ims-text: #1e293b;
+    --ims-muted: #64748b;
     --ims-chart-line: #10b981;
-    --ims-warn: #f59e0b;
-    --ims-danger: #ef4444;
+    --ims-nav-active-bg: #d1fae5;
+    --ims-nav-active-text: #047857;
+    --ims-row-active-bg: #d1fae5;
+    --ims-row-active-text: #047857;
+    --ims-warn: #d97706;
+    --ims-danger: #dc2626;
     background: var(--ims-bg);
     font-family: var(--font-body);
     display: flex;
     color: var(--ims-text);
   }
 
-  :global([data-theme='day']) .ims-preview__canvas {
-    --ims-bg: #0e1216;
-    --ims-sidebar: #0a0d10;
-    --ims-card: #161c22;
-    --ims-card-raised: #1c242c;
-    --ims-border: #2a3540;
+  :global([data-theme='night']) .ims-preview__canvas {
+    --ims-bg: #080c10;
+    --ims-sidebar: #060809;
+    --ims-card: #12181e;
+    --ims-card-raised: #181f26;
+    --ims-border: #1f2a33;
+    --ims-green: #10b981;
+    --ims-text: #eef2f6;
+    --ims-muted: #8a9aa8;
+    --ims-chart-line: #10b981;
+    --ims-nav-active-bg: #123d2e;
+    --ims-nav-active-text: #10b981;
+    --ims-row-active-bg: #123d2e;
+    --ims-row-active-text: #10b981;
+    --ims-warn: #f59e0b;
+    --ims-danger: #ef4444;
   }
 
   .ims-preview__sidebar {
@@ -145,8 +159,8 @@ const kpiLabels = [
   }
 
   .ims-preview__nav--active {
-    background: #123d2e;
-    color: var(--ims-green);
+    background: var(--ims-nav-active-bg);
+    color: var(--ims-nav-active-text);
     font-weight: 600;
   }
 
@@ -427,8 +441,12 @@ const kpiLabels = [
   }
 
   :global(.ims-preview__shop-row--active) {
-    background: #123d2e;
-    color: var(--ims-green);
+    background: var(--ims-row-active-bg);
+    color: var(--ims-row-active-text);
+  }
+
+  :global(.ims-preview__shop-row--active .ims-preview__shop-row-sales) {
+    color: var(--ims-row-active-text);
   }
 
   :global(.ims-preview__shop-row--active .ims-preview__shop-row-name) {

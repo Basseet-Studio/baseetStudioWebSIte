@@ -110,22 +110,22 @@ const lockedAnchors = {
 
 /** Cloud RGB at each named anchor — tune visibility per period here. */
 const cloudAtAnchor = {
-  night: { r: 145, g: 158, b: 188 } as RGB,
-  dawn: { r: 255, g: 215, b: 191 } as RGB,
-  morning: { r: 248, g: 248, b: 255 } as RGB,
-  day: { r: 255, g: 255, b: 255 } as RGB,
-  evening: { r: 255, g: 210, b: 195 } as RGB,
-  dusk: { r: 195, g: 185, b: 210 } as RGB,
-}
+  night:   { r: 145, g: 158, b: 188 },
+  dawn:    { r: 245, g: 226, b: 212 }, // warm cream with slight peach
+  morning: { r: 248, g: 248, b: 255 },
+  day:     { r: 255, g: 255, b: 255 },
+  evening: { r: 244, g: 222, b: 208 }, // subtle warm glow
+  dusk:    { r: 210, g: 205, b: 220 }, // cool lavender-gray
+};
 
 const cloudShadowAtAnchor = {
-  night: { r: 32, g: 42, b: 72 } as RGB,
-  dawn: { r: 171, g: 118, b: 135 } as RGB,
-  morning: { r: 100, g: 120, b: 170 } as RGB,
-  day: { r: 73, g: 107, b: 193 } as RGB,
-  evening: { r: 95, g: 75, b: 120 } as RGB,
-  dusk: { r: 55, g: 60, b: 95 } as RGB,
-}
+  night:   { r: 32,  g: 42,  b: 72 },
+  dawn:    { r: 132, g: 122, b: 145 }, // muted mauve-gray
+  morning: { r: 100, g: 120, b: 170 },
+  day:     { r: 73,  g: 107, b: 193 },
+  evening: { r: 110, g: 96,  b: 125 }, // softer purple shadow
+  dusk:    { r: 78,  g: 82,  b: 118 }, // blue-violet gray
+};
 
 export function getSkyColorsForHour(hour: number): { sky: RGB; cloud: RGB; cloudShadow: RGB } {
   const clamped = Math.max(0, Math.min(24, hour))
@@ -193,6 +193,37 @@ export function getUiThemeForHour(hour: number): SiteTheme {
   return skyLuminance(sky) < SKY_LUMINANCE_NIGHT_THRESHOLD ? 'night' : 'day'
 }
 
+/** Sky hour that matches a day/night UI theme (used when the user toggles theme). */
+export function getSkyHourForTheme(theme: SiteTheme): number {
+  return theme === 'night' ? ANCHOR_HOUR_NIGHT_UI : ANCHOR_HOUR_DAY
+}
+
+let pinnedSkyHour: number | null = null
+
+/** Snap sky time to a day/night anchor when the user toggles color mode. */
+export function pinSkyHourForTheme(theme: SiteTheme): void {
+  pinnedSkyHour = getSkyHourForTheme(theme)
+}
+
+export function clearPinnedSkyHour(): void {
+  pinnedSkyHour = null
+}
+
+/** Live clock, or a pinned hour until the real time reaches the same day/night period. */
+export function getEffectiveSkyHour(date = new Date()): number {
+  const liveHour = getHourFromDate(date)
+  if (pinnedSkyHour !== null) {
+    if (getUiThemeForHour(pinnedSkyHour) === getUiThemeForHour(liveHour)) {
+      pinnedSkyHour = null
+    }
+  }
+  return pinnedSkyHour ?? liveHour
+}
+
+export function resolveThemeFromClock(date = new Date()): SiteTheme {
+  return getUiThemeForHour(getEffectiveSkyHour(date))
+}
+
 export function getHourFromDate(date = new Date()): number {
   return date.getHours() + date.getMinutes() / 60
 }
@@ -217,4 +248,5 @@ export function resolveInitialTheme(date = new Date()): SiteTheme {
 export function applyTheme(theme: SiteTheme): void {
   if (typeof document === 'undefined') return
   document.documentElement.setAttribute('data-theme', theme)
+  document.dispatchEvent(new CustomEvent('baseet:theme-change', { detail: { theme } }))
 }

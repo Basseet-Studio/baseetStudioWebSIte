@@ -14,6 +14,9 @@ const REQUEST_POOL: Request[] = [
   { type: 'deposit', name: 'Sara', amount: 12 },
   { type: 'withdraw', name: 'Lina', amount: 8 },
   { type: 'deposit', name: 'Omar', amount: 18 },
+  { type: 'withdraw', name: 'Fatima', amount: 22 },
+  { type: 'deposit', name: 'Yusuf', amount: 30 },
+  { type: 'withdraw', name: 'Noor', amount: 10 },
 ]
 
 function formatAed(amount: number): string {
@@ -33,8 +36,8 @@ export function initMoneyBoxPreview(root: HTMLElement): PreviewController {
   const unbindLive = bindLiveGhost(root, ghost)
 
   let poolHistory = [3120, 3180, 3260, 3210, 3340, 3450]
-  let pendingQueue = REQUEST_POOL.slice(0, 3)
-  let poolPointer = 3
+  let pendingQueue = REQUEST_POOL.slice(0, 5)
+  let poolPointer = 5
 
   function currentPool(): number {
     return poolHistory[poolHistory.length - 1]
@@ -44,7 +47,17 @@ export function initMoneyBoxPreview(root: HTMLElement): PreviewController {
     return Math.round(currentPool() * 1.13)
   }
 
+  function chartColors(): { text: string; accent: string } {
+    const canvas = root.querySelector<HTMLElement>('.mb-preview__canvas')
+    const styles = canvas ? getComputedStyle(canvas) : getComputedStyle(root)
+    return {
+      text: styles.getPropertyValue('--mb-chart-text').trim() || '#1a1a1a',
+      accent: styles.getPropertyValue('--mb-teal').trim() || '#2D7D5E',
+    }
+  }
+
   function renderChart(): void {
+    const { text: chartText, accent: chartAccent } = chartColors()
     const expected = expectedPool()
     const all = [...poolHistory, expected]
     const min = Math.min(...all)
@@ -74,7 +87,7 @@ export function initMoneyBoxPreview(root: HTMLElement): PreviewController {
     const line1 = document.createElementNS(ns, 'polyline')
     line1.setAttribute('points', pts.map((p) => `${p[0]},${p[1]}`).join(' '))
     line1.setAttribute('fill', 'none')
-    line1.setAttribute('stroke', '#2D7D5E')
+    line1.setAttribute('stroke', chartAccent)
     line1.setAttribute('stroke-width', '2.5')
     line1.setAttribute('stroke-linecap', 'round')
     line1.setAttribute('stroke-linejoin', 'round')
@@ -86,7 +99,7 @@ export function initMoneyBoxPreview(root: HTMLElement): PreviewController {
       line2.setAttribute('y1', String(last[1]))
       line2.setAttribute('x2', String(expX))
       line2.setAttribute('y2', String(expY))
-      line2.setAttribute('stroke', '#2D7D5E')
+      line2.setAttribute('stroke', chartAccent)
       line2.setAttribute('stroke-width', '2')
       line2.setAttribute('stroke-dasharray', '3,3')
       line2.setAttribute('opacity', '0.6')
@@ -96,7 +109,7 @@ export function initMoneyBoxPreview(root: HTMLElement): PreviewController {
       dot.setAttribute('cx', String(last[0]))
       dot.setAttribute('cy', String(last[1]))
       dot.setAttribute('r', '3')
-      dot.setAttribute('fill', '#2D7D5E')
+      dot.setAttribute('fill', chartAccent)
       chartEl.appendChild(dot)
 
       const t1 = document.createElementNS(ns, 'text')
@@ -104,7 +117,7 @@ export function initMoneyBoxPreview(root: HTMLElement): PreviewController {
       t1.setAttribute('y', String(Math.max(last[1] - 5, 10)))
       t1.setAttribute('font-size', '10')
       t1.setAttribute('font-weight', '700')
-      t1.setAttribute('fill', '#1a1a1a')
+      t1.setAttribute('fill', chartText)
       t1.textContent = formatAed(currentPool())
       chartEl.appendChild(t1)
 
@@ -112,7 +125,7 @@ export function initMoneyBoxPreview(root: HTMLElement): PreviewController {
       t2.setAttribute('x', String(Math.max(expX - 48, 0)))
       t2.setAttribute('y', String(Math.max(expY - 6, 10)))
       t2.setAttribute('font-size', '8')
-      t2.setAttribute('fill', '#2D7D5E')
+      t2.setAttribute('fill', chartAccent)
       t2.textContent = `exp ${formatAed(expected)}`
       chartEl.appendChild(t2)
     }
@@ -142,8 +155,10 @@ export function initMoneyBoxPreview(root: HTMLElement): PreviewController {
 
     if (poolHistory.length > 7) poolHistory.shift()
     pendingQueue.shift()
-    pendingQueue.push(REQUEST_POOL[poolPointer % REQUEST_POOL.length])
-    poolPointer++
+    while (pendingQueue.length < 5) {
+      pendingQueue.push(REQUEST_POOL[poolPointer % REQUEST_POOL.length])
+      poolPointer++
+    }
     renderChart()
     renderQueue()
   }
@@ -153,7 +168,7 @@ export function initMoneyBoxPreview(root: HTMLElement): PreviewController {
     const top = pendingQueue[0]
     if (!top) return
 
-    pendingQueue.slice(0, 2).forEach((item, i) => {
+    pendingQueue.slice(0, 5).forEach((item, i) => {
       const row = document.createElement('div')
       row.className = 'mb-preview__row'
       if (i === 0) row.classList.add('mb-preview__row--active')
@@ -253,10 +268,17 @@ export function initMoneyBoxPreview(root: HTMLElement): PreviewController {
 
   loop.start()
 
+  const themeObserver = new MutationObserver(() => renderChart())
+  themeObserver.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme'],
+  })
+
   return {
     destroy: () => {
       loop.destroy()
       resizeObserver.disconnect()
+      themeObserver.disconnect()
       unbindLive()
       ghost.destroy()
     },

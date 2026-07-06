@@ -4,11 +4,10 @@ import {
   ANCHOR_HOUR_DUSK,
   ANCHOR_HOUR_EVENING,
   ANCHOR_HOUR_MORNING,
-  ANCHOR_HOUR_NIGHT_UI,
   applyTheme,
-  getHourFromDate,
+  getEffectiveSkyHour,
   getSkyColorsForHour,
-  readSavedTheme,
+  pinSkyHourForTheme,
   SKY_PERIOD_PRESETS,
   type SiteTheme,
   type SkyPeriodId,
@@ -111,40 +110,28 @@ export interface SkyState {
 export interface ResolveSkyStateInput {
   hour?: number
   prefersDarkOS?: boolean
-  manualTheme?: SiteTheme | null
   pageClouds?: CloudSettings
   pageLighting?: LightingSettings
 }
 
 export function resolveSkyState(input: ResolveSkyStateInput = {}): SkyState {
   const debugHour = getDebugPreviewHour()
-  const hour = debugHour ?? input.hour ?? getHourFromDate()
+  const skyHour = debugHour ?? getEffectiveSkyHour()
   const prefersDarkOS = input.prefersDarkOS ?? false
-  const manualTheme =
-    debugHour !== null ? null : (input.manualTheme ?? readSavedTheme())
   const pageClouds = input.pageClouds ?? {}
   const pageLighting = input.pageLighting ?? {}
 
   if (pageClouds.syncTheme === false) {
-    const { sky } = getSkyColorsForHour(hour)
+    const { sky } = getSkyColorsForHour(skyHour)
     return {
       clouds: { ...pageClouds },
       lighting: {
         intensity: resolveLightingIntensity(pageLighting.intensity, sky),
-        color: pageLighting.color ?? deriveLightColorForHour(hour),
+        color: pageLighting.color ?? deriveLightColorForHour(skyHour),
       },
-      uiTheme: manualTheme ?? uiThemeForSky(getSkyColorsForHour(hour).sky, prefersDarkOS),
+      uiTheme: uiThemeForSky(sky, prefersDarkOS),
     }
   }
-
-  const skyHour =
-    debugHour !== null
-      ? debugHour
-      : manualTheme === 'night'
-        ? ANCHOR_HOUR_NIGHT_UI
-        : manualTheme === 'day'
-          ? ANCHOR_HOUR_DAY
-          : hour
 
   const { sky, cloud } = getSkyColorsForHour(skyHour)
   const themedColors = skyColorsToCloudSettings(sky, cloud)
@@ -158,7 +145,7 @@ export function resolveSkyState(input: ResolveSkyStateInput = {}): SkyState {
       intensity: resolveLightingIntensity(pageLighting.intensity, sky),
       color: pageLighting.color ?? deriveLightColorForHour(skyHour),
     },
-    uiTheme: manualTheme ?? uiThemeForSky(sky, prefersDarkOS),
+    uiTheme: uiThemeForSky(sky, prefersDarkOS),
   }
 }
 
@@ -198,11 +185,7 @@ export function setDebugPreviewPeriod(periodId: SkyPeriodId): void {
   const pageClouds = win.__BASEET_SCENE_CONFIG__?.clouds ?? {}
   const pageLighting = win.__BASEET_SCENE_CONFIG__?.lighting ?? {}
 
-  const update = applyResolvedSkyToRuntime(
-    pageClouds,
-    pageLighting,
-    debugPreviewHour === null ? readSavedTheme() : null,
-  )
+  const update = applyResolvedSkyToRuntime(pageClouds, pageLighting)
   applyTheme(update.uiTheme)
 }
 
@@ -217,7 +200,6 @@ export function registerCloudscapeThemeCallback(
 export function applyResolvedSkyToRuntime(
   pageClouds: CloudSettings,
   pageLighting: LightingSettings,
-  manualTheme?: SiteTheme | null,
 ): SkyThemeUpdate {
   const prefersDarkOS =
     typeof window !== 'undefined' &&
@@ -225,7 +207,6 @@ export function applyResolvedSkyToRuntime(
 
   const resolved = resolveSkyState({
     prefersDarkOS,
-    manualTheme: manualTheme ?? readSavedTheme(),
     pageClouds,
     pageLighting,
   })
@@ -245,9 +226,10 @@ export function applyResolvedSkyToRuntime(
 }
 
 export function setCloudscapeTheme(theme: SiteTheme, base: CloudSettings): void {
+  pinSkyHourForTheme(theme)
   const win = window as Window & {
     __BASEET_SCENE_CONFIG__?: { clouds?: CloudSettings; lighting?: LightingSettings }
   }
   const pageLighting = win.__BASEET_SCENE_CONFIG__?.lighting ?? {}
-  applyResolvedSkyToRuntime(base, pageLighting, theme)
+  applyResolvedSkyToRuntime(base, pageLighting)
 }

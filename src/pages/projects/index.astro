@@ -12,13 +12,19 @@ const anchor = projects.find((p) => p.indexTier === 'anchor')
 const flagship = projects.filter((p) => p.indexTier === 'flagship')
 const more = projects.filter((p) => p.indexTier === 'more')
 
-const mosaicClass: Record<string, string> = {
-  deshikitchen: 'wg--deshikitchen',
-  moneybox: 'wg--moneybox',
-  numu: 'wg--numu',
-  jemeti: 'wg--jemeti',
-  'photorestore-ai': 'wg--photorestore',
-  baseetims: 'wg--baseetims',
+const mobileSlugs = new Set(['moneybox', 'numu'])
+
+function mosaicClass(slug: string): string {
+  const aspect = mobileSlugs.has(slug) ? 'wg--mobile' : 'wg--desktop'
+  const placement: Record<string, string> = {
+    deshikitchen: 'wg--deshikitchen',
+    moneybox: 'wg--moneybox',
+    numu: 'wg--numu',
+    jemeti: 'wg--jemeti',
+    'photorestore-ai': 'wg--photorestore',
+    baseetims: 'wg--baseetims',
+  }
+  return [placement[slug] ?? 'wg--default', aspect].join(' ')
 }
 
 const labClass: Record<string, string> = {
@@ -36,19 +42,18 @@ const labClass: Record<string, string> = {
     </header>
 
     <div class="work-wall__canvas" aria-label="Project gallery">
-      {anchor && (
-        <WorkGalleryTile
-          project={anchor}
-          layoutClass="wg--matrix"
-        />
-      )}
-
-      {flagship.length > 0 && (
+      {(anchor || flagship.length > 0) && (
         <div class="work-wall__mosaic" aria-label="Core products">
+          {anchor && (
+            <WorkGalleryTile
+              project={anchor}
+              layoutClass="wg--matrix wg--desktop"
+            />
+          )}
           {flagship.map((project) => (
             <WorkGalleryTile
               project={project}
-              layoutClass={mosaicClass[project.slug] ?? 'wg--default'}
+              layoutClass={mosaicClass(project.slug)}
             />
           ))}
         </div>
@@ -61,7 +66,7 @@ const labClass: Record<string, string> = {
             {more.map((project) => (
               <WorkGalleryTile
                 project={project}
-                layoutClass={labClass[project.slug] ?? 'wg--lab'}
+                layoutClass={`${labClass[project.slug] ?? 'wg--lab'} wg--desktop`}
               />
             ))}
           </div>
@@ -114,60 +119,92 @@ const labClass: Record<string, string> = {
     display: flex;
     flex-direction: column;
     gap: clamp(16px, 2.2vw, 28px);
-  }
-
-  /* Matrix — prominent but not edge-to-edge */
-  .work-wall__canvas :global(.wg--matrix) {
-    width: min(90%, 1080px);
-    margin-inline: auto;
-    height: clamp(300px, 40vh, 460px);
-  }
-
-  .work-wall__canvas :global(.wg--matrix .wg__name) {
-    font-size: clamp(2.2rem, 5.5vw, 4rem);
-  }
-
-  .work-wall__canvas :global(.wg--matrix .wg__tagline) {
-    opacity: 1;
-    transform: none;
+    align-items: stretch;
+    overflow: visible;
   }
 
   /*
-   * Mosaic — 16-row grid with room to breathe.
-   * Phones stack vertically on the right; Jemeti and BaseetIMS get real estate.
+   * Mosaic — mirrored 9-col bento:
+   * TOP:    wide left (Matrix + Deshi)  |  narrow right (Numu)
+   * BOTTOM: narrow left (MoneyBox)      |  wide right (Jemeti → IMS → PhotoRestore)
    */
   .work-wall__mosaic {
     display: grid;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    grid-template-rows: repeat(16, minmax(0, 1fr));
+    grid-template-columns: repeat(9, minmax(0, 1fr));
+    grid-template-rows: repeat(17, minmax(0, 1fr));
     gap: var(--wall-gap);
-    height: clamp(920px, 108vw, 1280px);
-    min-height: 0;
+    width: 100%;
+    max-width: 1080px;
+    margin-inline: auto;
+    aspect-ratio: 9 / 17;
+    overflow: visible;
   }
 
   .work-wall__mosaic :global(.wg) {
+    width: 100%;
     min-height: 0;
     height: 100%;
+    display: block;
   }
 
+  .work-wall__mosaic :global(.wg__frame) {
+    height: 100%;
+    min-height: 0;
+  }
+
+  /* Matrix — left top, same 3-row height as DeshiKitchen */
+  .work-wall__mosaic :global(.wg--matrix) {
+    grid-column: 1 / 7;
+    grid-row: 1 / 4;
+  }
+
+  .work-wall__mosaic :global(.wg--matrix .wg__name) {
+    font-size: clamp(1.5rem, 3.2vw, 2.3rem);
+  }
+
+  .work-wall__mosaic :global(.wg--matrix .wg__tagline) {
+    font-size: clamp(0.75rem, 1.4vw, 0.9rem);
+  }
+
+  /* Numu — top-right beside Matrix, tall (6 rows) */
+  .work-wall__mosaic :global(.wg--numu) {
+    grid-column: 7 / 10;
+    grid-row: 1 / 7;
+  }
+
+  /* DeshiKitchen — under Matrix, same height as Matrix */
   .work-wall__mosaic :global(.wg--deshikitchen) {
-    grid-column: 1 / 9;
-    grid-row: 1 / 9;
+    grid-column: 1 / 7;
+    grid-row: 4 / 7;
   }
 
   .work-wall__mosaic :global(.wg--deshikitchen .wg__name) {
     font-size: clamp(1.6rem, 3vw, 2.4rem);
   }
 
-  /* Phone apps — narrow vertical strips */
+  /* MoneyBox — narrow left (mirror of Numu), same height as Numu */
   .work-wall__mosaic :global(.wg--moneybox) {
-    grid-column: 9 / -1;
-    grid-row: 1 / 5;
+    grid-column: 1 / 4;
+    grid-row: 7 / 13;
   }
 
-  .work-wall__mosaic :global(.wg--numu) {
-    grid-column: 9 / -1;
-    grid-row: 5 / 9;
+  /* Jemeti — wide right (mirror of Deshi/Matrix) */
+  .work-wall__mosaic :global(.wg--jemeti) {
+    grid-column: 4 / 10;
+    grid-row: 7 / 10;
+  }
+
+  /* BaseetIMS — wide right, under Jemeti */
+  .work-wall__mosaic :global(.wg--baseetims) {
+    grid-column: 4 / 10;
+    grid-row: 10 / 13;
+  }
+
+  /* PhotoRestore — wide right, spills below */
+  .work-wall__mosaic :global(.wg--photorestore) {
+    grid-column: 4 / 10;
+    grid-row: 13 / 18;
+    align-self: stretch;
   }
 
   .work-wall__mosaic :global(.wg--moneybox .wg__frame),
@@ -175,22 +212,10 @@ const labClass: Record<string, string> = {
     background: color-mix(in srgb, var(--wg-accent) 6%, rgba(8, 12, 20, 0.2));
   }
 
-  /* PhotoRestore — taller left column */
-  .work-wall__mosaic :global(.wg--photorestore) {
-    grid-column: 1 / 4;
-    grid-row: 9 / -1;
-  }
-
-  /* Jemeti — large featured tile */
-  .work-wall__mosaic :global(.wg--jemeti) {
-    grid-column: 4 / 10;
-    grid-row: 9 / -1;
-  }
-
   .work-wall__mosaic :global(.wg--jemeti .wg__visual) {
     object-fit: contain;
     object-position: center;
-    padding: clamp(16px, 4vw, 32px);
+    padding: clamp(12px, 3vw, 24px);
     background: #1a1214;
   }
 
@@ -198,19 +223,12 @@ const labClass: Record<string, string> = {
     background: #1f1416;
   }
 
-  /* BaseetIMS — desktop-ish ratio, not a thin slice */
-  .work-wall__mosaic :global(.wg--baseetims) {
-    grid-column: 9 / -1;
-    grid-row: 9 / -1;
-    min-height: 0;
-  }
-
   .work-wall__mosaic :global(.wg--moneybox .wg__name) {
-    font-size: clamp(1.3rem, 2.2vw, 1.75rem);
+    font-size: clamp(1.1rem, 1.8vw, 1.45rem);
   }
 
   .work-wall__mosaic :global(.wg--numu .wg__name) {
-    font-size: clamp(1.25rem, 2.1vw, 1.6rem);
+    font-size: clamp(1.1rem, 1.8vw, 1.45rem);
   }
 
   .work-wall__mosaic :global(.wg--jemeti .wg__name) {
@@ -219,7 +237,7 @@ const labClass: Record<string, string> = {
 
   .work-wall__mosaic :global(.wg--photorestore .wg__name),
   .work-wall__mosaic :global(.wg--baseetims .wg__name) {
-    font-size: clamp(1.2rem, 2vw, 1.55rem);
+    font-size: clamp(1.1rem, 1.8vw, 1.45rem);
   }
 
   /* Lab — equal three-column grid, aligned heights */
@@ -238,12 +256,19 @@ const labClass: Record<string, string> = {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: var(--wall-gap);
-    height: clamp(300px, 40vw, 420px);
+    align-items: start;
   }
 
   .work-wall__lab-grid :global(.wg) {
+    width: 100%;
     min-height: 0;
-    height: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .work-wall__lab-grid :global(.wg__frame) {
+    aspect-ratio: 16 / 9;
+    height: auto;
   }
 
   .work-wall__lab-grid :global(.wg__name) {
@@ -272,43 +297,33 @@ const labClass: Record<string, string> = {
   }
 
   @media (max-width: 900px) {
-    .work-wall__canvas :global(.wg--matrix) {
-      width: 100%;
-    }
-
     .work-wall__mosaic {
       grid-template-columns: 1fr;
       grid-template-rows: auto;
-      height: auto;
+      aspect-ratio: auto;
+      max-width: none;
     }
 
     .work-wall__mosaic :global(.wg) {
-      grid-column: 1 / -1 !important;
+      grid-column: 1 !important;
       grid-row: auto !important;
-      height: clamp(220px, 54vw, 340px) !important;
+      height: clamp(220px, 54vw, 340px);
+    }
+
+    .work-wall__mosaic :global(.wg--matrix) {
+      height: clamp(200px, 50vw, 300px);
     }
 
     .work-wall__mosaic :global(.wg--moneybox),
-    .work-wall__mosaic :global(.wg--numu) {
-      height: clamp(320px, 88vw, 480px) !important;
-    }
-
-    .work-wall__mosaic :global(.wg--jemeti),
+    .work-wall__mosaic :global(.wg--numu),
     .work-wall__mosaic :global(.wg--photorestore) {
-      height: clamp(300px, 72vw, 440px) !important;
-    }
-
-    .work-wall__mosaic :global(.wg--baseetims) {
-      height: clamp(280px, 68vw, 420px) !important;
+      height: clamp(320px, 88vw, 480px);
+      max-width: min(300px, 72vw);
+      margin-inline: auto;
     }
 
     .work-wall__lab-grid {
       grid-template-columns: 1fr;
-      height: auto;
-    }
-
-    .work-wall__lab-grid :global(.wg) {
-      height: clamp(260px, 58vw, 380px);
     }
   }
 

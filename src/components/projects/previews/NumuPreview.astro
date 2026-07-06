@@ -3,64 +3,122 @@ import PreviewShell from './PreviewShell.astro'
 ---
 
 <PreviewShell label="Interactive preview: Numu habit tracker" class="nu-preview" previewType="numu">
-  <div class="nu-preview__list" data-habit-list></div>
+  <div class="nu-preview__canvas">
+    <header class="nu-preview__header">
+      <span class="nu-preview__greeting">Today</span>
+      <span class="nu-preview__date">Mon, Jul 6</span>
+    </header>
+    <div class="nu-preview__list" data-habit-list></div>
+    <nav class="nu-preview__tabbar" aria-hidden="true">
+      <span class="nu-preview__tab nu-preview__tab--active">
+        <span class="nu-preview__tab-icon" aria-hidden="true">☑</span>
+        <span class="nu-preview__tab-label">Habits</span>
+      </span>
+      <span class="nu-preview__tab">
+        <span class="nu-preview__tab-icon" aria-hidden="true">◎</span>
+        <span class="nu-preview__tab-label">Stats</span>
+      </span>
+      <span class="nu-preview__tab">
+        <span class="nu-preview__tab-icon" aria-hidden="true">✦</span>
+        <span class="nu-preview__tab-label">Goals</span>
+      </span>
+      <span class="nu-preview__tab">
+        <span class="nu-preview__tab-icon" aria-hidden="true">⚙</span>
+        <span class="nu-preview__tab-label">Settings</span>
+      </span>
+    </nav>
+  </div>
 </PreviewShell>
 
 <style>
-  /* Screenshot ref: pale lavender screen #F5F5FA */
-  .nu-preview {
+  .nu-preview__canvas {
     --nu-bg: #f5f5fa;
     --nu-card-bg: #ffffff;
     --nu-name-text: #2c2c2a;
     --nu-score-text: #5f5e5a;
+    --nu-tab-text: #8a8799;
+    --nu-tab-active: #af52de;
+    --nu-shell-text: #2c2c2a;
+    width: 100%;
+    height: 100%;
     background-color: var(--nu-bg);
     font-family: var(--font-body);
-    padding: clamp(8px, 1.8vw, 12px);
-    overflow-y: auto;
+    color: var(--nu-shell-text);
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    overflow: hidden;
   }
 
-  :global([data-theme='night']) .nu-preview {
+  :global([data-theme='night']) .nu-preview__canvas {
     --nu-bg: #1e1a28;
     --nu-card-bg: #2a2540;
     --nu-name-text: #ebe8f4;
     --nu-score-text: #a8a0c0;
+    --nu-tab-text: #7a7490;
+    --nu-tab-active: #c77dff;
+    --nu-shell-text: #ebe8f4;
+  }
+
+  .nu-preview__header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: clamp(8px, 1.8vw, 12px) clamp(8px, 1.8vw, 12px) 4px;
+    flex-shrink: 0;
+  }
+
+  .nu-preview__greeting {
+    font-size: clamp(11px, 1.6vw, 14px);
+    font-weight: 700;
+    color: var(--nu-name-text);
+  }
+
+  .nu-preview__date {
+    font-size: clamp(8px, 1.1vw, 10px);
+    color: var(--nu-score-text);
   }
 
   .nu-preview__list {
     display: flex;
     flex-direction: column;
-    gap: clamp(5px, 1.2vw, 8px);
+    gap: clamp(4px, 1vw, 6px);
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    padding: 0 clamp(8px, 1.8vw, 12px);
   }
 
   :global(.nu-preview__card) {
     background: var(--nu-card-bg);
-    border-radius: 12px;
-    padding: clamp(6px, 1.4vw, 9px);
-    box-shadow: 0 2px 8px rgba(60, 40, 90, 0.07);
+    border-radius: 10px;
+    padding: clamp(5px, 1.2vw, 8px);
+    box-shadow: 0 1px 6px rgba(60, 40, 90, 0.07);
+    flex-shrink: 0;
   }
 
   :global(.nu-preview__head) {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
 
   :global(.nu-preview__meta) {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
     min-width: 0;
   }
 
   :global(.nu-preview__icon) {
-    width: clamp(18px, 3vw, 22px);
-    height: clamp(18px, 3vw, 22px);
-    border-radius: 7px;
+    width: clamp(16px, 2.6vw, 20px);
+    height: clamp(16px, 2.6vw, 20px);
+    border-radius: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: clamp(10px, 1.5vw, 12px);
+    font-size: clamp(9px, 1.3vw, 11px);
     flex-shrink: 0;
   }
 
@@ -74,8 +132,23 @@ import PreviewShell from './PreviewShell.astro'
     color: #d85a30;
   }
 
+  :global(.nu-preview__icon--walk) {
+    background: #e8f5e9;
+    color: #43a047;
+  }
+
+  :global(.nu-preview__icon--meditate) {
+    background: #ede7f6;
+    color: #7e57c2;
+  }
+
+  :global(.nu-preview__icon--sleep) {
+    background: #e3f2fd;
+    color: #1e88e5;
+  }
+
   :global(.nu-preview__name) {
-    font-size: clamp(9px, 1.3vw, 11px);
+    font-size: clamp(8px, 1.15vw, 10px);
     color: var(--nu-name-text);
     font-weight: 600;
     white-space: nowrap;
@@ -84,20 +157,20 @@ import PreviewShell from './PreviewShell.astro'
   }
 
   :global(.nu-preview__streak) {
-    font-size: clamp(9px, 1.3vw, 11px);
+    font-size: clamp(8px, 1.15vw, 10px);
     color: #ba7517;
     flex-shrink: 0;
   }
 
   :global(.nu-preview__days) {
     display: flex;
-    gap: 3px;
+    gap: 2px;
   }
 
   :global(.nu-preview__day) {
-    width: clamp(12px, 2vw, 16px);
-    height: clamp(12px, 2vw, 16px);
-    border-radius: 5px;
+    width: clamp(10px, 1.7vw, 14px);
+    height: clamp(10px, 1.7vw, 14px);
+    border-radius: 4px;
     border: none;
     padding: 0;
     cursor: pointer;
@@ -118,8 +191,49 @@ import PreviewShell from './PreviewShell.astro'
   }
 
   :global(.nu-preview__score) {
-    font-size: clamp(8px, 1.1vw, 10px);
+    font-size: clamp(7px, 1vw, 9px);
     color: var(--nu-score-text);
-    margin-top: 5px;
+    margin-top: 3px;
+  }
+
+  .nu-preview__tabbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    padding: 4px 2px calc(6px + env(safe-area-inset-bottom, 0px));
+    background: var(--nu-card-bg);
+    border-top: 1px solid color-mix(in srgb, var(--nu-tab-text) 20%, transparent);
+    flex-shrink: 0;
+  }
+
+  .nu-preview__tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    min-width: 0;
+    flex: 1;
+    padding: 2px 4px;
+    color: var(--nu-tab-text);
+  }
+
+  .nu-preview__tab-icon {
+    font-size: clamp(11px, 1.6vw, 14px);
+    line-height: 1;
+  }
+
+  .nu-preview__tab-label {
+    font-size: clamp(6px, 0.9vw, 8px);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .nu-preview__tab--active {
+    color: var(--nu-tab-active);
+  }
+
+  .nu-preview__tab--active .nu-preview__tab-label {
+    font-weight: 700;
   }
 </style>

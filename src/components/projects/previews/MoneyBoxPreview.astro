@@ -3,28 +3,42 @@ import PreviewShell from './PreviewShell.astro'
 ---
 
 <PreviewShell label="Interactive preview: MoneyBox group financing" class="mb-preview" previewType="moneybox">
-  <div class="mb-preview__header">
-    <div class="mb-preview__header-text">
-      <span class="mb-preview__title">Group Pool</span>
-      <span class="mb-preview__balance" data-balance>3,450 د.إ</span>
+  <div class="mb-preview__canvas">
+    <div class="mb-preview__header">
+      <div class="mb-preview__header-text">
+        <span class="mb-preview__title">Group Pool</span>
+        <span class="mb-preview__balance" data-balance>3,450 د.إ</span>
+      </div>
     </div>
+    <div class="mb-preview__body">
+      <svg class="mb-preview__chart" data-chart aria-hidden="true"></svg>
+      <div class="mb-preview__section-label">Upcoming</div>
+      <div class="mb-preview__queue" data-queue></div>
+      <div class="mb-preview__log" data-log></div>
+    </div>
+    <nav class="mb-preview__tabbar" aria-hidden="true">
+      <span class="mb-preview__tab">
+        <span class="mb-preview__tab-icon" aria-hidden="true">⌂</span>
+        <span class="mb-preview__tab-label">Home</span>
+      </span>
+      <span class="mb-preview__tab">
+        <span class="mb-preview__tab-icon" aria-hidden="true">◎</span>
+        <span class="mb-preview__tab-label">Personal</span>
+      </span>
+      <span class="mb-preview__tab mb-preview__tab--active">
+        <span class="mb-preview__tab-icon" aria-hidden="true">◉</span>
+        <span class="mb-preview__tab-label">Group</span>
+      </span>
+      <span class="mb-preview__tab">
+        <span class="mb-preview__tab-icon" aria-hidden="true">⚙</span>
+        <span class="mb-preview__tab-label">Settings</span>
+      </span>
+    </nav>
   </div>
-  <div class="mb-preview__body">
-    <svg class="mb-preview__chart" data-chart aria-hidden="true"></svg>
-    <div class="mb-preview__queue" data-queue></div>
-    <div class="mb-preview__log" data-log></div>
-  </div>
-  <nav class="mb-preview__nav" aria-hidden="true">
-    <span class="mb-preview__nav-item">Home</span>
-    <span class="mb-preview__nav-item">Personal</span>
-    <span class="mb-preview__nav-item mb-preview__nav-item--active">Group</span>
-    <span class="mb-preview__nav-item">Settings</span>
-  </nav>
 </PreviewShell>
 
 <style>
-  /* Screenshot ref: cream body #FAF8F5, teal header #2D7D5E */
-  .mb-preview {
+  .mb-preview__canvas {
     --mb-bg: #faf8f5;
     --mb-teal: #2d7d5e;
     --mb-card-bg: #ffffff;
@@ -33,14 +47,19 @@ import PreviewShell from './PreviewShell.astro'
     --mb-log-text: #3b3b3b;
     --mb-nav-bg: #ffffff;
     --mb-nav-text: #6b7280;
+    --mb-chart-text: #1a1a1a;
+    --mb-shell-text: #1a1a1a;
+    width: 100%;
+    height: 100%;
     background-color: var(--mb-bg);
     font-family: var(--font-body);
+    color: var(--mb-shell-text);
     display: flex;
     flex-direction: column;
     min-height: 100%;
   }
 
-  :global([data-theme='night']) .mb-preview {
+  :global([data-theme='night']) .mb-preview__canvas {
     --mb-bg: #1a2420;
     --mb-card-bg: #222c28;
     --mb-card-text: #dce3df;
@@ -48,6 +67,8 @@ import PreviewShell from './PreviewShell.astro'
     --mb-log-text: #9caaa4;
     --mb-nav-bg: #1e2824;
     --mb-nav-text: #8a9a92;
+    --mb-chart-text: #dce3df;
+    --mb-shell-text: #dce3df;
   }
 
   .mb-preview__header {
@@ -78,31 +99,47 @@ import PreviewShell from './PreviewShell.astro'
     padding: clamp(6px, 1.5vw, 10px);
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 4px;
     min-height: 0;
+    overflow: hidden;
+  }
+
+  .mb-preview__section-label {
+    font-size: clamp(7px, 1vw, 9px);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--mb-log-text);
+    opacity: 0.75;
+    flex-shrink: 0;
   }
 
   .mb-preview__chart {
     width: 100%;
-    height: clamp(28px, 5vw, 36px);
+    height: clamp(24px, 4.5vw, 32px);
     display: block;
     overflow: visible;
+    flex-shrink: 0;
   }
 
   .mb-preview__queue {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 4px;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
   }
 
   :global(.mb-preview__row) {
     background: var(--mb-card-bg);
     border: 1.5px solid var(--mb-card-border);
     border-radius: 8px;
-    padding: clamp(5px, 1.2vw, 8px);
-    font-size: clamp(9px, 1.3vw, 11px);
+    padding: clamp(4px, 1vw, 7px);
+    font-size: clamp(8px, 1.15vw, 10px);
     color: var(--mb-card-text);
     transition: opacity 0.3s ease;
+    flex-shrink: 0;
   }
 
   :global(.mb-preview__row--active) {
@@ -152,9 +189,10 @@ import PreviewShell from './PreviewShell.astro'
   }
 
   :global(.mb-preview__log) {
-    font-size: clamp(8px, 1.1vw, 10px);
-    min-height: 14px;
+    font-size: clamp(7px, 1vw, 9px);
+    min-height: 12px;
     color: var(--mb-log-text);
+    flex-shrink: 0;
   }
 
   :global(.mb-preview__log--fade) {
@@ -172,21 +210,44 @@ import PreviewShell from './PreviewShell.astro'
     }
   }
 
-  .mb-preview__nav {
+  .mb-preview__tabbar {
     display: flex;
     justify-content: space-around;
-    padding: 6px 4px 8px;
+    align-items: stretch;
+    padding: 4px 2px calc(6px + env(safe-area-inset-bottom, 0px));
     background: var(--mb-nav-bg);
     border-top: 1px solid var(--mb-card-border);
-    font-size: clamp(7px, 1vw, 9px);
+    flex-shrink: 0;
+  }
+
+  .mb-preview__tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    min-width: 0;
+    flex: 1;
+    padding: 2px 4px;
     color: var(--mb-nav-text);
   }
 
-  .mb-preview__nav-item--active {
+  .mb-preview__tab-icon {
+    font-size: clamp(11px, 1.6vw, 14px);
+    line-height: 1;
+  }
+
+  .mb-preview__tab-label {
+    font-size: clamp(6px, 0.9vw, 8px);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .mb-preview__tab--active {
     color: var(--mb-teal, #2d7d5e);
+  }
+
+  .mb-preview__tab--active .mb-preview__tab-label {
     font-weight: 700;
-    background: rgba(45, 125, 94, 0.12);
-    border-radius: 6px;
-    padding: 2px 6px;
   }
 </style>

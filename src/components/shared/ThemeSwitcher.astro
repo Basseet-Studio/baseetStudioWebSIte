@@ -29,7 +29,17 @@ const { lang = 'en' } = Astro.props
 </button>
 
 <script>
-  import { THEME_STORAGE_KEY, applyTheme, type SiteTheme } from '../../lib/theme'
+  import {
+    THEME_STORAGE_KEY,
+    applyTheme,
+    getHourFromDate,
+    getUiThemeForHour,
+    pinSkyHourForTheme,
+    resolveThemeFromClock,
+    type SiteTheme,
+  } from '../../lib/theme'
+
+  let themeClockInterval: ReturnType<typeof setInterval> | null = null
 
   function getCurrentTheme(): SiteTheme {
     return document.documentElement.getAttribute('data-theme') === 'night' ? 'night' : 'day'
@@ -46,12 +56,40 @@ const { lang = 'en' } = Astro.props
     )
   }
 
+  function syncThemeFromClock() {
+    applyTheme(resolveThemeFromClock())
+    updateThemeSwitchUI()
+  }
+
+  function initThemeFromStorage() {
+    try {
+      const saved = localStorage.getItem(THEME_STORAGE_KEY)
+      if (saved === 'day' || saved === 'night') {
+        const liveTheme = getUiThemeForHour(getHourFromDate())
+        if (saved !== liveTheme) {
+          pinSkyHourForTheme(saved)
+        }
+      }
+    } catch {
+      /* ignore */
+    }
+  }
+
   function initThemeSwitcher() {
     const button = document.getElementById('theme-switcher')
     if (!button) return
+
+    initThemeFromStorage()
+    syncThemeFromClock()
     updateThemeSwitchUI()
+
+    if (!themeClockInterval) {
+      themeClockInterval = window.setInterval(syncThemeFromClock, 60_000)
+    }
+
     button.onclick = () => {
       const nextTheme: SiteTheme = getCurrentTheme() === 'night' ? 'day' : 'night'
+      pinSkyHourForTheme(nextTheme)
       applyTheme(nextTheme)
       try {
         localStorage.setItem(THEME_STORAGE_KEY, nextTheme)
@@ -67,6 +105,7 @@ const { lang = 'en' } = Astro.props
 
   window.addEventListener('load', initThemeSwitcher)
   document.addEventListener('astro:page-load', initThemeSwitcher)
+  document.addEventListener('baseet:theme-change', updateThemeSwitchUI)
 </script>
 
 <style>

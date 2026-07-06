@@ -19,14 +19,14 @@ const previewBgDay: Record<string, string> = {
   matrix: '#f3f4f6',
   moneybox: '#faf8f5',
   numu: '#f5f5fa',
-  baseetims: '#0c1014',
+  baseetims: '#f4f6f8',
 }
 
 const previewBgNight: Record<string, string> = {
   matrix: '#151820',
   moneybox: '#1a2420',
   numu: '#1e1a28',
-  baseetims: '#0c1014',
+  baseetims: '#080c10',
 }
 
 /* Light-tone previews use dark caption text; dark-tone previews use light captions */
@@ -34,7 +34,7 @@ const previewTone: Record<string, 'light' | 'dark'> = {
   matrix: 'light',
   moneybox: 'light',
   numu: 'light',
-  baseetims: 'dark',
+  baseetims: 'light',
 }
 
 const previewBgDayVal = project.previewInteractive
@@ -50,12 +50,12 @@ const previewToneVal = project.previewInteractive
 const tileClasses = [
   'wg',
   layoutClass,
-  isInteractive && 'wg--interactive',
+  isInteractive ? 'wg--interactive' : 'wg--static',
   isInteractive && previewToneVal === 'light' && 'wg--preview-light',
   isInteractive && previewToneVal === 'dark' && 'wg--preview-dark',
 ]
 const tileStyle = previewBgDayVal
-  ? `--wg-accent: ${project.color}; --wg-preview-bg-day: ${previewBgDayVal}; --wg-preview-bg-night: ${previewBgNightVal ?? previewBgDayVal}; --wg-preview-bg: ${previewBgDayVal};`
+  ? `--wg-accent: ${project.color}; --wg-preview-bg-day: ${previewBgDayVal}; --wg-preview-bg-night: ${previewBgNightVal ?? previewBgDayVal};`
   : `--wg-accent: ${project.color};`
 const TileTag = isInteractive ? 'article' : 'a'
 const tileAttrs = isInteractive
@@ -108,13 +108,18 @@ const tileAttrs = isInteractive
       {isInteractive ? (
         <a href={projectHref} class="wg__link">
           <span class="wg__name">{project.name}</span>
-          <span class="wg__tagline">{project.tagline}</span>
-          <span class="wg__open">Open project →</span>
+          <span class="wg__meta">
+            <span class="wg__tagline">{project.tagline}</span>
+            <span class="wg__open">Open project →</span>
+          </span>
         </a>
       ) : (
         <>
           <span class="wg__name">{project.name}</span>
-          <span class="wg__tagline">{project.tagline}</span>
+          <span class="wg__meta">
+            <span class="wg__tagline">{project.tagline}</span>
+            <span class="wg__open">Open project →</span>
+          </span>
         </>
       )}
     </span>
@@ -124,7 +129,7 @@ const tileAttrs = isInteractive
 <style>
   .wg {
     display: block;
-    height: 100%;
+    width: 100%;
     min-height: 0;
     text-decoration: none;
     color: #fff;
@@ -165,25 +170,29 @@ const tileAttrs = isInteractive
     will-change: transform;
   }
 
+  .wg--interactive {
+    --wg-preview-bg: var(--wg-preview-bg-day);
+  }
+
   .wg--interactive .wg__frame {
     background: var(--wg-preview-bg);
   }
 
-  :global([data-theme='night']) .wg--interactive .wg__frame {
+  :global([data-theme='night']) :global(.wg.wg--interactive) {
     --wg-preview-bg: var(--wg-preview-bg-night, var(--wg-preview-bg-day));
+  }
+
+  :global([data-theme='night']) .wg--interactive .wg__frame {
     background: var(--wg-preview-bg);
   }
 
   .wg--interactive :global(.preview-stage) {
-    position: relative;
+    position: absolute;
+    inset: 0;
     z-index: 2;
     width: 100%;
     height: 100%;
     background-color: var(--wg-preview-bg);
-  }
-
-  :global([data-theme='night']) .wg--interactive :global(.preview-stage) {
-    background-color: var(--wg-preview-bg-night, var(--wg-preview-bg-day));
   }
 
   .wg__tint {
@@ -191,56 +200,147 @@ const tileAttrs = isInteractive
     inset: 0;
     z-index: 1;
     border-radius: inherit;
+    pointer-events: none;
+  }
+
+  /* Static image/video tiles — theme-aware scrim + captions (same pattern as previews) */
+  .wg--static {
+    --wg-scrim: #f8f7f5;
+    --wg-caption-name: #1c1917;
+    --wg-caption-body: #57534e;
+  }
+
+  :global([data-theme='night']) :global(.wg.wg--static) {
+    --wg-scrim: #0f141c;
+    --wg-caption-name: #ebe8f4;
+    --wg-caption-body: #a8a0c0;
+  }
+
+  .wg--static .wg__tint {
+    z-index: 3;
+    top: auto;
+    height: 38%;
     background: linear-gradient(
       180deg,
-      transparent 28%,
-      rgba(6, 10, 18, 0.48) 68%,
-      rgba(6, 10, 18, 0.9) 100%
+      transparent 0%,
+      color-mix(in srgb, var(--wg-scrim) 35%, transparent) 28%,
+      color-mix(in srgb, var(--wg-scrim) 88%, transparent) 68%,
+      var(--wg-scrim) 100%
     );
-    pointer-events: none;
+  }
+
+  :global(.wg.wg--static) :global(.wg__name) {
+    color: var(--wg-caption-name);
+    text-shadow: none;
+  }
+
+  :global(.wg.wg--static) :global(.wg__tagline) {
+    color: var(--wg-caption-body);
+  }
+
+  :global(.wg.wg--static) :global(.wg__open) {
+    color: var(--wg-accent);
   }
 
   .wg--interactive .wg__tint {
     z-index: 3;
     top: auto;
-    height: 38%;
-    background: var(--wg-preview-bg);
-    opacity: 0.94;
+    height: 34%;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      color-mix(in srgb, var(--wg-preview-bg-day) 30%, transparent) 28%,
+      color-mix(in srgb, var(--wg-preview-bg-day) 85%, transparent) 68%,
+      var(--wg-preview-bg-day) 100%
+    );
+    opacity: 1;
   }
 
-  .wg--interactive.wg--preview-dark .wg__tint {
-    background: var(--wg-preview-bg);
-    opacity: 0.9;
+  :global([data-theme='night']) :global(.wg.wg--interactive.wg--preview-light .wg__tint) {
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      color-mix(in srgb, var(--wg-preview-bg-night) 25%, transparent) 22%,
+      color-mix(in srgb, var(--wg-preview-bg-night) 82%, transparent) 62%,
+      var(--wg-preview-bg-night) 100%
+    );
   }
 
-  .wg--preview-light .wg__name {
-    color: var(--heading-text);
+  .wg--preview-dark {
+    --wg-scrim-day: #f8f7f5;
+    --wg-scrim-night: var(--wg-preview-bg-night, #0c1014);
+    --wg-caption-name: #1c1917;
+    --wg-caption-body: #57534e;
+  }
+
+  :global([data-theme='night']) :global(.wg.wg--preview-dark) {
+    --wg-caption-name: #ebe8f4;
+    --wg-caption-body: #a8a0c0;
+  }
+
+  :global(.wg.wg--preview-dark) :global(.wg__name) {
+    color: var(--wg-caption-name);
     text-shadow: none;
   }
 
-  .wg--preview-light .wg__tagline {
-    color: var(--muted-text);
+  :global(.wg.wg--preview-dark) :global(.wg__tagline) {
+    color: var(--wg-caption-body);
   }
 
-  .wg--preview-light .wg__open {
+  :global(.wg.wg--preview-dark) :global(.wg__open) {
+    color: var(--wg-accent);
+  }
+
+  /* Dark-app previews (BaseetIMS) — light scrim + dark text in day, dark scrim + light text at night */
+  .wg--interactive.wg--preview-dark .wg__tint {
+    z-index: 3;
+    top: auto;
+    height: 34%;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      color-mix(in srgb, var(--wg-scrim-day) 35%, transparent) 28%,
+      color-mix(in srgb, var(--wg-scrim-day) 88%, transparent) 68%,
+      var(--wg-scrim-day) 100%
+    );
+    opacity: 1;
+  }
+
+  :global([data-theme='night']) :global(.wg.wg--interactive.wg--preview-dark .wg__tint) {
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      color-mix(in srgb, var(--wg-scrim-night) 30%, transparent) 25%,
+      color-mix(in srgb, var(--wg-scrim-night) 85%, transparent) 65%,
+      var(--wg-scrim-night) 100%
+    );
+  }
+
+  .wg--preview-light {
+    --wg-caption-name: #1c1917;
+    --wg-caption-body: #57534e;
+  }
+
+  :global([data-theme='night']) :global(.wg.wg--preview-light) {
+    --wg-caption-name: #ebe8f4;
+    --wg-caption-body: #a8a0c0;
+  }
+
+  :global(.wg.wg--preview-light) :global(.wg__name) {
+    color: var(--wg-caption-name);
+    text-shadow: none;
+  }
+
+  :global(.wg.wg--preview-light) :global(.wg__tagline) {
+    color: var(--wg-caption-body);
+  }
+
+  :global(.wg.wg--preview-light) :global(.wg__open) {
     color: var(--wg-accent);
   }
 
   .wg--preview-light .wg__link:focus-visible {
     outline-color: var(--wg-accent);
-  }
-
-  .wg--preview-dark .wg__name {
-    color: var(--text-inverse);
-    text-shadow: none;
-  }
-
-  .wg--preview-dark .wg__tagline {
-    color: var(--text-secondary);
-  }
-
-  .wg--preview-dark .wg__open {
-    color: var(--wg-accent);
   }
 
   .wg--interactive .wg__zip-frame {
@@ -261,6 +361,10 @@ const tileAttrs = isInteractive
     clip-path: inset(0 round var(--wg-radius, var(--r-small, 12px)));
   }
 
+  .wg--interactive .wg__copy {
+    padding: clamp(12px, 2.2vw, 20px);
+  }
+
   .wg__copy {
     position: absolute;
     inset: auto 0 0 0;
@@ -273,32 +377,42 @@ const tileAttrs = isInteractive
 
   .wg__link {
     display: grid;
-    gap: 6px;
+    gap: 4px;
     text-decoration: none;
     color: inherit;
     pointer-events: auto;
   }
 
-  .wg__link:focus-visible {
-    outline: 2px solid rgba(255, 255, 255, 0.85);
-    outline-offset: 3px;
-    border-radius: var(--r-small, 12px);
+  .wg__meta {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: clamp(8px, 1.5vw, 14px);
+    min-width: 0;
   }
 
-  .wg__name {
-    font-family: var(--font-title);
-    font-weight: 400;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    text-wrap: balance;
-    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+  .wg--interactive.wg--preview-light :global(.wg__tagline),
+  .wg--interactive.wg--preview-light :global(.wg__open) {
+    color: var(--wg-caption-body);
   }
 
-  .wg__tagline {
+  .wg--interactive.wg--preview-light :global(.wg__open) {
+    color: var(--wg-accent);
+  }
+
+  .wg--interactive.wg--preview-dark :global(.wg__tagline) {
+    color: var(--wg-caption-body);
+  }
+
+  .wg--interactive.wg--preview-dark :global(.wg__open) {
+    color: var(--wg-accent);
+  }
+
+  :global(.wg__tagline) {
     font-size: clamp(0.85rem, 1.6vw, 0.98rem);
-    line-height: 1.45;
-    color: rgba(255, 255, 255, 0.78);
-    max-width: 36ch;
+    line-height: 1.35;
+    flex: 1;
+    min-width: 0;
     opacity: 0;
     transform: translateY(8px);
     transition:
@@ -306,15 +420,16 @@ const tileAttrs = isInteractive
       transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  .wg__open {
-    font-size: 0.8rem;
+  :global(.wg__open) {
+    font-size: clamp(0.72rem, 1.2vw, 0.8rem);
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.65);
+    white-space: nowrap;
+    flex-shrink: 0;
     opacity: 0;
-    transform: translateY(6px);
+    transform: translateY(8px);
     transition:
-      opacity 0.35s ease,
-      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      opacity 0.4s ease,
+      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .wg:hover .wg__frame,
@@ -332,10 +447,44 @@ const tileAttrs = isInteractive
     transform: none;
   }
 
-  .wg:hover .wg__tagline,
-  .wg:focus-within .wg__tagline,
-  .wg:hover .wg__open,
-  .wg:focus-within .wg__open {
+  .wg__link:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.85);
+    outline-offset: 3px;
+    border-radius: var(--r-small, 12px);
+  }
+
+  :global(.wg__name) {
+    font-family: var(--font-title);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  /* Fallback for tiles without explicit caption class — overridden above */
+  .wg__name {
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+  }
+
+  :global(.wg.wg--static) :global(.wg__name),
+  :global(.wg.wg--preview-light) :global(.wg__name),
+  :global(.wg.wg--preview-dark) :global(.wg__name) {
+    text-shadow: none;
+  }
+
+  :global(.wg.wg--static) :global(.wg__tagline) {
+    max-width: none;
+  }
+
+  .wg--static .wg__copy {
+    padding: clamp(12px, 2.2vw, 20px);
+    gap: 4px;
+  }
+
+  :global(.wg:hover) :global(.wg__tagline),
+  :global(.wg:focus-within) :global(.wg__tagline),
+  :global(.wg:hover) :global(.wg__open),
+  :global(.wg:focus-within) :global(.wg__open) {
     opacity: 1;
     transform: translateY(0);
   }

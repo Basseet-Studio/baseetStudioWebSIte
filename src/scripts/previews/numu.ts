@@ -4,7 +4,7 @@ import type { PreviewController } from './types'
 interface Habit {
   id: number
   name: string
-  variant: 'water' | 'read'
+  variant: 'water' | 'read' | 'walk' | 'meditate' | 'sleep'
   days: boolean[]
 }
 
@@ -20,6 +20,9 @@ function calcStreak(days: boolean[]): number {
 const HABIT_ICONS: Record<Habit['variant'], string> = {
   water: '💧',
   read: '📖',
+  walk: '🚶',
+  meditate: '🧘',
+  sleep: '🌙',
 }
 
 export function initNumuPreview(root: HTMLElement): PreviewController {
@@ -42,6 +45,24 @@ export function initNumuPreview(root: HTMLElement): PreviewController {
       name: 'Read 10 pages',
       variant: 'read',
       days: [true, true, false, true, true, false, false],
+    },
+    {
+      id: 3,
+      name: 'Walk 5k steps',
+      variant: 'walk',
+      days: [false, true, true, false, true, true, false],
+    },
+    {
+      id: 4,
+      name: 'Meditate',
+      variant: 'meditate',
+      days: [true, true, true, false, false, true, false],
+    },
+    {
+      id: 5,
+      name: 'Sleep by 11pm',
+      variant: 'sleep',
+      days: [false, false, true, true, true, false, true],
     },
   ]
 
