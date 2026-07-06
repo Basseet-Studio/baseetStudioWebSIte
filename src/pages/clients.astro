@@ -16,14 +16,10 @@ import type { Lang } from '../types'
 
 const lang: 'en' = 'en'
 const description =
-  'Real teams, real work. See how Baseet Studio helped a logistics platform and a creative agency ship products they actually use.'
+  'Real teams, real work. See how Baseet Studio helped logistics platforms, creative agencies, and community finance teams ship products they actually use.'
 
 
 // Helpers — kept inline since this is the only page that uses them.
-function pad2(n: number): string {
-  return String(n).padStart(2, '0')
-}
-
 function accentTint(color: string, alpha = 10): string {
   return `color-mix(in srgb, ${color} ${alpha}%, transparent)`
 }
@@ -33,23 +29,19 @@ function accentTint(color: string, alpha = 10): string {
   {/* Hero — editorial shape, mirrors the services hero. Eyebrow + big
       headline + lead. The meta carries the real retention signal. */}
   <section class="clients-hero" data-animate="fade-up">
-    <span class="clients-hero__eyebrow">
-      <span class="clients-hero__eyebrow-dot" aria-hidden="true"></span>
-      Case files
-    </span>
-    <h1 class="clients-hero__title">
+        <h1 class="clients-hero__title">
       Real teams,<br/>
       <span class="clients-hero__title-accent">real work.</span>
     </h1>
     <p class="clients-hero__lead">
       {/* TODO: localise this later */}
-      Two engagements. Both still running. The first one for three years and counting. Here's what we built, why we built it that way, and what changed for the team using it.
+      Three engagements. All still running. The first one for three years and counting. Here's what we built, why we built it that way, and what changed for the team using it.
     </p>
 
     <dl class="clients-hero__meta">
       <div class="clients-hero__meta-item">
         <dt>Active clients</dt>
-        <dd>02</dd>
+        <dd>03</dd>
       </div>
       <div class="clients-hero__meta-item">
         <dt>Average partnership</dt>
@@ -57,58 +49,26 @@ function accentTint(color: string, alpha = 10): string {
       </div>
       <div class="clients-hero__meta-item">
         <dt>Industries served</dt>
-        <dd>Logistics, Creative</dd>
+        <dd>Logistics, Creative, Community</dd>
       </div>
     </dl>
   </section>
 
   <div class="case-files">
     {clientsData.clients?.map((client: any, i: number) => {
-      const caseNumber = pad2(i + 1)
       const accent = client.color || 'var(--color-primary)'
-      // The masthead uses a tinted band of the client's color — NOT a
-      // side-stripe. The Vanta clouds stay visible above and below.
-      const mastheadBg = `linear-gradient(180deg, ${accentTint(accent, 14)} 0%, ${accentTint(accent, 4)} 100%)`
       const labelTone = accentTint(accent, 8)
-      // Alternating layouts: odd cases have results right, even have results
-      // left (or above). Keeps the page from feeling like a stack of clones.
       const layoutClass = i % 2 === 0 ? 'case-file--quote-left' : 'case-file--quote-right'
 
       return (
         <article class={`case-file ${layoutClass}`} data-animate="fade-up" id={client.id}>
-          {/* ----- Masthead ----- */}
-          <header class="case-file__masthead" style={`background:${mastheadBg};border-color:${accentTint(accent, 28)};`}>
-            <div class="case-file__masthead-inner">
-              <div class="case-file__meta">
-                <span class="case-file__case-number" style={`color:${accent};`}>CASE {caseNumber}</span>
-                <div class="case-file__chips">
-                  {client.industry && (
-                    <span class="case-file__chip" style={`background:${labelTone};color:${accent};border-color:${accentTint(accent, 32)};`}>
-                      <Icon name="tag" size={12} color="currentColor" />
-                      {client.industry}
-                    </span>
-                  )}
-                  {client.serviceType && (
-                    <span class="case-file__chip" style={`background:${labelTone};color:${accent};border-color:${accentTint(accent, 32)};`}>
-                      <Icon name="briefcase" size={12} color="currentColor" />
-                      {client.serviceType}
-                    </span>
-                  )}
-                </div>
-              </div>
-              <div class="case-file__heading">
-                <h2 class="case-file__name">{client.name}</h2>
-                {client.tagline && <p class="case-file__tagline">{client.tagline}</p>}
-              </div>
-            </div>
-          </header>
-
-          {/* ----- Body grid (asymmetric) -----
-               Default (case-file--quote-left):  [quote + work-details]
-               Inverted (case-file--quote-right): [work-details + quote]
-               The quote spans 2 rows so it visually anchors the case. */}
           <div class="case-file__body">
-            {/* Quote column */}
+            <header class="case-file__heading">
+              <h2 class="case-file__name">{client.name}</h2>
+              {client.tagline && <p class="case-file__tagline">{client.tagline}</p>}
+            </header>
+
+            <div class="case-file__grid">
             {client.testimonial?.quote && (
               <figure class="case-file__quote">
                 <span class="case-file__quote-mark" aria-hidden="true" style={`color:${accent};`}>&ldquo;</span>
@@ -126,12 +86,9 @@ function accentTint(color: string, alpha = 10): string {
               </figure>
             )}
 
-            {/* Work column */}
             <div class="case-file__work">
-              {/* Short description */}
               <p class="case-file__desc">{client.fullDescription || client.shortDescription}</p>
 
-              {/* Challenge + Solution — 2-col grid */}
               <div class="case-file__cs">
                 <div class="case-file__cs-block">
                   <h3 class="case-file__cs-label">Challenge</h3>
@@ -143,8 +100,6 @@ function accentTint(color: string, alpha = 10): string {
                 </div>
               </div>
 
-              {/* Results — monospace ledger. NOT the generic 4-col metric
-                  tile template. Each result is a small tabular entry. */}
               {client.results?.length > 0 && (
                 <div class="case-file__results">
                   <h3 class="case-file__cs-label">Outcomes</h3>
@@ -159,14 +114,25 @@ function accentTint(color: string, alpha = 10): string {
                 </div>
               )}
 
-              {/* Stack */}
-              {client.technologies?.length > 0 && (
+              {(client.technologies?.length > 0 || client.industry || client.serviceType) && (
                 <div class="case-file__stack">
                   <h3 class="case-file__cs-label">Stack</h3>
                   <ul class="case-file__chips case-file__chips--stack">
-                    {client.technologies.map((tech: string) => (
+                    {client.technologies?.map((tech: string) => (
                       <li class="case-file__chip case-file__chip--stack">{tech}</li>
                     ))}
+                    {client.industry && (
+                      <li class="case-file__chip case-file__chip--stack case-file__chip--meta" style={`background:${labelTone};color:${accent};border-color:${accentTint(accent, 32)};`}>
+                        <Icon name="tag" size={12} color="currentColor" />
+                        {client.industry}
+                      </li>
+                    )}
+                    {client.serviceType && (
+                      <li class="case-file__chip case-file__chip--stack case-file__chip--meta" style={`background:${labelTone};color:${accent};border-color:${accentTint(accent, 32)};`}>
+                        <Icon name="briefcase" size={12} color="currentColor" />
+                        {client.serviceType}
+                      </li>
+                    )}
                   </ul>
                 </div>
               )}
@@ -177,6 +143,7 @@ function accentTint(color: string, alpha = 10): string {
                   <Icon name="arrow-square-out" size={14} color="currentColor" />
                 </a>
               )}
+            </div>
             </div>
           </div>
         </article>
@@ -325,52 +292,6 @@ function accentTint(color: string, alpha = 10): string {
     gap: 0;
   }
 
-  /* ----- Masthead ----- */
-  /* The masthead is a tinted horizontal band. NO side-stripe (banned). NO
-     card-window wrapper — it bleeds slightly into the section so the Vanta
-     clouds tint through the top edge. */
-  .case-file__masthead {
-    border-top: 1px solid;
-    border-bottom: 1px solid;
-    border-radius: 24px 24px 0 0;
-    padding: 36px 40px 32px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .case-file__masthead::before {
-    /* Faint dot pattern to add texture without distracting from the type. */
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: radial-gradient(currentColor 1px, transparent 1px);
-    background-size: 24px 24px;
-    color: var(--divider-color);
-    opacity: 0.18;
-    pointer-events: none;
-  }
-
-  .case-file__masthead-inner {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-  }
-
-  .case-file__meta {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 14px;
-  }
-
-  .case-file__case-number {
-    font-family: var(--font-title);
-    font-size: 0.95rem;
-    letter-spacing: 0.18em;
-    font-weight: 400;
-  }
-
   .case-file__chips {
     display: flex;
     flex-wrap: wrap;
@@ -401,6 +322,8 @@ function accentTint(color: string, alpha = 10): string {
     display: flex;
     flex-direction: column;
     gap: 6px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--divider-color);
   }
 
   .case-file__name {
@@ -420,19 +343,24 @@ function accentTint(color: string, alpha = 10): string {
     max-width: 60ch;
   }
 
-  /* ----- Body grid (asymmetric, alternating) ----- */
+  /* ----- Card body — single solid block ----- */
   .case-file__body {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 48px 40px 56px;
+    background: var(--card-window-bg);
+    border: 1px solid var(--card-window-border);
+    border-radius: 24px;
+  }
+
+  .case-file__grid {
     display: grid;
     grid-template-columns: 5fr 7fr;
     gap: 56px;
-    padding: 56px 40px;
-    background: var(--card-window-bg);
-    border: 1px solid var(--card-window-border);
-    border-top: none;
-    border-radius: 0 0 24px 24px;
   }
 
-  .case-file--quote-right .case-file__body {
+  .case-file--quote-right .case-file__grid {
     grid-template-columns: 7fr 5fr;
   }
 
@@ -443,12 +371,20 @@ function accentTint(color: string, alpha = 10): string {
     order: 2;
   }
 
+  .case-file__chip--meta {
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
   @media (max-width: 860px) {
-    .case-file__body,
-    .case-file--quote-right .case-file__body {
+    .case-file__body {
+      padding: 40px 28px;
+      gap: 32px;
+    }
+    .case-file__grid,
+    .case-file--quote-right .case-file__grid {
       grid-template-columns: 1fr;
       gap: 40px;
-      padding: 40px 28px;
     }
     .case-file--quote-right .case-file__work {
       order: 2;
@@ -681,12 +617,8 @@ function accentTint(color: string, alpha = 10): string {
     .case-files {
       gap: 64px;
     }
-    .case-file__masthead {
-      padding: 28px 24px 22px;
-      border-radius: 20px 20px 0 0;
-    }
     .case-file__body {
-      border-radius: 0 0 20px 20px;
+      border-radius: 24px;
     }
     .case-file__ledger-row {
       grid-template-columns: 90px 1fr;
@@ -701,10 +633,7 @@ function accentTint(color: string, alpha = 10): string {
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .clients-hero__eyebrow-dot {
-      animation: none;
-    }
-    .clients-cta__link:hover {
+.clients-cta__link:hover {
       gap: 8px;
     }
   }

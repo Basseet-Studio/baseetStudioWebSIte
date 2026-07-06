@@ -40,10 +40,6 @@ const servicesData = {
       carries real proof (3-year average partnership, the studio's actual
       retention signal). No "we deliver excellence" copy. */}
   <section class="services-hero" data-animate="fade-up">
-    <span class="services-hero__eyebrow">
-      <span class="services-hero__eyebrow-dot" aria-hidden="true"></span>
-      What we build
-    </span>
     <h1 class="services-hero__title">
       Six capabilities.<br/>
       <span class="services-hero__title-accent">One studio, end to end.</span>
@@ -91,44 +87,6 @@ const servicesData = {
   .services-hero {
     margin-bottom: 64px;
     max-width: 880px;
-  }
-
-  .services-hero__eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 7px 14px 7px 12px;
-    border-radius: 9999px;
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--color-primary);
-    background: color-mix(in srgb, var(--color-primary) 10%, transparent);
-    border: 1px solid color-mix(in srgb, var(--color-primary) 22%, transparent);
-    margin-bottom: 24px;
-  }
-
-  .services-hero__eyebrow-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--color-primary);
-    box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-primary) 60%, transparent);
-    animation: services-pulse 2.4s ease-in-out infinite;
-  }
-
-  [data-theme="night"] .services-hero__eyebrow-dot {
-    animation: none;
-  }
-
-  @keyframes services-pulse {
-    0%, 100% {
-      box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-primary) 60%, transparent);
-    }
-    50% {
-      box-shadow: 0 0 0 8px color-mix(in srgb, var(--color-primary) 0%, transparent);
-    }
   }
 
   .services-hero__title {
@@ -204,9 +162,4 @@ const servicesData = {
     }
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .services-hero__eyebrow-dot {
-      animation: none;
-    }
-  }
 </style>
