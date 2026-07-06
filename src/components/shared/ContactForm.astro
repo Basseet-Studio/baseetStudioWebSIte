@@ -33,16 +33,7 @@ const { actionUrl, lang = 'en' } = Astro.props
           flanks it. Both rotate slightly and have their own float keyframes
           so the corner reads as a stack of cards dropped on the envelope. ===== */}
       <div class="contact-form__corner">
-        {/* The vintage "BASEET POST" stamp is decorative — only the social
-            links inside this cluster are interactive. */}
-        <div class="contact-form__stamp" aria-hidden="true">
-          <span class="contact-form__stamp-text">BASEET&nbsp;POST</span>
-          <span class="contact-form__stamp-mark">
-            <Icon name="paper-plane-tilt" size={26} color="#fff" />
-          </span>
-          <span class="contact-form__stamp-rate">∞¢</span>
-        </div>
-      <ul class="contact-form__social-stamps" aria-label="Find us on social">
+        <ul class="contact-form__social-stamps" aria-label="Find us on social">
         <li class="contact-form__social-stamp" style="--rot:-4deg;--delay:0s;">
           <a href="https://instagram.com/baseet.studio" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
             <Icon name="instagram-logo" size={22} color="currentColor" />
@@ -74,6 +65,13 @@ const { actionUrl, lang = 'en' } = Astro.props
           </a>
         </li>
       </ul>
+        <div class="contact-form__stamp" aria-hidden="true">
+          <span class="contact-form__stamp-text">BASEET&nbsp;POST</span>
+          <span class="contact-form__stamp-mark">
+            <Icon name="paper-plane-tilt" size={26} color="#fff" />
+          </span>
+          <span class="contact-form__stamp-rate">∞¢</span>
+        </div>
     </div>
 
     <form id="contact-form" class="contact-form__fields">
@@ -469,7 +467,7 @@ const { actionUrl, lang = 'en' } = Astro.props
   .contact-form__letter {
     position: relative;
     color: var(--paper-ink);
-    padding: 56px 56px 48px;
+    padding: 48px 56px 48px;
     min-height: 600px;
     border-radius: 2px;
     z-index: 2;
@@ -477,18 +475,26 @@ const { actionUrl, lang = 'en' } = Astro.props
   }
 
   /* =============================================================
-     Top-right corner cluster — the vintage stamp + the row of
-     social-media mail-stamps sit together in the upper-right
-     corner, slightly overlapping like a stack of cards.
+     Top border cluster — stamps sit in a row along the top edge.
+     Social mini-stamps on the left, BASEET POST stamp on the right.
      ============================================================= */
   .contact-form__corner {
     position: absolute;
-    top: 28px;
-    right: 28px;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 10px 20px 0;
     display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
     align-items: flex-start;
-    gap: 14px;
+    gap: 12px;
     z-index: 4;
+    pointer-events: none;
+  }
+
+  .contact-form__corner a {
+    pointer-events: auto;
   }
 
   /* =============================================================
@@ -498,8 +504,8 @@ const { actionUrl, lang = 'en' } = Astro.props
      ============================================================= */
   .contact-form__stamp {
     position: relative;
-    width: 96px;
-    height: 110px;
+    width: 88px;
+    height: 100px;
     background: color-mix(in srgb, var(--paper-cream) 82%, #fff8ef);
     border: 2px dashed var(--paper-ink);
     padding: 8px 6px;
@@ -556,7 +562,7 @@ const { actionUrl, lang = 'en' } = Astro.props
     grid-template-columns: 1.4fr 1px 1fr;
     gap: 56px;
     align-items: start;
-    padding-top: 132px;
+    padding-top: 102px;
   }
 
   .contact-form__col {
@@ -568,6 +574,7 @@ const { actionUrl, lang = 'en' } = Astro.props
 
   .contact-form__col--right {
     padding-top: 0;
+    padding-right: 28px;
   }
 
   /* Vertical dashed divider — fades in/out top and bottom like the
@@ -587,22 +594,27 @@ const { actionUrl, lang = 'en' } = Astro.props
   .contact-form__subject {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 18px;
+    margin-bottom: 4px;
+  }
+
+  .contact-form__subject .contact-form__label-mono {
+    margin-bottom: 0;
   }
 
   .contact-form__field--subject {
-    margin-top: 2px;
+    margin-top: 0;
     overflow: visible;
   }
 
   .contact-form__dashed--subject {
     font-family: var(--font-display);
-    font-size: clamp(2rem, 3.8vw, 2.8rem);
+    font-size: clamp(1.85rem, 3.2vw, 2.5rem);
     font-weight: 700;
     letter-spacing: -0.02em;
-    line-height: 1.3;
-    padding: 12px 0 16px;
-    min-height: 1.6em;
+    line-height: 1.45;
+    padding: 8px 0 20px;
+    min-height: 2.4em;
     border-bottom: 1.5px dashed var(--paper-line);
   }
 
@@ -610,7 +622,8 @@ const { actionUrl, lang = 'en' } = Astro.props
     color: color-mix(in srgb, var(--paper-muted) 55%, transparent);
     font-style: normal;
     font-weight: 700;
-    font-size: clamp(2rem, 3.8vw, 2.8rem);
+    font-size: clamp(1.85rem, 3.2vw, 2.5rem);
+    line-height: 1.45;
   }
 
   /* ----- Mono label (uppercase tracked) ----- */
@@ -647,6 +660,7 @@ const { actionUrl, lang = 'en' } = Astro.props
 
   .contact-form__field--message {
     position: relative;
+    margin-top: 8px;
   }
 
   .contact-form__field-group {
@@ -909,16 +923,18 @@ const { actionUrl, lang = 'en' } = Astro.props
      ============================================================= */
   .contact-form__priority {
     position: absolute;
-    right: 18px;
-    bottom: 90px;
+    right: 14px;
+    top: 108px;
+    bottom: auto;
     transform: rotate(-90deg);
-    transform-origin: right bottom;
+    transform-origin: right top;
     font-family: var(--font-mono);
     font-size: 0.62rem;
     letter-spacing: 0.4em;
     text-transform: uppercase;
     color: color-mix(in srgb, var(--paper-muted) 60%, transparent);
     pointer-events: none;
+    z-index: 3;
   }
 
   /* =============================================================
@@ -933,8 +949,11 @@ const { actionUrl, lang = 'en' } = Astro.props
     margin: 0;
     padding: 0;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
     gap: 6px;
+    max-width: 320px;
   }
 
   .contact-form__social-stamp {
@@ -1007,10 +1026,12 @@ const { actionUrl, lang = 'en' } = Astro.props
       padding: 40px 32px 36px;
     }
 
-    /* Corner cluster shrinks and pulls in slightly on tablet */
+    /* Corner cluster along top border on tablet */
     .contact-form__corner {
-      top: 20px;
-      right: 20px;
+      top: 0;
+      right: 0;
+      left: 0;
+      padding: 8px 16px 0;
       gap: 10px;
     }
 
