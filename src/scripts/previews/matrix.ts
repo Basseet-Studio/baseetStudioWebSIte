@@ -123,7 +123,7 @@ export function initMatrixPreview(root: HTMLElement): PreviewController {
       }
 
       const board = root.querySelector<HTMLElement>('[data-board]')
-      cardEl.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'nearest', inline: 'center' })
+      cardEl.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'nearest' })
 
       ghost.moveTo(cardEl)
       setTimeout(() => {
@@ -134,19 +134,13 @@ export function initMatrixPreview(root: HTMLElement): PreviewController {
             done()
             return
           }
-          targetBody.closest('[data-col]')?.scrollIntoView({
-            behavior: reduced ? 'auto' : 'smooth',
-            block: 'nearest',
-            inline: 'center',
-          })
           ghost.moveTo(targetBody)
           setTimeout(() => {
             ghost.click()
             card.col = target
             render()
             if (board && !reduced) {
-              const colEl = targetBody.closest('[data-col]')
-              colEl?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
+              targetBody.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
             }
             done()
           }, moveDelay)

@@ -82,6 +82,7 @@ const sidebarNav = [
     background-color: var(--mx-bg);
     font-family: var(--font-body);
     color: var(--mx-shell-text);
+    overflow: hidden;
   }
 
   :global([data-theme='night']) .mx-preview__canvas {
@@ -221,11 +222,13 @@ const sidebarNav = [
 
   .mx-preview__content {
     flex: 1;
+    min-width: 0;
     min-height: 0;
     display: flex;
     flex-direction: column;
     padding: 8px 10px 10px;
     gap: 6px;
+    overflow: hidden;
   }
 
   .mx-preview__page-head {
@@ -234,6 +237,8 @@ const sidebarNav = [
     justify-content: space-between;
     flex-shrink: 0;
     gap: 8px;
+    min-width: 0;
+    overflow: hidden;
   }
 
   .mx-preview__page-head-left {
@@ -283,25 +288,21 @@ const sidebarNav = [
     display: flex;
     gap: 7px;
     flex: 1;
+    width: 100%;
+    min-width: 0;
     min-height: 0;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x proximity;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .mx-preview__board::-webkit-scrollbar {
-    display: none;
+    overflow: hidden;
   }
 
   .mx-preview__col {
     flex: 1 1 0;
+    width: 0;
     min-width: 0;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
-    scroll-snap-align: start;
     min-height: 0;
+    overflow: hidden;
   }
 
   .mx-preview__col-label {
@@ -317,10 +318,13 @@ const sidebarNav = [
 
   .mx-preview__body {
     flex: 1;
+    width: 100%;
+    min-width: 0;
     min-height: 0;
     display: flex;
     flex-direction: column;
     gap: 5px;
+    overflow-x: hidden;
     overflow-y: auto;
     scrollbar-width: none;
   }
@@ -342,6 +346,11 @@ const sidebarNav = [
     flex-direction: column;
     gap: 4px;
     flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    overflow: hidden;
   }
 
   :global(.mx-preview__card--high) {
@@ -359,6 +368,8 @@ const sidebarNav = [
   :global(.mx-preview__card-title) {
     color: var(--mx-card-text);
     font-weight: 600;
+    width: 100%;
+    min-width: 0;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
