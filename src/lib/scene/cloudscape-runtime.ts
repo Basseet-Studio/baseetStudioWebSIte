@@ -14,6 +14,7 @@ import {
 import {
   applyResolvedSkyToRuntime,
   hexToVec3,
+  isDebugSkyLocked,
   registerCloudscapeThemeCallback,
   type SkyThemeUpdate,
 } from './sky-theme'
@@ -384,6 +385,7 @@ export function initCloudscape(opts: {
   }
 
   function syncSkyTheme(): void {
+    if (isDebugSkyLocked()) return
     applyResolvedSkyToRuntime(state.pageClouds, state.pageLighting, readSavedTheme())
   }
 

@@ -27,6 +27,10 @@
   <div class="scene-debug__row">
     <span>objects </span><span data-scene-objects>none</span>
   </div>
+  <div class="scene-debug__row">
+    <span>sky </span><span data-scene-sky-period>live</span>
+  </div>
+  <div id="scene-debug-periods" class="scene-debug__row scene-debug__periods" role="group" aria-label="Sky time preview"></div>
   <pre id="scene-debug-log" class="scene-debug__log" aria-live="polite"></pre>
 </div>
 
@@ -47,7 +51,10 @@
 
   function showDebugOverlay(): void {
     import('../../lib/scene/scene-debug.ts').then((m) => {
-      if (m.isSceneDebugEnabled()) m.showSceneDebugPanel()
+      if (m.isSceneDebugEnabled()) {
+        m.showSceneDebugPanel()
+        m.initSceneDebugControls()
+      }
     })
   }
 
@@ -133,12 +140,50 @@
     color: #fff;
     padding: 8px 10px;
     border-radius: var(--card-window-radius-tight, 18px);
-    pointer-events: none;
+    pointer-events: auto;
     max-width: min(96vw, 520px);
   }
 
   .scene-debug__row {
     margin-bottom: 2px;
+  }
+
+  .scene-debug__periods {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    align-items: center;
+    margin-top: 4px;
+  }
+
+  .scene-debug__period-label {
+    margin-right: 2px;
+    opacity: 0.85;
+  }
+
+  .scene-debug__period-btn {
+    font: 10px/1.2 monospace;
+    padding: 3px 7px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .scene-debug__period-btn:hover {
+    background: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+
+  .scene-debug__period-btn.is-active {
+    background: rgba(255, 255, 255, 0.28);
+    border-color: rgba(255, 255, 255, 0.65);
+  }
+
+  .scene-debug__period-btn:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.75);
+    outline-offset: 2px;
   }
 
   .scene-debug__log {

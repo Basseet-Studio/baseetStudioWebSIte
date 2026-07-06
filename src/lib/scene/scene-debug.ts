@@ -107,3 +107,50 @@ export function updateSceneDebugPanel(snapshot: SceneDebugSnapshot): void {
 export function logShaderInfo(material: { vertexShader: string; fragmentShader: string }): void {
   sceneLog('shader', `vertex ${material.vertexShader.length}b, fragment ${material.fragmentShader.length}b`)
 }
+
+let debugControlsBound = false
+
+export function initSceneDebugControls(): void {
+  if (!isSceneDebugEnabled() || debugControlsBound) return
+  const root = document.getElementById('scene-debug')
+  const row = document.getElementById('scene-debug-periods')
+  if (!root || !row) return
+
+  debugControlsBound = true
+  root.hidden = false
+
+  import('./sky-theme').then((sky) => {
+    row.innerHTML = ''
+    const label = document.createElement('span')
+    label.className = 'scene-debug__period-label'
+    label.textContent = 'sky '
+    row.appendChild(label)
+
+    for (const preset of sky.SKY_PERIOD_PRESETS) {
+      const btn = document.createElement('button')
+      btn.type = 'button'
+      btn.className = 'scene-debug__period-btn'
+      btn.dataset.period = preset.id
+      btn.textContent = preset.label
+      btn.title =
+        preset.hour === null ? 'Follow local clock' : `Preview hour ${preset.hour}`
+      btn.addEventListener('click', () => {
+        sky.setDebugPreviewPeriod(preset.id)
+        row.querySelectorAll('.scene-debug__period-btn').forEach((el) => {
+          el.classList.toggle('is-active', el === btn)
+        })
+        const skyEl = document.querySelector('[data-scene-sky-period]')
+        if (skyEl) {
+          skyEl.textContent =
+            preset.hour === null ? `live (${new Date().getHours()}h)` : `${preset.label} (${preset.hour}h)`
+        }
+        sceneLog('sky', `preview → ${preset.label}`)
+      })
+      row.appendChild(btn)
+    }
+
+    const activeId = sky.getDebugPreviewPeriodId()
+    const activeBtn = row.querySelector(`[data-period="${activeId}"]`)
+    if (activeBtn) activeBtn.classList.add('is-active')
+  })
+}
