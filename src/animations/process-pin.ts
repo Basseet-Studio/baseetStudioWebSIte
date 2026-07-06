@@ -54,7 +54,7 @@ export function init(): void {
   if (!pinSection || listItems.length === 0 || slides.length === 0) return
 
   const stepCount = listItems.length
-  const scrollPerStep = isMobile() ? 40 : 50
+  const scrollPerStep = isMobile() ? 60 : 80
 
   setActiveStep(listItems, slides, 0)
   slides.forEach((slide, i) => {

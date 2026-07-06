@@ -52,7 +52,6 @@ interface Props {
   }
   cta?: CTA
   copy: {
-    eyebrow?: string
     intro?: string
     explore?: string
     ctaHref: string
@@ -93,7 +92,6 @@ const isAr = copy.ctaHref.includes('/ar/')
      ===================================================================== */}
 {process && process.steps && process.steps.length > 0 && (
   <ProcessPin
-    eyebrow={copy.eyebrow ?? 'How we work'}
     title={process.title}
     subtitle={process.subtitle}
     steps={process.steps}
