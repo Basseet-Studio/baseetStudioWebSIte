@@ -1,0 +1,111 @@
+---
+import ProjectLayout from '../../../layouts/Project.astro'
+import FeatureMediaPlaceholder from '../../../components/project/FeatureMediaPlaceholder.astro'
+import Icon from '../../../components/icons/Icon.astro'
+import { getProject } from '../../../lib/projects'
+
+const slug = 'moneybox'
+const project = getProject(slug)
+if (!project) return Astro.redirect('/404')
+
+const featureDetails = [
+  {
+    title: 'Smart Savings Goals',
+    description: 'Set targets for emergencies, travel, or big purchases and track progress with motivating visual charts.',
+    bullets: ['Custom goal targets', 'Progress rings and bars', 'Deadline reminders', 'Celebrate milestones'],
+    label: 'Savings goal screenshot',
+    variant: 'mobile' as const,
+  },
+  {
+    title: 'Expense Tracking',
+    description: 'Log spending by category, spot patterns early, and keep daily habits honest without spreadsheets.',
+    bullets: ['Quick expense entry', 'Category tagging', 'Daily and weekly views', 'Spending patterns'],
+    label: 'Expense log GIF',
+    variant: 'gif' as const,
+  },
+  {
+    title: 'Budget Overview',
+    description: 'See income vs. outgo at a glance with monthly summaries that stay readable on mobile.',
+    bullets: ['Income tracking', 'Budget vs actual', 'Category limits', 'Month-over-month view'],
+    label: 'Budget overview screenshot',
+    variant: 'mobile' as const,
+  },
+  {
+    title: 'Clean Reporting',
+    description: 'Trend views and category breakdowns designed for quick check-ins — not end-of-month archaeology.',
+    bullets: ['Monthly summaries', 'Category pie charts', 'Trend lines', 'Export-ready views'],
+    label: 'Reports chart screenshot',
+    variant: 'desktop' as const,
+  },
+  {
+    title: 'Daily Reminders',
+    description: 'Gentle nudges to log expenses and review goals so the app works with your routine.',
+    bullets: ['Custom reminder times', 'Goal check-in prompts', 'Weekly review nudges', 'Quiet hours'],
+    label: 'Reminders screenshot',
+    variant: 'mobile' as const,
+  },
+  {
+    title: 'Private by Design',
+    description: 'Your finances stay on your device. No ads, no data resale — just a tool that respects your numbers.',
+    bullets: ['On-device storage', 'No bank linking required', 'No ads', 'No data resale'],
+    label: 'Privacy settings screenshot',
+    variant: 'mobile' as const,
+  },
+]
+---
+
+<ProjectLayout
+  title={`Features — ${project.name} — Baseet Studio`}
+  description={`Features of ${project.name} — ${project.tagline}`}
+  slug={project.slug}
+  projectColor={project.color}
+  projectGradient={project.gradient}
+  projectName={project.name}
+  projectIconClass={project.iconClass}
+  projectNavItems={project.navItems}
+  projectNavMeta={project.navMetaItems}
+  lang="en"
+>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles/projects/moneybox.css" />
+
+  <section class="moneybox-subhero">
+    <h1 class="moneybox-subhero__title" style="font-family:'Outfit',sans-serif;" data-animate="fade-up">Every feature, explained</h1>
+    <p class="moneybox-subhero__lede" data-animate="fade-up">
+      MoneyBox keeps personal finance simple — budgets, goals, and reports without the clutter of a full banking app.
+    </p>
+  </section>
+
+  {featureDetails.map((feature, i) => (
+    <div class={`moneybox-feature-block${i % 2 === 1 ? ' moneybox-feature-block--reverse' : ''}`} data-animate="fade-up">
+      <div class="moneybox-feature-block__copy">
+        <h2 style="font-family:'Outfit',sans-serif;">{feature.title}</h2>
+        <p>{feature.description}</p>
+        <ul>
+          {feature.bullets.map((b) => (
+            <li>
+              <Icon name="check-circle" size={16} color={project.color} />
+              <span>{b}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="moneybox-feature-block__visual">
+        <FeatureMediaPlaceholder variant={feature.variant} label={feature.label} />
+      </div>
+    </div>
+  ))}
+
+  <section class="moneybox-section" style="text-align:center;">
+    <a href="/projects/moneybox/download/" class="cta-btn--primary" style={`background:${project.gradient};`}>Get the App</a>
+  </section>
+
+  <script>
+    import { init, destroy } from '../../../animations/projects/moneybox'
+    init()
+    document.addEventListener('astro:before-swap', destroy)
+    document.addEventListener('astro:page-load', init)
+  </script>
+</ProjectLayout>

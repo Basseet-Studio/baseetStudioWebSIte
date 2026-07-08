@@ -1,0 +1,166 @@
+---
+import ProjectLayout from '../../layouts/Project.astro'
+import Icon from '../icons/Icon.astro'
+import { getProject } from '../../lib/projects'
+import type { Lang } from '../../types'
+
+interface Props {
+  slug: string
+  docType: 'terms' | 'privacy'
+  lang?: Lang
+  cssPath?: string
+  subheroClass?: string
+}
+
+const { slug, docType, lang: langProp, cssPath, subheroClass = 'project-subhero' } = Astro.props
+const lang: Lang = langProp ?? 'en'
+const project = getProject(slug)
+if (!project) return Astro.redirect('/404')
+
+const docMeta = {
+  terms: {
+    title: 'Terms & Conditions',
+    icon: 'file-text',
+    lede: `Placeholder terms and conditions for ${project.name}. Final legal text will replace this copy before launch.`,
+  },
+  privacy: {
+    title: 'Privacy Policy',
+    icon: 'shield',
+    lede: `Placeholder privacy policy for ${project.name}. Final legal text will replace this copy before launch.`,
+  },
+} as const
+
+const meta = docMeta[docType]
+
+const loremSections = [
+  {
+    heading: 'Introduction',
+    paragraphs: [
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
+      'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    ],
+  },
+  {
+    heading: 'Use of service',
+    paragraphs: [
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.',
+      'Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.',
+    ],
+  },
+  {
+    heading: 'Data and privacy',
+    paragraphs: [
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh.',
+      'Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor.',
+    ],
+  },
+  {
+    heading: 'Contact',
+    paragraphs: [
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. Fusce ac turpis quis ligula lacinia aliquet.',
+      'For questions about this policy, contact us at baseet.socials@gmail.com.',
+    ],
+  },
+]
+---
+
+<ProjectLayout
+  title={`${meta.title} — ${project.name} — Baseet Studio`}
+  description={`${meta.title} — ${project.name}: ${project.tagline}`}
+  slug={project.slug}
+  projectColor={project.color}
+  projectGradient={project.gradient}
+  projectName={project.name}
+  projectIconClass={project.iconClass}
+  projectNavItems={project.navItems}
+  projectNavMeta={project.navMetaItems}
+  lang={lang}
+>
+  {cssPath && <link rel="stylesheet" href={cssPath} />}
+
+  <section class={subheroClass}>
+    <div class={`${subheroClass}__inner`}>
+      <span class={`${subheroClass}__eyebrow`}>
+        <Icon name={meta.icon} size={14} color="currentColor" />
+        {meta.title}
+      </span>
+      <h1 class={`${subheroClass}__title`} data-animate="fade-up">{meta.title}</h1>
+      <p class={`${subheroClass}__lede`} data-animate="fade-up">{meta.lede}</p>
+    </div>
+  </section>
+
+  <section class="project-legal-content">
+    <article class="project-legal-prose">
+      {loremSections.map((section) => (
+        <section>
+          <h2>{section.heading}</h2>
+          {section.paragraphs.map((p) => <p>{p}</p>)}
+        </section>
+      ))}
+    </article>
+  </section>
+</ProjectLayout>
+
+<style>
+  .project-subhero {
+    padding: 8rem 1.5rem 4rem;
+    text-align: center;
+    position: relative;
+  }
+
+  .project-subhero__inner {
+    max-width: 42rem;
+    margin: 0 auto;
+  }
+
+  .project-subhero__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--project-color);
+    margin-bottom: 1rem;
+  }
+
+  .project-subhero__title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--heading-text);
+    margin: 0 0 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .project-subhero__lede {
+    font-size: 1.1rem;
+    color: var(--muted-text);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .project-legal-content {
+    padding: 2rem 1.5rem 6rem;
+    max-width: 42rem;
+    margin: 0 auto;
+  }
+
+  .project-legal-prose h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--heading-text);
+    margin: 2.5rem 0 1rem;
+  }
+
+  .project-legal-prose h2:first-child {
+    margin-top: 0;
+  }
+
+  .project-legal-prose p {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--muted-text);
+    margin: 0 0 1rem;
+  }
+</style>

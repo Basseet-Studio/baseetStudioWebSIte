@@ -31,7 +31,7 @@ const featuresUrl = realUrl(projectLinks.features) || `/${lang === 'ar' ? 'ar/' 
 const faqUrl = realUrl(projectLinks.faq) || `/${lang === 'ar' ? 'ar/' : ''}projects/geeb/faq/`
 const appStoreUrl = realUrl(projectLinks.app_store) || realUrl(projectLinks.ios)
 const playStoreUrl = realUrl(projectLinks.play_store) || realUrl(projectLinks.android)
-const webAppUrl = realUrl(projectLinks.web)
+const downloadUrl = realUrl(projectLinks.download) || `/${lang === 'ar' ? 'ar/' : ''}projects/geeb/download/`
 
 // Service categories specific to Geeb — a B2C home-services marketplace
 const serviceCategories = [
@@ -43,6 +43,13 @@ const serviceCategories = [
   { name: 'Appliance Repair', icon: 'gear', description: 'Washer, dryer, fridge, oven' },
   { name: 'AC & HVAC', icon: 'snowflake', description: 'Install, service, maintenance' },
   { name: 'Carpentry', icon: 'ruler', description: 'Doors, shelves, custom builds' },
+]
+
+const ecosystemApps = [
+  { title: 'Customer App', desc: 'Discover, book, track, and review trusted pros in your area.', icon: 'device-mobile', span: 'span2' },
+  { title: 'Vendor App', desc: 'Manage services, receive requests, and grow your reputation.', icon: 'hard-hat', span: '' },
+  { title: 'Admin Console', desc: 'Monitor ecosystem health, users, and content at scale.', icon: 'shield', span: '' },
+  { title: 'Shared Package', desc: 'Common widgets, auth, and business logic across all three apps.', icon: 'git-branch', span: 'span2row' },
 ]
 
 const howItWorks = [
@@ -65,12 +72,14 @@ const howItWorks = [
     icon: 'shield-check',
   },
 ]
+
+const marqueeTrades = ['Plumbing', 'Electrical', 'Handyman', 'Painting', 'Cleaning', 'AC & HVAC', 'Carpentry', 'Appliance Repair']
 ---
 
 <ProjectLayout title={`${project.name} — Baseet Studio`} description={project.tagline} slug={project.slug} projectColor={project.color} projectGradient={project.gradient} projectName={project.name} projectIconClass={project.iconClass} projectNavItems={project.navItems} projectNavMeta={project.navMetaItems} lang={lang}>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/src/styles/projects/geeb.css" />
 
   <!-- Hero: warm amber gradient with wrench brand mark + service ribbon -->
@@ -125,8 +134,8 @@ const howItWorks = [
 
       <div class="geeb-hero__ctas" data-animate="fade-up">
         {project.hero.cta_primary && (
-          <a href={waitlistUrl} class="geeb-btn geeb-btn--primary">
-            <Icon name="device-mobile" size={18} color="white" />
+          <a href={downloadUrl} class="geeb-btn geeb-btn--primary">
+            <Icon name="download" size={18} color="white" />
             {project.hero.cta_primary}
           </a>
         )}
@@ -141,6 +150,36 @@ const howItWorks = [
       <p class="geeb-hero__trust geeb-hero__trust--inline" data-animate="fade-up">
         Verified pros · Upfront pricing · 30-day guarantee
       </p>
+    </div>
+  </section>
+
+  <!-- Trusted trades marquee -->
+  <div class="geeb-marquee" data-geeb-marquee aria-hidden="true">
+    <div class="geeb-marquee__track" data-geeb-marquee-track>
+      {[...marqueeTrades, ...marqueeTrades].map((trade) => (
+        <span class="geeb-marquee__item">{trade}</span>
+      ))}
+    </div>
+  </div>
+
+  <!-- Ecosystem bento -->
+  <section class="geeb-section geeb-section--alt">
+    <div class="geeb-section__inner">
+      <div class="geeb-section__head" data-animate="fade-up">
+        <h2 class="geeb-section__title">Three apps. One platform.</h2>
+        <p class="geeb-section__lede">Customer, vendor, and admin experiences share a single architecture — consistent UX, faster iteration, easier scaling.</p>
+      </div>
+      <div class="geeb-bento">
+        {ecosystemApps.map((app) => (
+          <div class={`geeb-bento__card${app.span ? ` geeb-bento__card--${app.span}` : ''}`} data-animate="fade-up">
+            <div class="geeb-bento__icon">
+              <Icon name={app.icon} size={24} color="currentColor" />
+            </div>
+            <h3 class="geeb-bento__title">{app.title}</h3>
+            <p class="geeb-bento__desc">{app.desc}</p>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 
@@ -170,30 +209,27 @@ const howItWorks = [
     </div>
   </section>
 
-  <!-- How it works: 3-step process -->
-  <section class="geeb-section geeb-section--alt" id="how">
+  <!-- How it works: pinned title + scrolling steps -->
+  <section class="geeb-section geeb-section--alt" id="how" data-geeb-pin>
     <div class="geeb-section__inner">
-      <div class="geeb-section__head" data-animate="fade-up">
-        <span class="geeb-eyebrow">
-          <Icon name="path" size={14} color="currentColor" />
-          How it works
-        </span>
-        <h2 class="geeb-section__title">From "uh oh" to "all done" in three steps</h2>
-      </div>
-
-      <div class="geeb-how">
-        {howItWorks.map((step, i) => (
-          <div class="geeb-how__step" data-animate="fade-up" style={`animation-delay:${i * 0.1}s;`}>
-            <div class="geeb-how__step-head">
-              <div class="geeb-how__step-num">{step.step}</div>
-              <div class="geeb-how__step-icon">
-                <Icon name={step.icon} size={22} color="currentColor" />
-              </div>
+      <div class="geeb-pin">
+        <div class="geeb-pin__title-wrap" data-geeb-pin-title>
+          <span class="geeb-eyebrow">
+            <Icon name="path" size={14} color="currentColor" />
+            How it works
+          </span>
+          <h2 class="geeb-section__title" style="text-align:left;margin-top:16px;">From "uh oh" to "all done"</h2>
+          <p class="geeb-section__lede" style="text-align:left;margin:0;">Three steps to book a trusted pro and get the job done right.</p>
+        </div>
+        <div class="geeb-pin__steps" data-geeb-pin-content>
+          {howItWorks.map((step) => (
+            <div class="geeb-pin__step" data-animate="fade-up">
+              <div class="geeb-pin__step-num">{step.step}</div>
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
             </div>
-            <h3 class="geeb-how__step-title">{step.title}</h3>
-            <p class="geeb-how__step-text">{step.text}</p>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   </section>
@@ -342,15 +378,22 @@ const howItWorks = [
         {/* TODO: localise this later */ 'Join the Geeb waitlist and be first to book or list your services when we launch.'}
       </p>
       <div class="geeb-cta__actions" data-animate="fade-up">
-        <a href="/contact/" class="geeb-btn geeb-btn--invert">
-          <Icon name="envelope" size={18} color="currentColor" />
-          {/* TODO: localise this later */ 'Join the waitlist'}
+        <a href={downloadUrl} class="geeb-btn geeb-btn--invert">
+          <Icon name="download" size={18} color="currentColor" />
+          Get the apps
         </a>
-        <a href="/contact/" class="geeb-btn geeb-btn--ghost">
+        <a href={proSignupUrl} class="geeb-btn geeb-btn--ghost">
           <Icon name="briefcase" size={18} color="currentColor" />
-          {/* TODO: localise this later */ 'Apply as a pro'}
+          Apply as a pro
         </a>
       </div>
     </div>
   </section>
+
+  <script>
+    import { init, destroy } from '../../animations/projects/geeb'
+    init()
+    document.addEventListener('astro:before-swap', destroy)
+    document.addEventListener('astro:page-load', init)
+  </script>
 </ProjectLayout>

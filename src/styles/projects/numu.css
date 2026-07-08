@@ -62,3 +62,55 @@
         flex: 0 0 280px;
     }
 }
+
+/* ── Redesigned landing sections ─────────────────────────────────────── */
+.numu-main { overflow-x: hidden; width: 100%; max-width: 100%; }
+.numu-section { padding: 8rem 1.5rem; }
+@media (min-width: 768px) { .numu-section { padding: 12rem 1.5rem; } }
+.numu-section__inner { max-width: 72rem; margin: 0 auto; }
+.numu-hero { position: relative; padding: 10rem 1.5rem 6rem; overflow: hidden; }
+.numu-hero__mesh { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 20% 40%, color-mix(in srgb, var(--project-color) 12%, transparent), transparent), radial-gradient(ellipse 50% 40% at 80% 60%, color-mix(in srgb, var(--project-color) 8%, transparent), transparent); pointer-events: none; }
+.numu-hero__grid { display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center; max-width: 72rem; margin: 0 auto; position: relative; z-index: 1; }
+@media (min-width: 1024px) { .numu-hero__grid { grid-template-columns: 1.1fr 0.9fr; } }
+.numu-hero__title { font-size: clamp(2.5rem, 5vw, 4.25rem); font-weight: 800; line-height: 1.08; letter-spacing: -0.03em; color: var(--heading-text); margin: 0 0 1.25rem; max-width: 36rem; }
+.numu-hero__inline-pill { display: inline-block; width: 3.5rem; height: 1.75rem; border-radius: 9999px; background: var(--project-gradient); vertical-align: middle; margin: 0 0.35rem; opacity: 0.85; }
+.numu-hero__subtitle { font-size: 1.15rem; line-height: 1.7; color: var(--muted-text); margin: 0 0 2rem; max-width: 32rem; }
+.numu-hero__ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+.numu-hero__visual { position: relative; display: flex; justify-content: center; }
+.numu-hero__phone { width: 260px; aspect-ratio: 9 / 19; border-radius: 2rem; background: var(--project-gradient); box-shadow: 0 24px 64px -16px color-mix(in srgb, var(--project-color) 40%, transparent); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.1rem; }
+.numu-hero__streak { position: absolute; bottom: -1rem; right: -0.5rem; padding: 1rem 1.25rem; border-radius: var(--card-window-radius-tight, 18px); background: var(--card-bg); border: 1px solid var(--card-border); box-shadow: var(--card-shadow); }
+.numu-hero__streak-value { font-size: 1.75rem; font-weight: 800; color: var(--project-color); }
+.numu-hero__streak-label { font-size: 0.8rem; color: var(--muted-text); }
+.numu-bento { display: grid; grid-template-columns: repeat(6, 1fr); grid-auto-flow: dense; gap: 1.25rem; }
+.numu-bento__card { grid-column: span 2; padding: 1.75rem; border-radius: var(--card-window-radius-tight, 18px); background: var(--card-bg); border: 1px solid var(--card-border); transition: transform 0.4s ease; overflow: hidden; }
+.numu-bento__card:hover { transform: scale(1.03); }
+.numu-bento__card--wide { grid-column: span 3; }
+.numu-bento__card--tall { grid-row: span 2; }
+.numu-bento__card h3 { font-size: 1.1rem; font-weight: 700; margin: 0 0 0.5rem; color: var(--heading-text); }
+.numu-bento__card p { font-size: 0.9rem; line-height: 1.6; color: var(--muted-text); margin: 0; }
+.numu-marquee { overflow: hidden; padding: 2rem 0; border-block: 1px solid color-mix(in srgb, var(--project-color) 18%, transparent); }
+.numu-marquee__track { display: flex; gap: 3rem; width: max-content; }
+.numu-marquee__item { font-size: 1.25rem; font-weight: 600; color: var(--project-color); white-space: nowrap; opacity: 0.75; }
+.numu-scrub { text-align: center; max-width: 48rem; margin: 0 auto; }
+.numu-scrub__text { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 600; line-height: 1.4; color: var(--heading-text); }
+.numu-scrub__word { opacity: 0.15; transition: opacity 0.1s; }
+.numu-stack { position: relative; height: 420px; max-width: 320px; margin: 0 auto; }
+.numu-stack__card { position: absolute; left: 0; right: 0; padding: 1.5rem; border-radius: var(--card-window-radius-tight, 18px); background: var(--card-bg); border: 1px solid var(--card-border); box-shadow: var(--card-shadow); }
+.numu-stack__card h4 { margin: 0 0 0.5rem; color: var(--heading-text); font-weight: 700; }
+.numu-stack__card p { margin: 0; font-size: 0.9rem; color: var(--muted-text); }
+.numu-subhero { padding: 8rem 1.5rem 4rem; text-align: center; }
+.numu-subhero__title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: var(--heading-text); margin: 0 0 1rem; }
+.numu-subhero__lede { font-size: 1.1rem; color: var(--muted-text); max-width: 40rem; margin: 0 auto; line-height: 1.7; }
+.numu-section-title { font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 700; text-align: center; margin: 0 0 3rem; color: var(--heading-text); }
+.numu-feature-block { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; padding: 4rem 1.5rem; max-width: 72rem; margin: 0 auto; }
+.numu-feature-block--reverse .numu-feature-block__visual { order: -1; }
+.numu-feature-block h2 { font-size: 1.75rem; font-weight: 700; margin: 0 0 1rem; color: var(--heading-text); }
+.numu-feature-block p { font-size: 1rem; line-height: 1.7; color: var(--muted-text); margin: 0 0 1rem; }
+.numu-feature-block ul { list-style: none; padding: 0; margin: 0; }
+.numu-feature-block li { display: flex; gap: 0.5rem; align-items: flex-start; font-size: 0.95rem; color: var(--muted-text); margin-bottom: 0.5rem; }
+.numu-download-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; max-width: 40rem; margin: 0 auto; padding: 0 1.5rem 6rem; }
+.numu-download-card { padding: 2rem; border-radius: var(--card-window-radius-tight, 18px); background: var(--card-bg); border: 1px solid var(--card-border); text-align: center; transition: transform 0.3s ease; }
+.numu-download-card:hover { transform: translateY(-4px); }
+.numu-download-card a { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1rem; padding: 0.75rem 1.5rem; border-radius: 9999px; background: var(--project-gradient); color: white; text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+@media (max-width: 1024px) { .numu-bento { grid-template-columns: repeat(2, 1fr); } .numu-bento__card, .numu-bento__card--wide { grid-column: span 1; } .numu-bento__card--tall { grid-row: span 1; } .numu-feature-block { grid-template-columns: 1fr; } .numu-feature-block--reverse .numu-feature-block__visual { order: 0; } }
+@media (max-width: 640px) { .numu-bento { grid-template-columns: 1fr; } .numu-download-grid { grid-template-columns: 1fr; } }

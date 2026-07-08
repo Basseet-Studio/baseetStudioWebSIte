@@ -103,6 +103,11 @@
       "i18nKey": "project_nav_features"
     },
     {
+      "label": "Download",
+      "url": "download/",
+      "i18nKey": "project_nav_download"
+    },
+    {
       "label": "Pro signup",
       "url": "pro/",
       "i18nKey": "project_nav_pro"

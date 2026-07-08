@@ -1,172 +1,143 @@
 ---
 import ProjectLayout from '../../layouts/Project.astro'
 import ProjectGallery from '../../components/project/ProjectGallery.astro'
-import ProjectCTA from '../../components/project/ProjectCTA.astro'
-import ProjectFeatureCard from '../../components/project/ProjectFeatureCard.astro'
-import ProjectTestimonial from '../../components/project/ProjectTestimonial.astro'
 import ProjectFAQ from '../../components/project/ProjectFAQ.astro'
 import Icon from '../../components/icons/Icon.astro'
-import { resolveIcon } from '../../components/icons/iconMappings'
 import { getProject } from '../../lib/projects'
-import type { Project } from '../../types'
+import linksData from '../../content/data/links.json'
+import type { ProjectLinks } from '../../types'
 
-
-const lang: 'en' = 'en'
+const lang = 'en' as const
 const slug = 'numu'
 const project = getProject(slug)
 if (!project) return Astro.redirect('/404')
+
+const links: ProjectLinks = (linksData.projects.numu || {}) as ProjectLinks
+
+const modules = [
+  { title: 'Core Growth', desc: 'Habits, goals, tasks, reminders, and My Day unified view.', span: 'wide' },
+  { title: 'Health', desc: 'Water, sleep, weight, and food logging.', span: '' },
+  { title: 'Islamic', desc: 'Prayer, fasting, and nafila tracking.', span: '' },
+  { title: 'Backup', desc: 'Full local backup and restore.', span: 'tall' },
+  { title: 'Privacy', desc: 'No account, no cloud, no trackers. Your data stays on your device.', span: 'wide' },
+]
+
+const marqueeModules = ['Habits', 'Goals', 'Tasks', 'Reminders', 'My Day', 'Health', 'Islamic', 'Backup']
+
+const stackCards = [
+  { title: 'Morning habits', desc: '3 of 5 complete' },
+  { title: 'Tasks due today', desc: '2 remaining' },
+  { title: 'Prayer check-in', desc: 'On track' },
+]
 ---
 
 <ProjectLayout title={`${project.name} — Baseet Studio`} description={project.tagline} slug={project.slug} projectColor={project.color} projectGradient={project.gradient} projectName={project.name} projectIconClass={project.iconClass} projectNavItems={project.navItems} projectNavMeta={project.navMetaItems} lang={lang}>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- P3 audit #33 — the h1 below used font-weight:800 but Quicksand was
-         loaded with only 600+700. The browser synthesised a fake 800 from
-         700. 800 is now in the weights list so the declared weight actually
-         loads. -->
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700;800&family=Nunito:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700;800&family=Nunito:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/src/styles/projects/numu.css" />
 
-  <!-- Centered Hero with Floating Icons.
-       The coloured background wash is provided by the shared
-       `.project-hero-wash` (added in Project.astro) so it is theme-aware
-       and fades out gradually. We deliberately removed the old
-       `background:${project.gradient};opacity:0.05` overlay because it
-       ended in a hard line at the hero boundary — now the wash is the
-       only colour layer, so the transition into the gallery is a smooth
-       gradient instead of a cut. -->
-  <section class="project-hero project-hero--centered relative flex items-center overflow-hidden">
-    <!-- Floating habit icons. P3 audit #39 — the inline `font-size` on the
-             wrapper did nothing because `<Icon size={...}>` is a fixed pixel
-             size on the SVG. Removed; position + colour is all the wrapper
-             needs to do. -->
-        <div class="floating-icon" style={`top:15%;left:10%;color:${project.color};`}>
-          <Icon name="fire" size={48} color={project.color} />
-        </div>
-        <div class="floating-icon" style={`top:35%;right:12%;color:${project.color};`}>
-          <Icon name="check-circle" size={40} color={project.color} />
-        </div>
-        <div class="floating-icon" style={`bottom:25%;left:18%;color:${project.color};`}>
-          <Icon name="chart-bar" size={52} color={project.color} />
-        </div>
-        <div class="floating-icon" style={`bottom:15%;right:10%;color:${project.color};`}>
-          <Icon name="bell" size={40} color={project.color} />
-        </div>
-
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-16" style="max-width:1200px;margin:0 auto;">
-      <div style="max-width:700px;margin:0 auto;text-align:center;">
-        <div style="display:flex;justify-content:center;margin-bottom:32px;" data-animate="fade-up">
-          <div style={`width:90px;height:90px;border-radius:24px;background:${project.gradient};display:flex;align-items:center;justify-content:center;box-shadow:0 12px 40px -10px color-mix(in srgb, ${project.color} 30%, transparent);animation:float 3s ease-in-out infinite;`}>
-            <Icon name="fire" size={42} color="white" />
+  <main class="numu-main" style="font-family:'Nunito',sans-serif;">
+    <section class="numu-hero">
+      <div class="numu-hero__mesh" aria-hidden="true"></div>
+      <div class="numu-hero__grid">
+        <div class="numu-hero__copy">
+          <p style={`font-size:0.9rem;font-weight:600;color:${project.color};margin:0 0 1rem;`}>{project.tagline}</p>
+          <h1 class="numu-hero__title" style="font-family:'Quicksand',sans-serif;" data-animate="fade-up">
+            Track habits, goals, and <span class="numu-hero__inline-pill" aria-hidden="true"></span> health — privately.
+          </h1>
+          <p class="numu-hero__subtitle" data-animate="fade-up">{project.hero.subtitle}</p>
+          <div class="numu-hero__ctas" data-animate="fade-up">
+            <a href="/projects/numu/download/" class="cta-btn--primary" style={`background:${project.gradient};`}>
+              {project.hero.cta_primary}
+            </a>
+            <a href="/projects/numu/features/" class="cta-btn--secondary" style={`border-color:color-mix(in srgb, ${project.color} 30%, transparent);`}>
+              {project.hero.cta_secondary}
+            </a>
           </div>
         </div>
-
-        <h1 style="font-size:2.8rem;font-weight:800;color:var(--heading-text);margin-bottom:8px;font-family:'Quicksand',sans-serif;letter-spacing:-0.02em;" data-animate="fade-up">
-          {project.name}
-        </h1>
-        <p style={`font-size:1.3rem;font-weight:600;color:${project.color};margin-bottom:20px;`} data-animate="fade-up">
-          {project.tagline}
-        </p>
-
-        <div style="margin-bottom:24px;" data-animate="fade-up">
-          <span style={`display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);`}>
-            <Icon name="clock" size={16} color={project.color} />
-            {project.status}
-          </span>
+        <div class="numu-hero__visual" data-animate="fade-up">
+          <div class="numu-hero__phone">My Day</div>
+          <div class="numu-hero__streak">
+            <div class="numu-hero__streak-value">90</div>
+            <div class="numu-hero__streak-label">day streak</div>
+          </div>
         </div>
+      </div>
+    </section>
 
-        <h2 style="font-size:1.8rem;font-weight:700;color:var(--heading-text);margin-bottom:20px;line-height:1.3;" data-animate="fade-up">
-          {project.hero.title}
-        </h2>
-        <p style="font-size:1.1rem;color:var(--muted-text);margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto;line-height:1.7;" data-animate="fade-up">
-          {project.hero.subtitle}
-        </p>
-
-        <!-- CTA Buttons. P1 audit #14 — uses the global `.cta-btn--primary` /
-                       `.cta-btn--secondary` classes instead of inline `onmouseover`. -->
-                  <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" data-animate="fade-up">
-                    {project.hero.cta_primary && (
-                      <a href={project.hero.cta_primary_link || '/contact/'}
-                        class="cta-btn--primary"
-                        style={`background:${project.gradient};`}>
-                        {project.hero.cta_primary}
-                      </a>
-                    )}
-                    {project.hero.cta_secondary && (
-                      <a href={project.hero.cta_secondary_link || '#features'}
-                        class="cta-btn--secondary"
-                        style={`border-color:color-mix(in srgb, ${project.color} 30%, transparent);`}>
-                        {project.hero.cta_secondary}
-                      </a>
-                    )}
-                  </div>
+    <div class="numu-marquee" data-numu-marquee aria-hidden="true">
+      <div class="numu-marquee__track" data-numu-marquee-track>
+        {[...marqueeModules, ...marqueeModules].map((m) => (
+          <span class="numu-marquee__item">{m}</span>
+        ))}
       </div>
     </div>
-  </section>
 
-  <!-- Gallery (before features for Numu) -->
-  {project.screenshots && project.screenshots.length > 0 && (
-    <ProjectGallery screenshots={project.screenshots} galleryType={project.galleryType || 'mobile'} projectSlug={project.slug} projectColor={project.color} projectName={project.name} />
-  )}
-
-  <!-- Feature Carousel.
-       No background here on purpose: the shared `.project-hero-wash`
-       continues down from the hero, so removing the old `background:
-       linear-gradient(to bottom, white, ...)` keeps the colour fading
-       smoothly into this section instead of cutting off in a hard white
-       slab right where the screenshots end. -->
-  {project.features && project.features.length > 0 && (
-    <section id="features" style="padding:80px 24px;">
-      <div style="max-width:1200px;margin:0 auto;">
-        <div style="text-align:center;margin-bottom:48px;" data-animate="fade-up">
-          <span style={`display:inline-block;padding:8px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);margin-bottom:16px;`}>
-            {/* TODO: localise this later */ 'Features'}
-          </span>
-          <h2 style="font-size:2.2rem;font-weight:700;color:var(--heading-text);font-family:'Quicksand',sans-serif;">
-            {/* TODO: localise this later */ 'Key Features'}
-          </h2>
-        </div>
-
-        <div class="feature-carousel">
-          {project.features.map((feature, i) => (
-            <div class="carousel-card" data-animate="fade-up" style={`animation-delay:${i * 0.06}s;`}>
-              <div style={`width:56px;height:56px;border-radius:16px;background:${project.gradient};display:flex;align-items:center;justify-content:center;margin-bottom:20px;`}>
-                <Icon name={resolveIcon(feature.icon).name} size={24} color="white" />
-              </div>
-              <h3 style="font-size:1.15rem;font-weight:700;margin-bottom:8px;color:var(--heading-text);">{feature.title}</h3>
-              <p style="font-size:0.9rem;color:var(--muted-text);line-height:1.6;">{feature.description}</p>
+    <section class="numu-section">
+      <div class="numu-section__inner">
+        <h2 class="numu-section-title" style="font-family:'Quicksand',sans-serif;" data-animate="fade-up">
+          Everything you need to grow
+        </h2>
+        <div class="numu-bento">
+          {modules.map((mod) => (
+            <div class={`numu-bento__card${mod.span ? ` numu-bento__card--${mod.span}` : ''}`} data-animate="fade-up">
+              <h3>{mod.title}</h3>
+              <p>{mod.desc}</p>
             </div>
           ))}
         </div>
       </div>
     </section>
-  )}
 
-  {project.testimonials && project.testimonials.length > 0 && (
-    <section style="padding:64px 24px;max-width:1200px;margin:0 auto;" data-animate="fade-up">
-      <h2 style="text-align:center;font-size:2rem;margin-bottom:48px;color:var(--heading-text);font-family:'Quicksand',sans-serif;">
-        {/* TODO: localise this later */ 'What People Say'}
-      </h2>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(340px, 1fr));gap:24px;">
-        {project.testimonials.map(t => (
-          <ProjectTestimonial quote={t.quote} author={t.author} role={t.role} projectColor={project.color} projectGradient={project.gradient} />
-        ))}
+    <section class="numu-section">
+      <div class="numu-section__inner numu-scrub">
+        <p class="numu-scrub__text" style="font-family:'Quicksand',sans-serif;" data-numu-scrub>
+          Your growth belongs to you. No account required. No cloud sync. No ads. No trackers. Just you and your data on your device.
+        </p>
       </div>
     </section>
-  )}
 
-  {project.faq && project.faq.length > 0 && (
-    <section style="padding:64px 24px;max-width:800px;margin:0 auto;">
-      <h2 style="text-align:center;font-size:2rem;margin-bottom:48px;color:var(--heading-text);font-family:'Quicksand',sans-serif;">
-        {/* TODO: localise this later */ 'FAQ'}
-      </h2>
-      <div style="display:flex;flex-direction:column;gap:12px;">
-        {project.faq.map(item => (
-          <ProjectFAQ question={item.question} answer={item.answer} projectColor={project.color} />
-        ))}
+    <section class="numu-section">
+      <div class="numu-section__inner">
+        <h2 class="numu-section-title" style="font-family:'Quicksand',sans-serif;">My Day at a glance</h2>
+        <div class="numu-stack" data-numu-stack>
+          {stackCards.map((card, i) => (
+            <div class="numu-stack__card" data-numu-stack-card style={`top:${i * 28}px;`}>
+              <h4>{card.title}</h4>
+              <p>{card.desc}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
-  )}
 
-  <ProjectCTA status={project.status} platforms={project.platforms || []} links={project.links} lang={lang} />
+    {project.screenshots && project.screenshots.length > 0 && (
+      <ProjectGallery screenshots={project.screenshots} galleryType={project.galleryType || 'mobile'} projectSlug={project.slug} projectColor={project.color} projectName={project.name} />
+    )}
+
+    {project.faq && project.faq.length > 0 && (
+      <section class="numu-section" id="faq">
+        <div class="numu-section__inner" style="max-width:40rem;">
+          <h2 class="numu-section-title" style="font-family:'Quicksand',sans-serif;">FAQ</h2>
+          <div style="display:flex;flex-direction:column;gap:0.75rem;">
+            {project.faq.map((item) => (
+              <ProjectFAQ question={item.question} answer={item.answer} projectColor={project.color} />
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <section class="numu-section" style="text-align:center;">
+      <a href="/projects/numu/download/" class="cta-btn--primary" style={`background:${project.gradient};`}>Download Numu</a>
+    </section>
+  </main>
+
+  <script>
+    import { init, destroy } from '../../animations/projects/numu'
+    init()
+    document.addEventListener('astro:before-swap', destroy)
+    document.addEventListener('astro:page-load', init)
+  </script>
 </ProjectLayout>

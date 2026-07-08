@@ -1,0 +1,105 @@
+---
+import ProjectLayout from '../../../layouts/Project.astro'
+import FeatureMediaPlaceholder from '../../../components/project/FeatureMediaPlaceholder.astro'
+import Icon from '../../../components/icons/Icon.astro'
+import { getProject } from '../../../lib/projects'
+
+const slug = 'numu'
+const project = getProject(slug)
+if (!project) return Astro.redirect('/404')
+
+const featureDetails = [
+  {
+    title: 'Core Growth Modules',
+    description: 'Daily, weekly, or custom-frequency habits with streaks, goals linked to habits, tasks with reminders, and a unified My Day view.',
+    bullets: ['Habit streaks and scoring', 'Goals linked to habits', 'Tasks and smart reminders', 'My Day unified dashboard'],
+    label: 'Habits & Goals screenshot',
+  },
+  {
+    title: 'Health Tracking',
+    description: 'Log water, sleep, weight, and food. Built to extend into workout tracking on the roadmap.',
+    bullets: ['Water intake logging', 'Sleep and weight tracking', 'Food logging', 'Workout tracking planned'],
+    label: 'Health module screenshot',
+  },
+  {
+    title: 'Islamic Practice',
+    description: 'Prayer tracking with scoring, fasting, and nafila (voluntary) tracking as a first-class module.',
+    bullets: ['Prayer tracking with scoring', 'Fasting log', 'Nafila tracking', 'RTL-aware layouts'],
+    label: 'Islamic module screenshot',
+  },
+  {
+    title: 'Local-First & Offline',
+    description: 'Your data lives on your device. No account, no internet required, with full backup and restore.',
+    bullets: ['No account required', 'Works fully offline', 'SQLite on-device storage', 'Export and restore anytime'],
+    label: 'Offline mode screenshot',
+  },
+  {
+    title: 'No Subscriptions or Trackers',
+    description: 'Built on the opposite of the typical habit-app business model. No monthly fee, no ad network.',
+    bullets: ['Free forever', 'No in-app purchases', 'No third-party trackers', 'No data resale'],
+    label: 'Settings privacy screenshot',
+  },
+  {
+    title: 'Arabic + English',
+    description: 'Multi-language with RTL-aware layouts. Polished UI designed to make daily check-ins feel rewarding.',
+    bullets: ['Arabic and English', 'RTL layout support', 'Friendly onboarding', 'Built-in help'],
+    label: 'RTL layout screenshot',
+  },
+]
+---
+
+<ProjectLayout
+  title={`Features — ${project.name} — Baseet Studio`}
+  description={`Features of ${project.name} — ${project.tagline}`}
+  slug={project.slug}
+  projectColor={project.color}
+  projectGradient={project.gradient}
+  projectName={project.name}
+  projectIconClass={project.iconClass}
+  projectNavItems={project.navItems}
+  projectNavMeta={project.navMetaItems}
+  lang="en"
+>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700;800&family=Nunito:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles/projects/numu.css" />
+
+  <section class="numu-subhero">
+    <h1 class="numu-subhero__title" style="font-family:'Quicksand',sans-serif;" data-animate="fade-up">Deep dive into Numu</h1>
+    <p class="numu-subhero__lede" data-animate="fade-up">
+      Every module is designed around one idea: growth is a daily practice, and your data belongs to you.
+    </p>
+  </section>
+
+  {featureDetails.map((feature, i) => (
+    <div class={`numu-feature-block${i % 2 === 1 ? ' numu-feature-block--reverse' : ''}`} data-animate="fade-up">
+      <div class="numu-feature-block__copy">
+        <h2 style="font-family:'Quicksand',sans-serif;">{feature.title}</h2>
+        <p>{feature.description}</p>
+        <ul>
+          {feature.bullets.map((b) => (
+            <li>
+              <Icon name="check-circle" size={16} color={project.color} />
+              <span>{b}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="numu-feature-block__visual">
+        <FeatureMediaPlaceholder variant="mobile" label={feature.label} />
+      </div>
+    </div>
+  ))}
+
+  <section class="numu-section" style="text-align:center;">
+    <a href="/projects/numu/download/" class="cta-btn--primary" style={`background:${project.gradient};`}>Get Early Access</a>
+  </section>
+
+  <script>
+    import { init, destroy } from '../../../animations/projects/numu'
+    init()
+    document.addEventListener('astro:before-swap', destroy)
+    document.addEventListener('astro:page-load', init)
+  </script>
+</ProjectLayout>

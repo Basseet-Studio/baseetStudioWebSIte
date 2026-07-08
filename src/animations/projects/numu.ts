@@ -5,52 +5,91 @@ gsap.registerPlugin(ScrollTrigger)
 
 let scrollTriggers: ScrollTrigger[] = []
 
+function splitWords(el: HTMLElement): HTMLSpanElement[] {
+  const text = el.textContent || ''
+  el.textContent = ''
+  const spans: HTMLSpanElement[] = []
+  text.split(/\s+/).forEach((word, i) => {
+    const span = document.createElement('span')
+    span.className = 'numu-scrub__word'
+    span.textContent = word
+    span.style.display = 'inline-block'
+    span.style.marginRight = '0.3em'
+    el.appendChild(span)
+    spans.push(span)
+    if (i < text.split(/\s+/).length - 1) el.appendChild(document.createTextNode(' '))
+  })
+  return spans
+}
+
 export function init(): void {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
   scrollTriggers.forEach((t) => t.kill())
   scrollTriggers = []
 
-  const cards = gsap.utils.toArray<HTMLElement>('#features .glass-card, .feature-card, .content-card')
-  if (cards.length) {
-    const cardsSt = ScrollTrigger.create({
-      trigger: '#features',
-      start: 'top 85%',
-      onEnter: () => {
-        gsap.fromTo(
-          cards,
-          { y: 60, opacity: 0 },
-          { y: 0, opacity: 1, duration: 1, stagger: 0.08, ease: 'elastic.out(1, 0.5)' }
-        )
+  const scrubEl = document.querySelector<HTMLElement>('[data-numu-scrub]')
+  if (scrubEl && !scrubEl.dataset.split) {
+    scrubEl.dataset.split = 'true'
+    const words = splitWords(scrubEl)
+    const st = ScrollTrigger.create({
+      trigger: scrubEl,
+      start: 'top 80%',
+      end: 'bottom 40%',
+      scrub: true,
+      onUpdate: (self) => {
+        const total = words.length
+        words.forEach((word, i) => {
+          const threshold = (i + 1) / total
+          word.style.opacity = self.progress >= threshold * 0.85 ? '1' : '0.15'
+        })
       },
-      once: true,
     })
-    scrollTriggers.push(cardsSt)
+    scrollTriggers.push(st)
   }
 
-  const cta = document.querySelector<HTMLElement>('.cta-button, .project-cta a, .cta-section a')
-  if (cta) {
-    const ctaSt = ScrollTrigger.create({
-      trigger: cta,
-      start: 'top 90%',
-      onEnter: () => {
-        const pulse = gsap.to(cta, {
-          scale: 1.04,
-          duration: 0.6,
-          ease: 'sine.inOut',
-          yoyo: true,
-          repeat: 2,
-        })
-
-        gsap.fromTo(
-          cta,
-          { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', onComplete: () => pulse.play() }
-        )
-      },
-      once: true,
+  const stack = document.querySelector<HTMLElement>('[data-numu-stack]')
+  if (stack) {
+    const cards = gsap.utils.toArray<HTMLElement>('[data-numu-stack-card]')
+    cards.forEach((card, i) => {
+      gsap.set(card, { y: i * 24, scale: 1 - i * 0.04, zIndex: cards.length - i })
     })
-    scrollTriggers.push(ctaSt)
+    const st = ScrollTrigger.create({
+      trigger: stack,
+      start: 'top 70%',
+      end: 'bottom 30%',
+      scrub: true,
+      onUpdate: (self) => {
+        cards.forEach((card, i) => {
+          const offset = self.progress * (i + 1) * 40
+          gsap.set(card, { y: i * 24 - offset, opacity: 1 - self.progress * i * 0.15 })
+        })
+      },
+    })
+    scrollTriggers.push(st)
+  }
+
+  const mediaEls = gsap.utils.toArray<HTMLElement>('[data-feature-media]')
+  mediaEls.forEach((el) => {
+    const st = ScrollTrigger.create({
+      trigger: el,
+      start: 'top 85%',
+      end: 'bottom 20%',
+      scrub: true,
+      onUpdate: (self) => {
+        const scale = 0.85 + self.progress * 0.15
+        gsap.set(el, { scale, opacity: 0.4 + self.progress * 0.6 })
+      },
+    })
+    scrollTriggers.push(st)
+  })
+
+  const marquee = document.querySelector<HTMLElement>('[data-numu-marquee]')
+  const track = marquee?.querySelector<HTMLElement>('[data-numu-marquee-track]')
+  if (track) {
+    const width = track.scrollWidth / 2
+    const tween = gsap.to(track, { x: -width, duration: 25, ease: 'none', repeat: -1 })
+    scrollTriggers.push({ kill: () => tween.kill() } as ScrollTrigger)
   }
 }
 

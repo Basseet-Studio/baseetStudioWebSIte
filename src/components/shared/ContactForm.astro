@@ -74,7 +74,7 @@ const { actionUrl, lang = 'en' } = Astro.props
         </div>
     </div>
 
-    <form id="contact-form" class="contact-form__fields">
+    <form id="contact-form" class="contact-form__fields" data-action-url={actionUrl}>
       {/* ===== Left column — subject, message, intent, sender ===== */}
       <div class="contact-form__col contact-form__col--left">
         <div class="contact-form__subject">
@@ -136,7 +136,9 @@ const { actionUrl, lang = 'en' } = Astro.props
               name="email"
               class="contact-form__dashed"
               placeholder="…"
+              autocomplete="email"
             />
+            <span id="contact-email-hint" class="contact-form__field-hint" aria-live="polite"></span>
           </div>
           <div class="contact-form__field">
             <span class="contact-form__label-mono">Phone</span>
@@ -146,7 +148,9 @@ const { actionUrl, lang = 'en' } = Astro.props
               name="phone"
               class="contact-form__dashed"
               placeholder="…"
+              autocomplete="tel"
             />
+            <span id="contact-phone-hint" class="contact-form__field-hint" aria-live="polite"></span>
           </div>
         </div>
       </div>
@@ -239,115 +243,18 @@ const { actionUrl, lang = 'en' } = Astro.props
   </div>
 </div>
 
-<script define:vars={{ actionUrl }}>
-  // Per FR-032/033/034 the worker URL comes from links.json.forms.contact_form_url
-  // and is inlined here at build time. The previous DOM-query implementation
-  // returned an empty string when [data-form-action] was missing, so the
-  // fetch posted to "" and the worker was never called.
-  console.log('[ContactForm] Worker endpoint:', actionUrl || '(empty)');
-
-  const form = document.getElementById('contact-form');
-  const statusEl = document.getElementById('contact-form-status');
-
-  if (!form) {
-    console.error('[ContactForm] #contact-form not found in DOM');
-  }
-
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    console.log('[ContactForm] Submit intercepted. Worker URL:', actionUrl);
-
-    // Gather checked intent chips
-    const intentEls = form.querySelectorAll('input[name="intent"]:checked');
-    const intent = Array.from(intentEls).map((el) => /** @type {HTMLInputElement} */ (el).value);
-
-    const formData = {
-      name: form.querySelector('[name="name"]')?.value.trim(),
-      email: form.querySelector('[name="email"]')?.value.trim() || undefined,
-      phone: form.querySelector('[name="phone"]')?.value.trim() || undefined,
-      subject: form.querySelector('[name="subject"]')?.value.trim() || undefined,
-      message: form.querySelector('[name="message"]')?.value.trim(),
-      intent,
-      lang: document.body.dataset.lang || 'en',
-    };
-    console.log('[ContactForm] Payload:', formData);
-
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const phoneDigits = (formData.phone || '').replace(/\D/g, '');
-    const hasValidEmail = Boolean(formData.email && emailPattern.test(formData.email));
-    const hasValidPhone = phoneDigits.length >= 7 && phoneDigits.length <= 15;
-
-    if (!formData.name || formData.name.length < 2) {
-      showStatus('Please enter your name.', 'error');
-      return;
+<script>
+  import('../../scripts/contact-form').then((m) => {
+    const run = () => m.initContactForm()
+    const stop = () => m.destroyContactForm()
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', run, { once: true })
+    } else {
+      run()
     }
-    if (!hasValidEmail && !hasValidPhone) {
-      showStatus('Please enter a valid email or phone number so we can reach you.', 'error');
-      return;
-    }
-    if (formData.email && !hasValidEmail) {
-      showStatus('Please enter a valid email address.', 'error');
-      return;
-    }
-    if (formData.phone && !hasValidPhone) {
-      showStatus('Please enter a valid phone number.', 'error');
-      return;
-    }
-    if (!formData.message || formData.message.length < 10) {
-      showStatus('Message must be at least 10 characters.', 'error');
-      return;
-    }
-
-    if (!actionUrl) {
-      console.error('[ContactForm] actionUrl is empty — worker endpoint missing from links.json.forms.contact_form_url');
-      showStatus('Form endpoint not configured. Please email us directly at baseet.socials@gmail.com.', 'error');
-      return;
-    }
-
-    showStatus('Sending…', 'pending');
-
-    try {
-      console.log('[ContactForm] POST →', actionUrl);
-      const response = await fetch(actionUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-        signal: AbortSignal.timeout(15000),
-      });
-      console.log('[ContactForm] Response status:', response.status, response.statusText);
-
-      if (response.ok) {
-        let body = null;
-        try { body = await response.json(); } catch (_) { /* not JSON */ }
-        console.log('[ContactForm] Response body:', body);
-        showStatus('Thank you! Your message has been sent.', 'success');
-        form.reset();
-      } else {
-        let errBody = null;
-        try { errBody = await response.json(); } catch (_) { /* not JSON */ }
-        console.error('[ContactForm] Worker rejected request:', response.status, errBody);
-        showStatus((errBody && errBody.error) || `Worker returned ${response.status}. Please try again or email us directly.`, 'error');
-      }
-    } catch (err) {
-      const name = err && err.name ? err.name : 'Error';
-      const message = err && err.message ? err.message : String(err);
-      console.error('[ContactForm] Network/fetch failure:', name, message, err);
-      if (name === 'TimeoutError') {
-        showStatus('Request timed out. Please try again or email us directly.', 'error');
-      } else if (name === 'AbortError') {
-        showStatus('Request cancelled.', 'error');
-      } else {
-        showStatus(`Unable to reach form worker (${name}). Please email us directly at baseet.socials@gmail.com.`, 'error');
-      }
-    }
-  });
-
-  function showStatus(message, type) {
-    if (!statusEl) return;
-    statusEl.textContent = message;
-    statusEl.dataset.type = type;
-    statusEl.hidden = false;
-  }
+    document.addEventListener('astro:page-load', run)
+    document.addEventListener('astro:before-swap', stop)
+  })
 </script>
 
 <script>
@@ -711,6 +618,22 @@ const { actionUrl, lang = 'en' } = Astro.props
     box-shadow: none;
   }
 
+  .contact-form__field-hint {
+    font-size: 0.72rem;
+    color: var(--paper-muted);
+    margin-top: 4px;
+    min-height: 1em;
+    line-height: 1.35;
+  }
+
+  .contact-form__field[data-field-state="warn"] .contact-form__dashed {
+    border-bottom-color: color-mix(in srgb, #d97706 45%, var(--paper-line));
+  }
+
+  .contact-form__field[data-field-state="error"] .contact-form__dashed {
+    border-bottom-color: color-mix(in srgb, var(--airmail-red) 45%, var(--paper-line));
+  }
+
   .contact-form__dashed--textarea {
     resize: vertical;
     min-height: 120px;
@@ -906,6 +829,10 @@ const { actionUrl, lang = 'en' } = Astro.props
   .contact-form__status[data-type="success"] {
     border-color: color-mix(in srgb, #16a34a 50%, transparent);
     background: color-mix(in srgb, #16a34a 8%, transparent);
+  }
+  .contact-form__status[data-type="success-warn"] {
+    border-color: color-mix(in srgb, #16a34a 40%, #d97706 30%, transparent);
+    background: color-mix(in srgb, #16a34a 6%, #d97706 6%, transparent);
   }
   .contact-form__status[data-type="pending"] {
     border-color: color-mix(in srgb, var(--airmail-blue) 50%, transparent);

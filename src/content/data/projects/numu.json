@@ -60,13 +60,13 @@
       "name": "iOS",
       "icon": "fab fa-apple",
       "version": "iOS 15+",
-      "link": "#"
+      "link": "https://testflight.apple.com/join/wgRQGpw8"
     },
     {
       "name": "Android",
       "icon": "fab fa-android",
       "version": "Android 8+",
-      "link": "#"
+      "link": "https://drive.google.com/drive/folders/1_8MswXC-JxPEFU_0-fmeXal_hK7yKs9C?usp=sharing"
     }
   ],
   "galleryType": "mobile",
@@ -98,13 +98,18 @@
     },
     {
       "label": "Download",
-      "url": "demo/",
+      "url": "download/",
       "i18nKey": "project_nav_download"
     },
     {
-      "label": "Privacy Policy",
+      "label": "Terms",
       "url": "terms/",
       "i18nKey": "project_nav_terms"
+    },
+    {
+      "label": "Privacy",
+      "url": "privacy/",
+      "i18nKey": "project_nav_privacy"
     }
   ],
   "navMetaItems": [
@@ -119,6 +124,10 @@
       "i18nKey": "nav_contact"
     }
   ],
+  "links": {
+    "ios": "https://testflight.apple.com/join/wgRQGpw8",
+    "android": "https://drive.google.com/drive/folders/1_8MswXC-JxPEFU_0-fmeXal_hK7yKs9C?usp=sharing"
+  },
   "faq": [
     {
       "question": "Is Numu free to use?",

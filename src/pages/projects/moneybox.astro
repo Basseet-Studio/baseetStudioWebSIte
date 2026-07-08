@@ -1,154 +1,176 @@
 ---
 import ProjectLayout from '../../layouts/Project.astro'
-import ProjectGallery from '../../components/project/ProjectGallery.astro'
-import ProjectCTA from '../../components/project/ProjectCTA.astro'
-import ProjectFeatureCard from '../../components/project/ProjectFeatureCard.astro'
-import ProjectTestimonial from '../../components/project/ProjectTestimonial.astro'
 import ProjectFAQ from '../../components/project/ProjectFAQ.astro'
-import GradientCTA from '../../components/project/GradientCTA.astro'
 import Icon from '../../components/icons/Icon.astro'
 import { resolveIcon } from '../../components/icons/iconMappings'
 import { getProject } from '../../lib/projects'
+import linksData from '../../content/data/links.json'
+import type { ProjectLinks } from '../../types'
 
-const lang: 'en' = 'en'
+const lang = 'en' as const
 const slug = 'moneybox'
 const project = getProject(slug)
-
 if (!project) return Astro.redirect('/404')
+
+const links: ProjectLinks = (linksData.projects.moneybox || project.links || {}) as ProjectLinks
+const androidUrl = links.android && links.android !== '#' ? links.android : project.links?.android
+
+const categories = ['Food', 'Transport', 'Bills', 'Shopping', 'Health', 'Entertainment', 'Savings', 'Other']
+
+const bentoItems = [
+  { title: 'Savings Goals', desc: 'Set targets and watch progress with motivating visual charts.', wide: true },
+  { title: 'Expense Tracking', desc: 'Log spending by category and spot patterns early.', wide: false },
+  { title: 'Clean Reports', desc: 'Monthly summaries designed for quick mobile check-ins.', wide: false },
+]
+
+const savingsGoals = [
+  { name: 'Emergency fund', progress: '68% saved — $3,400 of $5,000' },
+  { name: 'Summer trip', progress: '42% saved — $840 of $2,000' },
+  { name: 'New laptop', progress: '91% saved — $1,820 of $2,000' },
+]
 ---
 
 <ProjectLayout title={`${project.name} — Baseet Studio`} description={project.tagline} slug={project.slug} projectColor={project.color} projectGradient={project.gradient} projectName={project.name} projectIconClass={project.iconClass} projectNavItems={project.navItems} projectNavMeta={project.navMetaItems} lang={lang}>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/src/styles/projects/moneybox.css" />
 
-  <!-- Hero: The coloured background wash now lives in shared.css
-       (`.project-hero-wash`) so it is theme-aware and fades out gradually
-       as the user scrolls, instead of cutting off sharply at the bottom
-       of the hero. The hero itself is transparent so the wash shows
-       through. -->
-  <section class="project-hero project-hero--centered">
-    <!-- Growth/leaf decorations -->
-    <div style={`position:absolute;top:12%;left:8%;opacity:0.06;color:${project.color};pointer-events:none;`}>
-      <svg width="100" height="100" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-    </div>
-    <div style={`position:absolute;bottom:10%;right:10%;opacity:0.05;color:${project.color};pointer-events:none;`}>
-      <svg width="80" height="80" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-    </div>
-
-    <div style="max-width:800px;margin:0 auto;position:relative;z-index:1;">
-      <!-- Piggy-bank icon -->
-      <div style="display:flex;justify-content:center;margin-bottom:28px;" data-animate="fade-up">
-        <div style={`width:96px;height:96px;border-radius:24px;background:${project.gradient};display:flex;align-items:center;justify-content:center;box-shadow:0 12px 40px -10px color-mix(in srgb, ${project.color} 30%, transparent);`}>
-          <Icon name={resolveIcon(project.iconClass).name} size={40} color="white" />
+  <main class="moneybox-main" style="font-family:'DM Sans',sans-serif;">
+    <section class="moneybox-hero">
+      <div class="moneybox-hero__blur" aria-hidden="true"></div>
+      <div class="moneybox-hero__grid">
+        <div>
+          <p style={`font-size:0.9rem;font-weight:600;color:${project.color};margin:0 0 1rem;`}>{project.tagline}</p>
+          <h1 class="moneybox-hero__title" style="font-family:'Outfit',sans-serif;" data-animate="fade-up">{project.hero.title}</h1>
+          <p class="moneybox-hero__subtitle" data-animate="fade-up">{project.hero.subtitle}</p>
+          <div class="moneybox-hero__ctas" data-animate="fade-up">
+            <a href="/projects/moneybox/download/" class="cta-btn--primary" style={`background:${project.gradient};`}>
+              {project.hero.cta_primary}
+            </a>
+            <a href="/projects/moneybox/features/" class="cta-btn--secondary" style={`border-color:color-mix(in srgb, ${project.color} 25%, transparent);`}>
+              View Features
+            </a>
+          </div>
+        </div>
+        <div class="moneybox-hero__card" data-animate="fade-up">
+          <div class="moneybox-hero__card-label">Emergency fund</div>
+          <div class="moneybox-hero__card-value" style="font-family:'Outfit',sans-serif;">$3,400</div>
+          <div class="moneybox-hero__card-bar">
+            <div class="moneybox-hero__card-bar-fill"></div>
+          </div>
         </div>
       </div>
+    </section>
 
-      <!-- Name + Tagline -->
-      <h1 style="font-size:3.2rem;font-weight:700;color:var(--heading-text);margin-bottom:8px;letter-spacing:-0.02em;" data-animate="fade-up">
-        {project.name}
-      </h1>
-      <p style={`font-size:1.3rem;font-weight:600;color:${project.color};margin-bottom:24px;`} data-animate="fade-up">
-        {project.tagline}
-      </p>
-
-      <!-- Status Badge -->
-      <div style="margin-bottom:28px;" data-animate="fade-up">
-        <span style={`display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);`}>
-          <Icon name="clock" size={16} color={project.color} />
-          {project.status}
-        </span>
+    <section class="moneybox-section">
+      <div class="moneybox-section__inner">
+        <div class="moneybox-categories">
+          {categories.map((cat) => (
+            <span class="moneybox-categories__chip">{cat}</span>
+          ))}
+        </div>
       </div>
+    </section>
 
-      <!-- Title + Subtitle -->
-      <h2 style="font-size:2rem;font-weight:700;color:var(--heading-text);margin-bottom:20px;line-height:1.3;" data-animate="fade-up">
-        {project.hero.title}
-      </h2>
-      <p style="font-size:1.15rem;color:var(--muted-text);margin-bottom:36px;max-width:580px;margin-left:auto;margin-right:auto;line-height:1.7;" data-animate="fade-up">
-        {project.hero.subtitle}
-      </p>
-
-      <!-- CTA Buttons. P1 audit #14 — uses the global `.cta-btn--primary` /
-                 `.cta-btn--secondary` classes instead of inline `onmouseover`. -->
-            <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" data-animate="fade-up">
-              {project.hero.cta_primary && (
-                <a href={project.hero.cta_primary_link || '/contact/'}
-                  class="cta-btn--primary"
-                  style={`background:${project.gradient};`}>
-                  {project.hero.cta_primary}
-                </a>
-              )}
-              {project.hero.cta_secondary && (
-                <a href={project.hero.cta_secondary_link || '#features'}
-                  class="cta-btn--secondary"
-                  style={`border-color:color-mix(in srgb, ${project.color} 25%, transparent);`}>
-                  {project.hero.cta_secondary}
-                </a>
-              )}
+    <section class="moneybox-section">
+      <div class="moneybox-section__inner">
+        <h2 class="moneybox-section-title" style="font-family:'Outfit',sans-serif;" data-animate="fade-up">Built for clarity</h2>
+        <div class="moneybox-bento">
+          {bentoItems.map((item) => (
+            <div class={`moneybox-bento__card${item.wide ? ' moneybox-bento__card--wide' : ''}`} data-animate="fade-up">
+              <h3 style="font-family:'Outfit',sans-serif;">{item.title}</h3>
+              <p>{item.desc}</p>
             </div>
-    </div>
-  </section>
-
-  <!-- Features -->
-  {project.features && project.features.length > 0 && (
-    <section id="features" style="padding:64px 24px;max-width:1200px;margin:0 auto;">
-      <div style="text-align:center;margin-bottom:48px;" data-animate="fade-up">
-        <span style={`display:inline-block;padding:8px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);margin-bottom:16px;`}>
-          {/* TODO: localise this later */ 'Features'}
-        </span>
-        <h2 style="font-size:2rem;margin-bottom:0;color:var(--heading-text);">
-          {/* TODO: localise this later */ 'Key Features'}
-        </h2>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));gap:24px;">
-        {project.features.map((feature, i) => (
-          <ProjectFeatureCard title={feature.title} description={feature.description} iconName={resolveIcon(feature.icon).name} projectColor={project.color} projectGradient={project.gradient} index={i} />
-        ))}
+          ))}
+        </div>
       </div>
     </section>
-  )}
 
-  <!-- Gallery -->
-  {project.screenshots && project.screenshots.length > 0 && (
-    <ProjectGallery screenshots={project.screenshots} galleryType={project.galleryType || 'mobile'} projectSlug={project.slug} projectColor={project.color} projectName={project.name} />
-  )}
-
-  <!-- Testimonials -->
-  {project.testimonials && project.testimonials.length > 0 && (
-    <section style="padding:64px 24px;max-width:1200px;margin:0 auto;">
-      <h2 style="text-align:center;font-size:2rem;margin-bottom:48px;color:var(--heading-text);">
-        {/* TODO: localise this later */ 'What People Say'}
-      </h2>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(340px, 1fr));gap:24px;">
-        {project.testimonials.map(t => (
-          <ProjectTestimonial quote={t.quote} author={t.author} role={t.role} projectColor={project.color} projectGradient={project.gradient} />
-        ))}
+    <section class="moneybox-section" data-moneybox-pin>
+      <div class="moneybox-section__inner">
+        <div class="moneybox-pin">
+          <div class="moneybox-pin__title-wrap" data-moneybox-pin-title>
+            <h2 class="moneybox-section-title" style="font-family:'Outfit',sans-serif;text-align:left;margin-bottom:1rem;">Watch your savings grow</h2>
+            <p style="color:var(--muted-text);line-height:1.7;margin:0;">Set goals, track progress, and stay motivated with visual charts.</p>
+          </div>
+          <div class="moneybox-pin__goals" data-moneybox-pin-content>
+            {savingsGoals.map((goal) => (
+              <div class="moneybox-pin__goal" data-animate="fade-up">
+                <h4 style="font-family:'Outfit',sans-serif;">{goal.name}</h4>
+                <p>{goal.progress}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
-  )}
 
-  <!-- FAQ -->
-  {project.faq && project.faq.length > 0 && (
-    <section style="padding:64px 24px;max-width:800px;margin:0 auto;">
-      <h2 style="text-align:center;font-size:2rem;margin-bottom:48px;color:var(--heading-text);">
-        {/* TODO: localise this later */ 'FAQ'}
-      </h2>
-      <div style="display:flex;flex-direction:column;gap:12px;">
-        {project.faq.map(item => (
-          <ProjectFAQ question={item.question} answer={item.answer} projectColor={project.color} />
-        ))}
+    <section class="moneybox-section">
+      <div class="moneybox-section__inner">
+        <h2 class="moneybox-section-title" style="font-family:'Outfit',sans-serif;">MoneyBox vs spreadsheets</h2>
+        <div class="moneybox-compare">
+          <div class="moneybox-compare__col">
+            <h4 style="font-family:'Outfit',sans-serif;">MoneyBox</h4>
+            <ul>
+              <li>Mobile-first daily logging</li>
+              <li>Visual goal progress</li>
+              <li>Category breakdowns</li>
+              <li>Private on-device data</li>
+            </ul>
+          </div>
+          <div class="moneybox-compare__col">
+            <h4 style="font-family:'Outfit',sans-serif;">Spreadsheets</h4>
+            <ul>
+              <li>Manual formula upkeep</li>
+              <li>No mobile nudges</li>
+              <li>End-of-month archaeology</li>
+              <li>Easy to abandon</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
-  )}
 
-  <!-- Gradient CTA. P1 audit #11, #15, #20 — uses the shared component. -->
-    <GradientCTA
-      title={`Interested in ${project.name}?`}
-      body="Get in touch and we will help you get started."
-      ctaLabel="Get in Touch"
-      ctaHref="/contact/"
-      gradient={project.gradient}
-      accentColor={project.color}
-      lang={lang}
-    />
+    {project.features && project.features.length > 0 && (
+      <section class="moneybox-section" id="features">
+        <div class="moneybox-section__inner">
+          <h2 class="moneybox-section-title" style="font-family:'Outfit',sans-serif;">Key features</h2>
+          <div class="moneybox-bento">
+            {project.features.slice(0, 3).map((f) => (
+              <div class="moneybox-bento__card" data-animate="fade-up">
+                <Icon name={resolveIcon(f.icon).name} size={24} color={project.color} />
+                <h3 style="font-family:'Outfit',sans-serif;margin-top:1rem;">{f.title}</h3>
+                <p>{f.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
 
-    <ProjectCTA status={project.status} platforms={project.platforms || []} links={project.links} lang={lang} />
-  </ProjectLayout>
+    {project.faq && project.faq.length > 0 && (
+      <section class="moneybox-section" id="faq">
+        <div class="moneybox-section__inner" style="max-width:40rem;">
+          <h2 class="moneybox-section-title" style="font-family:'Outfit',sans-serif;">FAQ</h2>
+          <div style="display:flex;flex-direction:column;gap:0.75rem;">
+            {project.faq.map((item) => (
+              <ProjectFAQ question={item.question} answer={item.answer} projectColor={project.color} />
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <section class="moneybox-section" style="text-align:center;">
+      <a href={androidUrl || '/projects/moneybox/download/'} class="cta-btn--primary" style={`background:${project.gradient};`}>Download MoneyBox</a>
+    </section>
+  </main>
+
+  <script>
+    import { init, destroy } from '../../animations/projects/moneybox'
+    init()
+    document.addEventListener('astro:before-swap', destroy)
+    document.addEventListener('astro:page-load', init)
+  </script>
+</ProjectLayout>

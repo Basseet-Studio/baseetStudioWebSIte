@@ -220,13 +220,21 @@
   border: 1px solid var(--geeb-line-strong);
 }
 
+.geeb-hero__inner {
+  max-width: 72rem;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
 .geeb-hero__title {
   font-family: 'Manrope', sans-serif;
-  font-size: clamp(1.75rem, 3.6vw, 2.4rem);
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  margin: 0 0 20px;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  margin: 0 auto 20px;
+  max-width: 56rem;
   color: var(--geeb-ink);
 }
 
@@ -1328,4 +1336,211 @@
   .geeb-how__step,
   .geeb-pros__card,
   .geeb-subnav__link { transition: none; }
+  .geeb-marquee__track { animation: none; }
+}
+
+/* ── Ecosystem Bento ─────────────────────────────────────────────────── */
+.geeb-bento {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-flow: dense;
+  gap: 20px;
+}
+
+.geeb-bento__card {
+  border-radius: var(--card-window-radius-tight, 18px);
+  padding: 28px;
+  background: var(--geeb-card-bg);
+  border: 1px solid var(--geeb-line);
+  overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.geeb-bento__card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 16px 40px -12px color-mix(in srgb, var(--project-color) 25%, transparent);
+}
+
+.geeb-bento__card--span2 { grid-column: span 2; }
+.geeb-bento__card--span2row { grid-row: span 2; }
+
+.geeb-bento__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--geeb-eyebrow-bg);
+  color: var(--geeb-amber-deep);
+  margin-bottom: 16px;
+}
+
+.geeb-bento__title {
+  font-family: 'Manrope', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin: 0 0 8px;
+  color: var(--geeb-ink);
+}
+
+.geeb-bento__desc {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--geeb-stone);
+  margin: 0;
+}
+
+/* ── Marquee ─────────────────────────────────────────────────────────── */
+.geeb-marquee {
+  overflow: hidden;
+  padding: 32px 0;
+  border-block: 1px solid var(--geeb-line);
+  background: var(--geeb-section-alt-bg);
+}
+
+.geeb-marquee__track {
+  display: flex;
+  gap: 48px;
+  width: max-content;
+  will-change: transform;
+}
+
+.geeb-marquee__item {
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 700;
+  color: var(--geeb-amber-deep);
+  white-space: nowrap;
+  opacity: 0.7;
+}
+
+/* ── Pin scroll (How it works) ───────────────────────────────────────── */
+.geeb-pin {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 64px;
+  align-items: start;
+  min-height: 80vh;
+}
+
+.geeb-pin__title-wrap {
+  position: sticky;
+  top: 140px;
+}
+
+.geeb-pin__steps {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.geeb-pin__step {
+  padding: 32px;
+  border-radius: var(--card-window-radius-tight, 18px);
+  background: var(--geeb-card-bg);
+  border: 1px solid var(--geeb-line);
+}
+
+.geeb-pin__step-num {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--geeb-amber-deep);
+  margin-bottom: 12px;
+}
+
+.geeb-pin__step h3 {
+  font-family: 'Manrope', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin: 0 0 10px;
+  color: var(--geeb-ink);
+}
+
+.geeb-pin__step p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--geeb-stone);
+}
+
+/* ── Download page ───────────────────────────────────────────────────── */
+.geeb-download-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.geeb-download-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 36px 24px;
+  border-radius: var(--card-window-radius-tight, 18px);
+  background: var(--geeb-card-bg);
+  border: 1px solid var(--geeb-line);
+  transition: transform 0.3s ease;
+}
+
+.geeb-download-card:hover {
+  transform: translateY(-4px);
+}
+
+.geeb-download-card__icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--geeb-eyebrow-bg);
+  color: var(--geeb-amber-deep);
+  margin-bottom: 20px;
+}
+
+.geeb-download-card h3 {
+  font-family: 'Manrope', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin: 0 0 8px;
+  color: var(--geeb-ink);
+}
+
+.geeb-download-card p {
+  font-size: 0.9rem;
+  color: var(--geeb-stone);
+  margin: 0 0 20px;
+  line-height: 1.5;
+}
+
+.geeb-download-card__badge {
+  display: inline-flex;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: var(--geeb-pill-bg);
+  color: var(--geeb-amber-deep);
+  border: 1px solid var(--geeb-line-strong);
+}
+
+.geeb-feature-block__visual .feature-media-placeholder {
+  max-width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .geeb-bento { grid-template-columns: repeat(2, 1fr); }
+  .geeb-bento__card--span2row { grid-row: span 1; }
+  .geeb-pin { grid-template-columns: 1fr; }
+  .geeb-pin__title-wrap { position: static; }
+  .geeb-download-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .geeb-bento { grid-template-columns: 1fr; }
+  .geeb-bento__card--span2 { grid-column: span 1; }
 }

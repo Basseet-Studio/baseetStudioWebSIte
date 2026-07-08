@@ -11,35 +11,44 @@ export function init(): void {
   scrollTriggers.forEach((t) => t.kill())
   scrollTriggers = []
 
-  const cards = gsap.utils.toArray<HTMLElement>('#features .glass-card, .feature-card, .grid-card')
-  if (!cards.length) return
+  const pinSection = document.querySelector<HTMLElement>('[data-moneybox-pin]')
+  const pinTitle = document.querySelector<HTMLElement>('[data-moneybox-pin-title]')
+  const pinContent = document.querySelector<HTMLElement>('[data-moneybox-pin-content]')
 
-  const container = document.querySelector<HTMLElement>('#features')
-  if (!container) return
+  if (pinSection && pinTitle && pinContent) {
+    const pinSt = ScrollTrigger.create({
+      trigger: pinSection,
+      start: 'top top',
+      end: () => `+=${pinContent.offsetHeight}`,
+      pin: pinTitle,
+      pinSpacing: false,
+      anticipatePin: 1,
+    })
+    scrollTriggers.push(pinSt)
+  }
 
-  const style = getComputedStyle(container)
-  const columns = style.gridTemplateColumns ? style.gridTemplateColumns.split(' ').length : 3
-
-  const st = ScrollTrigger.create({
-    trigger: container,
-    start: 'top 85%',
-    onEnter: () => {
-      cards.forEach((card, i) => {
-        const row = Math.floor(i / columns)
-        const col = i % columns
-        const staggerDelay = (row + col) * 0.08
-
-        gsap.fromTo(
-          card,
-          { scale: 0.8, opacity: 0 },
-          { scale: 1, opacity: 1, duration: 0.5, delay: staggerDelay, ease: 'power2.out' }
-        )
-      })
-    },
-    once: true,
+  const hoverCards = gsap.utils.toArray<HTMLElement>('.moneybox-bento__card, .moneybox-pin__goal, .moneybox-download-card')
+  hoverCards.forEach((card) => {
+    card.addEventListener('mouseenter', () => {
+      gsap.to(card, { scale: 1.03, duration: 0.4, ease: 'power2.out' })
+    })
+    card.addEventListener('mouseleave', () => {
+      gsap.to(card, { scale: 1, duration: 0.4, ease: 'power2.out' })
+    })
   })
 
-  scrollTriggers.push(st)
+  const mediaEls = gsap.utils.toArray<HTMLElement>('[data-feature-media]')
+  mediaEls.forEach((el) => {
+    const st = ScrollTrigger.create({
+      trigger: el,
+      start: 'top 85%',
+      scrub: true,
+      onUpdate: (self) => {
+        gsap.set(el, { scale: 0.85 + self.progress * 0.15, opacity: 0.4 + self.progress * 0.6 })
+      },
+    })
+    scrollTriggers.push(st)
+  })
 }
 
 export function destroy(): void {

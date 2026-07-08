@@ -1,0 +1,63 @@
+---
+import ProjectLayout from '../../../layouts/Project.astro'
+import Icon from '../../../components/icons/Icon.astro'
+import { getProject } from '../../../lib/projects'
+import linksData from '../../../content/data/links.json'
+import type { ProjectLinks } from '../../../types'
+
+const slug = 'numu'
+const project = getProject(slug)
+if (!project) return Astro.redirect('/404')
+
+const links: ProjectLinks = (linksData.projects.numu || {}) as ProjectLinks
+const iosUrl = links.ios && links.ios !== '#' ? links.ios : null
+const androidUrl = links.android && links.android !== '#' ? links.android : null
+
+const platforms = [
+  { name: 'iOS', icon: 'apple-logo', url: iosUrl, note: 'TestFlight beta' },
+  { name: 'Android', icon: 'android-logo', url: androidUrl, note: 'Direct download' },
+]
+---
+
+<ProjectLayout
+  title={`Download — ${project.name} — Baseet Studio`}
+  description={`Download ${project.name} — ${project.tagline}`}
+  slug={project.slug}
+  projectColor={project.color}
+  projectGradient={project.gradient}
+  projectName={project.name}
+  projectIconClass={project.iconClass}
+  projectNavItems={project.navItems}
+  projectNavMeta={project.navMetaItems}
+  lang="en"
+>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700;800&family=Nunito:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles/projects/numu.css" />
+
+  <section class="numu-subhero">
+    <h1 class="numu-subhero__title" style="font-family:'Quicksand',sans-serif;" data-animate="fade-up">Download Numu</h1>
+    <p class="numu-subhero__lede" data-animate="fade-up">
+      Get early access on iOS via TestFlight or download the Android build directly.
+    </p>
+  </section>
+
+  <div class="numu-download-grid">
+    {platforms.map((p) => (
+      <div class="numu-download-card" data-animate="fade-up">
+        <Icon name={p.icon} size={40} color={project.color} />
+        <h3 style="font-family:'Quicksand',sans-serif;margin:1rem 0 0.25rem;">{p.name}</h3>
+        <p style="font-size:0.9rem;color:var(--muted-text);margin:0;">{p.note}</p>
+        {p.url ? (
+          <a href={p.url} target="_blank" rel="noopener noreferrer">
+            <Icon name="download" size={16} color="white" />
+            Download
+          </a>
+        ) : (
+          <span style="display:inline-block;margin-top:1rem;font-size:0.85rem;color:var(--muted-text);">Coming soon</span>
+        )}
+      </div>
+    ))}
+  </div>
+</ProjectLayout>

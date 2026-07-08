@@ -74,7 +74,10 @@
   "tech": ["Flutter", "Dart", "SQLite", "Riverpod"],
   "navItems": [
     { "label": "Home", "url": "", "i18nKey": "project_nav_home" },
-    { "label": "Contact", "url": "/contact/", "i18nKey": "nav_contact" }
+    { "label": "Features", "url": "features/", "i18nKey": "project_nav_features" },
+    { "label": "Download", "url": "download/", "i18nKey": "project_nav_download" },
+    { "label": "Terms", "url": "terms/", "i18nKey": "project_nav_terms" },
+    { "label": "Privacy", "url": "privacy/", "i18nKey": "project_nav_privacy" }
   ],
   "navMetaItems": [
     { "label": "Work", "url": "/projects/", "i18nKey": "nav_work" },

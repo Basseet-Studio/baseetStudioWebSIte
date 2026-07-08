@@ -1,5 +1,6 @@
 ---
 import ProjectLayout from '../../../layouts/Project.astro'
+import FeatureMediaPlaceholder from '../../../components/project/FeatureMediaPlaceholder.astro'
 import Icon from '../../../components/icons/Icon.astro'
 import { resolveIcon } from '../../../components/icons/iconMappings'
 import { getProject } from '../../../lib/projects'
@@ -127,9 +128,7 @@ const featureDetails = [
           </ul>
         </div>
         <div class="geeb-feature-block__visual">
-          <div class="geeb-feature-block__visual-icon">
-            <Icon name={feature.icon} size={48} color="currentColor" />
-          </div>
+          <FeatureMediaPlaceholder variant="desktop" label={`${feature.title} screenshot`} />
         </div>
       </div>
     ))}
@@ -156,4 +155,11 @@ const featureDetails = [
       </div>
     </div>
   </section>
+
+  <script>
+    import { init, destroy } from '../../../animations/projects/geeb'
+    init()
+    document.addEventListener('astro:before-swap', destroy)
+    document.addEventListener('astro:page-load', init)
+  </script>
 </ProjectLayout>

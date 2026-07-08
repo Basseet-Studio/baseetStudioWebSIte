@@ -1,0 +1,99 @@
+---
+import Icon from '../icons/Icon.astro'
+
+interface Props {
+  variant?: 'mobile' | 'desktop' | 'gif'
+  label?: string
+  aspectRatio?: string
+}
+
+const { variant = 'mobile', label, aspectRatio } = Astro.props
+
+const ratioMap = {
+  mobile: '9 / 19',
+  desktop: '16 / 9',
+  gif: '4 / 3',
+} as const
+
+const ratio = aspectRatio ?? ratioMap[variant]
+const variantLabel = variant === 'gif' ? 'GIF' : 'Screenshot'
+---
+
+<div
+  class="feature-media-placeholder"
+  data-feature-media
+  data-variant={variant}
+  style={`--fmp-ratio: ${ratio};`}
+  role="img"
+  aria-label={label ?? `${variantLabel} placeholder`}
+>
+  <div class="feature-media-placeholder__inner">
+    <div class="feature-media-placeholder__icon">
+      <Icon name={variant === 'gif' ? 'play' : variant === 'desktop' ? 'squares-four' : 'device-mobile'} size={32} color="currentColor" />
+    </div>
+    <p class="feature-media-placeholder__label">{label ?? `${variantLabel} placeholder`}</p>
+    <p class="feature-media-placeholder__hint">Drop image or GIF here</p>
+  </div>
+</div>
+
+<style>
+  .feature-media-placeholder {
+    aspect-ratio: var(--fmp-ratio, 9 / 19);
+    width: 100%;
+    max-width: 100%;
+    border-radius: 1rem;
+    border: 2px dashed color-mix(in srgb, var(--project-color) 35%, transparent);
+    background: color-mix(in srgb, var(--project-color) 4%, var(--surface));
+    overflow: hidden;
+    position: relative;
+  }
+
+  .feature-media-placeholder[data-variant='mobile'] {
+    max-width: 280px;
+    margin-inline: auto;
+  }
+
+  .feature-media-placeholder[data-variant='desktop'] {
+    max-width: 100%;
+  }
+
+  .feature-media-placeholder__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 100%;
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+
+  .feature-media-placeholder__icon {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: color-mix(in srgb, var(--project-color) 10%, transparent);
+    color: var(--project-color);
+    margin-bottom: 0.25rem;
+  }
+
+  .feature-media-placeholder__label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--heading-text);
+    margin: 0;
+  }
+
+  .feature-media-placeholder__hint {
+    font-size: 0.8rem;
+    color: var(--muted-text);
+    margin: 0;
+  }
+
+  [data-theme='night'] .feature-media-placeholder {
+    background: color-mix(in srgb, var(--project-color) 6%, var(--surface));
+  }
+</style>
