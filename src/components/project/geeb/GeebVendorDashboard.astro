@@ -1,0 +1,71 @@
+---
+import Icon from '../../icons/Icon.astro'
+
+interface Props {
+  proSignupUrl: string
+}
+
+const { proSignupUrl } = Astro.props
+
+const checklist = [
+  'Free profile and listings',
+  'Smart job routing to your service area',
+  'Same-day payouts via Stripe Connect',
+  'Built-in reviews to grow your reputation',
+]
+---
+
+<section class="geeb-vendor-band">
+  <div class="geeb-vendor-band__inner">
+    <div class="geeb-vendor-band__copy" data-animate="fade-up">
+      <h2 class="geeb-vendor-band__title">More jobs. Less hassle.</h2>
+      <p class="geeb-vendor-band__text">
+        List your craft on Geeb and get matched with customers in your service area. We handle discovery, scheduling, payments, and reviews — you handle the work.
+      </p>
+      <ul class="geeb-vendor-band__list">
+        {checklist.map((item) => (
+          <li><Icon name="check-circle" size={16} color="currentColor" />{item}</li>
+        ))}
+      </ul>
+      <a href={proSignupUrl} class="geeb-btn geeb-btn--primary">
+        <Icon name="arrow-right" size={18} color="white" />
+        Apply to become a pro
+      </a>
+    </div>
+
+    <div class="geeb-vendor-dash card-window" data-animate="fade-up" aria-label="Vendor dashboard preview">
+      <header class="geeb-vendor-dash__header">
+        <span>Today</span>
+        <span class="geeb-vendor-dash__live">Live</span>
+      </header>
+      <div class="geeb-vendor-dash__earnings">
+        <span class="geeb-vendor-dash__earnings-label">Earnings</span>
+        <span class="geeb-vendor-dash__earnings-val">$247</span>
+      </div>
+      <div class="geeb-vendor-dash__grid">
+        <div class="geeb-vendor-dash__stat">
+          <span class="geeb-vendor-dash__stat-val">2</span>
+          <span class="geeb-vendor-dash__stat-lbl">Pending jobs</span>
+        </div>
+        <div class="geeb-vendor-dash__stat">
+          <span class="geeb-vendor-dash__stat-val">4.9</span>
+          <span class="geeb-vendor-dash__stat-lbl">Rating</span>
+        </div>
+        <div class="geeb-vendor-dash__stat">
+          <span class="geeb-vendor-dash__stat-val">Paid</span>
+          <span class="geeb-vendor-dash__stat-lbl">Yesterday</span>
+        </div>
+      </div>
+      <div class="geeb-vendor-dash__queue">
+        <div class="geeb-vendor-dash__job">
+          <strong>AC maintenance</strong>
+          <span>2:30 PM · Al Reem</span>
+        </div>
+        <div class="geeb-vendor-dash__job">
+          <strong>Pipe repair</strong>
+          <span>4:15 PM · Khalifa City</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -157,6 +157,42 @@
   margin: 0;
 }
 
+.moneybox-bento--pillars {
+  grid-template-columns: 2fr 1fr 1fr;
+}
+
+.moneybox-bento__thumb {
+  margin-bottom: 1rem;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.moneybox-bento__thumb :global(.feature-media-placeholder[data-variant='mobile']) {
+  max-width: 100%;
+  aspect-ratio: 9 / 16;
+}
+
+.moneybox-marquee {
+  overflow: hidden;
+  padding: 2rem 0;
+  border-block: 1px solid color-mix(in srgb, var(--project-color) 18%, transparent);
+}
+
+.moneybox-marquee__track {
+  display: flex;
+  gap: 3rem;
+  width: max-content;
+}
+
+.moneybox-marquee__item {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--project-color);
+  white-space: nowrap;
+  opacity: 0.8;
+}
+
 .moneybox-pin {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
@@ -265,6 +301,7 @@
 
 @media (max-width: 1024px) {
   .moneybox-bento { grid-template-columns: 1fr; }
+  .moneybox-bento--pillars { grid-template-columns: 1fr; }
   .moneybox-bento__card--wide { grid-column: span 1; }
   .moneybox-pin { grid-template-columns: 1fr; }
   .moneybox-pin__title-wrap { position: static; }
@@ -275,4 +312,10 @@
 
 @media (max-width: 640px) {
   .moneybox-download-grid { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .moneybox-marquee__track { animation: none; }
+  .moneybox-bento__card,
+  .moneybox-pin__goal { transition: none; }
 }

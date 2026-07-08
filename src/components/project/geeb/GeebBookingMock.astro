@@ -1,0 +1,57 @@
+---
+/** CSS-built phone mock cycling through booking states (search → matched → en route). */
+---
+
+<div class="geeb-booking" data-geeb-booking aria-label="Booking flow preview">
+  <div class="geeb-booking__phone card-window">
+    <div class="geeb-booking__statusbar">
+      <span>9:41</span>
+      <span class="geeb-booking__statusbar-icons" aria-hidden="true"></span>
+    </div>
+
+    <div class="geeb-booking__states">
+      <div class="geeb-booking__state is-active" data-geeb-booking-state="0">
+        <p class="geeb-booking__label">What do you need?</p>
+        <div class="geeb-booking__search">
+          <span class="geeb-booking__search-icon" aria-hidden="true"></span>
+          <span>Leaky faucet — Plumbing</span>
+        </div>
+        <div class="geeb-booking__chips">
+          <span>Plumbing</span>
+          <span>Electrical</span>
+          <span>Cleaning</span>
+        </div>
+      </div>
+
+      <div class="geeb-booking__state" data-geeb-booking-state="1">
+        <p class="geeb-booking__label">Pro matched</p>
+        <div class="geeb-booking__pro card-window">
+          <div class="geeb-booking__avatar">RK</div>
+          <div>
+            <strong>Rashid K.</strong>
+            <span class="geeb-booking__rating">4.8 · 127 jobs</span>
+          </div>
+        </div>
+        <p class="geeb-booking__eta">Arrives in <strong>38 min</strong></p>
+      </div>
+
+      <div class="geeb-booking__state" data-geeb-booking-state="2">
+        <p class="geeb-booking__label">En route</p>
+        <div class="geeb-booking__track">
+          <div class="geeb-booking__pin" aria-hidden="true"></div>
+          <div class="geeb-booking__route"></div>
+        </div>
+        <div class="geeb-booking__progress">
+          <div class="geeb-booking__progress-fill"></div>
+        </div>
+        <p class="geeb-booking__eta">Rashid is <strong>12 min away</strong></p>
+      </div>
+    </div>
+
+    <div class="geeb-booking__dots" aria-hidden="true">
+      <span class="is-active"></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</div>

@@ -88,6 +88,12 @@
 .numu-bento__card--tall { grid-row: span 2; }
 .numu-bento__card h3 { font-size: 1.1rem; font-weight: 700; margin: 0 0 0.5rem; color: var(--heading-text); }
 .numu-bento__card p { font-size: 0.9rem; line-height: 1.6; color: var(--muted-text); margin: 0; }
+.numu-bento--pillars { grid-template-columns: repeat(3, 1fr); }
+.numu-bento--pillars .numu-bento__card--wide { grid-column: span 1; }
+.numu-bento__thumb { margin-bottom: 1rem; border-radius: 12px; overflow: hidden; }
+.numu-bento__thumb :global(.feature-media-placeholder[data-variant='mobile']) { max-width: 100%; aspect-ratio: 9 / 16; }
+.numu-stack__card { border-color: color-mix(in srgb, var(--project-color) 28%, var(--card-border)); transition: transform 0.35s ease, box-shadow 0.35s ease; }
+.numu-stack__card:hover { transform: translateY(-4px); box-shadow: var(--card-shadow-hover); }
 .numu-marquee { overflow: hidden; padding: 2rem 0; border-block: 1px solid color-mix(in srgb, var(--project-color) 18%, transparent); }
 .numu-marquee__track { display: flex; gap: 3rem; width: max-content; }
 .numu-marquee__item { font-size: 1.25rem; font-weight: 600; color: var(--project-color); white-space: nowrap; opacity: 0.75; }
@@ -112,5 +118,5 @@
 .numu-download-card { padding: 2rem; border-radius: var(--card-window-radius-tight, 18px); background: var(--card-bg); border: 1px solid var(--card-border); text-align: center; transition: transform 0.3s ease; }
 .numu-download-card:hover { transform: translateY(-4px); }
 .numu-download-card a { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1rem; padding: 0.75rem 1.5rem; border-radius: 9999px; background: var(--project-gradient); color: white; text-decoration: none; font-weight: 600; font-size: 0.95rem; }
-@media (max-width: 1024px) { .numu-bento { grid-template-columns: repeat(2, 1fr); } .numu-bento__card, .numu-bento__card--wide { grid-column: span 1; } .numu-bento__card--tall { grid-row: span 1; } .numu-feature-block { grid-template-columns: 1fr; } .numu-feature-block--reverse .numu-feature-block__visual { order: 0; } }
+@media (max-width: 1024px) { .numu-bento { grid-template-columns: repeat(2, 1fr); } .numu-bento--pillars { grid-template-columns: 1fr; } .numu-bento__card, .numu-bento__card--wide { grid-column: span 1; } .numu-bento__card--tall { grid-row: span 1; } .numu-feature-block { grid-template-columns: 1fr; } .numu-feature-block--reverse .numu-feature-block__visual { order: 0; } }
 @media (max-width: 640px) { .numu-bento { grid-template-columns: 1fr; } .numu-download-grid { grid-template-columns: 1fr; } }

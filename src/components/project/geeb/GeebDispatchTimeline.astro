@@ -1,0 +1,70 @@
+---
+import Icon from '../../icons/Icon.astro'
+
+interface Step {
+  step: string
+  title: string
+  text: string
+  icon: string
+  vignette: 'search' | 'compare' | 'track'
+}
+
+interface Props {
+  steps: Step[]
+}
+
+const { steps } = Astro.props
+---
+
+<div class="geeb-timeline" data-geeb-timeline>
+  {steps.map((s) => (
+    <article class="geeb-timeline__ticket card-window" data-geeb-timeline-item>
+      <header class="geeb-timeline__head">
+        <span class="geeb-timeline__num">{s.step}</span>
+        <span class="geeb-timeline__icon">
+          <Icon name={s.icon} size={20} color="currentColor" />
+        </span>
+      </header>
+      <h3 class="geeb-timeline__title">{s.title}</h3>
+      <p class="geeb-timeline__text">{s.text}</p>
+
+      {s.vignette === 'search' && (
+        <div class="geeb-timeline__vignette geeb-timeline__vignette--search">
+          <div class="geeb-timeline__search-bar">
+            <Icon name="magnifying-glass" size={16} color="currentColor" />
+            <span>Leaky faucet in kitchen</span>
+          </div>
+          <div class="geeb-timeline__search-results">
+            <span>Plumbing</span>
+            <span>Handyman</span>
+          </div>
+        </div>
+      )}
+
+      {s.vignette === 'compare' && (
+        <div class="geeb-timeline__vignette geeb-timeline__vignette--compare">
+          <div class="geeb-timeline__pro-mini">
+            <span class="geeb-timeline__pro-initial">RK</span>
+            <span>Rashid K. · 4.8</span>
+          </div>
+          <div class="geeb-timeline__pro-mini">
+            <span class="geeb-timeline__pro-initial">SL</span>
+            <span>Sara L. · 4.7</span>
+          </div>
+        </div>
+      )}
+
+      {s.vignette === 'track' && (
+        <div class="geeb-timeline__vignette geeb-timeline__vignette--track">
+          <div class="geeb-timeline__track-bar">
+            <div class="geeb-timeline__track-fill"></div>
+          </div>
+          <div class="geeb-timeline__track-done">
+            <Icon name="check-circle" size={18} color="currentColor" />
+            <span>Job complete — payment released</span>
+          </div>
+        </div>
+      )}
+    </article>
+  ))}
+</div>

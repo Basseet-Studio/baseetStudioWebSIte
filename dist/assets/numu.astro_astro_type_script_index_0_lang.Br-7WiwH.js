@@ -1,1 +1,0 @@
-import{i as t,d as e}from"./numu.C0w3Mowf.js";import"./index.CzGW6FVa.js";import"./ScrollTrigger.DNECHiyU.js";t();document.addEventListener("astro:before-swap",e);document.addEventListener("astro:page-load",t);

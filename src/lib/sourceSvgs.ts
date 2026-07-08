@@ -24,15 +24,15 @@ export interface SourceSvgSet {
 
 export const SOURCE_SVGS: Record<string, SourceSvgSet> = {
   numu: {
-    logo: "source svgs/numu-logo.svg",
-    name: "source svgs/numu-name.svg",
+    logo: "source svgs/numu logo svg black.svg",
+    name: "source svgs/numu app name large.svg",
   },
   matrix: {
     logo: "source svgs/matrix-logo.svg",
     name: "source svgs/matrix-name.svg",
   },
   geeb: {
-    logo: "source svgs/geeb-logo.svg",
+    logo: "source svgs/Geeb cng logo vecrot.svg",
     name: "source svgs/geeb-name.svg",
   },
   deshikitchen: {
@@ -40,8 +40,8 @@ export const SOURCE_SVGS: Record<string, SourceSvgSet> = {
     name: "source svgs/deshikitchen-name.svg",
   },
   moneybox: {
-    logo: "source svgs/moneyBox-logo.svg",
-    name: "source svgs/moneyBox-name.svg",
+    logo: "source svgs/money stack logo.svg",
+    name: "source svgs/MONEY BOX NAME LONG.svg",
   },
   "photorestore-ai": {
     logo: "source svgs/aiphotorestore-logo.svg",
@@ -723,6 +723,7 @@ export function extractLogoPaths(
   targetSize = 256,
   marginPct = 0.1,
   skipDecorativeRects = true,
+  preserveColors = false,
 ): string {
   // 1) Source viewBox for backdrop detection
   const [, , vbW, vbH] = parseViewBox(svg);
@@ -803,7 +804,7 @@ export function extractLogoPaths(
 
   // 4) Convert each shape into a `<path d>` in user-space. Compute the union
   //    bbox over all of them so we can fit them into the target viewBox.
-  const pathDs: string[] = [];
+  const pathItems: { d: string; attrs: Record<string, string> }[] = [];
   const allBoxes: BBox[] = [];
   for (const s of shapes) {
     if (skipDecorativeRects && s.tag === "rect") {
@@ -818,22 +819,36 @@ export function extractLogoPaths(
     const bbox = pathBBox(d);
     if (!bbox || !isFinite(bbox.x)) continue;
     allBoxes.push(bbox);
-    pathDs.push(d);
+    pathItems.push({ d, attrs: s.attrs });
   }
-  if (pathDs.length === 0) return "";
+  if (pathItems.length === 0) return "";
 
   const union = unionBBox(allBoxes);
   if (!union) return "";
   const fit = fitTransform(union, targetSize, marginPct);
+  const strokeScale = fit.a;
 
   // 5) Apply the fit transform to each path's d. The shapes already have
   //    their source group transforms baked into their coords (because we used
   //    the cumulative matrix when calling shapeToPathD), so only the fit
   //    transform remains.
   const out: string[] = [];
-  for (const d of pathDs) {
+  for (const { d, attrs } of pathItems) {
     const newD = transformPathD(d, fit);
-    out.push(`<path d="${newD}"/>`);
+    if (preserveColors && attrs.style) {
+      const style = attrs.style.replace(
+        /stroke-width:([\d.]+)px/g,
+        (_, n) => `stroke-width:${(parseFloat(n) * strokeScale).toFixed(2)}px`,
+      );
+      out.push(`<path d="${newD}" style="${style}"/>`);
+    } else if (preserveColors) {
+      const parts = [`d="${newD}"`];
+      if (attrs.fill) parts.push(`fill="${attrs.fill}"`);
+      if (attrs.stroke) parts.push(`stroke="${attrs.stroke}"`);
+      out.push(`<path ${parts.join(" ")}/>`);
+    } else {
+      out.push(`<path d="${newD}"/>`);
+    }
   }
   return out.join("");
 }
@@ -874,6 +889,7 @@ export function readSourceSvgInner(
   targetW: number,
   targetH: number,
   marginPct = 0.1,
+  preserveColors = false,
 ): string {
   const bodyMatch = svg.match(/<svg\b[^>]*>([\s\S]*)<\/svg>/);
   if (!bodyMatch) return "";
@@ -888,11 +904,13 @@ export function readSourceSvgInner(
     .replace(/<title\b[\s\S]*?<\/title>/gi, "")
     .replace(/<desc\b[\s\S]*?<\/desc>/gi, "");
 
-  // Recolor: any explicit fill="…" (Figma exports as fill="black") becomes
-  // fill="currentColor" so the per-tile --px-color cascades into the brand
-  // mark. Strokes are left alone (Figma exports with stroke="black" too —
-  // we leave that since the px__icon CSS paints strokes with currentColor).
-  body = body.replace(/\bfill="(?!none|url\()[^"]*"/gi, 'fill="currentColor"');
+  if (!preserveColors) {
+    // Recolor: any explicit fill="…" (Figma exports as fill="black") becomes
+    // fill="currentColor" so the per-tile --px-color cascades into the brand
+    // mark. Strokes are left alone (Figma exports with stroke="black" too —
+    // we leave that since the px__icon CSS paints strokes with currentColor).
+    body = body.replace(/\bfill="(?!none|url\()[^"]*"/gi, 'fill="currentColor"');
+  }
 
   // Compute the source union bbox and a non-uniform fit into the target
   // viewBox. Non-uniform is important: a square logo into a wide wordmark

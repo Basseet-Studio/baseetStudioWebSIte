@@ -1,11 +1,13 @@
 ---
 import ProjectLayout from '../../layouts/Project.astro'
 import ProjectFAQ from '../../components/project/ProjectFAQ.astro'
-import Icon from '../../components/icons/Icon.astro'
-import { resolveIcon } from '../../components/icons/iconMappings'
+import ProjectFeatureShowcase from '../../components/project/ProjectFeatureShowcase.astro'
+import FeatureMedia from '../../components/project/FeatureMedia.astro'
 import { getProject } from '../../lib/projects'
+import { slugify } from '../../lib/slugify'
 import linksData from '../../content/data/links.json'
 import type { ProjectLinks } from '../../types'
+import type { FeatureShowcaseItem } from '../../components/project/ProjectFeatureShowcase.astro'
 
 const lang = 'en' as const
 const slug = 'moneybox'
@@ -18,9 +20,9 @@ const androidUrl = links.android && links.android !== '#' ? links.android : proj
 const categories = ['Food', 'Transport', 'Bills', 'Shopping', 'Health', 'Entertainment', 'Savings', 'Other']
 
 const bentoItems = [
-  { title: 'Savings Goals', desc: 'Set targets and watch progress with motivating visual charts.', wide: true },
-  { title: 'Expense Tracking', desc: 'Log spending by category and spot patterns early.', wide: false },
-  { title: 'Clean Reports', desc: 'Monthly summaries designed for quick mobile check-ins.', wide: false },
+  { title: 'Savings Goals', desc: 'Set targets and watch progress with motivating visual charts.', mediaLabel: 'Savings goals demo', wide: true },
+  { title: 'Expense Tracking', desc: 'Log spending by category and spot patterns early.', mediaLabel: 'Expense logging demo', wide: false },
+  { title: 'Clean Reports', desc: 'Monthly summaries designed for quick mobile check-ins.', mediaLabel: 'Reports demo', wide: false },
 ]
 
 const savingsGoals = [
@@ -28,6 +30,25 @@ const savingsGoals = [
   { name: 'Summer trip', progress: '42% saved — $840 of $2,000' },
   { name: 'New laptop', progress: '91% saved — $1,820 of $2,000' },
 ]
+
+const moneyboxFeatureBullets: Record<string, string[]> = {
+  'Smart Savings Goals': ['Visual progress charts', 'Multiple targets at once', 'Milestone celebrations'],
+  'Expense Tracking': ['Category-based logging', 'Pattern spotting', 'Quick mobile entry'],
+  'Budget Overview': ['Income vs. outgo at a glance', 'Monthly summaries', 'Readable on mobile'],
+  'Clean Reporting': ['Trend views', 'Category breakdowns', 'Quick check-ins'],
+  'Daily Reminders': ['Gentle expense nudges', 'Goal review prompts', 'Routine-friendly'],
+  'Private by Design': ['On-device data', 'No ads', 'No data resale'],
+}
+
+const featureShowcase: FeatureShowcaseItem[] = (project.features || []).map((f) => ({
+  title: f.title,
+  description: f.description,
+  icon: f.icon,
+  bullets: moneyboxFeatureBullets[f.title],
+  mediaLabel: `${f.title} demo`,
+  mediaSlug: slugify(f.title),
+  mediaVariant: 'mobile' as const,
+}))
 ---
 
 <ProjectLayout title={`${project.name} — Baseet Studio`} description={project.tagline} slug={project.slug} projectColor={project.color} projectGradient={project.gradient} projectName={project.name} projectIconClass={project.iconClass} projectNavItems={project.navItems} projectNavMeta={project.navMetaItems} lang={lang}>
@@ -48,7 +69,7 @@ const savingsGoals = [
             <a href="/projects/moneybox/download/" class="cta-btn--primary" style={`background:${project.gradient};`}>
               {project.hero.cta_primary}
             </a>
-            <a href="/projects/moneybox/features/" class="cta-btn--secondary" style={`border-color:color-mix(in srgb, ${project.color} 25%, transparent);`}>
+            <a href="#features" class="cta-btn--secondary" style={`border-color:color-mix(in srgb, ${project.color} 25%, transparent);`}>
               View Features
             </a>
           </div>
@@ -63,22 +84,23 @@ const savingsGoals = [
       </div>
     </section>
 
-    <section class="moneybox-section">
-      <div class="moneybox-section__inner">
-        <div class="moneybox-categories">
-          {categories.map((cat) => (
-            <span class="moneybox-categories__chip">{cat}</span>
-          ))}
-        </div>
+    <div class="moneybox-marquee" data-moneybox-marquee aria-hidden="true">
+      <div class="moneybox-marquee__track" data-moneybox-marquee-track>
+        {[...categories, ...categories].map((cat) => (
+          <span class="moneybox-marquee__item">{cat}</span>
+        ))}
       </div>
-    </section>
+    </div>
 
     <section class="moneybox-section">
       <div class="moneybox-section__inner">
         <h2 class="moneybox-section-title" style="font-family:'Outfit',sans-serif;" data-animate="fade-up">Built for clarity</h2>
-        <div class="moneybox-bento">
+        <div class="moneybox-bento moneybox-bento--pillars">
           {bentoItems.map((item) => (
             <div class={`moneybox-bento__card${item.wide ? ' moneybox-bento__card--wide' : ''}`} data-animate="fade-up">
+              <div class="moneybox-bento__thumb">
+                <FeatureMedia label={item.mediaLabel} variant="mobile" compact />
+              </div>
               <h3 style="font-family:'Outfit',sans-serif;">{item.title}</h3>
               <p>{item.desc}</p>
             </div>
@@ -106,6 +128,19 @@ const savingsGoals = [
       </div>
     </section>
 
+    {featureShowcase.length > 0 && (
+      <ProjectFeatureShowcase
+        features={featureShowcase}
+        projectSlug={project.slug}
+        projectColor={project.color}
+        projectGradient={project.gradient}
+        id="features"
+        heading="Everything you need to stay on track"
+        lede="Six features that make daily money management feel simple — not like spreadsheet archaeology."
+        fontHeading="Outfit"
+      />
+    )}
+
     <section class="moneybox-section">
       <div class="moneybox-section__inner">
         <h2 class="moneybox-section-title" style="font-family:'Outfit',sans-serif;">MoneyBox vs spreadsheets</h2>
@@ -131,23 +166,6 @@ const savingsGoals = [
         </div>
       </div>
     </section>
-
-    {project.features && project.features.length > 0 && (
-      <section class="moneybox-section" id="features">
-        <div class="moneybox-section__inner">
-          <h2 class="moneybox-section-title" style="font-family:'Outfit',sans-serif;">Key features</h2>
-          <div class="moneybox-bento">
-            {project.features.slice(0, 3).map((f) => (
-              <div class="moneybox-bento__card" data-animate="fade-up">
-                <Icon name={resolveIcon(f.icon).name} size={24} color={project.color} />
-                <h3 style="font-family:'Outfit',sans-serif;margin-top:1rem;">{f.title}</h3>
-                <p>{f.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    )}
 
     {project.faq && project.faq.length > 0 && (
       <section class="moneybox-section" id="faq">

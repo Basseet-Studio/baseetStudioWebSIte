@@ -1,0 +1,51 @@
+---
+const trades = [
+  { name: 'Plumbing', range: '$1,840–$3,200' },
+  { name: 'Electrical', range: '$2,100–$3,650' },
+  { name: 'AC & HVAC', range: '$2,400–$4,100' },
+  { name: 'Cleaning', range: '$1,200–$2,400' },
+  { name: 'Handyman', range: '$1,560–$2,890' },
+  { name: 'Painting', range: '$1,720–$3,050' },
+]
+---
+
+<div class="geeb-earnings card-window" data-geeb-earnings>
+  <h3 class="geeb-earnings__title">Estimated monthly earnings</h3>
+  <p class="geeb-earnings__hint">Based on pros in your area with similar experience</p>
+
+  <div class="geeb-earnings__chips" role="group" aria-label="Select trade">
+    {trades.map((t, i) => (
+      <button
+        type="button"
+        class={`geeb-earnings__chip${i === 0 ? ' is-active' : ''}`}
+        data-geeb-earnings-trade={t.name}
+        data-geeb-earnings-range={t.range}
+      >
+        {t.name}
+      </button>
+    ))}
+  </div>
+
+  <div class="geeb-earnings__result">
+    <span class="geeb-earnings__range" data-geeb-earnings-display>$1,840–$3,200</span>
+    <span class="geeb-earnings__per">per month</span>
+  </div>
+</div>
+
+<script>
+  function initEarningsChips() {
+    const root = document.querySelector('[data-geeb-earnings]')
+    if (!root) return
+    const display = root.querySelector('[data-geeb-earnings-display]')
+    const chips = root.querySelectorAll('[data-geeb-earnings-trade]')
+    chips.forEach((chip) => {
+      chip.addEventListener('click', () => {
+        chips.forEach((c) => c.classList.remove('is-active'))
+        chip.classList.add('is-active')
+        if (display) display.textContent = chip.getAttribute('data-geeb-earnings-range') ?? ''
+      })
+    })
+  }
+  initEarningsChips()
+  document.addEventListener('astro:page-load', initEarningsChips)
+</script>

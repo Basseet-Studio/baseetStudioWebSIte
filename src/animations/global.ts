@@ -5,7 +5,7 @@ import { init as initPaperWobble, destroy as destroyPaperWobble } from './paper-
 
 gsap.registerPlugin(ScrollTrigger)
 
-const animatedElements = new Set<string>()
+const animatedElements = new WeakSet<Element>()
 let scrollTriggers: ScrollTrigger[] = []
 
 function isReducedMotion(): boolean {
@@ -16,9 +16,8 @@ function animateElements(): void {
   if (isReducedMotion()) return
 
   document.querySelectorAll('[data-animate]').forEach((el) => {
-    const id = el.getAttribute('data-animate')
-    if (id && animatedElements.has(id)) return
-    if (id) animatedElements.add(id)
+    if (animatedElements.has(el)) return
+    animatedElements.add(el)
 
     const animationType = el.getAttribute('data-animate-type') || 'fade-up'
 
@@ -48,7 +47,6 @@ function animateElements(): void {
 function destroyAnimations(): void {
   scrollTriggers.forEach((st) => st.kill())
   scrollTriggers = []
-  animatedElements.clear()
 }
 
 export function init(): void {

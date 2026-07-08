@@ -1,0 +1,28 @@
+---
+import Icon from '../../icons/Icon.astro'
+
+interface Trade {
+  name: string
+  icon: string
+  description: string
+  span?: string
+}
+
+interface Props {
+  trades: Trade[]
+}
+
+const { trades } = Astro.props
+---
+
+<div class="geeb-trades">
+  {trades.map((trade) => (
+    <div class={`geeb-trades__tile card-window${trade.span ? ` geeb-trades__tile--${trade.span}` : ''}`} data-animate="fade-up">
+      <div class="geeb-trades__icon">
+        <Icon name={trade.icon} size={24} color="currentColor" />
+      </div>
+      <h3 class="geeb-trades__name">{trade.name}</h3>
+      <p class="geeb-trades__desc">{trade.description}</p>
+    </div>
+  ))}
+</div>

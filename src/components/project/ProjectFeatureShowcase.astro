@@ -1,0 +1,227 @@
+---
+import Icon from '../icons/Icon.astro'
+import { resolveIcon } from '../icons/iconMappings'
+import FeatureMedia from './FeatureMedia.astro'
+import { slugify } from '../../lib/slugify'
+
+export interface FeatureShowcaseItem {
+  title: string
+  description: string
+  bullets?: string[]
+  icon?: string
+  mediaLabel?: string
+  mediaSlug?: string
+  mediaSrc?: string
+  mediaVariant?: 'mobile' | 'desktop' | 'gif'
+}
+
+interface Props {
+  features: FeatureShowcaseItem[]
+  projectSlug: string
+  projectColor: string
+  projectGradient: string
+  id?: string
+  heading?: string
+  lede?: string
+  fontHeading?: string
+}
+
+const {
+  features,
+  projectSlug,
+  projectColor,
+  projectGradient,
+  id = 'features',
+  heading = 'Built for what matters',
+  lede,
+  fontHeading,
+} = Astro.props
+
+const headingFont = fontHeading ? `'${fontHeading}', sans-serif` : 'var(--font-title)'
+---
+
+<section class="pfs" id={id} data-feature-showcase>
+  <div class="pfs__inner">
+    <header class="pfs__head" data-animate="fade-up">
+      <h2 class="pfs__title" style={`font-family:${headingFont};`}>{heading}</h2>
+      {lede && <p class="pfs__lede">{lede}</p>}
+    </header>
+
+    <div class="pfs__rows">
+      {features.map((feature, i) => {
+        const mediaSlug = feature.mediaSlug ?? slugify(feature.title)
+        const mediaSrc = feature.mediaSrc || ''
+        const mediaLabel = feature.mediaLabel ?? `${feature.title} demo`
+        const mediaVariant = feature.mediaVariant ?? 'gif'
+        const icon = feature.icon ? resolveIcon(feature.icon) : null
+        const reverse = i % 2 === 1
+
+        return (
+          <article class:list={['pfs__row', reverse && 'pfs__row--reverse']} data-animate="fade-up">
+            <div class="pfs__copy">
+              {icon && (
+                <div class="pfs__icon" style={`background:${projectGradient};`}>
+                  <Icon name={icon.name} variant={icon.variant} size={22} color="white" />
+                </div>
+              )}
+              <h3 class="pfs__row-title" style={`font-family:${headingFont};`}>{feature.title}</h3>
+              <p class="pfs__row-desc">{feature.description}</p>
+              {feature.bullets && feature.bullets.length > 0 && (
+                <ul class="pfs__bullets">
+                  {feature.bullets.map((bullet) => (
+                    <li>
+                      <Icon name="check" size={16} color={projectColor} />
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+            <div class="pfs__media-wrap">
+              <FeatureMedia
+                src={mediaSrc || undefined}
+                label={mediaLabel}
+                variant={mediaVariant}
+              />
+            </div>
+          </article>
+        )
+      })}
+    </div>
+  </div>
+</section>
+
+<style>
+  .pfs {
+    padding: 8rem 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .pfs {
+      padding: 12rem 1.5rem;
+    }
+  }
+
+  .pfs__inner {
+    max-width: 72rem;
+    margin: 0 auto;
+  }
+
+  .pfs__head {
+    text-align: center;
+    max-width: 40rem;
+    margin: 0 auto 4rem;
+  }
+
+  .pfs__title {
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    margin: 0 0 1rem;
+    color: var(--heading-text);
+  }
+
+  .pfs__lede {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: var(--muted-text);
+    margin: 0;
+  }
+
+  .pfs__rows {
+    display: flex;
+    flex-direction: column;
+    gap: 6rem;
+  }
+
+  @media (min-width: 768px) {
+    .pfs__rows {
+      gap: 8rem;
+    }
+  }
+
+  .pfs__row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .pfs__row {
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+
+    .pfs__row--reverse .pfs__copy {
+      order: 2;
+    }
+
+    .pfs__row--reverse .pfs__media-wrap {
+      order: 1;
+    }
+  }
+
+  .pfs__icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+  }
+
+  .pfs__row-title {
+    font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 1rem;
+    color: var(--heading-text);
+  }
+
+  .pfs__row-desc {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--muted-text);
+    margin: 0 0 1.25rem;
+  }
+
+  .pfs__bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .pfs__bullets li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--text-primary);
+  }
+
+  .pfs__bullets li :global(.phosphor-icon) {
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+  }
+
+  .pfs__media-wrap {
+    overflow: hidden;
+    border-radius: 1rem;
+  }
+
+  .pfs__media-wrap :global(.feature-media-placeholder[data-variant='gif']) {
+    max-width: 100%;
+    aspect-ratio: 16 / 10;
+  }
+
+  .pfs__media-wrap :global(.feature-media-placeholder[data-variant='mobile']) {
+    max-width: 280px;
+  }
+</style>

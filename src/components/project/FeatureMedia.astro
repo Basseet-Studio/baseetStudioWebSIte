@@ -1,0 +1,58 @@
+---
+import FeatureMediaPlaceholder from './FeatureMediaPlaceholder.astro'
+
+interface Props {
+  src?: string
+  label?: string
+  variant?: 'mobile' | 'desktop' | 'gif'
+  aspectRatio?: string
+  alt?: string
+  compact?: boolean
+}
+
+const { src, label, variant = 'gif', aspectRatio, alt, compact = false } = Astro.props
+const isVideo = src ? /\.(webm|mp4)$/i.test(src) : false
+---
+
+{src ? (
+  <div class:list={['feature-media', compact && 'feature-media--compact']} data-feature-media>
+    {isVideo ? (
+      <video class="feature-media__asset" autoplay loop muted playsinline aria-label={alt ?? label}>
+        <source src={src} />
+      </video>
+    ) : (
+      <img
+        class="feature-media__asset"
+        src={src}
+        alt={alt ?? label ?? ''}
+        loading="lazy"
+        decoding="async"
+      />
+    )}
+  </div>
+) : (
+  <FeatureMediaPlaceholder variant={variant} label={label} aspectRatio={aspectRatio} />
+)}
+
+<style>
+  .feature-media {
+    width: 100%;
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1px solid var(--card-border);
+    background: var(--card-bg);
+    box-shadow: var(--card-shadow);
+    transform-origin: center center;
+  }
+
+  .feature-media--compact {
+    max-width: 100%;
+  }
+
+  .feature-media__asset {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+</style>

@@ -19,38 +19,107 @@
 //     Same paths as the source, same viewBox, but with fill/stroke swapped
 //     to currentColor so the morph target tints with the tile's color.
 //   - public/projects/logos/{slug}.svg
-//     Copy of the source logo for the project app bar <img> tag.
+//     Per-slug strategy: geeb/numu are normalized to 0..256 vector paths;
+//     matrix/deshikitchen/photorestore-ai/moneybox keep the source markup
+//     verbatim so gradients, masks, and brand colors survive.
 // -----------------------------------------------------------------------------
 
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { SOURCE_SVGS, parseViewBox } from "../src/lib/sourceSvgs.ts";
+import { SOURCE_SVGS, parseViewBox, extractLogoPaths } from "../src/lib/sourceSvgs.ts";
+
+const LOGO_TARGET = 256;
+const LOGO_MARGIN = 0.08;
+// Figma exports with gradients, masks, or multi-color fills — copy as-is.
+const VERBATIM_LOGO_SLUGS = new Set([
+  "matrix",
+  "deshikitchen",
+  "photorestore-ai",
+]);
+// Serif exports: fit into 0..256 but keep original rgb fills/strokes.
+const FIT_COLORED_LOGO_SLUGS = new Set(["moneybox"]);
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = path.resolve(__dirname, "..");
 const OUT_DIR = path.join(PROJECT_ROOT, "public", "projects", "names");
 const LOGO_OUT_DIR = path.join(PROJECT_ROOT, "public", "projects", "logos");
 
+function recolorSvgBody(body, { keepStrokes = false } = {}) {
+  let out = body.replace(
+    /\bfill="(?!none|url\()[^"]*"/gi,
+    'fill="currentColor"',
+  );
+  // Serif/Affinity exports often bake colors into style="fill:rgb(...);stroke:…"
+  out = out.replace(
+    /\bfill:(?!none|url\()[^;"']+/gi,
+    "fill:currentColor",
+  );
+  if (keepStrokes) {
+    out = out.replace(/\bstroke="(?!none|url\()[^"]*"/gi, 'stroke="currentColor"');
+    out = out.replace(/\bstroke:(?!none|url\()[^;"']+/gi, "stroke:currentColor");
+  } else {
+    out = out.replace(/\bstroke="[^"]*"/gi, "");
+    out = out.replace(/\bstroke:[^;"']+/gi, "");
+    out = out.replace(/\bstroke-(?:width|opacity|linecap|linejoin|miterlimit):[^;"']+/gi, "");
+  }
+  return out;
+}
+
 function buildWordmarkSvg(sourceSvg) {
   const [vbX, vbY, vbW, vbH] = parseViewBox(sourceSvg);
   // Strip the <svg> wrapper, keep all the inner shapes (path, defs, etc.)
   const bodyMatch = sourceSvg.match(/<svg\b[^>]*>([\s\S]*)<\/svg>/);
   if (!bodyMatch) throw new Error("no <svg> body found");
-  let body = bodyMatch[1];
-  // Recolor: any explicit fill (Figma exports as fill="black") becomes
-  // currentColor. We don't apply a stroke — the source paths are fills.
-  body = body.replace(
-    /\bfill="(?!none|url\()[^"]*"/gi,
-    'fill="currentColor"',
-  );
-  // Drop any explicit stroke the source had baked in.
-  body = body.replace(/\bstroke="[^"]*"/gi, "");
+  const body = recolorSvgBody(bodyMatch[1]);
   return (
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${vbX} ${vbY} ${vbW} ${vbH}" fill="currentColor">\n` +
     body +
     `\n</svg>\n`
   );
+}
+
+function buildNormalizedLogoSvg(sourceSvg) {
+  const paths = extractLogoPaths(sourceSvg, LOGO_TARGET, LOGO_MARGIN);
+  if (!paths) throw new Error("no paths extracted from logo");
+  const withFill = paths.replace(/<path /g, '<path fill="currentColor" ');
+  return (
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${LOGO_TARGET} ${LOGO_TARGET}" fill="currentColor">\n` +
+    withFill +
+    `\n</svg>\n`
+  );
+}
+
+/** Keep source colors, gradients, masks — only re-wrap the <svg> shell. */
+function buildVerbatimLogoSvg(sourceSvg) {
+  const [vbX, vbY, vbW, vbH] = parseViewBox(sourceSvg);
+  const bodyMatch = sourceSvg.match(/<svg\b[^>]*>([\s\S]*)<\/svg>/);
+  if (!bodyMatch) throw new Error("no <svg> body found");
+  return (
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${vbX} ${vbY} ${vbW} ${vbH}">\n` +
+    bodyMatch[1] +
+    `\n</svg>\n`
+  );
+}
+
+function buildFitColoredLogoSvg(sourceSvg) {
+  const paths = extractLogoPaths(sourceSvg, LOGO_TARGET, 0.06, true, true);
+  if (!paths) throw new Error("no paths extracted from logo");
+  return (
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${LOGO_TARGET} ${LOGO_TARGET}">\n` +
+    paths +
+    `\n</svg>\n`
+  );
+}
+
+function buildLogoSvg(sourceSvg, slug) {
+  if (VERBATIM_LOGO_SLUGS.has(slug)) {
+    return buildVerbatimLogoSvg(sourceSvg);
+  }
+  if (FIT_COLORED_LOGO_SLUGS.has(slug)) {
+    return buildFitColoredLogoSvg(sourceSvg);
+  }
+  return buildNormalizedLogoSvg(sourceSvg);
 }
 
 function main() {
@@ -83,19 +152,27 @@ function main() {
       continue;
     }
 
-    // Emit logo copy for the project app bar.
+    // Emit normalized logo for the project app bar.
     const logoSourcePath = path.join(PROJECT_ROOT, entry.logo);
     try {
       if (force || !fs.existsSync(logoOutPath)) {
-        fs.copyFileSync(logoSourcePath, logoOutPath);
+        const logoSvg = fs.readFileSync(logoSourcePath, "utf-8");
+        const logoOut = buildLogoSvg(logoSvg, slug);
+        fs.writeFileSync(logoOutPath, logoOut, "utf-8");
         logosWritten++;
+        const mode = VERBATIM_LOGO_SLUGS.has(slug)
+          ? "verbatim"
+          : FIT_COLORED_LOGO_SLUGS.has(slug)
+            ? "fit-colored"
+            : "normalized";
+        const [vbX, vbY, vbW, vbH] = parseViewBox(logoSvg);
         console.log(
-          `[names:build]   ${slug}-logo.svg  ←  ${entry.logo}`,
+          `[names:build]   ${slug}-logo.svg  ←  ${entry.logo}  (${mode}, viewBox: ${vbX} ${vbY} ${vbW} ${vbH})`,
         );
       }
     } catch (err) {
       console.error(
-        `[names:build] could not copy logo ${entry.logo}: ${err.message}`,
+        `[names:build] could not build logo ${entry.logo}: ${err.message}`,
       );
       failed++;
     }
@@ -109,6 +186,12 @@ function main() {
     try {
       svg = fs.readFileSync(sourcePath, "utf-8");
     } catch (err) {
+      if (err.code === "ENOENT") {
+        console.warn(
+          `[names:build] name source missing for "${slug}" (${entry.name}) — keeping existing output`,
+        );
+        continue;
+      }
       console.error(
         `[names:build] could not read ${entry.name}: ${err.message}`,
       );

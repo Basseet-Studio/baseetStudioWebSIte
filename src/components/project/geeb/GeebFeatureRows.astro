@@ -1,0 +1,100 @@
+---
+import Icon from '../../icons/Icon.astro'
+
+interface Feature {
+  title: string
+  description: string
+  icon: { name: string; variant?: 'regular' | 'bold' | 'fill' }
+  bullets?: string[]
+  vignette: string
+}
+
+interface Props {
+  features: Feature[]
+}
+
+const { features } = Astro.props
+---
+
+<div class="geeb-features">
+  {features.map((f, i) => (
+    <div class={`geeb-features__row${i % 2 === 1 ? ' geeb-features__row--flip' : ''}`} data-animate="fade-up">
+      <div class="geeb-features__copy">
+        <div class="geeb-features__icon-wrap">
+          <Icon name={f.icon.name} variant={f.icon.variant} size={22} color="currentColor" />
+        </div>
+        <h3 class="geeb-features__title">{f.title}</h3>
+        <p class="geeb-features__desc">{f.description}</p>
+        {f.bullets && f.bullets.length > 0 && (
+          <ul class="geeb-features__bullets">
+            {f.bullets.map((b) => (
+              <li><Icon name="check" size={14} color="currentColor" />{b}</li>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      <div class="geeb-features__vignette card-window" data-vignette={f.vignette}>
+        {f.vignette === 'apps' && (
+          <div class="geeb-vignette-apps">
+            <div class="geeb-vignette-apps__node"><Icon name="device-mobile" size={20} color="currentColor" /><span>Customer</span></div>
+            <div class="geeb-vignette-apps__line" aria-hidden="true"></div>
+            <div class="geeb-vignette-apps__node"><Icon name="hard-hat" size={20} color="currentColor" /><span>Vendor</span></div>
+            <div class="geeb-vignette-apps__line" aria-hidden="true"></div>
+            <div class="geeb-vignette-apps__node"><Icon name="shield" size={20} color="currentColor" /><span>Admin</span></div>
+          </div>
+        )}
+        {f.vignette === 'trending' && (
+          <div class="geeb-vignette-trending">
+            <div class="geeb-vignette-trending__item"><span>1</span><strong>Amina M.</strong><span class="geeb-vignette-trending__fire">4.9</span></div>
+            <div class="geeb-vignette-trending__item"><span>2</span><strong>Rashid K.</strong><span>4.8</span></div>
+            <div class="geeb-vignette-trending__item"><span>3</span><strong>Sara L.</strong><span>4.7</span></div>
+          </div>
+        )}
+        {f.vignette === 'areas' && (
+          <div class="geeb-vignette-areas">
+            <span class="geeb-vignette-areas__chip">Abu Dhabi</span>
+            <span class="geeb-vignette-areas__arrow" aria-hidden="true">→</span>
+            <span class="geeb-vignette-areas__chip">Al Reem</span>
+            <span class="geeb-vignette-areas__arrow" aria-hidden="true">→</span>
+            <span class="geeb-vignette-areas__chip">Marina</span>
+          </div>
+        )}
+        {f.vignette === 'verified' && (
+          <div class="geeb-vignette-verified">
+            <div class="geeb-vignette-verified__badge"><Icon name="shield-check" size={28} color="currentColor" /></div>
+            <div class="geeb-vignette-verified__toggle">
+              <span>2FA enabled</span>
+              <span class="geeb-vignette-verified__switch is-on" aria-hidden="true"></span>
+            </div>
+          </div>
+        )}
+        {f.vignette === 'reviews' && (
+          <div class="geeb-vignette-reviews">
+            <div class="geeb-vignette-reviews__stars" aria-label="4.8 out of 5">
+              <Icon name="star" size={18} color="currentColor" variant="fill" />
+              <Icon name="star" size={18} color="currentColor" variant="fill" />
+              <Icon name="star" size={18} color="currentColor" variant="fill" />
+              <Icon name="star" size={18} color="currentColor" variant="fill" />
+              <Icon name="star" size={18} color="currentColor" variant="fill" />
+            </div>
+            <span class="geeb-vignette-reviews__score">4.8</span>
+            <span class="geeb-vignette-reviews__count">from 127 reviews</span>
+          </div>
+        )}
+        {f.vignette === 'offline' && (
+          <div class="geeb-vignette-offline">
+            <div class="geeb-vignette-offline__status">
+              <span class="geeb-vignette-offline__dot" data-geeb-sync-pulse></span>
+              <span>Synced 2 min ago</span>
+            </div>
+            <div class="geeb-vignette-offline__queue">
+              <span>3 jobs cached</span>
+              <span>2 areas updated</span>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  ))}
+</div>

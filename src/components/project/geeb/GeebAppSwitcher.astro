@@ -1,0 +1,93 @@
+---
+import Icon from '../../icons/Icon.astro'
+
+const tabs = [
+  { id: 'customer', label: 'Customer', icon: 'device-mobile' },
+  { id: 'vendor', label: 'Vendor', icon: 'hard-hat' },
+  { id: 'admin', label: 'Admin', icon: 'shield' },
+] as const
+---
+
+<div class="geeb-switcher" data-geeb-switcher>
+  <div class="geeb-switcher__tabs" role="tablist" aria-label="App views">
+    {tabs.map((tab, i) => (
+      <button
+        type="button"
+        class={`geeb-switcher__tab${i === 0 ? ' is-active' : ''}`}
+        role="tab"
+        aria-selected={i === 0}
+        data-geeb-switcher-tab={tab.id}
+      >
+        <Icon name={tab.icon} size={18} color="currentColor" />
+        {tab.label}
+      </button>
+    ))}
+  </div>
+
+  <div class="geeb-switcher__layout">
+    <div class="geeb-switcher__panels card-window">
+      <div class="geeb-switcher__panel is-active" data-geeb-switcher-panel="customer" role="tabpanel">
+        <p class="geeb-switcher__panel-label">Discover nearby pros</p>
+        <div class="geeb-switcher__chips">
+          <span>Plumbing</span>
+          <span>Electrical</span>
+          <span>Cleaning</span>
+          <span>AC & HVAC</span>
+        </div>
+        <div class="geeb-switcher__pro-card card-window">
+          <div class="geeb-switcher__pro-avatar">AM</div>
+          <div>
+            <strong>Amina M.</strong>
+            <span>Electrical · 4.9</span>
+          </div>
+          <span class="geeb-switcher__badge">Trending</span>
+        </div>
+      </div>
+
+      <div class="geeb-switcher__panel" data-geeb-switcher-panel="vendor" role="tabpanel" hidden>
+        <p class="geeb-switcher__panel-label">Incoming request</p>
+        <div class="geeb-switcher__job card-window">
+          <strong>AC maintenance — Al Reem</strong>
+          <span>Today, 2:30 PM · AED 185</span>
+          <div class="geeb-switcher__job-actions">
+            <button type="button" class="geeb-switcher__btn-decline">Decline</button>
+            <button type="button" class="geeb-switcher__btn-accept">Accept</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="geeb-switcher__panel" data-geeb-switcher-panel="admin" role="tabpanel" hidden>
+        <p class="geeb-switcher__panel-label">Ecosystem health</p>
+        <div class="geeb-switcher__metrics">
+          <div class="geeb-switcher__metric">
+            <span class="geeb-switcher__metric-val">2,847</span>
+            <span class="geeb-switcher__metric-lbl">Active users</span>
+          </div>
+          <div class="geeb-switcher__metric">
+            <span class="geeb-switcher__metric-val">143</span>
+            <span class="geeb-switcher__metric-lbl">Open jobs</span>
+          </div>
+          <div class="geeb-switcher__metric">
+            <span class="geeb-switcher__metric-val">7</span>
+            <span class="geeb-switcher__metric-lbl">Flagged reviews</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="geeb-switcher__stats">
+      <div class="geeb-switcher__stat card-window">
+        <span class="geeb-switcher__stat-val">3</span>
+        <span class="geeb-switcher__stat-lbl">Apps</span>
+      </div>
+      <div class="geeb-switcher__stat card-window">
+        <span class="geeb-switcher__stat-val">1</span>
+        <span class="geeb-switcher__stat-lbl">Monorepo</span>
+      </div>
+      <div class="geeb-switcher__stat card-window">
+        <span class="geeb-switcher__stat-val">47</span>
+        <span class="geeb-switcher__stat-lbl">Service areas</span>
+      </div>
+    </aside>
+  </div>
+</div>

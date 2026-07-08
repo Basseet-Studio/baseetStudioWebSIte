@@ -1,25 +1,22 @@
 ---
 import ProjectLayout from '../../layouts/Project.astro'
 import ProjectGallery from '../../components/project/ProjectGallery.astro'
+import ProjectFeatureShowcase from '../../components/project/ProjectFeatureShowcase.astro'
 import ProjectFAQ from '../../components/project/ProjectFAQ.astro'
-import Icon from '../../components/icons/Icon.astro'
+import FeatureMedia from '../../components/project/FeatureMedia.astro'
 import { getProject } from '../../lib/projects'
-import linksData from '../../content/data/links.json'
-import type { ProjectLinks } from '../../types'
+import { slugify } from '../../lib/slugify'
+import type { FeatureShowcaseItem } from '../../components/project/ProjectFeatureShowcase.astro'
 
 const lang = 'en' as const
 const slug = 'numu'
 const project = getProject(slug)
 if (!project) return Astro.redirect('/404')
 
-const links: ProjectLinks = (linksData.projects.numu || {}) as ProjectLinks
-
-const modules = [
-  { title: 'Core Growth', desc: 'Habits, goals, tasks, reminders, and My Day unified view.', span: 'wide' },
-  { title: 'Health', desc: 'Water, sleep, weight, and food logging.', span: '' },
-  { title: 'Islamic', desc: 'Prayer, fasting, and nafila tracking.', span: '' },
-  { title: 'Backup', desc: 'Full local backup and restore.', span: 'tall' },
-  { title: 'Privacy', desc: 'No account, no cloud, no trackers. Your data stays on your device.', span: 'wide' },
+const pillars = [
+  { title: 'Core Growth', desc: 'Habits, goals, tasks, reminders, and My Day unified view.', mediaLabel: 'Habits & goals demo', span: 'wide' },
+  { title: 'Health', desc: 'Water, sleep, weight, and food logging.', mediaLabel: 'Health module demo', span: '' },
+  { title: 'Islamic', desc: 'Prayer, fasting, and nafila tracking.', mediaLabel: 'Islamic module demo', span: '' },
 ]
 
 const marqueeModules = ['Habits', 'Goals', 'Tasks', 'Reminders', 'My Day', 'Health', 'Islamic', 'Backup']
@@ -29,6 +26,25 @@ const stackCards = [
   { title: 'Tasks due today', desc: '2 remaining' },
   { title: 'Prayer check-in', desc: 'On track' },
 ]
+
+const numuFeatureBullets: Record<string, string[]> = {
+  'Core Growth Modules': ['Habit streaks and scoring', 'Goals linked to habits', 'My Day unified dashboard'],
+  'Health Tracking': ['Water and sleep logging', 'Weight and food tracking', 'Workout tracking on roadmap'],
+  'Islamic Practice': ['Prayer tracking with scoring', 'Fasting and nafila log', 'RTL-aware layouts'],
+  'Local-First & Offline': ['No account required', 'Works fully offline', 'Export and restore anytime'],
+  'No Subscriptions, No Ads, No Trackers': ['Free forever', 'No in-app purchases', 'No third-party trackers'],
+  'Beautiful, RTL-Aware, Multi-Language': ['Arabic and English', 'Friendly onboarding', 'Built-in help'],
+}
+
+const featureShowcase: FeatureShowcaseItem[] = (project.features || []).map((f) => ({
+  title: f.title,
+  description: f.description,
+  icon: f.icon,
+  bullets: numuFeatureBullets[f.title],
+  mediaLabel: `${f.title} demo`,
+  mediaSlug: slugify(f.title),
+  mediaVariant: 'mobile' as const,
+}))
 ---
 
 <ProjectLayout title={`${project.name} — Baseet Studio`} description={project.tagline} slug={project.slug} projectColor={project.color} projectGradient={project.gradient} projectName={project.name} projectIconClass={project.iconClass} projectNavItems={project.navItems} projectNavMeta={project.navMetaItems} lang={lang}>
@@ -51,7 +67,7 @@ const stackCards = [
             <a href="/projects/numu/download/" class="cta-btn--primary" style={`background:${project.gradient};`}>
               {project.hero.cta_primary}
             </a>
-            <a href="/projects/numu/features/" class="cta-btn--secondary" style={`border-color:color-mix(in srgb, ${project.color} 30%, transparent);`}>
+            <a href="#features" class="cta-btn--secondary" style={`border-color:color-mix(in srgb, ${project.color} 30%, transparent);`}>
               {project.hero.cta_secondary}
             </a>
           </div>
@@ -79,9 +95,12 @@ const stackCards = [
         <h2 class="numu-section-title" style="font-family:'Quicksand',sans-serif;" data-animate="fade-up">
           Everything you need to grow
         </h2>
-        <div class="numu-bento">
-          {modules.map((mod) => (
+        <div class="numu-bento numu-bento--pillars">
+          {pillars.map((mod) => (
             <div class={`numu-bento__card${mod.span ? ` numu-bento__card--${mod.span}` : ''}`} data-animate="fade-up">
+              <div class="numu-bento__thumb">
+                <FeatureMedia label={mod.mediaLabel} variant="mobile" compact />
+              </div>
               <h3>{mod.title}</h3>
               <p>{mod.desc}</p>
             </div>
@@ -97,6 +116,19 @@ const stackCards = [
         </p>
       </div>
     </section>
+
+    {featureShowcase.length > 0 && (
+      <ProjectFeatureShowcase
+        features={featureShowcase}
+        projectSlug={project.slug}
+        projectColor={project.color}
+        projectGradient={project.gradient}
+        id="features"
+        heading="Features built for daily practice"
+        lede="Six modules that work together — habits, health, faith, and privacy at the center."
+        fontHeading="Quicksand"
+      />
+    )}
 
     <section class="numu-section">
       <div class="numu-section__inner">

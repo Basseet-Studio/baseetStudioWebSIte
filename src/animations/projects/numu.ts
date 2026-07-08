@@ -1,5 +1,6 @@
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { initFeatureMediaScrub, killTriggers } from '../feature-showcase'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -9,7 +10,7 @@ function splitWords(el: HTMLElement): HTMLSpanElement[] {
   const text = el.textContent || ''
   el.textContent = ''
   const spans: HTMLSpanElement[] = []
-  text.split(/\s+/).forEach((word, i) => {
+  text.split(/\s+/).forEach((word, i, arr) => {
     const span = document.createElement('span')
     span.className = 'numu-scrub__word'
     span.textContent = word
@@ -17,7 +18,7 @@ function splitWords(el: HTMLElement): HTMLSpanElement[] {
     span.style.marginRight = '0.3em'
     el.appendChild(span)
     spans.push(span)
-    if (i < text.split(/\s+/).length - 1) el.appendChild(document.createTextNode(' '))
+    if (i < arr.length - 1) el.appendChild(document.createTextNode(' '))
   })
   return spans
 }
@@ -25,8 +26,7 @@ function splitWords(el: HTMLElement): HTMLSpanElement[] {
 export function init(): void {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
-  scrollTriggers.forEach((t) => t.kill())
-  scrollTriggers = []
+  destroy()
 
   const scrubEl = document.querySelector<HTMLElement>('[data-numu-scrub]')
   if (scrubEl && !scrubEl.dataset.split) {
@@ -69,20 +69,7 @@ export function init(): void {
     scrollTriggers.push(st)
   }
 
-  const mediaEls = gsap.utils.toArray<HTMLElement>('[data-feature-media]')
-  mediaEls.forEach((el) => {
-    const st = ScrollTrigger.create({
-      trigger: el,
-      start: 'top 85%',
-      end: 'bottom 20%',
-      scrub: true,
-      onUpdate: (self) => {
-        const scale = 0.85 + self.progress * 0.15
-        gsap.set(el, { scale, opacity: 0.4 + self.progress * 0.6 })
-      },
-    })
-    scrollTriggers.push(st)
-  })
+  scrollTriggers.push(...initFeatureMediaScrub())
 
   const marquee = document.querySelector<HTMLElement>('[data-numu-marquee]')
   const track = marquee?.querySelector<HTMLElement>('[data-numu-marquee-track]')
@@ -94,6 +81,6 @@ export function init(): void {
 }
 
 export function destroy(): void {
-  scrollTriggers.forEach((t) => t.kill())
+  killTriggers(scrollTriggers)
   scrollTriggers = []
 }
