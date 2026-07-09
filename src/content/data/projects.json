@@ -193,32 +193,5 @@
     "icon": null,
     "platforms": [{ "name": "Web", "icon": "fas fa-globe" }],
     "indexHidden": true
-  },
-  {
-    "slug": "bd-railway-automated-timetable",
-    "name": "BD Railway Automated Timetable",
-    "tagline": "Railway Scheduling System",
-    "color": "#16A34A",
-    "gradient": "linear-gradient(135deg, #16A34A 0%, #22C55E 100%)",
-    "status": "Confidential",
-    "iconClass": "fas fa-train",
-    "icon": null,
-    "platforms": [
-      { "name": "Web", "icon": "fas fa-globe" },
-      { "name": "API", "icon": "fas fa-code" }
-    ],
-    "indexHidden": true
-  },
-  {
-    "slug": "malaysian-business-websites",
-    "name": "Malaysian Business Websites",
-    "tagline": "Corporate Web Solutions",
-    "color": "#F59E0B",
-    "gradient": "linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%)",
-    "status": "Completed",
-    "iconClass": "fas fa-building",
-    "icon": null,
-    "platforms": [{ "name": "Web", "icon": "fas fa-globe" }],
-    "indexHidden": true
   }
 ]

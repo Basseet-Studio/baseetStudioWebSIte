@@ -1,0 +1,45 @@
+---
+import ClientStepMedia from './ClientStepMedia.astro'
+import type { Client, ClientStep } from '../../types'
+
+interface Props {
+  client: Client
+  steps: ClientStep[]
+}
+
+const { client, steps } = Astro.props
+---
+
+<section class="client-showcase" data-client-showcase>
+  <div class="client-showcase__inner">
+    {steps.length > 0 && (
+      <header class="client-showcase__head" data-animate="fade-up">
+        <h2 class="client-showcase__title">How we built it</h2>
+      </header>
+    )}
+
+    <div class="client-showcase__rows">
+      {steps.map((step, i) => {
+        const reverse = i % 2 === 1
+        return (
+          <article class:list={['client-showcase__row card-window', reverse && 'client-showcase__row--reverse']} data-animate="fade-up" data-client-showcase-step>
+            <div class="client-showcase__copy">
+              <span class="client-showcase__index" style={`color: ${client.color}`}>
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <h3 class="client-showcase__row-title">{step.title}</h3>
+              {step.description && <p class="client-showcase__row-desc">{step.description}</p>}
+            </div>
+            <div class="client-showcase__media-wrap">
+              <ClientStepMedia
+                clientId={client.id}
+                media={step.media}
+                label={step.title}
+              />
+            </div>
+          </article>
+        )
+      })}
+    </div>
+  </div>
+</section>

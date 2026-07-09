@@ -1,0 +1,88 @@
+---
+import { getClientMediaPath } from '../../lib/clients'
+
+interface Props {
+  clientId: string
+  clientName: string
+  screenshots: string[]
+  galleryType?: 'mobile' | 'web'
+  clientColor: string
+}
+
+const {
+  clientId,
+  clientName,
+  screenshots,
+  galleryType = 'web',
+  clientColor,
+} = Astro.props
+
+const isWeb = galleryType === 'web'
+---
+
+<section class="client-gallery" data-animate="fade-up">
+  <h2 class="client-gallery__title">Screenshots</h2>
+  <div class:list={['client-gallery__grid', isWeb ? 'client-gallery__grid--web' : 'client-gallery__grid--mobile']}>
+    {screenshots.map((src, i) => (
+      <div class="client-gallery__item">
+        <img
+          src={getClientMediaPath(clientId, src)}
+          alt={`${clientName} screenshot ${i + 1} of ${screenshots.length}`}
+          loading="lazy"
+          decoding="async"
+          class="client-gallery__img"
+        />
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .client-gallery {
+    padding: 4rem 0;
+    max-width: 72rem;
+    margin: 0 auto;
+  }
+
+  .client-gallery__title {
+    text-align: center;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin: 0 0 3rem;
+    color: var(--heading-text);
+  }
+
+  .client-gallery__grid--mobile {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .client-gallery__grid--web {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.5rem;
+  }
+
+  .client-gallery__grid--web .client-gallery__item {
+    flex: 0 0 min(85vw, 640px);
+    scroll-snap-align: start;
+  }
+
+  .client-gallery__img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 1rem;
+    border: 1px solid var(--card-border);
+    box-shadow: var(--card-shadow);
+  }
+
+  @media (max-width: 640px) {
+    .client-gallery__grid--mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

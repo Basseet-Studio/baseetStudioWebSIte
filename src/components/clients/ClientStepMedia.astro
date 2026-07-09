@@ -1,0 +1,24 @@
+---
+import FeatureMedia from '../project/FeatureMedia.astro'
+import { getClientMediaPath } from '../../lib/clients'
+import type { ClientStepMedia } from '../../types'
+
+interface Props {
+  clientId: string
+  media?: ClientStepMedia
+  label?: string
+}
+
+const { clientId, media, label } = Astro.props
+
+const src = media?.src ? getClientMediaPath(clientId, media.src) : undefined
+const variant = media?.type === 'gif' ? 'gif' : media?.type === 'video' ? 'desktop' : 'desktop'
+const alt = media?.alt || label || ''
+---
+
+<FeatureMedia
+  src={src}
+  label={label}
+  variant={variant}
+  alt={alt}
+/>

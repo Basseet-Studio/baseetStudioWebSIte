@@ -6,6 +6,7 @@
     {
       "id": "portia-grid",
       "name": "Portia Grid",
+      "layoutTemplate": "timeline",
       "logo": "",
       "industry": "Logistics & Data Intelligence",
       "serviceType": "Internal Tool",
@@ -39,11 +40,13 @@
         "author": "Hassan",
         "role": "CEO & Founder of Portia Grid"
       },
+      "steps": [],
       "screenshots": []
     },
     {
       "id": "iyat",
       "name": "Iyat",
+      "layoutTemplate": "showcase",
       "logo": "",
       "industry": "Digital Marketing & Creative",
       "serviceType": "Website",
@@ -67,17 +70,14 @@
         "HTML/CSS",
         "JavaScript"
       ],
-      "testimonial": {
-        "quote": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        "author": "Iyat Team",
-        "role": "Digital Agency"
-      },
       "link": "https://iyat-site.mohameda-elobaid.workers.dev/portfolio",
+      "steps": [],
       "screenshots": []
     },
     {
       "id": "veeramangalam-juma-masjid",
       "name": "Veeramangalam Juma Masjid Finance",
+      "layoutTemplate": "stack",
       "logo": "",
       "industry": "Community Finance",
       "serviceType": "Jamia System",
@@ -102,12 +102,50 @@
         "Firebase",
         "Firestore"
       ],
-      "testimonial": {
-        "quote": "[Quote from Asif Pokot — placeholder]",
-        "author": "Asif Pokot",
-        "role": "Veeramangalam Juma Masjid Finance"
-      },
+      "steps": [],
       "screenshots": []
+    },
+    {
+      "id": "malaysian-business-websites",
+      "name": "Malaysian Business Websites",
+      "layoutTemplate": "showcase",
+      "industry": "Corporate Web",
+      "serviceType": "Website",
+      "color": "#F59E0B",
+      "tagline": "Corporate Web Solutions",
+      "shortDescription": "",
+      "technologies": [
+        "WordPress",
+        "Laravel",
+        "Vue.js",
+        "Tailwind CSS",
+        "MySQL",
+        "AWS Malaysia"
+      ],
+      "steps": [],
+      "screenshots": [],
+      "galleryType": "web"
+    },
+    {
+      "id": "bd-railway-automated-timetable",
+      "name": "BD Railway Automated Timetable",
+      "layoutTemplate": "timeline",
+      "industry": "Railway Operations",
+      "serviceType": "Internal Tool",
+      "color": "#16A34A",
+      "tagline": "Railway Scheduling System",
+      "shortDescription": "",
+      "technologies": [
+        "Python",
+        "Constraint Programming",
+        "OR-Tools",
+        "PostgreSQL",
+        "FastAPI",
+        "React Admin"
+      ],
+      "steps": [],
+      "screenshots": [],
+      "galleryType": "web"
     }
   ]
 }

@@ -1,0 +1,42 @@
+---
+import ClientStepMedia from './ClientStepMedia.astro'
+import type { Client, ClientStep } from '../../types'
+
+interface Props {
+  client: Client
+  steps: ClientStep[]
+}
+
+const { client, steps } = Astro.props
+---
+
+<section class="client-stack" data-client-stack>
+  <div class="client-stack__inner">
+    {steps.length > 0 && (
+      <header class="client-stack__head" data-animate="fade-up">
+        <h2 class="client-stack__title">Step by step</h2>
+      </header>
+    )}
+
+    <div class="client-stack__cards">
+      {steps.map((step, i) => (
+        <article class="client-stack__card card-window" data-client-stack-card data-animate="fade-up">
+          <div class="client-stack__card-head">
+            <span class="client-stack__num" style={`color: ${client.color}`}>
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <h3 class="client-stack__card-title">{step.title}</h3>
+          </div>
+          {step.description && <p class="client-stack__card-desc">{step.description}</p>}
+          <div class="client-stack__media">
+            <ClientStepMedia
+              clientId={client.id}
+              media={step.media}
+              label={step.title}
+            />
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

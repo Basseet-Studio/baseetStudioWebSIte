@@ -1,0 +1,32 @@
+---
+import Icon from '../icons/Icon.astro'
+import type { Client } from '../../types'
+
+interface Props {
+  client: Client
+}
+
+const { client } = Astro.props
+const accent = client.color
+const description = client.shortDescription || client.fullDescription || ''
+---
+
+<section class="client-hero card-window" style={`--client-color: ${accent}`} data-animate="fade-up">
+  <a href="/clients/" class="client-hero__back">
+    <Icon name="arrow-left" size={18} color="currentColor" />
+    Back to clients
+  </a>
+
+  <div class="client-hero__body">
+    <h1 class="client-hero__title">{client.name}</h1>
+    <p class="client-hero__tagline">{client.tagline}</p>
+    {description && <p class="client-hero__desc">{description}</p>}
+
+    {client.link && (
+      <a href={client.link} target="_blank" rel="noopener noreferrer" class="client-hero__external">
+        Visit live site
+        <Icon name="arrow-square-out" size={16} color="currentColor" />
+      </a>
+    )}
+  </div>
+</section>

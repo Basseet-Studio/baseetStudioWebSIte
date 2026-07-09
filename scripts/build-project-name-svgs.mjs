@@ -103,7 +103,14 @@ function buildVerbatimLogoSvg(sourceSvg) {
 }
 
 function buildFitColoredLogoSvg(sourceSvg) {
-  const paths = extractLogoPaths(sourceSvg, LOGO_TARGET, 0.06, true, true);
+  // Source file includes both the stacked bills and a separate money-wrap band.
+  // Keep only the cash-note stack for the app icon. Drop per-bill ellipses too —
+  // they sit far from the stack in source space and inflate the fit bbox, which
+  // leaves the stack tiny in a corner of the square viewBox.
+  const stackOnly = sourceSvg
+    .replace(/<path\b[^>]*\bid="money-wrap"[^>]*\/?>\s*/i, "")
+    .replace(/<ellipse\b[^>]*\/?>\s*/gi, "");
+  const paths = extractLogoPaths(stackOnly, LOGO_TARGET, 0.04, true, true);
   if (!paths) throw new Error("no paths extracted from logo");
   return (
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${LOGO_TARGET} ${LOGO_TARGET}">\n` +

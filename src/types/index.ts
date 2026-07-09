@@ -222,23 +222,48 @@ export interface ServiceDetail {
 }
 // end service types
 
+export type ClientLayoutTemplate = 'showcase' | 'timeline' | 'stack';
+
+export interface ClientStepMedia {
+  src: string;
+  type: 'image' | 'gif' | 'video';
+  alt?: string;
+}
+
+export interface ClientStep {
+  title: string;
+  description: string;
+  media?: ClientStepMedia;
+}
+
 export interface Client {
   id: string;
   name: string;
+  layoutTemplate: ClientLayoutTemplate;
+  steps: ClientStep[];
   logo?: string;
-  industry: string;
+  industry?: string;
+  serviceType?: string;
   color: string;
   tagline: string;
-  shortDescription: string;
-  fullDescription: string;
-  challenge: string;
-  solution: string;
-  results: Result[];
+  shortDescription?: string;
+  fullDescription?: string;
+  challenge?: string;
+  solution?: string;
+  results?: Result[];
   features?: string[];
   technologies?: string[];
   testimonial?: Testimonial;
   screenshots?: string[];
+  galleryType?: 'mobile' | 'web';
   link?: string;
+}
+
+export interface ClientsData {
+  title: string;
+  subtitle: string;
+  description: string;
+  clients: Client[];
 }
 
 export interface ProjectLinks {
