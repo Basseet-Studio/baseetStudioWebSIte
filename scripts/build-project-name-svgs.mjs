@@ -38,7 +38,7 @@ const VERBATIM_LOGO_SLUGS = new Set([
   "photorestore-ai",
 ]);
 // Serif exports: fit into 0..256 but keep original rgb fills/strokes.
-const FIT_COLORED_LOGO_SLUGS = new Set(["moneybox"]);
+const FIT_COLORED_LOGO_SLUGS = new Set(["moneybox", "numu"]);
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = path.resolve(__dirname, "..");

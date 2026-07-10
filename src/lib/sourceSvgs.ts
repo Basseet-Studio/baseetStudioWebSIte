@@ -24,7 +24,7 @@ export interface SourceSvgSet {
 
 export const SOURCE_SVGS: Record<string, SourceSvgSet> = {
   numu: {
-    logo: "source svgs/numu logo svg black.svg",
+    logo: "source svgs/numu logo svg color.svg",
     name: "source svgs/numu app name large.svg",
   },
   matrix: {
