@@ -18,6 +18,7 @@
   "brandName": "Desi Kitchen",
   "bgEffect": "kitchen",
   "bgFallbackGradient": "linear-gradient(180deg, #FFFBEB 0%, #FDE68A 40%, #FBBF24 100%)",
+  "clientIds": [],
   "hero": {
     "title": "Authentic Bangladeshi Cuisine at Your Fingertips",
     "subtitle": "A full-stack restaurant platform with customer ordering, kitchen workflows, table reservations, delivery dispatch, and admin ops — all on a single, unified stack.",

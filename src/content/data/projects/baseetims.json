@@ -17,6 +17,7 @@
   "brandName": "BaseetIMS",
   "bgEffect": "none",
   "bgFallbackGradient": "linear-gradient(180deg, #ECFDF5 0%, #D1FAE5 40%, #A7F3D0 100%)",
+  "clientIds": ["faruk-technology-store"],
   "hero": {
     "title": "Run Every Shop From One Dashboard",
     "subtitle": "Inventory, POS, flexiload commissions, and daily sales — built for small shops that need clarity without enterprise complexity.",

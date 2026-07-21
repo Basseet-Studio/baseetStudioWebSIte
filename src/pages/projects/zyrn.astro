@@ -1,0 +1,235 @@
+---
+import ProjectLayout from '../../layouts/Project.astro'
+import ProjectCTA from '../../components/project/ProjectCTA.astro'
+import ProjectFeatureCard from '../../components/project/ProjectFeatureCard.astro'
+import ProjectFAQ from '../../components/project/ProjectFAQ.astro'
+import GradientCTA from '../../components/project/GradientCTA.astro'
+import ProjectClients from '../../components/project/ProjectClients.astro'
+import Icon from '../../components/icons/Icon.astro'
+import { resolveIcon } from '../../components/icons/iconMappings'
+import { getProject } from '../../lib/projects'
+import { getClientsForProject } from '../../lib/clients'
+
+const lang: 'en' = 'en'
+const slug = 'zyrn'
+const project = getProject(slug)
+if (!project) return Astro.redirect('/404')
+const linkedClients = getClientsForProject(slug)
+
+const metrics = [
+  { label: 'Product Catalogs', value: '10 Million+' },
+  { label: 'Load Time', value: '~500ms' },
+  { label: 'Search Speed', value: '5x Faster' },
+  { label: 'Data Accuracy', value: '99.9%' },
+  { label: 'Platform Version', value: 'v2.3' },
+]
+
+const businessTools = [
+  {
+    title: 'Insights Report',
+    description: 'Clear analytics on sales, customers, and orders to drive smarter decisions.',
+  },
+  {
+    title: 'Access Control Level',
+    description: 'Role-based permissions so the right people access the right data.',
+  },
+  {
+    title: 'Product SEO',
+    description: 'Built-in keyword and meta title management to rank higher on Google.',
+  },
+  {
+    title: 'Flexible Shipping',
+    description: 'Flat rate, free, or carrier-based shipping with custom zones and rules.',
+  },
+  {
+    title: 'Custom Attributes',
+    description: 'Create product fields like color, size, and material for richer listings.',
+  },
+  {
+    title: 'Localisation & Multi-Currency',
+    description: 'Multiple languages and local currencies so customers shop on their terms.',
+  },
+  {
+    title: 'Out of Stock Management',
+    description: 'Hide, show, or notify customers about unavailable products.',
+  },
+  {
+    title: 'Discounts & Coupons',
+    description: 'Run promotions and special offers to drive sales.',
+  },
+]
+
+const enterpriseInfra = [
+  'FPC (Full Page Caching)',
+  'Elasticsearch & Did You Mean',
+  'Varnish',
+  'Load Balancer',
+  'GDPR Compliance',
+  'Laravel Octane',
+  'CDN Integration',
+  'Security & ACL',
+]
+---
+
+<ProjectLayout title={`${project.name} — Baseet Studio`} description={project.tagline} slug={project.slug} projectColor={project.color} projectGradient={project.gradient} projectName={project.name} projectIconClass={project.iconClass} projectNavItems={project.navItems} projectNavMeta={project.navMetaItems} lang={lang}>
+  <link rel="stylesheet" href="/src/styles/projects/zyrn.css" />
+
+  <section class="project-hero project-hero--centered">
+    <div style={`position:absolute;top:-20%;left:50%;transform:translateX(-50%);width:600px;height:600px;border-radius:50%;background:radial-gradient(circle, color-mix(in srgb, ${project.color} 18%, transparent) 0%, transparent 70%);filter:blur(60px);pointer-events:none;`}></div>
+
+    <div style="max-width:800px;margin:0 auto;position:relative;z-index:1;">
+      <div style="display:flex;justify-content:center;margin-bottom:28px;" data-animate="fade-up">
+        <div style={`width:96px;height:96px;border-radius:24px;background:${project.gradient};display:flex;align-items:center;justify-content:center;box-shadow:0 12px 40px -10px color-mix(in srgb, ${project.color} 35%, transparent);`}>
+          <Icon name={resolveIcon(project.iconClass).name} size={40} color="white" />
+        </div>
+      </div>
+
+      <h1 style="font-size:3.2rem;font-weight:700;color:var(--heading-text);margin-bottom:8px;letter-spacing:-0.02em;" data-animate="fade-up">
+        {project.name}
+      </h1>
+      <p style={`font-size:1.3rem;font-weight:500;color:${project.color};margin-bottom:24px;`} data-animate="fade-up">
+        {project.tagline}
+      </p>
+
+      <div style="margin-bottom:28px;" data-animate="fade-up">
+        <span style={`display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 25%, transparent);`}>
+          <Icon name="check-circle" size={16} color={project.color} />
+          {project.status}
+        </span>
+      </div>
+
+      <h2 style="font-size:2rem;font-weight:700;color:var(--heading-text);margin-bottom:20px;line-height:1.3;" data-animate="fade-up">
+        {project.hero.title}
+      </h2>
+      <p style="font-size:1.1rem;color:var(--muted-text);margin-bottom:36px;max-width:580px;margin-left:auto;margin-right:auto;line-height:1.7;" data-animate="fade-up">
+        {project.hero.subtitle}
+      </p>
+
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" data-animate="fade-up">
+        {project.hero.cta_primary && (
+          <a href={project.hero.cta_primary_link || '/contact/'}
+            class="cta-btn--primary"
+            style={`background:${project.gradient};`}>
+            {project.hero.cta_primary}
+          </a>
+        )}
+        {project.hero.cta_secondary && (
+          <a href={project.hero.cta_secondary_link || '#features'}
+            class="cta-btn--secondary"
+            style={`border-color:color-mix(in srgb, ${project.color} 25%, transparent);`}>
+            {project.hero.cta_secondary}
+          </a>
+        )}
+      </div>
+    </div>
+  </section>
+
+  {project.features && project.features.length > 0 && (
+    <section id="features" style="padding:64px 24px;max-width:1200px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:48px;" data-animate="fade-up">
+        <span style={`display:inline-block;padding:8px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);margin-bottom:16px;`}>
+          Core Features
+        </span>
+        <h2 style="font-size:2rem;margin-bottom:0;color:var(--heading-text);">
+          What Zyrn Delivers
+        </h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:24px;">
+        {project.features.map((feature, i) => (
+          <ProjectFeatureCard title={feature.title} description={feature.description} iconName={resolveIcon(feature.icon).name} projectColor={project.color} projectGradient={project.gradient} index={i} />
+        ))}
+      </div>
+    </section>
+  )}
+
+  <section style="padding:64px 24px;max-width:1100px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:40px;" data-animate="fade-up">
+      <span style={`display:inline-block;padding:8px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);margin-bottom:16px;`}>
+        Performance & Scale
+      </span>
+      <h2 style="font-size:2rem;margin-bottom:0;color:var(--heading-text);">
+        Built for high-traffic catalogs
+      </h2>
+    </div>
+    <div class="zyrn-metrics">
+      {metrics.map((m) => (
+        <div class="zyrn-metrics__tile card-window" data-animate="fade-up">
+          <span class="zyrn-metrics__val">{m.value}</span>
+          <span class="zyrn-metrics__lbl">{m.label}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section style="padding:64px 24px;max-width:1200px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:40px;" data-animate="fade-up">
+      <span style={`display:inline-block;padding:8px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);margin-bottom:16px;`}>
+        Business-Ready Tools
+      </span>
+      <h2 style="font-size:2rem;margin-bottom:0;color:var(--heading-text);">
+        Operate and grow without the glue work
+      </h2>
+    </div>
+    <div class="zyrn-tools">
+      {businessTools.map((tool) => (
+        <div class="zyrn-tools__item" data-animate="fade-up">
+          <h3>{tool.title}</h3>
+          <p>{tool.description}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section style="padding:64px 24px;max-width:1000px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:36px;" data-animate="fade-up">
+      <span style={`display:inline-block;padding:8px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);margin-bottom:16px;`}>
+        Enterprise Infrastructure
+      </span>
+      <h2 style="font-size:2rem;margin-bottom:12px;color:var(--heading-text);">
+        Proven and scalable
+      </h2>
+      <p style="font-size:1.05rem;color:var(--muted-text);max-width:560px;margin:0 auto;line-height:1.65;">
+        Battle-tested Laravel stack with caching, search, and compliance tooling agencies trust for high-traffic stores.
+      </p>
+    </div>
+    <div class="zyrn-infra" data-animate="fade-up">
+      {enterpriseInfra.map((item) => (
+        <span class="zyrn-infra__chip">{item}</span>
+      ))}
+    </div>
+  </section>
+
+  {project.faq && project.faq.length > 0 && (
+    <section style="padding:64px 24px;max-width:800px;margin:0 auto;">
+      <h2 style="text-align:center;font-size:2rem;margin-bottom:48px;color:var(--heading-text);">
+        FAQ
+      </h2>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        {project.faq.map(item => (
+          <ProjectFAQ question={item.question} answer={item.answer} projectColor={project.color} />
+        ))}
+      </div>
+    </section>
+  )}
+
+  <ProjectClients clients={linkedClients} projectColor={project.color} />
+
+  <GradientCTA
+    title={`Interested in ${project.name}?`}
+    body="Get in touch and we will help you launch a fully custom store on Zyrn."
+    ctaLabel="Get in Touch"
+    ctaHref="/contact/"
+    gradient={project.gradient}
+    accentColor={project.color}
+    lang={lang}
+  />
+
+  <ProjectCTA status={project.status} platforms={project.platforms || []} links={project.links} lang={lang} />
+</ProjectLayout>
+
+<script>
+  import { init, destroy } from '../../animations/projects/zyrn'
+
+  init()
+  document.addEventListener('astro:before-swap', destroy, { once: true })
+</script>

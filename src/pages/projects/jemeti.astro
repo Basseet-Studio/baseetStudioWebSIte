@@ -2,12 +2,15 @@
 import ProjectLayout from '../../layouts/Project.astro'
 import ProjectCTA from '../../components/project/ProjectCTA.astro'
 import GradientCTA from '../../components/project/GradientCTA.astro'
+import ProjectClients from '../../components/project/ProjectClients.astro'
 import { getProject } from '../../lib/projects'
+import { getClientsForProject } from '../../lib/clients'
 
 const lang: 'en' = 'en'
 const slug = 'jemeti'
 const project = getProject(slug)
 if (!project) return Astro.redirect('/404')
+const linkedClients = getClientsForProject(slug)
 ---
 
 <ProjectLayout
@@ -65,6 +68,8 @@ if (!project) return Astro.redirect('/404')
       </div>
     </section>
   )}
+
+  <ProjectClients clients={linkedClients} projectColor={project.color} />
 
   <GradientCTA
     title={`Interested in ${project.name}?`}

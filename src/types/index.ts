@@ -88,6 +88,8 @@ export interface Project {
   navItems?: NavItem[];
   navMetaItems?: NavItem[];
   links?: { ios?: string; android?: string; web?: string };
+  /** Client case-study ids that use this product. Single source of truth for client↔product links. */
+  clientIds?: string[];
 }
 
 export interface TeamMember {

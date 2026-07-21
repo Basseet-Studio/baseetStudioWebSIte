@@ -17,6 +17,7 @@
   "brandName": "Matrix",
   "bgEffect": "grid",
   "bgFallbackGradient": "linear-gradient(180deg, #ECFEFF 0%, #CFFAFE 40%, #A5F3FC 100%)",
+  "clientIds": [],
   "hero": {
     "title": "One Workspace for Projects, People, Customers & Finance",
     "subtitle": "Matrix replaces the patchwork of 5+ tools most teams juggle. Projects, CRM, HRM, invoicing, and docs — in one cohesive, multi-tenant SaaS workspace built for speed.",

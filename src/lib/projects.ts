@@ -97,3 +97,10 @@ export function getAllProjects(): Project[] {
 export function getProjectSlugs(): string[] {
   return index.map((p) => p.slug)
 }
+
+/** Projects linked to a client via `clientIds` on project JSON. */
+export function getProjectsForClient(clientId: string): Project[] {
+  return Object.values(projectsBySlug).filter((p) =>
+    (p.clientIds ?? []).includes(clientId)
+  )
+}

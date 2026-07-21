@@ -7,6 +7,7 @@
 
 import type { Client, ClientsData } from '../types'
 import clientsDataRaw from '../content/data/clients.json'
+import { getProject } from './projects'
 
 const clientsData = clientsDataRaw as ClientsData
 
@@ -38,4 +39,13 @@ export function getClientIds(): string[] {
 /** Resolve a media filename to its public URL under /images/clients/{id}/. */
 export function getClientMediaPath(clientId: string, filename: string): string {
   return `/images/clients/${clientId}/${filename}`
+}
+
+/** Clients linked to a project via that project's `clientIds` field. */
+export function getClientsForProject(slug: string): Client[] {
+  const project = getProject(slug)
+  if (!project?.clientIds?.length) return []
+  return project.clientIds
+    .map((id) => clientsById[id])
+    .filter((c): c is Client => Boolean(c))
 }

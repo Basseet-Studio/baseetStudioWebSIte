@@ -15,6 +15,7 @@
   "appType": "web",
   "brandName": "Jemeti",
   "bgEffect": "none",
+  "clientIds": [],
   "hero": {
     "title": "Your Workshop, Organised",
     "subtitle": "Job scheduling, parts tracking, and customer management for maintenance and repair shops.",

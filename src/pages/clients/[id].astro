@@ -7,6 +7,7 @@ import ClientLayoutTimeline from '../../components/clients/ClientLayoutTimeline.
 import ClientLayoutStack from '../../components/clients/ClientLayoutStack.astro'
 import ClientGallery from '../../components/clients/ClientGallery.astro'
 import { getAllClients, getClient } from '../../lib/clients'
+import { getProjectsForClient } from '../../lib/projects'
 import type { ClientLayoutTemplate } from '../../types'
 import '../../styles/clients/detail.css'
 
@@ -24,6 +25,7 @@ if (!client) {
   return Astro.redirect('/404')
 }
 
+const linkedProjects = getProjectsForClient(client.id)
 const steps = client.steps ?? []
 const screenshots = client.screenshots ?? []
 const hasChallenge = Boolean(client.challenge?.trim())
@@ -31,6 +33,7 @@ const hasSolution = Boolean(client.solution?.trim())
 const hasResults = (client.results?.length ?? 0) > 0
 const hasTestimonial = Boolean(client.testimonial?.quote?.trim())
 const hasTech = (client.technologies?.length ?? 0) > 0
+const hasProducts = linkedProjects.length > 0
 
 const layoutComponents: Record<ClientLayoutTemplate, typeof ClientLayoutShowcase> = {
   showcase: ClientLayoutShowcase,
@@ -70,6 +73,26 @@ const pageDescription =
           </div>
         )}
       </div>
+    )}
+
+    {hasProducts && (
+      <section class="client-products" data-animate="fade-up">
+        <h2 class="client-products__title">Products used</h2>
+        <ul class="client-products__list">
+          {linkedProjects.map((project) => (
+            <li>
+              <a
+                href={`/projects/${project.slug}/`}
+                class="client-products__card card-window"
+                style={`--product-accent: ${project.color};`}
+              >
+                <span class="client-products__name">{project.name}</span>
+                <span class="client-products__tagline">{project.tagline}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
     )}
 
     {steps.length > 0 && (

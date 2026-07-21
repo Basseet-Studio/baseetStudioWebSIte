@@ -1,0 +1,96 @@
+---
+import type { Client } from '../../types'
+
+interface Props {
+  clients: Client[]
+  projectColor: string
+  heading?: string
+}
+
+const { clients, projectColor, heading = 'Clients using this product' } = Astro.props
+---
+
+{clients.length > 0 && (
+  <section class="project-clients" style="padding:64px 24px;max-width:1000px;margin:0 auto;" data-animate="fade-up">
+    <div style="text-align:center;margin-bottom:36px;">
+      <span style={`display:inline-block;padding:8px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${projectColor} 8%, transparent);color:${projectColor};border:1px solid color-mix(in srgb, ${projectColor} 20%, transparent);margin-bottom:16px;`}>
+        Clients
+      </span>
+      <h2 style="font-size:2rem;margin:0;color:var(--heading-text);">{heading}</h2>
+    </div>
+    <ul class="project-clients__list">
+      {clients.map((client) => (
+        <li>
+          <a
+            href={`/clients/${client.id}/`}
+            class="project-clients__card card-window"
+            style={`--client-accent: ${client.color};`}
+          >
+            <span class="project-clients__name">{client.name}</span>
+            {client.tagline && (
+              <span class="project-clients__tagline">{client.tagline}</span>
+            )}
+            {(client.industry || client.serviceType) && (
+              <span class="project-clients__meta">
+                {[client.industry, client.serviceType].filter(Boolean).join(' · ')}
+              </span>
+            )}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+)}
+
+<style>
+  .project-clients__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+  }
+
+  .project-clients__card {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 22px 24px;
+    text-decoration: none;
+    border-radius: 14px;
+    border: 1px solid color-mix(in srgb, var(--client-accent) 18%, transparent);
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .project-clients__card:hover {
+    border-color: color-mix(in srgb, var(--client-accent) 40%, transparent);
+    transform: translateY(-2px);
+  }
+
+  .project-clients__name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--heading-text);
+  }
+
+  .project-clients__tagline {
+    font-size: 0.95rem;
+    color: var(--client-accent);
+    font-weight: 500;
+  }
+
+  .project-clients__meta {
+    font-size: 0.85rem;
+    color: var(--muted-text);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .project-clients__card {
+      transition: none;
+    }
+    .project-clients__card:hover {
+      transform: none;
+    }
+  }
+</style>

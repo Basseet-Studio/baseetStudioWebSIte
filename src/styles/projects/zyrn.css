@@ -1,0 +1,78 @@
+/* Zyrn — Enterprise Ecommerce Platform */
+/* Color & gradient come from zyrn.json (`color: #EC4899`). The
+ * `ProjectLayout` wrapper sets `--project-color` and `--project-gradient`
+ * inline, so this stylesheet stays free of hard-coded brand colors. */
+
+.zyrn-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+.zyrn-metrics__tile {
+  padding: 24px 20px;
+  text-align: center;
+  border-radius: 16px;
+}
+
+.zyrn-metrics__val {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--project-color);
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+
+.zyrn-metrics__lbl {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--muted-text);
+  line-height: 1.4;
+}
+
+.zyrn-tools {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.zyrn-tools__item {
+  padding: 20px 22px;
+  border-radius: 14px;
+  border: 1px solid color-mix(in srgb, var(--project-color) 12%, transparent);
+  background: color-mix(in srgb, var(--project-color) 4%, transparent);
+}
+
+.zyrn-tools__item h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--heading-text);
+  margin: 0 0 8px;
+}
+
+.zyrn-tools__item p {
+  font-size: 0.92rem;
+  color: var(--muted-text);
+  margin: 0;
+  line-height: 1.55;
+}
+
+.zyrn-infra {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.zyrn-infra__chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--project-color);
+  background: color-mix(in srgb, var(--project-color) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--project-color) 18%, transparent);
+}

@@ -1,7 +1,7 @@
 {
   "hero": {
-    "title": "Digital products that **earn their keep**",
-    "text": "Baseet Studio designs, builds, and ships apps and platforms for ambitious teams. We turn rough ideas into reliable products that customers come back to.",
+    "title": "Simply the **best**",
+    "text": "We build things that address your needs—no fluff—just the simplest solution for the problem.",
     "image": "/images/home/hero/bill-sitting.png",
     "buttons": [
       { "text": "Start a project", "link": "#subscribe", "type": "primary" },

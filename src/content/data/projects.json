@@ -15,6 +15,20 @@
     "previewInteractive": "matrix"
   },
   {
+    "slug": "zyrn",
+    "name": "Zyrn",
+    "tagline": "Enterprise Ecommerce, Reimagined",
+    "color": "#EC4899",
+    "gradient": "linear-gradient(135deg, #EC4899 0%, #F9A8D4 100%)",
+    "status": "Ready to Deliver",
+    "iconClass": "fas fa-th-large",
+    "icon": null,
+    "platforms": [{ "name": "Web", "icon": "fas fa-globe" }],
+    "indexTier": "flagship",
+    "previewImage": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=2000&q=80",
+    "previewVideo": null
+  },
+  {
     "slug": "deshikitchen",
     "name": "DeshiKitchen",
     "tagline": "One platform. Every step from kitchen to doorstep.",
@@ -33,6 +47,7 @@
     "previewImage": "/images/projects/deshikitchen/1.png",
     "previewVideo": null
   },
+
   {
     "slug": "moneybox",
     "name": "MoneyBox",
