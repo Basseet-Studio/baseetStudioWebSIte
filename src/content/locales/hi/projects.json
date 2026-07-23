@@ -1,0 +1,301 @@
+[
+  {
+    "slug": "matrix",
+    "name": "Matrix",
+    "tagline": "एक प्लेटफ़ॉर्म। आपके व्यवसाय का हर हिस्सा। टूल थकान शून्य।",
+    "color": "#0891B2",
+    "gradient": "linear-gradient(135deg, #0891B2 0%, #22D3EE 100%)",
+    "status": "जल्द आ रहा है",
+    "iconClass": "fas fa-th-large",
+    "icon": null,
+    "platforms": [
+      {
+        "name": "Web",
+        "icon": "fas fa-globe"
+      }
+    ],
+    "indexTier": "anchor",
+    "previewImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=2000&q=80",
+    "previewVideo": null,
+    "previewInteractive": "matrix"
+  },
+  {
+    "slug": "zyrn",
+    "name": "Zyrn",
+    "tagline": "Enterprise Ecommerce, नए सिरे से",
+    "color": "#EC4899",
+    "gradient": "linear-gradient(135deg, #EC4899 0%, #F9A8D4 100%)",
+    "status": "डिलीवरी के लिए तैयार",
+    "iconClass": "fas fa-th-large",
+    "icon": null,
+    "platforms": [
+      {
+        "name": "Web",
+        "icon": "fas fa-globe"
+      }
+    ],
+    "indexTier": "flagship",
+    "previewImage": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=2000&q=80",
+    "previewVideo": null
+  },
+  {
+    "slug": "deshikitchen",
+    "name": "DeshiKitchen",
+    "tagline": "एक प्लेटफ़ॉर्म। रसोई से दरवाज़े तक हर कदम।",
+    "color": "#F97316",
+    "gradient": "linear-gradient(135deg, #F97316 0%, #FB923C 100%)",
+    "status": "Live",
+    "iconClass": "fas fa-utensils",
+    "icon": "/images/projects/deshikitchen-icon.png",
+    "platforms": [
+      {
+        "name": "Web",
+        "icon": "fas fa-globe"
+      },
+      {
+        "name": "Admin",
+        "icon": "fas fa-user-shield"
+      },
+      {
+        "name": "Kitchen",
+        "icon": "fas fa-hat-chef"
+      },
+      {
+        "name": "Delivery",
+        "icon": "fas fa-truck"
+      }
+    ],
+    "indexTier": "flagship",
+    "previewImage": "/images/projects/deshikitchen/1.png",
+    "previewVideo": null
+  },
+  {
+    "slug": "moneybox",
+    "name": "MoneyBox",
+    "tagline": "आपके पैसे, व्यवस्थित।",
+    "color": "#16A34A",
+    "gradient": "linear-gradient(135deg, #16A34A 0%, #4ADE80 100%)",
+    "status": "Live",
+    "iconClass": "fas fa-piggy-bank",
+    "icon": null,
+    "platforms": [
+      {
+        "name": "iOS",
+        "icon": "fab fa-apple"
+      },
+      {
+        "name": "Android",
+        "icon": "fab fa-android"
+      }
+    ],
+    "indexTier": "flagship",
+    "previewImage": "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=1600&q=80",
+    "previewVideo": null,
+    "previewInteractive": "moneybox"
+  },
+  {
+    "slug": "numu",
+    "name": "Numu",
+    "tagline": "जो आप करते हैं, ट्रैक करें। वह व्यक्ति बनें जो बनना चाहते हैं।",
+    "color": "#AF52DE",
+    "gradient": "linear-gradient(135deg, #AF52DE 0%, #BF5AF2 100%)",
+    "status": "जल्द आ रहा है",
+    "iconClass": null,
+    "icon": "/images/projects/numu-icon.png",
+    "platforms": [
+      {
+        "name": "iOS",
+        "icon": "fab fa-apple"
+      },
+      {
+        "name": "Android",
+        "icon": "fab fa-android"
+      }
+    ],
+    "indexTier": "flagship",
+    "previewImage": "/images/projects/numu/1.png",
+    "previewVideo": null,
+    "previewInteractive": "numu"
+  },
+  {
+    "slug": "photorestore-ai",
+    "name": "PhotoRestore AI",
+    "tagline": "AI से पुरानी तस्वीरें बहाल करें।",
+    "color": "#6366F1",
+    "gradient": "linear-gradient(135deg, #6366F1 0%, #818CF8 100%)",
+    "status": "Live",
+    "iconClass": "fas fa-wand-magic-sparkles",
+    "icon": null,
+    "platforms": [
+      {
+        "name": "Web",
+        "icon": "fas fa-globe"
+      }
+    ],
+    "indexTier": "flagship",
+    "previewImage": "/images/projects/photorestore-ai/1.png",
+    "previewVideo": null
+  },
+  {
+    "slug": "baseetims",
+    "name": "BaseetIMS",
+    "tagline": "छोटी दुकानों के लिए inventory management।",
+    "color": "#10B981",
+    "gradient": "linear-gradient(135deg, #059669 0%, #34D399 100%)",
+    "status": "डिलीवरी के लिए तैयार",
+    "iconClass": "fas fa-cash-register",
+    "icon": null,
+    "platforms": [
+      {
+        "name": "Web",
+        "icon": "fas fa-globe"
+      }
+    ],
+    "indexTier": "flagship",
+    "previewImage": "/images/projects/baseetims/1.png",
+    "previewVideo": null,
+    "previewInteractive": "baseetims"
+  },
+  {
+    "slug": "jemeti",
+    "name": "Jemeti",
+    "tagline": "वर्कशॉप और maintenance shops, managed।",
+    "color": "#DC2626",
+    "gradient": "linear-gradient(135deg, #DC2626 0%, #EF4444 100%)",
+    "status": "जल्द आ रहा है",
+    "iconClass": null,
+    "icon": "/images/projects/jemeti-icon.svg",
+    "platforms": [
+      {
+        "name": "Web",
+        "icon": "fas fa-globe"
+      }
+    ],
+    "indexTier": "flagship",
+    "previewImage": "/images/projects/jemeti-icon.svg",
+    "previewVideo": null
+  },
+  {
+    "slug": "geeb",
+    "name": "Geeb",
+    "tagline": "विश्वसनीय home-service pros, demand पर।",
+    "color": "#B45309",
+    "gradient": "linear-gradient(135deg, #B45309 0%, #F59E0B 100%)",
+    "status": "जल्द आ रहा है",
+    "iconClass": "fas fa-wrench",
+    "icon": null,
+    "platforms": [
+      {
+        "name": "Customer",
+        "icon": "fas fa-mobile-alt"
+      },
+      {
+        "name": "Vendor",
+        "icon": "fas fa-hard-hat"
+      },
+      {
+        "name": "Admin",
+        "icon": "fas fa-user-shield"
+      }
+    ],
+    "indexTier": "more",
+    "previewImage": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1600&q=80",
+    "previewVideo": null
+  },
+  {
+    "slug": "chopshop",
+    "name": "ChopShop",
+    "tagline": "आपki दुकान, हर जगह।",
+    "color": "#E11D48",
+    "gradient": "linear-gradient(135deg, #E11D48 0%, #FB7185 100%)",
+    "status": "डिलीवरी के लिए तैयार",
+    "iconClass": "fas fa-shopping-bag",
+    "icon": null,
+    "platforms": [
+      {
+        "name": "Web",
+        "icon": "fas fa-globe"
+      },
+      {
+        "name": "iOS",
+        "icon": "fab fa-apple"
+      },
+      {
+        "name": "Android",
+        "icon": "fab fa-android"
+      }
+    ],
+    "indexTier": "more",
+    "previewImage": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1600&q=80",
+    "previewVideo": null
+  },
+  {
+    "slug": "medical-education-app",
+    "name": "MAI",
+    "tagline": "AI-powered medical education platform।",
+    "color": "#0F766E",
+    "gradient": "linear-gradient(135deg, #0F766E 0%, #14B8A6 100%)",
+    "status": "जल्द आ रहा है",
+    "iconClass": "fas fa-stethoscope",
+    "icon": null,
+    "platforms": [
+      {
+        "name": "iOS",
+        "icon": "fab fa-apple"
+      },
+      {
+        "name": "Android",
+        "icon": "fab fa-android"
+      },
+      {
+        "name": "Web",
+        "icon": "fas fa-globe"
+      },
+      {
+        "name": "Desktop",
+        "icon": "fas fa-desktop"
+      }
+    ],
+    "indexTier": "more",
+    "previewImage": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1600&q=80",
+    "previewVideo": null
+  },
+  {
+    "slug": "medev",
+    "name": "Medev",
+    "tagline": "स्वास्थ्य सेवा। सरल।",
+    "color": "#0A6E74",
+    "gradient": "linear-gradient(135deg, #0A6E74 0%, #14B8A6 100%)",
+    "status": "डिलीवरी के लिए तैयार",
+    "iconClass": "fas fa-hospital",
+    "icon": null,
+    "platforms": [
+      {
+        "name": "Web",
+        "icon": "fas fa-globe"
+      },
+      {
+        "name": "Docker",
+        "icon": "fab fa-docker"
+      }
+    ],
+    "indexHidden": true
+  },
+  {
+    "slug": "nss-virtual-education-fair",
+    "name": "NSS Virtual Education Fair",
+    "tagline": "Virtual Education Fair Platform",
+    "color": "#0EA5E9",
+    "gradient": "linear-gradient(135deg, #0EA5E9 0%, #38BDF8 100%)",
+    "status": "पूर्ण",
+    "iconClass": "fas fa-graduation-cap",
+    "icon": null,
+    "platforms": [
+      {
+        "name": "Web",
+        "icon": "fas fa-globe"
+      }
+    ],
+    "indexHidden": true
+  }
+]

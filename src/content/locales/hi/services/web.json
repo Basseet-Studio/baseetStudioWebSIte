@@ -1,0 +1,176 @@
+{
+  "id": "web",
+  "slug": "web",
+  "title": "वेब डेवलपमेंट",
+  "tagline": "वेबसाइटें जो आपकी तरह मेहनत करती हैं",
+  "color": "#496BC1",
+  "gradient": "linear-gradient(135deg, #496BC1 0%, #6B8AD9 100%)",
+  "icon": "fas fa-globe",
+  "shortDescription": "आधुनिक, responsive websites और web applications",
+  "hero": {
+    "title": "वेबसाइटें जो आपकी तरह मेहनत करती हैं",
+    "subtitle": "High-converting marketing sites से complex web apps तक — Astro, Next.js, TypeScript।",
+    "cta_primary": "अपना project शुरू करें",
+    "cta_primary_link": "/contact/",
+    "cta_secondary": "Process देखें",
+    "cta_secondary_link": "#process"
+  },
+  "metrics": [
+    {
+      "value": "<1s",
+      "label": "औसत load time"
+    },
+    {
+      "value": "100",
+      "label": "Lighthouse लक्ष्य"
+    },
+    {
+      "value": "12+",
+      "label": "Shipped stacks"
+    }
+  ],
+  "subServices": [
+    {
+      "id": "corporate-websites",
+      "name": "Corporate Websites",
+      "icon": "fas fa-building",
+      "desc": "Professional websites that represent your brand",
+      "longDesc": "Your corporate site is often the first impression a prospect has of your business. We design and build fast, on-brand marketing sites that tell your story, answer the right questions, and make the next step obvious — on every device.",
+      "bullets": [
+        "Multi-page IA tailored to your buyer journey",
+        "Headless CMS so your team can ship copy in minutes, not days",
+        "Multilingual-ready (English, Arabic, and more)",
+        "On-page SEO foundation baked in from day one"
+      ],
+      "imageLabel": "Corporate website hero mockup"
+    },
+    {
+      "id": "ecommerce",
+      "name": "E-commerce Platforms",
+      "icon": "fas fa-shopping-cart",
+      "desc": "Online stores with secure payment integration",
+      "longDesc": "From boutique Shopify themes to headless commerce on Shopify Hydrogen, Medusa, or custom Stripe, we build stores that turn browsers into buyers. Performance, checkout flow, and merchandising are tuned in parallel — not as an afterthought.",
+      "bullets": [
+        "Shopify, Medusa, Stripe, and headless commerce",
+        "Subscriptions, digital wallets, and BNPL ready",
+        "Conversion-rate-tuned product and cart pages",
+        "Inventory, tax, and shipping integrated end-to-end"
+      ],
+      "imageLabel": "E-commerce product page mockup"
+    },
+    {
+      "id": "web-apps",
+      "name": "Web Applications",
+      "icon": "fas fa-window-restore",
+      "desc": "Custom web apps for complex business needs",
+      "longDesc": "When spreadsheets and SaaS tools stop scaling, we build the web app that fits your operation exactly. Internal tools, customer portals, dashboards — TypeScript end-to-end, real auth, real databases, and code your team can maintain.",
+      "bullets": [
+        "React, Next.js, and Astro on the front end",
+        "Postgres, Prisma, and tRPC for type-safe data",
+        "Auth, roles, and audit logs from day one",
+        "Observability and feature flags built in"
+      ],
+      "imageLabel": "Web app dashboard mockup"
+    },
+    {
+      "id": "landing-pages",
+      "name": "Landing Pages",
+      "icon": "fas fa-bullseye",
+      "desc": "High-converting pages for marketing campaigns",
+      "longDesc": "One page, one goal, zero distractions. We design and ship campaign landing pages that load instantly, copy that matches the ad, and analytics that tell you what is actually working — A/B tested, instrumented, and ready to scale.",
+      "bullets": [
+        "A/B testable variants out of the box",
+        "Server-rendered for sub-second TTFB",
+        "Form, calendar, and CRM integrations",
+        "Heatmaps and event tracking wired up"
+      ],
+      "imageLabel": "Landing page mockup with CTA"
+    }
+  ],
+  "process": [
+    {
+      "number": "01",
+      "title": "Discover",
+      "desc": "Workshops to define goals, audiences, KPIs, and constraints",
+      "icon": "fas fa-lightbulb"
+    },
+    {
+      "number": "02",
+      "title": "Architect",
+      "desc": "Information architecture, stack pick, and a milestone plan",
+      "icon": "fas fa-sitemap"
+    },
+    {
+      "number": "03",
+      "title": "Design",
+      "desc": "Wireframes, then a high-fidelity visual system in Figma",
+      "icon": "fas fa-pencil-ruler"
+    },
+    {
+      "number": "04",
+      "title": "Build",
+      "desc": "Component-by-component in a public preview environment",
+      "icon": "fas fa-code"
+    },
+    {
+      "number": "05",
+      "title": "QA & Launch",
+      "desc": "Cross-browser, accessibility, performance, and a clean handoff",
+      "icon": "fas fa-rocket"
+    }
+  ],
+  "deliverables": [
+    {
+      "title": "Production-ready site",
+      "description": "Deployed on Vercel, Netlify, Cloudflare, or your own infrastructure — with a clear runbook.",
+      "icon": "fas fa-server"
+    },
+    {
+      "title": "CMS access",
+      "description": "Your team can edit pages, posts, and products without a developer in the loop.",
+      "icon": "fas fa-pen"
+    },
+    {
+      "title": "Analytics & search console",
+      "description": "GA4, Search Console, and any paid pixels wired up and verified end-to-end.",
+      "icon": "fas fa-chart-line"
+    },
+    {
+      "title": "Source code & documentation",
+      "description": "Clean repo, a real README, and Loom walkthroughs so future-you knows where everything is.",
+      "icon": "fas fa-book"
+    }
+  ],
+  "tech": [
+    "Astro",
+    "Next.js",
+    "TypeScript",
+    "Tailwind CSS",
+    "React",
+    "Node.js",
+    "Postgres",
+    "Shopify",
+    "Stripe",
+    "Cloudflare",
+    "Vercel",
+    "Sanity"
+  ],
+  "faq": [
+    {
+      "question": "How long does a typical marketing website take?",
+      "answer": "Most marketing sites ship in 4–6 weeks from kickoff to launch. Larger sites with custom CMS, multilingual, or heavy integrations usually run 8–12 weeks. We will give you a fixed plan with milestones after the discovery workshop."
+    },
+    {
+      "question": "Will I be able to update the site myself?",
+      "answer": "Yes. Every site we ship is wired to a headless CMS (Sanity, Contentful, or your preferred tool). Your team gets a short Loom walkthrough and a written guide, and we stay on call for the first month."
+    },
+    {
+      "question": "Do you only build with Astro and Next.js?",
+      "answer": "We specialize in modern TypeScript stacks — Astro, Next.js, SvelteKit, and React + Vite. If you have an existing site in a different stack that needs new features, we are happy to extend it instead of forcing a rewrite."
+    },
+    {
+      "question": "Can you take over an existing project?",
+      "answer": "Absolutely. We do technical audits before we touch anything, then propose a phased plan. Many of our best engagements start as a rescue from another agency."
+    }
+  ]
+}

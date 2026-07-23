@@ -1,8 +1,11 @@
 ---
 import Icon from '../icons/Icon.astro'
-import footerData from '../../content/data/footer.json'
 import linksData from '../../content/data/links.json'
-import servicesData from '../../content/data/services.json'
+import { getFooterData } from '../../lib/home'
+import { getServicesIndex } from '../../lib/services'
+import { t } from '../../lib/i18n'
+import { localizedPath } from '../../lib/locale'
+import type { Lang } from '../../types'
 
 const socialPlatforms = [
   { key: 'github', icon: 'github-logo' },
@@ -13,90 +16,76 @@ const socialPlatforms = [
 ]
 
 interface Props {
-  /**
-   * Compact mode strips the footer down to just Projects + Services,
-   * laid out horizontally in a single row. Used on the contact page
-   * where the contact info + social already appear in the form above.
-   */
   compact?: boolean
+  lang?: Lang
 }
 
-const { compact = false } = Astro.props
+const { compact = false, lang = 'en' } = Astro.props
+const footerData = getFooterData(lang)
+const serviceCategories = getServicesIndex(lang)
+const homeHref = localizedPath(lang, '/')
+const projectsHref = localizedPath(lang, '/projects/')
+const contactHref = localizedPath(lang, '/contact/')
 ---
 
 <footer class={`footer ${compact ? 'footer--compact' : ''}`}>
   <div class="footer__container">
 
     {compact ? (
-      /* === Compact mode (used on the contact page) ===
-         Only Projects + Services, laid out horizontally in a single
-         row, no brand block, no contact column, no social icons. */
-      <nav class="footer__compact" aria-label="Site sections">
+      <nav class="footer__compact" aria-label={t('footer_site_sections', lang)}>
         <div class="footer__compact-group">
-          <h4 class="footer__heading">Projects</h4>
+          <h4 class="footer__heading">{t('footer_projects', lang)}</h4>
           <ul class="footer__compact-list">
-            {footerData.links
-              .filter(link => link.label === 'Projects')
-              .map(link => (
-                <li><a href={link.url}>{link.label}</a></li>
-              ))}
+            <li><a href={projectsHref}>{t('footer_projects', lang)}</a></li>
           </ul>
         </div>
         <div class="footer__compact-group">
-          <h4 class="footer__heading">Services</h4>
+          <h4 class="footer__heading">{t('footer_services', lang)}</h4>
           <ul class="footer__compact-list">
-            {servicesData.categories.map(cat => (
+            {serviceCategories.map(cat => (
               <li>
-                <a href={`/services/#${cat.id}`}>{cat.title}</a>
+                <a href={`${localizedPath(lang, '/services/')}#${cat.id}`}>{cat.title}</a>
               </li>
             ))}
           </ul>
         </div>
       </nav>
     ) : (
-      /* === Default mode ===
-         One horizontal row. Brand on the left (tight), Services +
-         Projects + contact shortcut in the middle, social on the right.
-         No multi-column "grid of empty boxes" — uses the width well. */
       <div class="footer__row">
         <div class="footer__brand">
-          <a href="/" class="footer__logo">
+          <a href={homeHref} class="footer__logo">
             <svg class="footer__logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" aria-hidden="true"><rect width="256" height="256" fill="none"/><path d="M128,120s90-96,0-96S128,120,128,120Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/><path d="M128,120s-96-90-96,0S128,120,128,120Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/><path d="M128,120s-90,96,0,96S128,120,128,120Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/><path d="M128,120s96,90,96,0S128,120,128,120Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/><path d="M128,120s64,56,80,120" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/></svg>
             <span class="footer__logo-text">
               <strong>Baseet Studio</strong>
-              <em>Digital product studio · Abu Dhabi</em>
+              <em>{t('footer_brand_tagline', lang)}</em>
             </span>
           </a>
         </div>
 
         <nav class="footer__nav" aria-label="Footer">
           <div class="footer__nav-group">
-            <h4 class="footer__heading">Services</h4>
+            <h4 class="footer__heading">{t('footer_services', lang)}</h4>
             <ul class="footer__links footer__links--inline">
-              {servicesData.categories.map(cat => (
+              {serviceCategories.map(cat => (
                 <li>
-                  <a href={`/services/#${cat.id}`}>{cat.title}</a>
+                  <a href={`${localizedPath(lang, '/services/')}#${cat.id}`}>{cat.title}</a>
                 </li>
               ))}
             </ul>
           </div>
 
           <div class="footer__nav-group">
-            <h4 class="footer__heading">Projects</h4>
+            <h4 class="footer__heading">{t('footer_projects', lang)}</h4>
             <ul class="footer__links footer__links--inline">
-              {footerData.links
-                .filter(link => link.label === 'Projects')
-                .map(link => (
-                  <li><a href={link.url}>{link.label}</a></li>
-                ))}
+              <li><a href={projectsHref}>{t('footer_projects', lang)}</a></li>
             </ul>
           </div>
 
           <div class="footer__nav-group">
-            <h4 class="footer__heading">Contact</h4>
+            <h4 class="footer__heading">{t('nav_contact', lang)}</h4>
             <ul class="footer__links footer__links--inline">
               <li>
-                <a href="/contact/" class="footer__contact-link">Write to us</a>
+                <a href={contactHref} class="footer__contact-link">{t('footer_write_us', lang)}</a>
               </li>
               <li>
                 <a href={linksData.contact.email_link} class="footer__contact-link">Email</a>
@@ -126,14 +115,12 @@ const { compact = false } = Astro.props
 
   </div>
 
-  <!-- === Bottom Bar === -->
   <div class="footer__bottom">
     <p class="footer__copyright">{footerData.copyright}</p>
-    <p id="visitor-info" data-visiting="Visiting from" data-device="Device" data-unknown="Unknown"></p>
+    <p id="visitor-info" data-visiting={t('footer_visiting', lang).split('{')[0].trim() || 'Visiting from'} data-device="Device" data-unknown="Unknown"></p>
   </div>
 </footer>
 
-<!-- === Back to Top === -->
 <button id="back-to-top" class="footer-back-to-top" aria-label="Back to top" type="button">
   <Icon name="caret-up" size={20} color="currentColor" />
 </button>

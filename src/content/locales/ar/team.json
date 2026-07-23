@@ -1,0 +1,50 @@
+{
+  "title": "تعرّف على فريقنا الخبير",
+  "subtitle": "المطورون الموهوبون وراء نجاحك الرقمي",
+  "members": [
+    {
+      "name": "Mohamed Abdallah",
+      "role": "المؤسس / قائد المنتج / مدير المشروع / مهندس أول",
+      "bio": "مؤسس وقائد منتج يجمع خبرة هندسية عميقة مع استراتيجية المنتج لصياغة منتجات برمجية عالية الجودة.",
+      "image": "/images/home/team/mohamed-abdallah.jpg",
+      "social": {
+        "github": "https://github.com/mohamed-a-elobaid",
+        "linkedin": "https://www.linkedin.com/in/mohamed-abdalla-elobaid-29937b227/",
+        "twitter": "#"
+      }
+    },
+    {
+      "name": "Asadur Rahman",
+      "role": "قائد تقني / مهندس أنظمة",
+      "bio": "قائد تقني ومهندس أنظمة يركز على تصميم أنظمة موزعة قابلة للتوسع وبنية سحابية قوية.",
+      "image": "/images/home/team/asadur-rahman.png",
+      "social": {
+        "github": "https://github.com/ViX3L",
+        "linkedin": "https://www.linkedin.com/in/vix3l/",
+        "twitter": "#"
+      }
+    },
+    {
+      "name": "Ariyan Rehman",
+      "role": "مهندس تجربة المنتج والتوثيق",
+      "bio": "يضمن تميز تجربة المنتج والتوثيق بالتركيز على UX ووثائق المطورين وسير عمل المحتوى.",
+      "image": "/images/home/team/ariyan-rehman.jpg",
+      "social": {
+        "github": "https://github.com/ariyangd",
+        "linkedin": "https://www.linkedin.com/in/ariyangd/",
+        "twitter": "https://x.com/ariyangd"
+      }
+    },
+    {
+      "name": "Dibakar Sutra Dhar",
+      "role": "مهندس خلفية ومهندس بيانات",
+      "bio": "مهندس خلفية متخصص في الأنظمة الموزعة وحلول خوادم قابلة للتوسع لتطبيقات الويب والسحابة.",
+      "image": "/images/home/team/dibakar-sutradhar.JPG",
+      "social": {
+        "github": "https://github.com/dibakarsutradhar",
+        "linkedin": "https://www.linkedin.com/in/dibakarsutradhar/",
+        "twitter": "https://x.com/iamdibakardipu"
+      }
+    }
+  ]
+}

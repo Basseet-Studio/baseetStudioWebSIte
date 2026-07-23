@@ -1,0 +1,50 @@
+{
+  "title": "हमारी विशेषज्ञ टीम से मिलें",
+  "subtitle": "आपकी डिजिटल सफलता के पीछे प्रतिभाशाली डेवलपर",
+  "members": [
+    {
+      "name": "Mohamed Abdallah",
+      "role": "Founder / Product Lead / PM / Senior Engineer",
+      "bio": "संस्थापक और product lead जो गहरी engineering expertise को product strategy के साथ मिलाकर उच्च गुणवत्ता वाले software products बनाते हैं।",
+      "image": "/images/home/team/mohamed-abdallah.jpg",
+      "social": {
+        "github": "https://github.com/mohamed-a-elobaid",
+        "linkedin": "https://www.linkedin.com/in/mohamed-abdalla-elobaid-29937b227/",
+        "twitter": "#"
+      }
+    },
+    {
+      "name": "Asadur Rahman",
+      "role": "Tech Lead / System Architect",
+      "bio": "Tech lead और systems architect जो scalable distributed systems और robust cloud infrastructure डिज़ाइन पर केंद्रित हैं।",
+      "image": "/images/home/team/asadur-rahman.png",
+      "social": {
+        "github": "https://github.com/ViX3L",
+        "linkedin": "https://www.linkedin.com/in/vix3l/",
+        "twitter": "#"
+      }
+    },
+    {
+      "name": "Ariyan Rehman",
+      "role": "Product Experience & Docs Engineer",
+      "bio": "UX, developer docs, और content-driven workflows पर ध्यान देकर product experience और documentation excellence सुनिश्चित करते हैं।",
+      "image": "/images/home/team/ariyan-rehman.jpg",
+      "social": {
+        "github": "https://github.com/ariyangd",
+        "linkedin": "https://www.linkedin.com/in/ariyangd/",
+        "twitter": "https://x.com/ariyangd"
+      }
+    },
+    {
+      "name": "Dibakar Sutra Dhar",
+      "role": "Backend Engineer & Data Engineer",
+      "bio": "Backend engineer जो distributed systems और web & cloud applications के लिए scalable server solutions में विशेषज्ञ हैं।",
+      "image": "/images/home/team/dibakar-sutradhar.JPG",
+      "social": {
+        "github": "https://github.com/dibakarsutradhar",
+        "linkedin": "https://www.linkedin.com/in/dibakarsutradhar/",
+        "twitter": "https://x.com/iamdibakardipu"
+      }
+    }
+  ]
+}

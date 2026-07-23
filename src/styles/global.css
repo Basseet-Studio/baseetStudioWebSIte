@@ -88,6 +88,8 @@
     --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
     --font-handwriting: "Caveat", "Kalam", cursive;
     --font-arabic: "Amiri Quran", "Amiri", "Noto Naskh Arabic", serif;
+    --font-urdu: "Noto Nastaliq Urdu", "Amiri Quran", "Noto Naskh Arabic", serif;
+    --font-hindi: "Noto Sans Devanagari", "Rambla", system-ui, sans-serif;
 }
 
 [data-theme="night"] {
@@ -252,9 +254,19 @@ h4 {
    the type stack to Amiri Quran. Until then, nothing in the site sets those
    attributes on the root <html>, so this block is dormant. */
 [lang="ar"] body,
+[lang="ur"] body,
 [dir="rtl"] body {
     font-family: var(--font-arabic);
     line-height: 1.8;
+}
+
+[lang="ur"] body {
+    font-family: var(--font-urdu);
+}
+
+[lang="hi"] body {
+    font-family: var(--font-hindi);
+    line-height: 1.7;
 }
 
 [lang="ar"] h1,
@@ -263,6 +275,12 @@ h4 {
 [lang="ar"] h4,
 [lang="ar"] h5,
 [lang="ar"] h6,
+[lang="ur"] h1,
+[lang="ur"] h2,
+[lang="ur"] h3,
+[lang="ur"] h4,
+[lang="ur"] h5,
+[lang="ur"] h6,
 [dir="rtl"] h1,
 [dir="rtl"] h2,
 [dir="rtl"] h3,
@@ -271,6 +289,26 @@ h4 {
 [dir="rtl"] h6 {
     font-family: var(--font-arabic);
     font-weight: 400;
+    letter-spacing: 0;
+}
+
+[lang="ur"] h1,
+[lang="ur"] h2,
+[lang="ur"] h3,
+[lang="ur"] h4,
+[lang="ur"] h5,
+[lang="ur"] h6 {
+    font-family: var(--font-urdu);
+}
+
+[lang="hi"] h1,
+[lang="hi"] h2,
+[lang="hi"] h3,
+[lang="hi"] h4,
+[lang="hi"] h5,
+[lang="hi"] h6 {
+    font-family: var(--font-hindi);
+    font-weight: 600;
     letter-spacing: 0;
 }
 

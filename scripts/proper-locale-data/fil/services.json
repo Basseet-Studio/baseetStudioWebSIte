@@ -1,0 +1,121 @@
+{
+  "title": "Aming Mga Serbisyo",
+  "subtitle": "Komprehensibong Digital Solutions",
+  "description": "Hindi lang websites ang binubuo namin. Gumagawa kami ng kumpletong digital ecosystems na akma sa iyong negosyo — tuklasin bawat serbisyo upang makita kung paano kami magtrabaho.",
+  "categories": [
+    {
+      "id": "web",
+      "slug": "web",
+      "icon": "fas fa-globe",
+      "color": "#496BC1",
+      "gradient": "linear-gradient(135deg, #496BC1 0%, #6B8AD9 100%)",
+      "title": "Web Development",
+      "shortDescription": "Modern, responsive websites at web applications — built sa stacks na talagang mina-maintain namin.",
+      "tagline": "Websites na kasing sipag mo"
+    },
+    {
+      "id": "mobile",
+      "slug": "mobile",
+      "icon": "fas fa-mobile-alt",
+      "color": "#FBCD37",
+      "gradient": "linear-gradient(135deg, #F59E0B 0%, #FBCD37 100%)",
+      "title": "Mobile Development",
+      "shortDescription": "Native at cross-platform apps na idinisenyo para sa maliit na screen muna.",
+      "tagline": "Apps na pinapanatili sa home screen"
+    },
+    {
+      "id": "internal",
+      "slug": "internal",
+      "icon": "fas fa-tools",
+      "color": "#0891B2",
+      "gradient": "linear-gradient(135deg, #0891B2 0%, #22D3EE 100%)",
+      "title": "Internal Tools",
+      "shortDescription": "Dashboards, CRMs, at back-office tools na binubuksan ng team mo nang walang reklamo.",
+      "tagline": "Operations software na talagang ginagamit"
+    },
+    {
+      "id": "seo",
+      "slug": "seo",
+      "icon": "fas fa-search",
+      "color": "#16A34A",
+      "gradient": "linear-gradient(135deg, #16A34A 0%, #4ADE80 100%)",
+      "title": "SEO at Marketing",
+      "shortDescription": "Technical SEO, content, at local search — sinusukat sa pipeline.",
+      "tagline": "Maging brand na talagang makikita ng searchers"
+    },
+    {
+      "id": "design",
+      "slug": "design",
+      "icon": "fas fa-paint-brush",
+      "color": "#AF52DE",
+      "gradient": "linear-gradient(135deg, #AF52DE 0%, #D8A0F5 100%)",
+      "title": "UI/UX Design",
+      "shortDescription": "Interfaces na hubog ng tunay na user sessions — maganda dahil malinaw.",
+      "tagline": "Design na karapat-dapat sa second tap"
+    },
+    {
+      "id": "cloud",
+      "slug": "cloud",
+      "icon": "fas fa-cloud",
+      "color": "#0EA5E9",
+      "gradient": "linear-gradient(135deg, #0369A1 0%, #38BDF8 100%)",
+      "title": "Cloud at DevOps",
+      "shortDescription": "Scalable infrastructure, CI/CD, at monitoring.",
+      "tagline": "Mag-ship nang mabilis, matulog nang payapa"
+    }
+  ],
+  "process": {
+    "title": "Anim na hakbang, hindi checklist.",
+    "subtitle": "Sundan ang parehong paglalakbay na ginagawa namin sa bawat partner — mula sa unang usapan hanggang live product at pag-aalaga nito.",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Discovery",
+        "lead": "Nagsisimula kami sa pakikinig.",
+        "desc": "Workshops, stakeholder interviews, at numbers — lumalabas na may shared understanding.",
+        "icon": "fas fa-lightbulb"
+      },
+      {
+        "number": "02",
+        "title": "Planning",
+        "lead": "Roadmap na kayang ipaglaban mo.",
+        "desc": "Scope, milestones, at technical spec sa plain English.",
+        "icon": "fas fa-map"
+      },
+      {
+        "number": "03",
+        "title": "Design",
+        "lead": "Pixels na may pananaw.",
+        "desc": "Mula low-fi flows hanggang polished interface system.",
+        "icon": "fas fa-pencil-alt"
+      },
+      {
+        "number": "04",
+        "title": "Development",
+        "lead": "Code na puwede mong i-hand off.",
+        "desc": "Typed, tested, reviewed.",
+        "icon": "fas fa-code"
+      },
+      {
+        "number": "05",
+        "title": "Testing",
+        "lead": "Sirain bago ang users.",
+        "desc": "Automated suites, real-device passes, accessibility audits.",
+        "icon": "fas fa-vial"
+      },
+      {
+        "number": "06",
+        "title": "Launch",
+        "lead": "Live — at inaalagaan.",
+        "desc": "Zero-downtime deploys, monitoring dashboards.",
+        "icon": "fas fa-rocket"
+      }
+    ]
+  },
+  "cta": {
+    "title": "Hindi sigurado kung ano ang kailangan mo?",
+    "subtitle": "Mag-usap tayo",
+    "description": "Bawat negosyo ay natatangi. Tutulungan ka naming tukuyin ang tamang solusyon para sa iyong pangangailangan at budget.",
+    "button": "Kumuha ng libreng consultation"
+  }
+}

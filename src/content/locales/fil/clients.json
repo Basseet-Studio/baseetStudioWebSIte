@@ -1,0 +1,185 @@
+{
+  "title": "Aming Mga Kliyente",
+  "subtitle": "Mga Success Story",
+  "description": "Tingnan kung paano nakakamit ng mga negosyong katulad mo ang resulta gamit ang aming mga solusyon.",
+  "clients": [
+    {
+      "id": "portia-grid",
+      "name": "Portia Grid",
+      "layoutTemplate": "timeline",
+      "logo": "",
+      "industry": "Logistics at Data Intelligence",
+      "serviceType": "Internal Tool",
+      "color": "#2563EB",
+      "tagline": "Matalinong Pamamahala ng Fleet at Data",
+      "shortDescription": "Isang komprehensibong web platform para pamahalaan ang mga delivery truck fleet at kanilang maintenance schedule.",
+      "fullDescription": "Ang Portia Grid ay isang makapangyarihang internal tool na binuo namin upang tulungan ang mga logistics company na pamahalaan ang kanilang buong fleet ng delivery truck. Mula sa pagsubaybay sa lokasyon ng sasakyan hanggang sa pag-schedule ng maintenance, lahat ay pinamamahalaan sa isang sentralisadong dashboard.",
+      "challenge": "Pinamamahalaan ng kliyente ang 50+ delivery truck gamit ang spreadsheets at tawag sa telepono. Madalas na-mi-miss ang maintenance, na humahantong sa breakdowns at delays. Wala silang visibility sa real-time na status ng kanilang fleet.",
+      "solution": "Bumuo kami ng custom web platform na nagbibigay ng real-time GPS tracking, automated maintenance scheduling batay sa mileage at oras, pamamahala ng driver assignment, at komprehensibong reporting.",
+      "results": [
+        { "metric": "30%", "label": "Pagbaba sa breakdowns" },
+        { "metric": "2hrs", "label": "Natipid araw-araw sa admin" },
+        { "metric": "100%", "label": "Buong fleet visibility" }
+      ],
+      "features": [
+        "Real-time GPS fleet tracking",
+        "Automated maintenance alerts",
+        "Driver assignment at scheduling",
+        "Pagsubaybay sa pagkonsumo ng gasolina",
+        "Mga log ng maintenance history",
+        "Custom reporting dashboard"
+      ],
+      "technologies": [
+        "React",
+        "Node.js",
+        "PostgreSQL",
+        "Google Maps API"
+      ],
+      "testimonial": {
+        "quote": "Karamihan sa mga dev ay binubuo lang ang sinasabi mo; ang team na ito ay talagang nag-iisip ng logic kasama mo. Ang pagbuo ng Portia Grid ay nangailangan ng maraming tactical intelligence at kumplikadong data handling, at napakahusay nina Mohamed, Asad, at Ariyan. May magandang energy sila, alam nila ang kanilang tech nang husto, at inakay nila ako sa buong proseso. Kung gusto mo ng team na may ownership sa resulta, ito na iyon.",
+        "author": "Hassan",
+        "role": "CEO at Founder ng Portia Grid"
+      },
+      "steps": [],
+      "screenshots": []
+    },
+    {
+      "id": "iyat",
+      "name": "Iyat",
+      "layoutTemplate": "showcase",
+      "logo": "",
+      "industry": "Digital Marketing at Creative",
+      "serviceType": "Website",
+      "color": "#8B5CF6",
+      "tagline": "Portfolio ng Digital Agency",
+      "shortDescription": "Isang modern at visually rich na website para sa Iyat, isang digital agency na nagpapakita ng kanilang creative portfolio at mga serbisyo.",
+      "fullDescription": "Nagdisenyo at bumuo kami ng premium portfolio website para sa Iyat, isang digital agency na espesyalista sa creative marketing solutions.",
+      "challenge": "Kailangan ng Iyat ng propesyonal na online presence na magpapakita ng kanilang creative work at makakaakit ng bagong kliyente.",
+      "solution": "Bumuo kami ng sleek at modern na portfolio website na may smooth animations, responsive design, at engaging user experience.",
+      "results": [
+        { "metric": "100%", "label": "Custom design" },
+        { "metric": "< 2s", "label": "Load time" }
+      ],
+      "features": [
+        "Custom portfolio design",
+        "Responsive layout",
+        "Smooth animations",
+        "Modern UI/UX"
+      ],
+      "technologies": [
+        "HTML/CSS",
+        "JavaScript"
+      ],
+      "link": "https://iyat-site.mohameda-elobaid.workers.dev/portfolio",
+      "steps": [],
+      "screenshots": []
+    },
+    {
+      "id": "veeramangalam-juma-masjid",
+      "name": "Veeramangalam Juma Masjid Finance",
+      "layoutTemplate": "stack",
+      "logo": "",
+      "industry": "Community Finance",
+      "serviceType": "Jamia System",
+      "color": "#059669",
+      "tagline": "Pananalapi ng masjid — cloud at offline sa isa",
+      "shortDescription": "Pinapalitan ng Jamia System ang mga Excel sheet at paper trail para sa gastusin ng masjid at lokal na kontribusyon.",
+      "fullDescription": "Binuo namin ang Jamia System para sa Veeramangalam Juma Masjid Finance — isang two-in-one platform sa Firebase na may buong offline support. Pinapalitan nito ang mga Excel sheet at handwritten ledger na ginagamit ng komunidad para subaybayan ang gastusin at lokal na kontribusyon.",
+      "challenge": "Sinusubaybayan ng finance team ng masjid ang mga kontribusyon ng miyembro at operational expenses sa spreadsheets at paper records. Mabagal ang reconciliation, may mga error, at walang gumagana kapag nawalan ng internet.",
+      "solution": "Binuo namin ang Jamia System — isang Firebase-backed finance platform na may offline-first sync. Ang mga kontribusyon, gastusin, at jamia ledger ay nasa isang lugar, connected man o hindi.",
+      "results": [
+        { "metric": "100%", "label": "Paper-free tracking" },
+        { "metric": "2-in-1", "label": "Cloud + offline" }
+      ],
+      "features": [
+        "Pagsubaybay sa gastusin",
+        "Ledger ng lokal na kontribusyon",
+        "Offline-first sync",
+        "Firebase backend"
+      ],
+      "technologies": [
+        "Flutter",
+        "Firebase",
+        "Firestore"
+      ],
+      "steps": [],
+      "screenshots": []
+    },
+    {
+      "id": "malaysian-business-websites",
+      "name": "Malaysian Business Websites",
+      "layoutTemplate": "showcase",
+      "industry": "Corporate Web",
+      "serviceType": "Website",
+      "color": "#F59E0B",
+      "tagline": "Mga Solusyon sa Corporate Web",
+      "shortDescription": "",
+      "technologies": [
+        "WordPress",
+        "Laravel",
+        "Vue.js",
+        "Tailwind CSS",
+        "MySQL",
+        "AWS Malaysia"
+      ],
+      "steps": [],
+      "screenshots": [],
+      "galleryType": "web"
+    },
+    {
+      "id": "bd-railway-automated-timetable",
+      "name": "BD Railway Automated Timetable",
+      "layoutTemplate": "timeline",
+      "industry": "Railway Operations",
+      "serviceType": "Internal Tool",
+      "color": "#16A34A",
+      "tagline": "Sistema ng Railway Scheduling",
+      "shortDescription": "",
+      "technologies": [
+        "Python",
+        "Constraint Programming",
+        "OR-Tools",
+        "PostgreSQL",
+        "FastAPI",
+        "React Admin"
+      ],
+      "steps": [],
+      "screenshots": [],
+      "galleryType": "web"
+    },
+    {
+      "id": "little-hands-lab",
+      "name": "Little Hands Lab",
+      "layoutTemplate": "showcase",
+      "industry": "Mga Laruan at Retail",
+      "serviceType": "Ecommerce Store",
+      "color": "#EC4899",
+      "tagline": "Online toy store, powered by Zyrn",
+      "shortDescription": "Isang online toy store na binuo sa Zyrn — custom catalog, checkout, at storefront para sa Little Hands Lab.",
+      "fullDescription": "Pinapatakbo ng Little Hands Lab ang kanilang toys ecommerce storefront sa Zyrn, gamit ang custom Laravel store management ng platform para sa catalog, inventory, at customer experience.",
+      "challenge": "Kailangan ng ganap na custom online toy store nang hindi pinagsasama ang maraming ecommerce tools.",
+      "solution": "Inilunsad sa Zyrn na may tailored storefront, product catalog, at operations dashboard.",
+      "technologies": ["Zyrn", "Laravel", "PHP", "PWA"],
+      "steps": [],
+      "screenshots": [],
+      "galleryType": "web"
+    },
+    {
+      "id": "faruk-technology-store",
+      "name": "Faruk Technology Store",
+      "layoutTemplate": "showcase",
+      "industry": "Retail at Telecom",
+      "serviceType": "Inventory Management",
+      "color": "#10B981",
+      "tagline": "Mga operasyon ng tindahan sa BaseetIMS",
+      "shortDescription": "Gumagamit ang Faruk Technology Store ng BaseetIMS para sa inventory, POS, at araw-araw na operasyon ng tindahan.",
+      "fullDescription": "Pinapatakbo ng Faruk Technology Store ang stock, sales, at multi-location clarity sa pamamagitan ng BaseetIMS — inventory management na ginawa para sa maliliit na tindahan.",
+      "challenge": "Kailangan ng malinaw na inventory at sales tracking nang walang enterprise complexity.",
+      "solution": "Na-deploy ang BaseetIMS para sa stock, POS, at araw-araw na shop dashboards.",
+      "technologies": ["BaseetIMS", "Web Dashboard"],
+      "steps": [],
+      "screenshots": [],
+      "galleryType": "web"
+    }
+  ]
+}

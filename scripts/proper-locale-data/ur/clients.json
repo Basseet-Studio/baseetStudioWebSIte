@@ -1,0 +1,93 @@
+{
+  "title": "ہمارے کلائنٹس",
+  "subtitle": "کامیابی کی کہانیاں",
+  "description": "دیکھیں آپ جیسے businesses ہمارے solutions سے کیا results حاصل کر رہے ہیں۔",
+  "clients": [
+    {
+      "id": "portia-grid",
+      "name": "Portia Grid",
+      "layoutTemplate": "timeline",
+      "logo": "",
+      "industry": "Logistics & Data Intelligence",
+      "serviceType": "Internal Tool",
+      "color": "#2563EB",
+      "tagline": "Intelligent Fleet & Data Management",
+      "shortDescription": "Delivery truck fleets اور maintenance schedules manage کرنے کے لیے comprehensive web platform۔",
+      "fullDescription": "Portia Grid ایک powerful internal tool ہے جو logistics companies کو پورا delivery fleet manage کرنے میں مدد کرتا ہے۔",
+      "challenge": "Client 50+ trucks spreadsheets اور phone calls سے manage کر رہا تھا۔ Maintenance miss ہوتی، breakdowns اور delays ہوتے۔",
+      "solution": "ہم نے custom web platform بنایا — real-time GPS tracking، automated maintenance scheduling، driver management، comprehensive reporting۔",
+      "results": [
+        {
+          "metric": "30%",
+          "label": "breakdowns میں کمی"
+        },
+        {
+          "metric": "2hrs",
+          "label": "روزانہ admin میں بچت"
+        },
+        {
+          "metric": "100%",
+          "label": "مکمل fleet visibility"
+        }
+      ],
+      "features": [
+        "Real-time GPS fleet tracking",
+        "Automated maintenance alerts",
+        "Driver assignment & scheduling",
+        "Fuel consumption tracking",
+        "Maintenance history logs",
+        "Custom reporting dashboard"
+      ],
+      "technologies": [
+        "React",
+        "Node.js",
+        "PostgreSQL",
+        "Google Maps API"
+      ],
+      "testimonial": {
+        "quote": "زیادہ تر developers صرف وہی بناتے ہیں جو آپ کہتے ہیں؛ یہ team واقعی logic سوچتی ہے۔ Mohamed، Asad، اور Ariyan نے Portia Grid بہترین بنایا۔",
+        "author": "Hassan",
+        "role": "CEO & Founder of Portia Grid"
+      },
+      "steps": [],
+      "screenshots": []
+    },
+    {
+      "id": "iyat",
+      "name": "Iyat",
+      "layoutTemplate": "showcase",
+      "logo": "",
+      "industry": "Digital Marketing & Creative",
+      "serviceType": "Website",
+      "color": "#8B5CF6",
+      "tagline": "Digital Agency Portfolio",
+      "shortDescription": "Iyat کے لیے modern، visually rich website — creative portfolio اور services showcase۔",
+      "fullDescription": "We designed and built a premium portfolio website for Iyat, a digital agency specializing in creative marketing solutions.",
+      "challenge": "Iyat کو professional online presence چاہیے تھی نئے clients attract کرنے کے لیے۔",
+      "solution": "ہم نے sleek portfolio website بنایا — smooth animations، responsive design، engaging UX۔",
+      "results": [
+        {
+          "metric": "100%",
+          "label": "Custom design"
+        },
+        {
+          "metric": "< 2s",
+          "label": "Load time"
+        }
+      ],
+      "features": [
+        "Custom portfolio design",
+        "Responsive layout",
+        "Smooth animations",
+        "Modern UI/UX"
+      ],
+      "technologies": [
+        "HTML/CSS",
+        "JavaScript"
+      ],
+      "link": "https://iyat-site.mohameda-elobaid.workers.dev/portfolio",
+      "steps": [],
+      "screenshots": []
+    }
+  ]
+}

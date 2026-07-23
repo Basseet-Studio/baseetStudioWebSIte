@@ -1,0 +1,157 @@
+{
+  "name": "Numu",
+  "slug": "numu",
+  "type": "branded",
+  "tagline": "جو آپ کرتے ہیں track کریں۔ وہ شخص بنیں جو بننا چاہتے ہیں۔",
+  "description": "## About nomu\n\nnomu is a mobile habit and life-tracking application built with Flutter. It's designed around a single idea: **growth is a daily practice**, and the right tools should make that practice effortless, private, and yours forever.\n\n### Why nomu Exists\n\nMost habit apps want your data, your account, and your monthly fee. nomu is built on the opposite principles:\n\n- **Local-first** — Your data lives on your device.\n- **Offline by default** — No account required, no internet required.\n- **No subscriptions, no ads, no tracking.**\n- **Full backup & restore** — You own your data, always.\n\n### What You Can Track\n\n- **🌱 Core Growth Modules**\n  - **Habits** — Daily, weekly, or custom-frequency habits with streaks, scoring, and rich history.\n  - **Goals** — Long-term goals linked to the habits that drive them.\n  - **Tasks** — One-off and recurring to-dos with reminders.\n  - **Reminders** — Smart notifications that nudge you at the right time.\n  - **My Day** — A unified daily view that brings habits, tasks, and goals into one screen.\n- **💪 Health** — Water, sleep, weight, and food logging. Health module designed to extend into workout tracking (roadmap).\n- **🕌 Islamic** — Prayer tracking with scoring. Fasting and nafila (voluntary) tracking.\n- **💾 Backup & Restore** — Full local backup and restore of all your data.\n- **🧭 Supporting Experience** — Onboarding, Home (at-a-glance daily dashboard), Profile (personal stats and history), Settings (full control, including a \"reset all data\" option), and built-in Help.\n\n### What Makes nomu Different\n\n| | nomu | Typical habit apps |\n|---|---|---|\n| Account required | ❌ No | ✅ Yes |\n| Works offline | ✅ Fully | ⚠️ Limited |\n| Your data lives on your device | ✅ Yes | ❌ On their servers |\n| Subscription | ❌ None | 💲 Monthly fee |\n| Ads & trackers | ❌ None | ✅ Usually yes |\n| Backup & restore | ✅ Built-in | ⚠️ Varies |\n| Localization | ✅ Arabic + English (RTL-aware) | ⚠️ English-first |\n\n### Built Right\n\n- **Flutter + Dart** — Native performance on iOS and Android from a single codebase.\n- **Riverpod** for state management.\n- **sqflite** for local data storage.\n- **go_router** for navigation.\n- **Feature-first architecture** — Each feature (habits, goals, health, islamic…) is self-contained, making the app easy to extend and maintain.\n\n### Roadmap Highlights\n\n- **Phase 1 (2026)** — Polish & stability: better empty states, habit editing that preserves streaks, health trend indicators, and RTL fixes.\n- **Phase 2 (2026)** — Workout & physical activity tracking, integrated with the existing health module and habit system.\n- **Phase 3 (2026–2027)** — Wellness & mental health: tracking how you *felt*, not just what you *did*.\n- **Phase 4+** — Wearable integrations, HealthKit, and beyond.\n\n*Built as a focused side project with a clear philosophy: your growth, your data, your pace.*\n\n### For Users Who Care About Privacy\n\nnomu was designed for people who don't want another cloud account, another data breach risk, or another subscription that disappears. If that sounds like you, nomu is built for you.\n",
+  "icon": "/images/projects/numu-icon.png",
+  "color": "#AF52DE",
+  "gradient": "linear-gradient(135deg, #AF52DE 0%, #BF5AF2 100%)",
+  "status": "جلد آرہا ہے",
+  "layoutVariant": "numu",
+  "fontHeading": "Quicksand",
+  "fontBody": "Nunito",
+  "fontWeights": "400,500,600,700",
+  "gsapAnimation": "elastic-bounce",
+  "appType": "mobile",
+  "brandName": "Numu",
+  "bgEffect": "leaves",
+  "bgFallbackGradient": "linear-gradient(180deg, #F0FFF4 0%, #C6F6D5 40%, #9AE6B4 100%)",
+  "hero": {
+    "title": "وہ person بنیں جو بننا چاہتے ہیں۔",
+    "subtitle": "nomu local-first، offline، subscription-free habit tracker — آپ کا data صرف آپ کے device پر۔",
+    "cta_primary": "Early Access حاصل کریں",
+    "cta_secondary": "Learn More"
+  },
+  "features": [
+    {
+      "title": "Core Growth Modules",
+      "description": "Habits (daily, weekly, or custom) with streaks, Goals linked to the habits that drive them, Tasks with reminders, smart Reminders, and a unified My Day view.",
+      "icon": "fas fa-seedling"
+    },
+    {
+      "title": "Health Tracking",
+      "description": "Water, sleep, weight, and food logging — with a health module designed to extend into workout tracking on the roadmap.",
+      "icon": "fas fa-heartbeat"
+    },
+    {
+      "title": "Islamic Practice",
+      "description": "Prayer tracking with scoring, plus fasting and nafila (voluntary) tracking — built in as a first-class module.",
+      "icon": "fas fa-mosque"
+    },
+    {
+      "title": "Local-First & Offline",
+      "description": "Your data lives on your device. No account, no internet, no cloud — and a full backup & restore flow so you always own it.",
+      "icon": "fas fa-lock"
+    },
+    {
+      "title": "No Subscriptions, No Ads, No Trackers",
+      "description": "nomu is built on the opposite of the typical habit-app business model. No monthly fee, no ad network, no third-party trackers.",
+      "icon": "fas fa-shield-alt"
+    },
+    {
+      "title": "Beautiful, RTL-Aware, Multi-Language",
+      "description": "Arabic + English out of the box, with RTL-aware layouts. Polished, friendly UI designed to make daily check-ins feel rewarding.",
+      "icon": "fas fa-palette"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "iOS",
+      "icon": "fab fa-apple",
+      "version": "iOS 15+",
+      "link": "https://testflight.apple.com/join/wgRQGpw8"
+    },
+    {
+      "name": "Android",
+      "icon": "fab fa-android",
+      "version": "Android 8+",
+      "link": "https://drive.google.com/drive/folders/1_8MswXC-JxPEFU_0-fmeXal_hK7yKs9C?usp=sharing"
+    }
+  ],
+  "galleryType": "mobile",
+  "screenshots": [
+    "/images/projects/numu/1.png",
+    "/images/projects/numu/2.png",
+    "/images/projects/numu/3.png",
+    "/images/projects/numu/4.png",
+    "/images/projects/numu/5.png",
+    "/images/projects/numu/6.png"
+  ],
+  "testimonials": [
+    {
+      "quote": "Numu's streak feature is addictive in the best way. I've meditated every day for 90 days!",
+      "author": "Alex T.",
+      "role": "Early Beta Tester"
+    }
+  ],
+  "navItems": [
+    {
+      "label": "Home",
+      "url": "",
+      "i18nKey": "project_nav_home"
+    },
+    {
+      "label": "Features",
+      "url": "features/",
+      "i18nKey": "project_nav_features"
+    },
+    {
+      "label": "Download",
+      "url": "download/",
+      "i18nKey": "project_nav_download"
+    },
+    {
+      "label": "Terms",
+      "url": "terms/",
+      "i18nKey": "project_nav_terms"
+    },
+    {
+      "label": "Privacy",
+      "url": "privacy/",
+      "i18nKey": "project_nav_privacy"
+    }
+  ],
+  "navMetaItems": [
+    {
+      "label": "Work",
+      "url": "/projects/",
+      "i18nKey": "nav_work"
+    },
+    {
+      "label": "Contact",
+      "url": "/contact/",
+      "i18nKey": "nav_contact"
+    }
+  ],
+  "links": {
+    "ios": "https://testflight.apple.com/join/wgRQGpw8",
+    "android": "https://drive.google.com/drive/folders/1_8MswXC-JxPEFU_0-fmeXal_hK7yKs9C?usp=sharing"
+  },
+  "faq": [
+    {
+      "question": "Is Numu free to use?",
+      "answer": "Yes — nomu has no subscriptions, no ads, and no in-app purchases. It's built as a focused side project with a clear philosophy: your growth, your data, your pace."
+    },
+    {
+      "question": "How is Numu different from other habit trackers?",
+      "answer": "Most habit apps require an account, store your data in their cloud, and charge a monthly fee. nomu is local-first and offline by default — your data lives on your device, you don't need an account, and there are no ads or trackers."
+    },
+    {
+      "question": "When will Numu be available?",
+      "answer": "We're putting the finishing touches on nomu. Sign up for early access to be among the first to try it!"
+    },
+    {
+      "question": "Can I track any type of habit?",
+      "answer": "Yes — daily habits like exercise and reading, weekly goals like meal prep, custom-frequency habits, long-term goals linked to the habits that drive them, tasks, and even prayer / fasting tracking."
+    },
+    {
+      "question": "What about Health and Islamic modules?",
+      "answer": "Both are first-class modules. Health covers water, sleep, weight, and food logging (workout tracking is on the roadmap). Islamic covers prayer tracking with scoring, fasting, and nafila (voluntary) tracking."
+    },
+    {
+      "question": "What languages are supported?",
+      "answer": "Arabic and English are supported out of the box, with RTL-aware layouts. The feature-first architecture makes adding additional languages straightforward."
+    }
+  ]
+}

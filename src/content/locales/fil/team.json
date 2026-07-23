@@ -1,0 +1,50 @@
+{
+  "title": "Kilalanin ang Aming Expert Team",
+  "subtitle": "Ang mga talentadong developer sa likod ng iyong digital success",
+  "members": [
+    {
+      "name": "Mohamed Abdallah",
+      "role": "Founder / Product Lead / PM / Senior Engineer",
+      "bio": "Founder at product lead na pinagsasama ang malalim na engineering expertise at product strategy upang hubugin ang de-kalidad na software products.",
+      "image": "/images/home/team/mohamed-abdallah.jpg",
+      "social": {
+        "github": "https://github.com/mohamed-a-elobaid",
+        "linkedin": "https://www.linkedin.com/in/mohamed-abdalla-elobaid-29937b227/",
+        "twitter": "#"
+      }
+    },
+    {
+      "name": "Asadur Rahman",
+      "role": "Tech Lead / System Architect",
+      "bio": "Tech lead at systems architect na nakatuon sa pag-disenyo ng scalable distributed systems at matibay na cloud infrastructure.",
+      "image": "/images/home/team/asadur-rahman.png",
+      "social": {
+        "github": "https://github.com/ViX3L",
+        "linkedin": "https://www.linkedin.com/in/vix3l/",
+        "twitter": "#"
+      }
+    },
+    {
+      "name": "Ariyan Rehman",
+      "role": "Product Experience & Docs Engineer",
+      "bio": "Tinitiyak ang product experience at documentation excellence sa pamamagitan ng UX, developer docs, at content-driven workflows.",
+      "image": "/images/home/team/ariyan-rehman.jpg",
+      "social": {
+        "github": "https://github.com/ariyangd",
+        "linkedin": "https://www.linkedin.com/in/ariyangd/",
+        "twitter": "https://x.com/ariyangd"
+      }
+    },
+    {
+      "name": "Dibakar Sutra Dhar",
+      "role": "Backend Engineer & Data Engineer",
+      "bio": "Backend engineer na dalubhasa sa distributed systems at scalable server solutions para sa web at cloud applications.",
+      "image": "/images/home/team/dibakar-sutradhar.JPG",
+      "social": {
+        "github": "https://github.com/dibakarsutradhar",
+        "linkedin": "https://www.linkedin.com/in/dibakarsutradhar/",
+        "twitter": "https://x.com/iamdibakardipu"
+      }
+    }
+  ]
+}

@@ -10,6 +10,8 @@
 import Icon from '../icons/Icon.astro'
 import ServiceRow from './ServiceRow.astro'
 import ProcessPin from './ProcessPin.astro'
+import { localizeHref } from '../../lib/localize-href'
+import type { Lang } from '../../types'
 
 interface SubService {
   name: string
@@ -58,12 +60,12 @@ interface Props {
     ctaArrowIcon?: string
     cardArrowIcon?: string
   }
+  lang?: Lang
 }
 
-const { categories, process, cta, copy } = Astro.props
+const { categories, process, cta, copy, lang = 'en' } = Astro.props
 const arrowIcon = copy.ctaArrowIcon ?? 'arrow-right'
 const cardArrowIcon = copy.cardArrowIcon ?? arrowIcon
-const isAr = copy.ctaHref.includes('/ar/')
 ---
 
 {/* =====================================================================
@@ -81,7 +83,7 @@ const isAr = copy.ctaHref.includes('/ar/')
       iconClass={category.icon}
       subServices={category.subServices?.slice(0, 3) ?? []}
       ctaLabel={copy.explore ?? 'Explore service'}
-      href={isAr ? `/ar/services/${category.slug}/` : `/services/${category.slug}/`}
+      href={localizeHref(lang, `/services/${category.slug}/`)}
       arrowIcon={cardArrowIcon}
     />
   ))}

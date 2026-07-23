@@ -1,0 +1,93 @@
+{
+  "title": "Aming Mga Kliyente",
+  "subtitle": "Mga Success Story",
+  "description": "Tingnan kung paano nakakamit ng mga negosyong katulad mo ang resulta gamit ang aming solusyon.",
+  "clients": [
+    {
+      "id": "portia-grid",
+      "name": "Portia Grid",
+      "layoutTemplate": "timeline",
+      "logo": "",
+      "industry": "Logistics & Data Intelligence",
+      "serviceType": "Internal Tool",
+      "color": "#2563EB",
+      "tagline": "Intelligent Fleet & Data Management",
+      "shortDescription": "Komprehensibong web platform para pamahalaan ang delivery truck fleets at maintenance schedules.",
+      "fullDescription": "Ang Portia Grid ay malakas na internal tool na tumutulong sa logistics companies na pamahalaan ang buong delivery fleet.",
+      "challenge": "Pinamamahalaan ng client ang 50+ trucks gamit ang spreadsheets at tawag. Madalas na-mi-miss ang maintenance, nagkakaroon ng breakdowns at delays.",
+      "solution": "Bumuo kami ng custom web platform — real-time GPS tracking, automated maintenance scheduling, driver management, comprehensive reporting.",
+      "results": [
+        {
+          "metric": "30%",
+          "label": "bawas sa breakdowns"
+        },
+        {
+          "metric": "2hrs",
+          "label": "natipid araw-araw sa admin"
+        },
+        {
+          "metric": "100%",
+          "label": "buong fleet visibility"
+        }
+      ],
+      "features": [
+        "Real-time GPS fleet tracking",
+        "Automated maintenance alerts",
+        "Driver assignment & scheduling",
+        "Fuel consumption tracking",
+        "Maintenance history logs",
+        "Custom reporting dashboard"
+      ],
+      "technologies": [
+        "React",
+        "Node.js",
+        "PostgreSQL",
+        "Google Maps API"
+      ],
+      "testimonial": {
+        "quote": "Karamihan sa devs ay binubuo lang ang sinasabi mo; ang team na ito ay talagang nag-iisip ng logic kasama mo. Napakahusay nina Mohamed, Asad, at Ariyan sa Portia Grid.",
+        "author": "Hassan",
+        "role": "CEO & Founder of Portia Grid"
+      },
+      "steps": [],
+      "screenshots": []
+    },
+    {
+      "id": "iyat",
+      "name": "Iyat",
+      "layoutTemplate": "showcase",
+      "logo": "",
+      "industry": "Digital Marketing & Creative",
+      "serviceType": "Website",
+      "color": "#8B5CF6",
+      "tagline": "Digital Agency Portfolio",
+      "shortDescription": "Modern at visually rich website para sa Iyat — creative portfolio at services showcase.",
+      "fullDescription": "We designed and built a premium portfolio website for Iyat, a digital agency specializing in creative marketing solutions.",
+      "challenge": "Kailangan ng Iyat ng propesyonal na online presence para makaakit ng bagong kliyente.",
+      "solution": "Bumuo kami ng sleek portfolio website — smooth animations, responsive design, engaging UX.",
+      "results": [
+        {
+          "metric": "100%",
+          "label": "Custom design"
+        },
+        {
+          "metric": "< 2s",
+          "label": "Load time"
+        }
+      ],
+      "features": [
+        "Custom portfolio design",
+        "Responsive layout",
+        "Smooth animations",
+        "Modern UI/UX"
+      ],
+      "technologies": [
+        "HTML/CSS",
+        "JavaScript"
+      ],
+      "link": "https://iyat-site.mohameda-elobaid.workers.dev/portfolio",
+      "steps": [],
+      "screenshots": []
+    }
+  ]
+}

@@ -1,14 +1,16 @@
 ---
 // AppBar.astro — Adaptive glassmorphic floating pill navigation
 import ThemeSwitcher from '../shared/ThemeSwitcher.astro'
+import LangSwitcher from './LangSwitcher.astro'
 import Icon from '../icons/Icon.astro'
 import CloverLogo from '../icons/CloverLogo.astro'
 import { resolveIcon } from '../icons/iconMappings'
 import { SOURCE_SVGS } from '../../lib/sourceSvgs'
 import { t } from '../../lib/i18n'
-import footerData from '../../content/data/footer.json'
+import { getFooterData } from '../../lib/home'
 import links from '../../content/data/links.json'
 import type { Lang, NavItem } from '../../types'
+import { isRtl, langPrefix as localePrefix, localizedPath } from '../../lib/locale'
 
 interface Props {
   lang?: Lang
@@ -29,11 +31,12 @@ const {
   projectNavItems,
   projectNavMeta,
 } = Astro.props
+const footerData = getFooterData(lang)
 const isProject = !!projectName && !!(projectNavItems && projectNavItems.length > 0)
 const pathname = Astro.url.pathname.replace(/\/$/, '') || '/'
 
-const langPrefix = lang === 'ar' ? '/ar' : ''
-const projectRoot = `${langPrefix}/projects/${slug || ''}`.replace(/\/$/, '') || '/'
+const prefix = localePrefix(lang)
+const projectRoot = `${prefix}/projects/${slug || ''}`.replace(/\/$/, '') || '/'
 
 type ProjectNavEntry = NavItem & { fullUrl: string; isActive: boolean; dataKey: string }
 
@@ -66,19 +69,23 @@ const appBarNavKeys = ['nav_home', 'nav_work', 'nav_services', 'nav_clients', 'n
 type StandardNavEntry = { label: string; url: string; dataKey: string; isActive: boolean }
 const standardNav: StandardNavEntry[] = appBarNavKeys.map((key) => {
   const link = footerData.links.find((item) => item.i18nKey === key)
-  const url = (link?.url ?? '/').replace(/\/$/, '') || '/'
+  const bare = (link?.url ?? '/').replace(/\/$/, '') || '/'
+  const url = localizedPath(lang, bare === '/' ? '/' : `${bare}/`).replace(/\/$/, '') || '/'
+  const bareNorm = bare
+  const pathBare = normalizedPath.replace(/^\/(ar|ur|hi|fil)(?=\/|$)/, '') || '/'
+  const pathBareNorm = pathBare.replace(/\/$/, '') || '/'
   return {
     label: t(key, lang),
-    url,
+    url: url === '' ? '/' : (url.endsWith('/') ? url : `${url}/`),
     dataKey: key.replace('nav_', ''),
-    isActive: normalizedPath === url,
+    isActive: pathBareNorm === bareNorm || pathBareNorm === bare,
   }
 })
 
 type ProjectMetaEntry = { key: string; label: string; url: string }
 const defaultProjectMeta: ProjectMetaEntry[] = [
-  { key: 'work', label: t('nav_work', lang), url: '/projects/' },
-  { key: 'contact', label: t('nav_contact', lang), url: '/contact/' },
+  { key: 'work', label: t('nav_work', lang), url: localizedPath(lang, '/projects/') },
+  { key: 'contact', label: t('nav_contact', lang), url: localizedPath(lang, '/contact/') },
 ]
 const projectMeta: ProjectMetaEntry[] = isProject && projectNavMeta?.length
   ? projectNavMeta.map((item) => ({
@@ -114,7 +121,7 @@ const socialLinks = (['instagram', 'linkedin', 'github', 'twitter'] as const)
 <nav
   class="app-bar app-bar--visible"
   id="app-bar"
-  dir={lang === 'ar' ? 'rtl' : 'ltr'}
+  dir={isRtl(lang) ? 'rtl' : 'ltr'}
   aria-label={t('nav_main', lang)}
   data-is-project={isProject ? 'true' : 'false'}
   data-project-color={projectColor || ''}
@@ -125,7 +132,7 @@ const socialLinks = (['instagram', 'linkedin', 'github', 'twitter'] as const)
   <div class="app-bar__inner">
     {isProject ? (
       <>
-        <a href="/" class="app-bar__logo" aria-label={t('nav_back_home', lang)}>
+        <a href={localizedPath(lang, '/')} class="app-bar__logo" aria-label={t('nav_back_home', lang)}>
           <CloverLogo />
         </a>
         <span class="app-bar__logo-divider" aria-hidden="true"></span>
@@ -139,7 +146,7 @@ const socialLinks = (['instagram', 'linkedin', 'github', 'twitter'] as const)
         </a>
       </>
     ) : (
-      <a href="/" class="app-bar__logo" aria-label={t('nav_home_brand', lang)}>
+      <a href={localizedPath(lang, '/')} class="app-bar__logo" aria-label={t('nav_home_brand', lang)}>
         <CloverLogo />
       </a>
     )}
@@ -189,6 +196,7 @@ const socialLinks = (['instagram', 'linkedin', 'github', 'twitter'] as const)
     )}
 
     <div class="app-bar__actions">
+      <LangSwitcher lang={lang} />
       <ThemeSwitcher lang={lang} />
     </div>
 

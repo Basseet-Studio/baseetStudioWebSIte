@@ -5,6 +5,9 @@ import type { SceneConfig } from './types'
 const routeMap: Record<string, SceneConfig> = {
   '/': homeSceneConfig,
   '/ar': homeSceneConfig,
+  '/ur': homeSceneConfig,
+  '/hi': homeSceneConfig,
+  '/fil': homeSceneConfig,
 }
 
 /** Resolve scene config for a pathname (strips trailing slash). */

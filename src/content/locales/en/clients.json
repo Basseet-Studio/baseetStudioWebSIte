@@ -1,0 +1,185 @@
+{
+  "title": "Our Clients",
+  "subtitle": "Success Stories",
+  "description": "See how businesses like yours are achieving results with our solutions.",
+  "clients": [
+    {
+      "id": "portia-grid",
+      "name": "Portia Grid",
+      "layoutTemplate": "timeline",
+      "logo": "",
+      "industry": "Logistics & Data Intelligence",
+      "serviceType": "Internal Tool",
+      "color": "#2563EB",
+      "tagline": "Intelligent Fleet & Data Management",
+      "shortDescription": "A comprehensive web platform for managing delivery truck fleets and their maintenance schedules.",
+      "fullDescription": "Portia Grid is a powerful internal tool we built to help logistics companies manage their entire fleet of delivery trucks. From tracking vehicle locations to scheduling maintenance, everything is handled in one centralized dashboard.",
+      "challenge": "The client was managing 50+ delivery trucks using spreadsheets and phone calls. Maintenance was often missed, leading to breakdowns and delays. They had no visibility into their fleet's real-time status.",
+      "solution": "We built a custom web platform that provides real-time GPS tracking, automated maintenance scheduling based on mileage and time, driver assignment management, and comprehensive reporting.",
+      "results": [
+        { "metric": "30%", "label": "Reduction in breakdowns" },
+        { "metric": "2hrs", "label": "Saved daily on admin" },
+        { "metric": "100%", "label": "Fleet visibility" }
+      ],
+      "features": [
+        "Real-time GPS fleet tracking",
+        "Automated maintenance alerts",
+        "Driver assignment & scheduling",
+        "Fuel consumption tracking",
+        "Maintenance history logs",
+        "Custom reporting dashboard"
+      ],
+      "technologies": [
+        "React",
+        "Node.js",
+        "PostgreSQL",
+        "Google Maps API"
+      ],
+      "testimonial": {
+        "quote": "Most devs just build what you tell them; this team actually thinks through the logic with you. Building Portia Grid required a lot of tactical intelligence and complex data handling, and Mohamed, Asad, and Ariyan absolutely nailed it. They've got great energy, they know their tech inside out, and they held my hand through the entire process. If you want a team that takes ownership of the outcome, this is it.",
+        "author": "Hassan",
+        "role": "CEO & Founder of Portia Grid"
+      },
+      "steps": [],
+      "screenshots": []
+    },
+    {
+      "id": "iyat",
+      "name": "Iyat",
+      "layoutTemplate": "showcase",
+      "logo": "",
+      "industry": "Digital Marketing & Creative",
+      "serviceType": "Website",
+      "color": "#8B5CF6",
+      "tagline": "Digital Agency Portfolio",
+      "shortDescription": "A modern, visually rich website for Iyat, a digital agency showcasing their creative portfolio and services.",
+      "fullDescription": "We designed and built a premium portfolio website for Iyat, a digital agency specializing in creative marketing solutions.",
+      "challenge": "Iyat needed a professional online presence that would showcase their creative work and attract new clients.",
+      "solution": "We built a sleek, modern portfolio website with smooth animations, responsive design, and an engaging user experience.",
+      "results": [
+        { "metric": "100%", "label": "Custom design" },
+        { "metric": "< 2s", "label": "Load time" }
+      ],
+      "features": [
+        "Custom portfolio design",
+        "Responsive layout",
+        "Smooth animations",
+        "Modern UI/UX"
+      ],
+      "technologies": [
+        "HTML/CSS",
+        "JavaScript"
+      ],
+      "link": "https://iyat-site.mohameda-elobaid.workers.dev/portfolio",
+      "steps": [],
+      "screenshots": []
+    },
+    {
+      "id": "veeramangalam-juma-masjid",
+      "name": "Veeramangalam Juma Masjid Finance",
+      "layoutTemplate": "stack",
+      "logo": "",
+      "industry": "Community Finance",
+      "serviceType": "Jamia System",
+      "color": "#059669",
+      "tagline": "Masjid finance — cloud and offline in one",
+      "shortDescription": "Jamia System replaces Excel sheets and paper trails for mosque expenses and local contributions.",
+      "fullDescription": "We built Jamia System for Veeramangalam Juma Masjid Finance — a two-in-one platform on Firebase with full offline support. It replaces the Excel sheets and handwritten ledgers the community used to track expenses and local contributions.",
+      "challenge": "The masjid finance team tracked member contributions and operational expenses across spreadsheets and paper records. Reconciliation was slow, errors crept in, and nothing worked when the internet was down.",
+      "solution": "We built Jamia System — a Firebase-backed finance platform with offline-first sync. Contributions, expenses, and jamia ledgers live in one place, connected or not.",
+      "results": [
+        { "metric": "100%", "label": "Paper-free tracking" },
+        { "metric": "2-in-1", "label": "Cloud + offline" }
+      ],
+      "features": [
+        "Expense tracking",
+        "Local contribution ledger",
+        "Offline-first sync",
+        "Firebase backend"
+      ],
+      "technologies": [
+        "Flutter",
+        "Firebase",
+        "Firestore"
+      ],
+      "steps": [],
+      "screenshots": []
+    },
+    {
+      "id": "malaysian-business-websites",
+      "name": "Malaysian Business Websites",
+      "layoutTemplate": "showcase",
+      "industry": "Corporate Web",
+      "serviceType": "Website",
+      "color": "#F59E0B",
+      "tagline": "Corporate Web Solutions",
+      "shortDescription": "",
+      "technologies": [
+        "WordPress",
+        "Laravel",
+        "Vue.js",
+        "Tailwind CSS",
+        "MySQL",
+        "AWS Malaysia"
+      ],
+      "steps": [],
+      "screenshots": [],
+      "galleryType": "web"
+    },
+    {
+      "id": "bd-railway-automated-timetable",
+      "name": "BD Railway Automated Timetable",
+      "layoutTemplate": "timeline",
+      "industry": "Railway Operations",
+      "serviceType": "Internal Tool",
+      "color": "#16A34A",
+      "tagline": "Railway Scheduling System",
+      "shortDescription": "",
+      "technologies": [
+        "Python",
+        "Constraint Programming",
+        "OR-Tools",
+        "PostgreSQL",
+        "FastAPI",
+        "React Admin"
+      ],
+      "steps": [],
+      "screenshots": [],
+      "galleryType": "web"
+    },
+    {
+      "id": "little-hands-lab",
+      "name": "Little Hands Lab",
+      "layoutTemplate": "showcase",
+      "industry": "Toys & Retail",
+      "serviceType": "Ecommerce Store",
+      "color": "#EC4899",
+      "tagline": "Toys store online, powered by Zyrn",
+      "shortDescription": "An online toys store built on Zyrn — custom catalog, checkout, and storefront for Little Hands Lab.",
+      "fullDescription": "Little Hands Lab runs its toys ecommerce storefront on Zyrn, using the platform's custom Laravel store management for catalog, inventory, and customer experience.",
+      "challenge": "Needed a fully custom online toys store without stitching together multiple ecommerce tools.",
+      "solution": "Launched on Zyrn with a tailored storefront, product catalog, and operations dashboard.",
+      "technologies": ["Zyrn", "Laravel", "PHP", "PWA"],
+      "steps": [],
+      "screenshots": [],
+      "galleryType": "web"
+    },
+    {
+      "id": "faruk-technology-store",
+      "name": "Faruk Technology Store",
+      "layoutTemplate": "showcase",
+      "industry": "Retail & Telecom",
+      "serviceType": "Inventory Management",
+      "color": "#10B981",
+      "tagline": "Shop operations on BaseetIMS",
+      "shortDescription": "Faruk Technology Store uses BaseetIMS for inventory, POS, and day-to-day shop operations.",
+      "fullDescription": "Faruk Technology Store runs stock, sales, and multi-location clarity through BaseetIMS — inventory management built for small shops.",
+      "challenge": "Needed clear inventory and sales tracking without enterprise complexity.",
+      "solution": "Deployed BaseetIMS for stock, POS, and daily shop dashboards.",
+      "technologies": ["BaseetIMS", "Web Dashboard"],
+      "steps": [],
+      "screenshots": [],
+      "galleryType": "web"
+    }
+  ]
+}

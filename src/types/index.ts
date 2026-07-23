@@ -8,7 +8,7 @@ export type ProjectStatus =
 export type AppType = "mobile" | "web";
 export type GalleryType = "mobile" | "web";
 export type Section = "home" | "projects" | "services" | "clients" | "contact";
-export type Lang = "en" | "ar";
+export type Lang = "en" | "ar" | "ur" | "hi" | "fil";
 
 export interface NavItem {
   label: string;

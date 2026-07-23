@@ -1,0 +1,168 @@
+{
+  "id": "seo",
+  "slug": "seo",
+  "title": "SEO اور مارکیٹنگ",
+  "tagline": "وہ brand بنیں جسے تلاش کرنے والے واقعی پائیں",
+  "color": "#16A34A",
+  "gradient": "linear-gradient(135deg, #16A34A 0%, #4ADE80 100%)",
+  "icon": "fas fa-search",
+  "shortDescription": "Get found online and grow your audience",
+  "hero": {
+    "title": "وہ Brand بنیں جسے Searchers واقعی پائیں",
+    "subtitle": "Search اور content engine جو ideal customers لاتا ہے — pipeline سے measured۔",
+    "cta_primary": "اپنی site audit کریں",
+    "cta_primary_link": "/contact/",
+    "cta_secondary": "ہم کیسے measure کرتے ہیں",
+    "cta_secondary_link": "#process"
+  },
+  "metrics": [
+    {
+      "value": "3x",
+      "label": "Median organic lift in 6mo"
+    },
+    {
+      "value": "30+",
+      "label": "Tracked KPIs per engagement"
+    },
+    {
+      "value": "Weekly",
+      "label": "Reporting cadence"
+    }
+  ],
+  "subServices": [
+    {
+      "id": "technical-seo",
+      "name": "Technical SEO",
+      "icon": "fas fa-code",
+      "desc": "Optimize site structure for search engines",
+      "longDesc": "The best content in the world will not rank if Google cannot crawl and render it. We run a full technical audit, fix the foundations (Core Web Vitals, schema, internal linking, hreflang, JS rendering), and leave a runbook your devs can follow.",
+      "bullets": [
+        "Crawl, render, and index audits",
+        "Core Web Vitals and JS-rendering fixes",
+        "Schema.org, hreflang, and canonical strategy",
+        "Log-file analysis and internal link rewiring"
+      ],
+      "imageLabel": "Technical SEO audit dashboard"
+    },
+    {
+      "id": "content-strategy",
+      "name": "Content Strategy",
+      "icon": "fas fa-pen-fancy",
+      "desc": "Content that ranks and engages users",
+      "longDesc": "We build a 12-month content roadmap grounded in real search demand and your positioning. Briefs, outlines, and review cycles that produce articles your audience actually wants to read — and that earn links.",
+      "bullets": [
+        "Keyword research and topic clustering",
+        "SERP-aware briefs and outlines",
+        "Editorial calendar and review workflow",
+        "Refresh program for aging content"
+      ],
+      "imageLabel": "Editorial content calendar"
+    },
+    {
+      "id": "local-seo",
+      "name": "Local SEO",
+      "icon": "fas fa-map-marker-alt",
+      "desc": "Dominate local search results in your area",
+      "longDesc": "If your customers are within driving distance, local SEO is the highest-ROI channel you have. We optimize your Google Business Profile, build location pages, manage reviews, and build the citations and links that move you up the map pack.",
+      "bullets": [
+        "Google Business Profile optimization",
+        "Location pages and city-by-city content",
+        "Review generation and response workflows",
+        "Citation cleanup and local link building"
+      ],
+      "imageLabel": "Local map pack and Google Business Profile"
+    },
+    {
+      "id": "analytics",
+      "name": "Analytics Setup",
+      "icon": "fas fa-chart-bar",
+      "desc": "Track performance with proper data tools",
+      "longDesc": "You cannot improve what you cannot measure. We set up GA4, Search Console, server-side tagging, and a dashboard that answers the questions your leadership actually asks — clean data, clean attribution, no spreadsheet gymnastics.",
+      "bullets": [
+        "GA4, Search Console, and Tag Manager",
+        "Server-side tagging and consent mode",
+        "Looker Studio dashboards for every team",
+        "Conversion and revenue attribution"
+      ],
+      "imageLabel": "Looker Studio KPI dashboard"
+    }
+  ],
+  "process": [
+    {
+      "number": "01",
+      "title": "Audit",
+      "desc": "Technical, content, and backlink audit with a 1-page findings doc",
+      "icon": "fas fa-magnifying-glass"
+    },
+    {
+      "number": "02",
+      "title": "Strategy",
+      "desc": "12-month plan tied to commercial KPIs, not vanity metrics",
+      "icon": "fas fa-bullseye"
+    },
+    {
+      "number": "03",
+      "title": "Execute",
+      "desc": "Monthly sprints across technical, content, and links",
+      "icon": "fas fa-rocket"
+    },
+    {
+      "number": "04",
+      "title": "Report",
+      "desc": "Weekly check-ins, monthly business reviews, and a quarterly reset",
+      "icon": "fas fa-chart-line"
+    }
+  ],
+  "deliverables": [
+    {
+      "title": "Technical audit & runbook",
+      "description": "A prioritized list of fixes with effort and impact — handed to your dev team in a clean ticket format.",
+      "icon": "fas fa-clipboard-list"
+    },
+    {
+      "title": "Content roadmap",
+      "description": "12 months of briefs and outlines, refreshed every quarter based on what is ranking.",
+      "icon": "fas fa-calendar"
+    },
+    {
+      "title": "Dashboard & alerts",
+      "description": "A live Looker Studio dashboard plus Slack or email alerts on the metrics that matter.",
+      "icon": "fas fa-chart-line"
+    },
+    {
+      "title": "Monthly report",
+      "description": "Plain-English review of what changed, what we shipped, and what is next.",
+      "icon": "fas fa-file-lines"
+    }
+  ],
+  "tech": [
+    "GA4",
+    "Search Console",
+    "Looker Studio",
+    "Ahrefs",
+    "Semrush",
+    "Screaming Frog",
+    "Tag Manager",
+    "Schema.org",
+    "Notion",
+    "Slack"
+  ],
+  "faq": [
+    {
+      "question": "How long until I see results?",
+      "answer": "Technical improvements usually show in 4–8 weeks. Content and links take 3–6 months to compound, which is why we think in quarters, not weeks. We will give you a realistic timeline after the audit."
+    },
+    {
+      "question": "Do you guarantee rankings?",
+      "answer": "No reputable agency can, and we will not pretend to. We can guarantee the work, the process, and the reporting. Rankings and traffic are an output of doing the work well over time — and we will show you the inputs that drive them."
+    },
+    {
+      "question": "Do you do link building?",
+      "answer": "Yes, but only digital PR and outreach that earns real links. We do not buy links or run PBNs. Our link work is the kind that gets your brand into the publications your customers already read."
+    },
+    {
+      "question": "Can you work with our existing agency or in-house team?",
+      "answer": "Frequently. We are happy to slot in as a specialist, run a parallel strategy track, or take over the whole channel. We will propose the right shape after a short conversation."
+    }
+  ]
+}

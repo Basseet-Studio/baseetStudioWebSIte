@@ -1,0 +1,72 @@
+{
+  "name": "Jemeti",
+  "slug": "jemeti",
+  "type": "branded",
+  "tagline": "Mga workshop at maintenance shop, naka-manage.",
+  "description": "## Tungkol sa Jemeti\n\nTinutulungan ng Jemeti ang mga may-ari ng workshop na mag-schedule ng trabaho, mag-track ng parts, at pamahalaan ang mga sasakyan ng customer — sa isang lugar.\n",
+  "icon": "/images/projects/jemeti-icon.svg",
+  "iconClass": null,
+  "color": "#DC2626",
+  "gradient": "linear-gradient(135deg, #DC2626 0%, #EF4444 100%)",
+  "status": "Malapit na",
+  "layoutVariant": "default",
+  "fontHeading": "Space Grotesk",
+  "fontBody": "Inter",
+  "appType": "web",
+  "brandName": "Jemeti",
+  "bgEffect": "none",
+  "clientIds": [],
+  "hero": {
+    "title": "Ang Iyong Workshop, Nakaayos",
+    "subtitle": "Job scheduling, parts tracking, at customer management para sa maintenance at repair shops.",
+    "cta_primary": "Kumuha ng Early Access",
+    "cta_primary_link": "/contact",
+    "cta_secondary": null,
+    "cta_secondary_link": null
+  },
+  "features": [
+    {
+      "title": "Work Orders",
+      "description": "Gumawa, mag-assign, at mag-track ng trabaho mula intake hanggang completion.",
+      "icon": "fas fa-clipboard-list"
+    },
+    {
+      "title": "Parts Inventory",
+      "description": "Alamin ang nasa shelf bago mangako ng repair date.",
+      "icon": "fas fa-wrench"
+    },
+    {
+      "title": "Customer Vehicles",
+      "description": "Service history, reminders, at notes bawat sasakyan.",
+      "icon": "fas fa-car"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "Web",
+      "icon": "fas fa-globe",
+      "version": "Web App",
+      "link": "#"
+    }
+  ],
+  "navItems": [
+    {
+      "label": "Home",
+      "url": "",
+      "i18nKey": "project_nav_home"
+    }
+  ],
+  "navMetaItems": [
+    {
+      "label": "Work",
+      "url": "/projects/",
+      "i18nKey": "nav_work"
+    },
+    {
+      "label": "Contact",
+      "url": "/contact/",
+      "i18nKey": "nav_contact"
+    }
+  ],
+  "faq": []
+}

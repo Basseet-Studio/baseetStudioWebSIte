@@ -1,0 +1,716 @@
+---
+// Shared clients index — EN + locale routes.
+import Page from '../layouts/Page.astro'
+import Icon from '../components/icons/Icon.astro'
+import { getClientsData } from '../lib/clients'
+import { t } from '../lib/i18n'
+import { localizeHref } from '../lib/localize-href'
+import type { Lang } from '../types'
+
+interface Props { lang: Lang }
+const { lang } = Astro.props
+const clientsData = getClientsData(lang)
+const description = t('clients_description', lang)
+
+function accentTint(color: string, alpha = 10): string {
+  return `color-mix(in srgb, ${color} ${alpha}%, transparent)`
+}
+
+---
+
+<Page title={t("clients_title", lang)} description={description} section="clients" lang={lang}>
+  {/* Hero — editorial shape, mirrors the services hero. Eyebrow + big
+      headline + lead. The meta carries the real retention signal. */}
+  <section class="clients-hero" data-animate="fade-up">
+        <h1 class="clients-hero__title">
+      {t("clients_hero_title_line1", lang)}<br/>
+      <span class="clients-hero__title-accent">{t("clients_hero_title_line2", lang)}</span>
+    </h1>
+    <p class="clients-hero__lead">
+      {/* TODO: localise this later */}
+      {t("clients_hero_lead", lang)}
+    </p>
+
+    <dl class="clients-hero__meta">
+      <div class="clients-hero__meta-item">
+        <dt>{t("clients_meta_active", lang)}</dt>
+        <dd>{t("clients_meta_active_value", lang)}</dd>
+      </div>
+      <div class="clients-hero__meta-item">
+        <dt>{t("clients_meta_partnership", lang)}</dt>
+        <dd>{t("clients_meta_partnership_value", lang)}</dd>
+      </div>
+      <div class="clients-hero__meta-item">
+        <dt>{t("clients_meta_industries", lang)}</dt>
+        <dd>{t("clients_meta_industries_value", lang)}</dd>
+      </div>
+    </dl>
+  </section>
+
+  <div class="case-files">
+    {clientsData.clients?.map((client: any, i: number) => {
+      const accent = client.color || 'var(--color-primary)'
+      const labelTone = accentTint(accent, 8)
+      const layoutClass = i % 2 === 0 ? 'case-file--quote-left' : 'case-file--quote-right'
+      const hasQuote = Boolean(client.testimonial?.quote?.trim())
+      const hasCs = Boolean(client.challenge?.trim() || client.solution?.trim())
+      const gridClass = !hasQuote && hasCs ? 'case-file__grid--cs-only' : !hasCs && hasQuote ? 'case-file__grid--quote-only' : ''
+
+      return (
+        <article class={`case-file ${layoutClass}`} data-animate="fade-up" id={client.id}>
+          <div class="case-file__body">
+            <header class="case-file__heading">
+              <h2 class="case-file__name">
+                <a href={localizeHref(lang, `/clients/${client.id}/`)} class="case-file__name-link">{client.name}</a>
+              </h2>
+              {client.tagline && <p class="case-file__tagline">{client.tagline}</p>}
+            </header>
+
+            <div class:list={['case-file__grid', gridClass]}>
+            {client.testimonial?.quote && (
+              <figure class="case-file__quote">
+                <span class="case-file__quote-mark" aria-hidden="true" style={`color:${accent};`}>&ldquo;</span>
+                <blockquote class="case-file__quote-text">
+                  {client.testimonial.quote}
+                </blockquote>
+                {(client.testimonial.author || client.testimonial.role) && (
+                  <figcaption class="case-file__quote-attribution">
+                    <span class="case-file__quote-author">{client.testimonial.author}</span>
+                    {client.testimonial.role && (
+                      <span class="case-file__quote-role">{client.testimonial.role}</span>
+                    )}
+                  </figcaption>
+                )}
+              </figure>
+            )}
+
+            {(client.challenge || client.solution) && (
+              <div class="case-file__cs">
+                {client.challenge && (
+                  <div class="case-file__cs-block">
+                    <h3 class="case-file__cs-label">Challenge</h3>
+                    <p class="case-file__cs-text">{client.challenge}</p>
+                  </div>
+                )}
+                {client.solution && (
+                  <div class="case-file__cs-block">
+                    <h3 class="case-file__cs-label">What we did</h3>
+                    <p class="case-file__cs-text">{client.solution}</p>
+                  </div>
+                )}
+              </div>
+            )}
+            </div>
+
+            <div class="case-file__work">
+              {(client.fullDescription || client.shortDescription) && (
+                <p class="case-file__desc">{client.fullDescription || client.shortDescription}</p>
+              )}
+
+              {client.results?.length > 0 && (
+                <div class="case-file__results">
+                  <h3 class="case-file__cs-label">Outcomes</h3>
+                  <ul class="case-file__ledger">
+                    {client.results.map((r: any) => (
+                      <li class="case-file__ledger-row">
+                        <span class="case-file__ledger-metric" style={`color:${accent};`}>{r.metric}</span>
+                        <span class="case-file__ledger-label">{r.label}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {(client.technologies?.length > 0 || client.industry || client.serviceType) && (
+                <div class="case-file__stack">
+                  <h3 class="case-file__cs-label">Stack</h3>
+                  <ul class="case-file__chips case-file__chips--stack">
+                    {client.technologies?.map((tech: string) => (
+                      <li class="case-file__chip case-file__chip--stack">{tech}</li>
+                    ))}
+                    {client.industry && (
+                      <li class="case-file__chip case-file__chip--stack case-file__chip--meta" style={`background:${labelTone};color:${accent};border-color:${accentTint(accent, 32)};`}>
+                        <Icon name="tag" size={12} color="currentColor" />
+                        {client.industry}
+                      </li>
+                    )}
+                    {client.serviceType && (
+                      <li class="case-file__chip case-file__chip--stack case-file__chip--meta" style={`background:${labelTone};color:${accent};border-color:${accentTint(accent, 32)};`}>
+                        <Icon name="briefcase" size={12} color="currentColor" />
+                        {client.serviceType}
+                      </li>
+                    )}
+                  </ul>
+                </div>
+              )}
+
+              {client.link && (
+                <a href={client.link} target="_blank" rel="noopener noreferrer" class="case-file__link" style={`color:${accent};`}>
+                  Visit project
+                  <Icon name="arrow-square-out" size={14} color="currentColor" />
+                </a>
+              )}
+
+              <a href={localizeHref(lang, `/clients/${client.id}/`)} class="case-file__study-link" style={`color:${accent};`}>
+                View case study
+                <Icon name="arrow-right" size={14} color="currentColor" />
+              </a>
+            </div>
+            </div>
+          </div>
+        </article>
+      )
+    })}
+  </div>
+
+  {/* Footer CTA — invites the next case to start. Quiet, single line. */}
+  <section class="clients-cta" data-animate="fade-up">
+    <p class="clients-cta__copy">
+      <span class="clients-cta__copy-line">Want to be the next case file?</span>
+      <a href={localizeHref(lang, "/contact/")} class="clients-cta__link">
+        Tell us what you're building
+        <Icon name="arrow-right" size={16} color="currentColor" />
+      </a>
+    </p>
+  </section>
+</Page>
+
+<style>
+  /* =====================================================================
+     Hero — same shape as services hero so the brand voice stays consistent.
+     ===================================================================== */
+  .clients-hero {
+    margin-bottom: 64px;
+    max-width: 880px;
+  }
+
+  .clients-hero__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 14px 7px 12px;
+    border-radius: 9999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 22%, transparent);
+    margin-bottom: 24px;
+  }
+
+  .clients-hero__eyebrow-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-primary) 60%, transparent);
+    animation: clients-pulse 2.4s ease-in-out infinite;
+  }
+
+  [data-theme="night"] .clients-hero__eyebrow-dot {
+    animation: none;
+  }
+
+  @keyframes clients-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-primary) 60%, transparent); }
+    50% { box-shadow: 0 0 0 8px color-mix(in srgb, var(--color-primary) 0%, transparent); }
+  }
+
+  .clients-hero__title {
+    font-size: clamp(2.4rem, 5.4vw, 4.4rem);
+    line-height: 1.04;
+    font-weight: 400;
+    color: var(--heading-text);
+    margin: 0 0 22px;
+    letter-spacing: -0.02em;
+  }
+
+  .clients-hero__title-accent {
+    color: var(--color-primary);
+    font-style: italic;
+  }
+
+  [lang="ar"] .clients-hero__title-accent,
+  [dir="rtl"] .clients-hero__title-accent {
+    font-style: normal;
+  }
+
+  .clients-hero__lead {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--muted-text);
+    margin: 0 0 36px;
+    max-width: 62ch;
+  }
+
+  .clients-hero__meta {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, max-content));
+    gap: 56px;
+    margin: 0;
+    padding-top: 28px;
+    border-top: 1px solid var(--divider-color);
+  }
+
+  .clients-hero__meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .clients-hero__meta-item dt {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted-text);
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .clients-hero__meta-item dd {
+    font-family: var(--font-title);
+    font-size: 1.65rem;
+    color: var(--heading-text);
+    margin: 0;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media (max-width: 720px) {
+    .clients-hero__meta {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .clients-hero__meta-item dd {
+      font-size: 1.35rem;
+    }
+  }
+
+  /* =====================================================================
+     Case files
+     ===================================================================== */
+  .case-files {
+    display: flex;
+    flex-direction: column;
+    gap: 96px;
+  }
+
+  .case-file {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .case-file__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .case-file__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 9999px;
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    border: 1px solid;
+  }
+
+  .case-file__chip--stack {
+    background: var(--chip-bg);
+    color: var(--chip-text);
+    border-color: var(--chip-border);
+    letter-spacing: 0;
+    font-weight: 500;
+  }
+
+  .case-file__heading {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--divider-color);
+  }
+
+  .case-file__name {
+    font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+    font-weight: 400;
+    color: var(--heading-text);
+    margin: 0;
+    letter-spacing: -0.015em;
+    line-height: 1.05;
+  }
+
+  .case-file__tagline {
+    font-size: 1.05rem;
+    color: var(--muted-text);
+    margin: 0;
+    line-height: 1.4;
+    max-width: 60ch;
+  }
+
+  /* ----- Card body — single solid block ----- */
+  .case-file__body {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 48px 40px 56px;
+    background: var(--card-window-bg);
+    border: 1px solid var(--card-window-border);
+    border-radius: 24px;
+  }
+
+  .case-file__grid {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: 48px 56px;
+    align-items: start;
+  }
+
+  .case-file__grid--cs-only {
+    grid-template-columns: 1fr;
+  }
+
+  .case-file__grid--cs-only .case-file__cs {
+    grid-template-columns: 1fr 1fr;
+    max-width: none;
+  }
+
+  .case-file__grid--quote-only {
+    grid-template-columns: 1fr;
+  }
+
+  .case-file--quote-right .case-file__grid {
+    grid-template-columns: 7fr 5fr;
+  }
+
+  .case-file--quote-right .case-file__cs {
+    order: 1;
+  }
+
+  .case-file--quote-right .case-file__quote {
+    order: 2;
+  }
+
+  .case-file__chip--meta {
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  @media (max-width: 860px) {
+    .case-file__body {
+      padding: 40px 28px;
+      gap: 32px;
+    }
+    .case-file__grid,
+    .case-file--quote-right .case-file__grid,
+    .case-file__grid--cs-only {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .case-file__grid--cs-only .case-file__cs {
+      grid-template-columns: 1fr;
+    }
+
+    .case-file--quote-right .case-file__cs {
+      order: 2;
+    }
+
+    .case-file--quote-right .case-file__quote {
+      order: 1;
+    }
+  }
+
+  /* ----- Quote ----- */
+  .case-file__quote {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: relative;
+    padding-top: 12px;
+  }
+
+  .case-file__quote-mark {
+    font-family: var(--font-title);
+    font-size: 6rem;
+    line-height: 0.5;
+    margin: 0;
+    display: block;
+    user-select: none;
+  }
+
+  .case-file__quote-text {
+    font-size: 1.15rem;
+    line-height: 1.55;
+    color: var(--heading-text);
+    margin: 0;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+  }
+
+  .case-file__quote-attribution {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 8px;
+  }
+
+  .case-file__quote-author {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--heading-text);
+  }
+
+  .case-file__quote-role {
+    font-size: 0.82rem;
+    color: var(--muted-text);
+  }
+
+  /* ----- Work column ----- */
+  .case-file__work {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .case-file__desc {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--heading-text);
+    margin: 0;
+    max-width: 60ch;
+  }
+
+  .case-file__cs {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+    align-content: start;
+  }
+
+  .case-file__grid:not(.case-file__grid--quote-only):not(.case-file__grid--cs-only) .case-file__cs {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  @media (max-width: 560px) {
+    .case-file__cs,
+    .case-file__grid:not(.case-file__grid--quote-only):not(.case-file__grid--cs-only) .case-file__cs,
+    .case-file__grid--cs-only .case-file__cs {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+
+  .case-file__cs-block {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .case-file__cs-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    color: var(--muted-text);
+    margin: 0;
+  }
+
+  .case-file__cs-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  /* ----- Results ledger ----- */
+  .case-file__results {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .case-file__ledger {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--divider-color);
+  }
+
+  .case-file__ledger-row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 20px;
+    align-items: baseline;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--divider-color);
+  }
+
+  .case-file__ledger-metric {
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+  }
+
+  .case-file__ledger-label {
+    font-size: 0.92rem;
+    color: var(--muted-text);
+    line-height: 1.4;
+  }
+
+  /* ----- Stack ----- */
+  .case-file__stack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .case-file__chips--stack {
+    margin: 0;
+    padding: 0;
+  }
+
+  .case-file__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+    font-size: 0.92rem;
+    text-decoration: none;
+    align-self: flex-start;
+    margin-top: 4px;
+  }
+
+  .case-file__link:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .case-file__name-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .case-file__name-link:hover {
+    color: var(--color-primary);
+  }
+
+  .case-file__study-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+    font-size: 0.92rem;
+    text-decoration: none;
+    align-self: flex-start;
+    margin-top: 8px;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    border: 1px solid color-mix(in srgb, currentColor 35%, transparent);
+    background: color-mix(in srgb, currentColor 8%, transparent);
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .case-file__study-link:hover {
+    background: color-mix(in srgb, currentColor 14%, transparent);
+  }
+
+  .case-file__study-link:active {
+    transform: scale(0.98);
+  }
+
+  /* ----- Footer CTA ----- */
+  .clients-cta {
+    margin-top: 96px;
+    padding: 56px 40px;
+    text-align: center;
+    background: var(--card-window-bg);
+    border: 1px solid var(--card-window-border);
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .clients-cta::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at center,
+      color-mix(in srgb, var(--color-accent) 12%, transparent) 0%,
+      transparent 60%
+    );
+    pointer-events: none;
+  }
+
+  .clients-cta__copy {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .clients-cta__copy-line {
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    color: var(--heading-text);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  .clients-cta__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-primary);
+    font-weight: 600;
+    text-decoration: none;
+    transition: gap 0.2s ease;
+  }
+
+  .clients-cta__link:hover {
+    gap: 12px;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  @media (max-width: 720px) {
+    .case-files {
+      gap: 64px;
+    }
+    .case-file__body {
+      border-radius: 24px;
+    }
+    .case-file__ledger-row {
+      grid-template-columns: 90px 1fr;
+      gap: 14px;
+    }
+    .case-file__ledger-metric {
+      font-size: 1.25rem;
+    }
+    .clients-cta {
+      padding: 40px 24px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+.clients-cta__link:hover {
+      gap: 8px;
+    }
+  }
+</style>

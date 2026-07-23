@@ -1,0 +1,12 @@
+---
+import ServicesIndex from '../../../views/ServicesIndex.astro'
+import { PREFIXED_LOCALES, parseLocaleParam } from '../../../lib/locale'
+import type { Lang } from '../../../types'
+
+export function getStaticPaths() {
+  return PREFIXED_LOCALES.map((locale) => ({ params: { locale } }))
+}
+
+const lang = parseLocaleParam(Astro.params.locale) as Lang
+---
+<ServicesIndex lang={lang} />

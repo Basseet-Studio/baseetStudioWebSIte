@@ -1,0 +1,72 @@
+{
+  "name": "Jemeti",
+  "slug": "jemeti",
+  "type": "branded",
+  "tagline": "ورش الصيانة، مُدارة.",
+  "description": "## حول Jemeti\n\nJemeti يساعد أصحاب الورش على جدولة الأعمال وتتبع القطع وإدارة مركبات العملاء — من مكان واحد.\n",
+  "icon": "/images/projects/jemeti-icon.svg",
+  "iconClass": null,
+  "color": "#DC2626",
+  "gradient": "linear-gradient(135deg, #DC2626 0%, #EF4444 100%)",
+  "status": "قريباً",
+  "layoutVariant": "default",
+  "fontHeading": "Space Grotesk",
+  "fontBody": "Inter",
+  "appType": "web",
+  "brandName": "Jemeti",
+  "bgEffect": "none",
+  "clientIds": [],
+  "hero": {
+    "title": "ورشتك، منظّمة",
+    "subtitle": "جدولة الأعمال وتتبع القطع وإدارة العملاء لورش الصيانة.",
+    "cta_primary": "احصل على وصول مبكر",
+    "cta_primary_link": "/contact",
+    "cta_secondary": null,
+    "cta_secondary_link": null
+  },
+  "features": [
+    {
+      "title": "أوامر العمل",
+      "description": "إنشاء وتعيين وتتبع الأعمال من الاستلام حتى الإنجاز.",
+      "icon": "fas fa-clipboard-list"
+    },
+    {
+      "title": "مخزون القطع",
+      "description": "اعرف ما على الرف قبل أن تعد بموعد الإصلاح.",
+      "icon": "fas fa-wrench"
+    },
+    {
+      "title": "مركبات العملاء",
+      "description": "سجل الخدمة والتذكيرات والملاحظات لكل مركبة.",
+      "icon": "fas fa-car"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "Web",
+      "icon": "fas fa-globe",
+      "version": "Web App",
+      "link": "#"
+    }
+  ],
+  "navItems": [
+    {
+      "label": "Home",
+      "url": "",
+      "i18nKey": "project_nav_home"
+    }
+  ],
+  "navMetaItems": [
+    {
+      "label": "Work",
+      "url": "/projects/",
+      "i18nKey": "nav_work"
+    },
+    {
+      "label": "Contact",
+      "url": "/contact/",
+      "i18nKey": "nav_contact"
+    }
+  ],
+  "faq": []
+}

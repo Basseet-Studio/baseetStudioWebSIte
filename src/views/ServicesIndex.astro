@@ -1,0 +1,150 @@
+---
+// Shared /services index body — used by EN and [locale] routes.
+import Page from '../layouts/Page.astro'
+import { getAllServices, getServicesIndex, getServicesIndexData } from '../lib/services'
+import ServicesBento from '../components/shared/ServicesBento.astro'
+import { t } from '../lib/i18n'
+import { localizeHref } from '../lib/localize-href'
+import type { Lang } from '../types'
+
+interface Props {
+  lang: Lang
+}
+
+const { lang } = Astro.props
+const description = t('services_meta_description', lang)
+const indexData = getServicesIndexData(lang)
+
+const subsBySlug: Record<string, Array<{ name: string; icon: string }>> = {}
+for (const detail of getAllServices(lang)) {
+  subsBySlug[detail.slug] = (detail.subServices ?? []).slice(0, 3).map((s) => ({
+    name: s.name,
+    icon: s.icon,
+  }))
+}
+
+const servicesData = {
+  ...indexData,
+  categories: getServicesIndex(lang).map((c) => ({
+    ...c,
+    subServices: subsBySlug[c.slug] ?? [],
+  })),
+}
+---
+
+<Page title={`${t('nav_services', lang)} — Baseet Studio`} description={description} section="services" lang={lang}>
+  <section class="services-hero" data-animate="fade-up">
+    <h1 class="services-hero__title">
+      {t('services_hero_title_line1', lang)}<br/>
+      <span class="services-hero__title-accent">{t('services_hero_title_line2', lang)}</span>
+    </h1>
+    <p class="services-hero__lead">
+      {t('services_hero_lead', lang)}
+    </p>
+
+    <dl class="services-hero__meta">
+      <div class="services-hero__meta-item">
+        <dt>{t('services_meta_partnership', lang)}</dt>
+        <dd>{t('services_meta_partnership_value', lang)}</dd>
+      </div>
+      <div class="services-hero__meta-item">
+        <dt>{t('services_meta_capabilities', lang)}</dt>
+        <dd>{t('services_meta_capabilities_value', lang)}</dd>
+      </div>
+      <div class="services-hero__meta-item">
+        <dt>{t('services_meta_based', lang)}</dt>
+        <dd>{t('services_meta_based_value', lang)}</dd>
+      </div>
+    </dl>
+  </section>
+
+  <ServicesBento
+    categories={servicesData.categories}
+    process={servicesData.process as any}
+    cta={servicesData.cta as any}
+    copy={{
+      explore: t('services_explore', lang),
+      ctaHref: localizeHref(lang, '/contact/'),
+    }}
+    lang={lang}
+  />
+</Page>
+
+<style>
+  .services-hero {
+    margin-bottom: 64px;
+    max-width: 880px;
+  }
+
+  .services-hero__title {
+    font-size: clamp(2.4rem, 5.4vw, 4.4rem);
+    line-height: 1.04;
+    font-weight: 400;
+    color: var(--heading-text);
+    margin: 0 0 22px;
+    letter-spacing: -0.02em;
+  }
+
+  .services-hero__title-accent {
+    color: var(--color-primary);
+    font-style: italic;
+  }
+
+  [lang="ar"] .services-hero__title-accent,
+  [lang="ur"] .services-hero__title-accent,
+  [dir="rtl"] .services-hero__title-accent {
+    font-style: normal;
+  }
+
+  .services-hero__lead {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--muted-text);
+    margin: 0 0 36px;
+    max-width: 62ch;
+  }
+
+  .services-hero__meta {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, max-content));
+    gap: 56px;
+    margin: 0;
+    padding-top: 28px;
+    border-top: 1px solid var(--divider-color);
+  }
+
+  .services-hero__meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .services-hero__meta-item dt {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted-text);
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .services-hero__meta-item dd {
+    font-family: var(--font-title);
+    font-size: 1.65rem;
+    color: var(--heading-text);
+    margin: 0;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media (max-width: 720px) {
+    .services-hero__meta {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .services-hero__meta-item dd {
+      font-size: 1.35rem;
+    }
+  }
+</style>

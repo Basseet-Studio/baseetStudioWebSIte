@@ -1,0 +1,140 @@
+{
+  "name": "ChopShop",
+  "slug": "chopshop",
+  "type": "branded",
+  "tagline": "Ang tindahan mo, saanman.",
+  "description": "## About ChopShop\n\nChopShop is a complete B2C e-commerce platform designed to help vendors of all sizes sell online and deliver to their customers efficiently.\n\n### For Vendors\n\nSet up your online store in minutes. Manage products, track orders, and grow your business with powerful analytics.\n\n### For Customers\n\nBrowse products, place orders, and track deliveries — all from a beautifully designed app that matches your favorite store's brand.\n\n### For Delivery\n\nOptimized routing, real-time tracking, and seamless handoff make deliveries efficient and transparent for everyone involved.\n\n## Ready to Launch Your Store?\n\nGet in touch to see how ChopShop can power your online retail business.\n",
+  "iconClass": "fas fa-shopping-bag",
+  "color": "#E11D48",
+  "gradient": "linear-gradient(135deg, #E11D48 0%, #FB7185 100%)",
+  "status": "Handa nang i-deliver",
+  "layoutVariant": "chopshop",
+  "fontHeading": "Outfit",
+  "fontBody": "DM Sans",
+  "fontWeights": "400,500,600,700",
+  "gsapAnimation": "slide-edges",
+  "appType": "web",
+  "brandName": "ChopShop",
+  "bgEffect": "shopping",
+  "bgFallbackGradient": "linear-gradient(180deg, #FFF1F2 0%, #FECDD3 40%, #FDA4AF 100%)",
+  "hero": {
+    "title": "Ang Tindahan Mo, Saanman",
+    "subtitle": "Kumpletong B2C shopping platform para sa vendors.",
+    "cta_primary": "Humiling ng Demo",
+    "cta_primary_link": "/contact",
+    "cta_secondary": "View Features",
+    "cta_secondary_link": "#features"
+  },
+  "features": [
+    {
+      "title": "Vendor Storefront Management",
+      "description": "Each vendor gets their own customizable storefront with product listings, categories, inventory management, and sales analytics.",
+      "icon": "fas fa-store"
+    },
+    {
+      "title": "Custom-Branded Customer App",
+      "description": "White-label mobile app that matches your brand. Customers browse, search, add to cart, and checkout seamlessly.",
+      "icon": "fas fa-mobile-alt"
+    },
+    {
+      "title": "Delivery App & Tracking",
+      "description": "Dedicated delivery driver app with route optimization, real-time tracking, and delivery confirmation.",
+      "icon": "fas fa-truck"
+    },
+    {
+      "title": "Payment Processing",
+      "description": "Secure payment gateway integration supporting multiple payment methods including cards, mobile wallets, and cash on delivery.",
+      "icon": "fas fa-credit-card"
+    },
+    {
+      "title": "Order Management",
+      "description": "Complete order lifecycle management from placement to delivery. Real-time status updates for vendors, customers, and drivers.",
+      "icon": "fas fa-clipboard-list"
+    },
+    {
+      "title": "Analytics Dashboard",
+      "description": "Comprehensive analytics for vendors and platform admins. Track sales, popular products, customer behavior, and delivery metrics.",
+      "icon": "fas fa-chart-bar"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "Web",
+      "icon": "fas fa-globe",
+      "version": "Web App",
+      "link": "#"
+    },
+    {
+      "name": "iOS",
+      "icon": "fab fa-apple",
+      "version": "iOS 15+",
+      "link": "#"
+    },
+    {
+      "name": "Android",
+      "icon": "fab fa-android",
+      "version": "Android 8+",
+      "link": "#"
+    }
+  ],
+  "tech": [
+    "React Native",
+    "Node.js",
+    "PostgreSQL",
+    "Stripe",
+    "Google Maps",
+    "Firebase"
+  ],
+  "navItems": [
+    {
+      "label": "Home",
+      "url": "",
+      "i18nKey": "project_nav_home"
+    },
+    {
+      "label": "Features",
+      "url": "features/",
+      "i18nKey": "project_nav_features"
+    },
+    {
+      "label": "Demo",
+      "url": "demo/",
+      "i18nKey": "project_nav_demo"
+    },
+    {
+      "label": "Privacy Policy",
+      "url": "terms/",
+      "i18nKey": "project_nav_terms"
+    }
+  ],
+  "navMetaItems": [
+    {
+      "label": "Work",
+      "url": "/projects/",
+      "i18nKey": "nav_work"
+    },
+    {
+      "label": "Contact",
+      "url": "/contact/",
+      "i18nKey": "nav_contact"
+    }
+  ],
+  "faq": [
+    {
+      "question": "What platforms does ChopShop support?",
+      "answer": "ChopShop includes a web admin panel, iOS and Android customer apps, and a dedicated delivery driver app."
+    },
+    {
+      "question": "Can I customize the customer-facing app with my branding?",
+      "answer": "Yes! ChopShop is fully white-label. You can customize colors, logos, fonts, and the overall look to match your brand identity."
+    },
+    {
+      "question": "How does the delivery system work?",
+      "answer": "Drivers receive orders through the dedicated delivery app, get optimized routes, and customers can track their delivery in real-time."
+    },
+    {
+      "question": "What payment methods are supported?",
+      "answer": "We support credit/debit cards, mobile wallets (Apple Pay, Google Pay), bank transfers, and cash on delivery."
+    }
+  ]
+}

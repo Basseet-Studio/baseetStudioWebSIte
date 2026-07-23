@@ -1,0 +1,185 @@
+{
+  "title": "عملاؤنا",
+  "subtitle": "قصص نجاح",
+  "description": "اكتشف كيف حققت شركات مثلك نتائج مع حلولنا.",
+  "clients": [
+    {
+      "id": "portia-grid",
+      "name": "Portia Grid",
+      "layoutTemplate": "timeline",
+      "logo": "",
+      "industry": "اللوجستيات وذكاء البيانات",
+      "serviceType": "أداة داخلية",
+      "color": "#2563EB",
+      "tagline": "إدارة أسطول وبيانات ذكية",
+      "shortDescription": "منصة ويب شاملة لإدارة أساطيل شاحنات التوصيل وجداول صيانتها.",
+      "fullDescription": "Portia Grid أداة داخلية قوية بنيناها لمساعدة شركات اللوجستيات على إدارة أسطول شاحنات التوصيل بالكامل. من تتبع مواقع المركبات إلى جدولة الصيانة، يُدار كل شيء في لوحة تحكم مركزية واحدة.",
+      "challenge": "كان العميل يدير أكثر من 50 شاحنة توصيل باستخدام جداول بيانات ومكالمات هاتفية. غالباً ما تُفوَّت الصيانة، مما يؤدي إلى أعطال وتأخيرات. لم يكن لديهم أي رؤية لحالة الأسطول في الوقت الفعلي.",
+      "solution": "بنينا منصة ويب مخصصة توفر تتبع GPS في الوقت الفعلي، وجدولة صيانة آلية بناءً على المسافة المقطوعة والوقت، وإدارة تعيين السائقين، وتقارير شاملة.",
+      "results": [
+        { "metric": "30%", "label": "انخفاض في الأعطال" },
+        { "metric": "2hrs", "label": "توفير يومي في الإدارة" },
+        { "metric": "100%", "label": "رؤية كاملة للأسطول" }
+      ],
+      "features": [
+        "تتبع الأسطول عبر GPS في الوقت الفعلي",
+        "تنبيهات صيانة آلية",
+        "تعيين السائقين والجدولة",
+        "تتبع استهلاك الوقود",
+        "سجلات تاريخ الصيانة",
+        "لوحة تقارير مخصصة"
+      ],
+      "technologies": [
+        "React",
+        "Node.js",
+        "PostgreSQL",
+        "Google Maps API"
+      ],
+      "testimonial": {
+        "quote": "معظم المطورين يبنون فقط ما تطلبه منهم؛ هذا الفريق يفكر معك فعلاً في المنطق. بناء Portia Grid تطلّب الكثير من الذكاء التكتيكي والتعامل المعقّد مع البيانات، وقد أتقن Mohamed وAsad وAriyan المهمة تماماً. لديهم طاقة رائعة، ويعرفون تقنياتهم عن ظهر قلب، وقد رافقوني في كل خطوة من العملية. إذا كنت تريد فريقاً يتحمّل مسؤولية النتيجة، فهذا هو الفريق المناسب.",
+        "author": "Hassan",
+        "role": "الرئيس التنفيذي ومؤسس Portia Grid"
+      },
+      "steps": [],
+      "screenshots": []
+    },
+    {
+      "id": "iyat",
+      "name": "Iyat",
+      "layoutTemplate": "showcase",
+      "logo": "",
+      "industry": "التسويق الرقمي والإبداع",
+      "serviceType": "موقع إلكتروني",
+      "color": "#8B5CF6",
+      "tagline": "معرض أعمال وكالة رقمية",
+      "shortDescription": "موقع حديث وغني بصرياً لـ Iyat، وكالة رقمية تعرض أعمالها الإبداعية وخدماتها.",
+      "fullDescription": "صمّمنا وبنينا موقع معرض أعمال متميز لـ Iyat، وكالة رقمية متخصصة في حلول التسويق الإبداعي.",
+      "challenge": "احتاجت Iyat إلى حضور احترافي على الإنترنت يعرض أعمالها الإبداعية ويجذب عملاء جدد.",
+      "solution": "بنينا موقع معرض أعمال أنيق وحديث مع حركات سلسة وتصميم متجاوب وتجربة مستخدم جذابة.",
+      "results": [
+        { "metric": "100%", "label": "تصميم مخصص" },
+        { "metric": "< 2s", "label": "وقت التحميل" }
+      ],
+      "features": [
+        "تصميم معرض أعمال مخصص",
+        "تخطيط متجاوب",
+        "حركات سلسة",
+        "واجهة وتجربة مستخدم حديثة"
+      ],
+      "technologies": [
+        "HTML/CSS",
+        "JavaScript"
+      ],
+      "link": "https://iyat-site.mohameda-elobaid.workers.dev/portfolio",
+      "steps": [],
+      "screenshots": []
+    },
+    {
+      "id": "veeramangalam-juma-masjid",
+      "name": "Veeramangalam Juma Masjid Finance",
+      "layoutTemplate": "stack",
+      "logo": "",
+      "industry": "التمويل المجتمعي",
+      "serviceType": "نظام Jamia",
+      "color": "#059669",
+      "tagline": "مالية المسجد — السحابة ودون اتصال في مكان واحد",
+      "shortDescription": "يستبدل نظام Jamia جداول Excel والسجلات الورقية لمصاريف المسجد والمساهمات المحلية.",
+      "fullDescription": "بنينا نظام Jamia لـ Veeramangalam Juma Masjid Finance — منصة ثنائية على Firebase مع دعم كامل دون اتصال. يستبدل جداول Excel والدفاتر المكتوبة بخط اليد التي كان المجتمع يستخدمها لتتبع المصاريف والمساهمات المحلية.",
+      "challenge": "كان فريق مالية المسجد يتتبع مساهمات الأعضاء والمصاريف التشغيلية عبر جداول بيانات وسجلات ورقية. كان التسوية بطيئاً وتتسلل الأخطاء، ولم يعمل شيء عند انقطاع الإنترنت.",
+      "solution": "بنينا نظام Jamia — منصة مالية مدعومة بـ Firebase مع مزامنة تعمل دون اتصال أولاً. المساهمات والمصاريف وسجلات Jamia في مكان واحد، متصلاً أو غير متصل.",
+      "results": [
+        { "metric": "100%", "label": "تتبع بلا ورق" },
+        { "metric": "2-in-1", "label": "سحابة + دون اتصال" }
+      ],
+      "features": [
+        "تتبع المصاريف",
+        "سجل المساهمات المحلية",
+        "مزامنة تعمل دون اتصال أولاً",
+        "خلفية Firebase"
+      ],
+      "technologies": [
+        "Flutter",
+        "Firebase",
+        "Firestore"
+      ],
+      "steps": [],
+      "screenshots": []
+    },
+    {
+      "id": "malaysian-business-websites",
+      "name": "Malaysian Business Websites",
+      "layoutTemplate": "showcase",
+      "industry": "الويب المؤسسي",
+      "serviceType": "موقع إلكتروني",
+      "color": "#F59E0B",
+      "tagline": "حلول الويب المؤسسي",
+      "shortDescription": "",
+      "technologies": [
+        "WordPress",
+        "Laravel",
+        "Vue.js",
+        "Tailwind CSS",
+        "MySQL",
+        "AWS Malaysia"
+      ],
+      "steps": [],
+      "screenshots": [],
+      "galleryType": "web"
+    },
+    {
+      "id": "bd-railway-automated-timetable",
+      "name": "BD Railway Automated Timetable",
+      "layoutTemplate": "timeline",
+      "industry": "عمليات السكك الحديدية",
+      "serviceType": "أداة داخلية",
+      "color": "#16A34A",
+      "tagline": "نظام جدولة السكك الحديدية",
+      "shortDescription": "",
+      "technologies": [
+        "Python",
+        "Constraint Programming",
+        "OR-Tools",
+        "PostgreSQL",
+        "FastAPI",
+        "React Admin"
+      ],
+      "steps": [],
+      "screenshots": [],
+      "galleryType": "web"
+    },
+    {
+      "id": "little-hands-lab",
+      "name": "Little Hands Lab",
+      "layoutTemplate": "showcase",
+      "industry": "الألعاب والتجزئة",
+      "serviceType": "متجر إلكتروني",
+      "color": "#EC4899",
+      "tagline": "متجر ألعاب على الإنترنت، مدعوم من Zyrn",
+      "shortDescription": "متجر ألعاب على الإنترنت مبني على Zyrn — كتالوج مخصص ودفع وواجهة متجر لـ Little Hands Lab.",
+      "fullDescription": "يدير Little Hands Lab متجره الإلكتروني للألعاب على Zyrn، باستخدام نظام إدارة المتجر المخصص على Laravel للكتالوج والمخزون وتجربة العملاء.",
+      "challenge": "احتاجوا إلى متجر ألعاب مخصص بالكامل على الإنترنت دون ربط عدة أدوات تجارة إلكترونية معاً.",
+      "solution": "أُطلق على Zyrn بواجهة متجر مخصصة وكتالوج منتجات ولوحة عمليات.",
+      "technologies": ["Zyrn", "Laravel", "PHP", "PWA"],
+      "steps": [],
+      "screenshots": [],
+      "galleryType": "web"
+    },
+    {
+      "id": "faruk-technology-store",
+      "name": "Faruk Technology Store",
+      "layoutTemplate": "showcase",
+      "industry": "التجزئة والاتصالات",
+      "serviceType": "إدارة المخزون",
+      "color": "#10B981",
+      "tagline": "عمليات المتجر على BaseetIMS",
+      "shortDescription": "يستخدم Faruk Technology Store نظام BaseetIMS للمخزون ونقاط البيع وعمليات المتجر اليومية.",
+      "fullDescription": "يدير Faruk Technology Store المخزون والمبيعات والوضوح عبر المواقع من خلال BaseetIMS — نظام إدارة مخزون مصمم للمتاجر الصغيرة.",
+      "challenge": "احتاجوا إلى تتبع واضح للمخزون والمبيعات دون تعقيد المؤسسات الكبيرة.",
+      "solution": "نُشر BaseetIMS للمخزون ونقاط البيع ولوحات المتجر اليومية.",
+      "technologies": ["BaseetIMS", "Web Dashboard"],
+      "steps": [],
+      "screenshots": [],
+      "galleryType": "web"
+    }
+  ]
+}

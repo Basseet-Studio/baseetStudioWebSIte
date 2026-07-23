@@ -4,16 +4,19 @@ import MatrixPreview from './previews/MatrixPreview.astro'
 import MoneyBoxPreview from './previews/MoneyBoxPreview.astro'
 import NumuPreview from './previews/NumuPreview.astro'
 import BaseetIMSPreview from './previews/BaseetIMSPreview.astro'
+import { localizeHref } from '../../lib/localize-href'
+import type { Lang } from '../../types'
 
 interface Props {
   project: ProjectIndexCard
   layoutClass: string
+  lang?: Lang
 }
 
-const { project, layoutClass } = Astro.props
+const { project, layoutClass, lang = 'en' } = Astro.props
 const hasVideo = Boolean(project.previewVideo)
 const isInteractive = Boolean(project.previewInteractive)
-const projectHref = `/projects/${project.slug}/`
+const projectHref = localizeHref(lang, `/projects/${project.slug}/`)
 
 const previewBgDay: Record<string, string> = {
   matrix: '#f3f4f6',

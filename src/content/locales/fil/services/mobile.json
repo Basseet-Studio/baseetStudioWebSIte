@@ -1,0 +1,176 @@
+{
+  "id": "mobile",
+  "slug": "mobile",
+  "title": "Mobile Development",
+  "tagline": "Apps na pinapanatili sa home screen",
+  "color": "#FBCD37",
+  "gradient": "linear-gradient(135deg, #F59E0B 0%, #FBCD37 100%)",
+  "icon": "fas fa-mobile-alt",
+  "shortDescription": "Native and cross-platform mobile applications",
+  "hero": {
+    "title": "Apps na Pinapanatili sa Home Screen",
+    "subtitle": "iOS, Android, cross-platform — mabilis, polished, battery-friendly.",
+    "cta_primary": "I-plan ang app mo",
+    "cta_primary_link": "/contact/",
+    "cta_secondary": "Tingnan ang stack",
+    "cta_secondary_link": "#tech"
+  },
+  "metrics": [
+    {
+      "value": "60fps",
+      "label": "Animation target"
+    },
+    {
+      "value": "10+",
+      "label": "Apps shipped"
+    },
+    {
+      "value": "4.8★",
+      "label": "Avg. store rating"
+    }
+  ],
+  "subServices": [
+    {
+      "id": "ios",
+      "name": "iOS Apps",
+      "icon": "fab fa-apple",
+      "desc": "Native Swift applications for iPhone and iPad",
+      "longDesc": "Pure SwiftUI and UIKit, written in Swift 5.10+ with async/await throughout. We handle App Store submission, TestFlight betas, privacy manifests, and the small things that turn an app from good to great on Apple silicon.",
+      "bullets": [
+        "Swift, SwiftUI, UIKit, Combine",
+        "iPhone, iPad, Apple Watch, Apple TV",
+        "StoreKit, Sign in with Apple, Wallet",
+        "TestFlight, App Store Connect, and privacy manifests"
+      ],
+      "imageLabel": "iOS app screen mockup"
+    },
+    {
+      "id": "android",
+      "name": "Android Apps",
+      "icon": "fab fa-android",
+      "desc": "Native Kotlin apps for all Android devices",
+      "longDesc": "Kotlin-first Android with Jetpack Compose, Material 3, and the modern AndroidX stack. We build for the long tail of devices your users actually have, with adaptive layouts, predictive back, and a smooth first-run experience.",
+      "bullets": [
+        "Kotlin, Jetpack Compose, Material 3",
+        "Adaptive layouts for phones, foldables, and tablets",
+        "Play Billing, Play Integrity, and Data Safety",
+        "Internal tracks, staged rollouts, and pre-launch reports"
+      ],
+      "imageLabel": "Android app screen mockup"
+    },
+    {
+      "id": "cross-platform",
+      "name": "Cross-Platform",
+      "icon": "fas fa-layer-group",
+      "desc": "Flutter & React Native for multi-platform reach",
+      "longDesc": "One codebase, two stores, and as much native feel as the platform allows. We pick Flutter for high-fidelity UI and animations, and React Native when the team is already deep in JavaScript and the ecosystem matters.",
+      "bullets": [
+        "Flutter 3 with Dart 3, Material You, and Cupertino",
+        "React Native with Expo, EAS, and Hermes",
+        "Native modules for Bluetooth, NFC, and camera",
+        "Shared design system across iOS and Android"
+      ],
+      "imageLabel": "Cross-platform app mockup"
+    },
+    {
+      "id": "aso",
+      "name": "App Store Optimization",
+      "icon": "fas fa-chart-line",
+      "desc": "Get discovered with proper ASO strategies",
+      "longDesc": "Most apps are never found. We treat the store listing like a product surface — keyword research, screenshot testing, localization, and a steady cadence of experiments so your install graph keeps climbing.",
+      "bullets": [
+        "Keyword research and metadata refresh",
+        "Screenshot and video A/B testing",
+        "Localization for priority markets",
+        "Reviews, ratings, and reply workflows"
+      ],
+      "imageLabel": "App store analytics dashboard"
+    }
+  ],
+  "process": [
+    {
+      "number": "01",
+      "title": "Validate",
+      "desc": "Prototype the core loop, prove the value, and size the build",
+      "icon": "fas fa-compass"
+    },
+    {
+      "number": "02",
+      "title": "Architect",
+      "desc": "Pick the stack, sketch the navigation, and design the data flow",
+      "icon": "fas fa-sitemap"
+    },
+    {
+      "number": "03",
+      "title": "Design",
+      "desc": "Mobile-first flows, motion studies, and an icon and color system",
+      "icon": "fas fa-pencil-ruler"
+    },
+    {
+      "number": "04",
+      "title": "Build",
+      "desc": "Sprint-by-sprint with TestFlight and Play Internal Track demos",
+      "icon": "fas fa-code"
+    },
+    {
+      "number": "05",
+      "title": "Ship & Grow",
+      "desc": "Store submission, then a roadmap of releases, not a one-and-done",
+      "icon": "fas fa-rocket"
+    }
+  ],
+  "deliverables": [
+    {
+      "title": "Production app binaries",
+      "description": "Signed builds for App Store and Play Store, with internal and external tracks set up.",
+      "icon": "fas fa-mobile"
+    },
+    {
+      "title": "Source & CI",
+      "description": "Clean repo, GitHub Actions or Bitrise, and signed release pipelines for both stores.",
+      "icon": "fas fa-code-branch"
+    },
+    {
+      "title": "Store listings",
+      "description": "Screenshots, videos, descriptions, and keywords in every locale you operate in.",
+      "icon": "fas fa-store"
+    },
+    {
+      "title": "Analytics & crash reporting",
+      "description": "Firebase, Sentry, or your stack of choice wired up and dashboard-ready.",
+      "icon": "fas fa-chart-bar"
+    }
+  ],
+  "tech": [
+    "Swift",
+    "Kotlin",
+    "SwiftUI",
+    "Jetpack Compose",
+    "Flutter",
+    "React Native",
+    "Expo",
+    "Firebase",
+    "Supabase",
+    "Fastlane",
+    "Sentry",
+    "RevenueCat"
+  ],
+  "faq": [
+    {
+      "question": "Should I pick Flutter, React Native, or fully native?",
+      "answer": "It depends on your team, timeline, and platform ambition. We recommend fully native for apps that lean on platform features (Apple Watch, Material You, NFC). Flutter and React Native are great for cross-platform MVPs and most consumer apps. We will recommend the right choice after a short architecture workshop."
+    },
+    {
+      "question": "Do you handle App Store and Play Store submission?",
+      "answer": "Yes. We manage the whole submission process, including review notes, privacy nutrition labels, Data Safety, signing certificates, and store listing copy. We also set up staged rollouts so you can watch crash-free sessions and roll back if needed."
+    },
+    {
+      "question": "Can you take over an existing app?",
+      "answer": "Frequently. We do a paid audit first — architecture review, dependency analysis, crash reports, and a one-page plan — then propose a phased engagement. Most rescue projects start with a 2-week stabilization sprint before we touch features."
+    },
+    {
+      "question": "How do you handle ongoing maintenance?",
+      "answer": "We offer monthly retainer plans that include store updates, dependency upgrades, crash triage, and a small number of feature hours. Most clients keep us on for 6–12 months after launch to keep the app fresh."
+    }
+  ]
+}

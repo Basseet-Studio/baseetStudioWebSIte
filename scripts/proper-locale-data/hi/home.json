@@ -1,0 +1,365 @@
+{
+  "hero": {
+    "title": "बस **सबसे अच्छा**",
+    "text": "हम वह बनाते हैं जो आपकी ज़रूरतों को पूरा करे—बिना फ़ालतू बात—सिर्फ़ समस्या का सबसे सरल हल।",
+    "image": "/images/home/hero/bill-sitting.png",
+    "buttons": [
+      {
+        "text": "प्रोजेक्ट शुरू करें",
+        "link": "#subscribe",
+        "type": "primary"
+      },
+      {
+        "text": "हमारा काम देखें",
+        "link": "#featured-projects",
+        "type": "secondary"
+      }
+    ],
+    "items": [
+      {
+        "icon": "fas fa-laptop-code",
+        "color": "#B45309",
+        "title": "वेब प्लेटफ़ॉर्म",
+        "text": "आधुनिक frameworks पर बनी production-grade websites और dashboards"
+      },
+      {
+        "icon": "fas fa-mobile-alt",
+        "color": "#F59E0B",
+        "title": "मोबाइल ऐप",
+        "text": "iOS और Android apps जो native महसूस हों और तेज़ लोड हों"
+      },
+      {
+        "icon": "fas fa-paint-brush",
+        "color": "#EA580C",
+        "title": "UI / UX डिज़ाइन",
+        "text": "ऐसे interfaces जो पहली बार आने वाले visitor को long-term user बनाएँ"
+      },
+      {
+        "icon": "fas fa-rocket",
+        "color": "#D97706",
+        "title": "Go-to-Market",
+        "text": "launch plan से growth experiments तक, शुरू से अंत तक"
+      }
+    ]
+  },
+  "features": [
+    {
+      "icon": "fas fa-tools",
+      "color": "#B45309",
+      "pretitle": "निर्माण",
+      "pretext": "इंजीनियरिंग",
+      "title": "**Full-stack** product development",
+      "text": "Web, mobile, backend, infrastructure। हम पूरा pipeline संभालते हैं ताकि आप तेज़ ship करें और चैन से सोएँ — clean architecture, automated tests, और observability पहले दिन से।",
+      "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=600&fit=crop"
+    },
+    {
+      "icon": "fas fa-mobile-screen",
+      "color": "#F59E0B",
+      "pretitle": "लॉन्च",
+      "pretext": "Product launches",
+      "title": "**Mobile apps** जो अपनी जगह deserve करें",
+      "text": "Native iOS, native Android, और React Native — सही tool चुनें, दोनों stores पर ship करें, CI/CD और crash monitoring के साथ release train चलती रखें।",
+      "image": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=600&fit=crop"
+    },
+    {
+      "icon": "fas fa-compass",
+      "color": "#EA580C",
+      "pretitle": "विस्तार",
+      "pretext": "Strategy और growth",
+      "title": "**Product strategy** और ongoing partnership",
+      "text": "Roadmaps, user research, pricing experiments, analytics setup। हम बनाकर चले नहीं जाते — जो matter करता है उसे measure और iterate करने में मदद करते हैं।",
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop"
+    },
+    {
+      "icon": "fas fa-paint-brush",
+      "color": "#FBCD37",
+      "pretitle": "User-Centered Design",
+      "pretext": "Design First",
+      "title": "**UI/UX** Design",
+      "text": "हम beautiful, intuitive interfaces बनाते हैं जिन्हें users पसंद करते हैं। wireframes से pixel-perfect visual design तक, हर interaction सभी devices पर natural और delightful लगे।",
+      "image": "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Numu",
+      "slug": "numu",
+      "type": "branded",
+      "tagline": "Build better habits, one day at a time",
+      "description": "A beautiful habit-tracking app for iOS and Android. Streaks, check-ins, analytics, and smart reminders that keep you consistent.",
+      "iconClass": "fas fa-chart-line",
+      "platforms": [
+        {
+          "name": "iOS",
+          "icon": "fab fa-apple"
+        },
+        {
+          "name": "Android",
+          "icon": "fab fa-android"
+        }
+      ],
+      "features": [
+        "Habit streaks",
+        "Daily check-ins",
+        "Progress analytics",
+        "Smart reminders"
+      ],
+      "color": "#9333EA",
+      "gradient": "linear-gradient(135deg, #9333EA 0%, #C084FC 100%)",
+      "status": "Coming Soon"
+    },
+    {
+      "name": "Matrix",
+      "slug": "matrix",
+      "type": "branded",
+      "tagline": "Intelligent data, on tap",
+      "description": "A unified data intelligence platform offering real-time analytics, automated workflows, and predictive insights for modern teams.",
+      "iconClass": "fas fa-database",
+      "platforms": [
+        {
+          "name": "Web",
+          "icon": "fas fa-globe"
+        }
+      ],
+      "features": [
+        "Real-time analytics",
+        "Automated ETL pipelines",
+        "Custom dashboards",
+        "Predictive insights"
+      ],
+      "color": "#0891B2",
+      "gradient": "linear-gradient(135deg, #0891B2 0%, #22D3EE 100%)",
+      "status": "Coming Soon"
+    },
+    {
+      "name": "BaseetIMS",
+      "slug": "baseetims",
+      "type": "branded",
+      "tagline": "Inventory management for small shops",
+      "description": "Multi-shop inventory, POS, flexiload commissions, and daily sales — built for small retail businesses.",
+      "iconClass": "fas fa-cash-register",
+      "platforms": [
+        {
+          "name": "Web",
+          "icon": "fas fa-globe"
+        }
+      ],
+      "features": [
+        "Multi-shop dashboard",
+        "Inventory & POS",
+        "Flexiload & MFS",
+        "Sales trends"
+      ],
+      "color": "#10B981",
+      "gradient": "linear-gradient(135deg, #059669 0%, #34D399 100%)",
+      "status": "Ready to Deliver"
+    },
+    {
+      "name": "DeshiKitchen",
+      "slug": "deshikitchen",
+      "type": "branded",
+      "tagline": "Authentic Bangladeshi cuisine, on demand",
+      "description": "A full-stack restaurant ordering platform with 3D hero, real-time order tracking, social proof, Stripe payments, and a comprehensive admin dashboard.",
+      "iconClass": "fas fa-utensils",
+      "platforms": [
+        {
+          "name": "Web",
+          "icon": "fas fa-globe"
+        }
+      ],
+      "features": [
+        "3D hero with R3F",
+        "Real-time order tracking",
+        "Live social proof",
+        "Stripe payments"
+      ],
+      "color": "#F97316",
+      "gradient": "linear-gradient(135deg, #F97316 0%, #FB923C 100%)",
+      "status": "Live"
+    },
+    {
+      "name": "MoneyBox",
+      "slug": "moneybox",
+      "type": "branded",
+      "tagline": "Your money, organised.",
+      "description": "A personal finance tracker with budgets, goals, and clean reporting.",
+      "iconClass": "fas fa-piggy-bank",
+      "platforms": [
+        {
+          "name": "iOS",
+          "icon": "fab fa-apple"
+        },
+        {
+          "name": "Android",
+          "icon": "fab fa-android"
+        }
+      ],
+      "color": "#16A34A",
+      "gradient": "linear-gradient(135deg, #16A34A 0%, #4ADE80 100%)",
+      "status": "Live"
+    },
+    {
+      "name": "Geeb",
+      "slug": "geeb",
+      "type": "branded",
+      "tagline": "Trusted home-service pros, on demand",
+      "description": "A B2C platform connecting customers with verified vendors and service pros for plumbing, electrical, handyman, cleaning, and more.",
+      "iconClass": "fas fa-wrench",
+      "platforms": [
+        {
+          "name": "iOS",
+          "icon": "fab fa-apple"
+        },
+        {
+          "name": "Android",
+          "icon": "fab fa-android"
+        },
+        {
+          "name": "Web",
+          "icon": "fas fa-globe"
+        }
+      ],
+      "features": [
+        "Verified pros",
+        "Instant booking",
+        "Real-time tracking",
+        "In-app payments"
+      ],
+      "color": "#B45309",
+      "gradient": "linear-gradient(135deg, #B45309 0%, #F59E0B 100%)",
+      "status": "Coming Soon"
+    },
+    {
+      "name": "PhotoRestore AI",
+      "slug": "photorestore-ai",
+      "type": "branded",
+      "tagline": "Restore old photos with AI",
+      "description": "Bring faded, damaged, and black-and-white photos back to life with on-device AI restoration, colorization, and enhancement.",
+      "iconClass": "fas fa-wand-magic-sparkles",
+      "platforms": [
+        {
+          "name": "Web",
+          "icon": "fas fa-globe"
+        }
+      ],
+      "features": [
+        "AI restoration",
+        "Auto colorization",
+        "Scratch & damage repair",
+        "Before / after slider"
+      ],
+      "color": "#6366F1",
+      "gradient": "linear-gradient(135deg, #6366F1 0%, #818CF8 100%)",
+      "status": "Live"
+    },
+    {
+      "name": "Medev",
+      "slug": "medev",
+      "type": "branded",
+      "tagline": "Healthcare. Simplified.",
+      "description": "A clinic + patient platform that unifies appointments, records, and follow-ups into a single, doctor-friendly workflow.",
+      "iconClass": "fas fa-hospital",
+      "platforms": [
+        {
+          "name": "Web",
+          "icon": "fas fa-globe"
+        },
+        {
+          "name": "Docker",
+          "icon": "fab fa-docker"
+        }
+      ],
+      "features": [
+        "Patient records",
+        "Smart scheduling",
+        "e-Prescriptions",
+        "Doctor dashboard"
+      ],
+      "color": "#0A6E74",
+      "gradient": "linear-gradient(135deg, #0A6E74 0%, #14B8A6 100%)",
+      "status": "Ready to Deliver"
+    }
+  ],
+  "team": [
+    {
+      "name": "Mohamed Abdallah",
+      "role": "Founder / Product Lead / PM / Senior Engineer",
+      "bio": "Founder and product lead combining deep engineering expertise with product strategy to shape high-quality software products.",
+      "image": "/images/home/team/mohamed-abdallah.jpg",
+      "social": {
+        "github": "https://github.com/mohamed-a-elobaid",
+        "linkedin": "https://www.linkedin.com/in/mohamed-abdalla-elobaid-29937b227/",
+        "twitter": "#"
+      }
+    },
+    {
+      "name": "Asadur Rahman",
+      "role": "Tech Lead / System Architect",
+      "bio": "Tech lead and systems architect focused on designing scalable distributed systems and robust cloud infrastructure.",
+      "image": "/images/home/team/asadur-rahman.png",
+      "social": {
+        "github": "https://github.com/ViX3L",
+        "linkedin": "https://www.linkedin.com/in/vix3l/",
+        "twitter": "#"
+      }
+    },
+    {
+      "name": "Ariyan Rehman",
+      "role": "Product Experience & Docs Engineer",
+      "bio": "Ensures product experience and documentation excellence by focusing on UX, developer docs, and content-driven workflows.",
+      "image": "/images/home/team/ariyan-rehman.jpg",
+      "social": {
+        "github": "https://github.com/ariyangd",
+        "linkedin": "https://www.linkedin.com/in/ariyangd/",
+        "twitter": "https://x.com/ariyangd"
+      }
+    },
+    {
+      "name": "Dibakar Sutra Dhar",
+      "role": "Backend Engineer & Data Engineer",
+      "bio": "Backend engineer specializing in distributed systems and scalable server solutions for web & cloud applications.",
+      "image": "/images/home/team/dibakar-sutradhar.JPG",
+      "social": {
+        "github": "https://github.com/dibakarsutradhar",
+        "linkedin": "https://www.linkedin.com/in/dibakarsutradhar/",
+        "twitter": "https://x.com/iamdibakardipu"
+      }
+    }
+  ],
+  "clients": [
+    {
+      "name": "Portia Grid",
+      "image": ""
+    },
+    {
+      "name": "Iyat",
+      "image": ""
+    }
+  ],
+  "highlights": [
+    {
+      "metric": "12+",
+      "label": "products shipped या market में",
+      "icon": "fas fa-rocket"
+    },
+    {
+      "metric": "5",
+      "label": "सक्रिय flagship platforms",
+      "icon": "fas fa-layer-group"
+    },
+    {
+      "metric": "3 yrs",
+      "label": "साझेदारी की औसत अवधि",
+      "icon": "fas fa-handshake"
+    },
+    {
+      "metric": "100%",
+      "label": "in-house engineering team",
+      "icon": "fas fa-users"
+    }
+  ],
+  "clouds": {
+    "enable": true,
+    "enableOnMobile": false
+  }
+}

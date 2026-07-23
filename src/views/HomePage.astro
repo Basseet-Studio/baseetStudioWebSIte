@@ -1,0 +1,39 @@
+---
+// Shared home page body.
+import Page from '../layouts/Page.astro'
+import Hero from '../components/home/Hero.astro'
+import Features from '../components/home/Features.astro'
+import ProximityProjects from '../components/home/ProximityProjects.astro'
+import Clients from '../components/home/Clients.astro'
+import Team from '../components/home/Team.astro'
+import Highlights from '../components/home/Highlights.astro'
+import ScrollSpacer from '../components/home/ScrollSpacer.astro'
+import { getHomeData } from '../lib/home'
+import { getClientsData } from '../lib/clients'
+import { SOURCE_SVGS } from '../lib/sourceSvgs'
+import { t } from '../lib/i18n'
+import type { Lang } from '../types'
+
+interface Props {
+  lang: Lang
+}
+
+const { lang } = Astro.props
+const homeData = getHomeData(lang) as any
+const clientsData = getClientsData(lang)
+const description = t('home_meta_description', lang)
+const homeProjects = (homeData.projects ?? []).filter((p: { slug: string }) => SOURCE_SVGS[p.slug])
+---
+
+<Page title="Baseet Studio" description={description} section="home" lang={lang}>
+  <Hero data={homeData.hero} lang={lang} />
+  <ScrollSpacer height="35vh" />
+  <Highlights highlights={homeData.highlights} lang={lang} />
+  <ScrollSpacer height="30vh" />
+  <Features features={homeData.features} lang={lang} />
+  <ScrollSpacer height="25vh" />
+  <ProximityProjects projects={homeProjects} lang={lang} />
+  <Clients clients={clientsData.clients} lang={lang} />
+  <Team members={homeData.team} lang={lang} />
+  <ScrollSpacer height="20vh" />
+</Page>

@@ -1,0 +1,155 @@
+{
+  "name": "Zyrn",
+  "slug": "zyrn",
+  "type": "branded",
+  "tagline": "تجارة إلكترونية للمؤسسات، بإعادة تصور",
+  "description": "## About Zyrn\n\nZyrn is a powerful, fully-managed ecommerce platform built for agencies and businesses that need more than just a store. Engineered for speed, scale, and flexibility, Zyrn gives you everything to launch, manage, and grow high-performance online businesses—without the complexity.\n\n### What Zyrn Delivers\n\nZyrn brings together the full stack of modern ecommerce tooling into one cohesive platform. From multivendor marketplaces to AI-powered product discovery, every feature is designed to help your clients sell more, operate faster, and scale without limits.\n\n### Built on Laravel\n\nA custom PHP/Laravel store management system — fully customizable so you can shape the store however you need. Multivendor, multi-store inventory, PWA, image search, CMS, and enterprise caching (FPC, Varnish, Elasticsearch, Octane, CDN) out of the box.\n",
+  "iconClass": "fas fa-th-large",
+  "color": "#EC4899",
+  "gradient": "linear-gradient(135deg, #EC4899 0%, #F9A8D4 100%)",
+  "status": "جاهز للتسليم",
+  "layoutVariant": "zyrn",
+  "fontHeading": "Space Grotesk",
+  "fontBody": "Inter",
+  "fontWeights": "400,500,700",
+  "gsapAnimation": "stagger-fade",
+  "appType": "web",
+  "brandName": "Zyrn",
+  "bgEffect": "none",
+  "bgFallbackGradient": "linear-gradient(180deg, #FDF2F8 0%, #FCE7F3 40%, #FBCFE8 100%)",
+  "clientIds": [
+    "little-hands-lab"
+  ],
+  "hero": {
+    "title": "تجارة إلكترونية للمؤسسات، بإعادة تصور",
+    "subtitle": "منصة Laravel متكاملة للوكالات والشركات التي تحتاج أكثر من متجر.",
+    "cta_primary": "اطلب عرضاً",
+    "cta_primary_link": "/contact",
+    "cta_secondary": "View Features",
+    "cta_secondary_link": "#features"
+  },
+  "features": [
+    {
+      "title": "Multivendor Marketplace",
+      "description": "Launch a marketplace where multiple sellers can list, manage, and fulfill their own products—all from a single storefront you control.",
+      "icon": "fas fa-store"
+    },
+    {
+      "title": "Multi-Store Inventory",
+      "description": "Manage stock across unlimited warehouses and locations from one centralized dashboard. Real-time sync, zero guesswork.",
+      "icon": "fas fa-boxes-stacked"
+    },
+    {
+      "title": "Generative AI Capabilities",
+      "description": "Let AI recommend the right products to the right customers at the right time—boosting conversions and average order value.",
+      "icon": "fas fa-robot"
+    },
+    {
+      "title": "Payment Integration",
+      "description": "Connect seamlessly with trusted providers including PayPal, Cash on Delivery, and Bank Transfer. More ways to pay, fewer abandoned carts.",
+      "icon": "fas fa-credit-card"
+    },
+    {
+      "title": "PWA Support",
+      "description": "Your store behaves like a native mobile app—fast, responsive, and installable—without building one from scratch.",
+      "icon": "fas fa-mobile-alt"
+    },
+    {
+      "title": "Search by Image",
+      "description": "Powered by TensorFlow machine learning. Customers upload a photo, and Zyrn finds matching or similar products instantly.",
+      "icon": "fas fa-search"
+    },
+    {
+      "title": "Built-In CMS",
+      "description": "Manage pages, banners, and static content without touching code. Your marketing team stays in control.",
+      "icon": "fas fa-file-alt"
+    },
+    {
+      "title": "Expanded Category View",
+      "description": "All categories and subcategories displayed clearly. Better navigation, faster discovery, higher engagement.",
+      "icon": "fas fa-sitemap"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "Web",
+      "icon": "fas fa-globe",
+      "version": "Custom Laravel Storefront + Admin",
+      "link": "#"
+    }
+  ],
+  "tech": [
+    "PHP",
+    "Laravel",
+    "Laravel Octane",
+    "Elasticsearch",
+    "Varnish",
+    "Full Page Caching (FPC)",
+    "CDN Integration",
+    "TensorFlow (image search)",
+    "PWA",
+    "MySQL / PostgreSQL",
+    "Redis",
+    "Load Balancer"
+  ],
+  "navItems": [
+    {
+      "label": "Home",
+      "url": "",
+      "i18nKey": "project_nav_home"
+    },
+    {
+      "label": "Features",
+      "url": "features/",
+      "i18nKey": "project_nav_features"
+    },
+    {
+      "label": "Demo",
+      "url": "demo/",
+      "i18nKey": "project_nav_demo"
+    },
+    {
+      "label": "Privacy Policy",
+      "url": "terms/",
+      "i18nKey": "project_nav_terms"
+    }
+  ],
+  "navMetaItems": [
+    {
+      "label": "Work",
+      "url": "/projects/",
+      "i18nKey": "nav_work"
+    },
+    {
+      "label": "Contact",
+      "url": "/contact/",
+      "i18nKey": "nav_contact"
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is Zyrn fully customizable?",
+      "answer": "Yes. Zyrn is a custom PHP/Laravel store management system—you can shape catalogs, checkout, shipping, payments, attributes, and storefront experience to match whatever your client needs."
+    },
+    {
+      "question": "Can I run a multivendor marketplace?",
+      "answer": "Yes. Multiple sellers can list, manage, and fulfill products from a single storefront you control, with centralized operations for the agency or business owner."
+    },
+    {
+      "question": "What payment methods are supported?",
+      "answer": "Out of the box: PayPal, Cash on Delivery, and Bank Transfer, with a flexible payments layer so more providers can be added as needed."
+    },
+    {
+      "question": "How does Zyrn handle scale and performance?",
+      "answer": "Enterprise infrastructure includes Full Page Caching, Elasticsearch with typo tolerance, Varnish, load balancing, Laravel Octane, and CDN integration—built for high-traffic catalogs (10M+ products) with ~500ms load targets."
+    },
+    {
+      "question": "Does it support multiple languages and currencies?",
+      "answer": "Yes. Localisation for multiple languages and multi-currency checkout so customers shop and pay in their local currency."
+    },
+    {
+      "question": "Who is Zyrn for?",
+      "answer": "Agencies and businesses that need more than a basic store—custom storefronts, marketplaces, multi-warehouse inventory, and enterprise tooling without piecing together disconnected SaaS products."
+    }
+  ]
+}

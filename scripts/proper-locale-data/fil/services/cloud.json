@@ -1,0 +1,170 @@
+{
+  "id": "cloud",
+  "slug": "cloud",
+  "title": "Cloud at DevOps",
+  "tagline": "Mag-ship nang mabilis, matulog nang payapa",
+  "color": "#0EA5E9",
+  "gradient": "linear-gradient(135deg, #0369A1 0%, #38BDF8 100%)",
+  "icon": "fas fa-cloud",
+  "shortDescription": "Scalable infrastructure and deployment",
+  "hero": {
+    "title": "Mag-ship nang Mabilis, Matulog nang Payapa",
+    "subtitle": "AWS, GCP, Cloudflare cloud platforms — IaC, observability, release process.",
+    "cta_primary": "I-review ang infra mo",
+    "cta_primary_link": "/contact/",
+    "cta_secondary": "Tingnan ang stack",
+    "cta_secondary_link": "#tech"
+  },
+  "metrics": [
+    {
+      "value": "99.9%",
+      "label": "Target uptime SLA"
+    },
+    {
+      "value": "<5min",
+      "label": "Mean time to rollback"
+    },
+    {
+      "value": "0",
+      "label": "Manual deploys"
+    }
+  ],
+  "subServices": [
+    {
+      "id": "cloud-migration",
+      "name": "Cloud Migration",
+      "icon": "fas fa-cloud-upload-alt",
+      "desc": "Move your systems to the cloud securely",
+      "longDesc": "Lift, refactor, or rebuild — depending on what your workload actually needs. We migrate production systems with a zero-downtime cutover plan, a parallel run, and a clean rollback path if anything goes sideways.",
+      "bullets": [
+        "AWS, GCP, Azure, and Cloudflare",
+        "Zero-downtime cutover with parallel run",
+        "Cost and right-sizing assessment",
+        "Networking, IAM, and secrets migration"
+      ],
+      "imageLabel": "Cloud migration architecture diagram"
+    },
+    {
+      "id": "cicd",
+      "name": "CI/CD Pipelines",
+      "icon": "fas fa-code-branch",
+      "desc": "Automated testing and deployment",
+      "longDesc": "We build pipelines that catch the bug, not the developer. Type-check, lint, test, scan, sign, and deploy on every commit — with progressive rollouts, automatic rollback on regressions, and a one-click revert when things go wrong.",
+      "bullets": [
+        "GitHub Actions, GitLab CI, and Buildkite",
+        "Progressive rollouts and feature flags",
+        "Auto-rollback on regressions",
+        "Signed, attested, and SBOM-tagged releases"
+      ],
+      "imageLabel": "CI/CD pipeline visualization"
+    },
+    {
+      "id": "server-management",
+      "name": "Server Management",
+      "icon": "fas fa-server",
+      "desc": "Keep your infrastructure running smoothly",
+      "longDesc": "Managed Kubernetes, serverless on AWS Lambda, or a humble VPS — we run the boring but critical parts so you can focus on the product. Patching, scaling, backups, and a 24/7 on-call rotation when something goes wrong.",
+      "bullets": [
+        "Kubernetes, ECS, and Lambda",
+        "Patch, backup, and capacity management",
+        "24/7 on-call with a real engineer",
+        "Postmortems that actually change something"
+      ],
+      "imageLabel": "Server monitoring dashboard"
+    },
+    {
+      "id": "security-audits",
+      "name": "Security Audits",
+      "icon": "fas fa-shield-alt",
+      "desc": "Identify and fix vulnerabilities",
+      "longDesc": "We do not sell scary reports — we sell fixed CVEs. Our security audits end with a prioritized remediation plan, a tracked set of pull requests, and a re-test. We work with SOC 2, ISO 27001, and the UAE PDPL.",
+      "bullets": [
+        "Web, API, and cloud config audits",
+        "Pen testing with a real report",
+        "SOC 2 and ISO 27001 readiness",
+        "UAE PDPL and data residency review"
+      ],
+      "imageLabel": "Security audit findings dashboard"
+    }
+  ],
+  "process": [
+    {
+      "number": "01",
+      "title": "Assess",
+      "desc": "Architecture review, cost audit, and reliability scorecard",
+      "icon": "fas fa-magnifying-glass"
+    },
+    {
+      "number": "02",
+      "title": "Plan",
+      "desc": "Migration or hardening plan, sized in weeks and cost",
+      "icon": "fas fa-map"
+    },
+    {
+      "number": "03",
+      "title": "Build",
+      "desc": "IaC, pipelines, and observability — committed and reviewed",
+      "icon": "fas fa-code"
+    },
+    {
+      "number": "04",
+      "title": "Operate",
+      "desc": "Handover with runbooks, dashboards, and an on-call rotation",
+      "icon": "fas fa-headset"
+    }
+  ],
+  "deliverables": [
+    {
+      "title": "IaC repository",
+      "description": "Terraform or Pulumi, committed in your repo, peer-reviewed, and applied from CI.",
+      "icon": "fas fa-code"
+    },
+    {
+      "title": "Pipeline",
+      "description": "Build, test, sign, and deploy on every commit — with progressive rollouts.",
+      "icon": "fas fa-code-branch"
+    },
+    {
+      "title": "Observability",
+      "description": "Metrics, logs, traces, and alerts wired to Slack or PagerDuty — no console-diving.",
+      "icon": "fas fa-chart-line"
+    },
+    {
+      "title": "Runbooks & handover",
+      "description": "A real runbook for the on-call, plus a 30-day post-handover window for tweaks.",
+      "icon": "fas fa-book"
+    }
+  ],
+  "tech": [
+    "AWS",
+    "GCP",
+    "Cloudflare",
+    "Kubernetes",
+    "Docker",
+    "Terraform",
+    "Pulumi",
+    "GitHub Actions",
+    "Datadog",
+    "Grafana",
+    "Sentry",
+    "PagerDuty"
+  ],
+  "faq": [
+    {
+      "question": "Which cloud do you recommend?",
+      "answer": "It depends on your existing commitments, regulatory requirements, and team. We are agnostic across AWS, GCP, Azure, and Cloudflare. We will recommend the right one for your workload after a short architecture review."
+    },
+    {
+      "question": "Can you take over an existing cloud setup?",
+      "answer": "Yes. We start with a paid audit — architecture, cost, security, and reliability scorecard — then propose a phased plan. We have rescued accounts with surprise bills, manual deploys, and a single point of failure or two."
+    },
+    {
+      "question": "Do you offer 24/7 on-call?",
+      "answer": "We do. We pair with your team during business hours and own a real on-call rotation outside it. Response times are documented up front, and we run a quarterly chaos test to keep the runbooks honest."
+    },
+    {
+      "question": "How do you handle data residency in the UAE?",
+      "answer": "All major providers now have UAE regions, and we design for residency from the first diagram. We have shipped UAE-only deployments for healthcare, education, and government clients and can walk you through the trade-offs."
+    }
+  ]
+}

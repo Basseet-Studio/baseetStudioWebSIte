@@ -8,6 +8,16 @@ import Footer from '../components/shared/Footer.astro'
 import PaperFilters from '../components/shared/PaperFilters.astro'
 import type { Lang, Section, NavItem } from '../types'
 import { t } from '../lib/i18n'
+import {
+  LOCALES,
+  hreflangAlternates,
+  htmlLang,
+  inLanguage,
+  isRtl,
+  localizedUrl,
+  ogLocale,
+  stripLocalePrefix,
+} from '../lib/locale'
 
 import '../styles/global.css'
 import '../styles/glass.css'
@@ -56,16 +66,13 @@ const siteOrigin = Astro.site?.toString().replace(/\/$/, '') ?? 'https://baseets
 const pathname = Astro.url.pathname
 const sceneConfig = resolveSceneConfig(pathname)
 const sceneConfigJson = JSON.stringify(sceneConfig)
-const stripped = pathname.replace(/\/$/, '') || '/'
-const enPath = stripped
-const arPath = stripped === '/' ? '/ar' : `/ar${stripped}`
-const canonicalURL = `${siteOrigin}${enPath}`
-const enURL = canonicalURL
-const arURL = `${siteOrigin}${arPath}`
+const barePath = stripLocalePrefix(pathname)
+const canonicalURL = localizedUrl(siteOrigin, lang, barePath)
+const alternates = hreflangAlternates(siteOrigin, barePath)
 
-// lang / dir are dynamic so the future /ar/ mirror can render correctly.
-const htmlLang = lang
-const htmlDir = lang === 'ar' ? 'rtl' : 'ltr'
+// lang / dir are dynamic for all locales.
+const htmlLangAttr = htmlLang(lang)
+const htmlDir = isRtl(lang) ? 'rtl' : 'ltr'
 
 // Twitter handle (matches the social link in links.json).
 const twitterHandle = '@baseetstudios'
@@ -74,12 +81,11 @@ const twitterHandle = '@baseetstudios'
 const fallbackDescription = 'Baseet Studio crafts mobile apps, web platforms, and digital experiences for ambitious brands in Abu Dhabi and beyond.'
 const metaDescription = description || fallbackDescription
 
-// Locale tags (en_AE primary, ar_AE alternate).
-const ogLocale = 'en_AE'
-const ogLocaleAlternate = 'ar_AE'
+// Locale tags per page language.
+const ogLocaleValue = ogLocale(lang)
+const ogLocaleAlternates = LOCALES.filter((l) => l !== lang).map((l) => ogLocale(l))
 
 // JSON-LD: Organization + LocalBusiness + WebSite.
-// Address: Abu Dhabi, UAE. Phone: +971507566474.
 const jsonLdOrganization = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
@@ -136,13 +142,13 @@ const jsonLdWebSite = {
   '@id': `${siteOrigin}/#website`,
   name: 'Baseet Studio',
   url: siteOrigin,
-  inLanguage: ['en-AE', 'ar-AE'],
+  inLanguage: LOCALES.map((l) => inLanguage(l)),
   publisher: { '@id': `${siteOrigin}/#organization` },
 }
 ---
 
 <!doctype html>
-<html lang={htmlLang} dir={htmlDir}>
+<html lang={htmlLangAttr} dir={htmlDir}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -153,10 +159,10 @@ const jsonLdWebSite = {
     <meta name="description" content={metaDescription} />
     <link rel="canonical" href={canonicalURL} />
 
-    <!-- hreflang for the future /ar/ Arabic mirror -->
-    <link rel="alternate" hreflang="en" href={enURL} />
-    <link rel="alternate" hreflang="ar" href={arURL} />
-    <link rel="alternate" hreflang="x-default" href={enURL} />
+    {/* hreflang alternates for all locales */}
+    {alternates.map((alt) => (
+      <link rel="alternate" hreflang={alt.lang} href={alt.href} />
+    ))}
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -164,8 +170,10 @@ const jsonLdWebSite = {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={metaDescription} />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:locale" content={ogLocale} />
-    <meta property="og:locale:alternate" content={ogLocaleAlternate} />
+    <meta property="og:locale" content={ogLocaleValue} />
+    {ogLocaleAlternates.map((loc) => (
+      <meta property="og:locale:alternate" content={loc} />
+    ))}
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:secure_url" content={ogImage} />
     <meta property="og:image:width" content={String(ogImageWidth)} />
@@ -197,7 +205,7 @@ const jsonLdWebSite = {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-      href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Caveat:wght@500;600;700&family=JetBrains+Mono:wght@400;500&family=Rambla:wght@400;500;600;700&family=Rammetto+One&family=Syne:wght@400;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Noto+Nastaliq+Urdu:wght@400;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Caveat:wght@500;600;700&family=JetBrains+Mono:wght@400;500&family=Rambla:wght@400;500;600;700&family=Rammetto+One&family=Syne:wght@400;600;700;800&display=swap"
       rel="stylesheet"
     >
 
@@ -223,7 +231,7 @@ const jsonLdWebSite = {
       <slot />
     </main>
 
-    <Footer compact={footerCompact} />
+    <Footer compact={footerCompact} lang={lang} />
 
     <script define:vars={{ sceneConfig }}>
       window.__BASEET_SCENE_CONFIG__ = sceneConfig

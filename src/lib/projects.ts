@@ -1,18 +1,7 @@
-// src/lib/projects.ts
-//
-// Single entry point for project data. The ordered list of projects lives in
-// `src/content/data/projects.json` (a lightweight summary list — one entry
-// per project, in display order). Full per-project data lives in
-// `src/content/data/projects/<slug>.json`.
-//
-// Consumers:
-//   - The /projects index page calls `getProjectsIndex()` to render cards.
-//   - Individual project pages call `getProject(slug)` to load full data.
-//   - The dynamic [slug]/[page].astro route calls `getAllProjects()` to build
-//     its getStaticPaths.
-
-import type { Project } from '../types'
-import projectsIndexRaw from '../content/data/projects.json'
+// src/lib/projects.ts — locale-aware project data with EN fallback.
+import type { Lang, Project } from '../types'
+import { loadLocaleJson, loadLocaleJsonDir } from './content'
+import { DEFAULT_LOCALE } from './locale'
 
 export type ProjectIndexTier = 'anchor' | 'flagship' | 'more'
 export type PreviewInteractive = 'matrix' | 'moneybox' | 'numu' | 'baseetims'
@@ -39,68 +28,53 @@ export interface ProjectIndexCard extends ProjectSummary {
   previewVideo?: string | null
 }
 
-// Eagerly load every per-project file at build time. Vite resolves the glob
-// into a static map, so this costs zero at runtime.
-const projectFiles = import.meta.glob<{ default: Project }>(
-  '../content/data/projects/*.json',
-  { eager: true }
-)
-
-const projectsBySlug: Record<string, Project> = {}
-for (const [path, mod] of Object.entries(projectFiles)) {
-  const filename = path.split('/').pop() ?? ''
-  const slug = filename.replace(/\.json$/, '')
-  // Vite exposes the JSON contents as `default` on the module.
-  projectsBySlug[slug] = (mod.default ?? (mod as unknown as Project)) as Project
+function projectsIndex(lang: Lang): ProjectSummary[] {
+  return loadLocaleJson<ProjectSummary[]>(lang, 'projects.json')
 }
 
-const index = projectsIndexRaw as ProjectSummary[]
-
-/** Ordered list of project summaries for the index page. */
-export function getProjectsIndex(): ProjectSummary[] {
-  return index
+function projectsBySlug(lang: Lang): Record<string, Project> {
+  return loadLocaleJsonDir<Project>(lang, 'projects')
 }
 
-function resolvePreviewImage(summary: ProjectSummary): string {
+export function getProjectsIndex(lang: Lang = DEFAULT_LOCALE): ProjectSummary[] {
+  return projectsIndex(lang)
+}
+
+function resolvePreviewImage(summary: ProjectSummary, lang: Lang): string {
   if (summary.previewImage) return summary.previewImage
-  const full = projectsBySlug[summary.slug]
+  const full = projectsBySlug(lang)[summary.slug]
   if (full?.screenshots?.[0]) return full.screenshots[0]
   if (summary.icon) return summary.icon
   return ''
 }
 
-/** Visible projects for /projects with resolved preview media. */
-export function getProjectsForIndex(): ProjectIndexCard[] {
-  return index
+export function getProjectsForIndex(lang: Lang = DEFAULT_LOCALE): ProjectIndexCard[] {
+  return projectsIndex(lang)
     .filter((p) => !p.indexHidden)
     .map((summary) => ({
       ...summary,
-      previewImage: resolvePreviewImage(summary),
+      previewImage: resolvePreviewImage(summary, lang),
       previewVideo: summary.previewVideo ?? null,
     }))
     .filter((p) => p.previewImage)
 }
 
-/** Full project data for a given slug, or undefined if it doesn't exist. */
-export function getProject(slug: string): Project | undefined {
-  return projectsBySlug[slug]
+export function getProject(slug: string, lang: Lang = DEFAULT_LOCALE): Project | undefined {
+  return projectsBySlug(lang)[slug]
 }
 
-/** Every project with full data, in the same order as the index. */
-export function getAllProjects(): Project[] {
-  return index
-    .map((summary) => projectsBySlug[summary.slug])
-    .filter((p): p is Project => Boolean(p))
+export function getAllProjects(lang: Lang = DEFAULT_LOCALE): Project[] {
+  const index = projectsIndex(lang)
+  const bySlug = projectsBySlug(lang)
+  return index.map((s) => bySlug[s.slug]).filter((p): p is Project => Boolean(p))
 }
 
-/** All known project slugs — handy for static path generation. */
-export function getProjectSlugs(): string[] {
-  return index.map((p) => p.slug)
+export function getProjectSlugs(lang: Lang = DEFAULT_LOCALE): string[] {
+  return projectsIndex(lang).map((p) => p.slug)
 }
 
-/** Projects linked to a client via `clientIds` on project JSON. */
-export function getProjectsForClient(clientId: string): Project[] {
-  return Object.values(projectsBySlug).filter((p) =>
+export function getProjectsForClient(clientId: string, lang: Lang = DEFAULT_LOCALE): Project[] {
+  return Object.values(projectsBySlug(lang)).filter((p) =>
     (p.clientIds ?? []).includes(clientId)
   )
 }

@@ -1,0 +1,142 @@
+{
+  "name": "Matrix",
+  "slug": "matrix",
+  "type": "branded",
+  "tagline": "One platform. Every part of your business. Zero tool fatigue.",
+  "description": "## About Matrix\n\nMatrix is a high-performance, all-in-one SaaS workspace built to replace the patchwork of separate tools most teams juggle. Projects, people, customers, and finances all live in a single, cohesive ecosystem — and the data flows between them.\n\n### The Problem We Solve\n\nMost growing teams stitch together 5–10 different subscriptions: a CRM here, a task manager there, invoicing somewhere else, docs in yet another tab. The result is **tool fatigue**, broken integrations, and data trapped in silos. Matrix exists to eliminate that — one login, one interface, one source of truth.\n\n### Five Modules in One Workspace\n\n- **📊 Project & Task Management** — Kanban workflow with drag-and-drop boards, customizable columns and priorities, task hierarchies with subtasks and full parent–child relationships, real-time collaboration with instant updates across the team.\n- **🤝 Customer Relationship Management (CRM)** — Centralized contact database for clients, leads, and stakeholders, a sales pipeline that tracks every customer from first lead to closed deal, and full engagement tracking with interaction history and status monitoring.\n- **👥 Human Resource Management (HRM)** — Employee directory with detailed records, full lifecycle management from onboarding through performance tracking, and granular workspace roles for precise permission control.\n- **🧾 Professional Invoicing** — Generate professional invoices with built-in **Stripe** integration, automated status tracking (Draft, Paid, Overdue) updated in real time, and itemized billing with detailed line items, tax, and quantity calculations.\n- **📄 Document & Knowledge Management** — Collaborative docs with internal and external sharing on the same document, full version control that tracks every change and reverts to any previous version, and granular public/private access control.\n\n### Enterprise-Grade from Day One\n\n- **🔀 Multi-Workspace Support** — Seamlessly switch between organizations or departments.\n- **📜 Audit Logging** — Complete traceability of actions for security and compliance.\n- **🔒 Secure Multi-Tenancy** — Hard data isolation between workspaces.\n- **📈 Scalable Architecture** — Built for horizontal scaling from the ground up.\n\n### Built on a Modern, High-Performance Stack\n\nA stack chosen for **speed, security, and developer experience** — and one that translates into a noticeably faster product for end users.\n\n- **Frontend** — Next.js 15 (App Router) + TypeScript\n- **Backend** — Bun + Elysia.js (ultra-low latency)\n- **Database** — PostgreSQL via Prisma ORM\n- **Caching** — Redis (sessions + performance)\n- **Auth** — Better Auth (RBAC + multi-tenancy)\n- **UI/UX** — Tailwind CSS + shadcn/ui\n\n### Why Matrix\n\n- **Replace 5+ tools** with one subscription.\n- **Stop losing context** between modules — data flows, not fragments.\n- **Built to scale** with multi-workspace and multi-tenant architecture from day one.\n- **Modern UX** — clean, accessible, fast.\n\n*Developed with a focus on rich aesthetics, performance, and developer experience.*\n",
+  "iconClass": "fas fa-th-large",
+  "color": "#0891B2",
+  "gradient": "linear-gradient(135deg, #0891B2 0%, #22D3EE 100%)",
+  "status": "Coming Soon",
+  "layoutVariant": "matrix",
+  "fontHeading": "JetBrains Mono",
+  "fontBody": "IBM Plex Sans",
+  "fontWeights": "400,500,700",
+  "gsapAnimation": "typewriter-glitch",
+  "appType": "web",
+  "brandName": "Matrix",
+  "bgEffect": "grid",
+  "bgFallbackGradient": "linear-gradient(180deg, #ECFEFF 0%, #CFFAFE 40%, #A5F3FC 100%)",
+  "clientIds": [],
+  "hero": {
+    "title": "One Workspace for Projects, People, Customers & Finance",
+    "subtitle": "Matrix replaces the patchwork of 5+ tools most teams juggle. Projects, CRM, HRM, invoicing, and docs — in one cohesive, multi-tenant SaaS workspace built for speed.",
+    "cta_primary": "Get Early Access",
+    "cta_primary_link": "/contact",
+    "cta_secondary": "View Features",
+    "cta_secondary_link": "#features"
+  },
+  "features": [
+    {
+      "title": "Project & Task Management",
+      "description": "Drag-and-drop Kanban boards with customizable columns, task hierarchies with subtasks and parent–child relationships, and real-time collaboration for instant team updates.",
+      "icon": "fas fa-tasks"
+    },
+    {
+      "title": "Built-in CRM",
+      "description": "Centralized contact database for clients, leads, and stakeholders, a sales pipeline from first lead to closed deal, and engagement tracking with full interaction history.",
+      "icon": "fas fa-handshake"
+    },
+    {
+      "title": "HRM & Granular Roles",
+      "description": "Employee directory with detailed records, full lifecycle management from onboarding to performance tracking, and precise workspace-level permission control.",
+      "icon": "fas fa-users"
+    },
+    {
+      "title": "Invoicing with Stripe",
+      "description": "Generate professional invoices with built-in Stripe integration, automated status tracking (Draft, Paid, Overdue) in real time, and itemized billing with tax and quantity calculations.",
+      "icon": "fas fa-file-invoice-dollar"
+    },
+    {
+      "title": "Collaborative Docs & Version Control",
+      "description": "Internal and external sharing on the same document, full version control that tracks every change, and granular public/private access control.",
+      "icon": "fas fa-file-alt"
+    },
+    {
+      "title": "Multi-Workspace & Multi-Tenancy",
+      "description": "Switch seamlessly between organizations, with hard data isolation between workspaces, complete audit logging, and horizontal-scaling architecture from day one.",
+      "icon": "fas fa-layer-group"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "Web",
+      "icon": "fas fa-globe",
+      "version": "Web App (Next.js 15 + Bun)",
+      "link": "#"
+    }
+  ],
+  "tech": [
+    "Next.js 15 (App Router)",
+    "TypeScript",
+    "Bun",
+    "Elysia.js (ultra-low latency backend)",
+    "PostgreSQL",
+    "Prisma ORM",
+    "Redis (sessions + performance)",
+    "Better Auth (RBAC + multi-tenancy)",
+    "Tailwind CSS",
+    "shadcn/ui",
+    "Stripe (invoicing & payments)"
+  ],
+  "navItems": [
+    {
+      "label": "Home",
+      "url": "",
+      "i18nKey": "project_nav_home"
+    },
+    {
+      "label": "Features",
+      "url": "features/",
+      "i18nKey": "project_nav_features"
+    },
+    {
+      "label": "Demo",
+      "url": "demo/",
+      "i18nKey": "project_nav_demo"
+    },
+    {
+      "label": "Privacy Policy",
+      "url": "terms/",
+      "i18nKey": "project_nav_terms"
+    }
+  ],
+  "navMetaItems": [
+    {
+      "label": "Work",
+      "url": "/projects/",
+      "i18nKey": "nav_work"
+    },
+    {
+      "label": "Contact",
+      "url": "/contact/",
+      "i18nKey": "nav_contact"
+    }
+  ],
+  "faq": [
+    {
+      "question": "When will Matrix be available?",
+      "answer": "Matrix is currently in development. Sign up for early access to be among the first to try it when we launch."
+    },
+    {
+      "question": "How is Matrix different from other project management tools?",
+      "answer": "Matrix isn't just a task manager — it unifies Project Management, CRM, HRM, Invoicing (with Stripe), and Document Collaboration in one workspace, with data flowing between modules rather than trapped in silos."
+    },
+    {
+      "question": "Will there be a free plan?",
+      "answer": "Yes! Matrix will offer a generous free tier for small teams, with premium features available for larger organizations."
+    },
+    {
+      "question": "Can I import from other tools?",
+      "answer": "We plan to support imports from popular tools like Notion, Trello, Asana, and Jira at launch."
+    },
+    {
+      "question": "How does multi-workspace support work?",
+      "answer": "You can seamlessly switch between organizations or departments from a single login. Each workspace has hard data isolation (multi-tenancy) and its own granular roles, so cross-team access is controlled, not accidental."
+    },
+    {
+      "question": "Is my data secure and auditable?",
+      "answer": "Yes — Matrix ships with complete audit logging for traceability and compliance, secure multi-tenancy for data isolation, and horizontal-scaling architecture designed for reliability as you grow."
+    }
+  ]
+}

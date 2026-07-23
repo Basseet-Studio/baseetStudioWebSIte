@@ -1,51 +1,32 @@
-// src/lib/clients.ts
-//
-// Single entry point for client case-study data. All clients live in
-// `src/content/data/clients.json`. Detail pages at `/clients/{id}/` use
-// `getClient(id)`; the index page reads the full file directly or via
-// `getAllClients()`.
-
-import type { Client, ClientsData } from '../types'
-import clientsDataRaw from '../content/data/clients.json'
+// src/lib/clients.ts — locale-aware client data with EN fallback.
+import type { Client, ClientsData, Lang } from '../types'
+import { loadLocaleJson } from './content'
+import { DEFAULT_LOCALE } from './locale'
 import { getProject } from './projects'
 
-const clientsData = clientsDataRaw as ClientsData
-
-const clientsById: Record<string, Client> = {}
-for (const client of clientsData.clients) {
-  clientsById[client.id] = client
+export function getClientsData(lang: Lang = DEFAULT_LOCALE): ClientsData {
+  return loadLocaleJson<ClientsData>(lang, 'clients.json')
 }
 
-/** Full clients.json payload including page meta. */
-export function getClientsData(): ClientsData {
-  return clientsData
+export function getAllClients(lang: Lang = DEFAULT_LOCALE): Client[] {
+  return getClientsData(lang).clients
 }
 
-/** Ordered list of all clients. */
-export function getAllClients(): Client[] {
-  return clientsData.clients
+export function getClient(id: string, lang: Lang = DEFAULT_LOCALE): Client | undefined {
+  return getAllClients(lang).find((c) => c.id === id)
 }
 
-/** Single client by id, or undefined if not found. */
-export function getClient(id: string): Client | undefined {
-  return clientsById[id]
+export function getClientIds(lang: Lang = DEFAULT_LOCALE): string[] {
+  return getAllClients(lang).map((c) => c.id)
 }
 
-/** All client ids — for static path generation. */
-export function getClientIds(): string[] {
-  return clientsData.clients.map((c) => c.id)
-}
-
-/** Resolve a media filename to its public URL under /images/clients/{id}/. */
 export function getClientMediaPath(clientId: string, filename: string): string {
   return `/images/clients/${clientId}/${filename}`
 }
 
-/** Clients linked to a project via that project's `clientIds` field. */
-export function getClientsForProject(slug: string): Client[] {
-  const project = getProject(slug)
+export function getClientsForProject(slug: string, lang: Lang = DEFAULT_LOCALE): Client[] {
+  const project = getProject(slug, lang)
   if (!project?.clientIds?.length) return []
-  return project.clientIds
-    .map((id) => clientsById[id])
-    .filter((c): c is Client => Boolean(c))
+  const byId = Object.fromEntries(getAllClients(lang).map((c) => [c.id, c]))
+  return project.clientIds.map((id) => byId[id]).filter((c): c is Client => Boolean(c))
 }

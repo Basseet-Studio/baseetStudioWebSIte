@@ -1,0 +1,116 @@
+{
+  "name": "MoneyBox",
+  "slug": "moneybox",
+  "type": "branded",
+  "tagline": "Ang pera mo, nakaayos.",
+  "description": "## About MoneyBox\n\nMoneyBox is a personal finance tracker that helps you see where your money goes, set savings goals, and stay on budget — without the clutter of a full banking app.\n\n### Smart savings goals\n\nSet targets for trips, emergencies, or big purchases and watch your progress with clear visual charts.\n\n### Expense tracking\n\nLog spending by category, spot patterns early, and keep daily habits honest.\n\n### Clean reporting\n\nMonthly summaries and trend views that make sense at a glance — no spreadsheet required.\n",
+  "iconClass": "fas fa-piggy-bank",
+  "color": "#16A34A",
+  "gradient": "linear-gradient(135deg, #16A34A 0%, #4ADE80 100%)",
+  "status": "Live",
+  "layoutVariant": "moneybox",
+  "fontHeading": "Outfit",
+  "fontBody": "DM Sans",
+  "fontWeights": "400,500,600,700",
+  "gsapAnimation": "grow-leaves",
+  "appType": "mobile",
+  "brandName": "MoneyBox",
+  "bgEffect": "leaves",
+  "bgFallbackGradient": "linear-gradient(180deg, #F0FDF4 0%, #DCFCE7 40%, #BBF7D0 100%)",
+  "hero": {
+    "title": "Ang pera mo, sa wakas nakaayos.",
+    "subtitle": "Personal finance tracker na may budgets, goals, at malinaw na reporting.",
+    "cta_primary": "Kunin ang App",
+    "cta_primary_link": "https://drive.google.com/drive/folders/1_8MswXC-JxPEFU_0-fmeXal_hK7yKs9C?usp=sharing",
+    "cta_secondary": "View Features",
+    "cta_secondary_link": "#features"
+  },
+  "features": [
+    {
+      "title": "Smart Savings Goals",
+      "description": "Mag-set ng targets at subaybayan ang progress sa visual charts.",
+      "icon": "fas fa-bullseye"
+    },
+    {
+      "title": "Expense Tracking",
+      "description": "I-log ang gastos ayon sa category.",
+      "icon": "fas fa-receipt"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "iOS",
+      "icon": "fab fa-apple",
+      "version": "iOS 15+",
+      "link": "#"
+    },
+    {
+      "name": "Android",
+      "icon": "fab fa-android",
+      "version": "Android 8+",
+      "link": "https://drive.google.com/drive/folders/1_8MswXC-JxPEFU_0-fmeXal_hK7yKs9C?usp=sharing"
+    }
+  ],
+  "tech": [
+    "Flutter",
+    "Dart",
+    "SQLite",
+    "Riverpod"
+  ],
+  "navItems": [
+    {
+      "label": "Home",
+      "url": "",
+      "i18nKey": "project_nav_home"
+    },
+    {
+      "label": "Features",
+      "url": "features/",
+      "i18nKey": "project_nav_features"
+    },
+    {
+      "label": "Download",
+      "url": "download/",
+      "i18nKey": "project_nav_download"
+    },
+    {
+      "label": "Terms",
+      "url": "terms/",
+      "i18nKey": "project_nav_terms"
+    },
+    {
+      "label": "Privacy",
+      "url": "privacy/",
+      "i18nKey": "project_nav_privacy"
+    }
+  ],
+  "navMetaItems": [
+    {
+      "label": "Work",
+      "url": "/projects/",
+      "i18nKey": "nav_work"
+    },
+    {
+      "label": "Contact",
+      "url": "/contact/",
+      "i18nKey": "nav_contact"
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is MoneyBox free?",
+      "answer": "MoneyBox is a live product from Baseet Studio. Download links and pricing are available on the Android build; iOS availability is coming soon."
+    },
+    {
+      "question": "Does it connect to my bank?",
+      "answer": "MoneyBox focuses on manual tracking and goal setting — simple, private, and fully under your control."
+    },
+    {
+      "question": "Where is my data stored?",
+      "answer": "Your data stays on your device. We do not sell or share your financial information."
+    }
+  ],
+  "links": {
+    "android": "https://drive.google.com/drive/folders/1_8MswXC-JxPEFU_0-fmeXal_hK7yKs9C?usp=sharing"
+  }
+}

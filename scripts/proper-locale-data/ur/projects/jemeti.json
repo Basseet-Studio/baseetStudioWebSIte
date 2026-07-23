@@ -1,0 +1,72 @@
+{
+  "name": "Jemeti",
+  "slug": "jemeti",
+  "type": "branded",
+  "tagline": "ورکشاپس اور maintenance shops، managed.",
+  "description": "## Jemeti کے بارے میں\n\nJemeti workshop اور maintenance shop owners کو jobs schedule، parts track، اور customer vehicles manage کرنے میں مدد کرتا ہے — سب ایک جگہ سے۔\n",
+  "icon": "/images/projects/jemeti-icon.svg",
+  "iconClass": null,
+  "color": "#DC2626",
+  "gradient": "linear-gradient(135deg, #DC2626 0%, #EF4444 100%)",
+  "status": "جلد آرہا ہے",
+  "layoutVariant": "default",
+  "fontHeading": "Space Grotesk",
+  "fontBody": "Inter",
+  "appType": "web",
+  "brandName": "Jemeti",
+  "bgEffect": "none",
+  "clientIds": [],
+  "hero": {
+    "title": "آپ کی Workshop، منظم",
+    "subtitle": "Maintenance اور repair shops کے لیے job scheduling، parts tracking، customer management۔",
+    "cta_primary": "Early Access حاصل کریں",
+    "cta_primary_link": "/contact",
+    "cta_secondary": null,
+    "cta_secondary_link": null
+  },
+  "features": [
+    {
+      "title": "Work Orders",
+      "description": "Intake سے completion تک jobs create، assign، track کریں۔",
+      "icon": "fas fa-clipboard-list"
+    },
+    {
+      "title": "Parts Inventory",
+      "description": "Repair date promise سے پہلے shelf پر کیا ہے جانیں۔",
+      "icon": "fas fa-wrench"
+    },
+    {
+      "title": "Customer Vehicles",
+      "description": "ہر vehicle کے لیے service history، reminders، notes۔",
+      "icon": "fas fa-car"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "Web",
+      "icon": "fas fa-globe",
+      "version": "Web App",
+      "link": "#"
+    }
+  ],
+  "navItems": [
+    {
+      "label": "Home",
+      "url": "",
+      "i18nKey": "project_nav_home"
+    }
+  ],
+  "navMetaItems": [
+    {
+      "label": "Work",
+      "url": "/projects/",
+      "i18nKey": "nav_work"
+    },
+    {
+      "label": "Contact",
+      "url": "/contact/",
+      "i18nKey": "nav_contact"
+    }
+  ],
+  "faq": []
+}

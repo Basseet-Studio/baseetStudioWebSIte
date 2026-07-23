@@ -1,0 +1,174 @@
+{
+  "id": "design",
+  "slug": "design",
+  "title": "UI/UX Design",
+  "tagline": "Design na karapat-dapat sa second tap",
+  "color": "#AF52DE",
+  "gradient": "linear-gradient(135deg, #AF52DE 0%, #D8A0F5 100%)",
+  "icon": "fas fa-paint-brush",
+  "shortDescription": "Beautiful, intuitive interfaces users love",
+  "hero": {
+    "title": "Design na Karapat-dapat sa Second Tap",
+    "subtitle": "Dinidisenyo namin ang mga sandaling magpapasya kung babalik ang user — research-driven, tunay na design system.",
+    "cta_primary": "Mag-brief ng proyekto",
+    "cta_primary_link": "/contact/",
+    "cta_secondary": "Tingnan ang deliverables",
+    "cta_secondary_link": "#deliverables"
+  },
+  "metrics": [
+    {
+      "value": "12+",
+      "label": "Design systems shipped"
+    },
+    {
+      "value": "WCAG AA",
+      "label": "Default accessibility target"
+    },
+    {
+      "value": "1 source",
+      "label": "Figma source of truth"
+    }
+  ],
+  "subServices": [
+    {
+      "id": "user-research",
+      "name": "User Research",
+      "icon": "fas fa-user-friends",
+      "desc": "Understand your users' needs and behaviors",
+      "longDesc": "We start every project by talking to real users — moderated interviews, unmoderated tests, and analytics deep-dives. The output is not a persona poster; it is a clear, prioritized list of jobs-to-be-done your design has to do well.",
+      "bullets": [
+        "User interviews and contextual inquiry",
+        "Jobs-to-be-done and opportunity mapping",
+        "Usability testing on Figma or live prototypes",
+        "Insight-to-design handoff briefs"
+      ],
+      "imageLabel": "Research insight board"
+    },
+    {
+      "id": "wireframing",
+      "name": "Wireframing",
+      "icon": "fas fa-pencil-ruler",
+      "desc": "Blueprint your app's structure and flow",
+      "longDesc": "Before pixels, we draw the skeleton. Low-fidelity wireframes for every key flow, validated against your IA, and iterated fast. Wireframes are the cheapest place to make the most expensive mistakes — so we do not skip them.",
+      "bullets": [
+        "Low-fidelity wireframes for every flow",
+        "Information architecture and navigation",
+        "User flow diagrams and edge cases",
+        "Engineering review before visual design"
+      ],
+      "imageLabel": "Wireframe set with key flows"
+    },
+    {
+      "id": "visual-design",
+      "name": "Visual Design",
+      "icon": "fas fa-palette",
+      "desc": "Stunning interfaces that reflect your brand",
+      "longDesc": "High-fidelity Figma files, a real type and color system, and motion principles that match your brand personality. The output is a Figma library your team can keep using long after we are done — not a static deliverable.",
+      "bullets": [
+        "High-fidelity Figma screens and components",
+        "Type, color, and motion systems",
+        "Brand-aligned iconography and illustration",
+        "Light, dark, and brand variants"
+      ],
+      "imageLabel": "High-fidelity mobile screens"
+    },
+    {
+      "id": "prototyping",
+      "name": "Prototyping",
+      "icon": "fas fa-laptop-code",
+      "desc": "Interactive prototypes for testing ideas",
+      "longDesc": "Clickable prototypes for stakeholder review, user testing, and crowdfunding. We build them in Figma or with code, depending on fidelity needs — and we use them to test the riskiest assumptions before you spend a dirham on engineering.",
+      "bullets": [
+        "Figma and code-based prototypes",
+        "Micro-interactions and motion specs",
+        "Testable flows for user research",
+        "Stakeholder demo builds"
+      ],
+      "imageLabel": "Interactive prototype in code"
+    }
+  ],
+  "process": [
+    {
+      "number": "01",
+      "title": "Discover",
+      "desc": "Research, analytics review, and a 1-page problem statement",
+      "icon": "fas fa-lightbulb"
+    },
+    {
+      "number": "02",
+      "title": "Define",
+      "desc": "Jobs to be done, success metrics, and the v1 scope",
+      "icon": "fas fa-bullseye"
+    },
+    {
+      "number": "03",
+      "title": "Design",
+      "desc": "Wireframes, then visual design in Figma, with weekly reviews",
+      "icon": "fas fa-pencil-ruler"
+    },
+    {
+      "number": "04",
+      "title": "Validate",
+      "desc": "User testing on prototypes, iterate, and lock the system",
+      "icon": "fas fa-vial"
+    },
+    {
+      "number": "05",
+      "title": "Handoff",
+      "desc": "Annotated Figma, a Storybook-ready component library, and a working session with your devs",
+      "icon": "fas fa-handshake"
+    }
+  ],
+  "deliverables": [
+    {
+      "title": "Figma source of truth",
+      "description": "A clean, organized Figma file with components, variables, and ready-to-handoff frames.",
+      "icon": "fas fa-pen-ruler"
+    },
+    {
+      "title": "Design system",
+      "description": "Type, color, spacing, motion, and iconography — documented and ready to scale.",
+      "icon": "fas fa-shapes"
+    },
+    {
+      "title": "Prototype",
+      "description": "Clickable prototype in Figma or code, for stakeholder review and user testing.",
+      "icon": "fas fa-laptop"
+    },
+    {
+      "title": "Handoff package",
+      "description": "Specs, redlines, assets, and a working session with your engineering team.",
+      "icon": "fas fa-box"
+    }
+  ],
+  "tech": [
+    "Figma",
+    "FigJam",
+    "Framer",
+    "Storybook",
+    "Maze",
+    "Notion",
+    "Lottie",
+    "Rive",
+    "After Effects",
+    "Webflow"
+  ],
+  "faq": [
+    {
+      "question": "Do you also build the design in code?",
+      "answer": "Yes. Most of our engagements end with a working front end. We can ship Astro, Next.js, SvelteKit, or React Native — whatever your stack prefers. The handoff is smooth because we are the same team doing both."
+    },
+    {
+      "question": "Can you take over an existing design system?",
+      "answer": "Frequently. We start with a design system audit, propose a path to clean it up, and ship it in a Storybook that your engineers actually use. We have rescued Figma files with 2,000+ components and turned them into something maintainable."
+    },
+    {
+      "question": "How do you handle accessibility?",
+      "answer": "Accessibility is not a checklist we run at the end. We design for keyboard, screen readers, and color contrast from the first wireframe, and we test with real assistive tech before handoff. WCAG AA is our default; AAA where it matters."
+    },
+    {
+      "question": "What if I only have a brand, not a product idea?",
+      "answer": "That is a great place to start. We run a 2-week discovery sprint that ends in a product brief, a feature list, and a prototype you can use to raise, recruit, or sell. From there, we can design and build the first version."
+    }
+  ]
+}

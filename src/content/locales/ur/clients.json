@@ -1,0 +1,185 @@
+{
+  "title": "ہمارے کلائنٹس",
+  "subtitle": "کامیابی کی کہانیاں",
+  "description": "دیکھیں آپ جیسے کاروبار ہمارے حل کے ساتھ کیا نتائج حاصل کر رہے ہیں۔",
+  "clients": [
+    {
+      "id": "portia-grid",
+      "name": "Portia Grid",
+      "layoutTemplate": "timeline",
+      "logo": "",
+      "industry": "لاجسٹکس اور ڈیٹا انٹیلی جنس",
+      "serviceType": "اندرونی ٹول",
+      "color": "#2563EB",
+      "tagline": "ذہین فلیٹ اور ڈیٹا مینجمنٹ",
+      "shortDescription": "ڈیلیوری ٹرک فلیٹس اور ان کی دیکھ بھال کے شیڈول کو منظم کرنے کے لیے ایک جامع ویب پلیٹ فارم۔",
+      "fullDescription": "Portia Grid ایک طاقتور اندرونی ٹول ہے جو ہم نے لاجسٹکس کمپنیوں کو ان کی پوری ڈیلیوری ٹرک فلیٹ منظم کرنے میں مدد کے لیے بنایا۔ گاڑیوں کے مقامات سے لے کر دیکھ بھال کی شیڈولنگ تک، سب کچھ ایک مرکزی ڈیش بورڈ میں منظم ہوتا ہے۔",
+      "challenge": "کلائنٹ 50 سے زیادہ ڈیلیوری ٹرکس کو اسپریڈشیٹس اور فون کالز سے منظم کر رہا تھا۔ دیکھ بھال اکثر رہ جاتی تھی، جس سے خرابیاں اور تاخیر ہوتی تھی۔ انہیں اپنی فلیٹ کی حقیقی وقت کی صورتحال کی کوئی نظر نہیں تھی۔",
+      "solution": "ہم نے ایک حسبِ ضرورت ویب پلیٹ فارم بنایا جو حقیقی وقت میں GPS ٹریکنگ، مائلیج اور وقت کی بنیاد پر خودکار دیکھ بھال کی شیڈولنگ، ڈرائیور تفویض کا انتظام، اور جامع رپورٹنگ فراہم کرتا ہے۔",
+      "results": [
+        { "metric": "30%", "label": "خرابیوں میں کمی" },
+        { "metric": "2hrs", "label": "روزانہ انتظامی کام میں بچت" },
+        { "metric": "100%", "label": "مکمل فلیٹ نظر" }
+      ],
+      "features": [
+        "حقیقی وقت میں GPS فلیٹ ٹریکنگ",
+        "خودکار دیکھ بھال کی الرٹس",
+        "ڈرائیور تفویض اور شیڈولنگ",
+        "ایندھن کی کھپت کی نگرانی",
+        "دیکھ بھال کی تاریخ کے ریکارڈ",
+        "حسبِ ضرورت رپورٹنگ ڈیش بورڈ"
+      ],
+      "technologies": [
+        "React",
+        "Node.js",
+        "PostgreSQL",
+        "Google Maps API"
+      ],
+      "testimonial": {
+        "quote": "زیادہ تر ڈویلپرز صرف وہی بناتے ہیں جو آپ کہتے ہیں؛ یہ ٹیم واقعی آپ کے ساتھ منطق سوچتی ہے۔ Portia Grid بنانے میں بہت زیادہ حکمتِ عملی اور پیچیدہ ڈیٹا ہینڈلنگ درکار تھی، اور Mohamed، Asad، اور Ariyan نے اسے بہترین انداز میں مکمل کیا۔ ان کی توانائی شاندار ہے، وہ اپنی ٹیکنالوجی کو اچھی طرح جانتے ہیں، اور انہوں نے پورے عمل میں میرا ہاتھ تھاما۔ اگر آپ ایسی ٹیم چاہتے ہیں جو نتیجے کی ذمہ داری لے، تو یہی وہ ٹیم ہے۔",
+        "author": "Hassan",
+        "role": "Portia Grid کے سی ای او اور بانی"
+      },
+      "steps": [],
+      "screenshots": []
+    },
+    {
+      "id": "iyat",
+      "name": "Iyat",
+      "layoutTemplate": "showcase",
+      "logo": "",
+      "industry": "ڈیجیٹل مارکیٹنگ اور تخلیقی",
+      "serviceType": "ویب سائٹ",
+      "color": "#8B5CF6",
+      "tagline": "ڈیجیٹل ایجنسی پورٹ فولیو",
+      "shortDescription": "Iyat کے لیے ایک جدید، بصری طور پر بھرپور ویب سائٹ — ایک ڈیجیٹل ایجنسی جو اپنی تخلیقی پورٹ فولیو اور خدمات پیش کرتی ہے۔",
+      "fullDescription": "ہم نے Iyat کے لیے ایک پریمیم پورٹ فولیو ویب سائٹ ڈیزائن اور بنائی، جو تخلیقی مارکیٹنگ حل میں مہارت رکھنے والی ڈیجیٹل ایجنسی ہے۔",
+      "challenge": "Iyat کو ایک پیشہ ورانہ آن لائن موجودگی درکار تھی جو ان کے تخلیقی کام کو پیش کرے اور نئے کلائنٹس کو راغب کرے۔",
+      "solution": "ہم نے ایک خوبصورت، جدید پورٹ فولیو ویب سائٹ بنائی جس میں ہموار حرکتیں، ریسپانسیو ڈیزائن، اور دلچسپ صارف تجربہ شامل ہے۔",
+      "results": [
+        { "metric": "100%", "label": "حسبِ ضرورت ڈیزائن" },
+        { "metric": "< 2s", "label": "لوڈ کا وقت" }
+      ],
+      "features": [
+        "حسبِ ضرورت پورٹ فولیو ڈیزائن",
+        "ریسپانسیو لے آؤٹ",
+        "ہموار حرکتیں",
+        "جدید UI/UX"
+      ],
+      "technologies": [
+        "HTML/CSS",
+        "JavaScript"
+      ],
+      "link": "https://iyat-site.mohameda-elobaid.workers.dev/portfolio",
+      "steps": [],
+      "screenshots": []
+    },
+    {
+      "id": "veeramangalam-juma-masjid",
+      "name": "Veeramangalam Juma Masjid Finance",
+      "layoutTemplate": "stack",
+      "logo": "",
+      "industry": "کمیونٹی فنانس",
+      "serviceType": "Jamia System",
+      "color": "#059669",
+      "tagline": "مسجد کی مالیات — کلاؤڈ اور آف لائن ایک ساتھ",
+      "shortDescription": "Jamia System مسجد کے اخراجات اور مقامی تعاون کے لیے Excel شیٹس اور کاغذی ریکارڈ کی جگہ لے لیتا ہے۔",
+      "fullDescription": "ہم نے Veeramangalam Juma Masjid Finance کے لیے Jamia System بنایا — Firebase پر مبنی دوہرا پلیٹ فارم مکمل آف لائن سپورٹ کے ساتھ۔ یہ ان Excel شیٹس اور ہاتھ سے لکھے کھاتوں کی جگہ لیتا ہے جن سے کمیونٹی اخراجات اور مقامی تعاون ٹریک کرتی تھی۔",
+      "challenge": "مسجد کی مالیاتی ٹیم ممبران کے تعاون اور آپریشنل اخراجات کو اسپریڈشیٹس اور کاغذی ریکارڈز میں ٹریک کرتی تھی۔ مطابقت پذیری سست تھی، غلطیاں آتی تھیں، اور انٹرنیٹ بند ہونے پر کچھ کام نہیں کرتا تھا۔",
+      "solution": "ہم نے Jamia System بنایا — آف لائن فرسٹ سنک کے ساتھ Firebase پر مبنی مالیاتی پلیٹ فارم۔ تعاون، اخراجات، اور Jamia کھاتے ایک جگہ پر، چاہے کنکشن ہو یا نہ ہو۔",
+      "results": [
+        { "metric": "100%", "label": "کاغذ سے پاک ٹریکنگ" },
+        { "metric": "2-in-1", "label": "کلاؤڈ + آف لائن" }
+      ],
+      "features": [
+        "اخراجات کی نگرانی",
+        "مقامی تعاون کا کھاتا",
+        "آف لائن فرسٹ سنک",
+        "Firebase بیک اینڈ"
+      ],
+      "technologies": [
+        "Flutter",
+        "Firebase",
+        "Firestore"
+      ],
+      "steps": [],
+      "screenshots": []
+    },
+    {
+      "id": "malaysian-business-websites",
+      "name": "Malaysian Business Websites",
+      "layoutTemplate": "showcase",
+      "industry": "کارپوریٹ ویب",
+      "serviceType": "ویب سائٹ",
+      "color": "#F59E0B",
+      "tagline": "کارپوریٹ ویب حل",
+      "shortDescription": "",
+      "technologies": [
+        "WordPress",
+        "Laravel",
+        "Vue.js",
+        "Tailwind CSS",
+        "MySQL",
+        "AWS Malaysia"
+      ],
+      "steps": [],
+      "screenshots": [],
+      "galleryType": "web"
+    },
+    {
+      "id": "bd-railway-automated-timetable",
+      "name": "BD Railway Automated Timetable",
+      "layoutTemplate": "timeline",
+      "industry": "ریلوے آپریشنز",
+      "serviceType": "اندرونی ٹول",
+      "color": "#16A34A",
+      "tagline": "ریلوے شیڈولنگ سسٹم",
+      "shortDescription": "",
+      "technologies": [
+        "Python",
+        "Constraint Programming",
+        "OR-Tools",
+        "PostgreSQL",
+        "FastAPI",
+        "React Admin"
+      ],
+      "steps": [],
+      "screenshots": [],
+      "galleryType": "web"
+    },
+    {
+      "id": "little-hands-lab",
+      "name": "Little Hands Lab",
+      "layoutTemplate": "showcase",
+      "industry": "کھلونے اور ریٹیل",
+      "serviceType": "ای کامرس اسٹور",
+      "color": "#EC4899",
+      "tagline": "آن لائن کھلونوں کی دکان، Zyrn سے چلتی ہے",
+      "shortDescription": "Zyrn پر بنایا گیا آن لائن کھلونوں کا اسٹور — Little Hands Lab کے لیے حسبِ ضرورت کیٹلاگ، چیک آؤٹ، اور اسٹور فرنٹ۔",
+      "fullDescription": "Little Hands Lab Zyrn پر اپنا کھلونوں کا ای کامرس اسٹور فرنٹ چلاتا ہے، کیٹلاگ، انوینٹری، اور صارف تجربے کے لیے پلیٹ فارم کے حسبِ ضرورت Laravel اسٹور مینجمنٹ کا استعمال کرتے ہوئے۔",
+      "challenge": "ایک مکمل حسبِ ضرورت آن لائن کھلونوں کی دکان درکار تھی بغیر کئی ای کامرس ٹولز کو جوڑنے کے۔",
+      "solution": "Zyrn پر حسبِ ضرورت اسٹور فرنٹ، پروڈکٹ کیٹلاگ، اور آپریشنز ڈیش بورڈ کے ساتھ لانچ کیا۔",
+      "technologies": ["Zyrn", "Laravel", "PHP", "PWA"],
+      "steps": [],
+      "screenshots": [],
+      "galleryType": "web"
+    },
+    {
+      "id": "faruk-technology-store",
+      "name": "Faruk Technology Store",
+      "layoutTemplate": "showcase",
+      "industry": "ریٹیل اور ٹیلی کام",
+      "serviceType": "انوینٹری مینجمنٹ",
+      "color": "#10B981",
+      "tagline": "BaseetIMS پر دکان کے آپریشنز",
+      "shortDescription": "Faruk Technology Store انوینٹری، POS، اور روزمرہ دکان کے آپریشنز کے لیے BaseetIMS استعمال کرتا ہے۔",
+      "fullDescription": "Faruk Technology Store BaseetIMS کے ذریعے اسٹاک، فروخت، اور کثیر مقاماتی وضاحت چلاتا ہے — چھوٹی دکانوں کے لیے بنایا گیا انوینٹری مینجمنٹ۔",
+      "challenge": "انٹرپرائز پیچیدگی کے بغیر واضح انوینٹری اور فروخت کی نگرانی درکار تھی۔",
+      "solution": "اسٹاک، POS، اور روزانہ دکان کے ڈیش بورڈز کے لیے BaseetIMS نافذ کیا۔",
+      "technologies": ["BaseetIMS", "Web Dashboard"],
+      "steps": [],
+      "screenshots": [],
+      "galleryType": "web"
+    }
+  ]
+}

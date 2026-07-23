@@ -1,0 +1,18 @@
+---
+import ClientDetail from '../../../views/ClientDetail.astro'
+import { getAllClients } from '../../../lib/clients'
+import { PREFIXED_LOCALES, parseLocaleParam } from '../../../lib/locale'
+import type { Lang } from '../../../types'
+
+export function getStaticPaths() {
+  return PREFIXED_LOCALES.flatMap((locale) =>
+    getAllClients(locale).map((client) => ({
+      params: { locale, id: client.id },
+    }))
+  )
+}
+
+const lang = parseLocaleParam(Astro.params.locale) as Lang
+const { id } = Astro.params
+---
+<ClientDetail lang={lang} id={id as string} />

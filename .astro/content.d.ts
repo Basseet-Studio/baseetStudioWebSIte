@@ -178,6 +178,14 @@ declare module 'astro:content' {
   rendered?: RenderedContent;
   filePath?: string;
 }>;
+"locales": Record<string, {
+  id: string;
+  body?: string;
+  collection: "locales";
+  data: any;
+  rendered?: RenderedContent;
+  filePath?: string;
+}>;
 
 	};
 

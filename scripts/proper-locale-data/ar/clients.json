@@ -1,0 +1,93 @@
+{
+  "title": "عملاؤنا",
+  "subtitle": "قصص نجاح",
+  "description": "اكتشف كيف حققت شركات مثلك نتائج مع حلولنا.",
+  "clients": [
+    {
+      "id": "portia-grid",
+      "name": "Portia Grid",
+      "layoutTemplate": "timeline",
+      "logo": "",
+      "industry": "Logistics & Data Intelligence",
+      "serviceType": "Internal Tool",
+      "color": "#2563EB",
+      "tagline": "إدارة أسطول وبيانات ذكية",
+      "shortDescription": "منصة ويب شاملة لإدارة أساطيل شاحنات التوصيل وجداول صيانتها.",
+      "fullDescription": "Portia Grid أداة داخلية قوية ساعدت شركات اللوجستيات على إدارة أسطول شاحنات التوصيل بالكامل.",
+      "challenge": "كان العميل يدير أكثر من 50 شاحنة عبر جداول واتصالات. غالباً ما تُفوّت الصيانة مما يسبب أعطالاً وتأخيرات.",
+      "solution": "بنينا منصة ويب مخصصة مع تتبع GPS فوري، جدولة صيانة آلية، إدارة السائقين، وتقارير شاملة.",
+      "results": [
+        {
+          "metric": "30%",
+          "label": "انخفاض الأعطال"
+        },
+        {
+          "metric": "2hrs",
+          "label": "توفير يومي في الإدارة"
+        },
+        {
+          "metric": "100%",
+          "label": "رؤية كاملة للأسطول"
+        }
+      ],
+      "features": [
+        "Real-time GPS fleet tracking",
+        "Automated maintenance alerts",
+        "Driver assignment & scheduling",
+        "Fuel consumption tracking",
+        "Maintenance history logs",
+        "Custom reporting dashboard"
+      ],
+      "technologies": [
+        "React",
+        "Node.js",
+        "PostgreSQL",
+        "Google Maps API"
+      ],
+      "testimonial": {
+        "quote": "معظم المطورين يبنون ما تطلبه فقط؛ هذا الفريق يفكر معك في المنطق. Mohamed وAsad وAriyan أتقنوا Portia Grid بامتياز.",
+        "author": "Hassan",
+        "role": "CEO & Founder of Portia Grid"
+      },
+      "steps": [],
+      "screenshots": []
+    },
+    {
+      "id": "iyat",
+      "name": "Iyat",
+      "layoutTemplate": "showcase",
+      "logo": "",
+      "industry": "Digital Marketing & Creative",
+      "serviceType": "Website",
+      "color": "#8B5CF6",
+      "tagline": "معرض أعمال وكالة رقمية",
+      "shortDescription": "موقع حديث وغني بصرياً لـ Iyat، وكالة رقمية تعرض أعمالها الإبداعية.",
+      "fullDescription": "We designed and built a premium portfolio website for Iyat, a digital agency specializing in creative marketing solutions.",
+      "challenge": "احتاجت Iyat حضوراً احترافياً على الإنترنت لجذب عملاء جدد.",
+      "solution": "بنينا موقع portfolio أنيق مع animations سلسة وتصميم responsive.",
+      "results": [
+        {
+          "metric": "100%",
+          "label": "تصميم مخصص"
+        },
+        {
+          "metric": "< 2s",
+          "label": "وقت التحميل"
+        }
+      ],
+      "features": [
+        "Custom portfolio design",
+        "Responsive layout",
+        "Smooth animations",
+        "Modern UI/UX"
+      ],
+      "technologies": [
+        "HTML/CSS",
+        "JavaScript"
+      ],
+      "link": "https://iyat-site.mohameda-elobaid.workers.dev/portfolio",
+      "steps": [],
+      "screenshots": []
+    }
+  ]
+}

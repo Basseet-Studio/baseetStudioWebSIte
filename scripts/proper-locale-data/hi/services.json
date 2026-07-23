@@ -1,0 +1,121 @@
+{
+  "title": "हमारी सेवाएँ",
+  "subtitle": "व्यापक डिजिटल समाधान",
+  "description": "हम सिर्फ़ websites नहीं बनाते। हम आपके व्यवसाय की ज़रूरतों के अनुसार पूरे डिजिटल ecosystem बनाते हैं — हर सेवा देखें कि हम कैसे काम करते हैं।",
+  "categories": [
+    {
+      "id": "web",
+      "slug": "web",
+      "icon": "fas fa-globe",
+      "color": "#496BC1",
+      "gradient": "linear-gradient(135deg, #496BC1 0%, #6B8AD9 100%)",
+      "title": "वेब डेवलपमेंट",
+      "shortDescription": "आधुनिक, responsive websites और web applications — उन stacks पर बने जिन्हें हम वास्तव में maintain करते हैं।",
+      "tagline": "वेबसाइटें जो आपकी तरह मेहनत करती हैं"
+    },
+    {
+      "id": "mobile",
+      "slug": "mobile",
+      "icon": "fas fa-mobile-alt",
+      "color": "#FBCD37",
+      "gradient": "linear-gradient(135deg, #F59E0B 0%, #FBCD37 100%)",
+      "title": "मोबाइल डेवलपमेंट",
+      "shortDescription": "Native और cross-platform apps पहले छोटी screen के लिए।",
+      "tagline": "ऐप जो लोग home screen पर रखते हैं"
+    },
+    {
+      "id": "internal",
+      "slug": "internal",
+      "icon": "fas fa-tools",
+      "color": "#0891B2",
+      "gradient": "linear-gradient(135deg, #0891B2 0%, #22D3EE 100%)",
+      "title": "आंतरिक टूल",
+      "shortDescription": "Dashboards, CRMs, और back-office tools जो आपकी टीम बिना शिकायत खोलती है।",
+      "tagline": "Operations software जो वास्तव में use हो"
+    },
+    {
+      "id": "seo",
+      "slug": "seo",
+      "icon": "fas fa-search",
+      "color": "#16A34A",
+      "gradient": "linear-gradient(135deg, #16A34A 0%, #4ADE80 100%)",
+      "title": "SEO और मार्केटिंग",
+      "shortDescription": "Technical SEO, content, और local search — pipeline से माप।",
+      "tagline": "वह brand बनें जिसे searchers वास्तव में पाएँ"
+    },
+    {
+      "id": "design",
+      "slug": "design",
+      "icon": "fas fa-paint-brush",
+      "color": "#AF52DE",
+      "gradient": "linear-gradient(135deg, #AF52DE 0%, #D8A0F5 100%)",
+      "title": "UI/UX डिज़ाइन",
+      "shortDescription": "Real user sessions से shaped interfaces — स्पष्ट होने से सुंदर।",
+      "tagline": "डिज़ाइन जो दूसरी tap deserve करे"
+    },
+    {
+      "id": "cloud",
+      "slug": "cloud",
+      "icon": "fas fa-cloud",
+      "color": "#0EA5E9",
+      "gradient": "linear-gradient(135deg, #0369A1 0%, #38BDF8 100%)",
+      "title": "क्लाउड और DevOps",
+      "shortDescription": "Scalable infrastructure, CI/CD, और monitoring।",
+      "tagline": "तेज़ ship करें, चैन की नींद सोएँ"
+    }
+  ],
+  "process": {
+    "title": "छह कदमों की चढ़ाई, checklist नहीं।",
+    "subtitle": "वही सफ़र देखें जो हम हर partner के साथ करते हैं — पहली बातचीत से live product और उसकी देखभाल तक।",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Discovery",
+        "lead": "हम सुनने से शुरू करते हैं।",
+        "desc": "Workshops, stakeholder interviews, और numbers — shared understanding के साथ निकलते हैं।",
+        "icon": "fas fa-lightbulb"
+      },
+      {
+        "number": "02",
+        "title": "Planning",
+        "lead": "एक roadmap जिसका आप बचाव कर सकें।",
+        "desc": "Scope, milestones, और plain English में technical spec।",
+        "icon": "fas fa-map"
+      },
+      {
+        "number": "03",
+        "title": "Design",
+        "lead": "राय रखने वale pixels।",
+        "desc": "Low-fi flows से polished interface system तक।",
+        "icon": "fas fa-pencil-alt"
+      },
+      {
+        "number": "04",
+        "title": "Development",
+        "lead": "Code जो आप hand off कर सकें।",
+        "desc": "Typed, tested, reviewed।",
+        "icon": "fas fa-code"
+      },
+      {
+        "number": "05",
+        "title": "Testing",
+        "lead": "Users से पहले तोड़ें।",
+        "desc": "Automated suites, real-device passes, accessibility audits।",
+        "icon": "fas fa-vial"
+      },
+      {
+        "number": "06",
+        "title": "Launch",
+        "lead": "Live — और looked after।",
+        "desc": "Zero-downtime deploys, monitoring dashboards।",
+        "icon": "fas fa-rocket"
+      }
+    ]
+  },
+  "cta": {
+    "title": "पता नहीं आपको क्या चाहिए?",
+    "subtitle": "बात करते हैं",
+    "description": "हर व्यवसाय अलग है। हम आपकी ज़रूरतों और बजट के लिए सही solutions पहचानने में मदद करेंगे।",
+    "button": "मुफ़्त consultation लें"
+  }
+}

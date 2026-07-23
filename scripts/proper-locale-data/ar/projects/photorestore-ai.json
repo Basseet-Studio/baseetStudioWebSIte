@@ -1,0 +1,86 @@
+{
+  "name": "PhotoRestore AI",
+  "slug": "photorestore-ai",
+  "type": "standalone",
+  "tagline": "استعد الصور القديمة بالذكاء الاصطناعي",
+  "description": "## About PhotoRestore AI\n\nPhotoRestore AI combines cutting-edge artificial intelligence with a passion for preserving memories. We believe every photo tells a story, and no damage should stand in the way of sharing those precious moments.\n\n### Our Technology\n\nBuilt on state-of-the-art machine learning models, PhotoRestore AI can detect and repair scratches, tears, and creases; restore faded or discolored areas; enhance image clarity and sharpness; colorize black & white photographs; and remove stains and water damage.\n\n### Privacy First\n\nWe take your privacy seriously. All photos are processed in isolated secure environments and automatically deleted within 24 hours of processing. Your memories stay yours.\n\n## Try It Today\n\nExperience the magic of AI photo restoration. Upload your damaged photo and see the transformation in seconds.\n",
+  "iconClass": "fas fa-wand-magic-sparkles",
+  "color": "#6366F1",
+  "gradient": "linear-gradient(135deg, #6366F1 0%, #818CF8 100%)",
+  "status": "Live",
+  "hero": {
+    "title": "استعد ذكرياتك الثمينة",
+    "subtitle": "استخدم الذكاء الاصطناعي المتقدم لإحياء الصور القديمة أو التالفة في ثوانٍ.",
+    "cta_primary": "جرّب الآن",
+    "cta_primary_link": "#",
+    "cta_secondary": "شاهد أمثلة",
+    "cta_secondary_link": "#features"
+  },
+  "features": [
+    {
+      "title": "استعادة بالذكاء الاصطناعي",
+      "description": "خوارزميات متقدمة تصلح الخدوش والتمزق والبهتان تلقائياً.",
+      "icon": "fas fa-wand-magic-sparkles"
+    },
+    {
+      "title": "معالجة سريعة",
+      "description": "احصل على صورك الم restored في ثوانٍ.",
+      "icon": "fas fa-bolt"
+    },
+    {
+      "title": "خصوصية أولاً",
+      "description": "تُحذف صورك تلقائياً بعد المعالجة.",
+      "icon": "fas fa-award"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "Web",
+      "icon": "fas fa-globe",
+      "version": "Web App",
+      "link": "#"
+    }
+  ],
+  "tech": [
+    "AI/ML Models",
+    "React.js",
+    "Node.js",
+    "Stripe API",
+    "SSLCommerz",
+    "Cloud Processing"
+  ],
+  "galleryType": "mobile",
+  "screenshots": [
+    "/images/projects/photorestore-ai/1.png",
+    "/images/projects/photorestore-ai/2.png",
+    "/images/projects/photorestore-ai/3.png",
+    "/images/projects/photorestore-ai/4.png",
+    "/images/projects/photorestore-ai/5.png",
+    "/images/projects/photorestore-ai/6.png"
+  ],
+  "testimonials": [
+    {
+      "quote": "PhotoRestore AI brought my grandmother's wedding photo back to life. The results were incredible!",
+      "author": "Ahmed R.",
+      "role": "Customer"
+    }
+  ],
+  "faq": [
+    {
+      "question": "How does the AI restoration work?",
+      "answer": "Our AI analyzes your photo to detect damage, fading, and imperfections, then intelligently restores the image using trained neural networks."
+    },
+    {
+      "question": "Is my photo data secure?",
+      "answer": "Absolutely. All uploaded photos are processed securely and automatically deleted after 24 hours. We never store or share your images."
+    },
+    {
+      "question": "What types of damage can be fixed?",
+      "answer": "Our AI can restore faded colors, fix scratches and tears, remove stains, enhance clarity, and even colorize black & white photos."
+    },
+    {
+      "question": "How much does it cost?",
+      "answer": "We offer flexible pricing starting from $2 per photo. Bulk packages are available for larger restoration projects."
+    }
+  ]
+}
