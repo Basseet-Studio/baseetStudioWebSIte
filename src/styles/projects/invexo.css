@@ -1,0 +1,48 @@
+/* Invexo — All-In-One Business Management */
+/* Color & gradient come from invexo.json (`color: #F97316`). The
+ * `ProjectLayout` wrapper sets `--project-color` and `--project-gradient`
+ * inline, so this stylesheet stays empty of color overrides — the JSON
+ * is the single source of truth (see audit fix #33 for the original
+ * font-weights mismatch).
+ *
+ * The bento grid and bento card rules are scoped to invexo only because
+ * the bento layout is unique to invexo (every other project page uses the
+ * shared ProjectFeatureCard component). */
+
+/* Bento Grid */
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.bento-card {
+    background: var(--card-bg);
+    border-radius: 24px;
+    padding: 28px;
+    box-shadow: var(--card-shadow);
+    border: 1px solid var(--card-border);
+    transition:
+        transform 0.3s,
+        box-shadow 0.3s;
+}
+
+.bento-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--card-shadow-hover);
+}
+
+.bento-large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+@media (max-width: 768px) {
+    .bento-grid {
+        grid-template-columns: 1fr;
+    }
+    .bento-large {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+}

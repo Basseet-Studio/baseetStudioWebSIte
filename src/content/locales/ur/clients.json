@@ -17,9 +17,18 @@
       "challenge": "کلائنٹ 50 سے زیادہ ڈیلیوری ٹرکس کو اسپریڈشیٹس اور فون کالز سے منظم کر رہا تھا۔ دیکھ بھال اکثر رہ جاتی تھی، جس سے خرابیاں اور تاخیر ہوتی تھی۔ انہیں اپنی فلیٹ کی حقیقی وقت کی صورتحال کی کوئی نظر نہیں تھی۔",
       "solution": "ہم نے ایک حسبِ ضرورت ویب پلیٹ فارم بنایا جو حقیقی وقت میں GPS ٹریکنگ، مائلیج اور وقت کی بنیاد پر خودکار دیکھ بھال کی شیڈولنگ، ڈرائیور تفویض کا انتظام، اور جامع رپورٹنگ فراہم کرتا ہے۔",
       "results": [
-        { "metric": "30%", "label": "خرابیوں میں کمی" },
-        { "metric": "2hrs", "label": "روزانہ انتظامی کام میں بچت" },
-        { "metric": "100%", "label": "مکمل فلیٹ نظر" }
+        {
+          "metric": "30%",
+          "label": "خرابیوں میں کمی"
+        },
+        {
+          "metric": "2hrs",
+          "label": "روزانہ انتظامی کام میں بچت"
+        },
+        {
+          "metric": "100%",
+          "label": "مکمل فلیٹ نظر"
+        }
       ],
       "features": [
         "حقیقی وقت میں GPS فلیٹ ٹریکنگ",
@@ -57,8 +66,14 @@
       "challenge": "Iyat کو ایک پیشہ ورانہ آن لائن موجودگی درکار تھی جو ان کے تخلیقی کام کو پیش کرے اور نئے کلائنٹس کو راغب کرے۔",
       "solution": "ہم نے ایک خوبصورت، جدید پورٹ فولیو ویب سائٹ بنائی جس میں ہموار حرکتیں، ریسپانسیو ڈیزائن، اور دلچسپ صارف تجربہ شامل ہے۔",
       "results": [
-        { "metric": "100%", "label": "حسبِ ضرورت ڈیزائن" },
-        { "metric": "< 2s", "label": "لوڈ کا وقت" }
+        {
+          "metric": "100%",
+          "label": "حسبِ ضرورت ڈیزائن"
+        },
+        {
+          "metric": "< 2s",
+          "label": "لوڈ کا وقت"
+        }
       ],
       "features": [
         "حسبِ ضرورت پورٹ فولیو ڈیزائن",
@@ -88,8 +103,14 @@
       "challenge": "مسجد کی مالیاتی ٹیم ممبران کے تعاون اور آپریشنل اخراجات کو اسپریڈشیٹس اور کاغذی ریکارڈز میں ٹریک کرتی تھی۔ مطابقت پذیری سست تھی، غلطیاں آتی تھیں، اور انٹرنیٹ بند ہونے پر کچھ کام نہیں کرتا تھا۔",
       "solution": "ہم نے Jamia System بنایا — آف لائن فرسٹ سنک کے ساتھ Firebase پر مبنی مالیاتی پلیٹ فارم۔ تعاون، اخراجات، اور Jamia کھاتے ایک جگہ پر، چاہے کنکشن ہو یا نہ ہو۔",
       "results": [
-        { "metric": "100%", "label": "کاغذ سے پاک ٹریکنگ" },
-        { "metric": "2-in-1", "label": "کلاؤڈ + آف لائن" }
+        {
+          "metric": "100%",
+          "label": "کاغذ سے پاک ٹریکنگ"
+        },
+        {
+          "metric": "2-in-1",
+          "label": "کلاؤڈ + آف لائن"
+        }
       ],
       "features": [
         "اخراجات کی نگرانی",
@@ -155,11 +176,16 @@
       "serviceType": "ای کامرس اسٹور",
       "color": "#EC4899",
       "tagline": "آن لائن کھلونوں کی دکان، Zyrn سے چلتی ہے",
-      "shortDescription": "Zyrn پر بنایا گیا آن لائن کھلونوں کا اسٹور — Little Hands Lab کے لیے حسبِ ضرورت کیٹلاگ، چیک آؤٹ، اور اسٹور فرنٹ۔",
-      "fullDescription": "Little Hands Lab Zyrn پر اپنا کھلونوں کا ای کامرس اسٹور فرنٹ چلاتا ہے، کیٹلاگ، انوینٹری، اور صارف تجربے کے لیے پلیٹ فارم کے حسبِ ضرورت Laravel اسٹور مینجمنٹ کا استعمال کرتے ہوئے۔",
-      "challenge": "ایک مکمل حسبِ ضرورت آن لائن کھلونوں کی دکان درکار تھی بغیر کئی ای کامرس ٹولز کو جوڑنے کے۔",
-      "solution": "Zyrn پر حسبِ ضرورت اسٹور فرنٹ، پروڈکٹ کیٹلاگ، اور آپریشنز ڈیش بورڈ کے ساتھ لانچ کیا۔",
-      "technologies": ["Zyrn", "Laravel", "PHP", "PWA"],
+      "shortDescription": "An online toys store on Zyrn — branded catalog, checkout, and customer updates for Little Hands Lab.",
+      "fullDescription": "Little Hands Lab runs its toys storefront on Zyrn: products, payments, inventory, and order notifications in one branded commerce system — no paper trail of DMs and notebooks.",
+      "challenge": "Needed a real online toys store without drowning in chat orders and disconnected tools.",
+      "solution": "Launched on Zyrn with a branded storefront, catalog, checkout, and live customer order updates.",
+      "technologies": [
+        "Zyrn",
+        "Catalog",
+        "Checkout",
+        "Notifications"
+      ],
       "steps": [],
       "screenshots": [],
       "galleryType": "web"
@@ -171,12 +197,15 @@
       "industry": "ریٹیل اور ٹیلی کام",
       "serviceType": "انوینٹری مینجمنٹ",
       "color": "#10B981",
-      "tagline": "BaseetIMS پر دکان کے آپریشنز",
-      "shortDescription": "Faruk Technology Store انوینٹری، POS، اور روزمرہ دکان کے آپریشنز کے لیے BaseetIMS استعمال کرتا ہے۔",
-      "fullDescription": "Faruk Technology Store BaseetIMS کے ذریعے اسٹاک، فروخت، اور کثیر مقاماتی وضاحت چلاتا ہے — چھوٹی دکانوں کے لیے بنایا گیا انوینٹری مینجمنٹ۔",
+      "tagline": "Invexo پر دکان کے آپریشنز",
+      "shortDescription": "Faruk Technology Store انوینٹری، POS، اور روزمرہ دکان کے آپریشنز کے لیے Invexo استعمال کرتا ہے۔",
+      "fullDescription": "Faruk Technology Store Invexo کے ذریعے اسٹاک، فروخت، اور کثیر مقاماتی وضاحت چلاتا ہے — چھوٹی دکانوں کے لیے بنایا گیا انوینٹری مینجمنٹ۔",
       "challenge": "انٹرپرائز پیچیدگی کے بغیر واضح انوینٹری اور فروخت کی نگرانی درکار تھی۔",
-      "solution": "اسٹاک، POS، اور روزانہ دکان کے ڈیش بورڈز کے لیے BaseetIMS نافذ کیا۔",
-      "technologies": ["BaseetIMS", "Web Dashboard"],
+      "solution": "اسٹاک، POS، اور روزانہ دکان کے ڈیش بورڈز کے لیے Invexo نافذ کیا۔",
+      "technologies": [
+        "Invexo",
+        "Web Dashboard"
+      ],
       "steps": [],
       "screenshots": [],
       "galleryType": "web"

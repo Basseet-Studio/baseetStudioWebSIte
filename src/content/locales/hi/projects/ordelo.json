@@ -1,0 +1,189 @@
+{
+  "name": "Ordelo",
+  "slug": "ordelo",
+  "type": "branded",
+  "tagline": "आपका व्यवसाय। ऑनलाइन। व्यवस्थित। आपका।",
+  "description": "## About Ordelo\n\nOrdelo is a ready-to-sell digital commerce and ordering package for restaurants, cafés, cloud kitchens, retailers, creators, and new entrepreneurs who want to stop losing orders to WhatsApp chaos, napkin menus, and “wait, did they pay?” moments.\n\n### No paper trail. No guessing.\n\nCustomers browse → customize → pay → track. Staff see orders land in real time. You see numbers that actually mean something. Everyone gets notified on the spot.\n\n### More than a menu website\n\nSell Ordelo as a restaurant ordering system, multi-location brand hub, cloud kitchen command center, reservation + ordering combo, creator shop, subscription club, retail mini-store, or automation machine — one customer package with many futures.\n",
+  "icon": "/images/projects/ordelo-icon.png",
+  "iconClass": "fas fa-utensils",
+  "color": "#F97316",
+  "gradient": "linear-gradient(135deg, #F97316 0%, #FB923C 100%)",
+  "status": "लाइव",
+  "layoutVariant": "ordelo",
+  "fontHeading": "Playfair Display",
+  "fontBody": "Source Sans 3",
+  "fontWeights": "400,500,700",
+  "gsapAnimation": "parallax-masonry",
+  "appType": "web",
+  "brandName": "Ordelo",
+  "bgEffect": "kitchen",
+  "bgFallbackGradient": "linear-gradient(180deg, #FFFBEB 0%, #FDE68A 40%, #FBBF24 100%)",
+  "clientIds": [],
+  "hero": {
+    "title": "ऑर्डर लें। तुरंत सूचित करें। ग्राहक अपने रखें।",
+    "subtitle": "मेनू, चेकआउट, भुगतान, किचन अलर्ट, ग्राहक अपडेट और ग्रोथ टूल — बिना कागज़, बिना अंदाज़ा, बिना घबराहट।",
+    "cta_primary": "डेमो का अनुरोध करें",
+    "cta_primary_link": "/contact",
+    "cta_secondary": "फीचर्स देखें",
+    "cta_secondary_link": "#features"
+  },
+  "features": [
+    {
+      "title": "Branded Ordering Storefront",
+      "description": "Mobile-first menu and catalog with customization, cart, and checkout — your name on the order, not a marketplace’s.",
+      "icon": "fas fa-store"
+    },
+    {
+      "title": "Kitchen & Ops Calm",
+      "description": "Kitchen display, live status flow, busy mode, and assignment — orders land where work happens, not buried in a phone.",
+      "icon": "fas fa-hat-chef"
+    },
+    {
+      "title": "Notified on the Spot",
+      "description": "Confirmation and status updates the moment something changes — received → preparing → ready → completed.",
+      "icon": "fas fa-bell"
+    },
+    {
+      "title": "Delivery, Pickup & Dine-In",
+      "description": "Fulfillment modes the business actually runs — plus reservations, multi-location hours, and delivery hooks when you need wheels.",
+      "icon": "fas fa-truck"
+    },
+    {
+      "title": "Payments & Coupons",
+      "description": "Clear checkout, configurable payment methods, campaign codes, and accounting-friendly exports — not cash-in-a-jar folklore.",
+      "icon": "fas fa-credit-card"
+    },
+    {
+      "title": "Reports That Don’t Lie",
+      "description": "Orders over time, top items, coupon performance, location comparisons, and visitor insights you can act on.",
+      "icon": "fas fa-chart-line"
+    },
+    {
+      "title": "Automations & Webhooks",
+      "description": "New order → kitchen + customer. Status change → SMS. Busy mode → pause checkout. Connect CRM, Slack, and partners.",
+      "icon": "fas fa-robot"
+    },
+    {
+      "title": "Grow Beyond Food",
+      "description": "Digital products, gift vouchers, subscriptions, memberships, and social campaign pages — same customers, more revenue lanes.",
+      "icon": "fas fa-gift"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "Customer",
+      "icon": "fas fa-globe",
+      "version": "Storefront + Tracking",
+      "link": "#"
+    },
+    {
+      "name": "Admin",
+      "icon": "fas fa-user-shield",
+      "version": "Ops Console",
+      "link": "#"
+    },
+    {
+      "name": "Kitchen",
+      "icon": "fas fa-hat-chef",
+      "version": "Kitchen Display",
+      "link": "#"
+    },
+    {
+      "name": "Delivery",
+      "icon": "fas fa-truck",
+      "version": "Driver / Dispatch Hooks",
+      "link": "#"
+    }
+  ],
+  "tech": [
+    "Branded storefront",
+    "Menu & customization",
+    "Cart & checkout",
+    "Kitchen display (KDS)",
+    "Order notifications",
+    "Coupons & campaigns",
+    "Reservations",
+    "Multi-location",
+    "Reports & insights",
+    "Automations & webhooks",
+    "Social login",
+    "Subscriptions & digital"
+  ],
+  "galleryType": "web",
+  "screenshots": [
+    "/images/projects/ordelo/1.png",
+    "/images/projects/ordelo/2.png",
+    "/images/projects/ordelo/3.png",
+    "/images/projects/ordelo/4.png",
+    "/images/projects/ordelo/5.png",
+    "/images/projects/ordelo/6.png",
+    "/images/projects/ordelo/7.png"
+  ],
+  "testimonials": [
+    {
+      "quote": "You didn’t start a business to become a full-time message router. Ordelo turns chat chaos into clean orders.",
+      "author": "Ordelo promise",
+      "role": "For business owners"
+    }
+  ],
+  "navItems": [
+    {
+      "label": "Home",
+      "url": "",
+      "i18nKey": "project_nav_home"
+    },
+    {
+      "label": "Features",
+      "url": "features/",
+      "i18nKey": "project_nav_features"
+    },
+    {
+      "label": "Demo",
+      "url": "demo/",
+      "i18nKey": "project_nav_demo"
+    },
+    {
+      "label": "Privacy Policy",
+      "url": "terms/",
+      "i18nKey": "project_nav_terms"
+    }
+  ],
+  "navMetaItems": [
+    {
+      "label": "Work",
+      "url": "/projects/",
+      "i18nKey": "nav_work"
+    },
+    {
+      "label": "Contact",
+      "url": "/contact/",
+      "i18nKey": "nav_contact"
+    }
+  ],
+  "faq": [
+    {
+      "question": "Isn’t this just another menu website?",
+      "answer": "No. Ordelo is ordering HQ: cart, payments, kitchen display, notifications, reports, and room to grow into subscriptions and digital products — not a brochure with a phone number."
+    },
+    {
+      "question": "We already get orders on WhatsApp. Why switch?",
+      "answer": "WhatsApp is a chat. Ordelo is a record. Every order lands in one place, the kitchen sees it, the customer gets updates on the spot, and you keep the customer relationship."
+    },
+    {
+      "question": "Won’t customers just use food apps?",
+      "answer": "They might discover you there. Ordelo is how you stop renting every order — your storefront, your margins, your data."
+    },
+    {
+      "question": "We’re a small café / new brand. Is this overkill?",
+      "answer": "Launch like a brand on day one. Start with menu, checkout, and notifications. Add kitchen display, multi-location, subscriptions, and automations when you’re ready."
+    },
+    {
+      "question": "Can it handle kitchen rush and multi-branch?",
+      "answer": "Yes. Busy mode pauses checkout gracefully, kitchen display keeps status clear, and Scale tiers add multi-location menus, hours, and branch reporting."
+    },
+    {
+      "question": "Can we sell more than food?",
+      "answer": "Yes. Digital downloads, gift vouchers, meal plans, coffee clubs, VIP memberships, and campaign landing pages — same customer relationship, more revenue lanes."
+    }
+  ]
+}

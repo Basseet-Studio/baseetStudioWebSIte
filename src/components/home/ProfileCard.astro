@@ -1,0 +1,78 @@
+---
+import Icon from '../icons/Icon.astro'
+import '../../styles/profile-card.css'
+
+export interface ProfileSocialLink {
+  platform: string
+  url: string
+  label: string
+  icon: string
+  variant?: 'regular' | 'bold' | 'fill'
+}
+
+interface Props {
+  name: string
+  title: string
+  avatarUrl: string
+  iconUrl: string
+  socialLinks?: ProfileSocialLink[]
+  behindGlowColor?: string
+  enableTilt?: boolean
+  class?: string
+}
+
+const {
+  name,
+  title,
+  avatarUrl,
+  iconUrl,
+  socialLinks = [],
+  behindGlowColor = 'rgba(73, 107, 193, 0.14)',
+  enableTilt = true,
+  class: className = '',
+} = Astro.props
+
+const style = [`--icon: url(${iconUrl})`, `--behind-glow-color: ${behindGlowColor}`].join('; ')
+---
+
+<div
+  class:list={['pc-card-wrapper', className]}
+  style={style}
+  data-profile-card
+  data-enable-tilt={enableTilt ? 'true' : 'false'}
+>
+  <div class="pc-behind" aria-hidden="true"></div>
+  <div class="pc-card-shell">
+    <article class="pc-card">
+      <div class="pc-media">
+        <img
+          class="pc-photo"
+          src={avatarUrl}
+          alt={name}
+          loading="lazy"
+          width="260"
+          height="273"
+        />
+        <div class="pc-shine" aria-hidden="true"></div>
+        <div class="pc-glare" aria-hidden="true"></div>
+      </div>
+      <div class="pc-body">
+        <h3 class="pc-name">{name}</h3>
+        <p class="pc-role">{title}</p>
+        <div class="pc-social" aria-hidden={socialLinks.length === 0 ? 'true' : undefined}>
+          {socialLinks.map((link) => (
+            <a
+              class="pc-social-link"
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={link.label}
+            >
+              <Icon name={link.icon} variant={link.variant ?? 'fill'} size={16} color="currentColor" />
+            </a>
+          ))}
+        </div>
+      </div>
+    </article>
+  </div>
+</div>

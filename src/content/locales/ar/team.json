@@ -11,7 +11,8 @@
         "github": "https://github.com/mohamed-a-elobaid",
         "linkedin": "https://www.linkedin.com/in/mohamed-abdalla-elobaid-29937b227/",
         "twitter": "#"
-      }
+      },
+      "iconPattern": "code"
     },
     {
       "name": "Asadur Rahman",
@@ -22,7 +23,8 @@
         "github": "https://github.com/ViX3L",
         "linkedin": "https://www.linkedin.com/in/vix3l/",
         "twitter": "#"
-      }
+      },
+      "iconPattern": "code"
     },
     {
       "name": "Ariyan Rehman",
@@ -33,7 +35,8 @@
         "github": "https://github.com/ariyangd",
         "linkedin": "https://www.linkedin.com/in/ariyangd/",
         "twitter": "https://x.com/ariyangd"
-      }
+      },
+      "iconPattern": "code"
     },
     {
       "name": "Dibakar Sutra Dhar",
@@ -44,7 +47,16 @@
         "github": "https://github.com/dibakarsutradhar",
         "linkedin": "https://www.linkedin.com/in/dibakarsutradhar/",
         "twitter": "https://x.com/iamdibakardipu"
-      }
+      },
+      "iconPattern": "code"
+    },
+    {
+      "name": "Burhan Ayub",
+      "role": "المدير المالي",
+      "bio": "المدير المالي للشركة.",
+      "image": "/images/home/team/burhan-ayub-placeholder.svg",
+      "iconPattern": "money",
+      "social": {}
     }
   ]
 }

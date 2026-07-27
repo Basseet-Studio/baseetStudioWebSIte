@@ -25,13 +25,13 @@ for (let i = 0; i < 10; i++) {
 const KEEP = new Set([
   '1 source','1 week','10+','100%','12+','30+','3x','4.8★','60fps','99.9%','<1s','<5min','−40%',
   'Ariyan Rehman','Asadur Rahman','Mohamed Abdallah','Dibakar Sutra Dhar','Hassan','Alex T.','Ahmed R.',
-  'Dr. James Wilson','Fatima K.','BaseetIMS','Geeb','Zyrn','Numu','Matrix','MoneyBox','ChopShop','Jemeti',
-  'Medev','DeshiKitchen','PhotoRestore AI','Portia Grid','Iyat','Little Hands Lab','Faruk Technology Store',
+  'Dr. James Wilson','Fatima K.','Invexo','Geeb','Zyrn','Numu','Matrix','MoneyBox','ChopShop','Jemeti',
+  'Medev','Ordelo','PhotoRestore AI','Portia Grid','Iyat','Little Hands Lab','Faruk Technology Store',
   'Jamia System','MAI','NSS Virtual Education Fair','Veeramangalam Juma Masjid Finance',
   'Malaysian Business Websites','BD Railway Automated Timetable','nomu','Docker','iOS','Android','Live',
   'Pro','Demo','FAQ','Admin','Customer','Vendor','Desktop','Kitchen','Delivery','Web','WCAG AA',
   'Before / after slider','Cloud + offline','CMS access','FHIR R4 + REST API','Firebase backend',
-  'Contact','Features','Download','Terms','Privacy','Home','Work','ChopShop','DeshiKitchen','Geeb',
+  'Contact','Features','Download','Terms','Privacy','Home','Work','ChopShop','Ordelo','Geeb',
   'Matrix','Medev','MoneyBox','PhotoRestore AI','Zyrn','MAI','Portia Grid','Iyat','Numu',
 ]);
 

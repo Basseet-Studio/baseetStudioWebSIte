@@ -20,12 +20,12 @@ const mobileSlugs = new Set(['moneybox', 'numu'])
 function mosaicClass(slug: string): string {
   const aspect = mobileSlugs.has(slug) ? 'wg--mobile' : 'wg--desktop'
   const placement: Record<string, string> = {
-    deshikitchen: 'wg--deshikitchen',
+    ordelo: 'wg--ordelo',
     moneybox: 'wg--moneybox',
     numu: 'wg--numu',
     jemeti: 'wg--jemeti',
     'photorestore-ai': 'wg--photorestore',
-    baseetims: 'wg--baseetims',
+    invexo: 'wg--invexo',
   }
   return [placement[slug] ?? 'wg--default', aspect].join(' ')
 }
@@ -147,7 +147,7 @@ const labClass: Record<string, string> = {
     min-height: 0;
   }
 
-  /* Matrix — left top, same 3-row height as DeshiKitchen */
+  /* Matrix — left top, same 3-row height as Ordelo */
   .work-wall__mosaic :global(.wg--matrix) {
     grid-column: 1 / 7;
     grid-row: 1 / 4;
@@ -167,13 +167,13 @@ const labClass: Record<string, string> = {
     grid-row: 1 / 7;
   }
 
-  /* DeshiKitchen — under Matrix, same height as Matrix */
-  .work-wall__mosaic :global(.wg--deshikitchen) {
+  /* Ordelo — under Matrix, same height as Matrix */
+  .work-wall__mosaic :global(.wg--ordelo) {
     grid-column: 1 / 7;
     grid-row: 4 / 7;
   }
 
-  .work-wall__mosaic :global(.wg--deshikitchen .wg__name) {
+  .work-wall__mosaic :global(.wg--ordelo .wg__name) {
     font-size: clamp(1.6rem, 3vw, 2.4rem);
   }
 
@@ -189,8 +189,8 @@ const labClass: Record<string, string> = {
     grid-row: 7 / 10;
   }
 
-  /* BaseetIMS — wide right, under Jemeti */
-  .work-wall__mosaic :global(.wg--baseetims) {
+  /* Invexo — wide right, under Jemeti */
+  .work-wall__mosaic :global(.wg--invexo) {
     grid-column: 4 / 10;
     grid-row: 10 / 13;
   }
@@ -231,7 +231,7 @@ const labClass: Record<string, string> = {
   }
 
   .work-wall__mosaic :global(.wg--photorestore .wg__name),
-  .work-wall__mosaic :global(.wg--baseetims .wg__name) {
+  .work-wall__mosaic :global(.wg--invexo .wg__name) {
     font-size: clamp(1.1rem, 1.8vw, 1.45rem);
   }
 

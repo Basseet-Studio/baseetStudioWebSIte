@@ -2,8 +2,8 @@
   "name": "Zyrn",
   "slug": "zyrn",
   "type": "branded",
-  "tagline": "Enterprise Ecommerce, Reimagined",
-  "description": "## About Zyrn\n\nZyrn is a powerful, fully-managed ecommerce platform built for agencies and businesses that need more than just a store. Engineered for speed, scale, and flexibility, Zyrn gives you everything to launch, manage, and grow high-performance online businesses—without the complexity.\n\n### What Zyrn Delivers\n\nZyrn brings together the full stack of modern ecommerce tooling into one cohesive platform. From multivendor marketplaces to AI-powered product discovery, every feature is designed to help your clients sell more, operate faster, and scale without limits.\n\n### Built on Laravel\n\nA custom PHP/Laravel store management system — fully customizable so you can shape the store however you need. Multivendor, multi-store inventory, PWA, image search, CMS, and enterprise caching (FPC, Varnish, Elasticsearch, Octane, CDN) out of the box.\n",
+  "tagline": "Your store. Your brand. Your customers — notified on the spot.",
+  "description": "## About Zyrn\n\nZyrn is a complete digital commerce package for business owners and new entrepreneurs who want to sell online without drowning in spreadsheets, WhatsApp orders, and sticky notes. It runs a real store — products, payments, customers, marketing, returns, reports — and grows into subscriptions, digital goods, bookings, and automations that keep your business moving while you sleep.\n\n### No paper trail. No guessing.\n\nOrders stop living in Instagram DMs and chat threads. Stock stops living in notebooks. Customers get updates the moment something changes — order placed, payment confirmed, shipped, delivered, return opened.\n\n### Sell what you actually sell\n\nPhysical products, digital downloads, subscriptions and memberships, bookings and appointments, bundles and multi-currency storefronts — one branded system, not a brochure site.\n",
   "iconClass": "fas fa-th-large",
   "color": "#EC4899",
   "gradient": "linear-gradient(135deg, #EC4899 0%, #F9A8D4 100%)",
@@ -19,8 +19,8 @@
   "bgFallbackGradient": "linear-gradient(180deg, #FDF2F8 0%, #FCE7F3 40%, #FBCFE8 100%)",
   "clientIds": ["little-hands-lab"],
   "hero": {
-    "title": "Enterprise Ecommerce, Reimagined",
-    "subtitle": "A fully-managed Laravel ecommerce platform for agencies and businesses that need more than a store—speed, scale, and complete customization without the complexity.",
+    "title": "Sell smarter. Stay close to your customers. Grow without the chaos.",
+    "subtitle": "A branded online store system for physical products, digital products, and subscriptions — with live customer updates, clear numbers, and automations so you never have to guess what is happening in your business.",
     "cta_primary": "Request a Demo",
     "cta_primary_link": "/contact",
     "cta_secondary": "View Features",
@@ -28,43 +28,43 @@
   },
   "features": [
     {
-      "title": "Multivendor Marketplace",
-      "description": "Launch a marketplace where multiple sellers can list, manage, and fulfill their own products—all from a single storefront you control.",
+      "title": "Branded Storefront",
+      "description": "Your logo, colors, and content on a mobile-ready store — premium from day one, not a temporary link in bio.",
       "icon": "fas fa-store"
     },
     {
-      "title": "Multi-Store Inventory",
-      "description": "Manage stock across unlimited warehouses and locations from one centralized dashboard. Real-time sync, zero guesswork.",
+      "title": "Sell Anything",
+      "description": "Physical products, digital downloads, subscriptions, bookings, bundles, and multi-currency or multi-language storefronts.",
       "icon": "fas fa-boxes-stacked"
     },
     {
-      "title": "Generative AI Capabilities",
-      "description": "Let AI recommend the right products to the right customers at the right time—boosting conversions and average order value.",
-      "icon": "fas fa-robot"
+      "title": "Notified on the Spot",
+      "description": "Order placed → payment confirmed → shipped → delivered → return opened. Customers stay informed without chasing you.",
+      "icon": "fas fa-bell"
     },
     {
-      "title": "Payment Integration",
-      "description": "Connect seamlessly with trusted providers including PayPal, Cash on Delivery, and Bank Transfer. More ways to pay, fewer abandoned carts.",
+      "title": "Checkout & Payments",
+      "description": "Smooth cart and checkout with cards, wallets, COD, bank transfer, and major gateways — take the money, confirm, move on.",
       "icon": "fas fa-credit-card"
     },
     {
-      "title": "PWA Support",
-      "description": "Your store behaves like a native mobile app—fast, responsive, and installable—without building one from scratch.",
-      "icon": "fas fa-mobile-alt"
+      "title": "Marketing & Growth",
+      "description": "Coupons, catalog rules, email campaigns, SEO, social share, and newsletter tools — offers, timing, and follow-through.",
+      "icon": "fas fa-bullhorn"
     },
     {
-      "title": "Search by Image",
-      "description": "Powered by TensorFlow machine learning. Customers upload a photo, and Zyrn finds matching or similar products instantly.",
-      "icon": "fas fa-search"
+      "title": "Live Statistics",
+      "description": "Sales, bestsellers, customers, carts, promotions, inventory — open the numbers and decide what to do next.",
+      "icon": "fas fa-chart-line"
     },
     {
-      "title": "Built-In CMS",
-      "description": "Manage pages, banners, and static content without touching code. Your marketing team stays in control.",
-      "icon": "fas fa-file-alt"
+      "title": "Automations",
+      "description": "Order emails, status alerts, promotion rules, stock signals, and extendable flows like cart recovery and WhatsApp updates.",
+      "icon": "fas fa-robot"
     },
     {
-      "title": "Expanded Category View",
-      "description": "All categories and subcategories displayed clearly. Better navigation, faster discovery, higher engagement.",
+      "title": "Inventory & Team Control",
+      "description": "Stock that updates with sales, import/export, returns/RMA, and staff roles so your team works from one system.",
       "icon": "fas fa-sitemap"
     }
   ],
@@ -72,23 +72,23 @@
     {
       "name": "Web",
       "icon": "fas fa-globe",
-      "version": "Custom Laravel Storefront + Admin",
+      "version": "Branded Storefront + Admin",
       "link": "#"
     }
   ],
   "tech": [
-    "PHP",
-    "Laravel",
-    "Laravel Octane",
-    "Elasticsearch",
-    "Varnish",
-    "Full Page Caching (FPC)",
-    "CDN Integration",
-    "TensorFlow (image search)",
-    "PWA",
-    "MySQL / PostgreSQL",
-    "Redis",
-    "Load Balancer"
+    "Branded storefront",
+    "Catalog & inventory",
+    "Checkout & payments",
+    "Order notifications",
+    "Subscriptions",
+    "Digital products",
+    "Bookings",
+    "Marketing & coupons",
+    "Statistics & reports",
+    "Automations",
+    "Multi-language / multi-currency",
+    "Returns / RMA"
   ],
   "navItems": [
     {
@@ -126,28 +126,28 @@
   ],
   "faq": [
     {
-      "question": "Is Zyrn fully customizable?",
-      "answer": "Yes. Zyrn is a custom PHP/Laravel store management system—you can shape catalogs, checkout, shipping, payments, attributes, and storefront experience to match whatever your client needs."
+      "question": "I already sell on Instagram. Why do I need Zyrn?",
+      "answer": "Instagram is discovery. Zyrn is checkout, stock, notifications, and ownership of the customer relationship — so orders stop living in DMs."
     },
     {
-      "question": "Can I run a multivendor marketplace?",
-      "answer": "Yes. Multiple sellers can list, manage, and fulfill products from a single storefront you control, with centralized operations for the agency or business owner."
+      "question": "Can’t I just use a form?",
+      "answer": "Forms take requests. Zyrn takes payment, tracks inventory, and updates the customer automatically when something changes."
     },
     {
-      "question": "What payment methods are supported?",
-      "answer": "Out of the box: PayPal, Cash on Delivery, and Bank Transfer, with a flexible payments layer so more providers can be added as needed."
+      "question": "I’m too small for software. Is this for me?",
+      "answer": "That is exactly when chaos starts. Zyrn keeps a small business clean before the mess becomes expensive — launch lean, add subscriptions, digital, and automations later."
     },
     {
-      "question": "How does Zyrn handle scale and performance?",
-      "answer": "Enterprise infrastructure includes Full Page Caching, Elasticsearch with typo tolerance, Varnish, load balancing, Laravel Octane, and CDN integration—built for high-traffic catalogs (10M+ products) with ~500ms load targets."
+      "question": "Can I sell digital products or subscriptions?",
+      "answer": "Yes. Instant delivery for downloads and licenses, plus subscription and membership flows for boxes, plans, and recurring revenue."
     },
     {
-      "question": "Does it support multiple languages and currencies?",
-      "answer": "Yes. Localisation for multiple languages and multi-currency checkout so customers shop and pay in their local currency."
+      "question": "Will customers know what is happening with their order?",
+      "answer": "Yes. Notified on the spot — order, payment, shipping, and returns — so you are not typing the same update fifty times a day."
     },
     {
-      "question": "Who is Zyrn for?",
-      "answer": "Agencies and businesses that need more than a basic store—custom storefronts, marketplaces, multi-warehouse inventory, and enterprise tooling without piecing together disconnected SaaS products."
+      "question": "How do I know what to sell next?",
+      "answer": "Statistics. Bestsellers. Customer behavior. Cart and promotion views. No guessing — open the dashboard and decide."
     }
   ]
 }

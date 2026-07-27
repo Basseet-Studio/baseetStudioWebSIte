@@ -5,7 +5,7 @@ const ARROW_GHOST_OFFSET = 4
 
 function ghostOffset(container: HTMLElement): number {
   const type = container.dataset.previewType
-  return type === 'matrix' || type === 'baseetims' ? ARROW_GHOST_OFFSET : GHOST_OFFSET
+  return type === 'matrix' || type === 'invexo' ? ARROW_GHOST_OFFSET : GHOST_OFFSET
 }
 
 function prefersReducedMotion(): boolean {

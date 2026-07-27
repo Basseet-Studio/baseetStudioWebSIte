@@ -1,6 +1,6 @@
 import type { PreviewController } from './types'
 
-type PreviewType = 'matrix' | 'moneybox' | 'numu' | 'baseetims'
+type PreviewType = 'matrix' | 'moneybox' | 'numu' | 'invexo'
 
 const controllers = new WeakMap<HTMLElement, PreviewController>()
 
@@ -12,8 +12,8 @@ async function loadInit(type: PreviewType) {
       return (await import('./moneybox')).initMoneyBoxPreview
     case 'numu':
       return (await import('./numu')).initNumuPreview
-    case 'baseetims':
-      return (await import('./baseetims')).initBaseetIMSPreview
+    case 'invexo':
+      return (await import('./invexo')).initBaseetIMSPreview
   }
 }
 

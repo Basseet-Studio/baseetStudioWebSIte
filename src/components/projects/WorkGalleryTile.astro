@@ -22,14 +22,14 @@ const previewBgDay: Record<string, string> = {
   matrix: '#f3f4f6',
   moneybox: '#faf8f5',
   numu: '#f5f5fa',
-  baseetims: '#f4f6f8',
+  invexo: '#f4f6f8',
 }
 
 const previewBgNight: Record<string, string> = {
   matrix: '#151820',
   moneybox: '#1a2420',
   numu: '#1e1a28',
-  baseetims: '#080c10',
+  invexo: '#080c10',
 }
 
 /* Light-tone previews use dark caption text; dark-tone previews use light captions */
@@ -37,7 +37,7 @@ const previewTone: Record<string, 'light' | 'dark'> = {
   matrix: 'light',
   moneybox: 'light',
   numu: 'light',
-  baseetims: 'light',
+  invexo: 'light',
 }
 
 const previewBgDayVal = project.previewInteractive
@@ -79,7 +79,7 @@ const tileAttrs = isInteractive
           {project.previewInteractive === 'matrix' && <MatrixPreview />}
           {project.previewInteractive === 'moneybox' && <MoneyBoxPreview />}
           {project.previewInteractive === 'numu' && <NumuPreview />}
-          {project.previewInteractive === 'baseetims' && <BaseetIMSPreview />}
+          {project.previewInteractive === 'invexo' && <BaseetIMSPreview />}
         </>
       ) : hasVideo ? (
         <video
@@ -294,7 +294,7 @@ const tileAttrs = isInteractive
     color: var(--wg-accent);
   }
 
-  /* Dark-app previews (BaseetIMS) — light scrim + dark text in day, dark scrim + light text at night */
+  /* Dark-app previews (Invexo) — light scrim + dark text in day, dark scrim + light text at night */
   .wg--interactive.wg--preview-dark .wg__tint {
     z-index: 3;
     top: auto;

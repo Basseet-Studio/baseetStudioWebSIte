@@ -18,7 +18,7 @@
 //      using `bbox area × 1000 + d-length` as a score, so the morph
 //      starts from the most "icon-like" path of the brand mark (the main
 //      stroke), not a tiny detail (like a steam-node circle in the
-//      DeshiKitchen mark).
+//      Ordelo mark).
 //   4. We fetch each name SVG once (cached) and attach hover/focus/
 //      touch listeners.
 //   5. On hover: GSAP's morphSVG tweens the primary path into the
@@ -128,7 +128,7 @@ function attachMorph(card: HTMLElement, targetD: string): void {
   // come from the user's source SVGs with their own viewBox (~500×500), so a
   // single-path brand mark that fills the canvas (numu's leaf, matrix, geeb)
   // matched that test and was hidden — which is why every icon except the
-  // multi-path DeshiKitchen mark was invisible. All paths stay visible.
+  // multi-path Ordelo mark was invisible. All paths stay visible.
   const visiblePaths = paths;
   const pathsForMorph = paths;
 

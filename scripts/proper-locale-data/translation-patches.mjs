@@ -127,7 +127,7 @@ export const PROJECT_PATCHES = Object.fromEntries([
     hi: { tagline: 'आपki दुकान, हर जगह।', hero: { title: 'आपki दुकान, हर जगह', subtitle: 'Vendors के लिए पूर्ण B2C shopping platform।', cta_primary: 'Demo Request करें' }, status: 'डिलीवरी के लिए तैयार' },
     fil: { tagline: 'Ang tindahan mo, saanman.', hero: { title: 'Ang Tindahan Mo, Saanman', subtitle: 'Kumpletong B2C shopping platform para sa vendors.', cta_primary: 'Humiling ng Demo' }, status: 'Handa nang i-deliver' },
   }),
-  P('baseetims', {
+  P('invexo', {
     ar: { tagline: 'إدارة مخزون مبنية للمتاجر الصغيرة.', hero: { title: 'أدر كل متجر من لوحة واحدة', subtitle: 'مخزون وPOS وعمولات flexiload ومبيعات يومية — للمتاجر الصغيرة.', cta_primary: 'اطلب عرضاً' }, status: 'جاهز للتسليم' },
     ur: { tagline: 'چھوٹے دکانوں کے لیے inventory management۔', hero: { title: 'ہر Shop ایک Dashboard سے چلائیں', subtitle: 'Inventory، POS، flexiload commissions، daily sales — چھوٹے shops کے لیے۔', cta_primary: 'Demo Request کریں' }, status: 'ڈیلیور کے لیے تیار' },
     hi: { tagline: 'छोटी दुकानों के लिए inventory management।', hero: { title: 'हर Shop एक Dashboard से चलाएँ', subtitle: 'Inventory, POS, flexiload commissions, daily sales — छोटे shops के लिए।', cta_primary: 'Demo Request करें' }, status: 'डिलीवरी के लिए तैयार' },
@@ -157,7 +157,7 @@ export const PROJECT_PATCHES = Object.fromEntries([
     hi: { tagline: 'विश्वसनीय home-service pros, demand पर।', hero: { title: 'मिनटों में Trusted Pro Book करें', subtitle: 'Geeb verified plumbers, electricians, cleaners से जोड़ता है — real-time tracking, quality guarantee।', cta_primary: 'ऐप लें', cta_secondary: 'Pro बनें' }, status: 'जल्द आ रहा है' },
     fil: { tagline: 'Mapagkakatiwalaang home-service pros, on demand.', hero: { title: 'Mag-book ng Trusted Pro sa Ilang Minuto', subtitle: 'Ikinokonekta ka ng Geeb sa verified plumbers, electricians, cleaners — real-time tracking, quality guarantee.', cta_primary: 'Kunin ang App', cta_secondary: 'Maging Pro' }, status: 'Malapit na' },
   }),
-  P('deshikitchen', {
+  P('ordelo', {
     ar: { tagline: 'منصة واحدة. كل خطوة من المطبخ إلى باب العميل.', hero: { title: 'مطبخ بنغلاديشي أصيل في متناول يدك', subtitle: 'منصة مطاعم متكاملة — طلبات، مطبخ، حجوزات، توصيل، وإدارة.', cta_primary: 'زر الموقع' }, status: 'مباشر' },
     ur: { tagline: 'ایک platform۔ باورچی خانے سے دروازے تک ہر قدم۔', hero: { title: 'اصلی Bangladeshi Cuisine آپ کی انگلیوں پر', subtitle: 'مکمل restaurant platform — ordering، kitchen، reservations، delivery، admin۔', cta_primary: 'Site Visit کریں' }, status: 'Live' },
     hi: { tagline: 'एक platform। रसोई से दरवाज़े तक हर कदम।', hero: { title: 'Authentic Bangladeshi Cuisine आपki उँगलियों पर', subtitle: 'पूर्ण restaurant platform — ordering, kitchen, reservations, delivery, admin।', cta_primary: 'Site Visit करें' }, status: 'Live' },

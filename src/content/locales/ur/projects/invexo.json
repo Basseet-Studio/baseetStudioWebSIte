@@ -1,0 +1,130 @@
+{
+  "name": "Invexo",
+  "slug": "invexo",
+  "type": "branded",
+  "tagline": "چھوٹے دکانوں کے لیے inventory management۔",
+  "description": "## About Invexo\n\nInvexo is an inventory management system designed for small shops — telecom counters, corner stores, and multi-location retailers who need real-time stock, sales, and cash flow in one place.\n\n### Built for Small Shops\n\nTrack products, barcodes, and customers across every location. Run POS from the same dashboard, monitor flexiload and MFS commissions, and see what's due outstanding at a glance.\n\n### One Dashboard, Every Shop\n\nSwitch between shops instantly. Revenue, cash collected, gross profit, and commission numbers update as you move — so owners always know where they stand.\n\n## Ready to Streamline Your Shop?\n\nContact us for a demo tailored to your business.\n",
+  "iconClass": "fas fa-cash-register",
+  "color": "#10B981",
+  "gradient": "linear-gradient(135deg, #059669 0%, #34D399 100%)",
+  "status": "ڈیلیور کے لیے تیار",
+  "layoutVariant": "invexo",
+  "fontHeading": "Space Grotesk",
+  "fontBody": "Inter",
+  "fontWeights": "400,500,700",
+  "gsapAnimation": "stagger-flip",
+  "appType": "web",
+  "brandName": "Invexo",
+  "bgEffect": "none",
+  "bgFallbackGradient": "linear-gradient(180deg, #ECFDF5 0%, #D1FAE5 40%, #A7F3D0 100%)",
+  "clientIds": [
+    "faruk-technology-store"
+  ],
+  "hero": {
+    "title": "ہر Shop ایک Dashboard سے چلائیں",
+    "subtitle": "Inventory، POS، flexiload commissions، daily sales — چھوٹے shops کے لیے۔",
+    "cta_primary": "Demo Request کریں",
+    "cta_primary_link": "/contact",
+    "cta_secondary": "View Features",
+    "cta_secondary_link": "#features"
+  },
+  "features": [
+    {
+      "title": "Multi-Shop Dashboard",
+      "description": "Switch between locations and watch revenue, cash collected, gross profit, and due outstanding update in real time.",
+      "icon": "fas fa-store"
+    },
+    {
+      "title": "Inventory & POS",
+      "description": "Barcode scanning, stock alerts, low-stock warnings, and a full POS terminal — all connected to the same ledger.",
+      "icon": "fas fa-boxes-stacked"
+    },
+    {
+      "title": "Flexiload & MFS",
+      "description": "Track flexiload and mobile financial service commissions alongside product sales in one daily summary.",
+      "icon": "fas fa-mobile-alt"
+    },
+    {
+      "title": "Sales Trends",
+      "description": "Seven-day line charts, overdue case tracking, and backup status — see patterns before they become problems.",
+      "icon": "fas fa-chart-line"
+    },
+    {
+      "title": "Customer Ledger",
+      "description": "Due outstanding, overdue cases, and payment history per shop — know who owes what at a glance.",
+      "icon": "fas fa-receipt"
+    },
+    {
+      "title": "Reports & Alerts",
+      "description": "Stock transfers, audit logs, user permissions, and configurable alerts for low stock and overdue payments.",
+      "icon": "fas fa-bell"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "Web",
+      "icon": "fas fa-globe",
+      "version": "Web App",
+      "link": "#"
+    }
+  ],
+  "tech": [
+    "Next.js",
+    "TypeScript",
+    "PostgreSQL",
+    "Tailwind CSS",
+    "Docker"
+  ],
+  "navItems": [
+    {
+      "label": "Home",
+      "url": "",
+      "i18nKey": "project_nav_home"
+    },
+    {
+      "label": "Features",
+      "url": "features/",
+      "i18nKey": "project_nav_features"
+    },
+    {
+      "label": "Demo",
+      "url": "demo/",
+      "i18nKey": "project_nav_demo"
+    },
+    {
+      "label": "Terms",
+      "url": "terms/",
+      "i18nKey": "project_nav_terms"
+    }
+  ],
+  "navMetaItems": [
+    {
+      "label": "Work",
+      "url": "/projects/",
+      "i18nKey": "nav_work"
+    },
+    {
+      "label": "Contact",
+      "url": "/contact/",
+      "i18nKey": "nav_contact"
+    }
+  ],
+  "faq": [
+    {
+      "question": "What types of shops is Invexo built for?",
+      "answer": "Invexo is designed for small retail shops — telecom counters, libraries, convenience stores, and multi-location businesses that need inventory, POS, and commission tracking in one place."
+    },
+    {
+      "question": "Can I manage multiple shop locations?",
+      "answer": "Yes. Switch between shops from the dashboard sidebar. Revenue, cash collected, profit, and due outstanding update per location."
+    },
+    {
+      "question": "Does it support flexiload and MFS commissions?",
+      "answer": "Absolutely. Flexiload and mobile financial service commissions are tracked alongside product sales in your daily summary."
+    },
+    {
+      "question": "Is there a demo available?",
+      "answer": "Contact us for a personalized walkthrough. We tailor onboarding to your shop's workflow."
+    }
+  ]
+}

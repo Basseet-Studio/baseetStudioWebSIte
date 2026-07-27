@@ -1,5 +1,5 @@
 ---
-import Icon from '../icons/Icon.astro'
+import ProfileCard from './ProfileCard.astro'
 import type { Lang } from '../../types'
 import { t } from '../../lib/i18n'
 
@@ -9,12 +9,18 @@ interface Props {
     role: string
     bio?: string
     image: string
+    iconPattern?: 'code' | 'money'
     social?: { github?: string; linkedin?: string; twitter?: string }
   }>
   lang?: Lang
 }
 
 const { members, lang = 'en' } = Astro.props
+
+const ICON_PATTERNS = {
+  code: '/images/home/team/iconpattern-code.svg',
+  money: '/images/home/team/iconpattern-money.svg',
+} as const
 
 const platformMeta: Record<string, { label: string; icon: string; variant?: 'regular' | 'bold' | 'fill' }> = {
   github: { label: 'GitHub', icon: 'github-logo', variant: 'fill' },
@@ -26,7 +32,11 @@ function visibleSocialLinks(social: Record<string, string | undefined> | undefin
   if (!social) return []
   return Object.entries(social)
     .filter(([platform, url]) => url && url !== '#' && platformMeta[platform])
-    .map(([platform, url]) => ({ platform, url: url as string, ...platformMeta[platform] }))
+    .map(([platform, url]) => ({
+      platform,
+      url: url as string,
+      ...platformMeta[platform],
+    }))
 }
 ---
 
@@ -35,48 +45,54 @@ function visibleSocialLinks(social: Record<string, string | undefined> | undefin
 
   <div class="team__grid">
     {members.map((member) => {
-      const links = visibleSocialLinks(member.social)
+      const pattern = member.iconPattern === 'money' ? 'money' : 'code'
+      const socialLinks = visibleSocialLinks(member.social)
+      const isCfo = pattern === 'money'
+
       return (
-        <div class="team__card glass glass-card" data-animate="fade-slide-up">
-          <div class="team__photo-wrap">
-            <img
-              src={member.image}
-              alt={member.name}
-              class="team__photo"
-              loading="lazy"
-              width="120"
-              height="120"
-            />
-          </div>
-          <div class="team__info">
-            <h3 class="team__name">{member.name}</h3>
-            <p class="team__role">{member.role}</p>
-            {links.length > 0 && (
-              <div class="team__social">
-                {links.map((link) => (
-                  <a
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="team__social-link"
-                    aria-label={link.label}
-                  >
-                    <Icon name={link.icon} variant={link.variant} size={18} color="currentColor" />
-                  </a>
-                ))}
-              </div>
-            )}
-          </div>
+        <div class="team__card-slot" data-animate="fade-slide-up">
+          <ProfileCard
+            name={member.name}
+            title={member.role}
+            avatarUrl={member.image}
+            iconUrl={ICON_PATTERNS[pattern]}
+            socialLinks={socialLinks}
+            behindGlowColor={isCfo ? 'rgba(251, 205, 55, 0.12)' : 'rgba(73, 107, 193, 0.14)'}
+          />
         </div>
       )
     })}
   </div>
 </section>
 
+<script>
+  import('../../scripts/profile-card').then((m) => {
+    let destroy: (() => void) | undefined
+
+    const run = () => {
+      destroy?.()
+      destroy = m.initProfileCards()
+    }
+    const stop = () => {
+      destroy?.()
+      destroy = undefined
+      m.destroyProfileCards()
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', run, { once: true })
+    } else {
+      run()
+    }
+    document.addEventListener('astro:page-load', run)
+    document.addEventListener('astro:before-swap', stop)
+  })
+</script>
+
 <style>
   .team {
     padding: 80px 24px;
-    max-width: 900px;
+    max-width: 1180px;
     margin: 0 auto;
   }
 
@@ -86,96 +102,40 @@ function visibleSocialLinks(social: Record<string, string | undefined> | undefin
     color: var(--heading-text);
     text-align: center;
     margin: 0 0 48px;
+    text-wrap: balance;
   }
 
   .team__grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 28px 20px;
+    justify-items: stretch;
+    align-items: stretch;
+    grid-auto-rows: 1fr;
   }
 
-  .team__card {
+  .team__card-slot {
+    width: 100%;
+    max-width: 260px;
+    margin-inline: auto;
+    height: 100%;
     display: flex;
-    align-items: center;
-    gap: 24px;
-    padding: 24px 28px;
-    border-radius: 16px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
-  .team__card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--card-shadow-hover);
-  }
-
-  .team__photo-wrap {
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .team__photo {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid var(--border-soft);
-  }
-
-  .team__info {
-    min-width: 0;
-  }
-
-  .team__name {
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: var(--heading-text);
-    margin: 0 0 2px;
-  }
-
-  .team__role {
-    font-size: 0.8rem;
-    color: var(--color-primary);
-    margin: 0 0 10px;
-    font-weight: 500;
-  }
-
-  .team__social {
-    display: flex;
-    gap: 10px;
-  }
-
-  .team__social-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-    border-radius: 8px;
-    background: var(--surface-soft);
-    color: var(--text-secondary);
-    text-decoration: none;
-    transition: background 0.2s, color 0.2s;
-  }
-
-  .team__social-link:hover {
-    background: var(--interactive-hover);
-    color: var(--text-primary);
+  .team__card-slot :global(.pc-card-wrapper) {
+    flex: 1;
+    height: 100%;
+    max-width: none;
   }
 
   @media (max-width: 640px) {
-    .team__grid {
-      grid-template-columns: 1fr;
-    }
-
     .team {
       padding: 60px 16px;
     }
 
-    .team__card {
-      gap: 16px;
-      padding: 20px;
+    .team__grid {
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 24px 16px;
     }
   }
 </style>

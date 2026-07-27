@@ -123,7 +123,7 @@ The fix is one `<ProductLayout>` that takes `{project}` and a small slot, plus 4
 ### 12. Hero layout has five different shapes
 No two projects have the same hero:
 
-- **chopshop, matrix, numu, moneybox, photorestore-ai, malaysian-business-websites, nss-virtual-education-fair, bd-railway-automated-timetable, medical-education-app, deshikitchen** — centered, single-column, icon at top
+- **chopshop, matrix, numu, moneybox, photorestore-ai, malaysian-business-websites, nss-virtual-education-fair, bd-railway-automated-timetable, medical-education-app, ordelo** — centered, single-column, icon at top
 - **zaryn, medev** — split-screen with a hidden right column (see bug 6)
 - **geeb** — completely custom 1,193-line CSS override with floating service icons, glow orbs, and a custom ribbon
 - **numu** — also has a `feature-carousel` and `carousel-card` class that **is not defined in `numu.css`** — aspirational CSS, broken code
@@ -166,7 +166,7 @@ File: `src/pages/projects/chopshop.astro` lines 33–38
 ChopShop is an e-commerce platform (icon: shopping bag). The decorative icons are a *tag* and a *truck* — the truck loosely matches delivery, but the tag is unrelated. Pick decorative icons that reinforce the product identity, or remove the decoration.
 
 ### 18. The hero takes 40%+ of a phone screen
-Files: `chopshop.astro` line 31, `medev.astro` line 31, `matrix.astro` line 29, `deshikitchen.astro` (similar)
+Files: `chopshop.astro` line 31, `medev.astro` line 31, `matrix.astro` line 29, `ordelo.astro` (similar)
 
 ```astro
 <section class="project-hero" style="padding:140px 24px 80px;...">

@@ -23,6 +23,10 @@
 
 /* =========== BASE CONTAINER =========== */
 .app-bar {
+    /* EDIT: glass surface CSS knobs (JS also writes these from APP_BAR_GLASS) */
+    --app-bar-glass-saturation: 1.8; /* EDIT: color pop through glass */
+    --app-bar-glass-frost: 0; /* EDIT: extra wash opacity (0 = rely on --nav-bg) */
+
     position: fixed;
     top: var(--nav-top-offset);
     left: 50%;
@@ -30,9 +34,8 @@
     z-index: 1000;
     width: 100%;
     max-width: min(var(--nav-max-width), calc(100vw - var(--nav-side-padding)));
+    /* Day/night tint — --nav-bg flips via --bg-elevated on [data-theme] */
     background: var(--nav-bg);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
     border: 1px solid var(--nav-border);
     border-radius: 50px;
     box-shadow: var(--nav-shadow);
@@ -43,6 +46,66 @@
         border-radius 0.4s cubic-bezier(0.4, 0, 0.2, 1),
         height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
+}
+
+/* Hidden SVG filter host (injected by glass-surface.ts) */
+.app-bar__glass-filter {
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    z-index: -1;
+}
+
+/* Chromium: SVG displacement refraction (Glass Surface v2) */
+.app-bar--glass-svg {
+    /* Extra frost wash on top of --nav-bg when --app-bar-glass-frost > 0 */
+    background:
+        color-mix(
+            in srgb,
+            var(--text-inverse) calc(var(--app-bar-glass-frost) * 100%),
+            transparent
+        ),
+        var(--nav-bg);
+    backdrop-filter: url(#app-bar-glass-filter)
+        saturate(var(--app-bar-glass-saturation));
+    -webkit-backdrop-filter: url(#app-bar-glass-filter)
+        saturate(var(--app-bar-glass-saturation));
+    box-shadow:
+        var(--nav-shadow),
+        0 0 2px 1px color-mix(in srgb, var(--text-primary) 12%, transparent) inset,
+        0 0 10px 4px color-mix(in srgb, var(--text-primary) 8%, transparent) inset,
+        0 4px 16px rgba(17, 17, 26, 0.05) inset;
+}
+
+[data-theme="night"] .app-bar--glass-svg {
+    background:
+        color-mix(
+            in srgb,
+            #000 calc(var(--app-bar-glass-frost) * 100%),
+            transparent
+        ),
+        var(--nav-bg);
+    box-shadow:
+        var(--nav-shadow),
+        0 0 2px 1px color-mix(in srgb, #fff 20%, transparent) inset,
+        0 0 10px 4px color-mix(in srgb, #fff 10%, transparent) inset,
+        0 4px 16px rgba(0, 0, 0, 0.12) inset;
+}
+
+/* Safari / Firefox / no url() support: blur fallback, still uses --nav-bg tint */
+.app-bar--glass-fallback {
+    background: var(--nav-bg);
+    backdrop-filter: blur(20px) saturate(var(--app-bar-glass-saturation));
+    -webkit-backdrop-filter: blur(20px) saturate(var(--app-bar-glass-saturation));
+}
+
+/* Before JS mounts a mode class, keep a readable blur so FOUC isn't harsh */
+.app-bar:not(.app-bar--glass-svg):not(.app-bar--glass-fallback) {
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
 }
 
 /* During a view-transition swap, AppBar.ts adds this class for the duration of

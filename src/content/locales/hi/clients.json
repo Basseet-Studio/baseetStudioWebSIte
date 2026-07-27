@@ -17,9 +17,18 @@
       "challenge": "क्लाइंट 50 से अधिक डिलीवरी ट्रकों को स्प्रेडशीट और फ़ोन कॉल से प्रबंधित कर रहा था। रखरखाव अक्सर छूट जाती थी, जिससे खराबी और देरी होती थी। उन्हें अपनी फ्लीट की वास्तविक समय की स्थिति की कोई दृश्यता नहीं थी।",
       "solution": "हमने एक कस्टम वेब प्लेटफ़ॉर्म बनाया जो वास्तविक समय GPS ट्रैकिंग, माइलेज और समय के आधार पर स्वचालित रखरखाव शेड्यूलिंग, ड्राइवर असाइनमेंट प्रबंधन, और व्यापक रिपोर्टिंग प्रदान करता है।",
       "results": [
-        { "metric": "30%", "label": "खराबी में कमी" },
-        { "metric": "2hrs", "label": "प्रशासन में दैनिक बचत" },
-        { "metric": "100%", "label": "पूर्ण फ्लीट दृश्यता" }
+        {
+          "metric": "30%",
+          "label": "खराबी में कमी"
+        },
+        {
+          "metric": "2hrs",
+          "label": "प्रशासन में दैनिक बचत"
+        },
+        {
+          "metric": "100%",
+          "label": "पूर्ण फ्लीट दृश्यता"
+        }
       ],
       "features": [
         "वास्तविक समय GPS फ्लीट ट्रैकिंग",
@@ -57,8 +66,14 @@
       "challenge": "Iyat को एक पेशेवर ऑनलाइन उपस्थिति चाहिए थी जो उनके रचनात्मक काम को प्रदर्शित करे और नए क्लाइंट आकर्षित करे।",
       "solution": "हमने एक सुंदर, आधुनिक पोर्टफोलियो वेबसाइट बनाई जिसमें सुचारू एनिमेशन, रेस्पॉन्सिव डिज़ाइन, और आकर्षक उपयोगकर्ता अनुभव शामिल है।",
       "results": [
-        { "metric": "100%", "label": "कस्टम डिज़ाइन" },
-        { "metric": "< 2s", "label": "लोड समय" }
+        {
+          "metric": "100%",
+          "label": "कस्टम डिज़ाइन"
+        },
+        {
+          "metric": "< 2s",
+          "label": "लोड समय"
+        }
       ],
       "features": [
         "कस्टम पोर्टफोलियो डिज़ाइन",
@@ -88,8 +103,14 @@
       "challenge": "मस्जिद वित्त टीम सदस्यों के योगदान और परिचालन खर्चों को स्प्रेडशीट और कागज़ी रिकॉर्ड में ट्रैक करती थी। समाधान धीमा था, त्रुटियाँ आती थीं, और इंटरनेट बंद होने पर कुछ काम नहीं करता था।",
       "solution": "हमने Jamia System बनाया — ऑफ़लाइन-फ़र्स्ट सिंक के साथ Firebase-समर्थित वित्त प्लेटफ़ॉर्म। योगदान, खर्च, और Jamia खाते एक जगह पर, कनेक्टेड हों या न हों।",
       "results": [
-        { "metric": "100%", "label": "कागज़-मुक्त ट्रैकिंग" },
-        { "metric": "2-in-1", "label": "क्लाउड + ऑफ़लाइन" }
+        {
+          "metric": "100%",
+          "label": "कागज़-मुक्त ट्रैकिंग"
+        },
+        {
+          "metric": "2-in-1",
+          "label": "क्लाउड + ऑफ़लाइन"
+        }
       ],
       "features": [
         "खर्च ट्रैकिंग",
@@ -155,11 +176,16 @@
       "serviceType": "ई-कॉमर्स स्टोर",
       "color": "#EC4899",
       "tagline": "ऑनलाइन खिलौनों की दुकान, Zyrn द्वारा संचालित",
-      "shortDescription": "Zyrn पर बना ऑनलाइन खिलौनों का स्टोर — Little Hands Lab के लिए कस्टम कैटलॉग, चेकआउट, और स्टोरफ्रंट।",
-      "fullDescription": "Little Hands Lab Zyrn पर अपना खिलौनों का ई-कॉमर्स स्टोरफ्रंट चलाता है, कैटलॉग, इन्वेंटरी, और ग्राहक अनुभव के लिए प्लेटफ़ॉर्म के कस्टम Laravel स्टोर प्रबंधन का उपयोग करते हुए।",
-      "challenge": "कई ई-कॉमर्स टूल जोड़े बिना पूरी तरह कस्टम ऑनलाइन खिलौनों की दुकान चाहिए थी।",
-      "solution": "Zyrn पर अनुकूलित स्टोरफ्रंट, उत्पाद कैटलॉग, और संचालन डैशबोर्ड के साथ लॉन्च किया।",
-      "technologies": ["Zyrn", "Laravel", "PHP", "PWA"],
+      "shortDescription": "An online toys store on Zyrn — branded catalog, checkout, and customer updates for Little Hands Lab.",
+      "fullDescription": "Little Hands Lab runs its toys storefront on Zyrn: products, payments, inventory, and order notifications in one branded commerce system — no paper trail of DMs and notebooks.",
+      "challenge": "Needed a real online toys store without drowning in chat orders and disconnected tools.",
+      "solution": "Launched on Zyrn with a branded storefront, catalog, checkout, and live customer order updates.",
+      "technologies": [
+        "Zyrn",
+        "Catalog",
+        "Checkout",
+        "Notifications"
+      ],
       "steps": [],
       "screenshots": [],
       "galleryType": "web"
@@ -171,12 +197,15 @@
       "industry": "रिटेल और टेलीकॉम",
       "serviceType": "इन्वेंटरी प्रबंधन",
       "color": "#10B981",
-      "tagline": "BaseetIMS पर दुकान संचालन",
-      "shortDescription": "Faruk Technology Store इन्वेंटरी, POS, और दैनिक दुकान संचालन के लिए BaseetIMS का उपयोग करता है।",
-      "fullDescription": "Faruk Technology Store BaseetIMS के माध्यम से स्टॉक, बिक्री, और बहु-स्थान स्पष्टता चलाता है — छोटी दुकानों के लिए बना इन्वेंटरी प्रबंधन।",
+      "tagline": "Invexo पर दुकान संचालन",
+      "shortDescription": "Faruk Technology Store इन्वेंटरी, POS, और दैनिक दुकान संचालन के लिए Invexo का उपयोग करता है।",
+      "fullDescription": "Faruk Technology Store Invexo के माध्यम से स्टॉक, बिक्री, और बहु-स्थान स्पष्टता चलाता है — छोटी दुकानों के लिए बना इन्वेंटरी प्रबंधन।",
       "challenge": "एंटरप्राइज़ जटिलता के बिना स्पष्ट इन्वेंटरी और बिक्री ट्रैकिंग चाहिए थी।",
-      "solution": "स्टॉक, POS, और दैनिक दुकान डैशबोर्ड के लिए BaseetIMS तैनात किया।",
-      "technologies": ["BaseetIMS", "Web Dashboard"],
+      "solution": "स्टॉक, POS, और दैनिक दुकान डैशबोर्ड के लिए Invexo तैनात किया।",
+      "technologies": [
+        "Invexo",
+        "Web Dashboard"
+      ],
       "steps": [],
       "screenshots": [],
       "galleryType": "web"

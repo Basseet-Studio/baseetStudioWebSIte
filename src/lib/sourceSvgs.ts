@@ -40,9 +40,9 @@ export const SOURCE_SVGS: Record<string, SourceSvgSet> = {
     logo: "source svgs/Geeb cng logo vecrot.svg",
     name: "source svgs/geeb-name.svg",
   },
-  deshikitchen: {
-    logo: "source svgs/deshikitchen-logo.svg",
-    name: "source svgs/deshikitchen-name.svg",
+  ordelo: {
+    logo: "source svgs/ordelo-logo.svg",
+    name: "source svgs/ordelo-name.svg",
   },
   moneybox: {
     logo: "source svgs/money stack logo.svg",

@@ -132,8 +132,8 @@
       "status": "قريباً"
     },
     {
-      "name": "BaseetIMS",
-      "slug": "baseetims",
+      "name": "Invexo",
+      "slug": "invexo",
       "type": "branded",
       "tagline": "إدارة المخزون للمتاجر الصغيرة",
       "description": "مخزون متعدد المتاجر، نقطة بيع، عمولات Flexiload، ومبيعات يومية — مبني للتجزئة الصغيرة.",
@@ -155,11 +155,11 @@
       "status": "جاهز للتسليم"
     },
     {
-      "name": "DeshiKitchen",
-      "slug": "deshikitchen",
+      "name": "Ordelo",
+      "slug": "ordelo",
       "type": "branded",
-      "tagline": "مطبخ بنغلاديشي أصيل، عند الطلب",
-      "description": "منصة طلب مطاعم متكاملة مع بطل ثلاثي الأبعاد، تتبع طلبات فوري، إثبات اجتماعي، مدفوعات Stripe، ولوحة إدارة شاملة.",
+      "tagline": "عملك. أونلاين. منظّم. ملكك.",
+      "description": "طلب وتجارة بعلامتك — قوائم، دفع، تنبيهات المطبخ، وإشعارات العملاء وأدوات نمو. بلا أثر ورقي. بلا تخمين.",
       "iconClass": "fas fa-utensils",
       "platforms": [
         {

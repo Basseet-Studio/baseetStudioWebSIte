@@ -1,0 +1,167 @@
+---
+/**
+ * GeebLineWaves — amber LineWaves WebGL overlay above cloudscape.
+ * Uses Astro transition:persist so Geeb↔Geeb nav keeps the same WebGL
+ * instance (no full remount). Knobs lerp via syncToPath().
+ */
+---
+
+<div
+  id="geeb-line-waves"
+  class="geeb-line-waves"
+  transition:persist="geeb-line-waves"
+  transition:name="geeb-line-waves"
+  aria-hidden="true"
+  role="presentation"
+></div>
+
+<script>
+  import {
+    ensureInit,
+    destroy,
+    syncToPath,
+    isGeebPath,
+    isActive,
+    FADE_IN_MS,
+    FADE_OUT_MS,
+  } from '../../../lib/effects/geeb-line-waves'
+
+  const VISIBLE = 'is-visible'
+  let wired = false
+
+  function host(): HTMLElement | null {
+    return document.getElementById('geeb-line-waves')
+  }
+
+  function show(el: HTMLElement): void {
+    el.style.setProperty('--geeb-waves-fade-in', `${FADE_IN_MS}ms`)
+    el.style.setProperty('--geeb-waves-fade-out', `${FADE_OUT_MS}ms`)
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => el.classList.add(VISIBLE))
+    })
+  }
+
+  function hide(el: HTMLElement | null): void {
+    el?.classList.remove(VISIBLE)
+  }
+
+  /** Enter / stay on Geeb: boot once, then lerp knobs for this route. */
+  function onGeebPage(pathname: string, snap: boolean): void {
+    const el = host()
+    if (!el) return
+
+    const firstBoot = !isActive()
+    const ok = ensureInit(el)
+    if (!ok) return
+
+    syncToPath(pathname, { snap: snap || firstBoot })
+    show(el)
+  }
+
+  /** Leave Geeb: fade out, then tear down GL after the CSS transition. */
+  function leaveGeeb(): void {
+    const el = host()
+    hide(el)
+    window.setTimeout(() => {
+      if (!isGeebPath(location.pathname)) destroy()
+    }, FADE_OUT_MS)
+  }
+
+  function onPageLoad(): void {
+    if (isGeebPath(location.pathname) && host()) {
+      onGeebPage(location.pathname, false)
+    } else if (isActive()) {
+      leaveGeeb()
+    }
+  }
+
+  function onBeforeSwap(event: Event): void {
+    const e = event as Event & { newDocument?: Document }
+    const nextHasWaves = Boolean(e.newDocument?.getElementById('geeb-line-waves'))
+    // Geeb → Geeb: keep the persisted WebGL instance; do not destroy.
+    if (nextHasWaves) return
+    // Leaving Geeb entirely.
+    if (isActive() || host()) {
+      hide(host())
+      destroy()
+    }
+  }
+
+  function wire(): void {
+    if (wired) return
+    wired = true
+    document.addEventListener('astro:page-load', onPageLoad)
+    document.addEventListener('astro:before-swap', onBeforeSwap)
+  }
+
+  wire()
+
+  // First paint.
+  if (isGeebPath(location.pathname) && host()) {
+    onGeebPage(location.pathname, true)
+  }
+</script>
+
+<style is:global>
+  /*
+   * Fixed full-viewport layer above cloudscape, under content.
+   * Mask keeps the effect strongest at the top of the page.
+   * Beat `.project-wrapper > * { position:relative; z-index:2 }`.
+   */
+  #geeb-line-waves.geeb-line-waves,
+  .project-wrapper > #geeb-line-waves.geeb-line-waves {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+    contain: layout style paint;
+    background: transparent;
+    opacity: 0;
+    transition: opacity var(--geeb-waves-fade-out, 320ms) ease;
+    /* Top-weighted: strong in the hero, soft below the fold. */
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 32%,
+      rgba(0, 0, 0, 0.45) 58%,
+      transparent 92%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 32%,
+      rgba(0, 0, 0, 0.45) 58%,
+      transparent 92%
+    );
+  }
+
+  #geeb-line-waves.geeb-line-waves.is-visible,
+  .project-wrapper > #geeb-line-waves.geeb-line-waves.is-visible {
+    /* scroll-mul: 1 at top → 0 as you leave the top of the page */
+    opacity: var(--geeb-waves-scroll-mul, 1);
+    /* Enter fade uses FADE_IN; scroll updates should feel immediate. */
+    transition: opacity var(--geeb-waves-fade-in, 700ms) ease;
+  }
+
+  /* While scrolling, skip the long enter transition so fade tracks the thumb. */
+  #geeb-line-waves.geeb-line-waves.is-visible.is-scrolling,
+  .project-wrapper > #geeb-line-waves.geeb-line-waves.is-visible.is-scrolling {
+    transition: opacity 80ms linear;
+  }
+
+  #geeb-line-waves.geeb-line-waves canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #geeb-line-waves.geeb-line-waves,
+    .project-wrapper > #geeb-line-waves.geeb-line-waves {
+      display: none;
+    }
+  }
+</style>

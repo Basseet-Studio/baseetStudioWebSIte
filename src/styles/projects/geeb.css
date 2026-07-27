@@ -192,17 +192,6 @@
   pointer-events: none;
 }
 
-.geeb-hero__grid {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(to right, rgba(180, 83, 9, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(180, 83, 9, 0.04) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: radial-gradient(ellipse at 30% 40%, black 20%, transparent 70%);
-  pointer-events: none;
-}
-
 .geeb-hero__split {
   position: relative;
   z-index: 1;
@@ -1989,6 +1978,11 @@
   margin: 0 auto;
 }
 
+.geeb-download-grid--two {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 48rem;
+}
+
 .geeb-download-card {
   display: flex;
   flex-direction: column;
@@ -1999,6 +1993,11 @@
   background: var(--card-window-bg);
   border: 1px solid var(--card-window-border);
   transition: transform 0.3s ease;
+}
+
+.geeb-download-card--rich {
+  align-items: flex-start;
+  text-align: left;
 }
 
 .geeb-download-card:hover { transform: translateY(-4px); }
@@ -2027,6 +2026,30 @@
   font-size: 0.85rem;
   color: var(--geeb-stone);
   margin: 0 0 1rem;
+  line-height: 1.55;
+}
+
+.geeb-download-card__list {
+  list-style: none;
+  margin: 0 0 1.25rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  width: 100%;
+}
+
+.geeb-download-card__list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--geeb-ink);
+}
+
+.geeb-download-card__list li :global(svg) {
+  flex-shrink: 0;
+  color: var(--geeb-amber-deep);
 }
 
 .geeb-download-card__badge {
@@ -2036,6 +2059,118 @@
   font-weight: 600;
   background: var(--geeb-pill-bg);
   color: var(--geeb-amber-deep);
+  margin-top: auto;
+}
+
+.geeb-content--platforms {
+  padding-top: 0;
+}
+
+.geeb-section-head {
+  text-align: center;
+  max-width: 36rem;
+  margin: 0 auto 2rem;
+}
+
+.geeb-section-title {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: clamp(1.35rem, 2.5vw, 1.85rem);
+  font-weight: 800;
+  margin: 0 0 0.65rem;
+  color: var(--geeb-ink);
+}
+
+.geeb-section-lede {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--geeb-stone);
+  margin: 0;
+}
+
+.geeb-download-platforms {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.geeb-download-platform {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.35rem 1.25rem;
+  border-radius: var(--card-window-radius-tight);
+  background: var(--card-window-bg);
+  border: 1px solid var(--card-window-border);
+}
+
+.geeb-download-platform .geeb-download-card__icon {
+  margin-bottom: 0;
+  flex-shrink: 0;
+}
+
+.geeb-download-platform h3 {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  margin: 0 0 0.35rem;
+  color: var(--geeb-ink);
+}
+
+.geeb-download-platform p {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--geeb-stone);
+  margin: 0;
+}
+
+.geeb-download-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.geeb-download-step {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1.25rem 1.15rem;
+  border-radius: var(--card-window-radius-tight);
+  background: var(--card-window-bg);
+  border: 1px solid var(--card-window-border);
+}
+
+.geeb-download-step__num {
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9999px;
+  display: grid;
+  place-items: center;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 800;
+  font-size: 0.9rem;
+  background: var(--geeb-eyebrow-bg);
+  color: var(--geeb-amber-deep);
+}
+
+.geeb-download-step h3 {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  margin: 0 0 0.35rem;
+  color: var(--geeb-ink);
+}
+
+.geeb-download-step p {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--geeb-stone);
+  margin: 0;
 }
 
 .geeb-legal-breadcrumb {
@@ -2170,6 +2305,8 @@
   .geeb-feature-block--reverse .geeb-feature-block__visual { order: 1; }
   .geeb-feature-block--reverse .geeb-feature-block__copy { order: 2; }
   .geeb-download-grid { grid-template-columns: 1fr; }
+  .geeb-download-grid--two { grid-template-columns: 1fr; }
+  .geeb-download-platforms { grid-template-columns: 1fr; }
   .geeb-pro-grid { grid-template-columns: 1fr; }
 }
 

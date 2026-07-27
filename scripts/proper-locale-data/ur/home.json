@@ -132,8 +132,8 @@
       "status": "جلد آرہا ہے"
     },
     {
-      "name": "BaseetIMS",
-      "slug": "baseetims",
+      "name": "Invexo",
+      "slug": "invexo",
       "type": "branded",
       "tagline": "چھوٹے دکانوں کے لیے inventory management",
       "description": "Multi-shop inventory، POS، flexiload commissions، اور daily sales — چھوٹے retail businesses کے لیے بنایا گیا۔",
@@ -155,11 +155,11 @@
       "status": "ڈیلیور کے لیے تیار"
     },
     {
-      "name": "DeshiKitchen",
-      "slug": "deshikitchen",
+      "name": "Ordelo",
+      "slug": "ordelo",
       "type": "branded",
-      "tagline": "اصلی بنگلادیشی کھانا، demand پر",
-      "description": "3D hero، real-time order tracking، social proof، Stripe payments، اور comprehensive admin dashboard کے ساتھ مکمل restaurant ordering پلیٹ فارم۔",
+      "tagline": "آپ کا کاروبار۔ آن لائن۔ منظم۔ آپ کا۔",
+      "description": "برانڈڈ آرڈرنگ اور کامرس — مینو، چیک آؤٹ، کچن الرٹس، گاہک نوٹیفکیشنز اور گروتھ ٹولز۔ بغیر کاغذ۔ بغیر اندازہ۔",
       "iconClass": "fas fa-utensils",
       "platforms": [
         {

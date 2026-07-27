@@ -1,0 +1,265 @@
+---
+import ProjectLayout from '../../layouts/Project.astro'
+import ProjectGallery from '../../components/project/ProjectGallery.astro'
+import ProjectCTA from '../../components/project/ProjectCTA.astro'
+import ProjectFeatureCard from '../../components/project/ProjectFeatureCard.astro'
+import ProjectFAQ from '../../components/project/ProjectFAQ.astro'
+import GradientCTA from '../../components/project/GradientCTA.astro'
+import ProjectClients from '../../components/project/ProjectClients.astro'
+import Icon from '../../components/icons/Icon.astro'
+import { resolveIcon } from '../../components/icons/iconMappings'
+import { getProject } from '../../lib/projects'
+import { getClientsForProject } from '../../lib/clients'
+
+const lang: 'en' = 'en'
+const slug = 'ordelo'
+const project = getProject(slug)
+if (!project) return Astro.redirect('/404')
+const linkedClients = getClientsForProject(slug)
+
+const sellModes = [
+  { label: 'Restaurant ordering', value: 'Menu' },
+  { label: 'Kitchen display', value: 'KDS' },
+  { label: 'Customer updates', value: 'On the spot' },
+  { label: 'Multi-location', value: 'Branches' },
+  { label: 'Subscriptions & digital', value: 'Grow' },
+]
+
+const painFixes = [
+  {
+    title: 'Orders live in WhatsApp',
+    description: 'Branded online ordering with cart, checkout, and a real order list — not sticky notes and screenshots.',
+  },
+  {
+    title: 'Kitchen doesn’t know what’s next',
+    description: 'Kitchen display, status flow, and busy mode when you’re slammed — glanceable action, less shouting.',
+  },
+  {
+    title: 'Customers keep asking for updates',
+    description: 'Instant notifications for confirmation and status changes. Wondering is where trust dies.',
+  },
+  {
+    title: 'Commission apps own the customer',
+    description: 'Direct ordering channel. Your storefront, your margins, your relationship.',
+  },
+  {
+    title: 'No idea what’s selling',
+    description: 'Reports, coupon analytics, location comparisons, and visitor insights you can act on.',
+  },
+  {
+    title: 'Growth feels random',
+    description: 'Coupons, campaign pages, social login, automations, subscriptions, and digital offers.',
+  },
+]
+
+const packages = [
+  {
+    name: 'Launch',
+    audience: 'New cafés, first online menu, solo founders',
+    points: ['Branded storefront', 'Menu + checkout', 'Basic payments', 'Order notifications'],
+  },
+  {
+    name: 'Operate',
+    audience: 'Busy kitchens that need ops calm',
+    points: ['Kitchen display', 'Busy mode', 'Coupons', 'Core reports'],
+  },
+  {
+    name: 'Scale',
+    audience: 'Multi-location and growth-minded brands',
+    points: ['Multi-branch setup', 'Automations & webhooks', 'Social login', 'Multilingual'],
+  },
+  {
+    name: 'Commerce+',
+    audience: 'Brands expanding beyond food service',
+    points: ['Digital products', 'Subscriptions', 'Gift / voucher flows', 'Deeper analytics'],
+  },
+]
+---
+
+<ProjectLayout title={`${project.name} — Baseet Studio`} description={project.tagline} slug={project.slug} projectColor={project.color} projectGradient={project.gradient} projectName={project.name} projectIconClass={project.iconClass} projectNavItems={project.navItems} projectNavMeta={project.navMetaItems} lang={lang}>
+  <link rel="stylesheet" href="/src/styles/projects/ordelo.css" />
+
+  <section class="project-hero project-hero--centered">
+    <div style={`position:absolute;top:8%;right:10%;opacity:0.06;transform:rotate(20deg);color:${project.color};pointer-events:none;`}>
+      <svg width="120" height="120" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+    </div>
+    <div style={`position:absolute;bottom:12%;left:8%;opacity:0.05;transform:rotate(-15deg);color:${project.color};pointer-events:none;`}>
+      <svg width="100" height="100" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+    </div>
+
+    <div style="max-width:800px;margin:0 auto;position:relative;z-index:1;">
+      <div style="display:flex;justify-content:center;margin-bottom:28px;" data-animate="fade-up">
+        <div style={`width:96px;height:96px;border-radius:24px;background:${project.gradient};display:flex;align-items:center;justify-content:center;box-shadow:0 12px 40px -10px color-mix(in srgb, ${project.color} 30%, transparent);`}>
+          <Icon name={resolveIcon(project.iconClass).name} size={40} color="white" />
+        </div>
+      </div>
+
+      <h1 style="font-size:3.2rem;font-weight:700;color:var(--heading-text);margin-bottom:8px;letter-spacing:-0.02em;" data-animate="fade-up">
+        {project.name}
+      </h1>
+      <p style={`font-size:1.3rem;font-weight:600;color:${project.color};margin-bottom:24px;`} data-animate="fade-up">
+        {project.tagline}
+      </p>
+
+      <div style="margin-bottom:28px;" data-animate="fade-up">
+        <span style={`display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);`}>
+          <Icon name="check-circle" size={16} color={project.color} />
+          {project.status}
+        </span>
+      </div>
+
+      <h2 style="font-size:2rem;font-weight:700;color:var(--heading-text);margin-bottom:20px;line-height:1.3;" data-animate="fade-up">
+        {project.hero.title}
+      </h2>
+      <p style="font-size:1.15rem;color:var(--muted-text);margin-bottom:36px;max-width:580px;margin-left:auto;margin-right:auto;line-height:1.7;" data-animate="fade-up">
+        {project.hero.subtitle}
+      </p>
+
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" data-animate="fade-up">
+        {project.hero.cta_primary && (
+          <a href={project.hero.cta_primary_link || '/contact/'}
+            class="cta-btn--primary"
+            style={`background:${project.gradient};`}>
+            {project.hero.cta_primary}
+          </a>
+        )}
+        {project.hero.cta_secondary && (
+          <a href={project.hero.cta_secondary_link || '#features'}
+            class="cta-btn--secondary"
+            style={`border-color:color-mix(in srgb, ${project.color} 25%, transparent);`}>
+            {project.hero.cta_secondary}
+          </a>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <section class="ordelo-promise" data-animate="fade-up">
+    <p class="ordelo-promise__line">No paper trail. No guessing.</p>
+    <p class="ordelo-promise__sub">Customers notified on the spot.</p>
+  </section>
+
+  {project.features && project.features.length > 0 && (
+    <section id="features" style="padding:64px 24px;max-width:1200px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:48px;" data-animate="fade-up">
+        <span style={`display:inline-block;padding:8px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);margin-bottom:16px;`}>
+          Core Capabilities
+        </span>
+        <h2 style="font-size:2rem;margin-bottom:12px;color:var(--heading-text);">
+          The “we got you” button for your business
+        </h2>
+        <p style="font-size:1.05rem;color:var(--muted-text);max-width:560px;margin:0 auto;line-height:1.65;">
+          You’re not selling a website. You’re selling calm operations and owned revenue.
+        </p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:24px;">
+        {project.features.map((feature, i) => (
+          <ProjectFeatureCard title={feature.title} description={feature.description} iconName={resolveIcon(feature.icon).name} projectColor={project.color} projectGradient={project.gradient} index={i} />
+        ))}
+      </div>
+    </section>
+  )}
+
+  <section style="padding:64px 24px;max-width:1100px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:40px;" data-animate="fade-up">
+      <span style={`display:inline-block;padding:8px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);margin-bottom:16px;`}>
+        What Ordelo Can Be
+      </span>
+      <h2 style="font-size:2rem;margin-bottom:0;color:var(--heading-text);">
+        One package. Many futures.
+      </h2>
+    </div>
+    <div class="ordelo-modes">
+      {sellModes.map((m) => (
+        <div class="ordelo-modes__tile card-window" data-animate="fade-up">
+          <span class="ordelo-modes__val">{m.value}</span>
+          <span class="ordelo-modes__lbl">{m.label}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section style="padding:64px 24px;max-width:1200px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:40px;" data-animate="fade-up">
+      <span style={`display:inline-block;padding:8px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);margin-bottom:16px;`}>
+        Pain → Promise
+      </span>
+      <h2 style="font-size:2rem;margin-bottom:0;color:var(--heading-text);">
+        From DM chaos to clean checkout
+      </h2>
+    </div>
+    <div class="ordelo-fixes">
+      {painFixes.map((item) => (
+        <div class="ordelo-fixes__item" data-animate="fade-up">
+          <h3>{item.title}</h3>
+          <p>{item.description}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {project.screenshots && project.screenshots.length > 0 && (
+    <ProjectGallery screenshots={project.screenshots} galleryType={project.galleryType || 'mobile'} projectSlug={project.slug} projectColor={project.color} projectName={project.name} />
+  )}
+
+  <section style="padding:64px 24px;max-width:1200px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:40px;" data-animate="fade-up">
+      <span style={`display:inline-block;padding:8px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);margin-bottom:16px;`}>
+        Packages
+      </span>
+      <h2 style="font-size:2rem;margin-bottom:12px;color:var(--heading-text);">
+        Start with Launch. Grow into Commerce+.
+      </h2>
+      <p style="font-size:1.05rem;color:var(--muted-text);max-width:560px;margin:0 auto;line-height:1.65;">
+        Third-party apps rent you customers. Ordelo lets you own the order, the customer, and the story.
+      </p>
+    </div>
+    <div class="ordelo-packages">
+      {packages.map((pkg) => (
+        <div class="ordelo-packages__card" data-animate="fade-up">
+          <h3>{pkg.name}</h3>
+          <p class="ordelo-packages__audience">{pkg.audience}</p>
+          <ul>
+            {pkg.points.map((point) => (
+              <li>{point}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {project.faq && project.faq.length > 0 && (
+    <section style="padding:64px 24px;max-width:800px;margin:0 auto;">
+      <h2 style="text-align:center;font-size:2rem;margin-bottom:48px;color:var(--heading-text);">
+        FAQ
+      </h2>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        {project.faq.map(item => (
+          <ProjectFAQ question={item.question} answer={item.answer} projectColor={project.color} />
+        ))}
+      </div>
+    </section>
+  )}
+
+  <ProjectClients clients={linkedClients} projectColor={project.color} />
+
+  <GradientCTA
+    title={`Interested in ${project.name}?`}
+    body="Stop renting customers. Launch a branded ordering system — notify on the spot, own the relationship."
+    ctaLabel="Get in Touch"
+    ctaHref="/contact/"
+    gradient={project.gradient}
+    accentColor={project.color}
+    lang={lang}
+  />
+
+  <ProjectCTA status={project.status} platforms={project.platforms || []} links={project.links} lang={lang} />
+</ProjectLayout>
+
+<script>
+  import { init, destroy } from '../../animations/projects/ordelo'
+
+  init()
+  document.addEventListener('astro:before-swap', destroy, { once: true })
+</script>

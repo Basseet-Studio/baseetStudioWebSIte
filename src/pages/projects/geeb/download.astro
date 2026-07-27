@@ -13,25 +13,50 @@ if (!project) return Astro.redirect('/404')
 
 const projectLinks: ProjectLinks = (linksData.projects.geeb || {}) as ProjectLinks
 const waitlistUrl = projectLinks.waitlist && projectLinks.waitlist !== '#' ? projectLinks.waitlist : '/contact/'
+const prefix = lang === 'ar' ? '/ar' : ''
 
 const apps = [
   {
     name: 'Customer App',
-    desc: 'Book trusted pros, track jobs, and pay securely.',
+    desc: 'Book trusted pros in minutes, track the job live, chat when you need to, and pay securely when the work is done.',
     icon: 'device-mobile',
     status: 'Coming Soon',
+    bullets: ['Browse verified trades', 'Live job tracking', 'Secure in-app payments'],
   },
   {
     name: 'Vendor App',
-    desc: 'Receive requests, manage your schedule, and get paid fast.',
+    desc: 'Get matched to nearby jobs, manage your schedule, update customers on the go, and cash out when you finish.',
     icon: 'hard-hat',
     status: 'Coming Soon',
+    bullets: ['Smart job routing', 'Calendar & availability', 'Fast payouts'],
+  },
+]
+
+const platforms = [
+  {
+    name: 'iOS',
+    desc: 'iPhone & iPad — App Store release with the public launch wave.',
+    icon: 'apple-logo',
   },
   {
-    name: 'Admin Console',
-    desc: 'Monitor the full ecosystem from a web dashboard.',
-    icon: 'shield',
-    status: 'Coming Soon',
+    name: 'Android',
+    desc: 'Phone & tablet — Google Play release alongside iOS.',
+    icon: 'android-logo',
+  },
+]
+
+const steps = [
+  {
+    title: 'Join the waitlist',
+    desc: 'Tell us your city and whether you book services or work as a pro.',
+  },
+  {
+    title: 'Get early access',
+    desc: 'We open city by city. Waitlist members hear first when Geeb arrives nearby.',
+  },
+  {
+    title: 'Book or take jobs',
+    desc: 'Customers hire verified pros. Pros accept work that fits their trade and schedule.',
   },
 ]
 ---
@@ -54,7 +79,6 @@ const apps = [
   <link rel="stylesheet" href="/src/styles/projects/geeb.css" />
 
   <section class="geeb-subhero">
-    <div class="geeb-hero__grid" aria-hidden="true"></div>
     <div class="geeb-hero__glow geeb-hero__glow--a" aria-hidden="true"></div>
     <div class="geeb-subhero__inner">
       <span class="geeb-eyebrow">
@@ -63,38 +87,88 @@ const apps = [
       </span>
       <h1 class="geeb-subhero__title" data-animate="fade-up">Get the Geeb apps</h1>
       <p class="geeb-subhero__lede" data-animate="fade-up">
-        Three apps power the Geeb marketplace. Join the waitlist to be first when we launch in your city.
+        Two apps power the marketplace — one for customers who need work done, one for pros who do the work. Join the waitlist to be first when we launch in your city.
       </p>
     </div>
   </section>
 
   <section class="geeb-content">
-    <div class="geeb-download-grid">
+    <div class="geeb-download-grid geeb-download-grid--two">
       {apps.map((app) => (
-        <div class="geeb-download-card" data-animate="fade-up">
+        <div class="geeb-download-card geeb-download-card--rich" data-animate="fade-up">
           <div class="geeb-download-card__icon">
             <Icon name={app.icon} size={28} color="currentColor" />
           </div>
           <h3>{app.name}</h3>
           <p>{app.desc}</p>
+          <ul class="geeb-download-card__list">
+            {app.bullets.map((item) => (
+              <li>
+                <Icon name="check" size={14} color="currentColor" />
+                {item}
+              </li>
+            ))}
+          </ul>
           <span class="geeb-download-card__badge">{app.status}</span>
         </div>
       ))}
     </div>
   </section>
 
+  <section class="geeb-content geeb-content--platforms">
+    <div class="geeb-section-head" data-animate="fade-up">
+      <h2 class="geeb-section-title">Coming to your phone</h2>
+      <p class="geeb-section-lede">
+        Native apps for the platforms people already use. Store links go live with the first city launch.
+      </p>
+    </div>
+    <div class="geeb-download-platforms">
+      {platforms.map((p) => (
+        <div class="geeb-download-platform" data-animate="fade-up">
+          <div class="geeb-download-card__icon">
+            <Icon name={p.icon} size={24} color="currentColor" />
+          </div>
+          <div>
+            <h3>{p.name}</h3>
+            <p>{p.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="geeb-content geeb-content--narrow">
+    <div class="geeb-section-head" data-animate="fade-up">
+      <h2 class="geeb-section-title">How early access works</h2>
+      <p class="geeb-section-lede">
+        Geeb rolls out city by city so quality stays high. Here is what joining the waitlist gets you.
+      </p>
+    </div>
+    <ol class="geeb-download-steps">
+      {steps.map((step, i) => (
+        <li class="geeb-download-step" data-animate="fade-up">
+          <span class="geeb-download-step__num" aria-hidden="true">{i + 1}</span>
+          <div>
+            <h3>{step.title}</h3>
+            <p>{step.desc}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+
   <section class="geeb-cta">
     <div class="geeb-cta__inner">
       <h2 class="geeb-cta__title" data-animate="fade-up">Not live yet? Join the waitlist.</h2>
       <p class="geeb-cta__text" data-animate="fade-up">
-        Be the first to know when Geeb launches. Customers and pros welcome.
+        Be the first to know when Geeb launches near you. Customers and pros welcome.
       </p>
       <div class="geeb-cta__actions" data-animate="fade-up">
         <a href={waitlistUrl} class="geeb-btn geeb-btn--invert">
           <Icon name="envelope" size={18} color="currentColor" />
           Join the waitlist
         </a>
-        <a href={`/${lang === 'ar' ? 'ar/' : ''}projects/geeb/pro/`} class="geeb-btn geeb-btn--ghost">
+        <a href={`${prefix}/projects/geeb/pro/`} class="geeb-btn geeb-btn--ghost">
           <Icon name="hard-hat" size={18} color="currentColor" />
           Apply as a pro
         </a>

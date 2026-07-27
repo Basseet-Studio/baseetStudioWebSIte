@@ -4,7 +4,7 @@ import { loadLocaleJson, loadLocaleJsonDir } from './content'
 import { DEFAULT_LOCALE } from './locale'
 
 export type ProjectIndexTier = 'anchor' | 'flagship' | 'more'
-export type PreviewInteractive = 'matrix' | 'moneybox' | 'numu' | 'baseetims'
+export type PreviewInteractive = 'matrix' | 'moneybox' | 'numu' | 'invexo'
 
 export interface ProjectSummary {
   slug: string

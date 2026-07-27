@@ -1,0 +1,137 @@
+/* Ordelo — ordering & commerce package */
+/* Color & gradient come from ordelo.json (`color: #F97316`). The
+ * `ProjectLayout` wrapper sets `--project-color` and `--project-gradient`
+ * inline, so this stylesheet stays free of hard-coded brand colors. */
+
+.ordelo-promise {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 8px 24px 48px;
+  text-align: center;
+}
+
+.ordelo-promise__line {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--heading-text);
+  letter-spacing: -0.02em;
+  margin: 0 0 8px;
+}
+
+.ordelo-promise__sub {
+  font-size: 1.05rem;
+  color: var(--project-color);
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.ordelo-modes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+.ordelo-modes__tile {
+  padding: 24px 20px;
+  text-align: center;
+  border-radius: 16px;
+}
+
+.ordelo-modes__val {
+  display: block;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--project-color);
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+
+.ordelo-modes__lbl {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--muted-text);
+  line-height: 1.4;
+}
+
+.ordelo-fixes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.ordelo-fixes__item {
+  padding: 20px 22px;
+  border-radius: 14px;
+  border: 1px solid color-mix(in srgb, var(--project-color) 12%, transparent);
+  background: color-mix(in srgb, var(--project-color) 4%, transparent);
+}
+
+.ordelo-fixes__item h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--heading-text);
+  margin: 0 0 8px;
+}
+
+.ordelo-fixes__item p {
+  font-size: 0.92rem;
+  color: var(--muted-text);
+  margin: 0;
+  line-height: 1.55;
+}
+
+.ordelo-packages {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.ordelo-packages__card {
+  padding: 24px 22px;
+  border-radius: 16px;
+  border: 1px solid color-mix(in srgb, var(--project-color) 14%, transparent);
+  background: color-mix(in srgb, var(--project-color) 3%, transparent);
+}
+
+.ordelo-packages__card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--heading-text);
+  margin: 0 0 8px;
+}
+
+.ordelo-packages__audience {
+  font-size: 0.88rem;
+  color: var(--muted-text);
+  margin: 0 0 16px;
+  line-height: 1.45;
+}
+
+.ordelo-packages__card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ordelo-packages__card li {
+  font-size: 0.9rem;
+  color: var(--heading-text);
+  padding-left: 16px;
+  position: relative;
+  line-height: 1.4;
+}
+
+.ordelo-packages__card li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--project-color);
+}

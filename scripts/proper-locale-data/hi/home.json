@@ -132,8 +132,8 @@
       "status": "Coming Soon"
     },
     {
-      "name": "BaseetIMS",
-      "slug": "baseetims",
+      "name": "Invexo",
+      "slug": "invexo",
       "type": "branded",
       "tagline": "Inventory management for small shops",
       "description": "Multi-shop inventory, POS, flexiload commissions, and daily sales — built for small retail businesses.",
@@ -155,11 +155,11 @@
       "status": "Ready to Deliver"
     },
     {
-      "name": "DeshiKitchen",
-      "slug": "deshikitchen",
+      "name": "Ordelo",
+      "slug": "ordelo",
       "type": "branded",
-      "tagline": "Authentic Bangladeshi cuisine, on demand",
-      "description": "A full-stack restaurant ordering platform with 3D hero, real-time order tracking, social proof, Stripe payments, and a comprehensive admin dashboard.",
+      "tagline": "आपका व्यवसाय। ऑनलाइन। व्यवस्थित। आपका।",
+      "description": "ब्रांडेड ऑर्डरिंग और कॉमर्स — मेनू, चेकआउट, किचन अलर्ट, ग्राहक सूचनाएं और ग्रोथ टूल। बिना कागज़। बिना अंदाज़ा।",
       "iconClass": "fas fa-utensils",
       "platforms": [
         {

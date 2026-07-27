@@ -41,6 +41,7 @@ export const FA_TO_PHOSPHOR: Record<string, string> = {
   "fas fa-chart-pie": "chart-pie",
   "fas fa-chart-line": "chart-line",
   "fas fa-bell": "bell",
+  "fas fa-bullhorn": "tag",
   "fas fa-folder": "folder",
   "fas fa-shield-alt": "shield",
   "fas fa-check-circle": "check-circle",

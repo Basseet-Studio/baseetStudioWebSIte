@@ -13,8 +13,8 @@ const EN_DIR = path.join(ROOT, 'src/content/locales/en');
 const LOCALES = ['ar', 'ur', 'hi', 'fil'];
 
 const PROPER_NOUNS = [
-  'Baseet', 'Baseet Studio', 'BaseetIMS', 'Geeb', 'Zyrn', 'Numu', 'Matrix', 'MoneyBox',
-  'ChopShop', 'Jemeti', 'Medev', 'DeshiKitchen', 'PhotoRestore AI', 'Portia Grid', 'Iyat',
+  'Baseet', 'Baseet Studio', 'Invexo', 'Geeb', 'Zyrn', 'Numu', 'Matrix', 'MoneyBox',
+  'ChopShop', 'Jemeti', 'Medev', 'Ordelo', 'PhotoRestore AI', 'Portia Grid', 'Iyat',
   'Little Hands Lab', 'Faruk Technology Store', 'Jamia System', 'MAI', 'NSS Virtual Education Fair',
   'Veeramangalam Juma Masjid Finance', 'Malaysian Business Websites', 'BD Railway Automated Timetable',
   'Mohamed Abdallah', 'Asadur Rahman', 'Ariyan Rehman', 'Dibakar Sutra Dhar', 'Hassan',
@@ -36,7 +36,7 @@ const PROPER_NOUNS = [
   'Loom', 'CNG', 'RTL', 'API', 'CI/CD', 'IaC', 'DevOps', 'UI/UX', 'SEO', 'ASO', 'PDPL',
   'Abu Dhabi', 'UAE', 'Malaysia', 'Bangladeshi', 'Google Maps API', 'Google Business Profile',
   'Google OAuth', 'Apple Watch', 'Apple TV', 'iPad', 'iPhone', 'Firestore', 'Contentful',
-  'Hassan', 'Portia Grid', 'Iyat', 'Zyrn', 'BaseetIMS', 'Jamia System',
+  'Hassan', 'Portia Grid', 'Iyat', 'Zyrn', 'Invexo', 'Jamia System',
 ];
 
 const SKIP_KEYS = new Set([

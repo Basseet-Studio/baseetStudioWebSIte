@@ -97,7 +97,8 @@ export interface TeamMember {
   role: string;
   bio?: string;
   image: string;
-  social?: SocialLink[];
+  iconPattern?: 'code' | 'money';
+  social?: SocialLink[] | { github?: string; linkedin?: string; twitter?: string };
 }
 
 export interface ClientLogo {

@@ -12,7 +12,7 @@ export function init(): void {
   scrollTriggers = []
 
   const cards = gsap.utils.toArray<HTMLElement>(
-    '#features .glass-card, .feature-card, .content-card, .zyrn-metrics__tile, .zyrn-tools__item'
+    '#features .glass-card, .feature-card, .content-card, .zyrn-metrics__tile, .zyrn-tools__item, .zyrn-day__item, .zyrn-packages__card'
   )
   if (!cards.length) return
 

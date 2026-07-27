@@ -20,7 +20,7 @@ for (const [en, ar, ur, hi, fil] of BATCH) {
 }
 
 const PROPER_NOUNS = [
-  'Baseet Studio', 'BaseetIMS', 'PhotoRestore AI', 'DeshiKitchen', 'MoneyBox', 'ChopShop',
+  'Baseet Studio', 'Invexo', 'PhotoRestore AI', 'Ordelo', 'MoneyBox', 'ChopShop',
   'Little Hands Lab', 'Faruk Technology Store', 'Jamia System', 'Portia Grid',
   'NSS Virtual Education Fair', 'Veeramangalam Juma Masjid Finance', 'Malaysian Business Websites',
   'BD Railway Automated Timetable', 'Mohamed Abdallah', 'Asadur Rahman', 'Ariyan Rehman',
@@ -95,7 +95,7 @@ function shouldSkip(key, val) {
   if (['Mohamed Abdallah', 'Asadur Rahman', 'Ariyan Rehman', 'Dibakar Sutra Dhar', 'Hassan', 'Alex T.', 'Ahmed R.', 'Portia Grid', 'Iyat', 'Numu', 'Matrix', 'Geeb', 'Zyrn', 'Medev', 'Jemeti', 'MAI', 'nomu'].includes(val)) return true;
   // Keep product names in name field when they're brands
   if (key === 'name' && /^[A-Z]/.test(val) && !['Home', 'Work', 'Contact', 'Features', 'Download', 'Terms', 'Privacy', 'Pro', 'Demo', 'FAQ', 'Admin', 'Customer', 'Vendor', 'Desktop', 'Kitchen', 'Delivery', 'Web', 'Docker', 'iOS', 'Android'].includes(val)) {
-    const brands = ['Numu', 'Matrix', 'BaseetIMS', 'DeshiKitchen', 'MoneyBox', 'Geeb', 'PhotoRestore AI', 'Medev', 'ChopShop', 'Jemeti', 'Zyrn', 'MAI', 'NSS Virtual Education Fair', 'Portia Grid', 'Iyat', 'Little Hands Lab', 'Faruk Technology Store', 'Veeramangalam Juma Masjid Finance', 'Malaysian Business Websites', 'BD Railway Automated Timetable'];
+    const brands = ['Numu', 'Matrix', 'Invexo', 'Ordelo', 'MoneyBox', 'Geeb', 'PhotoRestore AI', 'Medev', 'ChopShop', 'Jemeti', 'Zyrn', 'MAI', 'NSS Virtual Education Fair', 'Portia Grid', 'Iyat', 'Little Hands Lab', 'Faruk Technology Store', 'Veeramangalam Juma Masjid Finance', 'Malaysian Business Websites', 'BD Railway Automated Timetable'];
     if (brands.includes(val)) return true;
   }
   return false;

@@ -20,7 +20,7 @@
 //     to currentColor so the morph target tints with the tile's color.
 //   - public/projects/logos/{slug}.svg
 //     Per-slug strategy: geeb/numu are normalized to 0..256 vector paths;
-//     matrix/deshikitchen/photorestore-ai/moneybox keep the source markup
+//     matrix/ordelo/photorestore-ai/moneybox keep the source markup
 //     verbatim so gradients, masks, and brand colors survive.
 // -----------------------------------------------------------------------------
 
@@ -34,7 +34,7 @@ const LOGO_MARGIN = 0.08;
 // Figma exports with gradients, masks, or multi-color fills — copy as-is.
 const VERBATIM_LOGO_SLUGS = new Set([
   "matrix",
-  "deshikitchen",
+  "ordelo",
   "photorestore-ai",
 ]);
 // Serif exports: fit into 0..256 but keep original rgb fills/strokes.

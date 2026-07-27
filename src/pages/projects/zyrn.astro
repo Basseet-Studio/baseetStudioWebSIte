@@ -16,58 +16,81 @@ const project = getProject(slug)
 if (!project) return Astro.redirect('/404')
 const linkedClients = getClientsForProject(slug)
 
-const metrics = [
-  { label: 'Product Catalogs', value: '10 Million+' },
-  { label: 'Load Time', value: '~500ms' },
-  { label: 'Search Speed', value: '5x Faster' },
-  { label: 'Data Accuracy', value: '99.9%' },
-  { label: 'Platform Version', value: 'v2.3' },
+const sellModes = [
+  { label: 'Physical products', value: 'Catalog' },
+  { label: 'Digital downloads', value: 'Instant' },
+  { label: 'Subscriptions', value: 'Recurring' },
+  { label: 'Bookings', value: 'Calendar' },
+  { label: 'Customer updates', value: 'On the spot' },
 ]
 
-const businessTools = [
+const dayToDay = [
   {
-    title: 'Insights Report',
-    description: 'Clear analytics on sales, customers, and orders to drive smarter decisions.',
+    title: 'Morning',
+    description: 'Open the dashboard. See overnight orders. Check low stock. Approve shipments. Customers already got their confirmations.',
   },
   {
-    title: 'Access Control Level',
-    description: 'Role-based permissions so the right people access the right data.',
+    title: 'Midday',
+    description: 'Launch a coupon for a flash offer. Update a product photo. Share socially. Watch cart activity.',
   },
   {
-    title: 'Product SEO',
-    description: 'Built-in keyword and meta title management to rank higher on Google.',
+    title: 'Evening',
+    description: 'Review bestsellers. Plan tomorrow’s restock. Reply only to exceptions — not every “did you get my order?”',
   },
   {
-    title: 'Flexible Shipping',
-    description: 'Flat rate, free, or carrier-based shipping with custom zones and rules.',
-  },
-  {
-    title: 'Custom Attributes',
-    description: 'Create product fields like color, size, and material for richer listings.',
-  },
-  {
-    title: 'Localisation & Multi-Currency',
-    description: 'Multiple languages and local currencies so customers shop on their terms.',
-  },
-  {
-    title: 'Out of Stock Management',
-    description: 'Hide, show, or notify customers about unavailable products.',
-  },
-  {
-    title: 'Discounts & Coupons',
-    description: 'Run promotions and special offers to drive sales.',
+    title: 'End of month',
+    description: 'View sales stats. See what promotions worked. Decide what to double down on. No shoebox of receipts.',
   },
 ]
 
-const enterpriseInfra = [
-  'FPC (Full Page Caching)',
-  'Elasticsearch & Did You Mean',
-  'Varnish',
-  'Load Balancer',
-  'GDPR Compliance',
-  'Laravel Octane',
-  'CDN Integration',
-  'Security & ACL',
+const capabilities = [
+  {
+    title: 'Replace the paper trail',
+    description: 'Orders stop living in WhatsApp and Instagram DMs. Stock stops living in notebooks. One catalog, one checkout, one order home.',
+  },
+  {
+    title: 'Stay with the customer',
+    description: 'Status updates go out the moment something changes — payment, shipment, delivery, return. No “let me check.”',
+  },
+  {
+    title: 'See the truth in numbers',
+    description: 'Sales, bestsellers, carts, promotions, inventory — live reporting so you stop guessing and start deciding.',
+  },
+  {
+    title: 'Automate the busywork',
+    description: 'Order emails, admin alerts, promotion rules, stock signals, and add-ons like cart recovery or WhatsApp status.',
+  },
+  {
+    title: 'Own the relationship',
+    description: 'Customer accounts, invoices, returns, and policies live with your brand — Instagram does not own your buyers.',
+  },
+  {
+    title: 'Grow into more models',
+    description: 'Start with a store. Add digital delivery, subscriptions, bookings, social commerce, and AI content as you scale.',
+  },
+]
+
+const packages = [
+  {
+    name: 'Starter',
+    audience: 'New entrepreneurs validating an idea',
+    points: ['Branded storefront', 'Catalog + checkout', 'Order management', 'Basic notifications'],
+  },
+  {
+    name: 'Growth',
+    audience: 'Active sellers who need marketing control',
+    points: ['Coupons & catalog rules', 'Deeper reporting', 'Returns / RMA', 'Staff roles'],
+  },
+  {
+    name: 'Subscription Studio',
+    audience: 'Boxes, memberships, recurring offers',
+    points: ['Recurring product flows', 'Renewal messaging', 'Subscriber segments', 'Recurring revenue views'],
+  },
+  {
+    name: 'Commerce Pro',
+    audience: 'Brands that want the complete system',
+    points: ['Digital + bookings', 'Advanced automations', 'Social commerce', 'Priority care'],
+  },
 ]
 ---
 
@@ -124,15 +147,23 @@ const enterpriseInfra = [
     </div>
   </section>
 
+  <section class="zyrn-promise" data-animate="fade-up">
+    <p class="zyrn-promise__line">No paper trail. No guessing.</p>
+    <p class="zyrn-promise__sub">Keep up with every customer — notified on the spot.</p>
+  </section>
+
   {project.features && project.features.length > 0 && (
     <section id="features" style="padding:64px 24px;max-width:1200px;margin:0 auto;">
       <div style="text-align:center;margin-bottom:48px;" data-animate="fade-up">
         <span style={`display:inline-block;padding:8px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);margin-bottom:16px;`}>
-          Core Features
+          Core Capabilities
         </span>
-        <h2 style="font-size:2rem;margin-bottom:0;color:var(--heading-text);">
-          What Zyrn Delivers
+        <h2 style="font-size:2rem;margin-bottom:12px;color:var(--heading-text);">
+          One store. Clear numbers. Automations that work.
         </h2>
+        <p style="font-size:1.05rem;color:var(--muted-text);max-width:560px;margin:0 auto;line-height:1.65;">
+          Zyrn is not “just a website.” It is the operating system for your sales.
+        </p>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:24px;">
         {project.features.map((feature, i) => (
@@ -145,14 +176,14 @@ const enterpriseInfra = [
   <section style="padding:64px 24px;max-width:1100px;margin:0 auto;">
     <div style="text-align:center;margin-bottom:40px;" data-animate="fade-up">
       <span style={`display:inline-block;padding:8px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);margin-bottom:16px;`}>
-        Performance & Scale
+        What You Can Sell
       </span>
       <h2 style="font-size:2rem;margin-bottom:0;color:var(--heading-text);">
-        Built for high-traffic catalogs
+        Sell what you actually sell
       </h2>
     </div>
     <div class="zyrn-metrics">
-      {metrics.map((m) => (
+      {sellModes.map((m) => (
         <div class="zyrn-metrics__tile card-window" data-animate="fade-up">
           <span class="zyrn-metrics__val">{m.value}</span>
           <span class="zyrn-metrics__lbl">{m.label}</span>
@@ -164,14 +195,14 @@ const enterpriseInfra = [
   <section style="padding:64px 24px;max-width:1200px;margin:0 auto;">
     <div style="text-align:center;margin-bottom:40px;" data-animate="fade-up">
       <span style={`display:inline-block;padding:8px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);margin-bottom:16px;`}>
-        Business-Ready Tools
+        The Zyrn Way
       </span>
       <h2 style="font-size:2rem;margin-bottom:0;color:var(--heading-text);">
-        Operate and grow without the glue work
+        From chat chaos to a real business system
       </h2>
     </div>
     <div class="zyrn-tools">
-      {businessTools.map((tool) => (
+      {capabilities.map((tool) => (
         <div class="zyrn-tools__item" data-animate="fade-up">
           <h3>{tool.title}</h3>
           <p>{tool.description}</p>
@@ -180,21 +211,51 @@ const enterpriseInfra = [
     </div>
   </section>
 
-  <section style="padding:64px 24px;max-width:1000px;margin:0 auto;">
-    <div style="text-align:center;margin-bottom:36px;" data-animate="fade-up">
+  <section style="padding:64px 24px;max-width:1100px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:40px;" data-animate="fade-up">
       <span style={`display:inline-block;padding:8px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);margin-bottom:16px;`}>
-        Enterprise Infrastructure
+        Day to Day
       </span>
       <h2 style="font-size:2rem;margin-bottom:12px;color:var(--heading-text);">
-        Proven and scalable
+        What Zyrn helps you do
       </h2>
       <p style="font-size:1.05rem;color:var(--muted-text);max-width:560px;margin:0 auto;line-height:1.65;">
-        Battle-tested Laravel stack with caching, search, and compliance tooling agencies trust for high-traffic stores.
+        Control in the morning. Growth at midday. Clarity at month end.
       </p>
     </div>
-    <div class="zyrn-infra" data-animate="fade-up">
-      {enterpriseInfra.map((item) => (
-        <span class="zyrn-infra__chip">{item}</span>
+    <div class="zyrn-day">
+      {dayToDay.map((item) => (
+        <div class="zyrn-day__item" data-animate="fade-up">
+          <h3>{item.title}</h3>
+          <p>{item.description}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section style="padding:64px 24px;max-width:1200px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:40px;" data-animate="fade-up">
+      <span style={`display:inline-block;padding:8px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);margin-bottom:16px;`}>
+        Packages
+      </span>
+      <h2 style="font-size:2rem;margin-bottom:12px;color:var(--heading-text);">
+        Start simple. Grow into a full commerce brand.
+      </h2>
+      <p style="font-size:1.05rem;color:var(--muted-text);max-width:560px;margin:0 auto;line-height:1.65;">
+        Sell one package. The client gets a business system — not a brochure site.
+      </p>
+    </div>
+    <div class="zyrn-packages">
+      {packages.map((pkg) => (
+        <div class="zyrn-packages__card" data-animate="fade-up">
+          <h3>{pkg.name}</h3>
+          <p class="zyrn-packages__audience">{pkg.audience}</p>
+          <ul>
+            {pkg.points.map((point) => (
+              <li>{point}</li>
+            ))}
+          </ul>
+        </div>
       ))}
     </div>
   </section>
@@ -216,7 +277,7 @@ const enterpriseInfra = [
 
   <GradientCTA
     title={`Interested in ${project.name}?`}
-    body="Get in touch and we will help you launch a fully custom store on Zyrn."
+    body="Get a branded store that sells, notifies, measures, and grows — no paper trail, no guessing."
     ctaLabel="Get in Touch"
     ctaHref="/contact/"
     gradient={project.gradient}

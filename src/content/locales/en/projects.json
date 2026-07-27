@@ -17,7 +17,7 @@
   {
     "slug": "zyrn",
     "name": "Zyrn",
-    "tagline": "Enterprise Ecommerce, Reimagined",
+    "tagline": "Your store. Your brand. Your customers — notified on the spot.",
     "color": "#EC4899",
     "gradient": "linear-gradient(135deg, #EC4899 0%, #F9A8D4 100%)",
     "status": "Ready to Deliver",
@@ -29,14 +29,14 @@
     "previewVideo": null
   },
   {
-    "slug": "deshikitchen",
-    "name": "DeshiKitchen",
-    "tagline": "One platform. Every step from kitchen to doorstep.",
+    "slug": "ordelo",
+    "name": "Ordelo",
+    "tagline": "Your business. Online. Ordered. Owned.",
     "color": "#F97316",
     "gradient": "linear-gradient(135deg, #F97316 0%, #FB923C 100%)",
     "status": "Live",
     "iconClass": "fas fa-utensils",
-    "icon": "/images/projects/deshikitchen-icon.png",
+    "icon": "/images/projects/ordelo-icon.png",
     "platforms": [
       { "name": "Web", "icon": "fas fa-globe" },
       { "name": "Admin", "icon": "fas fa-user-shield" },
@@ -44,7 +44,7 @@
       { "name": "Delivery", "icon": "fas fa-truck" }
     ],
     "indexTier": "flagship",
-    "previewImage": "/images/projects/deshikitchen/1.png",
+    "previewImage": "/images/projects/ordelo/1.png",
     "previewVideo": null
   },
 
@@ -99,8 +99,8 @@
     "previewVideo": null
   },
   {
-    "slug": "baseetims",
-    "name": "BaseetIMS",
+    "slug": "invexo",
+    "name": "Invexo",
     "tagline": "Inventory management built for small shops.",
     "color": "#10B981",
     "gradient": "linear-gradient(135deg, #059669 0%, #34D399 100%)",
@@ -109,9 +109,9 @@
     "icon": null,
     "platforms": [{ "name": "Web", "icon": "fas fa-globe" }],
     "indexTier": "flagship",
-    "previewImage": "/images/projects/baseetims/1.png",
+    "previewImage": "/images/projects/invexo/1.png",
     "previewVideo": null,
-    "previewInteractive": "baseetims"
+    "previewInteractive": "invexo"
   },
   {
     "slug": "jemeti",

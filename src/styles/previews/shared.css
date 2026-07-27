@@ -11,7 +11,7 @@
 
 /* App-shell previews render at a fixed design size, then scale to the tile */
 .preview-stage[data-preview-type='matrix'],
-.preview-stage[data-preview-type='baseetims'] {
+.preview-stage[data-preview-type='invexo'] {
   container-type: size;
 }
 
@@ -59,9 +59,9 @@
   transform: translate(-2px, -2px);
 }
 
-/* Matrix + BaseetIMS — tiny arrow pointer instead of a dot */
+/* Matrix + Invexo — tiny arrow pointer instead of a dot */
 .preview-stage[data-preview-type='matrix'] .preview-ghost,
-.preview-stage[data-preview-type='baseetims'] .preview-ghost {
+.preview-stage[data-preview-type='invexo'] .preview-ghost {
   width: auto;
   height: auto;
   border-radius: 0;
@@ -76,7 +76,7 @@
 }
 
 .preview-stage[data-preview-type='matrix'] .preview-ghost::before,
-.preview-stage[data-preview-type='baseetims'] .preview-ghost::before {
+.preview-stage[data-preview-type='invexo'] .preview-ghost::before {
   content: '›';
   display: block;
   text-shadow:
@@ -87,12 +87,12 @@
 }
 
 [data-theme='night'] .preview-stage[data-preview-type='matrix'] .preview-ghost,
-[data-theme='night'] .preview-stage[data-preview-type='baseetims'] .preview-ghost {
+[data-theme='night'] .preview-stage[data-preview-type='invexo'] .preview-ghost {
   color: var(--preview-ghost-border, #374151);
 }
 
 [data-theme='night'] .preview-stage[data-preview-type='matrix'] .preview-ghost::before,
-[data-theme='night'] .preview-stage[data-preview-type='baseetims'] .preview-ghost::before {
+[data-theme='night'] .preview-stage[data-preview-type='invexo'] .preview-ghost::before {
   text-shadow:
     0 0 0 var(--preview-ghost-bg, #e5e7eb),
     0 0 2px var(--preview-ghost-bg, #e5e7eb),
@@ -101,7 +101,7 @@
 }
 
 .preview-stage[data-preview-type='matrix'] .preview-ghost--pulse,
-.preview-stage[data-preview-type='baseetims'] .preview-ghost--pulse {
+.preview-stage[data-preview-type='invexo'] .preview-ghost--pulse {
   animation: previewGhostArrowPulse 0.35s ease-out;
 }
 
@@ -148,7 +148,7 @@
   }
 
   .preview-stage[data-preview-type='matrix'] .preview-ghost--pulse,
-  .preview-stage[data-preview-type='baseetims'] .preview-ghost--pulse {
+  .preview-stage[data-preview-type='invexo'] .preview-ghost--pulse {
     animation: none;
   }
 }

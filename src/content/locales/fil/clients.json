@@ -17,9 +17,18 @@
       "challenge": "Pinamamahalaan ng kliyente ang 50+ delivery truck gamit ang spreadsheets at tawag sa telepono. Madalas na-mi-miss ang maintenance, na humahantong sa breakdowns at delays. Wala silang visibility sa real-time na status ng kanilang fleet.",
       "solution": "Bumuo kami ng custom web platform na nagbibigay ng real-time GPS tracking, automated maintenance scheduling batay sa mileage at oras, pamamahala ng driver assignment, at komprehensibong reporting.",
       "results": [
-        { "metric": "30%", "label": "Pagbaba sa breakdowns" },
-        { "metric": "2hrs", "label": "Natipid araw-araw sa admin" },
-        { "metric": "100%", "label": "Buong fleet visibility" }
+        {
+          "metric": "30%",
+          "label": "Pagbaba sa breakdowns"
+        },
+        {
+          "metric": "2hrs",
+          "label": "Natipid araw-araw sa admin"
+        },
+        {
+          "metric": "100%",
+          "label": "Buong fleet visibility"
+        }
       ],
       "features": [
         "Real-time GPS fleet tracking",
@@ -57,8 +66,14 @@
       "challenge": "Kailangan ng Iyat ng propesyonal na online presence na magpapakita ng kanilang creative work at makakaakit ng bagong kliyente.",
       "solution": "Bumuo kami ng sleek at modern na portfolio website na may smooth animations, responsive design, at engaging user experience.",
       "results": [
-        { "metric": "100%", "label": "Custom design" },
-        { "metric": "< 2s", "label": "Load time" }
+        {
+          "metric": "100%",
+          "label": "Custom design"
+        },
+        {
+          "metric": "< 2s",
+          "label": "Load time"
+        }
       ],
       "features": [
         "Custom portfolio design",
@@ -88,8 +103,14 @@
       "challenge": "Sinusubaybayan ng finance team ng masjid ang mga kontribusyon ng miyembro at operational expenses sa spreadsheets at paper records. Mabagal ang reconciliation, may mga error, at walang gumagana kapag nawalan ng internet.",
       "solution": "Binuo namin ang Jamia System — isang Firebase-backed finance platform na may offline-first sync. Ang mga kontribusyon, gastusin, at jamia ledger ay nasa isang lugar, connected man o hindi.",
       "results": [
-        { "metric": "100%", "label": "Paper-free tracking" },
-        { "metric": "2-in-1", "label": "Cloud + offline" }
+        {
+          "metric": "100%",
+          "label": "Paper-free tracking"
+        },
+        {
+          "metric": "2-in-1",
+          "label": "Cloud + offline"
+        }
       ],
       "features": [
         "Pagsubaybay sa gastusin",
@@ -155,11 +176,16 @@
       "serviceType": "Ecommerce Store",
       "color": "#EC4899",
       "tagline": "Online toy store, powered by Zyrn",
-      "shortDescription": "Isang online toy store na binuo sa Zyrn — custom catalog, checkout, at storefront para sa Little Hands Lab.",
-      "fullDescription": "Pinapatakbo ng Little Hands Lab ang kanilang toys ecommerce storefront sa Zyrn, gamit ang custom Laravel store management ng platform para sa catalog, inventory, at customer experience.",
-      "challenge": "Kailangan ng ganap na custom online toy store nang hindi pinagsasama ang maraming ecommerce tools.",
-      "solution": "Inilunsad sa Zyrn na may tailored storefront, product catalog, at operations dashboard.",
-      "technologies": ["Zyrn", "Laravel", "PHP", "PWA"],
+      "shortDescription": "An online toys store on Zyrn — branded catalog, checkout, and customer updates for Little Hands Lab.",
+      "fullDescription": "Little Hands Lab runs its toys storefront on Zyrn: products, payments, inventory, and order notifications in one branded commerce system — no paper trail of DMs and notebooks.",
+      "challenge": "Needed a real online toys store without drowning in chat orders and disconnected tools.",
+      "solution": "Launched on Zyrn with a branded storefront, catalog, checkout, and live customer order updates.",
+      "technologies": [
+        "Zyrn",
+        "Catalog",
+        "Checkout",
+        "Notifications"
+      ],
       "steps": [],
       "screenshots": [],
       "galleryType": "web"
@@ -171,12 +197,15 @@
       "industry": "Retail at Telecom",
       "serviceType": "Inventory Management",
       "color": "#10B981",
-      "tagline": "Mga operasyon ng tindahan sa BaseetIMS",
-      "shortDescription": "Gumagamit ang Faruk Technology Store ng BaseetIMS para sa inventory, POS, at araw-araw na operasyon ng tindahan.",
-      "fullDescription": "Pinapatakbo ng Faruk Technology Store ang stock, sales, at multi-location clarity sa pamamagitan ng BaseetIMS — inventory management na ginawa para sa maliliit na tindahan.",
+      "tagline": "Mga operasyon ng tindahan sa Invexo",
+      "shortDescription": "Gumagamit ang Faruk Technology Store ng Invexo para sa inventory, POS, at araw-araw na operasyon ng tindahan.",
+      "fullDescription": "Pinapatakbo ng Faruk Technology Store ang stock, sales, at multi-location clarity sa pamamagitan ng Invexo — inventory management na ginawa para sa maliliit na tindahan.",
       "challenge": "Kailangan ng malinaw na inventory at sales tracking nang walang enterprise complexity.",
-      "solution": "Na-deploy ang BaseetIMS para sa stock, POS, at araw-araw na shop dashboards.",
-      "technologies": ["BaseetIMS", "Web Dashboard"],
+      "solution": "Na-deploy ang Invexo para sa stock, POS, at araw-araw na shop dashboards.",
+      "technologies": [
+        "Invexo",
+        "Web Dashboard"
+      ],
       "steps": [],
       "screenshots": [],
       "galleryType": "web"

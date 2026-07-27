@@ -1,7 +1,30 @@
-/* Zyrn — Enterprise Ecommerce Platform */
+/* Zyrn — branded commerce package */
 /* Color & gradient come from zyrn.json (`color: #EC4899`). The
  * `ProjectLayout` wrapper sets `--project-color` and `--project-gradient`
  * inline, so this stylesheet stays free of hard-coded brand colors. */
+
+.zyrn-promise {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 8px 24px 48px;
+  text-align: center;
+}
+
+.zyrn-promise__line {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--heading-text);
+  letter-spacing: -0.02em;
+  margin: 0 0 8px;
+}
+
+.zyrn-promise__sub {
+  font-size: 1.05rem;
+  color: var(--project-color);
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.5;
+}
 
 .zyrn-metrics {
   display: grid;
@@ -17,7 +40,7 @@
 
 .zyrn-metrics__val {
   display: block;
-  font-size: 1.6rem;
+  font-size: 1.35rem;
   font-weight: 700;
   color: var(--project-color);
   letter-spacing: -0.02em;
@@ -58,21 +81,85 @@
   line-height: 1.55;
 }
 
-.zyrn-infra {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
+.zyrn-day {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
 }
 
-.zyrn-infra__chip {
-  display: inline-flex;
-  align-items: center;
-  padding: 8px 14px;
-  border-radius: 9999px;
-  font-size: 0.85rem;
-  font-weight: 500;
+.zyrn-day__item {
+  padding: 22px 20px;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--project-color) 4%, transparent);
+}
+
+.zyrn-day__item h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
   color: var(--project-color);
-  background: color-mix(in srgb, var(--project-color) 8%, transparent);
-  border: 1px solid color-mix(in srgb, var(--project-color) 18%, transparent);
+  margin: 0 0 10px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.zyrn-day__item p {
+  font-size: 0.92rem;
+  color: var(--muted-text);
+  margin: 0;
+  line-height: 1.55;
+}
+
+.zyrn-packages {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.zyrn-packages__card {
+  padding: 24px 22px;
+  border-radius: 16px;
+  border: 1px solid color-mix(in srgb, var(--project-color) 14%, transparent);
+  background: color-mix(in srgb, var(--project-color) 3%, transparent);
+}
+
+.zyrn-packages__card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--heading-text);
+  margin: 0 0 8px;
+}
+
+.zyrn-packages__audience {
+  font-size: 0.88rem;
+  color: var(--muted-text);
+  margin: 0 0 16px;
+  line-height: 1.45;
+}
+
+.zyrn-packages__card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.zyrn-packages__card li {
+  font-size: 0.9rem;
+  color: var(--heading-text);
+  padding-left: 16px;
+  position: relative;
+  line-height: 1.4;
+}
+
+.zyrn-packages__card li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--project-color);
 }

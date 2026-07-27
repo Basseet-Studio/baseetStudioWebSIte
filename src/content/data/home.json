@@ -4,7 +4,11 @@
     "text": "We build things that address your needs—no fluff—just the simplest solution for the problem.",
     "image": "/images/home/hero/bill-sitting.png",
     "buttons": [
-      { "text": "Start a project", "link": "#subscribe", "type": "primary" },
+      {
+        "text": "Start a project",
+        "link": "#subscribe",
+        "type": "primary"
+      },
       {
         "text": "See our work",
         "link": "#featured-projects",
@@ -85,8 +89,14 @@
       "description": "A beautiful habit-tracking app for iOS and Android. Streaks, check-ins, analytics, and smart reminders that keep you consistent.",
       "iconClass": "fas fa-chart-line",
       "platforms": [
-        { "name": "iOS", "icon": "fab fa-apple" },
-        { "name": "Android", "icon": "fab fa-android" }
+        {
+          "name": "iOS",
+          "icon": "fab fa-apple"
+        },
+        {
+          "name": "Android",
+          "icon": "fab fa-android"
+        }
       ],
       "features": [
         "Habit streaks",
@@ -105,7 +115,12 @@
       "tagline": "Intelligent data, on tap",
       "description": "A unified data intelligence platform offering real-time analytics, automated workflows, and predictive insights for modern teams.",
       "iconClass": "fas fa-database",
-      "platforms": [{ "name": "Web", "icon": "fas fa-globe" }],
+      "platforms": [
+        {
+          "name": "Web",
+          "icon": "fas fa-globe"
+        }
+      ],
       "features": [
         "Real-time analytics",
         "Automated ETL pipelines",
@@ -117,13 +132,18 @@
       "status": "Coming Soon"
     },
     {
-      "name": "BaseetIMS",
-      "slug": "baseetims",
+      "name": "Invexo",
+      "slug": "invexo",
       "type": "branded",
       "tagline": "Inventory management for small shops",
       "description": "Multi-shop inventory, POS, flexiload commissions, and daily sales — built for small retail businesses.",
       "iconClass": "fas fa-cash-register",
-      "platforms": [{ "name": "Web", "icon": "fas fa-globe" }],
+      "platforms": [
+        {
+          "name": "Web",
+          "icon": "fas fa-globe"
+        }
+      ],
       "features": [
         "Multi-shop dashboard",
         "Inventory & POS",
@@ -135,13 +155,18 @@
       "status": "Ready to Deliver"
     },
     {
-      "name": "DeshiKitchen",
-      "slug": "deshikitchen",
+      "name": "Ordelo",
+      "slug": "ordelo",
       "type": "branded",
-      "tagline": "Authentic Bangladeshi cuisine, on demand",
-      "description": "A full-stack restaurant ordering platform with 3D hero, real-time order tracking, social proof, Stripe payments, and a comprehensive admin dashboard.",
+      "tagline": "Your business. Online. Ordered. Owned.",
+      "description": "Branded ordering & commerce — menus, checkout, kitchen alerts, customer notifications, and growth tools. No paper trail. No guessing.",
       "iconClass": "fas fa-utensils",
-      "platforms": [{ "name": "Web", "icon": "fas fa-globe" }],
+      "platforms": [
+        {
+          "name": "Web",
+          "icon": "fas fa-globe"
+        }
+      ],
       "features": [
         "3D hero with R3F",
         "Real-time order tracking",
@@ -160,8 +185,14 @@
       "description": "A personal finance tracker with budgets, goals, and clean reporting.",
       "iconClass": "fas fa-piggy-bank",
       "platforms": [
-        { "name": "iOS", "icon": "fab fa-apple" },
-        { "name": "Android", "icon": "fab fa-android" }
+        {
+          "name": "iOS",
+          "icon": "fab fa-apple"
+        },
+        {
+          "name": "Android",
+          "icon": "fab fa-android"
+        }
       ],
       "color": "#16A34A",
       "gradient": "linear-gradient(135deg, #16A34A 0%, #4ADE80 100%)",
@@ -175,9 +206,18 @@
       "description": "A B2C platform connecting customers with verified vendors and service pros for plumbing, electrical, handyman, cleaning, and more.",
       "iconClass": "fas fa-wrench",
       "platforms": [
-        { "name": "iOS", "icon": "fab fa-apple" },
-        { "name": "Android", "icon": "fab fa-android" },
-        { "name": "Web", "icon": "fas fa-globe" }
+        {
+          "name": "iOS",
+          "icon": "fab fa-apple"
+        },
+        {
+          "name": "Android",
+          "icon": "fab fa-android"
+        },
+        {
+          "name": "Web",
+          "icon": "fas fa-globe"
+        }
       ],
       "features": [
         "Verified pros",
@@ -196,7 +236,12 @@
       "tagline": "Restore old photos with AI",
       "description": "Bring faded, damaged, and black-and-white photos back to life with on-device AI restoration, colorization, and enhancement.",
       "iconClass": "fas fa-wand-magic-sparkles",
-      "platforms": [{ "name": "Web", "icon": "fas fa-globe" }],
+      "platforms": [
+        {
+          "name": "Web",
+          "icon": "fas fa-globe"
+        }
+      ],
       "features": [
         "AI restoration",
         "Auto colorization",
@@ -215,8 +260,14 @@
       "description": "A clinic + patient platform that unifies appointments, records, and follow-ups into a single, doctor-friendly workflow.",
       "iconClass": "fas fa-hospital",
       "platforms": [
-        { "name": "Web", "icon": "fas fa-globe" },
-        { "name": "Docker", "icon": "fab fa-docker" }
+        {
+          "name": "Web",
+          "icon": "fas fa-globe"
+        },
+        {
+          "name": "Docker",
+          "icon": "fab fa-docker"
+        }
       ],
       "features": [
         "Patient records",
@@ -276,8 +327,14 @@
     }
   ],
   "clients": [
-    { "name": "Portia Grid", "image": "" },
-    { "name": "Iyat", "image": "" }
+    {
+      "name": "Portia Grid",
+      "image": ""
+    },
+    {
+      "name": "Iyat",
+      "image": ""
+    }
   ],
   "highlights": [
     {
@@ -301,5 +358,8 @@
       "icon": "fas fa-users"
     }
   ],
-  "clouds": { "enable": true, "enableOnMobile": false }
+  "clouds": {
+    "enable": true,
+    "enableOnMobile": false
+  }
 }
