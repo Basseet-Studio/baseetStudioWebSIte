@@ -1,0 +1,169 @@
+---
+/**
+ * NumuAurora — lavender Aurora WebGL overlay above cloudscape.
+ * Uses Astro transition:persist so Numu↔Numu nav keeps the same WebGL
+ * instance (no full remount). Knobs lerp via syncToPath().
+ */
+---
+
+<div
+  id="numu-aurora"
+  class="numu-aurora"
+  transition:persist="numu-aurora"
+  transition:name="numu-aurora"
+  aria-hidden="true"
+  role="presentation"
+></div>
+
+<script>
+  import {
+    ensureInit,
+    destroy,
+    syncToPath,
+    isNumuPath,
+    isActive,
+    FADE_IN_MS,
+    FADE_OUT_MS,
+  } from '../../../lib/effects/numu-aurora'
+
+  const VISIBLE = 'is-visible'
+  let wired = false
+
+  function host(): HTMLElement | null {
+    return document.getElementById('numu-aurora')
+  }
+
+  function show(el: HTMLElement): void {
+    el.style.setProperty('--numu-aurora-fade-in', `${FADE_IN_MS}ms`)
+    el.style.setProperty('--numu-aurora-fade-out', `${FADE_OUT_MS}ms`)
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => el.classList.add(VISIBLE))
+    })
+  }
+
+  function hide(el: HTMLElement | null): void {
+    el?.classList.remove(VISIBLE)
+  }
+
+  /** Enter / stay on Numu: boot once, then lerp knobs for this route. */
+  function onNumuPage(pathname: string, snap: boolean): void {
+    const el = host()
+    if (!el) return
+
+    const firstBoot = !isActive()
+    const ok = ensureInit(el)
+    if (!ok) return
+
+    syncToPath(pathname, { snap: snap || firstBoot })
+    show(el)
+  }
+
+  /** Leave Numu: fade out, then tear down GL after the CSS transition. */
+  function leaveNumu(): void {
+    const el = host()
+    hide(el)
+    window.setTimeout(() => {
+      if (!isNumuPath(location.pathname)) destroy()
+    }, FADE_OUT_MS)
+  }
+
+  function onPageLoad(): void {
+    if (isNumuPath(location.pathname) && host()) {
+      onNumuPage(location.pathname, false)
+    } else if (isActive()) {
+      leaveNumu()
+    }
+  }
+
+  function onBeforeSwap(event: Event): void {
+    const e = event as Event & { newDocument?: Document }
+    const nextHasAurora = Boolean(e.newDocument?.getElementById('numu-aurora'))
+    // Numu → Numu: keep the persisted WebGL instance; do not destroy.
+    if (nextHasAurora) return
+    // Leaving Numu entirely.
+    if (isActive() || host()) {
+      hide(host())
+      destroy()
+    }
+  }
+
+  function wire(): void {
+    if (wired) return
+    wired = true
+    document.addEventListener('astro:page-load', onPageLoad)
+    document.addEventListener('astro:before-swap', onBeforeSwap)
+  }
+
+  wire()
+
+  // First paint.
+  if (isNumuPath(location.pathname) && host()) {
+    onNumuPage(location.pathname, true)
+  }
+</script>
+
+<style is:global>
+  /*
+   * Fixed full-viewport layer above cloudscape, under content.
+   * Mask keeps the effect strongest at the top of the page.
+   * Beat `.project-wrapper > * { position:relative; z-index:2 }`.
+   */
+  #numu-aurora.numu-aurora,
+  .project-wrapper > #numu-aurora.numu-aurora {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+    contain: layout style paint;
+    background: transparent;
+    opacity: 0;
+    transition: opacity var(--numu-aurora-fade-out, 320ms) ease;
+    /* Top-weighted: strong in the hero, soft below the fold. */
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 32%,
+      rgba(0, 0, 0, 0.45) 58%,
+      transparent 92%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 32%,
+      rgba(0, 0, 0, 0.45) 58%,
+      transparent 92%
+    );
+  }
+
+  #numu-aurora.numu-aurora.is-visible,
+  .project-wrapper > #numu-aurora.numu-aurora.is-visible {
+    opacity: var(--numu-aurora-scroll-mul, 1);
+    transition: opacity var(--numu-aurora-fade-in, 700ms) ease;
+  }
+
+  #numu-aurora.numu-aurora.is-visible.is-scrolling,
+  .project-wrapper > #numu-aurora.numu-aurora.is-visible.is-scrolling {
+    transition: opacity 80ms linear;
+  }
+
+  #numu-aurora.numu-aurora canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Aurora replaces the shared purple hero wash on Numu. */
+  .project-wrapper:has(#numu-aurora) .project-hero-wash {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #numu-aurora.numu-aurora,
+    .project-wrapper > #numu-aurora.numu-aurora {
+      display: none;
+    }
+  }
+</style>

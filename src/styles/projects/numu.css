@@ -69,7 +69,6 @@
 @media (min-width: 768px) { .numu-section { padding: 12rem 1.5rem; } }
 .numu-section__inner { max-width: 72rem; margin: 0 auto; }
 .numu-hero { position: relative; padding: 10rem 1.5rem 6rem; overflow: hidden; }
-.numu-hero__mesh { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 20% 40%, color-mix(in srgb, var(--project-color) 12%, transparent), transparent), radial-gradient(ellipse 50% 40% at 80% 60%, color-mix(in srgb, var(--project-color) 8%, transparent), transparent); pointer-events: none; }
 .numu-hero__grid { display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center; max-width: 72rem; margin: 0 auto; position: relative; z-index: 1; }
 @media (min-width: 1024px) { .numu-hero__grid { grid-template-columns: 1.1fr 0.9fr; } }
 .numu-hero__title { font-size: clamp(2.5rem, 5vw, 4.25rem); font-weight: 800; line-height: 1.08; letter-spacing: -0.03em; color: var(--heading-text); margin: 0 0 1.25rem; max-width: 36rem; }
