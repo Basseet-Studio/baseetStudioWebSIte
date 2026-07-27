@@ -13,16 +13,6 @@
   overflow: hidden;
 }
 
-.moneybox-hero__blur {
-  position: absolute;
-  top: 10%;
-  right: 5%;
-  width: 50%;
-  height: 60%;
-  background: radial-gradient(ellipse, color-mix(in srgb, var(--project-color) 20%, transparent), transparent 70%);
-  pointer-events: none;
-}
-
 .moneybox-hero__grid {
   display: grid;
   grid-template-columns: 1fr;

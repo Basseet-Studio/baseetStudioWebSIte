@@ -1,0 +1,169 @@
+---
+/**
+ * MoneyBoxDarkVeil — green-tinted DarkVeil WebGL overlay above cloudscape.
+ * Uses Astro transition:persist so MoneyBox↔MoneyBox nav keeps the same WebGL
+ * instance (no full remount). Knobs lerp via syncToPath().
+ */
+---
+
+<div
+  id="moneybox-dark-veil"
+  class="moneybox-dark-veil"
+  transition:persist="moneybox-dark-veil"
+  transition:name="moneybox-dark-veil"
+  aria-hidden="true"
+  role="presentation"
+></div>
+
+<script>
+  import {
+    ensureInit,
+    destroy,
+    syncToPath,
+    isMoneyBoxPath,
+    isActive,
+    FADE_IN_MS,
+    FADE_OUT_MS,
+  } from '../../../lib/effects/moneybox-dark-veil'
+
+  const VISIBLE = 'is-visible'
+  let wired = false
+
+  function host(): HTMLElement | null {
+    return document.getElementById('moneybox-dark-veil')
+  }
+
+  function show(el: HTMLElement): void {
+    el.style.setProperty('--moneybox-dark-veil-fade-in', `${FADE_IN_MS}ms`)
+    el.style.setProperty('--moneybox-dark-veil-fade-out', `${FADE_OUT_MS}ms`)
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => el.classList.add(VISIBLE))
+    })
+  }
+
+  function hide(el: HTMLElement | null): void {
+    el?.classList.remove(VISIBLE)
+  }
+
+  /** Enter / stay on MoneyBox: boot once, then lerp knobs for this route. */
+  function onMoneyBoxPage(pathname: string, snap: boolean): void {
+    const el = host()
+    if (!el) return
+
+    const firstBoot = !isActive()
+    const ok = ensureInit(el)
+    if (!ok) return
+
+    syncToPath(pathname, { snap: snap || firstBoot })
+    show(el)
+  }
+
+  /** Leave MoneyBox: fade out, then tear down GL after the CSS transition. */
+  function leaveMoneyBox(): void {
+    const el = host()
+    hide(el)
+    window.setTimeout(() => {
+      if (!isMoneyBoxPath(location.pathname)) destroy()
+    }, FADE_OUT_MS)
+  }
+
+  function onPageLoad(): void {
+    if (isMoneyBoxPath(location.pathname) && host()) {
+      onMoneyBoxPage(location.pathname, false)
+    } else if (isActive()) {
+      leaveMoneyBox()
+    }
+  }
+
+  function onBeforeSwap(event: Event): void {
+    const e = event as Event & { newDocument?: Document }
+    const nextHasVeil = Boolean(e.newDocument?.getElementById('moneybox-dark-veil'))
+    // MoneyBox → MoneyBox: keep the persisted WebGL instance; do not destroy.
+    if (nextHasVeil) return
+    // Leaving MoneyBox entirely.
+    if (isActive() || host()) {
+      hide(host())
+      destroy()
+    }
+  }
+
+  function wire(): void {
+    if (wired) return
+    wired = true
+    document.addEventListener('astro:page-load', onPageLoad)
+    document.addEventListener('astro:before-swap', onBeforeSwap)
+  }
+
+  wire()
+
+  // First paint.
+  if (isMoneyBoxPath(location.pathname) && host()) {
+    onMoneyBoxPage(location.pathname, true)
+  }
+</script>
+
+<style is:global>
+  /*
+   * Fixed full-viewport layer above cloudscape, under content.
+   * Mask keeps the effect strongest at the top of the page.
+   * Beat `.project-wrapper > * { position:relative; z-index:2 }`.
+   */
+  #moneybox-dark-veil.moneybox-dark-veil,
+  .project-wrapper > #moneybox-dark-veil.moneybox-dark-veil {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+    contain: layout style paint;
+    background: transparent;
+    opacity: 0;
+    transition: opacity var(--moneybox-dark-veil-fade-out, 320ms) ease;
+    /* Top-weighted: strong in the hero, soft below the fold. */
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 32%,
+      rgba(0, 0, 0, 0.45) 58%,
+      transparent 92%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 32%,
+      rgba(0, 0, 0, 0.45) 58%,
+      transparent 92%
+    );
+  }
+
+  #moneybox-dark-veil.moneybox-dark-veil.is-visible,
+  .project-wrapper > #moneybox-dark-veil.moneybox-dark-veil.is-visible {
+    opacity: var(--moneybox-dark-veil-scroll-mul, 1);
+    transition: opacity var(--moneybox-dark-veil-fade-in, 700ms) ease;
+  }
+
+  #moneybox-dark-veil.moneybox-dark-veil.is-visible.is-scrolling,
+  .project-wrapper > #moneybox-dark-veil.moneybox-dark-veil.is-visible.is-scrolling {
+    transition: opacity 80ms linear;
+  }
+
+  #moneybox-dark-veil.moneybox-dark-veil canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* DarkVeil replaces the shared green hero wash on MoneyBox. */
+  .project-wrapper:has(#moneybox-dark-veil) .project-hero-wash {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #moneybox-dark-veil.moneybox-dark-veil,
+    .project-wrapper > #moneybox-dark-veil.moneybox-dark-veil {
+      display: none;
+    }
+  }
+</style>
