@@ -28,21 +28,24 @@ export const SOURCE_SVGS: Record<string, SourceSvgSet> = {
     name: "source svgs/numu app name large.svg",
   },
   matrix: {
-    logo: "source svgs/matrix-logo.svg",
-    name: "source svgs/matrix-name.svg",
+    logo: "source svgs/matrix logo.svg",
+    name: "source svgs/matrix name.svg",
   },
-  // Placeholder: reuse Matrix SVGs until Zyrn brand assets are ready.
   zyrn: {
-    logo: "source svgs/matrix-logo.svg",
-    name: "source svgs/matrix-name.svg",
+    logo: "source svgs/Zayrin Logo.svg",
+    name: "source svgs/zayrin Name.svg",
   },
   geeb: {
     logo: "source svgs/Geeb cng logo vecrot.svg",
     name: "source svgs/geeb-name.svg",
   },
   ordelo: {
-    logo: "source svgs/ordelo-logo.svg",
-    name: "source svgs/ordelo-name.svg",
+    logo: "source svgs/ordelo logo.svg",
+    name: "source svgs/ordelo name.svg",
+  },
+  invexo: {
+    logo: "source svgs/invexo logo.svg",
+    name: "source svgs/invexo name.svg",
   },
   moneybox: {
     logo: "source svgs/money stack logo.svg",

@@ -35,6 +35,8 @@ const LOGO_MARGIN = 0.08;
 const VERBATIM_LOGO_SLUGS = new Set([
   "matrix",
   "ordelo",
+  "zyrn",
+  "invexo",
   "photorestore-ai",
 ]);
 // Serif exports: fit into 0..256 but keep original rgb fills/strokes.

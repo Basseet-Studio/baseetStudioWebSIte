@@ -11,8 +11,8 @@ import { Renderer, Program, Mesh, Color, Triangle } from 'ogl'
 const COLOR_STOPS: [string, string, string] = ['#C77DFF', '#AF52DE', '#7B2CBF']
 const SPEED = 0.9
 const BLEND = 0.55
-const AMPLITUDE = 1.0
-const BRIGHTNESS = 0.85 // multiplies fragment alpha/color intensity
+const AMPLITUDE = 0.5
+const BRIGHTNESS = 0.5 // multiplies fragment alpha/color intensity
 export const FADE_IN_MS = 700
 export const FADE_OUT_MS = 320
 /** How fast page knobs ease toward the next route (0–1 per frame @60fps-ish). */
@@ -55,21 +55,21 @@ export const PAGE_PRESETS: Record<string, PageKnobs> = {
   features: {
     amplitude: 3.1,
     blend: 0.6,
-    brightness: BRIGHTNESS,
+    brightness: 0.4,
     speed: 0.8,
     scrollFade: true,
   },
   download: {
     amplitude: 2.85,
     blend: 0.5,
-    brightness: BRIGHTNESS * 0.9,
+    brightness: 0.3,
     speed: 0.4,
     scrollFade: true,
   },
   terms: {
     amplitude: 1.7,
     blend: 0.6,
-    brightness: LEGAL_BRIGHTNESS,
+    brightness: 0.2,
     speed: 0.6,
     scrollFade: true,
     scrollFadeEnd: SCROLL_FADE_END_LEGAL,
@@ -77,7 +77,7 @@ export const PAGE_PRESETS: Record<string, PageKnobs> = {
   privacy: {
     amplitude: 0.65,
     blend: 0.45,
-    brightness: LEGAL_BRIGHTNESS,
+    brightness: 0.2 ,
     speed: 0.5,
     scrollFade: true,
     scrollFadeEnd: SCROLL_FADE_END_LEGAL,

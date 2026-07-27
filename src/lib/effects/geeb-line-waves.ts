@@ -8,10 +8,10 @@ import { Renderer, Program, Mesh, Triangle } from 'ogl'
 // EDIT ME — Geeb LineWaves knobs (shared defaults)
 // ══════════════════════════════════════════════════════════
 const SPEED = 0.3 // animation speed
-const INNER_LINE_COUNT = 32
-const OUTER_LINE_COUNT = 36
-const WARP_INTENSITY = 1.0 // default wave distortion (page presets override)
-const ROTATION_DEG = -45 // default pattern rotation (page presets override)
+const INNER_LINE_COUNT = 15
+const OUTER_LINE_COUNT = 17
+const WARP_INTENSITY = 0.5// default wave distortion (page presets override)
+const ROTATION_DEG = -30 // default pattern rotation (page presets override)
 const EDGE_FADE_WIDTH = 0.0
 const COLOR_CYCLE_SPEED = 1.0
 const BRIGHTNESS = 0.22 // default; legal docs use LEGAL_BRIGHTNESS below
@@ -33,7 +33,7 @@ const LEGAL_BRIGHTNESS = BRIGHTNESS * 0.3
  * Uses page scroll progress (same idea as cloudscape progress %), not just vh.
  */
 const SCROLL_FADE_START = 0.02 // still “at the top”
-const SCROLL_FADE_END = 0.55 // mostly gone by mid-page
+const SCROLL_FADE_END = 0.2 // mostly gone by mid-page
 /** Legal docs fade out sooner / harder. */
 const SCROLL_FADE_END_LEGAL = 0.35
 // ══════════════════════════════════════════════════════════
@@ -55,12 +55,12 @@ export type PageKnobs = {
  */
 export const PAGE_PRESETS: Record<string, PageKnobs> = {
   '': { rotationDeg: -45, warpIntensity: 1.0, brightness: BRIGHTNESS, scrollFade: true },
-  features: { rotationDeg: -90, warpIntensity: 1.25, brightness: BRIGHTNESS, scrollFade: true },
-  download: { rotationDeg: -120, warpIntensity: 0.02, brightness: BRIGHTNESS, scrollFade: true },
-  pro: { rotationDeg: -18, warpIntensity: 1.15, brightness: BRIGHTNESS, scrollFade: true },
-  faq: { rotationDeg: -85, warpIntensity: 0.95, brightness: BRIGHTNESS, scrollFade: true },
-  terms: { rotationDeg: -62, warpIntensity: 2.75, brightness: BRIGHTNESS, scrollFade: true },
-  privacy: { rotationDeg: -11, warpIntensity: 0.7, brightness: BRIGHTNESS, scrollFade: true },
+  features: { rotationDeg: -90, warpIntensity: 1.25, brightness: 0.15, scrollFade: true },
+  download: { rotationDeg: -120, warpIntensity: 0.02, brightness: 0.10, scrollFade: true },
+  pro: { rotationDeg: -18, warpIntensity: 1.15, brightness: 0.7, scrollFade: true },
+  faq: { rotationDeg: -85, warpIntensity: 0.95, brightness: 0.5, scrollFade: true },
+  terms: { rotationDeg: -62, warpIntensity: 2.75, brightness: 0.3, scrollFade: true },
+  privacy: { rotationDeg: -11, warpIntensity: 0.7, brightness: 0.3, scrollFade: true },
   'terms/customers': {
     rotationDeg: -55,
     warpIntensity: 0.55,
@@ -70,21 +70,21 @@ export const PAGE_PRESETS: Record<string, PageKnobs> = {
   },
   'terms/vendors': {
     rotationDeg: -48,
-    warpIntensity: 0.6,
+    warpIntensity: 0.46,
     brightness: LEGAL_BRIGHTNESS,
     scrollFade: true,
     scrollFadeEnd: SCROLL_FADE_END_LEGAL,
   },
   'privacy/customers': {
     rotationDeg: -52,
-    warpIntensity: 0.5,
+    warpIntensity: 0.35,
     brightness: LEGAL_BRIGHTNESS,
     scrollFade: true,
     scrollFadeEnd: SCROLL_FADE_END_LEGAL,
   },
   'privacy/vendors': {
     rotationDeg: -60,
-    warpIntensity: 0.65,
+    warpIntensity: 0.2,
     brightness: LEGAL_BRIGHTNESS,
     scrollFade: true,
     scrollFadeEnd: SCROLL_FADE_END_LEGAL,
