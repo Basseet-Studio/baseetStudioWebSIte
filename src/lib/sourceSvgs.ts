@@ -822,6 +822,10 @@ export function extractLogoPaths(
       const h = parseFloat(s.attrs.height ?? "0");
       if (w >= vbW * 0.8 && h >= vbH * 0.8) continue; // backdrop
     }
+    // Invisible guides / artboard helpers must not inflate the fit bbox.
+    const fillAttr = (s.attrs.fill ?? "").trim().toLowerCase();
+    const styleFill = /(?:^|;)\s*fill\s*:\s*none\b/i.test(s.attrs.style ?? "");
+    if (fillAttr === "none" || styleFill) continue;
     const d = shapeToPathD(s);
     if (!d) continue;
     const bbox = pathBBox(d);

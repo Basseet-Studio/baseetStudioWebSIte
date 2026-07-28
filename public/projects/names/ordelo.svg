@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1089 281" fill="currentColor">
+
+    <g transform="matrix(1,0,0,1,-494.910562,-2289.679789)">
+        <g transform="matrix(7.91888,0,0,7.91888,-3059.958126,-17370.362526)">
+            <g transform="matrix(50,0,0,50,588.060562,2517.679789)">
+            </g>
+            <text x="447.211px" y="2517.68px" style="font-family:'Questrial-Regular', 'Questrial';font-size:50px;fill:url(#_Linear1);">or<tspan x="492.011px " y="2517.68px ">d</tspan>elo</text>
+        </g>
+    </g>
+    <defs>
+        <linearGradient id="_Linear1" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(137.45,0,0,35.4,448.910562,2500.379789)"><stop offset="0" style="stop-color:rgb(254,119,39);stop-opacity:1"/><stop offset="1" style="stop-color:rgb(252,73,46);stop-opacity:1"/></linearGradient>
+    </defs>
+
+</svg>

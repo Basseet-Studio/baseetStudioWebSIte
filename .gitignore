@@ -1,8 +1,8 @@
-# Hugo output
-public/
-resources/_gen/
+# Astro build output
+dist/
 
-# Hugo caches
+# Legacy Hugo (no longer used)
+resources/_gen/
 .hugo_build.lock
 
 # Node.js

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <rect width="128" height="128" fill="#000"/>
+  <g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="14">
+    <g transform="translate(10,10) scale(0.2)">
+      <polyline points="64 88 16 128 64 168"/><polyline points="192 88 240 128 192 168"/><line x1="160" y1="40" x2="96" y2="216"/>
+    </g>
+    <g transform="translate(50,10) scale(0.2)">
+      <polyline points="64 88 16 128 64 168"/><polyline points="192 88 240 128 192 168"/><line x1="160" y1="40" x2="96" y2="216"/>
+    </g>
+    <g transform="translate(90,10) scale(0.2)">
+      <polyline points="64 88 16 128 64 168"/><polyline points="192 88 240 128 192 168"/><line x1="160" y1="40" x2="96" y2="216"/>
+    </g>
+    <g transform="translate(10,50) scale(0.2)">
+      <polyline points="64 88 16 128 64 168"/><polyline points="192 88 240 128 192 168"/><line x1="160" y1="40" x2="96" y2="216"/>
+    </g>
+    <g transform="translate(50,50) scale(0.2)">
+      <polyline points="64 88 16 128 64 168"/><polyline points="192 88 240 128 192 168"/><line x1="160" y1="40" x2="96" y2="216"/>
+    </g>
+    <g transform="translate(90,50) scale(0.2)">
+      <polyline points="64 88 16 128 64 168"/><polyline points="192 88 240 128 192 168"/><line x1="160" y1="40" x2="96" y2="216"/>
+    </g>
+    <g transform="translate(10,90) scale(0.2)">
+      <polyline points="64 88 16 128 64 168"/><polyline points="192 88 240 128 192 168"/><line x1="160" y1="40" x2="96" y2="216"/>
+    </g>
+    <g transform="translate(50,90) scale(0.2)">
+      <polyline points="64 88 16 128 64 168"/><polyline points="192 88 240 128 192 168"/><line x1="160" y1="40" x2="96" y2="216"/>
+    </g>
+    <g transform="translate(90,90) scale(0.2)">
+      <polyline points="64 88 16 128 64 168"/><polyline points="192 88 240 128 192 168"/><line x1="160" y1="40" x2="96" y2="216"/>
+    </g>
+  </g>
+</svg>

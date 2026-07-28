@@ -33,14 +33,13 @@ const LOGO_TARGET = 256;
 const LOGO_MARGIN = 0.08;
 // Figma exports with gradients, masks, or multi-color fills — copy as-is.
 const VERBATIM_LOGO_SLUGS = new Set([
-  "matrix",
   "ordelo",
   "zyrn",
   "invexo",
   "photorestore-ai",
 ]);
-// Serif exports: fit into 0..256 but keep original rgb fills/strokes.
-const FIT_COLORED_LOGO_SLUGS = new Set(["moneybox", "numu"]);
+// Fit into 0..256 but keep original rgb fills/strokes (Affinity artboards, etc.).
+const FIT_COLORED_LOGO_SLUGS = new Set(["moneybox", "numu", "matrix"]);
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = path.resolve(__dirname, "..");
@@ -104,15 +103,17 @@ function buildVerbatimLogoSvg(sourceSvg) {
   );
 }
 
-function buildFitColoredLogoSvg(sourceSvg) {
-  // Source file includes both the stacked bills and a separate money-wrap band.
-  // Keep only the cash-note stack for the app icon. Drop per-bill ellipses too —
-  // they sit far from the stack in source space and inflate the fit bbox, which
-  // leaves the stack tiny in a corner of the square viewBox.
-  const stackOnly = sourceSvg
-    .replace(/<path\b[^>]*\bid="money-wrap"[^>]*\/?>\s*/i, "")
-    .replace(/<ellipse\b[^>]*\/?>\s*/gi, "");
-  const paths = extractLogoPaths(stackOnly, LOGO_TARGET, 0.04, true, true);
+function buildFitColoredLogoSvg(sourceSvg, slug) {
+  let prepared = sourceSvg;
+  // Moneybox source includes a stacked-bills + money-wrap band. Keep only the
+  // cash-note stack for the app icon. Drop per-bill ellipses too — they sit far
+  // from the stack in source space and inflate the fit bbox.
+  if (slug === "moneybox") {
+    prepared = sourceSvg
+      .replace(/<path\b[^>]*\bid="money-wrap"[^>]*\/?>\s*/i, "")
+      .replace(/<ellipse\b[^>]*\/?>\s*/gi, "");
+  }
+  const paths = extractLogoPaths(prepared, LOGO_TARGET, 0.04, true, true);
   if (!paths) throw new Error("no paths extracted from logo");
   return (
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${LOGO_TARGET} ${LOGO_TARGET}">\n` +
@@ -126,7 +127,7 @@ function buildLogoSvg(sourceSvg, slug) {
     return buildVerbatimLogoSvg(sourceSvg);
   }
   if (FIT_COLORED_LOGO_SLUGS.has(slug)) {
-    return buildFitColoredLogoSvg(sourceSvg);
+    return buildFitColoredLogoSvg(sourceSvg, slug);
   }
   return buildNormalizedLogoSvg(sourceSvg);
 }
@@ -180,10 +181,16 @@ function main() {
         );
       }
     } catch (err) {
-      console.error(
-        `[names:build] could not build logo ${entry.logo}: ${err.message}`,
-      );
-      failed++;
+      if (err.code === "ENOENT" && fs.existsSync(logoOutPath)) {
+        console.warn(
+          `[names:build] logo source missing for "${slug}" (${entry.logo}) — keeping existing output`,
+        );
+      } else {
+        console.error(
+          `[names:build] could not build logo ${entry.logo}: ${err.message}`,
+        );
+        failed++;
+      }
     }
 
     if (!force && fs.existsSync(outPath)) {
