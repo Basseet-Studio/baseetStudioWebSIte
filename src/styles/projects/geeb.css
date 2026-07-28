@@ -43,7 +43,7 @@
   overflow-x: hidden;
   width: 100%;
   max-width: 100%;
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-body);
   color: var(--geeb-ink);
 }
 
@@ -74,7 +74,7 @@
 }
 
 .geeb-section__title {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(1.75rem, 3.5vw, 2.75rem);
   font-weight: 800;
   letter-spacing: -0.03em;
@@ -125,7 +125,7 @@
   gap: 0.5rem;
   padding: 0.85rem 1.5rem;
   border-radius: 9999px;
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-body);
   font-size: 0.95rem;
   font-weight: 600;
   text-decoration: none;
@@ -249,7 +249,7 @@
 }
 
 .geeb-hero__tagline {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-size: 0.95rem;
   font-weight: 600;
   color: var(--geeb-amber-deep);
@@ -271,7 +271,7 @@
 }
 
 .geeb-hero__title {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(2rem, 4.5vw, 3.5rem);
   font-weight: 800;
   letter-spacing: -0.03em;
@@ -514,7 +514,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--geeb-amber-deep);
@@ -536,7 +536,7 @@
   gap: 0.5rem;
   padding: 0.6rem 1.1rem;
   border-radius: 9999px;
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-body);
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--geeb-stone);
@@ -704,7 +704,7 @@
 
 .geeb-switcher__metric-val {
   display: block;
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-size: 1.25rem;
   font-weight: 800;
   color: var(--geeb-ink);
@@ -728,7 +728,7 @@
 
 .geeb-switcher__stat-val {
   display: block;
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-size: 1.5rem;
   font-weight: 800;
   color: var(--geeb-amber-deep);
@@ -783,7 +783,7 @@
 }
 
 .geeb-trades__name {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-size: 1rem;
   font-weight: 700;
   margin: 0 0 0.35rem;
@@ -826,7 +826,7 @@
 }
 
 .geeb-timeline__num {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-size: 0.75rem;
   font-weight: 800;
   color: var(--geeb-amber-deep);
@@ -845,7 +845,7 @@
 }
 
 .geeb-timeline__title {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-size: 1.1rem;
   font-weight: 700;
   margin: 0 0 0.5rem;
@@ -949,7 +949,7 @@
 }
 
 .geeb-scrub__text {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(1.35rem, 2.8vw, 2rem);
   font-weight: 600;
   line-height: 1.4;
@@ -994,7 +994,7 @@
 }
 
 .geeb-features__title {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-size: 1.35rem;
   font-weight: 800;
   margin: 0 0 0.75rem;
@@ -1169,7 +1169,7 @@
 
 .geeb-vignette-reviews__score {
   display: block;
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-size: 2rem;
   font-weight: 800;
   color: var(--geeb-ink);
@@ -1239,7 +1239,7 @@
 }
 
 .geeb-vendor-band__title {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(1.75rem, 3vw, 2.5rem);
   font-weight: 800;
   letter-spacing: -0.02em;
@@ -1305,7 +1305,7 @@
 }
 
 .geeb-vendor-dash__earnings-val {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-size: 2.25rem;
   font-weight: 800;
   color: var(--geeb-amber-deep);
@@ -1327,7 +1327,7 @@
 
 .geeb-vendor-dash__stat-val {
   display: block;
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-size: 1.1rem;
   font-weight: 800;
   color: var(--geeb-ink);
@@ -1384,7 +1384,7 @@
 }
 
 .geeb-cta__title {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(1.5rem, 3vw, 2.25rem);
   font-weight: 800;
   margin: 0 0 0.75rem;
@@ -1433,7 +1433,7 @@
 }
 
 .geeb-pro-hero__title {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 800;
   letter-spacing: -0.03em;
@@ -1472,7 +1472,7 @@
 
 .geeb-metrics__val {
   display: block;
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-size: 1.5rem;
   font-weight: 800;
   color: var(--geeb-amber-deep);
@@ -1558,7 +1558,7 @@
 
 .geeb-pro-profile__stat-val {
   display: block;
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-size: 1.15rem;
   font-weight: 800;
   color: var(--geeb-ink);
@@ -1635,7 +1635,7 @@
 }
 
 .geeb-benefits-zigzag__title {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-size: 1.2rem;
   font-weight: 700;
   margin: 0 0 0.5rem;
@@ -1656,7 +1656,7 @@
 }
 
 .geeb-earnings__title {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-size: 1.1rem;
   font-weight: 700;
   margin: 0 0 0.25rem;
@@ -1701,7 +1701,7 @@
 
 .geeb-earnings__range {
   display: block;
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-size: 1.75rem;
   font-weight: 800;
   color: var(--geeb-amber-deep);
@@ -1718,7 +1718,7 @@
 }
 
 .geeb-pipeline h3 {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-size: 1.1rem;
   font-weight: 700;
   margin: 0 0 1.25rem;
@@ -1806,7 +1806,7 @@
 }
 
 .geeb-subhero__title {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 800;
   letter-spacing: -0.02em;
@@ -1848,7 +1848,7 @@
 }
 
 .geeb-pro-form h2 {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-size: 1.35rem;
   font-weight: 800;
   margin: 0 0 0.5rem;
@@ -1890,7 +1890,7 @@
   border: 1px solid var(--geeb-line);
   background: var(--card-window-bg);
   color: var(--geeb-ink);
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-body);
   font-size: 0.9rem;
 }
 
@@ -1939,7 +1939,7 @@
 .geeb-feature-block--reverse .geeb-feature-block__copy { order: 1; }
 
 .geeb-feature-block__copy h2 {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-size: 1.5rem;
   font-weight: 800;
   margin: 0 0 0.75rem;
@@ -2015,7 +2015,7 @@
 }
 
 .geeb-download-card h3 {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-size: 1.1rem;
   font-weight: 800;
   margin: 0 0 0.5rem;
@@ -2073,7 +2073,7 @@
 }
 
 .geeb-section-title {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(1.35rem, 2.5vw, 1.85rem);
   font-weight: 800;
   margin: 0 0 0.65rem;
@@ -2111,7 +2111,7 @@
 }
 
 .geeb-download-platform h3 {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-size: 1.05rem;
   font-weight: 800;
   margin: 0 0 0.35rem;
@@ -2151,7 +2151,7 @@
   border-radius: 9999px;
   display: grid;
   place-items: center;
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-weight: 800;
   font-size: 0.9rem;
   background: var(--geeb-eyebrow-bg);
@@ -2159,7 +2159,7 @@
 }
 
 .geeb-download-step h3 {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-size: 1.05rem;
   font-weight: 800;
   margin: 0 0 0.35rem;
@@ -2221,7 +2221,7 @@
 }
 
 .geeb-legal-hub__title {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-size: 1.15rem;
   font-weight: 800;
   margin: 0;
@@ -2253,7 +2253,7 @@
 }
 
 .geeb-legal-prose h2 {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-size: 1.25rem;
   font-weight: 800;
   margin: 0 0 1rem;

@@ -8,10 +8,10 @@ import { Renderer, Program, Mesh, Color, Triangle } from 'ogl'
 // EDIT ME — Numu Aurora knobs (shared defaults)
 // ══════════════════════════════════════════════════════════
 /** Three hex colors for the aurora gradient (left → mid → right). */
-const COLOR_STOPS: [string, string, string] = ['#C77DFF', '#AF52DE', '#7B2CBF']
+const COLOR_STOPS: [string, string, string] = ['#C77DFF', '#ffffff', '#C77DFF']
 const SPEED = 0.9
 const BLEND = 0.55
-const AMPLITUDE = 0.5
+const AMPLITUDE = 0.2
 const BRIGHTNESS = 0.5 // multiplies fragment alpha/color intensity
 export const FADE_IN_MS = 700
 export const FADE_OUT_MS = 320
@@ -46,37 +46,37 @@ export type PageKnobs = {
  */
 export const PAGE_PRESETS: Record<string, PageKnobs> = {
   '': {
-    amplitude: 5,
+    amplitude: 1,
     blend: BLEND,
     brightness: BRIGHTNESS,
     speed: SPEED,
     scrollFade: true,
   },
   features: {
-    amplitude: 3.1,
-    blend: 0.6,
+    amplitude: 0.6,
+    blend: 1,
     brightness: 0.4,
     speed: 0.8,
     scrollFade: true,
   },
   download: {
-    amplitude: 2.85,
-    blend: 0.5,
+    amplitude: 0.5,
+    blend: 1,
     brightness: 0.3,
     speed: 0.4,
     scrollFade: true,
   },
   terms: {
-    amplitude: 1.7,
-    blend: 0.6,
+    amplitude: 0.4,
+    blend: 1,
     brightness: 0.2,
     speed: 0.6,
     scrollFade: true,
     scrollFadeEnd: SCROLL_FADE_END_LEGAL,
   },
   privacy: {
-    amplitude: 0.65,
-    blend: 0.45,
+    amplitude: 0.3,
+    blend: 1,
     brightness: 0.2 ,
     speed: 0.5,
     scrollFade: true,

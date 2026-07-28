@@ -27,26 +27,40 @@ colors:
   muted-stone: "#78716c"
 typography:
   display:
-    fontFamily: "'Rammetto One', system-ui, -apple-system, sans-serif"
-    fontWeight: 400
-    letterSpacing: "-0.01em"
+    fontFamily: "'Space Grotesk', system-ui, -apple-system, sans-serif"
+    fontWeight: 700
+    letterSpacing: "-0.03em"
+  accent:
+    fontFamily: "'Fraunces', 'Times New Roman', serif"
+    fontWeight: 500
+    fontStyle: italic
   body:
-    fontFamily: "'Rambla', system-ui, -apple-system, sans-serif"
+    fontFamily: "'Inter', system-ui, -apple-system, sans-serif"
     fontWeight: 400
   body-strong:
-    fontFamily: "'Rambla', system-ui, -apple-system, sans-serif"
-    fontWeight: 700
+    fontFamily: "'Inter', system-ui, -apple-system, sans-serif"
+    fontWeight: 600
   arabic:
     fontFamily: "'Amiri Quran', 'Amiri', 'Noto Naskh Arabic', serif"
     fontWeight: 400
+  urdu:
+    fontFamily: "'Noto Nastaliq Urdu', 'Amiri Quran', 'Noto Naskh Arabic', serif"
+    fontWeight: 400
+  hindi:
+    fontFamily: "'Noto Sans Devanagari', 'Inter', system-ui, sans-serif"
+    fontWeight: 600
 rounded:
   pill: "9999px"
+  soft: "50px"
   panel: "32px"
   card: "24px"
+  ticket: "22px"
   nested: "18px"
   metric: "16px"
   chip-square: "14px"
   small: "12px"
+  icon: "8px"
+  tight: "4px"
 spacing:
   xs: "4px"
   sm: "8px"
@@ -125,7 +139,7 @@ The system is calm, confident, and human. It refuses the obvious moves: no 3-up 
 **Key Characteristics:**
 - **Cloud-first.** Every foreground decision is made to belong in the same air as the Vanta clouds, not pasted on top of them.
 - **Translucent, never heavy.** Surfaces are lightly tinted and minimally frosted. The clouds show through.
-- **Type carries the hierarchy.** Display headings (Rammetto One) do the work. Body (Rambla) stays quiet.
+- **Type carries the hierarchy.** Display headings (Space Grotesk) do the work. Body (Inter) stays quiet. Fraunces italic marks a single accent word inside a headline — never a full line.
 - **Per-service color is accent, not armor.** The six service colors are used as small highlights — chip backgrounds, icon tints, halo washes — not as full-card fills.
 - **Spacious and warm.** Generous padding, generous line height, generous color. The page should feel easy to be in.
 
@@ -175,25 +189,31 @@ Cobalt and Marigold double as the Web and Mobile service colors respectively. Th
 
 ## 3. Typography
 
-**Display Font:** Rammetto One (with system-ui fallback). Single-weight display face; never use bold or italic variants because the family does not provide them.
-**Body Font:** Rambla (with system-ui fallback). Four weights available: 400, 500, 600, 700.
-**Label Font:** same as body (Rambla 600 with letter-spacing 0.04em and uppercase). No separate label face.
-**Arabic Font:** Amiri Quran (with Amiri and Noto Naskh Arabic fallbacks). Activated by the `[lang="ar"]` and `[dir="rtl"]` selectors on `<html>`.
+**Display Font:** Space Grotesk (with system-ui fallback). Weights 400–700. Used for all headings, nav, buttons, numbers, and labels.
+**Accent Font:** Fraunces italic (optical sizing on). Weights 400–600. Used only for single emphasized words inside headlines (e.g. "best.", "properly."). Never for full sentences or body copy.
+**Body Font:** Inter (with system-ui fallback). Weights 400, 500, 600. Used for paragraphs, lead text, and captions.
+**Label Font:** Space Grotesk 600, 12px, uppercase, letter-spacing 0.22em. Eyebrows and section labels.
+**Arabic Font:** Amiri Quran (with Amiri and Noto Naskh Arabic fallbacks). Activated by reassigning `--font-body` / `--font-display` under `[lang="ar"]` / `[dir="rtl"]`.
+**Urdu Font:** Noto Nastaliq Urdu. Activated under `[lang="ur"]`.
+**Hindi Font:** Noto Sans Devanagari. Activated under `[lang="hi"]`.
 
-**Character:** Rammetto One is loud and unmistakable; Rambla is quiet and warm. The pairing reads as "the headline is a statement, the body is a conversation." Bold the body (Rambla 700) for inline emphasis; do not bold the display.
+**Character:** Space Grotesk is geometric and confident; Inter is neutral and readable; Fraunces italic is the rare literary wink on one word. The pairing reads as "the headline is a statement, the body is a conversation, the accent word is a smile."
 
 ### Hierarchy
-- **Display** (Rammetto One 400, `clamp(2.5rem, 6vw, 4rem)`, line-height 1.1): home hero title only. The h1 of the studio's index.
-- **Headline** (Rammetto One 400, `clamp(2.4rem, 4.5vw, 3.6rem)`, line-height 1.1): detail page hero titles (services, projects). The h1 of an inner page.
-- **Title** (Rambla 700, `clamp(1.8rem, 3vw, 2.4rem)`, line-height 1.2): section heads. The h2 of every section.
-- **Subtitle** (Rambla 400, `clamp(1rem, 2vw, 1.25rem)`, line-height 1.6): page-level supporting copy. The paragraph under a hero.
-- **Body** (Rambla 400, 1rem, line-height 1.6, max 65–75ch): the page's primary content.
-- **Label** (Rambla 600, 0.8rem, letter-spacing 0.04em, uppercase): eyebrow chips, "SERVICE" tags, "STACK" tags. Always uppercase. Always small. The little typographic tick on top of a section.
+- **Hero / H1** (Space Grotesk 700, `clamp(56px, 7vw + 14px, 118px)`, line-height 0.98, letter-spacing -0.03em): home hero title.
+- **Section / H2** (Space Grotesk 700, `clamp(34px, 3.4vw + 14px, 52px)`, letter-spacing -0.02em): section heads.
+- **Subhead / H3** (Space Grotesk 600, `clamp(24px, 2vw + 14px, 30px)`, letter-spacing -0.01em): card and feature titles.
+- **Lead** (Inter 400, `clamp(19px, 1.4vw + 14px, 23px)`, line-height 1.5): supporting paragraph under a headline.
+- **Body** (Inter 400, 17px, line-height 1.6, max 65–75ch): primary content.
+- **Body small** (Inter 400/500, 14px): descriptions under stats, team roles.
+- **Caption** (Inter 600, 13px, uppercase, letter-spacing 0.06em): small labels and attribution titles.
+- **Eyebrow** (Space Grotesk 600, 12px, uppercase, letter-spacing 0.22em): section labels above headlines.
+- **Accent word** (Fraunces italic 500, inherits parent size, optical sizing on): single emphasized word inside a headline only.
 
 ### Named Rules
-**The Single-Weight Display Rule.** Rammetto One exists in one weight. The page does not `font-weight: 700` on display elements. The single weight IS the emphasis. Pairing Rammetto One 400 with bold markup is a typo; remove the markup.
+**The Three-Face Rule.** Only Space Grotesk, Fraunces, and Inter appear on Latin pages. Locale script faces override the same tokens for ar/ur/hi.
 
-**The No-Editorial-Italic Rule.** No italic display type. No italic body. The voice is concrete, not literary. Italics read as costume.
+**The Accent-Word Rule.** Fraunces appears only on a single emphasized word inside a headline (via `.type-accent` or scoped strong/em). Never on a full line, sentence, or paragraph.
 
 **The 65ch Body Rule.** Body copy caps at 65–75 characters per line. The wider it goes, the more the eye loses its place.
 
@@ -266,7 +286,7 @@ Cobalt and Marigold double as the Web and Mobile service colors respectively. Th
 ### Do
 - **Do** let the Vanta clouds be the page's primary visual. The clouds are not decoration; they are the canvas.
 - **Do** use card-as-window for every card — translucent, 1px cloud-tinted border, soft shadow, no fill that obscures the clouds.
-- **Do** use a single display weight (Rammetto One 400). Never bold the display.
+- **Do** use Space Grotesk for headings/labels, Inter for body, and Fraunces italic only for a single accent word in a headline.
 - **Do** cap body copy at 65–75 characters per line. The wider it goes, the more the eye loses its place.
 - **Do** use the per-service color as accent — 10% of a surface or less. Cobalt, marigold, and the service colors are seasoning.
 - **Do** honor `prefers-reduced-motion`. Hero halos, scroll transitions, and the typewriter effect all collapse to static.
@@ -284,7 +304,7 @@ Cobalt and Marigold double as the Web and Mobile service colors respectively. Th
 - **Don't** ship placeholder boxes that say "Replace with screenshot or mockup." A studio that sells visual work should ship the visuals, or remove the slot.
 - **Don't** ship identical card grids. The category-reflex check: a six-card grid of services is the first training reflex; rework the layout until it isn't.
 - **Don't** ship the agency-speak anti-references listed in `PRODUCT.md`: "we deliver excellence," "trusted by 10,000+ companies," "unlimited revisions," "supercharge your workflow," "we don't just X, we Y."
-- **Don't** ship the editorial-typographic reflex. The brand is not a magazine; do not default to display-italic + small-mono + ruled-separators.
+- **Don't** ship full-line italic display or Fraunces on body copy. Accent italic is one word inside a headline only.
 - **Don't** ship em dashes. Use commas, colons, semicolons, periods, parentheses, or `--`.
 
 ---

@@ -52,17 +52,14 @@ const featureShowcase: FeatureShowcaseItem[] = (project.features || []).map((f) 
 ---
 
 <ProjectLayout title={`${project.name} — Baseet Studio`} description={project.tagline} slug={project.slug} projectColor={project.color} projectGradient={project.gradient} projectName={project.name} projectIconClass={project.iconClass} projectNavItems={project.navItems} projectNavMeta={project.navMetaItems} lang={lang}>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/src/styles/projects/moneybox.css" />
+<link rel="stylesheet" href="/src/styles/projects/moneybox.css" />
 
-  <main class="moneybox-main" style="font-family:'DM Sans',sans-serif;">
+  <main class="moneybox-main" style="font-family: var(--font-body);">
     <section class="moneybox-hero">
       <div class="moneybox-hero__grid">
         <div>
           <p style={`font-size:0.9rem;font-weight:600;color:${project.color};margin:0 0 1rem;`}>{project.tagline}</p>
-          <h1 class="moneybox-hero__title" style="font-family:'Outfit',sans-serif;" data-animate="fade-up">{project.hero.title}</h1>
+          <h1 class="moneybox-hero__title" style="font-family: var(--font-display);" data-animate="fade-up">{project.hero.title}</h1>
           <p class="moneybox-hero__subtitle" data-animate="fade-up">{project.hero.subtitle}</p>
           <div class="moneybox-hero__ctas" data-animate="fade-up">
             <a href="/projects/moneybox/download/" class="cta-btn--primary" style={`background:${project.gradient};`}>
@@ -75,7 +72,7 @@ const featureShowcase: FeatureShowcaseItem[] = (project.features || []).map((f) 
         </div>
         <div class="moneybox-hero__card" data-animate="fade-up">
           <div class="moneybox-hero__card-label">Emergency fund</div>
-          <div class="moneybox-hero__card-value" style="font-family:'Outfit',sans-serif;">$3,400</div>
+          <div class="moneybox-hero__card-value" style="font-family: var(--font-display);">$3,400</div>
           <div class="moneybox-hero__card-bar">
             <div class="moneybox-hero__card-bar-fill"></div>
           </div>
@@ -93,14 +90,14 @@ const featureShowcase: FeatureShowcaseItem[] = (project.features || []).map((f) 
 
     <section class="moneybox-section">
       <div class="moneybox-section__inner">
-        <h2 class="moneybox-section-title" style="font-family:'Outfit',sans-serif;" data-animate="fade-up">Built for clarity</h2>
+        <h2 class="moneybox-section-title" style="font-family: var(--font-display);" data-animate="fade-up">Built for clarity</h2>
         <div class="moneybox-bento moneybox-bento--pillars">
           {bentoItems.map((item) => (
             <div class={`moneybox-bento__card${item.wide ? ' moneybox-bento__card--wide' : ''}`} data-animate="fade-up">
               <div class="moneybox-bento__thumb">
                 <FeatureMedia label={item.mediaLabel} variant="mobile" compact />
               </div>
-              <h3 style="font-family:'Outfit',sans-serif;">{item.title}</h3>
+              <h3 style="font-family: var(--font-display);">{item.title}</h3>
               <p>{item.desc}</p>
             </div>
           ))}
@@ -112,13 +109,13 @@ const featureShowcase: FeatureShowcaseItem[] = (project.features || []).map((f) 
       <div class="moneybox-section__inner">
         <div class="moneybox-pin">
           <div class="moneybox-pin__title-wrap" data-moneybox-pin-title>
-            <h2 class="moneybox-section-title" style="font-family:'Outfit',sans-serif;text-align:left;margin-bottom:1rem;">Watch your savings grow</h2>
+            <h2 class="moneybox-section-title" style="font-family: var(--font-display);text-align:left;margin-bottom:1rem;">Watch your savings grow</h2>
             <p style="color:var(--muted-text);line-height:1.7;margin:0;">Set goals, track progress, and stay motivated with visual charts.</p>
           </div>
           <div class="moneybox-pin__goals" data-moneybox-pin-content>
             {savingsGoals.map((goal) => (
               <div class="moneybox-pin__goal" data-animate="fade-up">
-                <h4 style="font-family:'Outfit',sans-serif;">{goal.name}</h4>
+                <h4 style="font-family: var(--font-display);">{goal.name}</h4>
                 <p>{goal.progress}</p>
               </div>
             ))}
@@ -136,16 +133,16 @@ const featureShowcase: FeatureShowcaseItem[] = (project.features || []).map((f) 
         id="features"
         heading="Everything you need to stay on track"
         lede="Six features that make daily money management feel simple — not like spreadsheet archaeology."
-        fontHeading="Outfit"
+        fontHeading="Space Grotesk"
       />
     )}
 
     <section class="moneybox-section">
       <div class="moneybox-section__inner">
-        <h2 class="moneybox-section-title" style="font-family:'Outfit',sans-serif;">MoneyBox vs spreadsheets</h2>
+        <h2 class="moneybox-section-title" style="font-family: var(--font-display);">MoneyBox vs spreadsheets</h2>
         <div class="moneybox-compare">
           <div class="moneybox-compare__col">
-            <h4 style="font-family:'Outfit',sans-serif;">MoneyBox</h4>
+            <h4 style="font-family: var(--font-display);">MoneyBox</h4>
             <ul>
               <li>Mobile-first daily logging</li>
               <li>Visual goal progress</li>
@@ -154,7 +151,7 @@ const featureShowcase: FeatureShowcaseItem[] = (project.features || []).map((f) 
             </ul>
           </div>
           <div class="moneybox-compare__col">
-            <h4 style="font-family:'Outfit',sans-serif;">Spreadsheets</h4>
+            <h4 style="font-family: var(--font-display);">Spreadsheets</h4>
             <ul>
               <li>Manual formula upkeep</li>
               <li>No mobile nudges</li>
@@ -169,7 +166,7 @@ const featureShowcase: FeatureShowcaseItem[] = (project.features || []).map((f) 
     {project.faq && project.faq.length > 0 && (
       <section class="moneybox-section" id="faq">
         <div class="moneybox-section__inner" style="max-width:40rem;">
-          <h2 class="moneybox-section-title" style="font-family:'Outfit',sans-serif;">FAQ</h2>
+          <h2 class="moneybox-section-title" style="font-family: var(--font-display);">FAQ</h2>
           <div style="display:flex;flex-direction:column;gap:0.75rem;">
             {project.faq.map((item) => (
               <ProjectFAQ question={item.question} answer={item.answer} projectColor={project.color} />

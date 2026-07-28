@@ -27,8 +27,58 @@
       "src/pages/projects/[slug]/[page].astro",
       "src/components/projects/previews/**",
       "src/styles/previews/**",
-      "src/scripts/previews/**"
+      "src/scripts/previews/**",
+      "src/layouts/Base.astro",
+      "src/components/home/Highlights.astro",
+      "src/components/home/Features.astro",
+      "src/components/home/ProximityProjects.astro",
+      "src/components/home/Team.astro",
+      "src/components/home/Clients.astro",
+      "src/styles/profile-card.css"
     ],
-    "ignoreValues": []
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "space grotesk",
+        "reason": "User-specified site typography system",
+        "createdAt": "2026-07-28T06:40:42.014Z"
+      },
+      {
+        "rule": "overused-font",
+        "value": "fraunces",
+        "reason": "User-specified site typography system",
+        "createdAt": "2026-07-28T06:40:42.081Z"
+      },
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "reason": "User-specified site typography system",
+        "createdAt": "2026-07-28T06:40:42.147Z"
+      },
+      {
+        "rule": "design-system-radius",
+        "value": "4px",
+        "reason": "Documented as rounded.tight in DESIGN.md; pre-existing skip-link radius",
+        "createdAt": "2026-07-28T06:42:49.544Z"
+      },
+      {
+        "rule": "design-system-radius",
+        "value": "50px",
+        "reason": "Documented as rounded.soft in DESIGN.md; pre-existing pill radius",
+        "createdAt": "2026-07-28T06:42:49.639Z"
+      },
+      {
+        "rule": "design-system-radius",
+        "value": "22px",
+        "reason": "Boarding-pass ticket silhouette radius; typography-only pass must not change layout",
+        "createdAt": "2026-07-28T06:44:27.915Z"
+      },
+      {
+        "rule": "design-system-radius",
+        "value": "8px",
+        "reason": "Ticket detail icon radius; typography-only pass must not change layout",
+        "createdAt": "2026-07-28T06:44:27.991Z"
+      }
+    ]
   }
 }

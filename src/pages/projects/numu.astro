@@ -48,17 +48,14 @@ const featureShowcase: FeatureShowcaseItem[] = (project.features || []).map((f) 
 ---
 
 <ProjectLayout title={`${project.name} — Baseet Studio`} description={project.tagline} slug={project.slug} projectColor={project.color} projectGradient={project.gradient} projectName={project.name} projectIconClass={project.iconClass} projectNavItems={project.navItems} projectNavMeta={project.navMetaItems} lang={lang}>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700;800&family=Nunito:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/src/styles/projects/numu.css" />
+<link rel="stylesheet" href="/src/styles/projects/numu.css" />
 
-  <main class="numu-main" style="font-family:'Nunito',sans-serif;">
+  <main class="numu-main" style="font-family: var(--font-body);">
     <section class="numu-hero">
       <div class="numu-hero__grid">
         <div class="numu-hero__copy">
           <p style={`font-size:0.9rem;font-weight:600;color:${project.color};margin:0 0 1rem;`}>{project.tagline}</p>
-          <h1 class="numu-hero__title" style="font-family:'Quicksand',sans-serif;" data-animate="fade-up">
+          <h1 class="numu-hero__title" style="font-family: var(--font-display);" data-animate="fade-up">
             Track habits, goals, and <span class="numu-hero__inline-pill" aria-hidden="true"></span> health — privately.
           </h1>
           <p class="numu-hero__subtitle" data-animate="fade-up">{project.hero.subtitle}</p>
@@ -91,7 +88,7 @@ const featureShowcase: FeatureShowcaseItem[] = (project.features || []).map((f) 
 
     <section class="numu-section">
       <div class="numu-section__inner">
-        <h2 class="numu-section-title" style="font-family:'Quicksand',sans-serif;" data-animate="fade-up">
+        <h2 class="numu-section-title" style="font-family: var(--font-display);" data-animate="fade-up">
           Everything you need to grow
         </h2>
         <div class="numu-bento numu-bento--pillars">
@@ -110,7 +107,7 @@ const featureShowcase: FeatureShowcaseItem[] = (project.features || []).map((f) 
 
     <section class="numu-section">
       <div class="numu-section__inner numu-scrub">
-        <p class="numu-scrub__text" style="font-family:'Quicksand',sans-serif;" data-numu-scrub>
+        <p class="numu-scrub__text" style="font-family: var(--font-display);" data-numu-scrub>
           Your growth belongs to you. No account required. No cloud sync. No ads. No trackers. Just you and your data on your device.
         </p>
       </div>
@@ -125,13 +122,13 @@ const featureShowcase: FeatureShowcaseItem[] = (project.features || []).map((f) 
         id="features"
         heading="Features built for daily practice"
         lede="Six modules that work together — habits, health, faith, and privacy at the center."
-        fontHeading="Quicksand"
+        fontHeading="Space Grotesk"
       />
     )}
 
     <section class="numu-section">
       <div class="numu-section__inner">
-        <h2 class="numu-section-title" style="font-family:'Quicksand',sans-serif;">My Day at a glance</h2>
+        <h2 class="numu-section-title" style="font-family: var(--font-display);">My Day at a glance</h2>
         <div class="numu-stack" data-numu-stack>
           {stackCards.map((card, i) => (
             <div class="numu-stack__card" data-numu-stack-card style={`top:${i * 28}px;`}>
@@ -150,7 +147,7 @@ const featureShowcase: FeatureShowcaseItem[] = (project.features || []).map((f) 
     {project.faq && project.faq.length > 0 && (
       <section class="numu-section" id="faq">
         <div class="numu-section__inner" style="max-width:40rem;">
-          <h2 class="numu-section-title" style="font-family:'Quicksand',sans-serif;">FAQ</h2>
+          <h2 class="numu-section-title" style="font-family: var(--font-display);">FAQ</h2>
           <div style="display:flex;flex-direction:column;gap:0.75rem;">
             {project.faq.map((item) => (
               <ProjectFAQ question={item.question} answer={item.answer} projectColor={project.color} />

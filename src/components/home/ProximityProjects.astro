@@ -51,12 +51,13 @@ const { projects, lang = 'en' } = Astro.props
   }
 
   .px__heading {
-    font-family: var(--font-title);
-    font-size: clamp(1.8rem, 3.6vw, 2.6rem);
+    font-family: var(--font-display);
+    font-size: var(--type-h2);
+    font-weight: 700;
     text-align: center;
-    margin: 0 0 40px;
+    margin: 0 0 52px;
     color: var(--heading-text);
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
   }
 
   .px__grid {
@@ -112,8 +113,8 @@ const { projects, lang = 'en' } = Astro.props
   }
 
   .px__label {
-    font-family: var(--font-body);
-    font-size: 0.9rem;
+    font-family: var(--font-display);
+    font-size: var(--type-body-sm);
     font-weight: 600;
     text-align: center;
     line-height: 1.25;

@@ -66,13 +66,10 @@ const featureDetails = [
   projectNavMeta={project.navMetaItems}
   lang="en"
 >
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/src/styles/projects/moneybox.css" />
+<link rel="stylesheet" href="/src/styles/projects/moneybox.css" />
 
   <section class="moneybox-subhero">
-    <h1 class="moneybox-subhero__title" style="font-family:'Outfit',sans-serif;" data-animate="fade-up">Every feature, explained</h1>
+    <h1 class="moneybox-subhero__title" style="font-family: var(--font-display);" data-animate="fade-up">Every feature, explained</h1>
     <p class="moneybox-subhero__lede" data-animate="fade-up">
       MoneyBox keeps personal finance simple — budgets, goals, and reports without the clutter of a full banking app.
     </p>
@@ -81,7 +78,7 @@ const featureDetails = [
   {featureDetails.map((feature, i) => (
     <div class={`moneybox-feature-block${i % 2 === 1 ? ' moneybox-feature-block--reverse' : ''}`} data-animate="fade-up">
       <div class="moneybox-feature-block__copy">
-        <h2 style="font-family:'Outfit',sans-serif;">{feature.title}</h2>
+        <h2 style="font-family: var(--font-display);">{feature.title}</h2>
         <p>{feature.description}</p>
         <ul>
           {feature.bullets.map((b) => (

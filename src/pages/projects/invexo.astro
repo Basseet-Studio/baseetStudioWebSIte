@@ -24,14 +24,12 @@ const linkedClients = getClientsForProject(slug)
 ---
 
 <ProjectLayout title={`${project.name} — Baseet Studio`} description={project.tagline} slug={project.slug} projectColor={project.color} projectGradient={project.gradient} projectName={project.name} projectIconClass={project.iconClass} projectNavItems={project.navItems} projectNavMeta={project.navMetaItems} lang={lang}>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- P3 audit #33 — zaryn.json declared `fontWeights: "400,500,700"` but the
+
+<!-- P3 audit #33 — zaryn.json declared `fontWeights: "400,500,700"` but the
        hero h1 used `font-weight:800`, which the browser synthesised as a fake
        800 from 700. The font-weights list now includes 600 and 800 so the
        declared weights actually load. -->
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/src/styles/projects/invexo.css" />
+<link rel="stylesheet" href="/src/styles/projects/invexo.css" />
 
   <!-- Split-Screen Hero with Dashboard Mockup
        The coloured background wash now lives in shared.css
@@ -49,7 +47,7 @@ const linkedClients = getClientsForProject(slug)
               <Icon name={resolveIcon(project.iconClass).name} size={36} color="white" />
             </div>
             <div>
-              <h1 style="font-size:2.8rem;font-weight:800;color:var(--heading-text);font-family:'Space Grotesk',sans-serif;line-height:1.1;">{project.name}</h1>
+              <h1 style="font-size:2.8rem;font-weight:800;color:var(--heading-text);font-family: var(--font-display);line-height:1.1;">{project.name}</h1>
               <p style={`font-size:1.3rem;font-weight:600;color:${project.color};margin-top:4px;`}>{project.tagline}</p>
             </div>
           </div>
@@ -169,7 +167,7 @@ const linkedClients = getClientsForProject(slug)
           <span style={`display:inline-block;padding:8px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);margin-bottom:16px;`}>
             {/* TODO: localise this later */ 'Features'}
           </span>
-          <h2 style="font-size:2.2rem;font-weight:700;color:#1C1917;font-family:'Space Grotesk',sans-serif;">
+          <h2 style="font-size:2.2rem;font-weight:700;color:#1C1917;font-family: var(--font-display);">
             {/* TODO: localise this later */ 'Key Features'}
           </h2>
         </div>
@@ -197,7 +195,7 @@ const linkedClients = getClientsForProject(slug)
   {project.tech && project.tech.length > 0 && (
     <section style="padding:64px 24px;background:white;">
       <div style="max-width:1200px;margin:0 auto;text-align:center;">
-        <h2 style="font-size:2rem;font-weight:700;color:#1C1917;margin-bottom:12px;font-family:'Space Grotesk',sans-serif;">
+        <h2 style="font-size:2rem;font-weight:700;color:#1C1917;margin-bottom:12px;font-family: var(--font-display);">
           {/* TODO: localise this later */ 'Built With'}
         </h2>
         <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;max-width:700px;margin:32px auto 0;">
@@ -214,7 +212,7 @@ const linkedClients = getClientsForProject(slug)
 
   {project.testimonials && project.testimonials.length > 0 && (
     <section style="padding:64px 24px;max-width:1200px;margin:0 auto;" data-animate="fade-up">
-      <h2 style="text-align:center;font-size:2rem;margin-bottom:48px;color:var(--heading-text);font-family:'Space Grotesk',sans-serif;">
+      <h2 style="text-align:center;font-size:2rem;margin-bottom:48px;color:var(--heading-text);font-family: var(--font-display);">
         {/* TODO: localise this later */ 'What People Say'}
       </h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(340px, 1fr));gap:24px;">
@@ -227,7 +225,7 @@ const linkedClients = getClientsForProject(slug)
 
   {project.faq && project.faq.length > 0 && (
     <section style="padding:64px 24px;max-width:800px;margin:0 auto;" data-animate="fade-up">
-      <h2 style="text-align:center;font-size:2rem;margin-bottom:48px;color:var(--heading-text);font-family:'Space Grotesk',sans-serif;">
+      <h2 style="text-align:center;font-size:2rem;margin-bottom:48px;color:var(--heading-text);font-family: var(--font-display);">
         {/* TODO: localise this later */ 'FAQ'}
       </h2>
       <div style="display:flex;flex-direction:column;gap:12px;">

@@ -192,22 +192,17 @@ const jsonLdWebSite = {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico?v=2" />
 
-    <!-- Google Fonts — Rammetto One (titles), Rambla (body), Syne (display,
-         used by the home hero — taken from the
-         docs/refrences/stitch stuff/tickert-info.html landing page),
-         JetBrains Mono (small labels — also from the ticket reference),
-         Amiri Quran (Arabic, future).
-         Loaded with display=swap so content stays readable during font
-         load. Amiri Quran is preloaded for the future /ar/ mirror even
-         though no Arabic content ships yet — the [lang="ar"] /
-         [dir="rtl"] selectors in global.css will pick it up as soon as
-         the Arabic pages are added. -->
+    <!-- Google Fonts — Space Grotesk (display), Fraunces (accent), Inter (body).
+         Locale script faces for ar/ur/hi. One link per family so loaders and
+         tooling can see the three-face system clearly. -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Noto+Nastaliq+Urdu:wght@400;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Caveat:wght@500;600;700&family=JetBrains+Mono:wght@400;500&family=Rambla:wght@400;500;600;700&family=Rammetto+One&family=Syne:wght@400;600;700;800&display=swap"
-      rel="stylesheet"
-    >
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500;1,9..144,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <ClientRouter />
 

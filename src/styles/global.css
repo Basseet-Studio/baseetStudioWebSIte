@@ -73,23 +73,28 @@
     --card-window-radius: 24px;
     --card-window-radius-tight: 18px;
 
-    /* Type system — Rammetto One (titles), Rambla (body), Syne (display,
-     used by the home hero + the airline ticket section — taken from
-     docs/refrences/stitch stuff/tickert-info.html), JetBrains Mono (small
-     mono labels — also from the ticket reference), Amiri Quran (Arabic,
-     future).
-     Tokens live here so component styles and inline styles can reach for
-     the same fonts. Amiri Quran is reserved for the future /ar/ mirror —
-     the [dir="rtl"] / [lang="ar"] selectors below swap the whole stack to
-     it as soon as Arabic content lands. */
-    --font-title: "Rammetto One", system-ui, -apple-system, sans-serif;
-    --font-body: "Rambla", system-ui, -apple-system, sans-serif;
-    --font-display: "Syne", system-ui, -apple-system, sans-serif;
-    --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
-    --font-handwriting: "Caveat", "Kalam", cursive;
+    /* Type system — Space Grotesk (display/headings/labels), Fraunces
+     (single-word accents), Inter (body). Locale script faces override
+     --font-body / --font-display / --font-title under [lang=ar|ur|hi]. */
+    --font-display: "Space Grotesk", system-ui, -apple-system, sans-serif;
+    --font-accent: "Fraunces", "Times New Roman", serif;
+    --font-body: "Inter", system-ui, -apple-system, sans-serif;
+    --font-title: var(--font-display);
+    --font-mono: var(--font-display);
+    --font-handwriting: var(--font-accent);
     --font-arabic: "Amiri Quran", "Amiri", "Noto Naskh Arabic", serif;
     --font-urdu: "Noto Nastaliq Urdu", "Amiri Quran", "Noto Naskh Arabic", serif;
-    --font-hindi: "Noto Sans Devanagari", "Rambla", system-ui, sans-serif;
+    --font-hindi: "Noto Sans Devanagari", "Inter", system-ui, sans-serif;
+
+    /* Type scale */
+    --type-eyebrow: 12px;
+    --type-caption: 13px;
+    --type-body: 17px;
+    --type-body-sm: 14px;
+    --type-lead: clamp(19px, 1.4vw + 14px, 23px);
+    --type-h3: clamp(24px, 2vw + 14px, 30px);
+    --type-h2: clamp(34px, 3.4vw + 14px, 52px);
+    --type-h1: clamp(56px, 7vw + 14px, 118px);
 }
 
 [data-theme="night"] {
@@ -212,6 +217,9 @@
 body {
     margin: 0;
     font-family: var(--font-body);
+    font-size: var(--type-body);
+    font-weight: 400;
+    line-height: 1.6;
     background: transparent;
     color: var(--text-primary);
     -webkit-font-smoothing: antialiased;
@@ -231,41 +239,80 @@ h6,
 .h5,
 .h6 {
     font-family: var(--font-title);
-    font-weight: 400; /* Rammetto One is a single-weight display face */
+    font-weight: 700;
     letter-spacing: -0.01em;
     color: var(--heading-text);
 }
 
-h1 {
-    font-size: 2.5rem;
+h1,
+.h1 {
+    font-size: var(--type-h1);
+    font-weight: 700;
+    line-height: 0.98;
+    letter-spacing: -0.03em;
 }
-h2 {
-    font-size: 2rem;
+h2,
+.h2 {
+    font-size: var(--type-h2);
+    font-weight: 700;
+    letter-spacing: -0.02em;
 }
-h3 {
-    font-size: 1.5rem;
+h3,
+.h3 {
+    font-size: var(--type-h3);
+    font-weight: 600;
+    letter-spacing: -0.01em;
 }
-h4 {
-    font-size: 1.25rem;
+h4,
+.h4 {
+    font-size: var(--type-body);
+    font-weight: 600;
 }
 
-/* Future Arabic mirror: when the /ar/ pages are added they will set
-   <html lang="ar" dir="rtl">, which triggers the selectors below to swap
-   the type stack to Amiri Quran. Until then, nothing in the site sets those
-   attributes on the root <html>, so this block is dormant. */
+/* Accent word utility — Fraunces italic for single emphasized words
+   inside headlines only. Never use for full sentences or body copy. */
+.type-accent {
+    font-family: var(--font-accent);
+    font-style: italic;
+    font-weight: 500;
+    font-optical-sizing: auto;
+    font-synthesis: none;
+}
+
+/* Locale token overrides — reassign the shared tokens so components
+   using var(--font-display) / var(--font-body) follow the active script. */
+[lang="ar"],
+[dir="rtl"] {
+    --font-body: var(--font-arabic);
+    --font-display: var(--font-arabic);
+    --font-title: var(--font-arabic);
+    --font-mono: var(--font-arabic);
+    --font-accent: var(--font-arabic);
+}
+
+[lang="ur"] {
+    --font-body: var(--font-urdu);
+    --font-display: var(--font-urdu);
+    --font-title: var(--font-urdu);
+    --font-mono: var(--font-urdu);
+    --font-accent: var(--font-urdu);
+}
+
+[lang="hi"] {
+    --font-body: var(--font-hindi);
+    --font-display: var(--font-hindi);
+    --font-title: var(--font-hindi);
+    --font-mono: var(--font-hindi);
+    --font-accent: var(--font-hindi);
+}
+
 [lang="ar"] body,
 [lang="ur"] body,
 [dir="rtl"] body {
-    font-family: var(--font-arabic);
     line-height: 1.8;
 }
 
-[lang="ur"] body {
-    font-family: var(--font-urdu);
-}
-
 [lang="hi"] body {
-    font-family: var(--font-hindi);
     line-height: 1.7;
 }
 
@@ -287,18 +334,7 @@ h4 {
 [dir="rtl"] h4,
 [dir="rtl"] h5,
 [dir="rtl"] h6 {
-    font-family: var(--font-arabic);
-    font-weight: 400;
     letter-spacing: 0;
-}
-
-[lang="ur"] h1,
-[lang="ur"] h2,
-[lang="ur"] h3,
-[lang="ur"] h4,
-[lang="ur"] h5,
-[lang="ur"] h6 {
-    font-family: var(--font-urdu);
 }
 
 [lang="hi"] h1,
@@ -307,7 +343,6 @@ h4 {
 [lang="hi"] h4,
 [lang="hi"] h5,
 [lang="hi"] h6 {
-    font-family: var(--font-hindi);
     font-weight: 600;
     letter-spacing: 0;
 }

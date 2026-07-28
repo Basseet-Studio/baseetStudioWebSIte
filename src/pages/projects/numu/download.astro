@@ -31,13 +31,10 @@ const platforms = [
   projectNavMeta={project.navMetaItems}
   lang="en"
 >
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700;800&family=Nunito:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/src/styles/projects/numu.css" />
+<link rel="stylesheet" href="/src/styles/projects/numu.css" />
 
   <section class="numu-subhero">
-    <h1 class="numu-subhero__title" style="font-family:'Quicksand',sans-serif;" data-animate="fade-up">Download Numu</h1>
+    <h1 class="numu-subhero__title" style="font-family: var(--font-display);" data-animate="fade-up">Download Numu</h1>
     <p class="numu-subhero__lede" data-animate="fade-up">
       Get early access on iOS via TestFlight or download the Android build directly.
     </p>
@@ -47,7 +44,7 @@ const platforms = [
     {platforms.map((p) => (
       <div class="numu-download-card" data-animate="fade-up">
         <Icon name={p.icon} size={40} color={project.color} />
-        <h3 style="font-family:'Quicksand',sans-serif;margin:1rem 0 0.25rem;">{p.name}</h3>
+        <h3 style="font-family: var(--font-display);margin:1rem 0 0.25rem;">{p.name}</h3>
         <p style="font-size:0.9rem;color:var(--muted-text);margin:0;">{p.note}</p>
         {p.url ? (
           <a href={p.url} target="_blank" rel="noopener noreferrer">

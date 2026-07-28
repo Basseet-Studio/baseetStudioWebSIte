@@ -116,11 +116,7 @@ const next = siblings[0]
   projectNavMeta={project.navMetaItems}
   lang="en"
 >
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- Subpage hero: transparent background so the shared `.project-hero-wash`
+<!-- Subpage hero: transparent background so the shared `.project-hero-wash`
        (added by Project.astro) shows through. The wash is theme-aware and
        fades out gradually as the user scrolls, so we don't need a
        hard-coded light/dark gradient on this section. -->
@@ -359,7 +355,7 @@ const next = siblings[0]
     margin-bottom: 8px;
   }
   .subpage-hero__title {
-    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-family: var(--font-display);
     font-size: clamp(2rem, 4.5vw, 3rem);
     font-weight: 700;
     line-height: 1.1;
@@ -431,7 +427,7 @@ const next = siblings[0]
     font-weight: 700;
     margin: 0 0 8px;
     color: var(--heading-text, #1C1917);
-    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-family: var(--font-display);
   }
   .subpage-bento__card p {
     font-size: 0.92rem;
@@ -488,7 +484,7 @@ const next = siblings[0]
   /* Tech chips */
   .subpage-tech { margin-top: 56px; text-align: center; }
   .subpage-tech h3 {
-    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-family: var(--font-display);
     font-size: 1.4rem;
     font-weight: 700;
     margin: 0 0 20px;
@@ -510,7 +506,7 @@ const next = siblings[0]
 
   /* Prose (terms) */
   .subpage-prose h2 {
-    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-family: var(--font-display);
     font-size: 1.4rem;
     font-weight: 700;
     margin: 40px 0 12px;
@@ -532,7 +528,7 @@ const next = siblings[0]
     border: 1px solid;
   }
   .subpage-pro-card h2 {
-    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-family: var(--font-display);
     font-size: 1.6rem;
     font-weight: 700;
     margin: 16px 0 8px;
@@ -551,7 +547,7 @@ const next = siblings[0]
     margin: 0 auto;
   }
   .subpage-empty h2 {
-    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-family: var(--font-display);
     font-size: 1.5rem;
     font-weight: 700;
     margin: 16px 0 8px;

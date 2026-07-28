@@ -40,13 +40,8 @@ const titleHtml = parseBold(data.title)
 </section>
 
 <style>
-  /* Hero — font + layout borrowed from
-     docs/refrences/stitch stuff/tickert-info.html (the "Elevate Your
-     Vision" landing page). That reference uses Syne at display sizes
-     with a tight letter-spacing (-0.02em), a strong italic accent line,
-     and a small uppercase label-mono eyebrow above. We keep our own copy
-     and the existing typewriter-on-strong typing effect — only the
-     type stack and the editorial spacing come from the reference. */
+  /* Hero — Space Grotesk display + Fraunces accent word + Inter lead.
+     Typewriter still targets strong; only the type stack/spacing change. */
   .hero {
     min-height: 100vh;
     display: flex;
@@ -63,37 +58,37 @@ const titleHtml = parseBold(data.title)
     width: 100%;
   }
 
-  /* Eyebrow — uppercase tracked label sitting above the headline, in
-     the same letter-spacing pattern as the reference's
-     "Established 2024" chip. */
   .hero__eyebrow {
     display: inline-block;
-    margin: 0 0 18px;
+    margin: 0 0 23px;
     padding: 0 0 0 16px;
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    font-weight: 500;
+    font-family: var(--font-display);
+    font-size: var(--type-eyebrow);
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.28em;
+    letter-spacing: 0.22em;
     color: var(--muted-text);
   }
 
   .hero__title {
     font-family: var(--font-display);
-    font-size: clamp(3rem, 8vw, 5.5rem);
-    font-weight: 800;
+    font-size: var(--type-h1);
+    font-weight: 700;
     color: var(--heading-text);
-    margin: 0 0 24px;
-    line-height: 0.96;
-    letter-spacing: -0.035em;
+    margin: 0 0 28px;
+    line-height: 0.98;
+    letter-spacing: -0.03em;
   }
 
   .hero__title :global(strong) {
-    font-family: var(--font-display);
-    font-weight: 800;
+    font-family: var(--font-accent);
+    font-style: italic;
+    font-weight: 500;
+    font-optical-sizing: auto;
+    font-synthesis: none;
     color: var(--color-primary);
     visibility: hidden;
-    letter-spacing: -0.035em;
+    letter-spacing: 0;
   }
 
   .hero__title :global(.typewriter-cursor) {
@@ -112,11 +107,12 @@ const titleHtml = parseBold(data.title)
 
   .hero__subtitle {
     font-family: var(--font-body);
-    font-size: clamp(1rem, 1.6vw, 1.2rem);
+    font-size: var(--type-lead);
+    font-weight: 400;
     color: var(--muted-text);
     max-width: 560px;
-    margin: 0 0 48px;
-    line-height: 1.55;
+    margin: 0 0 38px;
+    line-height: 1.5;
   }
 
   .hero__cta {
@@ -130,9 +126,9 @@ const titleHtml = parseBold(data.title)
     align-items: center;
     gap: 10px;
     padding: 16px 32px;
-    border-radius: 999px;
+    border-radius: 9999px;
     font-family: var(--font-display);
-    font-size: 0.95rem;
+    font-size: var(--type-body-sm);
     font-weight: 600;
     letter-spacing: 0.005em;
     text-decoration: none;
@@ -147,10 +143,11 @@ const titleHtml = parseBold(data.title)
   }
 
   .hero__btn-label-mono {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
+    font-family: var(--font-display);
+    font-size: var(--type-eyebrow);
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.22em;
     color: var(--muted-text);
     padding-bottom: 4px;
     border-bottom: 1px solid var(--divider-color);

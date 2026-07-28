@@ -202,20 +202,32 @@
     },
     "typographyMeta": {
       "display": {
-        "displayName": "Rammetto One",
-        "purpose": "Display headings and section hero h1. Single weight, never bolded. Carries the page's typographic statement."
+        "displayName": "Space Grotesk",
+        "purpose": "All headings, nav, buttons, numbers, and labels. Weights 400–700."
+      },
+      "accent": {
+        "displayName": "Fraunces",
+        "purpose": "Single emphasized word inside a headline only. Italic, optical sizing on, weights 400–600."
       },
       "body": {
-        "displayName": "Rambla",
-        "purpose": "All body, subtitles, paragraphs, and inline text. Four weights (400/500/600/700). Quiet and warm."
+        "displayName": "Inter",
+        "purpose": "Paragraphs, lead text, and captions. Weights 400/500/600."
       },
       "body-strong": {
-        "displayName": "Rambla Bold",
-        "purpose": "Headings and emphasized inline copy. Pairs with Rammetto One for the studio's two-tier hierarchy."
+        "displayName": "Inter Semibold",
+        "purpose": "Strong body and caption labels. Pairs with Space Grotesk for hierarchy."
       },
       "arabic": {
         "displayName": "Amiri Quran",
-        "purpose": "All text when [lang=ar] or [dir=rtl] is set on <html>. Activates automatically; no per-component switch."
+        "purpose": "Script face when [lang=ar] or [dir=rtl] reassigns --font-body / --font-display."
+      },
+      "urdu": {
+        "displayName": "Noto Nastaliq Urdu",
+        "purpose": "Script face when [lang=ur] reassigns type tokens."
+      },
+      "hindi": {
+        "displayName": "Noto Sans Devanagari",
+        "purpose": "Script face when [lang=hi] reassigns type tokens."
       }
     },
     "shadows": [
@@ -362,7 +374,7 @@
     "keyCharacteristics": [
       "Cloud-first: every foreground decision is made to belong in the same air as the Vanta clouds, not pasted on top of them.",
       "Translucent, never heavy: surfaces are lightly tinted and minimally frosted. The clouds show through.",
-      "Type carries the hierarchy: display headings (Rammetto One) do the work. Body (Rambla) stays quiet.",
+      "Type carries the hierarchy: display headings (Space Grotesk) do the work. Body (Inter) stays quiet. Fraunces italic marks a single accent word.",
       "Per-service color is accent, not armor: the six service colors are used as small highlights, not full-card fills.",
       "Spacious and warm: generous padding, generous line height, generous color. The page should feel easy to be in."
     ],
@@ -393,13 +405,13 @@
         "section": "colors"
       },
       {
-        "name": "The Single-Weight Display Rule",
-        "body": "Rammetto One exists in one weight. The page does not font-weight: 700 on display elements. The single weight IS the emphasis. Pairing Rammetto One 400 with bold markup is a typo; remove the markup.",
+        "name": "The Three-Face Rule",
+        "body": "Only Space Grotesk, Fraunces, and Inter appear on Latin pages. Locale script faces override the same tokens for ar/ur/hi.",
         "section": "typography"
       },
       {
-        "name": "The No-Editorial-Italic Rule",
-        "body": "No italic display type. No italic body. The voice is concrete, not literary. Italics read as costume.",
+        "name": "The Accent-Word Rule",
+        "body": "Fraunces appears only on a single emphasized word inside a headline. Never on a full line, sentence, or paragraph.",
         "section": "typography"
       },
       {
@@ -421,7 +433,7 @@
     "dos": [
       "Do let the Vanta clouds be the page's primary visual. The clouds are not decoration; they are the canvas.",
       "Do use card-as-window for every card: translucent, 1px cloud-tinted border, soft shadow, no fill that obscures the clouds.",
-      "Do use a single display weight (Rammetto One 400). Never bold the display.",
+      "Do use Space Grotesk for headings/labels, Inter for body, and Fraunces italic only for a single accent word in a headline.",
       "Do cap body copy at 65 to 75 characters per line. The wider it goes, the more the eye loses its place.",
       "Do use the per-service color as accent: 10% of a surface or less. Cobalt, marigold, and the service colors are seasoning.",
       "Do honor prefers-reduced-motion. Hero halos, scroll transitions, and the typewriter effect all collapse to static.",

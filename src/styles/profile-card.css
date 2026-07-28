@@ -234,7 +234,8 @@
 
 .pc-name {
   margin: 0;
-  font-size: 1.05rem;
+  font-family: var(--font-display);
+  font-size: var(--type-body);
   font-weight: 700;
   line-height: 1.25;
   min-height: calc(1.25em * 2);
@@ -250,7 +251,8 @@
 
 .pc-role {
   margin: 0;
-  font-size: 0.8rem;
+  font-family: var(--font-body);
+  font-size: var(--type-body-sm);
   font-weight: 500;
   line-height: 1.35;
   min-height: calc(1.35em * 3);

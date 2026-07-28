@@ -60,13 +60,10 @@ const featureDetails = [
   projectNavMeta={project.navMetaItems}
   lang="en"
 >
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700;800&family=Nunito:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/src/styles/projects/numu.css" />
+<link rel="stylesheet" href="/src/styles/projects/numu.css" />
 
   <section class="numu-subhero">
-    <h1 class="numu-subhero__title" style="font-family:'Quicksand',sans-serif;" data-animate="fade-up">Deep dive into Numu</h1>
+    <h1 class="numu-subhero__title" style="font-family: var(--font-display);" data-animate="fade-up">Deep dive into Numu</h1>
     <p class="numu-subhero__lede" data-animate="fade-up">
       Every module is designed around one idea: growth is a daily practice, and your data belongs to you.
     </p>
@@ -75,7 +72,7 @@ const featureDetails = [
   {featureDetails.map((feature, i) => (
     <div class={`numu-feature-block${i % 2 === 1 ? ' numu-feature-block--reverse' : ''}`} data-animate="fade-up">
       <div class="numu-feature-block__copy">
-        <h2 style="font-family:'Quicksand',sans-serif;">{feature.title}</h2>
+        <h2 style="font-family: var(--font-display);">{feature.title}</h2>
         <p>{feature.description}</p>
         <ul>
           {feature.bullets.map((b) => (
