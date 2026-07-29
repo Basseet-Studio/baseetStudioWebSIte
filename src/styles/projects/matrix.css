@@ -1,5 +1,348 @@
-/* Matrix — Futuristic Project Platform */
-/* Color & gradient come from matrix.json (`color: #06B6D4`). The
- * `ProjectLayout` wrapper sets `--project-color` and `--project-gradient`
- * inline, so this stylesheet stays empty of color overrides — the JSON
- * is the single source of truth. */
+/* Matrix — Futuristic Project Platform
+ * Color & gradient still come from matrix.json (`color: #06B6D4`) via
+ * `--project-color` / `--project-gradient`, set inline by ProjectLayout.
+ * This file stays free of hardcoded brand colors — only structure,
+ * type, and the terminal/dashboard chrome live here.
+ */
+
+/* ══════════════════════════════════════════════════════════
+   EDIT ME — typography. Swap these two stacks to change the whole
+   page's voice in one place. `--mx-mono` drives every label/tag/badge
+   ("V4.0.2-STABLE", stat labels, filenames); `--mx-display` drives
+   headlines and body copy.
+   ══════════════════════════════════════════════════════════ */
+   .project-hero--centered,
+   #matrix-page {
+     --mx-display: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+     --mx-mono: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+   
+     --mx-border: color-mix(in srgb, white 10%, transparent);
+     --mx-border-soft: color-mix(in srgb, white 6%, transparent);
+     --mx-panel: color-mix(in srgb, white 3%, transparent);
+     --mx-panel-2: color-mix(in srgb, white 5%, transparent);
+   }
+   
+   #matrix-page h1,
+   #matrix-page h2,
+   #matrix-page h3 {
+     font-family: var(--mx-display);
+     letter-spacing: -0.02em;
+   }
+   
+   #matrix-page .mx-mono {
+     font-family: var(--mx-mono);
+     letter-spacing: 0.02em;
+     text-transform: uppercase;
+   }
+   
+   /* ── Hero badge / version pill (top-left "V4.0.2-STABLE" style) ── */
+   #matrix-page .mx-badge {
+     display: inline-flex;
+     align-items: center;
+     gap: 8px;
+     padding: 6px 14px;
+     border-radius: 6px;
+     border: 1px solid var(--mx-border);
+     background: var(--mx-panel);
+     font-size: 0.72rem;
+     color: var(--muted-text);
+   }
+   #matrix-page .mx-badge .mx-dot {
+     width: 6px;
+     height: 6px;
+     border-radius: 50%;
+     background: var(--project-color);
+     box-shadow: 0 0 8px var(--project-color);
+   }
+   
+   /* ── Headline gradient word (the "EVERY PART" treatment) ──
+      EDIT ME: wrap any word(s) in <span class="mx-accent"> in the page
+      to apply the project gradient as text. */
+   #matrix-page .mx-accent {
+     background: var(--project-gradient);
+     -webkit-background-clip: text;
+     background-clip: text;
+     color: transparent;
+   }
+   
+   /* ══════════════════════════════════════════════════════════
+      Effect mount point — DotField + ShapeGrid canvases live inside
+      this container (see matrix-effects.ts). Keep it behind content
+      (z-index) and clipped to the hero.
+      ══════════════════════════════════════════════════════════ */
+   #matrix-fx {
+     position: absolute;
+     inset: 0;
+     z-index: 0;
+     overflow: hidden;
+     pointer-events: auto;
+   }
+   #matrix-page .matrix-fx-canvas {
+     position: absolute;
+     inset: 0;
+     width: 100%;
+     height: 100%;
+     display: block;
+     pointer-events: none;
+   }
+   #matrix-page .project-hero--centered > *:not(#matrix-fx) {
+     position: relative;
+     z-index: 1;
+   }
+   
+   /* ══════════════════════════════════════════════════════════
+      Dashboard preview window (mac-chrome mockup under the hero)
+      ══════════════════════════════════════════════════════════ */
+   #matrix-page .mx-window {
+     max-width: 980px;
+     margin: 56px auto 0;
+     border-radius: 14px;
+     border: 1px solid var(--mx-border);
+     background: var(--mx-panel);
+     overflow: hidden;
+     box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.6);
+   }
+   #matrix-page .mx-window-chrome {
+     display: flex;
+     align-items: center;
+     gap: 8px;
+     padding: 12px 16px;
+     border-bottom: 1px solid var(--mx-border-soft);
+   }
+   #matrix-page .mx-window-dot {
+     width: 10px;
+     height: 10px;
+     border-radius: 50%;
+   }
+   /* EDIT ME: traffic-light colors are decorative OS chrome, not brand color */
+   #matrix-page .mx-window-dot--red { background: #ff5f56; }
+   #matrix-page .mx-window-dot--yellow { background: #ffbd2e; }
+   #matrix-page .mx-window-dot--green { background: #27c93f; }
+   #matrix-page .mx-window-title {
+     margin-left: 8px;
+     font-size: 0.7rem;
+     color: var(--muted-text);
+   }
+   
+   #matrix-page .mx-window-body {
+     display: grid;
+     grid-template-columns: 220px 1fr;
+     gap: 1px;
+     background: var(--mx-border-soft);
+   }
+   @media (max-width: 720px) {
+     #matrix-page .mx-window-body { grid-template-columns: 1fr; }
+   }
+   #matrix-page .mx-panel {
+     background: var(--mx-panel);
+     padding: 20px;
+   }
+   
+   #matrix-page .mx-yield-label {
+     font-size: 0.68rem;
+     color: var(--muted-text);
+     margin-bottom: 8px;
+   }
+   #matrix-page .mx-yield-value {
+     font-size: 1.8rem;
+     font-weight: 700;
+     color: var(--project-color);
+     margin-bottom: 16px;
+   }
+   #matrix-page .mx-skeleton {
+     height: 10px;
+     border-radius: 4px;
+     background: var(--mx-panel-2);
+     margin-bottom: 8px;
+   }
+   #matrix-page .mx-skeleton:nth-child(2) { width: 80%; }
+   #matrix-page .mx-skeleton:nth-child(3) { width: 60%; }
+   
+   #matrix-page .mx-chart-title {
+     font-size: 0.75rem;
+     color: var(--muted-text);
+     margin-bottom: 16px;
+     display: flex;
+     justify-content: space-between;
+   }
+   #matrix-page .mx-bars {
+     display: flex;
+     align-items: flex-end;
+     gap: 10px;
+     height: 130px;
+     margin-bottom: 20px;
+   }
+   #matrix-page .mx-bar {
+     flex: 1;
+     border-radius: 4px 4px 0 0;
+     /* EDIT ME: alternating tone — derived from --project-color, not a new hue */
+     background: color-mix(in srgb, var(--project-color) 65%, transparent);
+   }
+   #matrix-page .mx-bar:nth-child(even) {
+     background: color-mix(in srgb, var(--project-color) 40%, white 10%);
+   }
+   
+   #matrix-page .mx-stat-row {
+     display: grid;
+     grid-template-columns: repeat(3, 1fr);
+     gap: 12px;
+   }
+   #matrix-page .mx-stat {
+     border: 1px solid var(--mx-border-soft);
+     border-radius: 8px;
+     padding: 12px 14px;
+   }
+   #matrix-page .mx-stat-label {
+     font-size: 0.65rem;
+     color: var(--muted-text);
+     margin-bottom: 6px;
+   }
+   #matrix-page .mx-stat-value {
+     font-size: 1rem;
+     font-weight: 600;
+     color: var(--heading-text);
+     display: flex;
+     align-items: center;
+     gap: 6px;
+   }
+   #matrix-page .mx-stat-value.is-optimal { color: var(--project-color); }
+   
+   /* ══════════════════════════════════════════════════════════
+      Feature cards (Unified CRM / Project PM / Fiscal Logic style)
+      ══════════════════════════════════════════════════════════ */
+   #matrix-page .mx-feature-card {
+     border: 1px solid var(--mx-border);
+     border-radius: 12px;
+     padding: 24px;
+     background: var(--mx-panel);
+     position: relative;
+     transition: border-color 0.2s ease;
+   }
+   #matrix-page .mx-feature-card:hover {
+     border-color: color-mix(in srgb, var(--project-color) 35%, transparent);
+   }
+   #matrix-page .mx-feature-icon {
+     width: 40px;
+     height: 40px;
+     border-radius: 10px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     background: color-mix(in srgb, var(--project-color) 12%, transparent);
+     border: 1px solid color-mix(in srgb, var(--project-color) 25%, transparent);
+     margin-bottom: 16px;
+   }
+   #matrix-page .mx-feature-card h3 {
+     font-size: 1.05rem;
+     margin-bottom: 8px;
+   }
+   #matrix-page .mx-feature-card p {
+     font-size: 0.9rem;
+     color: var(--muted-text);
+     line-height: 1.6;
+   }
+   #matrix-page .mx-feature-tag {
+     position: absolute;
+     bottom: 16px;
+     right: 20px;
+     font-size: 0.62rem;
+     color: color-mix(in srgb, var(--muted-text) 70%, transparent);
+   }
+   
+   /* ══════════════════════════════════════════════════════════
+      Performance section (image + spec list)
+      ══════════════════════════════════════════════════════════ */
+   #matrix-page .mx-perf-image {
+     border-radius: 14px;
+     border: 1px solid var(--mx-border);
+     overflow: hidden;
+     position: relative;
+   }
+   #matrix-page .mx-perf-image img {
+     width: 100%;
+     display: block;
+     filter: grayscale(0.3);
+   }
+   #matrix-page .mx-perf-image-label {
+     position: absolute;
+     top: 12px;
+     left: 12px;
+     font-size: 0.65rem;
+     padding: 4px 10px;
+     border-radius: 4px;
+     background: rgba(0, 0, 0, 0.6);
+     color: var(--muted-text);
+   }
+   #matrix-page .mx-perf-item {
+     display: flex;
+     gap: 14px;
+     margin-bottom: 20px;
+   }
+   #matrix-page .mx-perf-item-icon {
+     width: 32px;
+     height: 32px;
+     flex-shrink: 0;
+     border-radius: 8px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     background: color-mix(in srgb, var(--project-color) 12%, transparent);
+     color: var(--project-color);
+   }
+   #matrix-page .mx-perf-item h4 {
+     font-size: 0.95rem;
+     color: var(--heading-text);
+     margin-bottom: 4px;
+   }
+   #matrix-page .mx-perf-item p {
+     font-size: 0.85rem;
+     color: var(--muted-text);
+     line-height: 1.6;
+   }
+   
+   /* ══════════════════════════════════════════════════════════
+      CTA capture section (email input + button)
+      ══════════════════════════════════════════════════════════ */
+   #matrix-page .mx-cta-section {
+     border-radius: 20px;
+     border: 1px solid var(--mx-border);
+     background: var(--mx-panel);
+     padding: 56px 32px;
+     text-align: center;
+     max-width: 900px;
+     margin: 0 auto;
+   }
+   #matrix-page .mx-cta-form {
+     display: flex;
+     gap: 12px;
+     justify-content: center;
+     max-width: 480px;
+     margin: 28px auto 12px;
+     flex-wrap: wrap;
+   }
+   #matrix-page .mx-cta-input {
+     flex: 1;
+     min-width: 220px;
+     padding: 12px 16px;
+     border-radius: 8px;
+     border: 1px solid var(--mx-border);
+     background: rgba(255, 255, 255, 0.04);
+     color: var(--heading-text);
+     font-size: 0.9rem;
+   }
+   #matrix-page .mx-cta-input::placeholder { color: var(--muted-text); }
+   #matrix-page .mx-cta-button {
+     padding: 12px 22px;
+     border-radius: 8px;
+     border: none;
+     background: var(--project-gradient);
+     color: #08130f;
+     font-weight: 600;
+     font-size: 0.9rem;
+     cursor: pointer;
+     white-space: nowrap;
+   }
+   #matrix-page .mx-cta-fineprint {
+     font-size: 0.7rem;
+     color: var(--muted-text);
+   }

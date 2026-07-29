@@ -1,180 +1,262 @@
 ---
 import ProjectLayout from '../../layouts/Project.astro'
 import ProjectGallery from '../../components/project/ProjectGallery.astro'
-import ProjectCTA from '../../components/project/ProjectCTA.astro'
-import ProjectFeatureCard from '../../components/project/ProjectFeatureCard.astro'
 import ProjectTestimonial from '../../components/project/ProjectTestimonial.astro'
 import ProjectFAQ from '../../components/project/ProjectFAQ.astro'
-import GradientCTA from '../../components/project/GradientCTA.astro'
 import ProjectClients from '../../components/project/ProjectClients.astro'
+import ProjectCTA from '../../components/project/ProjectCTA.astro'
 import Icon from '../../components/icons/Icon.astro'
 import { resolveIcon } from '../../components/icons/iconMappings'
 import { getProject } from '../../lib/projects'
 import { getClientsForProject } from '../../lib/clients'
-import type { Project } from '../../types'
-
 
 const lang: 'en' = 'en'
 const slug = 'matrix'
 const project = getProject(slug)
 if (!project) return Astro.redirect('/404')
 const linkedClients = getClientsForProject(slug)
+
+// ══════════════════════════════════════════════════════════
+// EDIT ME — dashboard-mockup + stat-bar content. These aren't part of
+// the shared project schema yet (matrix.json only has hero/features/etc),
+// so they're scoped fallbacks here. Move to matrix.json under
+// `project.dashboard` once the schema supports it — same shape, just
+// read `project.dashboard?.x ?? fallback`.
+// ══════════════════════════════════════════════════════════
+const dashboard = {
+  filename: 'matrix_dashboard_preview.gui',
+  yieldLabel: 'Operational Yield',
+  yieldValue: '98.4%',
+  chartTitle: 'Real-time Network Flow',
+  chartMeta: 'Data_Viz_Module_02',
+  bars: [55, 78, 60, 70, 42, 66, 80], // relative heights, 0-100
+  stats: [
+    { label: 'Active Users', value: '14,209', icon: 'users' },
+    { label: 'Latency', value: '12ms', icon: 'zap' },
+    { label: 'Status', value: 'Optimal', icon: 'check-circle', optimal: true },
+  ],
+}
+
+const perfItems = [
+  { icon: 'zap', title: 'Sub-100ms Latency', desc: 'Every interaction is processed in real-time with zero UI lag, even under heavy system load.' },
+  { icon: 'shield', title: 'Hardened Security', desc: 'Enterprise-grade encryption and granular permission hierarchies come baked into the core.' },
+  { icon: 'trending-up', title: 'Predictive Analytics', desc: 'Built-in AI models analyze your business patterns to suggest operational optimizations.' },
+]
 ---
 
 <ProjectLayout title={`${project.name} — Baseet Studio`} description={project.tagline} slug={project.slug} projectColor={project.color} projectGradient={project.gradient} projectName={project.name} projectIconClass={project.iconClass} projectNavItems={project.navItems} projectNavMeta={project.navMetaItems} lang={lang}>
   <link rel="stylesheet" href="/src/styles/projects/matrix.css" />
 
-  <!-- Hero. P3 audit #18 + #32 — uses the responsive
-       `.project-hero--centered` class (96px mobile padding, 140px
-       desktop). The coloured background wash is theme-aware via
-       `.project-hero-wash` in shared.css. Matrix keeps its dark-neon
-       aesthetic through the grid overlay, glow orb, and shadow stack
-       on the icon — those still render the same in both modes. -->
-  <section class="project-hero project-hero--centered">
-    <div style="position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px, rgba(255,255,255,0.06) 1px, transparent 0);background-size:40px 40px;opacity:0.6;"></div>
-    <div style={`position:absolute;top:-20%;left:50%;transform:translateX(-50%);width:600px;height:600px;border-radius:50%;background:radial-gradient(circle, color-mix(in srgb, ${project.color} 15%, transparent) 0%, transparent 70%);filter:blur(60px);pointer-events:none;`}></div>
+  <div id="matrix-page">
 
-    <div style="max-width:800px;margin:0 auto;position:relative;z-index:1;">
-      <div style="display:flex;justify-content:center;margin-bottom:28px;" data-animate="fade-up">
-        <div style={`width:96px;height:96px;border-radius:24px;background:${project.gradient};display:flex;align-items:center;justify-content:center;box-shadow:0 0 40px color-mix(in srgb, ${project.color} 40%, transparent), 0 0 80px color-mix(in srgb, ${project.color} 20%, transparent), 0 8px 32px rgba(0,0,0,0.4);position:relative;`}>
-          <Icon name={resolveIcon(project.iconClass).name} size={40} color="white" />
+    <!-- ════════════ HERO ════════════ -->
+    <section class="project-hero project-hero--centered" style="position:relative;overflow:hidden;">
+      <!-- Effect mount point: DotField (subtle) + ShapeGrid (square, on top).
+           See src/lib/effects/matrix-effects.ts for every tunable knob. -->
+      <div id="matrix-fx"></div>
+
+      <div style="max-width:760px;margin:0 auto;position:relative;">
+        <div style="display:flex;justify-content:center;margin-bottom:24px;" data-animate="fade-up">
+          <span class="mx-badge">
+            <span class="mx-dot"></span>
+            <span class="mx-mono">Systems Online // Kernel-Stable</span>
+          </span>
+        </div>
+
+        <h1 style="font-size:3.4rem;font-weight:800;color:var(--heading-text);line-height:1.1;margin-bottom:20px;" data-animate="fade-up">
+          One Platform.<br />
+          <span class="mx-accent">Every Part</span> Of Your Business.
+        </h1>
+
+        <p style="font-size:1.05rem;color:var(--muted-text);max-width:560px;margin:0 auto 32px;line-height:1.7;" data-animate="fade-up">
+          {project.hero.subtitle}
+        </p>
+
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" data-animate="fade-up">
+          {project.hero.cta_primary && (
+            <a href={project.hero.cta_primary_link || '/contact/'}
+              class="cta-btn--primary"
+              style={`background:${project.gradient};color:#08130f;`}>
+              {project.hero.cta_primary}
+            </a>
+          )}
+          {project.hero.cta_secondary && (
+            <a href={project.hero.cta_secondary_link || '#features'}
+              class="cta-btn--secondary">
+              {project.hero.cta_secondary}
+              <Icon name="eye" size={16} />
+            </a>
+          )}
+        </div>
+
+        <!-- ════════════ DASHBOARD MOCKUP ════════════ -->
+        <div class="mx-window" data-animate="fade-up">
+          <div class="mx-window-chrome">
+            <span class="mx-window-dot mx-window-dot--red"></span>
+            <span class="mx-window-dot mx-window-dot--yellow"></span>
+            <span class="mx-window-dot mx-window-dot--green"></span>
+            <span class="mx-window-title mx-mono">{dashboard.filename}</span>
+          </div>
+          <div class="mx-window-body">
+            <div class="mx-panel">
+              <div class="mx-yield-label mx-mono">{dashboard.yieldLabel}</div>
+              <div class="mx-yield-value">{dashboard.yieldValue}</div>
+              <div class="mx-skeleton"></div>
+              <div class="mx-skeleton"></div>
+              <div class="mx-skeleton"></div>
+            </div>
+            <div class="mx-panel">
+              <div class="mx-chart-title">
+                <span>{dashboard.chartTitle}</span>
+                <span class="mx-mono">{dashboard.chartMeta}</span>
+              </div>
+              <div class="mx-bars">
+                {dashboard.bars.map(h => (
+                  <div class="mx-bar" style={`height:${h}%;`}></div>
+                ))}
+              </div>
+              <div class="mx-stat-row">
+                {dashboard.stats.map(s => (
+                  <div class="mx-stat">
+                    <div class="mx-stat-label mx-mono">{s.label}</div>
+                    <div class={`mx-stat-value ${s.optimal ? 'is-optimal' : ''}`}>
+                      {s.value}
+                      <Icon name={resolveIcon(s.icon).name} size={14} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+    </section>
 
-      <h1 style="font-size:3.2rem;font-weight:700;color:var(--heading-text);margin-bottom:8px;letter-spacing:-0.02em;" data-animate="fade-up">
-        {project.name}
-      </h1>
-      <p style={`font-size:1.3rem;font-weight:500;color:${project.color};margin-bottom:24px;`} data-animate="fade-up">
-        {project.tagline}
-      </p>
+    <!-- ════════════ FEATURES ════════════ -->
+    {project.features && project.features.length > 0 && (
+      <section id="features" style="padding:96px 24px 64px;max-width:1200px;margin:0 auto;">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:24px;">
+          {project.features.map((feature, i) => (
+            <div class="mx-feature-card" data-animate="fade-up" style={`animation-delay:${i * 80}ms;`}>
+              <div class="mx-feature-icon">
+                <Icon name={resolveIcon(feature.icon).name} size={20} color="var(--project-color)" />
+              </div>
+              <h3>{feature.title}</h3>
+              <p>{feature.description}</p>
+              <!-- EDIT ME: swap in a real build id / module tag per feature
+                   once available on the project data, e.g. feature.tag -->
+              <span class="mx-feature-tag mx-mono">{feature.tag ?? `MX_MOD_${String(i + 1).padStart(2, '0')}`}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
 
-      <div style="margin-bottom:28px;" data-animate="fade-up">
-        <span style={`display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 25%, transparent);box-shadow:0 0 16px color-mix(in srgb, ${project.color} 10%, transparent);`}>
-          <Icon name="clock" size={16} color={project.color} />
-          {project.status}
-        </span>
-      </div>
-
-      <h2 style="font-size:2rem;font-weight:700;color:var(--heading-text);margin-bottom:20px;line-height:1.3;" data-animate="fade-up">
-        {project.hero.title}
-      </h2>
-      <p style="font-size:1.1rem;color:var(--muted-text);margin-bottom:36px;max-width:580px;margin-left:auto;margin-right:auto;line-height:1.7;" data-animate="fade-up">
-        {project.hero.subtitle}
-      </p>
-
-      <!-- CTA Buttons. P1 audit #14 — uses the global `.cta-btn--primary` /
-           `.cta-btn--secondary` classes. The neon Matrix shadow lives in
-           scoped styles below (`.matrix-cta-primary` adds the extra glow
-           the brand needs). -->
-      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" data-animate="fade-up">
-        {project.hero.cta_primary && (
-          <a href={project.hero.cta_primary_link || '/contact/'}
-            class="cta-btn--primary matrix-cta-primary"
-            style={`background:${project.gradient};`}>
-            {project.hero.cta_primary}
-          </a>
-        )}
-        {project.hero.cta_secondary && (
-          <a href={project.hero.cta_secondary_link || '#features'}
-            class="cta-btn--secondary matrix-cta-secondary">
-            {project.hero.cta_secondary}
-          </a>
-        )}
-      </div>
-    </div>
-  </section>
-
-  <!-- Features -->
-  {project.features && project.features.length > 0 && (
-    <section id="features" style="padding:64px 24px;max-width:1200px;margin:0 auto;">
-      <div style="text-align:center;margin-bottom:48px;" data-animate="fade-up">
-        <span style={`display:inline-block;padding:8px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);margin-bottom:16px;`}>
-          {/* TODO: localise this later */ 'Features'}
-        </span>
-        <h2 style="font-size:2rem;margin-bottom:0;color:var(--heading-text);">
-          {/* TODO: localise this later */ 'Key Features'}
-        </h2>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));gap:24px;">
-        {project.features.map((feature, i) => (
-          <ProjectFeatureCard title={feature.title} description={feature.description} iconName={resolveIcon(feature.icon).name} projectColor={project.color} projectGradient={project.gradient} index={i} />
-        ))}
+    <!-- ════════════ PERFORMANCE ════════════ -->
+    <section style="padding:64px 24px;max-width:1100px;margin:0 auto;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;">
+        <div class="mx-perf-image" data-animate="fade-up">
+          {project.screenshots && project.screenshots[0] ? (
+            <img src={project.screenshots[0]} alt={`${project.name} performance`} />
+          ) : (
+            <img src="/images/projects/matrix/performance.jpg" alt={`${project.name} performance`} />
+          )}
+          <span class="mx-perf-image-label mx-mono">Hardware_Node_29</span>
+        </div>
+        <div data-animate="fade-up">
+          <span style={`display:inline-block;padding:6px 14px;border-radius:9999px;font-size:0.72rem;font-weight:600;background:color-mix(in srgb, ${project.color} 10%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 25%, transparent);margin-bottom:16px;`} class="mx-mono">
+            Performance / Architecture
+          </span>
+          <h2 style="font-size:2rem;color:var(--heading-text);margin-bottom:16px;line-height:1.25;">
+            Hardwired For Performance
+          </h2>
+          <p style="color:var(--muted-text);line-height:1.7;margin-bottom:32px;">
+            Our kernel-level integration means {project.name} isn't just a layer of software — it's a high-performance engine designed to handle million-entry datasets without dropping a frame.
+          </p>
+          {perfItems.map(item => (
+            <div class="mx-perf-item">
+              <div class="mx-perf-item-icon">
+                <Icon name={resolveIcon(item.icon).name} size={16} />
+              </div>
+              <div>
+                <h4>{item.title}</h4>
+                <p>{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
-  )}
 
-  <!-- Gallery -->
-  {project.screenshots && project.screenshots.length > 0 && (
-    <ProjectGallery screenshots={project.screenshots} galleryType={project.galleryType || 'mobile'} projectSlug={project.slug} projectColor={project.color} projectName={project.name} />
-  )}
+    <!-- ════════════ GALLERY / TESTIMONIALS / FAQ / CLIENTS (unchanged, data-driven) ════════════ -->
+    {project.screenshots && project.screenshots.length > 0 && (
+      <ProjectGallery screenshots={project.screenshots} galleryType={project.galleryType || 'mobile'} projectSlug={project.slug} projectColor={project.color} projectName={project.name} />
+    )}
 
-  <!-- Testimonials -->
-  {project.testimonials && project.testimonials.length > 0 && (
-    <section style="padding:64px 24px;max-width:1200px;margin:0 auto;">
-      <h2 style="text-align:center;font-size:2rem;margin-bottom:48px;color:var(--heading-text);">
-        {/* TODO: localise this later */ 'What People Say'}
-      </h2>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(340px, 1fr));gap:24px;">
-        {project.testimonials.map(t => (
-          <ProjectTestimonial quote={t.quote} author={t.author} role={t.role} projectColor={project.color} projectGradient={project.gradient} />
-        ))}
+    {project.testimonials && project.testimonials.length > 0 && (
+      <section style="padding:64px 24px;max-width:1200px;margin:0 auto;">
+        <h2 style="text-align:center;font-size:2rem;margin-bottom:48px;color:var(--heading-text);">What People Say</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(340px, 1fr));gap:24px;">
+          {project.testimonials.map(t => (
+            <ProjectTestimonial quote={t.quote} author={t.author} role={t.role} projectColor={project.color} projectGradient={project.gradient} />
+          ))}
+        </div>
+      </section>
+    )}
+
+    {project.faq && project.faq.length > 0 && (
+      <section style="padding:64px 24px;max-width:800px;margin:0 auto;">
+        <h2 style="text-align:center;font-size:2rem;margin-bottom:48px;color:var(--heading-text);">FAQ</h2>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          {project.faq.map(item => (
+            <ProjectFAQ question={item.question} answer={item.answer} projectColor={project.color} />
+          ))}
+        </div>
+      </section>
+    )}
+
+    <ProjectClients clients={linkedClients} projectColor={project.color} />
+
+    <!-- ════════════ CTA CAPTURE ════════════ -->
+    <section style="padding:64px 24px;">
+      <div class="mx-cta-section">
+        <h2 style="font-size:1.9rem;color:var(--heading-text);margin-bottom:12px;">Ready To Enter The Matrix?</h2>
+        <p style="color:var(--muted-text);">Join 2,500+ high-velocity organizations scaling their operations on the world's most technical business GUI.</p>
+        <form class="mx-cta-form">
+          <input class="mx-cta-input" type="email" placeholder="Enter work email..." required />
+          <button class="mx-cta-button" type="submit">Initialize Deployment</button>
+        </form>
+        <p class="mx-cta-fineprint mx-mono">Free Trial · No Credit Card · Instant Setup</p>
       </div>
     </section>
-  )}
 
-  <!-- FAQ -->
-  {project.faq && project.faq.length > 0 && (
-    <section style="padding:64px 24px;max-width:800px;margin:0 auto;">
-      <h2 style="text-align:center;font-size:2rem;margin-bottom:48px;color:var(--heading-text);">
-        {/* TODO: localise this later */ 'FAQ'}
-      </h2>
-      <div style="display:flex;flex-direction:column;gap:12px;">
-        {project.faq.map(item => (
-          <ProjectFAQ question={item.question} answer={item.answer} projectColor={project.color} />
-        ))}
-      </div>
-    </section>
-  )}
+    <ProjectCTA status={project.status} platforms={project.platforms || []} links={project.links} lang={lang} />
+  </div>
 
-  <!-- Gradient CTA. P1 audit #11, #15, #20 — uses the shared component. -->
-  <ProjectClients clients={linkedClients} projectColor={project.color} />
+  <script>
+    import { ensureInit, destroy } from '../../lib/effects/matrix-effects'
 
-  <GradientCTA
-    title={`Interested in ${project.name}?`}
-    body="Get in touch and we will help you get started."
-    ctaLabel="Get in Touch"
-    ctaHref="/contact/"
-    gradient={project.gradient}
-    accentColor={project.color}
-    lang={lang}
-  />
-
-  <ProjectCTA status={project.status} platforms={project.platforms || []} links={project.links} lang={lang} />
-</ProjectLayout>
-
-<style>
-  /* Matrix-only neon glow on the hero CTA. Replaces the inline
-   * `onmouseover`/`onmouseout` JS that previously toggled box-shadow. */
-  .matrix-cta-primary {
-    box-shadow:
-      0 0 24px color-mix(in srgb, var(--project-color) 30%, transparent),
-      0 4px 16px rgba(0, 0, 0, 0.3);
-  }
-  .matrix-cta-primary:hover {
-    box-shadow:
-      0 0 32px color-mix(in srgb, var(--project-color) 45%, transparent),
-      0 6px 20px rgba(0, 0, 0, 0.4);
-  }
-  .matrix-cta-secondary {
-    border-color: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(8px);
-  }
-  .matrix-cta-secondary:hover {
-    border-color: rgba(255, 255, 255, 0.35);
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .matrix-cta-secondary {
-      backdrop-filter: none;
+    const mount = () => {
+      const root = document.getElementById('matrix-fx')
+      if (root) ensureInit(root)
     }
-  }
-</style>
+
+    mount()
+    document.addEventListener('astro:page-load', mount)
+    document.addEventListener('astro:before-swap', destroy)
+  </script>
+
+  <style>
+    /* Matrix-only CTA button hover, mirrors the previous neon-glow treatment */
+    .cta-btn--primary:hover {
+      box-shadow:
+        0 0 32px color-mix(in srgb, var(--project-color) 45%, transparent),
+        0 6px 20px rgba(0, 0, 0, 0.4);
+    }
+    .cta-btn--secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+  </style>
+</ProjectLayout>
