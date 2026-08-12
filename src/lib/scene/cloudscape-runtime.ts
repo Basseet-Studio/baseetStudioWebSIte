@@ -35,6 +35,11 @@ export interface SceneRuntime {
   applyClouds: (clouds: CloudSettings) => void
   applyLighting: (lighting: LightingSettings) => void
   getCurrentCamera: () => CameraPose
+  getCurrentClouds: () => CloudSettings
+  getCurrentLighting: () => LightingSettings
+  /** When locked, scroll evaluation does not overwrite camera/clouds/lighting (playground). */
+  setPlaygroundLock: (locked: boolean) => void
+  isPlaygroundLocked: () => boolean
   setPageConfig: (config: SceneConfig) => void
   renderFrame: () => void
 }
@@ -362,14 +367,24 @@ export function initCloudscape(opts: {
   }
 
   function applyClouds(clouds: CloudSettings): void {
-    state.clouds = { ...clouds }
+    state.clouds = { ...state.clouds, ...clouds }
+    // Keep pageClouds in sync when playground locks/unlocks theme override
+    if (typeof clouds.syncTheme === 'boolean') {
+      state.pageClouds = { ...state.pageClouds, ...clouds, syncTheme: clouds.syncTheme }
+    }
   }
 
   function applyLighting(lighting: LightingSettings): void {
-    state.lighting = { ...lighting }
+    state.lighting = { ...state.lighting, ...lighting }
+    if (state.pageClouds.syncTheme === false) {
+      state.pageLighting = { ...state.pageLighting, ...lighting }
+    }
   }
 
+  let playgroundLocked = false
+
   function applySkyThemeUpdate(update: SkyThemeUpdate): void {
+    if (playgroundLocked) return
     if (state.pageClouds.syncTheme === false) return
     cameraController.setBaseTheme(
       { ...state.pageClouds, ...update.clouds },
@@ -500,6 +515,12 @@ export function initCloudscape(opts: {
     applyClouds,
     applyLighting,
     getCurrentCamera: () => ({ ...state.currentCamera }),
+    getCurrentClouds: () => ({ ...state.clouds }),
+    getCurrentLighting: () => ({ ...state.lighting }),
+    setPlaygroundLock: (locked: boolean) => {
+      playgroundLocked = locked
+    },
+    isPlaygroundLocked: () => playgroundLocked,
     setPageConfig(next) {
       state.config = next
       state.pageClouds = { ...(next.clouds || {}) }
@@ -525,9 +546,11 @@ export function initCloudscape(opts: {
   function onScrollProgress(progress: number): void {
     if (bridge.getIsTransitioning()) return
     const evaluated = cameraController.evaluateAtProgress(progress)
-    sceneRuntime.applyCamera(evaluated.camera)
-    sceneRuntime.applyClouds(evaluated.clouds)
-    sceneRuntime.applyLighting(evaluated.lighting)
+    if (!playgroundLocked) {
+      sceneRuntime.applyCamera(evaluated.camera)
+      sceneRuntime.applyClouds(evaluated.clouds)
+      sceneRuntime.applyLighting(evaluated.lighting)
+    }
     objectRegistry.onScrollProgress(progress)
     objectRegistry.applyVisibility(evaluated.objectCommands)
     if (Math.abs(progress - state.lastProgress) > 0.01) {
@@ -542,8 +565,8 @@ export function initCloudscape(opts: {
     pushDebugSnapshot(
       progress,
       evaluated.activeAnchorId,
-      evaluated.camera,
-      evaluated.clouds,
+      playgroundLocked ? state.currentCamera : evaluated.camera,
+      playgroundLocked ? state.clouds : evaluated.clouds,
       objectRegistry,
       state.frame,
       state.fps,

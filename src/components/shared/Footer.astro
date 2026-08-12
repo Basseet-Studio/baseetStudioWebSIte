@@ -1,5 +1,6 @@
 ---
 import Icon from '../icons/Icon.astro'
+import CloudPlayground from './CloudPlayground.astro'
 import linksData from '../../content/data/links.json'
 import { getFooterData } from '../../lib/home'
 import { getServicesIndex } from '../../lib/services'
@@ -124,6 +125,8 @@ const contactHref = localizedPath(lang, '/contact/')
 <button id="back-to-top" class="footer-back-to-top" aria-label="Back to top" type="button">
   <Icon name="caret-up" size={20} color="currentColor" />
 </button>
+
+{import.meta.env.DEV && <CloudPlayground lang={lang} />}
 
 <style>
   .footer {

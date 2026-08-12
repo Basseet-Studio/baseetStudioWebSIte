@@ -1,0 +1,665 @@
+---
+/**
+ * Dev-only Cloud Playground — live-edit clouds / lighting / camera and save
+ * snapshots to src/content/data/scenes/playground/*.json via the
+ * cloud-playground-dev middleware.
+ */
+import type { Lang } from '../../types'
+
+interface Props {
+  lang?: Lang
+}
+
+const { lang: _lang = 'en' } = Astro.props
+---
+
+<div class="cp" id="cloud-playground" hidden data-playground-root>
+  <button
+    type="button"
+    class="cp__toggle"
+    id="cp-toggle"
+    aria-expanded="false"
+    aria-controls="cp-panel"
+  >
+    <svg width="16" height="16" viewBox="0 0 256 256" aria-hidden="true" fill="currentColor">
+      <path d="M160,40A88.09,88.09,0,0,0,81.29,88.67,64,64,0,1,0,72,216h88a88,88,0,0,0,0-176Zm0,160H72a48,48,0,0,1,0-96c1.1,0,2.2.07,3.29.18A88.14,88.14,0,0,0,72,128a8,8,0,0,0,16,0,72,72,0,1,1,72,72Z"/>
+    </svg>
+    <span>Cloud Playground</span>
+  </button>
+
+  <aside class="cp__panel" id="cp-panel" hidden aria-label="Cloud Playground">
+    <header class="cp__header">
+      <strong>Cloud Playground</strong>
+      <button type="button" class="cp__close" id="cp-close" aria-label="Close">×</button>
+    </header>
+
+    <div class="cp__body">
+      <details class="cp__section" open>
+        <summary>Clouds</summary>
+        <div class="cp__grid">
+          <label>Sky <input type="color" data-cp="skyColor" value="#6fa8dc" /></label>
+          <label>Cloud <input type="color" data-cp="cloudColor" value="#ffffff" /></label>
+          <label>Shadow <input type="color" data-cp="cloudShadowColor" value="#496bc1" /></label>
+          <label>Density <input type="range" data-cp="density" min="0" max="1" step="0.01" value="0.1" /><span data-cp-val="density">0.1</span></label>
+          <label>Speed <input type="range" data-cp="speed" min="0" max="3" step="0.05" value="1" /><span data-cp-val="speed">1</span></label>
+          <label>Noise <input type="range" data-cp="noise" min="0" max="1" step="0.01" value="0.4" /><span data-cp-val="noise">0.4</span></label>
+          <label>Spread <input type="range" data-cp="verticalSpread" min="0" max="1" step="0.01" value="0.6" /><span data-cp-val="verticalSpread">0.6</span></label>
+          <label class="cp__check"><input type="checkbox" data-cp="syncTheme" /> Sync theme (time-of-day)</label>
+        </div>
+      </details>
+
+      <details class="cp__section" open>
+        <summary>Lighting</summary>
+        <div class="cp__grid">
+          <label>Azimuth <input type="range" data-cp="azimuth" min="0" max="360" step="1" value="62" /><span data-cp-val="azimuth">62</span></label>
+          <label>Elevation <input type="range" data-cp="elevation" min="0" max="90" step="1" value="59" /><span data-cp-val="elevation">59</span></label>
+          <label>Intensity <input type="range" data-cp="intensity" min="0" max="3" step="0.05" value="0" /><span data-cp-val="intensity">0</span></label>
+          <label>Fog <input type="range" data-cp="fogDensity" min="0" max="2" step="0.01" value="0.76" /><span data-cp-val="fogDensity">0.76</span></label>
+        </div>
+      </details>
+
+      <details class="cp__section" open>
+        <summary>Camera</summary>
+        <div class="cp__grid">
+          <label>Pos X <input type="range" data-cp="posX" min="-30" max="30" step="0.1" value="12.1" /><span data-cp-val="posX">12.1</span></label>
+          <label>Pos Y <input type="range" data-cp="posY" min="-10" max="20" step="0.1" value="2.1" /><span data-cp-val="posY">2.1</span></label>
+          <label>Pos Z <input type="range" data-cp="posZ" min="-30" max="30" step="0.1" value="4.7" /><span data-cp-val="posZ">4.7</span></label>
+          <label>Tgt X <input type="range" data-cp="tgtX" min="-30" max="30" step="0.1" value="-10.8" /><span data-cp-val="tgtX">-10.8</span></label>
+          <label>Tgt Y <input type="range" data-cp="tgtY" min="-10" max="20" step="0.1" value="-0.1" /><span data-cp-val="tgtY">-0.1</span></label>
+          <label>Tgt Z <input type="range" data-cp="tgtZ" min="-30" max="30" step="0.1" value="0" /><span data-cp-val="tgtZ">0</span></label>
+          <label>FOV <input type="range" data-cp="fov" min="20" max="90" step="1" value="50" /><span data-cp-val="fov">50</span></label>
+        </div>
+      </details>
+
+      <details class="cp__section" open>
+        <summary>Save snapshot</summary>
+        <div class="cp__save">
+          <label>Name <input type="text" id="cp-name" placeholder="Home hero – warm dusk" /></label>
+          <label>Id (slug) <input type="text" id="cp-id" placeholder="home-hero-warm" pattern="[a-z0-9]+(-[a-z0-9]+)*" /></label>
+          <label>Page
+            <select id="cp-page">
+              <option value="home">home</option>
+              <option value="default">default</option>
+            </select>
+          </label>
+          <label>Section
+            <select id="cp-section">
+              <option value="">(page-level)</option>
+              <option value="home-hero">home-hero</option>
+              <option value="home-highlights">home-highlights</option>
+              <option value="home-features">home-features</option>
+              <option value="home-projects">home-projects</option>
+              <option value="home-clients">home-clients</option>
+              <option value="home-team">home-team</option>
+              <option value="home-end">home-end</option>
+              <option value="default">default</option>
+            </select>
+          </label>
+          <label class="cp__check"><input type="checkbox" id="cp-include-camera" checked /> Include camera</label>
+          <label class="cp__check"><input type="checkbox" id="cp-include-colors" checked /> Include colors / lighting</label>
+          <button type="button" class="cp__btn" id="cp-save">Save to disk</button>
+          <p class="cp__status" id="cp-status" aria-live="polite"></p>
+        </div>
+        <ul class="cp__list" id="cp-list"></ul>
+      </details>
+    </div>
+  </aside>
+</div>
+
+<style>
+  .cp {
+    position: relative;
+    z-index: 40;
+  }
+
+  .cp__toggle {
+    position: fixed;
+    bottom: 24px;
+    left: 20px;
+    z-index: 41;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border-radius: 9999px;
+    border: 1px solid var(--footer-border);
+    background: color-mix(in srgb, var(--footer-chip-bg) 80%, transparent);
+    color: var(--footer-text-primary);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    font: 600 12px/1.2 system-ui, sans-serif;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  }
+
+  .cp__toggle:hover {
+    background: var(--footer-chip-bg);
+  }
+
+  .cp__panel {
+    position: fixed;
+    bottom: 72px;
+    left: 20px;
+    z-index: 42;
+    width: min(360px, calc(100vw - 40px));
+    max-height: min(70vh, 640px);
+    overflow: auto;
+    border-radius: 12px;
+    border: 1px solid var(--footer-border);
+    background: color-mix(in srgb, var(--footer-chip-bg) 92%, #0a0e14);
+    color: var(--footer-text-primary);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  }
+
+  .cp__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--footer-border);
+    position: sticky;
+    top: 0;
+    background: inherit;
+    z-index: 1;
+  }
+
+  .cp__close {
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 4px;
+  }
+
+  .cp__body {
+    padding: 8px 12px 16px;
+  }
+
+  .cp__section {
+    border-bottom: 1px solid var(--footer-border);
+    padding: 8px 0;
+  }
+
+  .cp__section summary {
+    cursor: pointer;
+    font: 600 12px/1.4 system-ui, sans-serif;
+    color: var(--footer-text-muted);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .cp__grid,
+  .cp__save {
+    display: grid;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .cp__grid label,
+  .cp__save label {
+    display: grid;
+    grid-template-columns: 72px 1fr auto;
+    align-items: center;
+    gap: 8px;
+    font: 12px/1.2 system-ui, sans-serif;
+    color: var(--footer-text-soft);
+  }
+
+  .cp__check {
+    grid-template-columns: auto 1fr !important;
+  }
+
+  .cp__grid input[type='range'],
+  .cp__save input[type='text'],
+  .cp__save select {
+    width: 100%;
+  }
+
+  .cp__grid input[type='color'] {
+    width: 100%;
+    height: 28px;
+    border: 1px solid var(--footer-border);
+    background: transparent;
+    padding: 0;
+  }
+
+  .cp__grid span[data-cp-val] {
+    min-width: 36px;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    color: var(--footer-text-muted);
+  }
+
+  .cp__btn {
+    margin-top: 4px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--footer-border);
+    background: var(--footer-chip-bg);
+    color: var(--footer-text-primary);
+    font: 600 12px/1.2 system-ui, sans-serif;
+    cursor: pointer;
+  }
+
+  .cp__btn:hover {
+    filter: brightness(1.1);
+  }
+
+  .cp__status {
+    min-height: 1.2em;
+    font: 11px/1.3 system-ui, sans-serif;
+    color: var(--footer-text-muted);
+    margin: 0;
+  }
+
+  .cp__list {
+    list-style: none;
+    margin: 12px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 6px;
+  }
+
+  .cp__list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid var(--footer-border);
+    font: 12px/1.3 system-ui, sans-serif;
+  }
+
+  .cp__list-meta {
+    display: grid;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  .cp__list-meta strong {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .cp__list-meta span {
+    color: var(--footer-text-soft);
+    font-size: 11px;
+  }
+
+  .cp__list-actions {
+    display: flex;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  .cp__list-actions button {
+    border: 1px solid var(--footer-border);
+    background: transparent;
+    color: inherit;
+    border-radius: 8px;
+    padding: 4px 8px;
+    font: 11px/1 system-ui, sans-serif;
+    cursor: pointer;
+  }
+
+  @media (max-width: 599px) {
+    .cp {
+      display: none !important;
+    }
+  }
+</style>
+
+<script>
+  import { getCloudscapeRuntime } from '../../lib/scene/cloudscape-runtime'
+  import type { CameraPose, CloudSettings, LightingSettings, PlaygroundPoint } from '../../lib/scene/types'
+
+  type ListFile = {
+    id: string
+    name: string
+    pageId?: string
+    sectionId?: string
+    mtime?: string
+  }
+
+  const root = document.getElementById('cloud-playground')
+  const toggle = document.getElementById('cp-toggle')
+  const panel = document.getElementById('cp-panel')
+  const closeBtn = document.getElementById('cp-close')
+  const statusEl = document.getElementById('cp-status')
+  const listEl = document.getElementById('cp-list')
+
+  if (root && toggle && panel) {
+    const params = new URLSearchParams(window.location.search)
+    const forceOpen = params.get('playground') === '1'
+    root.hidden = false
+
+    function setStatus(msg: string) {
+      if (statusEl) statusEl.textContent = msg
+    }
+
+    function num(el: Element | null): number {
+      if (!(el instanceof HTMLInputElement)) return 0
+      return Number(el.value)
+    }
+
+    function str(el: Element | null): string {
+      if (!(el instanceof HTMLInputElement) && !(el instanceof HTMLSelectElement)) return ''
+      return el.value
+    }
+
+    function bool(el: Element | null): boolean {
+      return el instanceof HTMLInputElement && el.checked
+    }
+
+    function $(key: string): Element | null {
+      return root!.querySelector(`[data-cp="${key}"]`)
+    }
+
+    function setVal(key: string, value: number | string | boolean) {
+      const el = $(key)
+      const label = root!.querySelector(`[data-cp-val="${key}"]`)
+      if (el instanceof HTMLInputElement) {
+        if (el.type === 'checkbox') el.checked = Boolean(value)
+        else el.value = String(value)
+      }
+      if (label && typeof value === 'number') {
+        const text = Number.isInteger(value)
+          ? String(value)
+          : value.toFixed(2).replace(/\.?0+$/, '') || '0'
+        label.textContent = text
+      }
+    }
+
+    function readClouds(): CloudSettings {
+      return {
+        skyColor: str($('skyColor')),
+        cloudColor: str($('cloudColor')),
+        cloudShadowColor: str($('cloudShadowColor')),
+        density: num($('density')),
+        speed: num($('speed')),
+        noise: num($('noise')),
+        verticalSpread: num($('verticalSpread')),
+        syncTheme: bool($('syncTheme')),
+      }
+    }
+
+    function readLighting(): LightingSettings {
+      return {
+        azimuth: num($('azimuth')),
+        elevation: num($('elevation')),
+        intensity: num($('intensity')),
+        fogDensity: num($('fogDensity')),
+      }
+    }
+
+    function readCamera(): CameraPose {
+      return {
+        position: [num($('posX')), num($('posY')), num($('posZ'))],
+        target: [num($('tgtX')), num($('tgtY')), num($('tgtZ'))],
+        fov: num($('fov')),
+        source: 'playground:live',
+      }
+    }
+
+    function applyLive() {
+      const rt = getCloudscapeRuntime()?.sceneRuntime
+      if (!rt) {
+        setStatus('Cloudscape not running (desktop only)')
+        return
+      }
+      rt.setPlaygroundLock(true)
+      const clouds = readClouds()
+      if (!clouds.syncTheme) clouds.syncTheme = false
+      rt.applyClouds(clouds)
+      rt.applyLighting(readLighting())
+      rt.applyCamera(readCamera())
+    }
+
+    function syncFromRuntime() {
+      const rt = getCloudscapeRuntime()?.sceneRuntime
+      if (!rt) return
+      const cam = rt.getCurrentCamera()
+      const clouds = rt.getCurrentClouds()
+      const lighting = rt.getCurrentLighting()
+      setVal('skyColor', clouds.skyColor || '#6fa8dc')
+      setVal('cloudColor', clouds.cloudColor || '#ffffff')
+      setVal('cloudShadowColor', clouds.cloudShadowColor || '#496bc1')
+      setVal('density', clouds.density ?? 0.1)
+      setVal('speed', clouds.speed ?? 1)
+      setVal('noise', clouds.noise ?? 0.4)
+      setVal('verticalSpread', clouds.verticalSpread ?? 0.6)
+      setVal('syncTheme', clouds.syncTheme !== false)
+      setVal('azimuth', lighting.azimuth ?? 62)
+      setVal('elevation', lighting.elevation ?? 59)
+      setVal('intensity', lighting.intensity ?? 0)
+      setVal('fogDensity', lighting.fogDensity ?? 0.76)
+      setVal('posX', cam.position[0])
+      setVal('posY', cam.position[1])
+      setVal('posZ', cam.position[2])
+      setVal('tgtX', cam.target[0])
+      setVal('tgtY', cam.target[1])
+      setVal('tgtZ', cam.target[2])
+      setVal('fov', cam.fov)
+    }
+
+    function slugify(name: string): string {
+      return name
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '')
+        .slice(0, 64)
+    }
+
+    function escapeHtml(s: string): string {
+      return s.replace(/[&<>"']/g, (c) =>
+        ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c] as string,
+      )
+    }
+
+    function openPanel() {
+      panel!.hidden = false
+      toggle!.setAttribute('aria-expanded', 'true')
+      syncFromRuntime()
+      getCloudscapeRuntime()?.sceneRuntime.setPlaygroundLock(true)
+      void refreshList()
+    }
+
+    function closePanel() {
+      panel!.hidden = true
+      toggle!.setAttribute('aria-expanded', 'false')
+      getCloudscapeRuntime()?.sceneRuntime.setPlaygroundLock(false)
+    }
+
+    toggle.addEventListener('click', () => {
+      if (panel.hidden) openPanel()
+      else closePanel()
+    })
+    closeBtn?.addEventListener('click', closePanel)
+
+    root.querySelectorAll('[data-cp]').forEach((el) => {
+      el.addEventListener('input', () => {
+        const key = (el as HTMLElement).dataset.cp
+        if (key && el instanceof HTMLInputElement && el.type === 'range') {
+          const label = root!.querySelector(`[data-cp-val="${key}"]`)
+          if (label) {
+            const v = Number(el.value)
+            label.textContent = Number.isInteger(v) ? String(v) : v.toFixed(2)
+          }
+        }
+        if (el instanceof HTMLInputElement && el.type === 'color') {
+          const sync = $('syncTheme')
+          if (sync instanceof HTMLInputElement) sync.checked = false
+        }
+        applyLive()
+      })
+      el.addEventListener('change', applyLive)
+    })
+
+    const nameInput = document.getElementById('cp-name') as HTMLInputElement | null
+    const idInput = document.getElementById('cp-id') as HTMLInputElement | null
+    nameInput?.addEventListener('input', () => {
+      if (!idInput) return
+      if (!idInput.dataset.touched) idInput.value = slugify(nameInput.value)
+    })
+    idInput?.addEventListener('input', () => {
+      idInput.dataset.touched = '1'
+    })
+
+    async function refreshList() {
+      if (!listEl) return
+      try {
+        const res = await fetch('/__cloud_playground/list')
+        const data = (await res.json()) as { files?: ListFile[]; error?: string }
+        if (!res.ok) throw new Error(data.error || res.statusText)
+        const files = data.files || []
+        listEl.innerHTML = ''
+        if (!files.length) {
+          listEl.innerHTML =
+            '<li><span class="cp__list-meta"><span>No saved points yet</span></span></li>'
+          return
+        }
+        for (const f of files) {
+          const li = document.createElement('li')
+          li.innerHTML = `
+            <div class="cp__list-meta">
+              <strong>${escapeHtml(f.name)}</strong>
+              <span>${escapeHtml(f.id)}${f.pageId ? ` · ${escapeHtml(f.pageId)}` : ''}${
+                f.sectionId ? ` / ${escapeHtml(f.sectionId)}` : ''
+              }</span>
+            </div>
+            <div class="cp__list-actions">
+              <button type="button" data-apply="${escapeHtml(f.id)}">Apply</button>
+              <button type="button" data-delete="${escapeHtml(f.id)}">Delete</button>
+            </div>
+          `
+          listEl.appendChild(li)
+        }
+      } catch (err) {
+        setStatus(`List failed: ${String(err)}`)
+      }
+    }
+
+    async function applyPointById(id: string) {
+      const res = await fetch(`/__cloud_playground/get?id=${encodeURIComponent(id)}`)
+      const point = (await res.json()) as PlaygroundPoint & { error?: string; ok?: boolean }
+      if (!res.ok) {
+        setStatus(`Point not found: ${id}`)
+        return
+      }
+      const rt = getCloudscapeRuntime()?.sceneRuntime
+      if (!rt) return
+      rt.setPlaygroundLock(true)
+      if (point.includeCamera && point.camera) {
+        const c = point.camera
+        setVal('posX', c.position[0])
+        setVal('posY', c.position[1])
+        setVal('posZ', c.position[2])
+        setVal('tgtX', c.target[0])
+        setVal('tgtY', c.target[1])
+        setVal('tgtZ', c.target[2])
+        setVal('fov', c.fov)
+        rt.applyCamera(c)
+      }
+      if (point.includeColors) {
+        if (point.clouds) {
+          const cl = { ...point.clouds, syncTheme: false }
+          setVal('skyColor', cl.skyColor || '#6fa8dc')
+          setVal('cloudColor', cl.cloudColor || '#ffffff')
+          setVal('cloudShadowColor', cl.cloudShadowColor || '#496bc1')
+          setVal('density', cl.density ?? 0.1)
+          setVal('speed', cl.speed ?? 1)
+          setVal('noise', cl.noise ?? 0.4)
+          setVal('verticalSpread', cl.verticalSpread ?? 0.6)
+          setVal('syncTheme', false)
+          rt.applyClouds(cl)
+        }
+        if (point.lighting) {
+          const L = point.lighting
+          setVal('azimuth', L.azimuth ?? 62)
+          setVal('elevation', L.elevation ?? 59)
+          setVal('intensity', L.intensity ?? 0)
+          setVal('fogDensity', L.fogDensity ?? 0.76)
+          rt.applyLighting(L)
+        }
+      }
+      setStatus(`Applied ${point.name}`)
+    }
+
+    listEl?.addEventListener('click', async (ev) => {
+      const t = ev.target as HTMLElement
+      const applyId = t.getAttribute('data-apply')
+      const deleteId = t.getAttribute('data-delete')
+      if (applyId) {
+        try {
+          await applyPointById(applyId)
+        } catch (err) {
+          setStatus(`Apply failed: ${String(err)}`)
+        }
+      }
+      if (deleteId) {
+        try {
+          const res = await fetch('/__cloud_playground/delete', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: deleteId }),
+          })
+          const data = await res.json()
+          if (!res.ok) throw new Error(data.error || res.statusText)
+          setStatus(`Deleted ${deleteId}`)
+          await refreshList()
+        } catch (err) {
+          setStatus(`Delete failed: ${String(err)}`)
+        }
+      }
+    })
+
+    document.getElementById('cp-save')?.addEventListener('click', async () => {
+      const name = (document.getElementById('cp-name') as HTMLInputElement)?.value?.trim()
+      let id = (document.getElementById('cp-id') as HTMLInputElement)?.value?.trim()
+      if (!name) {
+        setStatus('Name is required')
+        return
+      }
+      if (!id) id = slugify(name)
+      const includeCamera = bool(document.getElementById('cp-include-camera'))
+      const includeColors = bool(document.getElementById('cp-include-colors'))
+      if (!includeCamera && !includeColors) {
+        setStatus('Select camera and/or colors')
+        return
+      }
+      const payload: PlaygroundPoint = {
+        id,
+        name,
+        pageId: str(document.getElementById('cp-page')) || undefined,
+        sectionId: str(document.getElementById('cp-section')) || undefined,
+        includeCamera,
+        includeColors,
+        camera: includeCamera ? readCamera() : undefined,
+        clouds: includeColors ? { ...readClouds(), syncTheme: false } : undefined,
+        lighting: includeColors ? readLighting() : undefined,
+        createdAt: new Date().toISOString(),
+      }
+      try {
+        const res = await fetch('/__cloud_playground/save', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        })
+        const data = await res.json()
+        if (!res.ok) throw new Error(data.error || res.statusText)
+        setStatus(`Saved ${data.path || id + '.json'} — reload page to bake into scene`)
+        await refreshList()
+      } catch (err) {
+        setStatus(`Save failed: ${String(err)}`)
+      }
+    })
+
+    if (forceOpen) openPanel()
+  }
+</script>

@@ -5,6 +5,8 @@ import {
 } from './cloudscape-runtime'
 import type { CloudSettings } from './types'
 
+export { getCloudscapeRuntime }
+
 export function boot(): void {
   bootCloudscapeFromDom()
 }

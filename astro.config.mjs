@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config'
 import tailwind from '@astrojs/tailwind'
 import sitemap from '@astrojs/sitemap'
+import cloudPlaygroundDev from './src/integrations/cloud-playground-dev'
 
 const LOCALES = ['en', 'ar', 'ur', 'hi', 'fil']
 
@@ -20,6 +21,7 @@ export default defineConfig({
         },
       },
     }),
+    cloudPlaygroundDev(),
   ],
   output: 'static',
   build: { assets: 'assets' },

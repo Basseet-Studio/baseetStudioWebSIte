@@ -133,3 +133,17 @@ export interface EvaluatedSceneState {
   objectCommands: Required<ObjectCommands>
   activeAnchorId: string | null
 }
+
+/** Saved Cloud Playground snapshot (dev authoring → JSON on disk). */
+export interface PlaygroundPoint {
+  id: string
+  name: string
+  pageId?: string
+  sectionId?: string
+  includeCamera: boolean
+  includeColors: boolean
+  camera?: CameraPose
+  clouds?: CloudSettings
+  lighting?: LightingSettings
+  createdAt?: string
+}
