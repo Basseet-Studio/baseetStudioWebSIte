@@ -13,7 +13,7 @@ interface Props {
 const { lang: _lang = 'en' } = Astro.props
 ---
 
-<div class="cp" id="cloud-playground" hidden data-playground-root>
+<div class="cp" id="cloud-playground" data-playground-root>
   <button
     type="button"
     class="cp__toggle"
@@ -98,6 +98,7 @@ const { lang: _lang = 'en' } = Astro.props
           <label class="cp__check"><input type="checkbox" id="cp-include-camera" checked /> Include camera</label>
           <label class="cp__check"><input type="checkbox" id="cp-include-colors" checked /> Include colors / lighting</label>
           <button type="button" class="cp__btn" id="cp-save">Save to disk</button>
+          <button type="button" class="cp__btn" id="cp-copy">Copy JSON</button>
           <p class="cp__status" id="cp-status" aria-live="polite"></p>
         </div>
         <ul class="cp__list" id="cp-list"></ul>
@@ -109,40 +110,41 @@ const { lang: _lang = 'en' } = Astro.props
 <style>
   .cp {
     position: relative;
-    z-index: 40;
+    z-index: 10010;
   }
 
   .cp__toggle {
     position: fixed;
-    bottom: 24px;
-    left: 20px;
-    z-index: 41;
+    top: 16px;
+    right: 16px;
+    z-index: 10011;
     display: inline-flex;
     align-items: center;
     gap: 8px;
     padding: 10px 14px;
     border-radius: 9999px;
-    border: 1px solid var(--footer-border);
-    background: color-mix(in srgb, var(--footer-chip-bg) 80%, transparent);
-    color: var(--footer-text-primary);
+    border: 1px solid #496bc1;
+    background: #496bc1;
+    color: #ebeff8;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     font: 600 12px/1.2 system-ui, sans-serif;
     cursor: pointer;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 4px 16px rgba(15, 23, 38, 0.35);
   }
 
-  .cp__toggle:hover {
-    background: var(--footer-chip-bg);
+  .cp__toggle:hover,
+  .cp__toggle[aria-expanded='true'] {
+    filter: brightness(1.08);
   }
 
   .cp__panel {
     position: fixed;
-    bottom: 72px;
-    left: 20px;
-    z-index: 42;
-    width: min(360px, calc(100vw - 40px));
-    max-height: min(70vh, 640px);
+    top: 60px;
+    right: 16px;
+    z-index: 10012;
+    width: min(360px, calc(100vw - 32px));
+    max-height: min(78vh, 720px);
     overflow: auto;
     border-radius: 12px;
     border: 1px solid var(--footer-border);
@@ -308,15 +310,9 @@ const { lang: _lang = 'en' } = Astro.props
     cursor: pointer;
   }
 
-  @media (max-width: 599px) {
-    .cp {
-      display: none !important;
-    }
-  }
 </style>
 
 <script>
-  import { getCloudscapeRuntime } from '../../lib/scene/cloudscape-runtime'
   import type { CameraPose, CloudSettings, LightingSettings, PlaygroundPoint } from '../../lib/scene/types'
 
   type ListFile = {
@@ -325,6 +321,25 @@ const { lang: _lang = 'en' } = Astro.props
     pageId?: string
     sectionId?: string
     mtime?: string
+  }
+
+  type SceneRt = {
+    applyCamera: (cam: CameraPose) => void
+    applyClouds: (clouds: CloudSettings) => void
+    applyLighting: (lighting: LightingSettings) => void
+    getCurrentCamera: () => CameraPose
+    getCurrentClouds: () => CloudSettings
+    getCurrentLighting: () => LightingSettings
+    setPlaygroundLock: (locked: boolean) => void
+  }
+
+  async function getRuntime(): Promise<SceneRt | null> {
+    try {
+      const mod = await import('../../lib/scene/cloudscape-boot')
+      return mod.getCloudscapeRuntime()?.sceneRuntime ?? null
+    } catch {
+      return null
+    }
   }
 
   const root = document.getElementById('cloud-playground')
@@ -337,7 +352,6 @@ const { lang: _lang = 'en' } = Astro.props
   if (root && toggle && panel) {
     const params = new URLSearchParams(window.location.search)
     const forceOpen = params.get('playground') === '1'
-    root.hidden = false
 
     function setStatus(msg: string) {
       if (statusEl) statusEl.textContent = msg
@@ -407,8 +421,8 @@ const { lang: _lang = 'en' } = Astro.props
       }
     }
 
-    function applyLive() {
-      const rt = getCloudscapeRuntime()?.sceneRuntime
+    async function applyLive() {
+      const rt = await getRuntime()
       if (!rt) {
         setStatus('Cloudscape not running (desktop only)')
         return
@@ -421,8 +435,8 @@ const { lang: _lang = 'en' } = Astro.props
       rt.applyCamera(readCamera())
     }
 
-    function syncFromRuntime() {
-      const rt = getCloudscapeRuntime()?.sceneRuntime
+    async function syncFromRuntime() {
+      const rt = await getRuntime()
       if (!rt) return
       const cam = rt.getCurrentCamera()
       const clouds = rt.getCurrentClouds()
@@ -462,25 +476,27 @@ const { lang: _lang = 'en' } = Astro.props
       )
     }
 
-    function openPanel() {
+    async function openPanel() {
       panel!.hidden = false
       toggle!.setAttribute('aria-expanded', 'true')
-      syncFromRuntime()
-      getCloudscapeRuntime()?.sceneRuntime.setPlaygroundLock(true)
+      await syncFromRuntime()
+      const rt = await getRuntime()
+      rt?.setPlaygroundLock(true)
       void refreshList()
     }
 
-    function closePanel() {
+    async function closePanel() {
       panel!.hidden = true
       toggle!.setAttribute('aria-expanded', 'false')
-      getCloudscapeRuntime()?.sceneRuntime.setPlaygroundLock(false)
+      const rt = await getRuntime()
+      rt?.setPlaygroundLock(false)
     }
 
     toggle.addEventListener('click', () => {
-      if (panel.hidden) openPanel()
-      else closePanel()
+      if (panel.hidden) void openPanel()
+      else void closePanel()
     })
-    closeBtn?.addEventListener('click', closePanel)
+    closeBtn?.addEventListener('click', () => void closePanel())
 
     root.querySelectorAll('[data-cp]').forEach((el) => {
       el.addEventListener('input', () => {
@@ -496,9 +512,9 @@ const { lang: _lang = 'en' } = Astro.props
           const sync = $('syncTheme')
           if (sync instanceof HTMLInputElement) sync.checked = false
         }
-        applyLive()
+        void applyLive()
       })
-      el.addEventListener('change', applyLive)
+      el.addEventListener('change', () => void applyLive())
     })
 
     const nameInput = document.getElementById('cp-name') as HTMLInputElement | null
@@ -552,7 +568,7 @@ const { lang: _lang = 'en' } = Astro.props
         setStatus(`Point not found: ${id}`)
         return
       }
-      const rt = getCloudscapeRuntime()?.sceneRuntime
+      const rt = await getRuntime()
       if (!rt) return
       rt.setPlaygroundLock(true)
       if (point.includeCamera && point.camera) {
@@ -653,13 +669,30 @@ const { lang: _lang = 'en' } = Astro.props
         })
         const data = await res.json()
         if (!res.ok) throw new Error(data.error || res.statusText)
-        setStatus(`Saved ${data.path || id + '.json'} — reload page to bake into scene`)
+        setStatus(`Saved ${data.path || id + '.json'} — file written for later hardcoding`)
         await refreshList()
       } catch (err) {
         setStatus(`Save failed: ${String(err)}`)
       }
     })
 
-    if (forceOpen) openPanel()
+    document.getElementById('cp-copy')?.addEventListener('click', async () => {
+      const includeCamera = bool(document.getElementById('cp-include-camera'))
+      const includeColors = bool(document.getElementById('cp-include-colors'))
+      const snippet = {
+        clouds: includeColors ? { ...readClouds(), syncTheme: false } : undefined,
+        lighting: includeColors ? readLighting() : undefined,
+        camera: includeCamera ? readCamera() : undefined,
+      }
+      const json = JSON.stringify(snippet, null, 2)
+      try {
+        await navigator.clipboard.writeText(json)
+        setStatus('Copied JSON to clipboard')
+      } catch {
+        setStatus('Copy failed — clipboard unavailable')
+      }
+    })
+
+    if (forceOpen) void openPanel()
   }
 </script>
