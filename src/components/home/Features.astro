@@ -15,11 +15,19 @@ const { features, lang = 'en' } = Astro.props
 // Each capability card links to the live services index page.
 // The /services/ route renders the same capability grid from
 // ServicesBento.astro + the process timeline + the CTA card.
-const servicesHref = '/services/'
+import { localizeHref } from '../../lib/localize-href'
+const servicesHref = localizeHref(lang, '/services/')
 ---
 
-<section class="features" data-scroll-anchor="home-features" data-scroll-anchor-progress="0.30" data-animate="fade-slide-up">
-  <h2 class="features__heading">{t('home_services_title', lang)}</h2>
+<section class="features" data-scroll-anchor="home-features" data-scroll-anchor-progress="0.50" data-animate="fade-slide-up">
+  <div class="features__intro">
+    <h2 class="features__heading">{t('home_services_intro_title', lang)}</h2>
+    <p class="features__lead">{t('home_services_intro_lead', lang)}</p>
+    <a href={servicesHref} class="features__intro-link">
+      {t('home_services_intro_link', lang)}
+      <Icon name="arrow-right" size={14} color="currentColor" />
+    </a>
+  </div>
   <div class="features__grid">
     {features.map((feature) => {
       const icon = resolveIcon(feature.icon)
@@ -50,6 +58,40 @@ const servicesHref = '/services/'
     padding: 80px 24px;
     max-width: 1100px;
     margin: 0 auto;
+  }
+
+  .features__intro {
+    max-width: 680px;
+    margin: 0 auto 52px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .features__lead {
+    font-family: var(--font-body);
+    font-size: var(--type-lead);
+    font-weight: 400;
+    color: var(--muted-text);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .features__intro-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-display);
+    font-size: var(--type-body);
+    font-weight: 600;
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .features__intro-link:hover {
+    text-decoration: underline;
   }
 
   .features__heading {

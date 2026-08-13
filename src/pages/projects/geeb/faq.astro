@@ -1,4 +1,5 @@
 ---
+import '../../../styles/projects/geeb.css'
 import ProjectLayout from '../../../layouts/Project.astro'
 import ProjectFAQ from '../../../components/project/ProjectFAQ.astro'
 import Icon from '../../../components/icons/Icon.astro'
@@ -89,7 +90,6 @@ const proFaqs = [
 ---
 
 <ProjectLayout title={`FAQ — ${project.name} — Baseet Studio`} description={`Frequently asked questions about ${project.name} — ${project.tagline}`} slug={project.slug} projectColor={project.color} projectGradient={project.gradient} projectName={project.name} projectIconClass={project.iconClass} projectNavItems={project.navItems} projectNavMeta={project.navMetaItems} lang={lang}>
-<link rel="stylesheet" href="/src/styles/projects/geeb.css" />
 
   <!-- Subpage hero -->
   <section class="geeb-subhero">

@@ -1,0 +1,115 @@
+---
+import type { Lang } from '../../types'
+import { t } from '../../lib/i18n'
+
+interface Props {
+  lang?: Lang
+}
+
+const { lang = 'en' } = Astro.props
+
+const points = [
+  { title: t('home_why_1_title', lang), text: t('home_why_1_text', lang) },
+  { title: t('home_why_2_title', lang), text: t('home_why_2_text', lang) },
+  { title: t('home_why_3_title', lang), text: t('home_why_3_text', lang) },
+  { title: t('home_why_4_title', lang), text: t('home_why_4_text', lang) },
+]
+---
+
+<section class="why" data-animate="fade-slide-up">
+  <h2 class="why__title">{t('home_why_title', lang)}</h2>
+  <p class="why__lead">{t('home_why_lead', lang)}</p>
+
+  <ol class="why__points" role="list">
+    {points.map((point, i) => (
+      <li class="why__point">
+        <span class="why__index" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+        <div class="why__point-body">
+          <h3 class="why__point-title">{point.title}</h3>
+          <p class="why__point-text">{point.text}</p>
+        </div>
+      </li>
+    ))}
+  </ol>
+</section>
+
+<style>
+  .why {
+    padding: 64px 24px;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+
+  .why__title {
+    font-family: var(--font-display);
+    font-size: var(--type-h2);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--heading-text);
+    margin: 0 0 20px;
+    line-height: 1.1;
+  }
+
+  .why__lead {
+    font-family: var(--font-body);
+    font-size: var(--type-lead);
+    font-weight: 400;
+    color: var(--muted-text);
+    line-height: 1.55;
+    margin: 0 0 44px;
+    max-width: 640px;
+  }
+
+  .why__points {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 36px;
+  }
+
+  .why__point {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+
+  .why__index {
+    font-family: var(--font-display);
+    font-size: var(--type-body);
+    font-weight: 700;
+    color: var(--muted-text);
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+  }
+
+  .why__point-title {
+    font-family: var(--font-display);
+    font-size: var(--type-body-lg, 1.25rem);
+    font-weight: 700;
+    color: var(--heading-text);
+    margin: 0 0 10px;
+    line-height: 1.25;
+  }
+
+  .why__point-text {
+    font-family: var(--font-body);
+    font-size: var(--type-body);
+    font-weight: 400;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .why {
+      padding: 48px 16px;
+    }
+
+    .why__point {
+      grid-template-columns: 40px 1fr;
+      gap: 14px;
+    }
+  }
+</style>

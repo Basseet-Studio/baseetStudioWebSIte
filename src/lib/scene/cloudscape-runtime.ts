@@ -445,9 +445,9 @@ export function initCloudscape(opts: {
 
     backgroundMaterial.uniforms.iTime.value = clock.getElapsedTime()
     backgroundMaterial.uniforms.uSpeed.value = readNumber(clouds.speed, 1)
-    backgroundMaterial.uniforms.uDensity.value = readNumber(clouds.density, 0.6)
+    backgroundMaterial.uniforms.uDensity.value = readNumber(clouds.density, 1)
     backgroundMaterial.uniforms.uNoise.value = readNumber(clouds.noise, 0.5)
-    backgroundMaterial.uniforms.uVerticalSpread.value = readNumber(clouds.verticalSpread, 0.5)
+    backgroundMaterial.uniforms.uVerticalSpread.value = readNumber(clouds.verticalSpread, 0.78)
     backgroundMaterial.uniforms.uFogDensity.value = fogDensity
     backgroundMaterial.uniforms.uSkyColor.value.copy(scratch.skyColor)
     backgroundMaterial.uniforms.uCloudColor.value.copy(scratch.cloudColor)
@@ -557,7 +557,7 @@ export function initCloudscape(opts: {
       if (isSceneDebugEnabled()) {
         sceneLog(
           'scroll',
-          `progress=${(progress * 100).toFixed(1)}% anchor=${evaluated.activeAnchorId} objects=${JSON.stringify(evaluated.objectCommands.show || [])}`,
+          `progress=${(progress * 100).toFixed(1)}% anchor=${evaluated.activeAnchorId} pos=${evaluated.camera.position.map((n) => n.toFixed(1)).join(',')} look=${evaluated.camera.target.map((n) => n.toFixed(1)).join(',')} fov=${evaluated.camera.fov.toFixed(1)}`,
         )
       }
       state.lastProgress = progress
@@ -623,13 +623,17 @@ export function initCloudscape(opts: {
 
     document.addEventListener('astro:page-load', () => {
       bridge.onPageLoad()
+      // Backstop for a genuinely stuck transition. Must exceed the entry
+      // lerp duration (~1200ms) so we never cut a legitimate handoff — the
+      // old 100ms timeout snapped the camera to the new page's start pose
+      // mid-lerp, which read as "rendering from the beginning".
       window.setTimeout(() => {
         if (bridge.getIsTransitioning()) {
           sceneWarn('nav', 'stuck isTransitioning after page-load — force clearing')
           bridge.forceEndTransition()
           scrollDriver.tick({ force: true, source: 'page-load-recovery' })
         }
-      }, 100)
+      }, 3000)
     })
 
     document.addEventListener('visibilitychange', () => {

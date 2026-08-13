@@ -24,45 +24,104 @@ function excerptQuote(quote: string, maxLen = 200): string {
   const lastSpace = cut.lastIndexOf(' ')
   return `${lastSpace > 0 ? cut.slice(0, lastSpace) : cut}…`
 }
+
+// Duplicate the list so the track can loop seamlessly (enter from the left,
+// travel right, reset invisibly against the second copy).
+const loopClients = [...clients, ...clients]
 ---
 
 <section class="clients" data-scroll-anchor="home-clients" data-scroll-anchor-progress="0.65" data-animate="fade-slide-up">
   <h2 class="clients__heading">{t('home_clients_title', lang)}</h2>
   <p class="clients__sub">{t('home_clients_subtitle_long', lang)}</p>
 
-  <div class="clients__grid">
-    {clients.map((client) => {
-      const accent = client.color ?? '#B45309'
-      const quote = excerptQuote(client.testimonial?.quote ?? '')
-      const author = client.testimonial?.author?.trim() ?? ''
-      const role = client.testimonial?.role?.trim() ?? ''
-      return (
-        <figure class="clients__card" style={`--client-accent: ${accent}`}>
-          <header class="clients__card-head">
-            <span class="clients__accent" aria-hidden="true"></span>
-            <h3 class="clients__card-name">{client.name}</h3>
-          </header>
-          {quote ? (
-            <blockquote class="clients__quote">
-              <p>&ldquo;{quote}&rdquo;</p>
-              {(author || role) && (
-                <footer class="clients__attribution">
-                  {author && <cite class="clients__author">{author}</cite>}
-                  {role && <span class="clients__role">{role}</span>}
-                </footer>
-              )}
-            </blockquote>
-          ) : null}
-        </figure>
-      )
-    })}
+  <div class="clients__ticker" data-clients-ticker>
+    <div class="clients__track" data-clients-track>
+      {loopClients.map((client) => {
+        const accent = client.color ?? '#B45309'
+        const quote = excerptQuote(client.testimonial?.quote ?? '')
+        const author = client.testimonial?.author?.trim() ?? ''
+        const role = client.testimonial?.role?.trim() ?? ''
+        return (
+          <figure class="clients__card" style={`--client-accent: ${accent}`}>
+            <header class="clients__card-head">
+              <span class="clients__accent" aria-hidden="true"></span>
+              <h3 class="clients__card-name">{client.name}</h3>
+            </header>
+            {quote ? (
+              <blockquote class="clients__quote">
+                <p>&ldquo;{quote}&rdquo;</p>
+                {(author || role) && (
+                  <footer class="clients__attribution">
+                    {author && <cite class="clients__author">{author}</cite>}
+                    {role && <span class="clients__role">{role}</span>}
+                  </footer>
+                )}
+              </blockquote>
+            ) : null}
+          </figure>
+        )
+      })}
+    </div>
   </div>
 </section>
+
+<script>
+  import gsap from 'gsap'
+
+  let tween: gsap.core.Tween | null = null
+
+  function init(): void {
+    kill()
+
+    const ticker = document.querySelector<HTMLElement>('[data-clients-ticker]')
+    const track = document.querySelector<HTMLElement>('[data-clients-track]')
+    if (!ticker || !track) return
+
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (reduce) {
+      ticker.classList.add('clients__ticker--static')
+      return
+    }
+
+    // Track holds two copies. Animate xPercent from -50 → 0 so the track
+    // moves right: cards enter from the left and travel right, then the
+    // second copy resets the loop invisibly.
+    tween = gsap.fromTo(
+      track,
+      { xPercent: -50 },
+      {
+        xPercent: 0,
+        duration: 32,
+        ease: 'none',
+        repeat: -1,
+      },
+    )
+
+    // Pause on hover/focus for readability and accessibility.
+    const pause = () => tween?.pause()
+    const resume = () => tween?.play()
+    ticker.addEventListener('mouseenter', pause)
+    ticker.addEventListener('mouseleave', resume)
+    ticker.addEventListener('focusin', pause)
+    ticker.addEventListener('focusout', resume)
+  }
+
+  function kill(): void {
+    if (tween) {
+      tween.kill()
+      tween = null
+    }
+  }
+
+  init()
+  document.addEventListener('astro:page-load', init)
+  document.addEventListener('astro:before-swap', kill)
+</script>
 
 <style>
   .clients {
     padding: 64px 24px;
-    max-width: 1100px;
+    max-width: 1280px;
     margin: 0 auto;
   }
 
@@ -89,15 +148,49 @@ function excerptQuote(quote: string, maxLen = 200): string {
     line-height: 1.5;
   }
 
-  .clients__grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .clients__ticker {
+    overflow: hidden;
+    /* Fade the edges so cards enter/leave softly. */
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      #000 8%,
+      #000 92%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      #000 8%,
+      #000 92%,
+      transparent 100%
+    );
+  }
+
+  .clients__track {
+    display: flex;
     gap: 24px;
-    align-items: stretch;
+    width: max-content;
+    will-change: transform;
+  }
+
+  /* Reduced motion: drop the ticker, wrap the cards into a readable grid. */
+  .clients__ticker--static {
+    overflow: visible;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .clients__ticker--static .clients__track {
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
   }
 
   .clients__card {
     margin: 0;
+    /* Fixed width so cards keep their shape in the ticker. */
+    width: 340px;
+    flex: 0 0 340px;
     padding: 28px 26px 26px;
     border-radius: var(--card-window-radius, 24px);
     background: var(--card-window-bg);
@@ -111,7 +204,8 @@ function excerptQuote(quote: string, maxLen = 200): string {
       box-shadow var(--transition-base, 300ms ease);
   }
 
-  .clients__card:hover {
+  .clients__card:hover,
+  .clients__card:focus-within {
     transform: translateY(-3px);
     box-shadow: var(--card-window-shadow-hover);
   }
@@ -188,17 +282,19 @@ function excerptQuote(quote: string, maxLen = 200): string {
   }
 
   @media (max-width: 768px) {
-    .clients__grid {
-      grid-template-columns: 1fr;
-    }
-
     .clients {
       padding: 48px 16px;
+    }
+
+    .clients__card {
+      width: 280px;
+      flex: 0 0 280px;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .clients__card:hover {
+    .clients__card:hover,
+    .clients__card:focus-within {
       transform: none;
     }
   }

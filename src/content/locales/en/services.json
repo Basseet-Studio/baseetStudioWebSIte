@@ -66,55 +66,55 @@
   ],
   "process": {
     "title": "A six-step climb, not a checklist.",
-    "subtitle": "Scroll through the same journey we take with every partner — from the first \"what if\" conversation to the moment your product is live and looked after.",
+    "subtitle": "Same journey, every partner, every time — from the first “what if” conversation to the moment your product is live and someone's actually watching it.",
     "steps": [
       {
         "number": "01",
         "title": "Discovery",
-        "lead": "We start by listening.",
-        "desc": "Workshops, stakeholder interviews, and a hard look at the numbers. We leave with a shared understanding of the problem worth solving.",
+        "lead": "We ask about the business first, not the software.",
+        "desc": "What does this actually need to do, who's it for, and what happens if we get it wrong? Half the value here is us telling you what you don't need yet.",
         "icon": "fas fa-lightbulb"
       },
       {
         "number": "02",
         "title": "Planning",
-        "lead": "A roadmap you can defend.",
-        "desc": "Scope, milestones, and a technical spec written in plain English. No surprise line items three months in.",
+        "lead": "You get a plan, not a guess.",
+        "desc": "We scope the real build — every phase is mapped from day one, even the parts we won't mention to you until they're relevant.",
         "icon": "fas fa-map"
       },
       {
         "number": "03",
         "title": "Design",
-        "lead": "Pixels with a point of view.",
-        "desc": "From low-fi flows to a polished interface system. Every screen earns its place.",
+        "lead": "Shaped around how it's actually used.",
+        "desc": "Interfaces shaped around how the thing will actually be used, not a moodboard. If it's for someone standing at a counter with a customer waiting, it looks nothing like a dashboard built for someone at a desk — and we design accordingly.",
         "icon": "fas fa-pencil-alt"
       },
       {
         "number": "04",
         "title": "Development",
         "lead": "Code you can hand off.",
-        "desc": "Typed, tested, and reviewed. We write it so the next engineer — yours or ours — thanks us.",
+        "desc": "Typed, tested, and reviewed — we write it so the next engineer, yours or ours, thanks us instead of rewriting it from scratch.",
         "icon": "fas fa-code"
       },
       {
         "number": "05",
         "title": "Testing",
-        "lead": "Break it before users do.",
-        "desc": "Automated suites, real-device passes, and accessibility audits before anything ships.",
+        "lead": "We break it before your customers do.",
+        "desc": "Edge cases, bad connections, the fields people fill in wrong — tested against how people actually behave, not how the spec says they should.",
         "icon": "fas fa-vial"
       },
       {
         "number": "06",
         "title": "Launch",
-        "lead": "Live — and looked after.",
-        "desc": "Zero-downtime deploys, monitoring dashboards, and a support cadence that outlives the launch week.",
+        "lead": "We stay on the call.",
+        "desc": "Deploy platform, CI/CD, content migration, gradual rollout — whatever's still shaky on launch day, we're the ones on it, not a support ticket queue.",
         "icon": "fas fa-rocket"
       }
     ]
   },
   "cta": {
-    "title": "Not Sure What You Need?",
-    "subtitle": "Let's have a conversation",
+    "title": "Not sure what you need?",
+    "subtitle": "That's exactly what the first call is for.",
     "description": "Every business is unique. We'll help you identify the right solutions for your specific needs and budget.",
     "button": "Get Free Consultation"
   }

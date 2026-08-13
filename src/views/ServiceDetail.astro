@@ -351,14 +351,15 @@ const contactHref = localizeHref(lang, '/contact/')
       <span class="service-cta__glow service-cta__glow--tr" aria-hidden="true"></span>
       <span class="service-cta__glow service-cta__glow--bl" aria-hidden="true"></span>
       <div class="service-cta__content">
-        <h2 class="service-cta__title">Ready to talk {service.title.toLowerCase()}?</h2>
+        <h2 class="service-cta__title">{t('service_cta_title', lang, { service: service.title.toLowerCase() })}</h2>
         <p class="service-cta__text">
-          Tell us what you are trying to ship. We will reply within one business day with a short take and a clear next step.
+          {t('service_cta_text', lang)}
         </p>
         <a href={contactHref} class="service-cta__button">
-          Start a conversation
+          {t('service_cta_button', lang)}
           <Icon name="arrow-right" size={16} color="currentColor" />
         </a>
+        <p class="service-cta__bottom-line">{t('service_cta_bottom_line', lang)}</p>
       </div>
     </div>
   </section>
@@ -368,7 +369,7 @@ const contactHref = localizeHref(lang, '/contact/')
       <div class="service-section__head service-section__head--lean">
         <h2 class="service-section__title">
           <span class="service-section__count" aria-hidden="true">{t("services_keep_exploring", lang)}</span>
-          Other services teams pair with this one
+          {t('service_related_title', lang)}
         </h2>
       </div>
 
@@ -389,3 +390,12 @@ const contactHref = localizeHref(lang, '/contact/')
     </section>
   )}
 </ServiceLayout>
+
+<style>
+  .service-cta__bottom-line {
+    margin: 18px 0 0;
+    font-size: 0.95rem;
+    opacity: 0.8;
+    line-height: 1.5;
+  }
+</style>

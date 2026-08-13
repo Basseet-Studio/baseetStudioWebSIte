@@ -57,6 +57,10 @@ export function createPageTransitionBridge(deps: {
   let isTransitioning = false
   let navGeneration = 0
   let activeLerpCancel: (() => void) | null = null
+  // True while the entry lerp for the current navigation is already running.
+  // Guards against the page-load re-call restarting the lerp from the exit
+  // camera (which would visibly snap "from the beginning").
+  let transitionStarted = false
 
   function cancelActiveLerp(): void {
     if (activeLerpCancel) {
@@ -67,6 +71,12 @@ export function createPageTransitionBridge(deps: {
 
   async function onAfterSwap(nextConfig: SceneConfig): Promise<void> {
     const generation = navGeneration
+    // If the entry lerp for this navigation is already running (started by
+    // the astro:after-swap path), let it finish — do not cancel and restart
+    // from the exit camera. The page-load re-call becomes a safe no-op.
+    if (transitionStarted) return
+    transitionStarted = true
+
     cancelActiveLerp()
 
     try {
@@ -104,6 +114,7 @@ export function createPageTransitionBridge(deps: {
     } finally {
       if (generation === navGeneration) {
         isTransitioning = false
+        transitionStarted = false
       }
     }
   }
@@ -113,6 +124,7 @@ export function createPageTransitionBridge(deps: {
       navGeneration += 1
       cancelActiveLerp()
       isTransitioning = true
+      transitionStarted = false
       writeExitState({
         path: location.pathname,
         camera: ctx.exitCamera || deps.sceneRuntime.getCurrentCamera(),
@@ -134,6 +146,7 @@ export function createPageTransitionBridge(deps: {
       navGeneration += 1
       cancelActiveLerp()
       isTransitioning = false
+      transitionStarted = false
     },
   }
 }

@@ -163,12 +163,24 @@ function accentTint(color: string, alpha = 10): string {
     })}
   </div>
 
+  {/* Support & Trust — full brand-trust block. */}
+  <section class="clients-trust" data-animate="fade-up">
+    <h2 class="clients-trust__title">{t('clients_support_title', lang)}</h2>
+    <p class="clients-trust__body">{t('clients_support_body', lang)}</p>
+  </section>
+
+  {/* Who We Build For — full block. */}
+  <section class="clients-trust" data-animate="fade-up">
+    <h2 class="clients-trust__title">{t('clients_who_title', lang)}</h2>
+    <p class="clients-trust__body">{t('clients_who_body', lang)}</p>
+  </section>
+
   {/* Footer CTA — invites the next case to start. Quiet, single line. */}
   <section class="clients-cta" data-animate="fade-up">
     <p class="clients-cta__copy">
-      <span class="clients-cta__copy-line">Want to be the next case file?</span>
+      <span class="clients-cta__copy-line">{t('clients_cta_line', lang)}</span>
       <a href={localizeHref(lang, "/contact/")} class="clients-cta__link">
-        Tell us what you're building
+        {t('clients_cta_link', lang)}
         <Icon name="arrow-right" size={16} color="currentColor" />
       </a>
     </p>
@@ -629,6 +641,32 @@ function accentTint(color: string, alpha = 10): string {
 
   .case-file__study-link:active {
     transform: scale(0.98);
+  }
+
+  /* ----- Support & Trust / Who We Build For ----- */
+  .clients-trust {
+    max-width: 760px;
+    margin: clamp(72px, 10vw, 104px) auto;
+    padding: 0 24px;
+  }
+
+  .clients-trust__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--heading-text);
+    margin: 0 0 18px;
+    line-height: 1.2;
+  }
+
+  .clients-trust__body {
+    font-family: var(--font-body);
+    font-size: var(--type-lead);
+    font-weight: 400;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin: 0;
   }
 
   /* ----- Footer CTA ----- */

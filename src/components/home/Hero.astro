@@ -168,19 +168,43 @@ const titleHtml = parseBold(data.title)
 </style>
 
 <script>
-  let typed = false
+  // Typewriter for the hero accent word.
+  //
+  // Astro's ClientRouter persists this <script> module across navigations,
+  // so a module-level `typed` flag would stop the effect re-running after a
+  // swap. Instead we gate on the *current* DOM node via `dataset.typed`, and
+  // tear down the interval + cursor on `astro:before-swap` so a returning
+  // visit starts clean.
+  let interval: ReturnType<typeof setInterval> | null = null
+  let holdTimer: ReturnType<typeof setTimeout> | null = null
+  let activeCursor: HTMLElement | null = null
+
+  function teardown() {
+    if (interval) {
+      clearInterval(interval)
+      interval = null
+    }
+    if (holdTimer) {
+      clearTimeout(holdTimer)
+      holdTimer = null
+    }
+    if (activeCursor) {
+      activeCursor.remove()
+      activeCursor = null
+    }
+  }
 
   function typewrite() {
-    if (typed) return
+    teardown()
+
+    const strong = document.querySelector<HTMLElement>('.hero__title strong')
+    if (!strong || strong.dataset.typed === '1') return
+    strong.dataset.typed = '1'
+
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      const strong = document.querySelector('.hero__title strong')
-      if (strong) strong.style.visibility = 'visible'
-      typed = true
+      strong.style.visibility = 'visible'
       return
     }
-
-    const strong = document.querySelector('.hero__title strong')
-    if (!strong) return
 
     const text = strong.textContent || ''
     strong.textContent = ''
@@ -189,13 +213,17 @@ const titleHtml = parseBold(data.title)
     const cursor = document.createElement('span')
     cursor.className = 'typewriter-cursor'
     strong.insertAdjacentElement('afterend', cursor)
-    typed = true
+    activeCursor = cursor
 
     let i = 0
-    const interval = setInterval(() => {
+    interval = setInterval(() => {
       if (i >= text.length) {
-        clearInterval(interval)
-        setTimeout(() => cursor.remove(), 2500)
+        if (interval) clearInterval(interval)
+        interval = null
+        holdTimer = setTimeout(() => {
+          cursor.remove()
+          activeCursor = null
+        }, 2500)
         return
       }
       strong.textContent += text[i]
@@ -205,4 +233,13 @@ const titleHtml = parseBold(data.title)
 
   typewrite()
   document.addEventListener('astro:page-load', typewrite)
+  document.addEventListener('astro:before-swap', teardown)
 </script>
+
+<noscript>
+  <style>
+    .hero__title strong {
+      visibility: visible;
+    }
+  </style>
+</noscript>

@@ -7,6 +7,9 @@ import ProximityProjects from '../components/home/ProximityProjects.astro'
 import Clients from '../components/home/Clients.astro'
 import Team from '../components/home/Team.astro'
 import Highlights from '../components/home/Highlights.astro'
+import WhyChoose from '../components/home/WhyChoose.astro'
+import OurStory from '../components/home/OurStory.astro'
+import HomeCta from '../components/home/HomeCta.astro'
 import ScrollSpacer from '../components/home/ScrollSpacer.astro'
 import { getHomeData } from '../lib/home'
 import { getClientsData } from '../lib/clients'
@@ -28,6 +31,7 @@ const homeProjects = (homeData.projects ?? []).filter((p: { slug: string }) => S
 <Page title="Baseet Studio" description={description} section="home" lang={lang}>
   <Hero data={homeData.hero} lang={lang} />
   <ScrollSpacer height="35vh" />
+  <WhyChoose lang={lang} />
   <Highlights highlights={homeData.highlights} lang={lang} />
   <ScrollSpacer height="30vh" />
   <Features features={homeData.features} lang={lang} />
@@ -35,5 +39,7 @@ const homeProjects = (homeData.projects ?? []).filter((p: { slug: string }) => S
   <ProximityProjects projects={homeProjects} lang={lang} />
   <Clients clients={clientsData.clients} lang={lang} />
   <Team members={homeData.team} lang={lang} />
+  <OurStory lang={lang} />
+  <HomeCta lang={lang} />
   <ScrollSpacer height="20vh" />
 </Page>

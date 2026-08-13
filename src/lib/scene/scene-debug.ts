@@ -77,11 +77,24 @@ export function updateSceneDebugPanel(snapshot: SceneDebugSnapshot): void {
 
   set('progress', (snapshot.progress * 100).toFixed(1))
   set('anchor', snapshot.anchorId || '—')
-  set('cam-z', snapshot.camera.position[2]?.toFixed(2) ?? '—')
+  const pos = snapshot.camera.position
+  const tgt = snapshot.camera.target
   set(
     'cam-pos',
-    snapshot.camera.position.map((n) => n.toFixed(1)).join(', '),
+    pos.map((n) => n.toFixed(1)).join(', '),
   )
+  set(
+    'cam-tgt',
+    tgt.map((n) => n.toFixed(1)).join(', '),
+  )
+  set('cam-fov', snapshot.camera.fov.toFixed(1))
+  const dx = (tgt[0] ?? 0) - (pos[0] ?? 0)
+  const dy = (tgt[1] ?? 0) - (pos[1] ?? 0)
+  const dz = (tgt[2] ?? 0) - (pos[2] ?? 0)
+  const yaw = (Math.atan2(dx, dz) * 180) / Math.PI
+  const pitch = (Math.atan2(dy, Math.hypot(dx, dz)) * 180) / Math.PI
+  set('cam-yaw', yaw.toFixed(1))
+  set('cam-pitch', pitch.toFixed(1))
   set('density', String(snapshot.clouds.density ?? '—'))
   set(
     'objects',

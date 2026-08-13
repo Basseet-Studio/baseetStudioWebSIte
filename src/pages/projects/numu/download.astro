@@ -1,4 +1,5 @@
 ---
+import '../../../styles/projects/numu.css'
 import ProjectLayout from '../../../layouts/Project.astro'
 import Icon from '../../../components/icons/Icon.astro'
 import { getProject } from '../../../lib/projects'
@@ -31,7 +32,6 @@ const platforms = [
   projectNavMeta={project.navMetaItems}
   lang="en"
 >
-<link rel="stylesheet" href="/src/styles/projects/numu.css" />
 
   <section class="numu-subhero">
     <h1 class="numu-subhero__title" style="font-family: var(--font-display);" data-animate="fade-up">Download Numu</h1>

@@ -8,11 +8,10 @@ interface Props {
   slug: string
   docType: 'terms' | 'privacy'
   lang?: Lang
-  cssPath?: string
   subheroClass?: string
 }
 
-const { slug, docType, lang: langProp, cssPath, subheroClass = 'project-subhero' } = Astro.props
+const { slug, docType, lang: langProp, subheroClass = 'project-subhero' } = Astro.props
 const lang: Lang = langProp ?? 'en'
 const project = getProject(slug)
 if (!project) return Astro.redirect('/404')
@@ -76,8 +75,6 @@ const loremSections = [
   projectNavMeta={project.navMetaItems}
   lang={lang}
 >
-  {cssPath && <link rel="stylesheet" href={cssPath} />}
-
   <section class={subheroClass}>
     <div class={`${subheroClass}__inner`}>
       <span class={`${subheroClass}__eyebrow`}>

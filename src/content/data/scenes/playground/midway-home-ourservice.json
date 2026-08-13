@@ -1,0 +1,23 @@
+{
+  "id": "midway-home-ourservice",
+  "name": "midway-home-ourservice",
+  "pageId": "home",
+  "sectionId": "home-hero",
+  "includeCamera": true,
+  "includeColors": false,
+  "camera": {
+    "position": [
+      -23.9,
+      5,
+      30
+    ],
+    "target": [
+      3.5,
+      -8.5,
+      -16.6
+    ],
+    "fov": 31,
+    "source": "playground:live"
+  },
+  "createdAt": "2026-08-13T08:24:53.019Z"
+}

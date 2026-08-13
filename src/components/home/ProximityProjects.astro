@@ -14,7 +14,10 @@ const { projects, lang = 'en' } = Astro.props
 ---
 
 <section class="px" id="px-stage" data-scroll-anchor="home-projects" data-scroll-anchor-progress="0.48" aria-labelledby="px-heading">
-  <h2 class="px__heading" id="px-heading">{t('home_projects_title', lang)}</h2>
+  <div class="px__intro">
+    <h2 class="px__heading" id="px-heading">{t('home_projects_intro_title', lang)}</h2>
+    <p class="px__lead">{t('home_projects_intro_lead', lang)}</p>
+  </div>
 
   <ul class="px__grid" role="list">
     {projects.map((project) => (
@@ -50,12 +53,30 @@ const { projects, lang = 'en' } = Astro.props
     margin: 0 auto;
   }
 
+  .px__intro {
+    max-width: 720px;
+    margin: 0 auto 52px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .px__lead {
+    font-family: var(--font-body);
+    font-size: var(--type-lead);
+    font-weight: 400;
+    color: var(--muted-text);
+    line-height: 1.55;
+    margin: 0;
+  }
+
   .px__heading {
     font-family: var(--font-display);
     font-size: var(--type-h2);
     font-weight: 700;
     text-align: center;
-    margin: 0 0 52px;
+    margin: 0;
     color: var(--heading-text);
     letter-spacing: -0.02em;
   }

@@ -1,0 +1,23 @@
+{
+  "id": "starting-home-hero",
+  "name": "starting-home-hero",
+  "pageId": "home",
+  "sectionId": "home-hero",
+  "includeCamera": true,
+  "includeColors": false,
+  "camera": {
+    "position": [
+      -30,
+      3.5,
+      28.8
+    ],
+    "target": [
+      3.5,
+      -4.7,
+      -30
+    ],
+    "fov": 31,
+    "source": "playground:live"
+  },
+  "createdAt": "2026-08-13T08:20:22.813Z"
+}

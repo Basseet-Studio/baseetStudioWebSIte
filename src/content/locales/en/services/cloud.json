@@ -9,7 +9,7 @@
   "shortDescription": "Scalable infrastructure and deployment",
   "hero": {
     "title": "Ship faster, sleep better",
-    "subtitle": "We design cloud platforms that scale on the good days and hold up on the bad ones. AWS, GCP, Cloudflare, or your own datacenter — IaC from day one, observability that catches issues before customers do, and a release process your team actually trusts.",
+    "subtitle": "Ship faster, sleep better. Scalable infrastructure, CI/CD, and monitoring so a release stops being an event everyone's nervous about.",
     "cta_primary": "Review my infra",
     "cta_primary_link": "/contact/",
     "cta_secondary": "See the stack",

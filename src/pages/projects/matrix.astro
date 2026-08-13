@@ -1,4 +1,5 @@
 ---
+import '../../styles/projects/matrix.css'
 import ProjectLayout from '../../layouts/Project.astro'
 import ProjectGallery from '../../components/project/ProjectGallery.astro'
 import ProjectTestimonial from '../../components/project/ProjectTestimonial.astro'
@@ -45,7 +46,6 @@ const perfItems = [
 ---
 
 <ProjectLayout title={`${project.name} — Baseet Studio`} description={project.tagline} slug={project.slug} projectColor={project.color} projectGradient={project.gradient} projectName={project.name} projectIconClass={project.iconClass} projectNavItems={project.navItems} projectNavMeta={project.navMetaItems} lang={lang}>
-  <link rel="stylesheet" href="/src/styles/projects/matrix.css" />
 
   <div id="matrix-page">
 

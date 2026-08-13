@@ -1,5 +1,6 @@
 ---
 // CloudscapeBg.astro — WebGL cloudscape background (camera + clouds + GLB objects)
+import { editorDefaultClouds } from '../../content/data/scenes/editor-default'
 ---
 
 <div
@@ -20,9 +21,17 @@
     <span> · fps </span><span data-scene-fps>—</span>
   </div>
   <div class="scene-debug__row">
-    <span>cam </span><span data-scene-cam-pos>12.1, 2.1, 4.7</span>
-    <span> · z </span><span data-scene-cam-z>4.7</span>
-    <span> · density </span><span data-scene-density>0.1</span>
+    <span>pos </span><span data-scene-cam-pos>-30.0, 3.5, 28.8</span>
+    <span> · fov </span><span data-scene-cam-fov>31</span>
+  </div>
+  <div class="scene-debug__row">
+    <span>look </span><span data-scene-cam-tgt>3.5, -4.7, -30.0</span>
+    <span> · yaw </span><span data-scene-cam-yaw>—</span>
+    <span>° · pitch </span><span data-scene-cam-pitch>—</span>
+    <span>°</span>
+  </div>
+  <div class="scene-debug__row">
+    <span>density </span><span data-scene-density>{editorDefaultClouds.density}</span>
   </div>
   <div class="scene-debug__row">
     <span>objects </span><span data-scene-objects>none</span>

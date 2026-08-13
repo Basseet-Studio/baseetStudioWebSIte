@@ -9,7 +9,7 @@
   "shortDescription": "Modern, responsive websites and web applications",
   "hero": {
     "title": "Websites that work as hard as you do",
-    "subtitle": "From high-converting marketing sites to complex web apps, we build fast, accessible, and search-friendly experiences on a modern stack — Astro, Next.js, TypeScript, and the headless tools your team will actually enjoy using.",
+    "subtitle": "Websites that work as hard as you do. Modern, responsive sites and web applications built on stacks we actually maintain ourselves — not a theme we installed and won't touch again.",
     "cta_primary": "Start your project",
     "cta_primary_link": "/contact/",
     "cta_secondary": "See the process",

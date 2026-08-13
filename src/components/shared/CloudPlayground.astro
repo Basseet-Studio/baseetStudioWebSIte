@@ -5,6 +5,7 @@
  * cloud-playground-dev middleware.
  */
 import type { Lang } from '../../types'
+import { playgroundCloudDefaults } from '../../content/data/scenes/editor-default'
 
 interface Props {
   lang?: Lang
@@ -40,10 +41,10 @@ const { lang: _lang = 'en' } = Astro.props
           <label>Sky <input type="color" data-cp="skyColor" value="#6fa8dc" /></label>
           <label>Cloud <input type="color" data-cp="cloudColor" value="#ffffff" /></label>
           <label>Shadow <input type="color" data-cp="cloudShadowColor" value="#496bc1" /></label>
-          <label>Density <input type="range" data-cp="density" min="0" max="1" step="0.01" value="0.1" /><span data-cp-val="density">0.1</span></label>
-          <label>Speed <input type="range" data-cp="speed" min="0" max="3" step="0.05" value="1" /><span data-cp-val="speed">1</span></label>
-          <label>Noise <input type="range" data-cp="noise" min="0" max="1" step="0.01" value="0.4" /><span data-cp-val="noise">0.4</span></label>
-          <label>Spread <input type="range" data-cp="verticalSpread" min="0" max="1" step="0.01" value="0.6" /><span data-cp-val="verticalSpread">0.6</span></label>
+          <label>Density <input type="range" data-cp="density" min="0" max="1" step="0.01" value={playgroundCloudDefaults.density} /><span data-cp-val="density">{playgroundCloudDefaults.density}</span></label>
+          <label>Speed <input type="range" data-cp="speed" min="0" max="3" step="0.05" value={playgroundCloudDefaults.speed} /><span data-cp-val="speed">{playgroundCloudDefaults.speed}</span></label>
+          <label>Noise <input type="range" data-cp="noise" min="0" max="1" step="0.01" value={playgroundCloudDefaults.noise} /><span data-cp-val="noise">{playgroundCloudDefaults.noise}</span></label>
+          <label>Spread <input type="range" data-cp="verticalSpread" min="0" max="1" step="0.01" value={playgroundCloudDefaults.verticalSpread} /><span data-cp-val="verticalSpread">{playgroundCloudDefaults.verticalSpread}</span></label>
           <label class="cp__check"><input type="checkbox" data-cp="syncTheme" /> Sync theme (time-of-day)</label>
         </div>
       </details>
@@ -79,6 +80,10 @@ const { lang: _lang = 'en' } = Astro.props
           <label>Page
             <select id="cp-page">
               <option value="home">home</option>
+              <option value="services">services</option>
+              <option value="clients">clients</option>
+              <option value="contact">contact</option>
+              <option value="projects">projects</option>
               <option value="default">default</option>
             </select>
           </label>
@@ -92,6 +97,21 @@ const { lang: _lang = 'en' } = Astro.props
               <option value="home-clients">home-clients</option>
               <option value="home-team">home-team</option>
               <option value="home-end">home-end</option>
+              <option value="services-start">services-start</option>
+              <option value="services-mid">services-mid</option>
+              <option value="services-end">services-end</option>
+              <option value="clients-start">clients-start</option>
+              <option value="clients-mid">clients-mid</option>
+              <option value="clients-end">clients-end</option>
+              <option value="contact-start">contact-start</option>
+              <option value="contact-mid">contact-mid</option>
+              <option value="contact-end">contact-end</option>
+              <option value="projects-start">projects-start</option>
+              <option value="projects-mid">projects-mid</option>
+              <option value="projects-end">projects-end</option>
+              <option value="default-start">default-start</option>
+              <option value="default-mid">default-mid</option>
+              <option value="default-end">default-end</option>
               <option value="default">default</option>
             </select>
           </label>
@@ -312,7 +332,7 @@ const { lang: _lang = 'en' } = Astro.props
 
 </style>
 
-<script>
+<script define:vars={{ cpDefaults: playgroundCloudDefaults }}>
   import type { CameraPose, CloudSettings, LightingSettings, PlaygroundPoint } from '../../lib/scene/types'
 
   type ListFile = {
@@ -432,7 +452,18 @@ const { lang: _lang = 'en' } = Astro.props
       if (!clouds.syncTheme) clouds.syncTheme = false
       rt.applyClouds(clouds)
       rt.applyLighting(readLighting())
-      rt.applyCamera(readCamera())
+      const cam = readCamera()
+      rt.applyCamera(cam)
+      // Clouds live in a fixed slab; above ~4.8 they vanish, below 1.8 the
+      // camera dips under the cloud floor. Warn, don't clamp.
+      const y = cam.position[1]
+      if (y < 1.8) {
+        setStatus(`⚠ Pos Y ${y.toFixed(2)} is below the cloud floor (keep ≥ 1.8)`)
+      } else if (y > 4.8) {
+        setStatus(`⚠ Pos Y ${y.toFixed(2)} is above the cloud ceiling (keep ≤ 4.8)`)
+      } else if (statusEl && statusEl.textContent.startsWith('⚠')) {
+        statusEl.textContent = ''
+      }
     }
 
     async function syncFromRuntime() {
@@ -444,10 +475,10 @@ const { lang: _lang = 'en' } = Astro.props
       setVal('skyColor', clouds.skyColor || '#6fa8dc')
       setVal('cloudColor', clouds.cloudColor || '#ffffff')
       setVal('cloudShadowColor', clouds.cloudShadowColor || '#496bc1')
-      setVal('density', clouds.density ?? 0.1)
-      setVal('speed', clouds.speed ?? 1)
-      setVal('noise', clouds.noise ?? 0.4)
-      setVal('verticalSpread', clouds.verticalSpread ?? 0.6)
+      setVal('density', clouds.density ?? cpDefaults.density)
+      setVal('speed', clouds.speed ?? 1.8)
+      setVal('noise', clouds.noise ?? 1)
+      setVal('verticalSpread', clouds.verticalSpread ?? cpDefaults.verticalSpread)
       setVal('syncTheme', clouds.syncTheme !== false)
       setVal('azimuth', lighting.azimuth ?? 62)
       setVal('elevation', lighting.elevation ?? 59)
@@ -588,10 +619,10 @@ const { lang: _lang = 'en' } = Astro.props
           setVal('skyColor', cl.skyColor || '#6fa8dc')
           setVal('cloudColor', cl.cloudColor || '#ffffff')
           setVal('cloudShadowColor', cl.cloudShadowColor || '#496bc1')
-          setVal('density', cl.density ?? 0.1)
-          setVal('speed', cl.speed ?? 1)
-          setVal('noise', cl.noise ?? 0.4)
-          setVal('verticalSpread', cl.verticalSpread ?? 0.6)
+          setVal('density', cl.density ?? cpDefaults.density)
+          setVal('speed', cl.speed ?? 1.8)
+          setVal('noise', cl.noise ?? 1)
+          setVal('verticalSpread', cl.verticalSpread ?? cpDefaults.verticalSpread)
           setVal('syncTheme', false)
           rt.applyClouds(cl)
         }

@@ -9,7 +9,7 @@
   "shortDescription": "Scalable infrastructure and deployment",
   "hero": {
     "title": "أطلق أسرع، نم باطمئنان",
-    "subtitle": "بنية سحابية AWS وGCP وCloudflare — IaC ومراقبة وعملية إطلاق تثق بها.",
+    "subtitle": "أطلق أسرع، نم باطمئنان. بنية تحتية قابلة للتوسع وCI/CD ومراقبة حتى تتوقف الإصدارات عن أن تكون حدثاً يقلق الجميع.",
     "cta_primary": "راجع بنيتك",
     "cta_primary_link": "/contact/",
     "cta_secondary": "شاهد التقنيات",

@@ -9,7 +9,7 @@
   "shortDescription": "Native and cross-platform mobile applications",
   "hero": {
     "title": "Apps people keep on their home screen",
-    "subtitle": "We build iOS, Android, and cross-platform apps that feel at home on the device — fast, polished, and respectful of battery and data. Native Swift and Kotlin when you need the platform, Flutter and React Native when you need both at once.",
+    "subtitle": "Apps people keep on their home screen. Native iOS, native Android, or React Native — whichever is actually right for what you're building, not whichever we happen to prefer.",
     "cta_primary": "Plan my app",
     "cta_primary_link": "/contact/",
     "cta_secondary": "See the stack",

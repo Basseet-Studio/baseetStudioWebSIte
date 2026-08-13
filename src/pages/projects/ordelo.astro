@@ -1,4 +1,5 @@
 ---
+import '../../styles/projects/ordelo.css'
 import ProjectLayout from '../../layouts/Project.astro'
 import ProjectGallery from '../../components/project/ProjectGallery.astro'
 import ProjectCTA from '../../components/project/ProjectCTA.astro'
@@ -77,7 +78,6 @@ const packages = [
 ---
 
 <ProjectLayout title={`${project.name} — Baseet Studio`} description={project.tagline} slug={project.slug} projectColor={project.color} projectGradient={project.gradient} projectName={project.name} projectIconClass={project.iconClass} projectNavItems={project.navItems} projectNavMeta={project.navMetaItems} lang={lang}>
-  <link rel="stylesheet" href="/src/styles/projects/ordelo.css" />
 
   <section class="project-hero project-hero--centered">
     <div style={`position:absolute;top:8%;right:10%;opacity:0.06;transform:rotate(20deg);color:${project.color};pointer-events:none;`}>

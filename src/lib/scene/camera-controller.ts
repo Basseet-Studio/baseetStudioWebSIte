@@ -7,6 +7,7 @@ import type {
   ObjectCommands,
   SceneConfig,
   ScrollAnchor,
+  Vec3,
 } from './types'
 
 export const EASING: Record<EasingName, (t: number) => number> = {
@@ -34,6 +35,54 @@ export function lerpCamera(a: CameraPose, b: CameraPose, t: number): CameraPose 
     position: lerpVec3(a.position, b.position, t),
     target: lerpVec3(a.target, b.target, t),
     fov: lerp(a.fov, b.fov, t),
+  }
+}
+
+/**
+ * Catmull-Rom spline sample for a scalar (used for fov).
+ * p1/p2 are the segment endpoints; p0/p3 are the neighbouring control
+ * points (clamped to the endpoints at the array bounds).
+ */
+function catmullRom1D(p0: number, p1: number, p2: number, p3: number, t: number): number {
+  const t2 = t * t
+  const t3 = t2 * t
+  return 0.5 * (
+    2 * p1 +
+    (-p0 + p2) * t +
+    (2 * p0 - 5 * p1 + 4 * p2 - p3) * t2 +
+    (-p0 + 3 * p1 - 3 * p2 + p3) * t3
+  )
+}
+
+function catmullRomVec3(
+  p0: Vec3,
+  p1: Vec3,
+  p2: Vec3,
+  p3: Vec3,
+  t: number,
+): Vec3 {
+  return [
+    catmullRom1D(p0[0], p1[0], p2[0], p3[0], t),
+    catmullRom1D(p0[1], p1[1], p2[1], p3[1], t),
+    catmullRom1D(p0[2], p1[2], p2[2], p3[2], t),
+  ]
+}
+
+/**
+ * Sample a Catmull-Rom spline through a list of camera poses.
+ * `i` is the index of the next anchor (segment between anchors[i-1] and
+ * anchors[i]); `t` is the eased position within that segment [0,1].
+ * Endpoints are duplicated so the curve passes through the first/last anchor.
+ */
+function catmullRomPose(poses: CameraPose[], i: number, t: number): CameraPose {
+  const p0 = poses[i - 2] ?? poses[i - 1] ?? poses[0]
+  const p1 = poses[i - 1] ?? poses[0]
+  const p2 = poses[i] ?? poses[poses.length - 1]
+  const p3 = poses[i + 1] ?? poses[poses.length - 1]
+  return {
+    position: catmullRomVec3(p0.position, p1.position, p2.position, p3.position, t),
+    target: catmullRomVec3(p0.target, p1.target, p2.target, p3.target, t),
+    fov: catmullRom1D(p0.fov, p1.fov, p2.fov, p3.fov, t),
   }
 }
 
@@ -70,6 +119,7 @@ function emptyCommands(): Required<ObjectCommands> {
 export function createCameraController(sceneConfig: SceneConfig) {
   let config = sceneConfig
   let anchors = sortAnchors(sceneConfig.scrollAnchors || [])
+  let poses = anchors.map((a) => a.camera)
 
   const defaults = {
     clouds: config.clouds || {},
@@ -79,6 +129,7 @@ export function createCameraController(sceneConfig: SceneConfig) {
   function setConfig(next: SceneConfig): void {
     config = next
     anchors = sortAnchors(next.scrollAnchors || [])
+    poses = anchors.map((a) => a.camera)
     defaults.clouds = { ...(next.clouds || {}) }
     defaults.lighting = { ...(next.lighting || {}) }
   }
@@ -95,6 +146,22 @@ export function createCameraController(sceneConfig: SceneConfig) {
     activeId: string,
   ): EvaluatedSceneState {
     const camera = lerpCamera(fromAnchor.camera, toAnchor.camera, t)
+    let clouds = mergePartial(defaults.clouds, fromAnchor.clouds)
+    clouds = mergePartial(clouds, toAnchor.clouds)
+    let lighting = mergePartial(defaults.lighting, fromAnchor.lighting)
+    lighting = mergePartial(lighting, toAnchor.lighting)
+    const objectCommands = accumulateObjectCommands(fromAnchor, toAnchor, t)
+    return { camera, clouds, lighting, objectCommands, activeAnchorId: activeId }
+  }
+
+  function buildStateBetweenSpline(
+    i: number,
+    t: number,
+    activeId: string,
+  ): EvaluatedSceneState {
+    const camera = catmullRomPose(poses, i, t)
+    const fromAnchor = anchors[i - 1]
+    const toAnchor = anchors[i]
     let clouds = mergePartial(defaults.clouds, fromAnchor.clouds)
     clouds = mergePartial(clouds, toAnchor.clouds)
     let lighting = mergePartial(defaults.lighting, fromAnchor.lighting)
@@ -162,7 +229,11 @@ export function createCameraController(sceneConfig: SceneConfig) {
         const tRaw = span <= 0 ? 1 : (p - prev.atScrollProgress) / span
         const easeFn = EASING[next.easing || 'easeInOutCubic'] || EASING.easeInOutCubic
         const t = easeFn(clamp(tRaw, 0, 1))
-        return buildStateBetween(prev, next, t, next.id)
+        // Smooth curves across 3+ anchors: Catmull-Rom through the poses.
+        // Falls back to linear lerp when there are fewer than 3 anchors.
+        return poses.length >= 3
+          ? buildStateBetweenSpline(i, t, next.id)
+          : buildStateBetween(prev, next, t, next.id)
       }
     }
 

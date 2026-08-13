@@ -1,4 +1,5 @@
 ---
+import '../../styles/projects/invexo.css'
 import ProjectLayout from '../../layouts/Project.astro'
 import ProjectGallery from '../../components/project/ProjectGallery.astro'
 import ProjectCTA from '../../components/project/ProjectCTA.astro'
@@ -29,7 +30,6 @@ const linkedClients = getClientsForProject(slug)
        hero h1 used `font-weight:800`, which the browser synthesised as a fake
        800 from 700. The font-weights list now includes 600 and 800 so the
        declared weights actually load. -->
-<link rel="stylesheet" href="/src/styles/projects/invexo.css" />
 
   <!-- Split-Screen Hero with Dashboard Mockup
        The coloured background wash now lives in shared.css

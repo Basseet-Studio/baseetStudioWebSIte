@@ -1,0 +1,23 @@
+{
+  "id": "end-home-ourservice",
+  "name": "end-home-ourservice",
+  "pageId": "home",
+  "sectionId": "home-hero",
+  "includeCamera": true,
+  "includeColors": false,
+  "camera": {
+    "position": [
+      30,
+      2.8,
+      18.5
+    ],
+    "target": [
+      4.5,
+      -10,
+      -16.6
+    ],
+    "fov": 31,
+    "source": "playground:live"
+  },
+  "createdAt": "2026-08-13T08:26:21.114Z"
+}
