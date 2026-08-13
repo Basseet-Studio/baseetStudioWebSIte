@@ -25,7 +25,7 @@ const servicesHref = localizeHref(lang, '/services/')
     <p class="features__lead">{t('home_services_intro_lead', lang)}</p>
     <a href={servicesHref} class="features__intro-link">
       {t('home_services_intro_link', lang)}
-      <Icon name="arrow-right" size={14} color="currentColor" />
+      <Icon name="arrow-right" size={14} color="currentColor" class="icon-chevron" />
     </a>
   </div>
   <div class="features__grid">
@@ -46,7 +46,7 @@ const servicesHref = localizeHref(lang, '/services/')
         <p class="features__text">{feature.text}</p>
         <span class="features__cta" aria-hidden="true">
           {t('home_services_cta', lang)}
-          <Icon name="arrow-right" size={14} color="currentColor" />
+          <Icon name="arrow-right" size={14} color="currentColor" class="icon-chevron" />
         </span>
       </a>
     )})}
@@ -192,6 +192,10 @@ const servicesHref = localizeHref(lang, '/services/')
 
   [dir="rtl"] .features__card:hover .features__cta {
     transform: translateX(-4px);
+  }
+
+  [dir="rtl"] .features .icon-chevron :global(svg) {
+    transform: scaleX(-1);
   }
 
   @media (max-width: 900px) {

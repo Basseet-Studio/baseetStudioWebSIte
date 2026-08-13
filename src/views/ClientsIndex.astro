@@ -16,6 +16,13 @@ function accentTint(color: string, alpha = 10): string {
   return `color-mix(in srgb, ${color} ${alpha}%, transparent)`
 }
 
+// Audience chips for "Who this is for" — pipe-separated so each locale can
+// reorder/translate the list without touching the markup.
+const audiences = (t('clients_who_audiences', lang) || '')
+  .split('|')
+  .map((s) => s.trim())
+  .filter(Boolean)
+
 ---
 
 <Page title={t("clients_title", lang)} description={description} section="clients" lang={lang}>
@@ -45,6 +52,29 @@ function accentTint(color: string, alpha = 10): string {
         <dd>{t("clients_meta_industries_value", lang)}</dd>
       </div>
     </dl>
+  </section>
+
+  {/* Intro band — Support & Trust + Who We Build For, framing the case
+      files below. Two-column editorial band on desktop, stacks on mobile. */}
+  <section class="clients-intro" data-animate="fade-up">
+    <div class="clients-intro__grid">
+      <article class="clients-intro__col">
+        <h2 class="clients-intro__title">{t('clients_support_title', lang)}</h2>
+        <p class="clients-intro__body">{t('clients_support_body', lang)}</p>
+      </article>
+      <article class="clients-intro__col">
+        <h2 class="clients-intro__title">{t('clients_who_title', lang)}</h2>
+        <p class="clients-intro__body">{t('clients_who_body', lang)}</p>
+        {audiences.length > 0 && (
+          <ul class="clients-intro__chips" role="list">
+            {audiences.map((item) => (
+              <li class="clients-intro__chip">{item}</li>
+            ))}
+          </ul>
+        )}
+        <p class="clients-intro__coda">{t('clients_who_coda', lang)}</p>
+      </article>
+    </div>
   </section>
 
   <div class="case-files">
@@ -153,7 +183,7 @@ function accentTint(color: string, alpha = 10): string {
 
               <a href={localizeHref(lang, `/clients/${client.id}/`)} class="case-file__study-link" style={`color:${accent};`}>
                 View case study
-                <Icon name="arrow-right" size={14} color="currentColor" />
+                <Icon name="arrow-right" size={14} color="currentColor" class="icon-chevron" />
               </a>
             </div>
             </div>
@@ -163,25 +193,13 @@ function accentTint(color: string, alpha = 10): string {
     })}
   </div>
 
-  {/* Support & Trust — full brand-trust block. */}
-  <section class="clients-trust" data-animate="fade-up">
-    <h2 class="clients-trust__title">{t('clients_support_title', lang)}</h2>
-    <p class="clients-trust__body">{t('clients_support_body', lang)}</p>
-  </section>
-
-  {/* Who We Build For — full block. */}
-  <section class="clients-trust" data-animate="fade-up">
-    <h2 class="clients-trust__title">{t('clients_who_title', lang)}</h2>
-    <p class="clients-trust__body">{t('clients_who_body', lang)}</p>
-  </section>
-
   {/* Footer CTA — invites the next case to start. Quiet, single line. */}
   <section class="clients-cta" data-animate="fade-up">
     <p class="clients-cta__copy">
       <span class="clients-cta__copy-line">{t('clients_cta_line', lang)}</span>
       <a href={localizeHref(lang, "/contact/")} class="clients-cta__link">
         {t('clients_cta_link', lang)}
-        <Icon name="arrow-right" size={16} color="currentColor" />
+        <Icon name="arrow-right" size={16} color="currentColor" class="icon-chevron" />
       </a>
     </p>
   </section>
@@ -643,30 +661,95 @@ function accentTint(color: string, alpha = 10): string {
     transform: scale(0.98);
   }
 
-  /* ----- Support & Trust / Who We Build For ----- */
-  .clients-trust {
-    max-width: 760px;
-    margin: clamp(72px, 10vw, 104px) auto;
-    padding: 0 24px;
+  /* ----- Intro band — Support & Trust + Who We Build For ----- */
+  .clients-intro {
+    margin: clamp(48px, 7vw, 80px) 0 clamp(64px, 9vw, 96px);
   }
 
-  .clients-trust__title {
+  .clients-intro__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    background: var(--card-window-bg);
+    border: 1px solid var(--card-window-border);
+    border-radius: 24px;
+    overflow: hidden;
+  }
+
+  .clients-intro__col {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: clamp(32px, 4vw, 56px);
+    min-width: 0;
+  }
+
+  /* Hairline divider between the two columns; collapses on mobile. */
+  .clients-intro__col + .clients-intro__col {
+    border-inline-start: 1px solid var(--divider-color);
+  }
+
+  .clients-intro__title {
     font-family: var(--font-display);
-    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    font-size: clamp(1.5rem, 2.6vw, 2rem);
     font-weight: 700;
     letter-spacing: -0.01em;
     color: var(--heading-text);
-    margin: 0 0 18px;
-    line-height: 1.2;
+    margin: 0;
+    line-height: 1.15;
   }
 
-  .clients-trust__body {
+  .clients-intro__body {
     font-family: var(--font-body);
     font-size: var(--type-lead);
     font-weight: 400;
     color: var(--text-secondary);
     line-height: 1.65;
     margin: 0;
+    max-width: 52ch;
+  }
+
+  .clients-intro__chips {
+    list-style: none;
+    margin: 4px 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .clients-intro__chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+    border-radius: 9999px;
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--heading-text);
+    background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 22%, transparent);
+  }
+
+  .clients-intro__coda {
+    font-family: var(--font-body);
+    font-size: var(--type-body);
+    font-weight: 400;
+    color: var(--muted-text);
+    line-height: 1.6;
+    margin: 4px 0 0;
+    max-width: 52ch;
+  }
+
+  @media (max-width: 860px) {
+    .clients-intro__grid {
+      grid-template-columns: 1fr;
+    }
+    .clients-intro__col + .clients-intro__col {
+      border-inline-start: 0;
+      border-top: 1px solid var(--divider-color);
+    }
   }
 
   /* ----- Footer CTA ----- */
@@ -750,5 +833,9 @@ function accentTint(color: string, alpha = 10): string {
 .clients-cta__link:hover {
       gap: 8px;
     }
+  }
+
+  [dir="rtl"] .icon-chevron :global(svg) {
+    transform: scaleX(-1);
   }
 </style>

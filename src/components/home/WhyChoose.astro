@@ -31,11 +31,13 @@ const points = [
       </li>
     ))}
   </ol>
+
+  <p class="why__onboard">{t('home_why_onboard', lang)}</p>
 </section>
 
 <style>
   .why {
-    padding: 64px 24px;
+    padding: 64px 24px 16px;
     max-width: 880px;
     margin: 0 auto;
   }
@@ -102,9 +104,23 @@ const points = [
     margin: 0;
   }
 
+  /* "Get onboard" — large display cue that hands the reader from the
+     four-point list to the boarding-pass visual below. Bigger than the
+     point titles, smaller than the section H2, with the Fraunces accent
+     on the second word so it echoes the hero's emphasized word. */
+  .why__onboard {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    color: var(--heading-text);
+    margin: 56px 0 0;
+  }
+
   @media (max-width: 768px) {
     .why {
-      padding: 48px 16px;
+      padding: 48px 16px 8px;
     }
 
     .why__point {

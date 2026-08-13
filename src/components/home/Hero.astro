@@ -30,7 +30,7 @@ const titleHtml = parseBold(data.title)
       <a href="/projects/" class="hero__btn">
         <Icon name="rocket" size={18} color="currentColor" />
         {t('home_hero_cta_work', lang)}
-        <Icon name="arrow-right" size={16} color="currentColor" />
+        <Icon name="arrow-right" size={16} color="currentColor" class="icon-chevron" />
       </a>
       <a href="/services/" class="hero__btn-label-mono">
         {t('home_hero_cta_services', lang)}
@@ -53,7 +53,7 @@ const titleHtml = parseBold(data.title)
   }
 
   .hero__inner {
-    text-align: left;
+    text-align: start;
     max-width: 920px;
     width: 100%;
   }
@@ -61,7 +61,7 @@ const titleHtml = parseBold(data.title)
   .hero__eyebrow {
     display: inline-block;
     margin: 0 0 23px;
-    padding: 0 0 0 16px;
+    padding-inline-start: 16px;
     font-family: var(--font-display);
     font-size: var(--type-eyebrow);
     font-weight: 600;
@@ -96,7 +96,7 @@ const titleHtml = parseBold(data.title)
     width: 3px;
     height: 0.9em;
     background: var(--color-primary);
-    margin-left: 4px;
+    margin-inline-start: 4px;
     vertical-align: text-bottom;
     animation: blink 0.8s step-end infinite;
   }
@@ -164,6 +164,11 @@ const titleHtml = parseBold(data.title)
     .hero {
       padding: 100px 16px 60px;
     }
+  }
+
+  /* RTL: flip directional chevrons so they point along the reading direction. */
+  [dir="rtl"] .hero__cta .icon-chevron :global(svg) {
+    transform: scaleX(-1);
   }
 </style>
 

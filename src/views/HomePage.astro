@@ -38,8 +38,8 @@ const homeProjects = (homeData.projects ?? []).filter((p: { slug: string }) => S
   <ScrollSpacer height="25vh" />
   <ProximityProjects projects={homeProjects} lang={lang} />
   <Clients clients={clientsData.clients} lang={lang} />
-  <Team members={homeData.team} lang={lang} />
   <OurStory lang={lang} />
+  <Team members={homeData.team} lang={lang} />
   <HomeCta lang={lang} />
   <ScrollSpacer height="20vh" />
 </Page>
