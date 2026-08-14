@@ -360,8 +360,8 @@
       "icon": "fas fa-layer-group"
     },
     {
-      "metric": "3 yrs",
-      "label": "متوسط مدة الشراكة",
+      "metric": "١ سنة",
+      "label": "الحد الأدنى للدعم",
       "icon": "fas fa-handshake"
     },
     {

@@ -16,6 +16,7 @@ import Icon from '../icons/Icon.astro'
 import { resolveIcon } from '../icons/iconMappings'
 import type { Lang, Highlight } from '../../types'
 import { t } from '../../lib/i18n'
+import { studioFullName } from '../../lib/locale'
 
 interface Props {
   highlights: Highlight[]
@@ -67,7 +68,7 @@ const slotIcons = [
       <div class="ticket__row ticket__row--header">
         <div class="ticket__cell">
           <span class="ticket__eyebrow">{t('ticket_carrier', lang)}</span>
-          <h3 class="ticket__carrier">BASEET STUDIO</h3>
+          <h3 class="ticket__carrier">{studioFullName(lang)}</h3>
         </div>
         <div class="ticket__cell ticket__cell--right">
           <span class="ticket__eyebrow">{t('ticket_gate', lang)}</span>
@@ -80,7 +81,7 @@ const slotIcons = [
         <div class="ticket__cell">
           <span class="ticket__eyebrow">{t('ticket_from', lang)}</span>
           <span class="ticket__value ticket__value--route">{t('ticket_route_from', lang)}</span>
-          <span class="ticket__code">BRIEF.01</span>
+          <span class="ticket__code">{t('ticket_code_from', lang)}</span>
         </div>
         <div class="ticket__route-glyph" aria-hidden="true">
           <Icon name="paper-plane-tilt" size={28} color="var(--color-primary)" />
@@ -90,7 +91,7 @@ const slotIcons = [
         <div class="ticket__cell ticket__cell--right">
           <span class="ticket__eyebrow">{t('ticket_to', lang)}</span>
           <span class="ticket__value ticket__value--route">{t('ticket_route_to', lang)}</span>
-          <span class="ticket__code">SHIP.99</span>
+          <span class="ticket__code">{t('ticket_code_to', lang)}</span>
         </div>
       </div>
 
@@ -133,7 +134,7 @@ const slotIcons = [
         </div>
       </div>
 
-      <span class="ticket__stub-code">1001-BASEET-2026-STUDIO</span>
+      <span class="ticket__stub-code">{t('ticket_stub_code', lang)}</span>
     </aside>
   </div>
 </section>

@@ -32,59 +32,59 @@
   "subServices": [
     {
       "id": "user-research",
-      "name": "User Research",
+      "name": "यूज़र रिसर्च",
       "icon": "fas fa-user-friends",
-      "desc": "Understand your users' needs and behaviors",
-      "longDesc": "We start every project by talking to real users — moderated interviews, unmoderated tests, and analytics deep-dives. The output is not a persona poster; it is a clear, prioritized list of jobs-to-be-done your design has to do well.",
+      "desc": "ज़रूरत और व्यवहार समझें",
+      "longDesc": "असली यूज़र से बात। आउटपुट पर्सोना पोस्टर नहीं — प्राथमिकता सूची जो डिज़ाइन को अच्छा करना है।",
       "bullets": [
-        "User interviews and contextual inquiry",
-        "Jobs-to-be-done and opportunity mapping",
-        "Usability testing on Figma or live prototypes",
-        "Insight-to-design handoff briefs"
+        "इंटरव्यू और कॉन्टेक्स्ट",
+        "जॉब्स-टू-बी-डन",
+        "यूज़ेबिलिटी टेस्ट",
+        "इनसाइट से डिज़ाइन ब्रीफ़"
       ],
-      "imageLabel": "Research insight board"
+      "imageLabel": "रिसर्च बोर्ड"
     },
     {
       "id": "wireframing",
-      "name": "Wireframing",
+      "name": "वायरफ़्रेम",
       "icon": "fas fa-pencil-ruler",
-      "desc": "Blueprint your app's structure and flow",
-      "longDesc": "Before pixels, we draw the skeleton. Low-fidelity wireframes for every key flow, validated against your IA, and iterated fast. Wireframes are the cheapest place to make the most expensive mistakes — so we do not skip them.",
+      "desc": "ऐप का ढाँचा और फ़्लो",
+      "longDesc": "पिक्सेल से पहले कंकाल। सबसे सस्ती जगह महंगी गलतियाँ ठीक करने की।",
       "bullets": [
-        "Low-fidelity wireframes for every flow",
-        "Information architecture and navigation",
-        "User flow diagrams and edge cases",
-        "Engineering review before visual design"
+        "हर फ़्लो के लो-फ़ाई वायरफ़्रेम",
+        "IA और नेविगेशन",
+        "यूज़र फ़्लो और एज केस",
+        "विज़ुअल से पहले इंजीनियरिंग रिव्यू"
       ],
-      "imageLabel": "Wireframe set with key flows"
+      "imageLabel": "वायरफ़्रेम सेट"
     },
     {
       "id": "visual-design",
-      "name": "Visual Design",
+      "name": "विज़ुअल डिज़ाइन",
       "icon": "fas fa-palette",
-      "desc": "Stunning interfaces that reflect your brand",
-      "longDesc": "High-fidelity Figma files, a real type and color system, and motion principles that match your brand personality. The output is a Figma library your team can keep using long after we are done — not a static deliverable.",
+      "desc": "ब्रांड दिखाने वाले इंटरफ़ेस",
+      "longDesc": "हाई-फ़ाई Figma, टाइप और रंग सिस्टम। लाइब्रेरी टीम के पास रहती है।",
       "bullets": [
-        "High-fidelity Figma screens and components",
-        "Type, color, and motion systems",
-        "Brand-aligned iconography and illustration",
-        "Light, dark, and brand variants"
+        "Figma स्क्रीन और कंपोनेंट",
+        "टाइप, रंग, मोशन",
+        "ब्रांड आइकनोग्राफ़ी",
+        "लाइट, डार्क, ब्रांड वेरिएंट"
       ],
-      "imageLabel": "High-fidelity mobile screens"
+      "imageLabel": "हाई-फ़ाई मोबाइल स्क्रीन"
     },
     {
       "id": "prototyping",
-      "name": "Prototyping",
+      "name": "प्रोटोटाइप",
       "icon": "fas fa-laptop-code",
-      "desc": "Interactive prototypes for testing ideas",
-      "longDesc": "Clickable prototypes for stakeholder review, user testing, and crowdfunding. We build them in Figma or with code, depending on fidelity needs — and we use them to test the riskiest assumptions before you spend a dirham on engineering.",
+      "desc": "विचार जाँचने वाले इंटरैक्टिव मॉडल",
+      "longDesc": "स्टेकहोल्डर रिव्यू और यूज़र टेस्ट के क्लिक करने योग्य प्रोटोटाइप — इंजीनियरिंग से पहले।",
       "bullets": [
-        "Figma and code-based prototypes",
-        "Micro-interactions and motion specs",
-        "Testable flows for user research",
-        "Stakeholder demo builds"
+        "Figma और कोड प्रोटोटाइप",
+        "माइक्रो-इंटरैक्शन",
+        "टेस्टेबल फ़्लो",
+        "स्टेकहोल्डर डेमो"
       ],
-      "imageLabel": "Interactive prototype in code"
+      "imageLabel": "इंटरैक्टिव प्रोटोटाइप"
     }
   ],
   "process": [

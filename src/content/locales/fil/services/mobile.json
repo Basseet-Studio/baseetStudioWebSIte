@@ -32,59 +32,59 @@
   "subServices": [
     {
       "id": "ios",
-      "name": "iOS Apps",
+      "name": "Mga iOS App",
       "icon": "fab fa-apple",
-      "desc": "Native Swift applications for iPhone and iPad",
-      "longDesc": "Pure SwiftUI and UIKit, written in Swift 5.10+ with async/await throughout. We handle App Store submission, TestFlight betas, privacy manifests, and the small things that turn an app from good to great on Apple silicon.",
+      "desc": "Native Swift para sa iPhone at iPad",
+      "longDesc": "SwiftUI at UIKit, App Store submission, TestFlight, at privacy manifests.",
       "bullets": [
-        "Swift, SwiftUI, UIKit, Combine",
-        "iPhone, iPad, Apple Watch, Apple TV",
-        "StoreKit, Sign in with Apple, Wallet",
-        "TestFlight, App Store Connect, and privacy manifests"
+        "Swift, SwiftUI, UIKit",
+        "iPhone, iPad, Watch",
+        "StoreKit at Sign in with Apple",
+        "TestFlight at App Store Connect"
       ],
-      "imageLabel": "iOS app screen mockup"
+      "imageLabel": "iOS app screen"
     },
     {
       "id": "android",
-      "name": "Android Apps",
+      "name": "Mga Android App",
       "icon": "fab fa-android",
-      "desc": "Native Kotlin apps for all Android devices",
-      "longDesc": "Kotlin-first Android with Jetpack Compose, Material 3, and the modern AndroidX stack. We build for the long tail of devices your users actually have, with adaptive layouts, predictive back, and a smooth first-run experience.",
+      "desc": "Native Kotlin para sa lahat ng Android",
+      "longDesc": "Kotlin-first Android, Jetpack Compose at Material 3 — para sa device na hawak talaga ng user.",
       "bullets": [
-        "Kotlin, Jetpack Compose, Material 3",
-        "Adaptive layouts for phones, foldables, and tablets",
-        "Play Billing, Play Integrity, and Data Safety",
-        "Internal tracks, staged rollouts, and pre-launch reports"
+        "Kotlin, Compose, Material 3",
+        "Phone, foldable, tablet",
+        "Play Billing at Data Safety",
+        "Internal tracks at staged rollout"
       ],
-      "imageLabel": "Android app screen mockup"
+      "imageLabel": "Android app screen"
     },
     {
       "id": "cross-platform",
       "name": "Cross-Platform",
       "icon": "fas fa-layer-group",
-      "desc": "Flutter & React Native for multi-platform reach",
-      "longDesc": "One codebase, two stores, and as much native feel as the platform allows. We pick Flutter for high-fidelity UI and animations, and React Native when the team is already deep in JavaScript and the ecosystem matters.",
+      "desc": "Flutter at React Native para sa mas malawak na abot",
+      "longDesc": "Isang codebase, dalawang store. Flutter para sa detalyadong UI, React Native kung JS ang team.",
       "bullets": [
-        "Flutter 3 with Dart 3, Material You, and Cupertino",
-        "React Native with Expo, EAS, and Hermes",
-        "Native modules for Bluetooth, NFC, and camera",
-        "Shared design system across iOS and Android"
+        "Flutter 3 at Dart 3",
+        "React Native, Expo, Hermes",
+        "Bluetooth, NFC, camera",
+        "Shared design system"
       ],
-      "imageLabel": "Cross-platform app mockup"
+      "imageLabel": "Cross-platform mockup"
     },
     {
       "id": "aso",
       "name": "App Store Optimization",
       "icon": "fas fa-chart-line",
-      "desc": "Get discovered with proper ASO strategies",
-      "longDesc": "Most apps are never found. We treat the store listing like a product surface — keyword research, screenshot testing, localization, and a steady cadence of experiments so your install graph keeps climbing.",
+      "desc": "Matagpuan sa tamang ASO",
+      "longDesc": "Karamihan ng app hindi natatagpuan. Tinatrato namin ang store listing bilang produkto.",
       "bullets": [
-        "Keyword research and metadata refresh",
-        "Screenshot and video A/B testing",
-        "Localization for priority markets",
-        "Reviews, ratings, and reply workflows"
+        "Keyword research at metadata",
+        "Screenshot at video test",
+        "Localization sa priority markets",
+        "Reviews at reply workflow"
       ],
-      "imageLabel": "App store analytics dashboard"
+      "imageLabel": "App store analytics"
     }
   ],
   "process": [

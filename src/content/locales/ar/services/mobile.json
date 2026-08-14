@@ -32,59 +32,59 @@
   "subServices": [
     {
       "id": "ios",
-      "name": "iOS Apps",
+      "name": "تطبيقات iOS",
       "icon": "fab fa-apple",
-      "desc": "Native Swift applications for iPhone and iPad",
-      "longDesc": "Pure SwiftUI and UIKit, written in Swift 5.10+ with async/await throughout. We handle App Store submission, TestFlight betas, privacy manifests, and the small things that turn an app from good to great on Apple silicon.",
+      "desc": "تطبيقات سويفت أصلية لآيفون وآيباد",
+      "longDesc": "سويفت ويو آي كِت كما ينبغي، مع رفع المتجر وTestFlight وملفات الخصوصية والتفاصيل الصغيرة التي تجعل التطبيق ممتازاً على أجهزة آبل.",
       "bullets": [
-        "Swift, SwiftUI, UIKit, Combine",
-        "iPhone, iPad, Apple Watch, Apple TV",
-        "StoreKit, Sign in with Apple, Wallet",
-        "TestFlight, App Store Connect, and privacy manifests"
+        "سويفت وSwiftUI وUIKit",
+        "آيفون وآيباد وآبل واتش",
+        "StoreKit وتسجيل آبل وWallet",
+        "TestFlight وApp Store Connect"
       ],
-      "imageLabel": "iOS app screen mockup"
+      "imageLabel": "شاشة تطبيق iOS"
     },
     {
       "id": "android",
-      "name": "Android Apps",
+      "name": "تطبيقات أندرويد",
       "icon": "fab fa-android",
-      "desc": "Native Kotlin apps for all Android devices",
-      "longDesc": "Kotlin-first Android with Jetpack Compose, Material 3, and the modern AndroidX stack. We build for the long tail of devices your users actually have, with adaptive layouts, predictive back, and a smooth first-run experience.",
+      "desc": "تطبيقات كوتلن أصلية لكل الأجهزة",
+      "longDesc": "كوتلن أولاً مع جيتباك كومبوز وMaterial 3. نبني للأجهزة التي يستخدمها الناس فعلاً، بتخطيطات مرنة وتجربة أول تشغيل سلسة.",
       "bullets": [
-        "Kotlin, Jetpack Compose, Material 3",
-        "Adaptive layouts for phones, foldables, and tablets",
-        "Play Billing, Play Integrity, and Data Safety",
-        "Internal tracks, staged rollouts, and pre-launch reports"
+        "كوتلن وJetpack Compose وMaterial 3",
+        "هواتف وقابل للطي وتابلت",
+        "فواتير بلاي وسلامة البيانات",
+        "مسارات داخلية وإطلاق متدرج"
       ],
-      "imageLabel": "Android app screen mockup"
+      "imageLabel": "شاشة تطبيق أندرويد"
     },
     {
       "id": "cross-platform",
-      "name": "Cross-Platform",
+      "name": "متعدد المنصات",
       "icon": "fas fa-layer-group",
-      "desc": "Flutter & React Native for multi-platform reach",
-      "longDesc": "One codebase, two stores, and as much native feel as the platform allows. We pick Flutter for high-fidelity UI and animations, and React Native when the team is already deep in JavaScript and the ecosystem matters.",
+      "desc": "فلاتر ورياكت نيتف للوصول الأوسع",
+      "longDesc": "كود واحد ومتجران، بإحساس أصلي قدر ما تسمح المنصة. فلاتر للواجهة الدقيقة، ورياكت نيتف حين يكون الفريق في جافاسكربت.",
       "bullets": [
-        "Flutter 3 with Dart 3, Material You, and Cupertino",
-        "React Native with Expo, EAS, and Hermes",
-        "Native modules for Bluetooth, NFC, and camera",
-        "Shared design system across iOS and Android"
+        "فلاتر 3 مع دارت 3",
+        "رياكت نيتف مع Expo وHermes",
+        "وحدات أصلية لبلوتوث وكاميرا",
+        "نظام تصميم مشترك بين iOS وأندرويد"
       ],
-      "imageLabel": "Cross-platform app mockup"
+      "imageLabel": "نموذج تطبيق متعدد المنصات"
     },
     {
       "id": "aso",
-      "name": "App Store Optimization",
+      "name": "تحسين متاجر التطبيقات",
       "icon": "fas fa-chart-line",
-      "desc": "Get discovered with proper ASO strategies",
-      "longDesc": "Most apps are never found. We treat the store listing like a product surface — keyword research, screenshot testing, localization, and a steady cadence of experiments so your install graph keeps climbing.",
+      "desc": "تُكتشف تطبيقك باستراتيجية ظهور صحيحة",
+      "longDesc": "معظم التطبيقات لا تُوجد. نعامل صفحة المتجر كمنتج: كلمات مفتاحية ولقطات ولغات وتجارب مستمرة حتى يصعد منحنى التثبيت.",
       "bullets": [
-        "Keyword research and metadata refresh",
-        "Screenshot and video A/B testing",
-        "Localization for priority markets",
-        "Reviews, ratings, and reply workflows"
+        "بحث كلمات وتحديث البيانات",
+        "اختبار لقطات وفيديو",
+        "ترجمة للأسواق ذات الأولوية",
+        "تقييمات وردود منظّمة"
       ],
-      "imageLabel": "App store analytics dashboard"
+      "imageLabel": "لوحة تحليلات المتجر"
     }
   ],
   "process": [

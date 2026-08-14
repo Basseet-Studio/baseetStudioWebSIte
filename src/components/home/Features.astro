@@ -24,7 +24,7 @@ const servicesHref = localizeHref(lang, '/services/')
     <h2 class="features__heading">{t('home_services_intro_title', lang)}</h2>
     <p class="features__lead">{t('home_services_intro_lead', lang)}</p>
     <a href={servicesHref} class="features__intro-link">
-      {t('home_services_intro_link', lang)}
+      <span class="features__cta-label">{t('home_services_intro_link', lang)}</span>
       <Icon name="arrow-right" size={14} color="currentColor" class="icon-chevron" />
     </a>
   </div>
@@ -45,7 +45,7 @@ const servicesHref = localizeHref(lang, '/services/')
         <h3 class="features__title" set:html={parseBold(feature.title)} />
         <p class="features__text">{feature.text}</p>
         <span class="features__cta" aria-hidden="true">
-          {t('home_services_cta', lang)}
+          <span class="features__cta-label">{t('home_services_cta', lang)}</span>
           <Icon name="arrow-right" size={14} color="currentColor" class="icon-chevron" />
         </span>
       </a>
@@ -192,6 +192,17 @@ const servicesHref = localizeHref(lang, '/services/')
 
   [dir="rtl"] .features__card:hover .features__cta {
     transform: translateX(-4px);
+  }
+
+  [dir="rtl"] .features__intro-link,
+  [dir="rtl"] .features__cta {
+    flex-direction: row;
+    direction: ltr;
+  }
+
+  [dir="rtl"] .features__cta-label {
+    direction: rtl;
+    unicode-bidi: isolate;
   }
 
   [dir="rtl"] .features .icon-chevron :global(svg) {

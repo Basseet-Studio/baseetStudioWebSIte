@@ -32,59 +32,59 @@
   "subServices": [
     {
       "id": "user-research",
-      "name": "User Research",
+      "name": "یوزر ریسرچ",
       "icon": "fas fa-user-friends",
-      "desc": "Understand your users' needs and behaviors",
-      "longDesc": "We start every project by talking to real users — moderated interviews, unmoderated tests, and analytics deep-dives. The output is not a persona poster; it is a clear, prioritized list of jobs-to-be-done your design has to do well.",
+      "desc": "صارف کی ضرورت اور رویہ سمجھیں",
+      "longDesc": "حقیقی صارفین سے بات۔ آؤٹ پٹ پرسونا پوسٹر نہیں — ترجیحی فہرست جو ڈیزائن کو اچھا کرنا ہے۔",
       "bullets": [
-        "User interviews and contextual inquiry",
-        "Jobs-to-be-done and opportunity mapping",
-        "Usability testing on Figma or live prototypes",
-        "Insight-to-design handoff briefs"
+        "انٹرویوز اور کانٹیکسٹ",
+        "جابز ٹو بی ڈن",
+        "یوزیبلٹی ٹیسٹ",
+        "ان سائٹ سے ڈیزائن بریف"
       ],
-      "imageLabel": "Research insight board"
+      "imageLabel": "ریسرچ بورڈ"
     },
     {
       "id": "wireframing",
-      "name": "Wireframing",
+      "name": "وائر فریمز",
       "icon": "fas fa-pencil-ruler",
-      "desc": "Blueprint your app's structure and flow",
-      "longDesc": "Before pixels, we draw the skeleton. Low-fidelity wireframes for every key flow, validated against your IA, and iterated fast. Wireframes are the cheapest place to make the most expensive mistakes — so we do not skip them.",
+      "desc": "ایپ کا ڈھانچہ اور فلو",
+      "longDesc": "پکسلز سے پہلے ڈھانچہ۔ سب سے سستی جگہ مہنگی غلطیاں درست کرنے کی۔",
       "bullets": [
-        "Low-fidelity wireframes for every flow",
-        "Information architecture and navigation",
-        "User flow diagrams and edge cases",
-        "Engineering review before visual design"
+        "ہر فلو کے لو فائی وائر فریمز",
+        "IA اور نیویگیشن",
+        "یوزر فلو اور ایج کیسز",
+        "بصری ڈیزائن سے پہلے انجینئرنگ ریویو"
       ],
-      "imageLabel": "Wireframe set with key flows"
+      "imageLabel": "وائر فریم سیٹ"
     },
     {
       "id": "visual-design",
-      "name": "Visual Design",
+      "name": "بصری ڈیزائن",
       "icon": "fas fa-palette",
-      "desc": "Stunning interfaces that reflect your brand",
-      "longDesc": "High-fidelity Figma files, a real type and color system, and motion principles that match your brand personality. The output is a Figma library your team can keep using long after we are done — not a static deliverable.",
+      "desc": "برانڈ کی عکاسی کرنے والی انٹرفیس",
+      "longDesc": "ہائی فائی Figma، ٹائپ اور رنگ سسٹم۔ لائبریری ٹیم کے پاس رہتی ہے۔",
       "bullets": [
-        "High-fidelity Figma screens and components",
-        "Type, color, and motion systems",
-        "Brand-aligned iconography and illustration",
-        "Light, dark, and brand variants"
+        "Figma اسکرینز اور کمپوننٹس",
+        "ٹائپ، رنگ، موشن",
+        "برانڈ آئیکنوگرافی",
+        "لائٹ، ڈارک، برانڈ ویریئنٹس"
       ],
-      "imageLabel": "High-fidelity mobile screens"
+      "imageLabel": "ہائی فائی موبائل اسکرینز"
     },
     {
       "id": "prototyping",
-      "name": "Prototyping",
+      "name": "پروٹو ٹائپنگ",
       "icon": "fas fa-laptop-code",
-      "desc": "Interactive prototypes for testing ideas",
-      "longDesc": "Clickable prototypes for stakeholder review, user testing, and crowdfunding. We build them in Figma or with code, depending on fidelity needs — and we use them to test the riskiest assumptions before you spend a dirham on engineering.",
+      "desc": "خیالات جانچنے کے انٹرایکٹو ماڈل",
+      "longDesc": "اسٹیک ہولڈر ریویو اور یوزر ٹیسٹ کے لیے کلک ایبل پروٹو ٹائپس — مہنگی انجینئرنگ سے پہلے۔",
       "bullets": [
-        "Figma and code-based prototypes",
-        "Micro-interactions and motion specs",
-        "Testable flows for user research",
-        "Stakeholder demo builds"
+        "Figma اور کوڈ پروٹو ٹائپس",
+        "مائیکرو انٹریکشنز",
+        "ٹیسٹ ایبل فلو",
+        "اسٹیک ہولڈر ڈیمو"
       ],
-      "imageLabel": "Interactive prototype in code"
+      "imageLabel": "انٹرایکٹو پروٹو ٹائپ"
     }
   ],
   "process": [

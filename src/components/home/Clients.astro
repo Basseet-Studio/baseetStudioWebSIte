@@ -30,7 +30,7 @@ function excerptQuote(quote: string, maxLen = 200): string {
 const loopClients = [...clients, ...clients]
 ---
 
-<section class="clients" data-scroll-anchor="home-clients" data-scroll-anchor-progress="0.65" data-animate="fade-slide-up">
+<section class="clients" data-scroll-anchor="home-clients" data-scroll-anchor-progress="0.65">
   <h2 class="clients__heading">{t('home_clients_title', lang)}</h2>
   <p class="clients__sub">{t('home_clients_subtitle_long', lang)}</p>
 
@@ -69,12 +69,16 @@ const loopClients = [...clients, ...clients]
   import gsap from 'gsap'
 
   let tween: gsap.core.Tween | null = null
+  let idleTimer: number | null = null
+  let io: IntersectionObserver | null = null
+  const listeners: Array<() => void> = []
 
   function init(): void {
     kill()
 
     const ticker = document.querySelector<HTMLElement>('[data-clients-ticker]')
     const track = document.querySelector<HTMLElement>('[data-clients-track]')
+    const section = document.querySelector<HTMLElement>('.clients')
     if (!ticker || !track) return
 
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -83,27 +87,67 @@ const loopClients = [...clients, ...clients]
       return
     }
 
-    // Track holds two copies. Animate xPercent from -50 → 0 so the track
-    // moves right: cards enter from the left and travel right, then the
-    // second copy resets the loop invisibly.
+    const rtl = document.documentElement.dir === 'rtl'
     tween = gsap.fromTo(
       track,
-      { xPercent: -50 },
+      { xPercent: rtl ? 0 : -50 },
       {
-        xPercent: 0,
+        xPercent: rtl ? -50 : 0,
         duration: 32,
         ease: 'none',
         repeat: -1,
       },
     )
 
-    // Pause on hover/focus for readability and accessibility.
+    let inView = false
+    let hovering = false
+
     const pause = () => tween?.pause()
-    const resume = () => tween?.play()
-    ticker.addEventListener('mouseenter', pause)
-    ticker.addEventListener('mouseleave', resume)
-    ticker.addEventListener('focusin', pause)
-    ticker.addEventListener('focusout', resume)
+    const playIfMoving = () => {
+      if (!hovering && inView) tween?.play()
+    }
+
+    const onScroll = () => {
+      pause()
+      if (idleTimer) window.clearTimeout(idleTimer)
+      idleTimer = window.setTimeout(() => {
+        if (inView && !hovering) tween?.play()
+      }, 180)
+    }
+
+    ticker.addEventListener('mouseenter', () => {
+      hovering = true
+      pause()
+    })
+    ticker.addEventListener('mouseleave', () => {
+      hovering = false
+      playIfMoving()
+    })
+    ticker.addEventListener('focusin', () => {
+      hovering = true
+      pause()
+    })
+    ticker.addEventListener('focusout', () => {
+      hovering = false
+      playIfMoving()
+    })
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    listeners.push(() => window.removeEventListener('scroll', onScroll))
+
+    if (section && 'IntersectionObserver' in window) {
+      io = new IntersectionObserver(
+        (entries) => {
+          inView = entries.some((e) => e.isIntersecting)
+          if (!inView) pause()
+          else if (!hovering) tween?.play()
+        },
+        { threshold: 0.2 },
+      )
+      io.observe(section)
+    } else {
+      inView = true
+    }
   }
 
   function kill(): void {
@@ -111,6 +155,13 @@ const loopClients = [...clients, ...clients]
       tween.kill()
       tween = null
     }
+    if (idleTimer) {
+      window.clearTimeout(idleTimer)
+      idleTimer = null
+    }
+    io?.disconnect()
+    io = null
+    listeners.splice(0).forEach((fn) => fn())
   }
 
   init()
@@ -160,6 +211,23 @@ const loopClients = [...clients, ...clients]
     );
     mask-image: linear-gradient(
       to right,
+      transparent 0,
+      #000 8%,
+      #000 92%,
+      transparent 100%
+    );
+  }
+
+  :global([dir='rtl']) .clients__ticker {
+    -webkit-mask-image: linear-gradient(
+      to left,
+      transparent 0,
+      #000 8%,
+      #000 92%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to left,
       transparent 0,
       #000 8%,
       #000 92%,
@@ -250,6 +318,7 @@ const loopClients = [...clients, ...clients]
     font-weight: 400;
     color: var(--text-secondary);
     line-height: 1.5;
+    opacity: 1;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 4;

@@ -32,59 +32,59 @@
   "subServices": [
     {
       "id": "cloud-migration",
-      "name": "Cloud Migration",
+      "name": "الانتقال إلى السحابة",
       "icon": "fas fa-cloud-upload-alt",
-      "desc": "Move your systems to the cloud securely",
-      "longDesc": "Lift, refactor, or rebuild — depending on what your workload actually needs. We migrate production systems with a zero-downtime cutover plan, a parallel run, and a clean rollback path if anything goes sideways.",
+      "desc": "انقل أنظمتك بأمان",
+      "longDesc": "رفع أو إعادة هيكلة حسب ما يحتاجه العمل. ننتقل بقطع دون توقف، وتشغيل موازٍ، ومسار رجوع إن انحرف شيء.",
       "bullets": [
-        "AWS, GCP, Azure, and Cloudflare",
-        "Zero-downtime cutover with parallel run",
-        "Cost and right-sizing assessment",
-        "Networking, IAM, and secrets migration"
+        "AWS وGCP وأزور وكلاودفلير",
+        "قطع دون توقف مع تشغيل موازٍ",
+        "تقييم تكلفة وحجم مناسب",
+        "شبكات وصلاحيات وأسرار"
       ],
-      "imageLabel": "Cloud migration architecture diagram"
+      "imageLabel": "مخطط انتقال سحابي"
     },
     {
       "id": "cicd",
-      "name": "CI/CD Pipelines",
+      "name": "خطوط CI/CD",
       "icon": "fas fa-code-branch",
-      "desc": "Automated testing and deployment",
-      "longDesc": "We build pipelines that catch the bug, not the developer. Type-check, lint, test, scan, sign, and deploy on every commit — with progressive rollouts, automatic rollback on regressions, and a one-click revert when things go wrong.",
+      "desc": "اختبار ونشر آلي",
+      "longDesc": "خطوط تمسك الخطأ لا المطوّر. فحص واختبار ومسح وتوقيع ونشر مع كل إيداع — وإطلاق متدرج ورجوع تلقائي.",
       "bullets": [
-        "GitHub Actions, GitLab CI, and Buildkite",
-        "Progressive rollouts and feature flags",
-        "Auto-rollback on regressions",
-        "Signed, attested, and SBOM-tagged releases"
+        "GitHub Actions وGitLab CI",
+        "إطلاق متدرج وأعلام ميزات",
+        "رجوع تلقائي عند التراجع",
+        "إصدارات موقّعة مع قائمة مكونات"
       ],
-      "imageLabel": "CI/CD pipeline visualization"
+      "imageLabel": "تصور خط CI/CD"
     },
     {
       "id": "server-management",
-      "name": "Server Management",
+      "name": "إدارة الخوادم",
       "icon": "fas fa-server",
-      "desc": "Keep your infrastructure running smoothly",
-      "longDesc": "Managed Kubernetes, serverless on AWS Lambda, or a humble VPS — we run the boring but critical parts so you can focus on the product. Patching, scaling, backups, and a 24/7 on-call rotation when something goes wrong.",
+      "desc": "أبقِ البنية تعمل بهدوء",
+      "longDesc": "كوبيرنتس أو لامبدا أو VPS بسيط — ندير الجزء الممل والحاسم: تحديث ونسخ احتياطي وتوسّع.",
       "bullets": [
-        "Kubernetes, ECS, and Lambda",
-        "Patch, backup, and capacity management",
-        "24/7 on-call with a real engineer",
-        "Postmortems that actually change something"
+        "كوبيرنتس وECS ولامبدا",
+        "تحديث ونسخ وسعة",
+        "مناوبة مهندس حقيقي",
+        "مراجعات بعد الحادث تغيّر شيئاً"
       ],
-      "imageLabel": "Server monitoring dashboard"
+      "imageLabel": "لوحة مراقبة خوادم"
     },
     {
       "id": "security-audits",
-      "name": "Security Audits",
+      "name": "تدقيق أمني",
       "icon": "fas fa-shield-alt",
-      "desc": "Identify and fix vulnerabilities",
-      "longDesc": "We do not sell scary reports — we sell fixed CVEs. Our security audits end with a prioritized remediation plan, a tracked set of pull requests, and a re-test. We work with SOC 2, ISO 27001, and the UAE PDPL.",
+      "desc": "اكتشف الثغرات وأصلحها",
+      "longDesc": "لا نبيع تقارير مخيفة — نبيع ثغرات أُغلقت. التدقيق ينتهي بخطة إصلاح وتتبع طلبات سحب وإعادة اختبار. نعمل مع SOC 2 وISO وPDPL الإمارات.",
       "bullets": [
-        "Web, API, and cloud config audits",
-        "Pen testing with a real report",
-        "SOC 2 and ISO 27001 readiness",
-        "UAE PDPL and data residency review"
+        "تدقيق ويب وواجهة وسحابة",
+        "اختبار اختراق بتقرير حقيقي",
+        "جاهزية SOC 2 وISO 27001",
+        "مراجعة PDPL ومكان البيانات"
       ],
-      "imageLabel": "Security audit findings dashboard"
+      "imageLabel": "لوحة نتائج تدقيق أمني"
     }
   ],
   "process": [

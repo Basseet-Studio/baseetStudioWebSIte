@@ -64,6 +64,31 @@ export function localeLabel(lang: Lang): string {
   return LOCALE_LABEL[lang]
 }
 
+/** Brand name as it should appear in this language. Never translate the meaning. */
+const STUDIO_NAME: Record<Lang, string> = {
+  en: 'Baseet',
+  ar: 'بسيط',
+  ur: 'بسيط',
+  hi: 'बेसीट',
+  fil: 'Baseet',
+}
+
+const STUDIO_FULL_NAME: Record<Lang, string> = {
+  en: 'Baseet Studio',
+  ar: 'استوديو بسيط',
+  ur: 'استوڈیو بسيط',
+  hi: 'बेसीट स्टूडियो',
+  fil: 'Baseet Studio',
+}
+
+export function studioName(lang: Lang): string {
+  return STUDIO_NAME[lang]
+}
+
+export function studioFullName(lang: Lang): string {
+  return STUDIO_FULL_NAME[lang]
+}
+
 /** `/ar` for ar, empty string for en. */
 export function langPrefix(lang: Lang): string {
   return lang === DEFAULT_LOCALE ? '' : `/${lang}`

@@ -13,12 +13,14 @@ import { getProject } from '../../lib/projects'
 import { resolveIcon } from '../../components/icons/iconMappings'
 import linksData from '../../content/data/links.json'
 import type { Lang, ProjectLinks } from '../../types'
+import { studioFullName } from '../../lib/locale'
+import { localizeHref } from '../../lib/localize-href'
 
-const pathname = Astro.url.pathname
-const lang: Lang = pathname.startsWith('/ar') ? 'ar' : 'en'
+interface Props { lang?: Lang }
+const { lang = 'en' } = Astro.props
 const slug = 'geeb'
-const project = getProject(slug)
-if (!project) return Astro.redirect('/404')
+const project = getProject(slug, lang)
+if (!project) return Astro.redirect(localizeHref(lang, '/404'))
 
 const projectLinks: ProjectLinks = (linksData.projects.geeb || {}) as ProjectLinks
 
@@ -26,9 +28,9 @@ function realUrl(url?: string): string | undefined {
   return url && url !== '#' ? url : undefined
 }
 
-const waitlistUrl = realUrl(projectLinks.waitlist) || realUrl(projectLinks.web) || '/contact/'
-const proSignupUrl = realUrl(projectLinks.pro_signup) || `/${lang === 'ar' ? 'ar/' : ''}projects/geeb/pro/`
-const downloadUrl = realUrl(projectLinks.download) || `/${lang === 'ar' ? 'ar/' : ''}projects/geeb/download/`
+const waitlistUrl = realUrl(projectLinks.waitlist) || realUrl(projectLinks.web) || localizeHref(lang, '/contact/')
+const proSignupUrl = realUrl(projectLinks.pro_signup) || localizeHref(lang, '/projects/geeb/pro/')
+const downloadUrl = realUrl(projectLinks.download) || localizeHref(lang, '/projects/geeb/download/')
 
 const serviceCategories = [
   { name: 'Plumbing', icon: 'wrench', description: 'Leaks, fixtures, drains, water heaters', span: 'wide' },
@@ -127,7 +129,7 @@ const featureRows = (project.features || []).map((f) => ({
 }))
 ---
 
-<ProjectLayout title={`${project.name} — Baseet Studio`} description={project.tagline} slug={project.slug} projectColor={project.color} projectGradient={project.gradient} projectName={project.name} projectIconClass={project.iconClass} projectNavItems={project.navItems} projectNavMeta={project.navMetaItems} lang={lang}>
+<ProjectLayout title={`${project.name} — ${studioFullName(lang)}`} description={project.tagline} slug={project.slug} projectColor={project.color} projectGradient={project.gradient} projectName={project.name} projectIconClass={project.iconClass} projectNavItems={project.navItems} projectNavMeta={project.navMetaItems} lang={lang}>
 
 <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@500,700,800&display=swap" rel="stylesheet">
 

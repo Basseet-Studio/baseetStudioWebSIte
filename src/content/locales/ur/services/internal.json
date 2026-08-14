@@ -32,59 +32,59 @@
   "subServices": [
     {
       "id": "admin-dashboards",
-      "name": "Admin Dashboards",
+      "name": "ایڈمن ڈیش بورڈز",
       "icon": "fas fa-tachometer-alt",
-      "desc": "Powerful dashboards to manage your business",
-      "longDesc": "A real command center for your team — not a static report. We build internal dashboards that pull live data from your stack, surface exceptions, and let your operators take action without leaving the page.",
+      "desc": "کاروبار چلانے کے طاقتور ڈیش بورڈز",
+      "longDesc": "ٹیم کے لیے کمانڈ سینٹر — لائیو ڈیٹا، استثنا، اور صفحے سے عمل۔",
       "bullets": [
-        "Live data from your DB, warehouse, or SaaS APIs",
-        "Role-based views for ops, finance, and leadership",
-        "Drill-down, filters, and saved views",
-        "Slack and email alerts on the metrics that matter"
+        "DB یا APIs سے لائیو ڈیٹا",
+        "رول کے مطابق ویوز",
+        "فلٹرز اور محفوظ ویوز",
+        "اہم میٹرکس پر الرٹس"
       ],
-      "imageLabel": "Admin dashboard with live KPIs"
+      "imageLabel": "لائیو KPI ڈیش بورڈ"
     },
     {
       "id": "crm",
-      "name": "CRM Systems",
+      "name": "CRM سسٹمز",
       "icon": "fas fa-users-cog",
-      "desc": "Customer relationship management tailored to you",
-      "longDesc": "When Salesforce or HubSpot is overkill, we build a CRM that matches your sales motion. Pipeline stages, follow-ups, contracts, and customer health — exactly what your team needs, and nothing they do not.",
+      "desc": "آپ کے بیچنے کے انداز کا CRM",
+      "longDesc": "جب Salesforce زیادہ ہو، ہم وہ CRM بناتے ہیں جو آپ کی سیلز سے میل کھائے۔",
       "bullets": [
-        "Pipeline, deal stages, and forecasting",
-        "Email, call, and meeting integrations",
-        "Customer health and renewal workflows",
-        "Custom fields and objects without a sales call"
+        "پائپ لائن اور فورکاسٹ",
+        "ای میل، کال، میٹنگ",
+        "کسٹمر ہیلتھ اور تجدید",
+        "کسٹم فیلڈز بغیر پیچیدگی"
       ],
-      "imageLabel": "Custom CRM pipeline view"
+      "imageLabel": "CRM پائپ لائن"
     },
     {
       "id": "inventory",
-      "name": "Inventory Management",
+      "name": "انوینٹری مینجمنٹ",
       "icon": "fas fa-boxes",
-      "desc": "Track stock, orders, and logistics efficiently",
-      "longDesc": "Inventory is one mistake away from a stockout or a write-off. We build inventory systems that track SKUs across locations, integrate with your POS and marketplace channels, and surface the reorder decisions before they become a problem.",
+      "desc": "اسٹاک، آرڈرز اور لاجسٹکس",
+      "longDesc": "انوینٹری ایک غلطی سے ختم یا رائٹ آف۔ ہم ملٹی لوکیشن سسٹمز بناتے ہیں جو POS اور چینلز سے جڑتے ہیں۔",
       "bullets": [
-        "Multi-location stock and transfers",
-        "POS, Shopify, and marketplace sync",
-        "Lot, serial, and expiry tracking",
-        "Purchase orders and supplier workflows"
+        "ملٹی لوکیشن اسٹاک",
+        "POS اور مارکیٹ پلیس سنک",
+        "لاٹ، سیریل، ایکسپائری",
+        "پرچیز آرڈرز اور سپلائرز"
       ],
-      "imageLabel": "Inventory levels and reorder view"
+      "imageLabel": "اسٹاک اور ری آرڈر"
     },
     {
       "id": "automation",
-      "name": "Workflow Automation",
+      "name": "ورک فلو آٹومیشن",
       "icon": "fas fa-robot",
-      "desc": "Automate repetitive tasks and save time",
-      "longDesc": "We turn the manual steps that eat your week into reliable automations. Lead routing, invoice generation, customer onboarding sequences, and the glue between tools that does not have a Zapier template.",
+      "desc": "دہرائی جانے والی ٹاسکس آٹومیٹ کریں",
+      "longDesc": "ہفتے کھانے والے دستی قدم قابل اعتماد آٹومیشن بن جاتے ہیں۔",
       "bullets": [
-        "Visual workflow designer with version history",
-        "Retry, idempotency, and error handling",
-        "Audit log of every action and decision",
-        "Connectors for 200+ SaaS tools out of the box"
+        "ورژن ہسٹری والا ورک فلو",
+        "ری ٹرائی اور ایرر ہینڈلنگ",
+        "ہر ایکشن کا آڈٹ لاگ",
+        "سینکڑوں ٹولز کے کنیکٹرز"
       ],
-      "imageLabel": "Workflow automation canvas"
+      "imageLabel": "آٹومیشن کینوس"
     }
   ],
   "process": [

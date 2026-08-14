@@ -32,59 +32,59 @@
   "subServices": [
     {
       "id": "technical-seo",
-      "name": "Technical SEO",
+      "name": "ٹیکنیکل SEO",
       "icon": "fas fa-code",
-      "desc": "Optimize site structure for search engines",
-      "longDesc": "The best content in the world will not rank if Google cannot crawl and render it. We run a full technical audit, fix the foundations (Core Web Vitals, schema, internal linking, hreflang, JS rendering), and leave a runbook your devs can follow.",
+      "desc": "سرچ انجن کے لیے سائٹ سٹرکچر",
+      "longDesc": "بہترین مواد نہیں رینک کرے گا اگر کرال نہ ہو۔ ہم بنیاد ٹھیک کرتے ہیں اور رن بُک چھوڑتے ہیں۔",
       "bullets": [
-        "Crawl, render, and index audits",
-        "Core Web Vitals and JS-rendering fixes",
-        "Schema.org, hreflang, and canonical strategy",
-        "Log-file analysis and internal link rewiring"
+        "کرال، رینڈر، انڈیکس آڈٹ",
+        "Core Web Vitals",
+        "Schema، hreflang، canonical",
+        "لاگ فائل اور انٹرنل لنکس"
       ],
-      "imageLabel": "Technical SEO audit dashboard"
+      "imageLabel": "ٹیکنیکل SEO آڈٹ"
     },
     {
       "id": "content-strategy",
-      "name": "Content Strategy",
+      "name": "کنٹینٹ سٹریٹجی",
       "icon": "fas fa-pen-fancy",
-      "desc": "Content that ranks and engages users",
-      "longDesc": "We build a 12-month content roadmap grounded in real search demand and your positioning. Briefs, outlines, and review cycles that produce articles your audience actually wants to read — and that earn links.",
+      "desc": "مواد جو رینک کرے اور پڑھا جائے",
+      "longDesc": "حقیقی سرچ ڈیمانڈ پر 12 ماہ کا روڈ میپ۔ بریف اور ریویو جو مضامین پیدا کریں۔",
       "bullets": [
-        "Keyword research and topic clustering",
-        "SERP-aware briefs and outlines",
-        "Editorial calendar and review workflow",
-        "Refresh program for aging content"
+        "کی ورڈ اور ٹاپک کلسٹرز",
+        "SERP بریف",
+        "ایڈیٹوریل کیلنڈر",
+        "پرانی مواد کی ری فریش"
       ],
-      "imageLabel": "Editorial content calendar"
+      "imageLabel": "ایڈیٹوریل کیلنڈر"
     },
     {
       "id": "local-seo",
-      "name": "Local SEO",
+      "name": "لوکل SEO",
       "icon": "fas fa-map-marker-alt",
-      "desc": "Dominate local search results in your area",
-      "longDesc": "If your customers are within driving distance, local SEO is the highest-ROI channel you have. We optimize your Google Business Profile, build location pages, manage reviews, and build the citations and links that move you up the map pack.",
+      "desc": "اپنے علاقے میں لوکل سرچ",
+      "longDesc": "اگر گاہک ڈرائیو کی دوری پر ہیں، لوکل SEO سب سے اونچا ROI ہے۔",
       "bullets": [
-        "Google Business Profile optimization",
-        "Location pages and city-by-city content",
-        "Review generation and response workflows",
-        "Citation cleanup and local link building"
+        "گوگل بزنس پروفائل",
+        "لوکیشن پیجز",
+        "ریویو ورک فلو",
+        "سائٹیشن اور لوکل لنکس"
       ],
-      "imageLabel": "Local map pack and Google Business Profile"
+      "imageLabel": "میپ پیک اور GBP"
     },
     {
       "id": "analytics",
-      "name": "Analytics Setup",
+      "name": "اینالٹکس سیٹ اپ",
       "icon": "fas fa-chart-bar",
-      "desc": "Track performance with proper data tools",
-      "longDesc": "You cannot improve what you cannot measure. We set up GA4, Search Console, server-side tagging, and a dashboard that answers the questions your leadership actually asks — clean data, clean attribution, no spreadsheet gymnastics.",
+      "desc": "صحیح ڈیٹا ٹولز سے کارکردگی",
+      "longDesc": "جو ناپ نہ سکیں بہتر نہیں کرتے۔ GA4، سرچ کنسول، اور ڈیش بورڈ جو قیادت کے سوالوں کا جواب دے۔",
       "bullets": [
-        "GA4, Search Console, and Tag Manager",
-        "Server-side tagging and consent mode",
-        "Looker Studio dashboards for every team",
-        "Conversion and revenue attribution"
+        "GA4، Search Console، GTM",
+        "سرور سائیڈ ٹیگنگ",
+        "Looker Studio ڈیش بورڈز",
+        "کنورژن اور ریونیو"
       ],
-      "imageLabel": "Looker Studio KPI dashboard"
+      "imageLabel": "KPI ڈیش بورڈ"
     }
   ],
   "process": [

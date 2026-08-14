@@ -1,17 +1,28 @@
 ---
-// Locale-prefixed project landing — JSON-driven (EN keeps custom .astro landings).
-import Page from '../../../../layouts/Page.astro'
+// Locale-prefixed project landing — reuses the EN custom landings with lang.
+import Geeb from '../../../projects/geeb.astro'
+import Numu from '../../../projects/numu.astro'
+import Moneybox from '../../../projects/moneybox.astro'
+import Matrix from '../../../projects/matrix.astro'
+import Invexo from '../../../projects/invexo.astro'
+import Ordelo from '../../../projects/ordelo.astro'
+import Zyrn from '../../../projects/zyrn.astro'
+import Chopshop from '../../../projects/chopshop.astro'
+import Medev from '../../../projects/medev.astro'
+import Jemeti from '../../../projects/jemeti.astro'
+import Photorestore from '../../../projects/photorestore-ai.astro'
+import MedicalEducation from '../../../projects/medical-education-app.astro'
+import NssFair from '../../../projects/nss-virtual-education-fair.astro'
 import { getProject, getProjectSlugs } from '../../../../lib/projects'
 import { PREFIXED_LOCALES, parseLocaleParam } from '../../../../lib/locale'
 import { localizeHref } from '../../../../lib/localize-href'
-import { t } from '../../../../lib/i18n'
 import type { Lang } from '../../../../types'
 
 export function getStaticPaths() {
   return PREFIXED_LOCALES.flatMap((locale) =>
     getProjectSlugs(locale).map((slug) => ({
       params: { locale, slug },
-    }))
+    })),
   )
 }
 
@@ -22,102 +33,18 @@ const project = getProject(slug, lang)
 if (!project) {
   return Astro.redirect(localizeHref(lang, '/404'))
 }
-
-const description =
-  project.tagline ||
-  project.description ||
-  `${project.name} — Baseet Studio`
 ---
 
-<Page
-  title={`${project.name} — Baseet Studio`}
-  description={typeof description === 'string' ? description.slice(0, 160) : `${project.name} — Baseet Studio`}
-  section="projects"
-  lang={lang}
->
-  <article class="locale-project" data-animate="fade-up">
-    <p class="locale-project__eyebrow">
-      <a href={localizeHref(lang, '/projects/')}>{t('nav_work', lang)}</a>
-    </p>
-    <h1 class="locale-project__title" style={project.color ? `color:${project.color}` : undefined}>
-      {project.name}
-    </h1>
-    {project.tagline && <p class="locale-project__tagline">{project.tagline}</p>}
-    {project.description && (
-      <div class="locale-project__body">
-        <p>{project.description}</p>
-      </div>
-    )}
-    {project.features && project.features.length > 0 && (
-      <section class="locale-project__features">
-        <h2>{t('project_nav_features', lang)}</h2>
-        <ul>
-          {project.features.map((f: any) => (
-            <li>
-              <strong>{typeof f === 'string' ? f : f.title}</strong>
-              {typeof f !== 'string' && f.description && <span> — {f.description}</span>}
-            </li>
-          ))}
-        </ul>
-      </section>
-    )}
-    <p class="locale-project__cta">
-      <a href={localizeHref(lang, '/contact/')} class="locale-project__cta-link">
-        {t('clients_start_project', lang)}
-      </a>
-    </p>
-  </article>
-</Page>
-
-<style>
-  .locale-project {
-    max-width: 720px;
-    margin: 0 auto;
-    padding-bottom: 64px;
-  }
-  .locale-project__eyebrow {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 12px;
-  }
-  .locale-project__eyebrow a {
-    color: var(--muted-text);
-    text-decoration: none;
-  }
-  .locale-project__title {
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    margin: 0 0 12px;
-    line-height: 1.1;
-  }
-  .locale-project__tagline {
-    font-size: 1.2rem;
-    color: var(--muted-text);
-    margin: 0 0 28px;
-  }
-  .locale-project__body {
-    font-size: 1.05rem;
-    line-height: 1.7;
-    margin-bottom: 32px;
-  }
-  .locale-project__features h2 {
-    font-size: 1.25rem;
-    margin-bottom: 12px;
-  }
-  .locale-project__features ul {
-    padding-inline-start: 1.2rem;
-    line-height: 1.7;
-  }
-  .locale-project__cta {
-    margin-top: 40px;
-  }
-  .locale-project__cta-link {
-    display: inline-flex;
-    padding: 0.75rem 1.25rem;
-    border-radius: 999px;
-    background: var(--color-primary);
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-  }
-</style>
+{slug === 'geeb' && <Geeb lang={lang} />}
+{slug === 'numu' && <Numu lang={lang} />}
+{slug === 'moneybox' && <Moneybox lang={lang} />}
+{slug === 'matrix' && <Matrix lang={lang} />}
+{slug === 'invexo' && <Invexo lang={lang} />}
+{slug === 'ordelo' && <Ordelo lang={lang} />}
+{slug === 'zyrn' && <Zyrn lang={lang} />}
+{slug === 'chopshop' && <Chopshop lang={lang} />}
+{slug === 'medev' && <Medev lang={lang} />}
+{slug === 'jemeti' && <Jemeti lang={lang} />}
+{slug === 'photorestore-ai' && <Photorestore lang={lang} />}
+{slug === 'medical-education-app' && <MedicalEducation lang={lang} />}
+{slug === 'nss-virtual-education-fair' && <NssFair lang={lang} />}

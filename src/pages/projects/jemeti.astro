@@ -5,16 +5,20 @@ import GradientCTA from '../../components/project/GradientCTA.astro'
 import ProjectClients from '../../components/project/ProjectClients.astro'
 import { getProject } from '../../lib/projects'
 import { getClientsForProject } from '../../lib/clients'
+import type { Lang } from '../../types'
+import { studioFullName } from '../../lib/locale'
+import { localizeHref } from '../../lib/localize-href'
 
-const lang: 'en' = 'en'
+interface Props { lang?: Lang }
+const { lang = 'en' } = Astro.props
 const slug = 'jemeti'
-const project = getProject(slug)
-if (!project) return Astro.redirect('/404')
-const linkedClients = getClientsForProject(slug)
+const project = getProject(slug, lang)
+if (!project) return Astro.redirect(localizeHref(lang, '/404'))
+const linkedClients = getClientsForProject(slug, lang)
 ---
 
 <ProjectLayout
-  title={`${project.name} — Baseet Studio`}
+  title={`${project.name} — ${studioFullName(lang)}`}
   description={project.tagline}
   slug={project.slug}
   projectColor={project.color}
@@ -26,7 +30,7 @@ const linkedClients = getClientsForProject(slug)
   lang={lang}
 >
   <section style="padding:140px 24px 64px;max-width:900px;margin:0 auto;text-align:center;" data-animate="fade-up">
-    <a href="/projects/" style={`display:inline-flex;align-items:center;gap:8px;color:${project.color};text-decoration:none;font-weight:500;margin-bottom:32px;`}>
+    <a href={localizeHref(lang, '/projects/')} style={`display:inline-flex;align-items:center;gap:8px;color:${project.color};text-decoration:none;font-weight:500;margin-bottom:32px;`}>
       ← Back to Projects
     </a>
 

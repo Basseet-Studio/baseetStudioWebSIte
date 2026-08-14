@@ -7,13 +7,16 @@ import FeatureMedia from '../../components/project/FeatureMedia.astro'
 import { getProject } from '../../lib/projects'
 import { slugify } from '../../lib/slugify'
 import linksData from '../../content/data/links.json'
-import type { ProjectLinks } from '../../types'
+import type { Lang, ProjectLinks } from '../../types'
+import { studioFullName } from '../../lib/locale'
+import { localizeHref } from '../../lib/localize-href'
 import type { FeatureShowcaseItem } from '../../components/project/ProjectFeatureShowcase.astro'
 
-const lang = 'en' as const
+interface Props { lang?: Lang }
+const { lang = 'en' } = Astro.props
 const slug = 'moneybox'
-const project = getProject(slug)
-if (!project) return Astro.redirect('/404')
+const project = getProject(slug, lang)
+if (!project) return Astro.redirect(localizeHref(lang, '/404'))
 
 const links: ProjectLinks = (linksData.projects.moneybox || project.links || {}) as ProjectLinks
 const androidUrl = links.android && links.android !== '#' ? links.android : project.links?.android
@@ -52,7 +55,7 @@ const featureShowcase: FeatureShowcaseItem[] = (project.features || []).map((f) 
 }))
 ---
 
-<ProjectLayout title={`${project.name} — Baseet Studio`} description={project.tagline} slug={project.slug} projectColor={project.color} projectGradient={project.gradient} projectName={project.name} projectIconClass={project.iconClass} projectNavItems={project.navItems} projectNavMeta={project.navMetaItems} lang={lang}>
+<ProjectLayout title={`${project.name} — ${studioFullName(lang)}`} description={project.tagline} slug={project.slug} projectColor={project.color} projectGradient={project.gradient} projectName={project.name} projectIconClass={project.iconClass} projectNavItems={project.navItems} projectNavMeta={project.navMetaItems} lang={lang}>
 
   <main class="moneybox-main" style="font-family: var(--font-body);">
     <section class="moneybox-hero">

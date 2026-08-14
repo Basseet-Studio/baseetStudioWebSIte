@@ -32,59 +32,59 @@
   "subServices": [
     {
       "id": "admin-dashboards",
-      "name": "Admin Dashboards",
+      "name": "لوحات الإدارة",
       "icon": "fas fa-tachometer-alt",
-      "desc": "Powerful dashboards to manage your business",
-      "longDesc": "A real command center for your team — not a static report. We build internal dashboards that pull live data from your stack, surface exceptions, and let your operators take action without leaving the page.",
+      "desc": "لوحات تدير العمل لا تقارير ثابتة",
+      "longDesc": "مركز قيادة لفريقك — بيانات حية واستثناءات وإجراء من الصفحة نفسها دون التنقل بين أدوات.",
       "bullets": [
-        "Live data from your DB, warehouse, or SaaS APIs",
-        "Role-based views for ops, finance, and leadership",
-        "Drill-down, filters, and saved views",
-        "Slack and email alerts on the metrics that matter"
+        "بيانات حية من قاعدتك أو واجهاتك",
+        "عروض حسب الدور للتشغيل والمالية",
+        "فلاتر وعروض محفوظة",
+        "تنبيهات على المقاييس المهمة"
       ],
-      "imageLabel": "Admin dashboard with live KPIs"
+      "imageLabel": "لوحة مؤشرات حية"
     },
     {
       "id": "crm",
-      "name": "CRM Systems",
+      "name": "أنظمة علاقات العملاء",
       "icon": "fas fa-users-cog",
-      "desc": "Customer relationship management tailored to you",
-      "longDesc": "When Salesforce or HubSpot is overkill, we build a CRM that matches your sales motion. Pipeline stages, follow-ups, contracts, and customer health — exactly what your team needs, and nothing they do not.",
+      "desc": "CRM يطابق طريقة بيعك لا العكس",
+      "longDesc": "حين يكون سيلزفورس أكبر من حاجتك، نبني CRM يناسب حركتك: مراحل ومتابعات وعقود وصحة العميل — ما يحتاجه الفريق فقط.",
       "bullets": [
-        "Pipeline, deal stages, and forecasting",
-        "Email, call, and meeting integrations",
-        "Customer health and renewal workflows",
-        "Custom fields and objects without a sales call"
+        "مسار صفقات وتوقع",
+        "بريد ومكالمات واجتماعات",
+        "صحة العميل وتجديد العقود",
+        "حقول مخصصة بلا تعقيد مبيعات"
       ],
-      "imageLabel": "Custom CRM pipeline view"
+      "imageLabel": "عرض مسار CRM"
     },
     {
       "id": "inventory",
-      "name": "Inventory Management",
+      "name": "إدارة المخزون",
       "icon": "fas fa-boxes",
-      "desc": "Track stock, orders, and logistics efficiently",
-      "longDesc": "Inventory is one mistake away from a stockout or a write-off. We build inventory systems that track SKUs across locations, integrate with your POS and marketplace channels, and surface the reorder decisions before they become a problem.",
+      "desc": "تتبع المخزون والطلبات والخدمات اللوجستية",
+      "longDesc": "خطأ واحد يفصل بين النفاد والشطب. نبني أنظمة تتتبع الأصناف عبر المواقع وتربط نقاط البيع والقنوات، وتُظهر قرار إعادة الطلب قبل أن يصير مشكلة.",
       "bullets": [
-        "Multi-location stock and transfers",
-        "POS, Shopify, and marketplace sync",
-        "Lot, serial, and expiry tracking",
-        "Purchase orders and supplier workflows"
+        "مخزون متعدد المواقع والتحويلات",
+        "مزامنة نقاط البيع والمتاجر",
+        "دفعات وأرقام تسلسلية وصلاحية",
+        "أوامر شراء وموردون"
       ],
-      "imageLabel": "Inventory levels and reorder view"
+      "imageLabel": "مستويات المخزون وإعادة الطلب"
     },
     {
       "id": "automation",
-      "name": "Workflow Automation",
+      "name": "أتمتة سير العمل",
       "icon": "fas fa-robot",
-      "desc": "Automate repetitive tasks and save time",
-      "longDesc": "We turn the manual steps that eat your week into reliable automations. Lead routing, invoice generation, customer onboarding sequences, and the glue between tools that does not have a Zapier template.",
+      "desc": "أتمت المهام المتكررة ووفّر الوقت",
+      "longDesc": "نحوّل الخطوات اليدوية التي تأكل الأسبوع إلى أتمتة موثوقة: توجيه العملاء والفواتير والتأهيل والغراء بين الأدوات.",
       "bullets": [
-        "Visual workflow designer with version history",
-        "Retry, idempotency, and error handling",
-        "Audit log of every action and decision",
-        "Connectors for 200+ SaaS tools out of the box"
+        "مصمم سير مع سجل نسخ",
+        "إعادة محاولة ومعالجة أخطاء",
+        "سجل لكل إجراء",
+        "ربط بمئات الأدوات"
       ],
-      "imageLabel": "Workflow automation canvas"
+      "imageLabel": "لوحة أتمتة سير العمل"
     }
   ],
   "process": [

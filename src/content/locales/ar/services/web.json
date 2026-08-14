@@ -32,59 +32,59 @@
   "subServices": [
     {
       "id": "corporate-websites",
-      "name": "Corporate Websites",
+      "name": "مواقع الشركات",
       "icon": "fas fa-building",
-      "desc": "Professional websites that represent your brand",
-      "longDesc": "Your corporate site is often the first impression a prospect has of your business. We design and build fast, on-brand marketing sites that tell your story, answer the right questions, and make the next step obvious — on every device.",
+      "desc": "مواقع تمثّل علامتك بوضوح وسرعة",
+      "longDesc": "موقعك غالباً أول انطباع. نبني مواقع تسويقية سريعة وعلى هوية علامتك — تحكي قصتك، تجيب الأسئلة الصحيحة، وتجعل الخطوة التالية واضحة على كل جهاز.",
       "bullets": [
-        "Multi-page IA tailored to your buyer journey",
-        "Headless CMS so your team can ship copy in minutes, not days",
-        "Multilingual-ready (English, Arabic, and more)",
-        "On-page SEO foundation baked in from day one"
+        "هيكل صفحات يناسب رحلة المشتري",
+        "نظام محتوى يدير فريقك النصوص دقائق لا أياماً",
+        "جاهز للغات (عربي وإنجليزي والمزيد)",
+        "أساس تحسين ظهورك في البحث من اليوم الأول"
       ],
-      "imageLabel": "Corporate website hero mockup"
+      "imageLabel": "نموذج موقع شركة"
     },
     {
       "id": "ecommerce",
-      "name": "E-commerce Platforms",
+      "name": "متاجر إلكترونية",
       "icon": "fas fa-shopping-cart",
-      "desc": "Online stores with secure payment integration",
-      "longDesc": "From boutique Shopify themes to headless commerce on Shopify Hydrogen, Medusa, or custom Stripe, we build stores that turn browsers into buyers. Performance, checkout flow, and merchandising are tuned in parallel — not as an afterthought.",
+      "desc": "متاجر أونلاين مع دفع آمن",
+      "longDesc": "من متاجر بوتيك إلى تجارة بلا رأس على شوبيفاي أو ميدوسا أو سترايب، نبني متاجر تحوّل الزائر إلى مشترٍ. الأداء وسلة الشراء والعرض يُضبطون معاً لا كلاحق.",
       "bullets": [
-        "Shopify, Medusa, Stripe, and headless commerce",
-        "Subscriptions, digital wallets, and BNPL ready",
-        "Conversion-rate-tuned product and cart pages",
-        "Inventory, tax, and shipping integrated end-to-end"
+        "شوبيفاي وميدوسا وسترايب وتجارة بلا رأس",
+        "اشتراكات ومحافظ ودفع لاحق",
+        "صفحات منتج وسلة مضبوطة للتحويل",
+        "مخزون وضريبة وشحن متصلة من طرف لطرف"
       ],
-      "imageLabel": "E-commerce product page mockup"
+      "imageLabel": "نموذج صفحة منتج"
     },
     {
       "id": "web-apps",
-      "name": "Web Applications",
+      "name": "تطبيقات الويب",
       "icon": "fas fa-window-restore",
-      "desc": "Custom web apps for complex business needs",
-      "longDesc": "When spreadsheets and SaaS tools stop scaling, we build the web app that fits your operation exactly. Internal tools, customer portals, dashboards — TypeScript end-to-end, real auth, real databases, and code your team can maintain.",
+      "desc": "تطبيقات ويب مخصصة لاحتياج العمل",
+      "longDesc": "حين تتوقف الجداول وأدوات SaaS عن المواكبة، نبني التطبيق الذي يناسب عملك بالضبط. أدوات داخلية وبوابات ولوحات — تايب سكربت من الطرفين، وصلاحيات حقيقية، وكود يستطيع فريقك صيانته.",
       "bullets": [
-        "React, Next.js, and Astro on the front end",
-        "Postgres, Prisma, and tRPC for type-safe data",
-        "Auth, roles, and audit logs from day one",
-        "Observability and feature flags built in"
+        "ريأكت وNext وAstro في الواجهة",
+        "بوستغرس وبريزما للبيانات",
+        "صلاحيات وأدوار وسجل تدقيق من اليوم الأول",
+        "مراقبة وأعلام ميزات مدمجة"
       ],
-      "imageLabel": "Web app dashboard mockup"
+      "imageLabel": "لوحة تطبيق ويب"
     },
     {
       "id": "landing-pages",
-      "name": "Landing Pages",
+      "name": "صفحات هبوط",
       "icon": "fas fa-bullseye",
-      "desc": "High-converting pages for marketing campaigns",
-      "longDesc": "One page, one goal, zero distractions. We design and ship campaign landing pages that load instantly, copy that matches the ad, and analytics that tell you what is actually working — A/B tested, instrumented, and ready to scale.",
+      "desc": "صفحات حملة بهدف واحد واضح",
+      "longDesc": "صفحة واحدة، هدف واحد، بلا تشتيت. نبني صفحات هبوط سريعة، بنص يطابق الإعلان، وتحليل يقول لك ما يعمل فعلاً.",
       "bullets": [
-        "A/B testable variants out of the box",
-        "Server-rendered for sub-second TTFB",
-        "Form, calendar, and CRM integrations",
-        "Heatmaps and event tracking wired up"
+        "نسخ قابلة لاختبار أ/ب من البداية",
+        "تصيير من الخادم لسرعة فتح",
+        "نماذج وتقويم وربط CRM",
+        "خرائط حرارة وتتبع أحداث جاهز"
       ],
-      "imageLabel": "Landing page mockup with CTA"
+      "imageLabel": "نموذج صفحة هبوط مع دعوة"
     }
   ],
   "process": [

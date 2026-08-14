@@ -1,0 +1,46 @@
+---
+// Locale-prefixed project subpages. Reuses the EN generic subpage view.
+import EnSubpage from '../../../projects/[slug]/[page].astro'
+import { getAllProjects } from '../../../../lib/projects'
+import { PREFIXED_LOCALES, parseLocaleParam } from '../../../../lib/locale'
+import { localizeHref } from '../../../../lib/localize-href'
+import type { Lang, NavItem, Project } from '../../../../types'
+
+export function getStaticPaths() {
+  const paths: Array<{
+    params: { locale: Lang; slug: string; page: string }
+    props: { project: Project; navItem: NavItem; siblings: NavItem[]; lang: Lang }
+  }> = []
+
+  for (const locale of PREFIXED_LOCALES) {
+    for (const project of getAllProjects(locale)) {
+      const items = project.navItems || []
+      items.forEach((item, idx) => {
+        if (!item.url) return
+        const page = item.url.replace(/\/$/, '')
+        if (!page) return
+        paths.push({
+          params: { locale, slug: project.slug, page },
+          props: {
+            project,
+            navItem: item,
+            siblings: items.filter((_, i) => i !== idx && !!items[i].url),
+            lang: locale,
+          },
+        })
+      })
+    }
+  }
+
+  return paths
+}
+
+const lang = parseLocaleParam(Astro.params.locale) as Lang
+const { project, navItem, siblings } = Astro.props
+
+if (!project) {
+  return Astro.redirect(localizeHref(lang, '/404'))
+}
+---
+
+<EnSubpage lang={lang} project={project} navItem={navItem} siblings={siblings} />

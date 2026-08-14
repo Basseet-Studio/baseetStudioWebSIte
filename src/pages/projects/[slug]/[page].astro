@@ -15,7 +15,9 @@ import ProjectFAQ from '../../../components/project/ProjectFAQ.astro'
 import Icon from '../../../components/icons/Icon.astro'
 import { resolveIcon } from '../../../components/icons/iconMappings'
 import { getAllProjects } from '../../../lib/projects'
-import type { Project, NavItem } from '../../../types'
+import { studioFullName } from '../../../lib/locale'
+import { localizeHref } from '../../../lib/localize-href'
+import type { Lang, Project, NavItem } from '../../../types'
 
 // Subpages that already exist as static files (Geeb). They win over this
 // dynamic route via file-based routing, so we skip them here to avoid the
@@ -71,7 +73,8 @@ export function getStaticPaths() {
   return paths
 }
 
-const { project, navItem, siblings } = Astro.props
+interface Props { lang?: Lang; project: Project; navItem: NavItem; siblings: NavItem[] }
+const { project, navItem, siblings, lang = 'en' } = Astro.props
 const page = Astro.params.page as string
 
 // Page-type → Phosphor icon basename (used in the subpage hero).
@@ -95,7 +98,7 @@ const hasPlatforms = !!project.platforms && project.platforms.length > 0
 const hasTech = !!project.tech && project.tech.length > 0
 
 // Sibling subpage URLs, used for prev/next navigation at the bottom.
-const projectRoot = `/projects/${project.slug}`
+const projectRoot = localizeHref(lang, `/projects/${project.slug}/`).replace(/\/$/, '')
 const prev = siblings[siblings.length - 1]
   ? { label: siblings[siblings.length - 1].label, url: `${projectRoot}/${siblings[siblings.length - 1].url.replace(/\/$/, '')}/` }
   : null
@@ -105,7 +108,7 @@ const next = siblings[0]
 ---
 
 <ProjectLayout
-  title={`${pageTitle} — ${project.name} — Baseet Studio`}
+  title={`${pageTitle} — ${project.name} — ${studioFullName(lang)}`}
   description={`${pageTitle} — ${project.name}: ${project.tagline}`}
   slug={project.slug}
   projectColor={project.color}
@@ -114,7 +117,7 @@ const next = siblings[0]
   projectIconClass={project.iconClass}
   projectNavItems={project.navItems}
   projectNavMeta={project.navMetaItems}
-  lang="en"
+  lang={lang}
 >
 <!-- Subpage hero: transparent background so the shared `.project-hero-wash`
        (added by Project.astro) shows through. The wash is theme-aware and

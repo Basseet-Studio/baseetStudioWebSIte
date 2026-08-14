@@ -17,9 +17,18 @@
       "challenge": "The client was managing 50+ delivery trucks using spreadsheets and phone calls. Maintenance was often missed, leading to breakdowns and delays. They had no visibility into their fleet's real-time status.",
       "solution": "We built a custom web platform that provides real-time GPS tracking, automated maintenance scheduling based on mileage and time, driver assignment management, and comprehensive reporting.",
       "results": [
-        { "metric": "30%", "label": "Reduction in breakdowns" },
-        { "metric": "2hrs", "label": "Saved daily on admin" },
-        { "metric": "100%", "label": "Fleet visibility" }
+        {
+          "metric": "30%",
+          "label": "Reduction in breakdowns"
+        },
+        {
+          "metric": "2hrs",
+          "label": "Saved daily on admin"
+        },
+        {
+          "metric": "100%",
+          "label": "Fleet visibility"
+        }
       ],
       "features": [
         "Real-time GPS fleet tracking",
@@ -57,8 +66,14 @@
       "challenge": "Iyat needed a professional online presence that would showcase their creative work and attract new clients.",
       "solution": "We built a sleek, modern portfolio website with smooth animations, responsive design, and an engaging user experience.",
       "results": [
-        { "metric": "100%", "label": "Custom design" },
-        { "metric": "< 2s", "label": "Load time" }
+        {
+          "metric": "100%",
+          "label": "Custom design"
+        },
+        {
+          "metric": "< 2s",
+          "label": "Load time"
+        }
       ],
       "features": [
         "Custom portfolio design",
@@ -88,8 +103,14 @@
       "challenge": "The masjid finance team tracked member contributions and operational expenses across spreadsheets and paper records. Reconciliation was slow, errors crept in, and nothing worked when the internet was down.",
       "solution": "We built Jamia System — a Firebase-backed finance platform with offline-first sync. Contributions, expenses, and jamia ledgers live in one place, connected or not.",
       "results": [
-        { "metric": "100%", "label": "Paper-free tracking" },
-        { "metric": "2-in-1", "label": "Cloud + offline" }
+        {
+          "metric": "100%",
+          "label": "Paper-free tracking"
+        },
+        {
+          "metric": "2-in-1",
+          "label": "Cloud + offline"
+        }
       ],
       "features": [
         "Expense tracking",
@@ -149,17 +170,22 @@
     },
     {
       "id": "little-hands-lab",
-      "name": "Little Hands Lab",
+      "name": "Kudooda",
       "layoutTemplate": "showcase",
       "industry": "Toys & Retail",
       "serviceType": "Ecommerce Store",
-      "color": "#EC4899",
+      "color": "#7C3AED",
       "tagline": "Toys store online, powered by Zyrn",
       "shortDescription": "An online toys store on Zyrn — branded catalog, checkout, and customer updates for Little Hands Lab.",
       "fullDescription": "Little Hands Lab runs its toys storefront on Zyrn: products, payments, inventory, and order notifications in one branded commerce system — no paper trail of DMs and notebooks.",
       "challenge": "Needed a real online toys store without drowning in chat orders and disconnected tools.",
       "solution": "Launched on Zyrn with a branded storefront, catalog, checkout, and live customer order updates.",
-      "technologies": ["Zyrn", "Catalog", "Checkout", "Notifications"],
+      "technologies": [
+        "Zyrn",
+        "Catalog",
+        "Checkout",
+        "Notifications"
+      ],
       "steps": [],
       "screenshots": [],
       "galleryType": "web"
@@ -176,7 +202,10 @@
       "fullDescription": "Faruk Technology Store runs stock, sales, and multi-location clarity through Invexo — inventory management built for small shops.",
       "challenge": "Needed clear inventory and sales tracking without enterprise complexity.",
       "solution": "Deployed Invexo for stock, POS, and daily shop dashboards.",
-      "technologies": ["Invexo", "Web Dashboard"],
+      "technologies": [
+        "Invexo",
+        "Web Dashboard"
+      ],
       "steps": [],
       "screenshots": [],
       "galleryType": "web"

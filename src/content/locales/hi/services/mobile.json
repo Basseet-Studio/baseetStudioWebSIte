@@ -32,59 +32,59 @@
   "subServices": [
     {
       "id": "ios",
-      "name": "iOS Apps",
+      "name": "iOS ऐप",
       "icon": "fab fa-apple",
-      "desc": "Native Swift applications for iPhone and iPad",
-      "longDesc": "Pure SwiftUI and UIKit, written in Swift 5.10+ with async/await throughout. We handle App Store submission, TestFlight betas, privacy manifests, and the small things that turn an app from good to great on Apple silicon.",
+      "desc": "iPhone और iPad के लिए नेटिव स्विफ्ट",
+      "longDesc": "SwiftUI और UIKit, स्टोर सबमिशन, TestFlight और प्राइवेसी मैनिफ़ेस्ट।",
       "bullets": [
-        "Swift, SwiftUI, UIKit, Combine",
-        "iPhone, iPad, Apple Watch, Apple TV",
-        "StoreKit, Sign in with Apple, Wallet",
-        "TestFlight, App Store Connect, and privacy manifests"
+        "Swift, SwiftUI, UIKit",
+        "iPhone, iPad, Watch",
+        "StoreKit और Sign in with Apple",
+        "TestFlight और App Store Connect"
       ],
-      "imageLabel": "iOS app screen mockup"
+      "imageLabel": "iOS ऐप स्क्रीन"
     },
     {
       "id": "android",
-      "name": "Android Apps",
+      "name": "Android ऐप",
       "icon": "fab fa-android",
-      "desc": "Native Kotlin apps for all Android devices",
-      "longDesc": "Kotlin-first Android with Jetpack Compose, Material 3, and the modern AndroidX stack. We build for the long tail of devices your users actually have, with adaptive layouts, predictive back, and a smooth first-run experience.",
+      "desc": "सभी Android डिवाइस के लिए कोटलिन",
+      "longDesc": "Kotlin-first Android, Jetpack Compose और Material 3 — जिन डिवाइस पर यूज़र सच में हैं।",
       "bullets": [
-        "Kotlin, Jetpack Compose, Material 3",
-        "Adaptive layouts for phones, foldables, and tablets",
-        "Play Billing, Play Integrity, and Data Safety",
-        "Internal tracks, staged rollouts, and pre-launch reports"
+        "Kotlin, Compose, Material 3",
+        "फ़ोन, फोल्डेबल, टैबलेट",
+        "Play Billing और Data Safety",
+        "इंटरनल ट्रैक और स्टेज्ड रोलआउट"
       ],
-      "imageLabel": "Android app screen mockup"
+      "imageLabel": "Android ऐप स्क्रीन"
     },
     {
       "id": "cross-platform",
-      "name": "Cross-Platform",
+      "name": "क्रॉस-प्लेटफ़ॉर्म",
       "icon": "fas fa-layer-group",
-      "desc": "Flutter & React Native for multi-platform reach",
-      "longDesc": "One codebase, two stores, and as much native feel as the platform allows. We pick Flutter for high-fidelity UI and animations, and React Native when the team is already deep in JavaScript and the ecosystem matters.",
+      "desc": "Flutter और React Native से पहुँच",
+      "longDesc": "एक कोडबेस, दो स्टोर। Flutter बारीक UI के लिए, React Native जब टीम JS में हो।",
       "bullets": [
-        "Flutter 3 with Dart 3, Material You, and Cupertino",
-        "React Native with Expo, EAS, and Hermes",
-        "Native modules for Bluetooth, NFC, and camera",
-        "Shared design system across iOS and Android"
+        "Flutter 3 और Dart 3",
+        "React Native, Expo, Hermes",
+        "ब्लूटूथ, NFC, कैमरा",
+        "साझा डिज़ाइन सिस्टम"
       ],
-      "imageLabel": "Cross-platform app mockup"
+      "imageLabel": "क्रॉस-प्लेटफ़ॉर्म मॉकअप"
     },
     {
       "id": "aso",
-      "name": "App Store Optimization",
+      "name": "ऐप स्टोर ऑप्टिमाइज़ेशन",
       "icon": "fas fa-chart-line",
-      "desc": "Get discovered with proper ASO strategies",
-      "longDesc": "Most apps are never found. We treat the store listing like a product surface — keyword research, screenshot testing, localization, and a steady cadence of experiments so your install graph keeps climbing.",
+      "desc": "सही ASO से खोजे जाएँ",
+      "longDesc": "ज़्यादातर ऐप नहीं मिलते। स्टोर लिस्टिंग को प्रोडक्ट की तरह ट्रीट करते हैं।",
       "bullets": [
-        "Keyword research and metadata refresh",
-        "Screenshot and video A/B testing",
-        "Localization for priority markets",
-        "Reviews, ratings, and reply workflows"
+        "कीवर्ड और मेटाडेटा",
+        "स्क्रीनशॉट और वीडियो टेस्ट",
+        "प्राथमिक बाज़ारों का लोकलइज़ेशन",
+        "रिव्यू वर्कफ़्लो"
       ],
-      "imageLabel": "App store analytics dashboard"
+      "imageLabel": "स्टोर एनालिटिक्स"
     }
   ],
   "process": [

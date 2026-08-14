@@ -5,6 +5,7 @@ import { getAllServices, getServicesIndex, getServicesIndexData } from '../lib/s
 import ServicesBento from '../components/shared/ServicesBento.astro'
 import { t } from '../lib/i18n'
 import { localizeHref } from '../lib/localize-href'
+import { studioFullName } from '../lib/locale'
 import type { Lang } from '../types'
 
 interface Props {
@@ -32,7 +33,7 @@ const servicesData = {
 }
 ---
 
-<Page title={`${t('nav_services', lang)} — Baseet Studio`} description={description} section="services" lang={lang}>
+<Page title={`${t('nav_services', lang)} — ${studioFullName(lang)}`} description={description} section="services" lang={lang}>
   <section class="services-hero" data-animate="fade-up">
     <h1 class="services-hero__title">
       {t('services_hero_title_line1', lang)}<br/>

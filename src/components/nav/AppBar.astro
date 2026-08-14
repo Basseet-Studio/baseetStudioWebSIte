@@ -91,7 +91,7 @@ const projectMeta: ProjectMetaEntry[] = isProject && projectNavMeta?.length
   ? projectNavMeta.map((item) => ({
       key: (item.i18nKey || item.label).toLowerCase().replace(/[^a-z0-9-]/g, '-'),
       label: item.i18nKey ? t(item.i18nKey, lang) : item.label,
-      url: item.url,
+      url: localizedPath(lang, item.url || '/'),
     }))
   : defaultProjectMeta
 

@@ -32,59 +32,59 @@
   "subServices": [
     {
       "id": "admin-dashboards",
-      "name": "Admin Dashboards",
+      "name": "Mga Admin Dashboard",
       "icon": "fas fa-tachometer-alt",
-      "desc": "Powerful dashboards to manage your business",
-      "longDesc": "A real command center for your team — not a static report. We build internal dashboards that pull live data from your stack, surface exceptions, and let your operators take action without leaving the page.",
+      "desc": "Dashboard na talagang pinapatakbo ang negosyo",
+      "longDesc": "Command center ng team — live data, exceptions, at aksyon mula sa page.",
       "bullets": [
-        "Live data from your DB, warehouse, or SaaS APIs",
-        "Role-based views for ops, finance, and leadership",
-        "Drill-down, filters, and saved views",
-        "Slack and email alerts on the metrics that matter"
+        "Live data mula DB o API",
+        "Role-based views",
+        "Filters at saved views",
+        "Alerts sa mahalagang metrics"
       ],
-      "imageLabel": "Admin dashboard with live KPIs"
+      "imageLabel": "Live KPI dashboard"
     },
     {
       "id": "crm",
-      "name": "CRM Systems",
+      "name": "Mga CRM System",
       "icon": "fas fa-users-cog",
-      "desc": "Customer relationship management tailored to you",
-      "longDesc": "When Salesforce or HubSpot is overkill, we build a CRM that matches your sales motion. Pipeline stages, follow-ups, contracts, and customer health — exactly what your team needs, and nothing they do not.",
+      "desc": "CRM na tumutugma sa paraan ninyo magbenta",
+      "longDesc": "Kapag sobra ang Salesforce, gumagawa kami ng CRM na tumutugma sa sales motion ninyo.",
       "bullets": [
-        "Pipeline, deal stages, and forecasting",
-        "Email, call, and meeting integrations",
-        "Customer health and renewal workflows",
-        "Custom fields and objects without a sales call"
+        "Pipeline at forecasting",
+        "Email, tawag, meeting",
+        "Customer health at renewal",
+        "Custom fields nang walang komplikasyon"
       ],
-      "imageLabel": "Custom CRM pipeline view"
+      "imageLabel": "CRM pipeline"
     },
     {
       "id": "inventory",
       "name": "Inventory Management",
       "icon": "fas fa-boxes",
-      "desc": "Track stock, orders, and logistics efficiently",
-      "longDesc": "Inventory is one mistake away from a stockout or a write-off. We build inventory systems that track SKUs across locations, integrate with your POS and marketplace channels, and surface the reorder decisions before they become a problem.",
+      "desc": "Subaybayan ang stock, order, at logistics",
+      "longDesc": "Ang inventory ay isang mali palayo sa stockout. Gumagawa kami ng multi-location system na kumokonekta sa POS at channels.",
       "bullets": [
-        "Multi-location stock and transfers",
-        "POS, Shopify, and marketplace sync",
-        "Lot, serial, and expiry tracking",
-        "Purchase orders and supplier workflows"
+        "Multi-location stock",
+        "POS at marketplace sync",
+        "Lot, serial, expiry",
+        "Purchase orders at suppliers"
       ],
-      "imageLabel": "Inventory levels and reorder view"
+      "imageLabel": "Stock at reorder"
     },
     {
       "id": "automation",
       "name": "Workflow Automation",
       "icon": "fas fa-robot",
-      "desc": "Automate repetitive tasks and save time",
-      "longDesc": "We turn the manual steps that eat your week into reliable automations. Lead routing, invoice generation, customer onboarding sequences, and the glue between tools that does not have a Zapier template.",
+      "desc": "I-automate ang paulit-ulit na gawain",
+      "longDesc": "Ang manual na hakbang na kumakain ng linggo ay nagiging maaasahang automation.",
       "bullets": [
-        "Visual workflow designer with version history",
-        "Retry, idempotency, and error handling",
-        "Audit log of every action and decision",
-        "Connectors for 200+ SaaS tools out of the box"
+        "Workflow na may version history",
+        "Retry at error handling",
+        "Audit log ng bawat aksyon",
+        "Connectors sa daan-daang tools"
       ],
-      "imageLabel": "Workflow automation canvas"
+      "imageLabel": "Automation canvas"
     }
   ],
   "process": [

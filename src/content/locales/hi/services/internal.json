@@ -32,59 +32,59 @@
   "subServices": [
     {
       "id": "admin-dashboards",
-      "name": "Admin Dashboards",
+      "name": "एडमिन डैशबोर्ड",
       "icon": "fas fa-tachometer-alt",
-      "desc": "Powerful dashboards to manage your business",
-      "longDesc": "A real command center for your team — not a static report. We build internal dashboards that pull live data from your stack, surface exceptions, and let your operators take action without leaving the page.",
+      "desc": "व्यवसाय चलाने वाले डैशबोर्ड",
+      "longDesc": "टीम का कमांड सेंटर — लाइव डेटा, अपवाद, और पेज से कार्रवाई।",
       "bullets": [
-        "Live data from your DB, warehouse, or SaaS APIs",
-        "Role-based views for ops, finance, and leadership",
-        "Drill-down, filters, and saved views",
-        "Slack and email alerts on the metrics that matter"
+        "DB या API से लाइव डेटा",
+        "रोल के अनुसार व्यू",
+        "फ़िल्टर और सेव्ड व्यू",
+        "ज़रूरी मेट्रिक पर अलर्ट"
       ],
-      "imageLabel": "Admin dashboard with live KPIs"
+      "imageLabel": "लाइव KPI डैशबोर्ड"
     },
     {
       "id": "crm",
-      "name": "CRM Systems",
+      "name": "CRM सिस्टम",
       "icon": "fas fa-users-cog",
-      "desc": "Customer relationship management tailored to you",
-      "longDesc": "When Salesforce or HubSpot is overkill, we build a CRM that matches your sales motion. Pipeline stages, follow-ups, contracts, and customer health — exactly what your team needs, and nothing they do not.",
+      "desc": "आपकी बिक्री के हिसाब का CRM",
+      "longDesc": "जब Salesforce ज़्यादा हो, हम वही CRM बनाते हैं जो आपकी गति से मेल खाए।",
       "bullets": [
-        "Pipeline, deal stages, and forecasting",
-        "Email, call, and meeting integrations",
-        "Customer health and renewal workflows",
-        "Custom fields and objects without a sales call"
+        "पाइपलाइन और फ़ोरकास्ट",
+        "ईमेल, कॉल, मीटिंग",
+        "कस्टमर हेल्थ और रिन्यूअल",
+        "कस्टम फ़ील्ड बिना जटिलता"
       ],
-      "imageLabel": "Custom CRM pipeline view"
+      "imageLabel": "CRM पाइपलाइन"
     },
     {
       "id": "inventory",
-      "name": "Inventory Management",
+      "name": "इन्वेंटरी प्रबंधन",
       "icon": "fas fa-boxes",
-      "desc": "Track stock, orders, and logistics efficiently",
-      "longDesc": "Inventory is one mistake away from a stockout or a write-off. We build inventory systems that track SKUs across locations, integrate with your POS and marketplace channels, and surface the reorder decisions before they become a problem.",
+      "desc": "स्टॉक, ऑर्डर और लॉजिस्टिक्स",
+      "longDesc": "इन्वेंटरी एक गलती से खत्म या राइट-ऑफ। मल्टी-लोकेशन सिस्टम जो POS और चैनल से जुड़ें।",
       "bullets": [
-        "Multi-location stock and transfers",
-        "POS, Shopify, and marketplace sync",
-        "Lot, serial, and expiry tracking",
-        "Purchase orders and supplier workflows"
+        "मल्टी-लोकेशन स्टॉक",
+        "POS और मार्केटप्लेस सिंक",
+        "लॉट, सीरियल, एक्सपायरी",
+        "परचेज़ ऑर्डर और सप्लायर"
       ],
-      "imageLabel": "Inventory levels and reorder view"
+      "imageLabel": "स्टॉक और रीऑर्डर"
     },
     {
       "id": "automation",
-      "name": "Workflow Automation",
+      "name": "वर्कफ़्लो ऑटोमेशन",
       "icon": "fas fa-robot",
-      "desc": "Automate repetitive tasks and save time",
-      "longDesc": "We turn the manual steps that eat your week into reliable automations. Lead routing, invoice generation, customer onboarding sequences, and the glue between tools that does not have a Zapier template.",
+      "desc": "दोहराए जाने वाले काम ऑटोमेट करें",
+      "longDesc": "हफ़्ता खाने वाले मैन्युअल कदम भरोसेमंद ऑटोमेशन बन जाते हैं।",
       "bullets": [
-        "Visual workflow designer with version history",
-        "Retry, idempotency, and error handling",
-        "Audit log of every action and decision",
-        "Connectors for 200+ SaaS tools out of the box"
+        "वर्ज़न हिस्ट्री वाला वर्कफ़्लो",
+        "रीट्राई और एरर हैंडलिंग",
+        "हर एक्शन का ऑडिट लॉग",
+        "सैकड़ों टूल कनेक्टर"
       ],
-      "imageLabel": "Workflow automation canvas"
+      "imageLabel": "ऑटोमेशन कैनवस"
     }
   ],
   "process": [

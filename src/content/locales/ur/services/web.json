@@ -32,59 +32,59 @@
   "subServices": [
     {
       "id": "corporate-websites",
-      "name": "Corporate Websites",
+      "name": "کارپوریٹ ویب سائٹس",
       "icon": "fas fa-building",
-      "desc": "Professional websites that represent your brand",
-      "longDesc": "Your corporate site is often the first impression a prospect has of your business. We design and build fast, on-brand marketing sites that tell your story, answer the right questions, and make the next step obvious — on every device.",
+      "desc": "پروفیشنل سائٹس جو آپ کی برانڈ کی نمائندگی کریں",
+      "longDesc": "آپ کی کارپوریٹ سائٹ اکثر پہلا تاثر ہوتی ہے۔ ہم تیز، برانڈ کے مطابق مارکیٹنگ سائٹس بناتے ہیں جو کہانی بتائیں، درست سوالات کا جواب دیں، اور اگلا قدم واضح کریں — ہر ڈیوائس پر۔",
       "bullets": [
-        "Multi-page IA tailored to your buyer journey",
-        "Headless CMS so your team can ship copy in minutes, not days",
-        "Multilingual-ready (English, Arabic, and more)",
-        "On-page SEO foundation baked in from day one"
+        "خریدار کے سفر کے مطابق صفحات",
+        "CMS تاکہ ٹیم منٹس میں متن بدل سکے",
+        "کئی زبانیں (انگریزی، عربی اور مزید)",
+        "SEO بنیاد پہلے دن سے"
       ],
-      "imageLabel": "Corporate website hero mockup"
+      "imageLabel": "کارپوریٹ سائٹ ماک اپ"
     },
     {
       "id": "ecommerce",
-      "name": "E-commerce Platforms",
+      "name": "ای کامرس پلیٹ فارمز",
       "icon": "fas fa-shopping-cart",
-      "desc": "Online stores with secure payment integration",
-      "longDesc": "From boutique Shopify themes to headless commerce on Shopify Hydrogen, Medusa, or custom Stripe, we build stores that turn browsers into buyers. Performance, checkout flow, and merchandising are tuned in parallel — not as an afterthought.",
+      "desc": "محفوظ ادائیگی کے ساتھ آن لائن اسٹورز",
+      "longDesc": "بوٹیک سے ہیڈلیس کامرس تک، ہم اسٹورز بناتے ہیں جو براؤزر کو خریدار بناتے ہیں۔ پرفارمنس، چیک آؤٹ اور مرچنڈائزنگ ساتھ چلتے ہیں۔",
       "bullets": [
-        "Shopify, Medusa, Stripe, and headless commerce",
-        "Subscriptions, digital wallets, and BNPL ready",
-        "Conversion-rate-tuned product and cart pages",
-        "Inventory, tax, and shipping integrated end-to-end"
+        "Shopify، Medusa، Stripe اور ہیڈلیس",
+        "سبسکرپشنز اور ڈیجیٹل والیٹس",
+        "کنورژن کے لیے پروڈکٹ اور کارٹ",
+        "انوینٹری، ٹیکس اور شپنگ مربوط"
       ],
-      "imageLabel": "E-commerce product page mockup"
+      "imageLabel": "ای کامرس پروڈکٹ صفحہ"
     },
     {
       "id": "web-apps",
-      "name": "Web Applications",
+      "name": "ویب ایپلیکیشنز",
       "icon": "fas fa-window-restore",
-      "desc": "Custom web apps for complex business needs",
-      "longDesc": "When spreadsheets and SaaS tools stop scaling, we build the web app that fits your operation exactly. Internal tools, customer portals, dashboards — TypeScript end-to-end, real auth, real databases, and code your team can maintain.",
+      "desc": "پیچیدہ کاروباری ضرورت کے لیے حسب ضرورت ایپس",
+      "longDesc": "جب اسپریڈشیٹ اور SaaS کام نہ کریں، ہم وہ ویب ایپ بناتے ہیں جو آپ کے عمل سے فٹ ہو۔ اندرونی ٹولز، پورٹلز، ڈیش بورڈز — کوڈ جو ٹیم سنبھال سکے۔",
       "bullets": [
-        "React, Next.js, and Astro on the front end",
-        "Postgres, Prisma, and tRPC for type-safe data",
-        "Auth, roles, and audit logs from day one",
-        "Observability and feature flags built in"
+        "React، Next.js، Astro فرنٹ اینڈ",
+        "Postgres اور Prisma ڈیٹا",
+        "Auth، رولز اور آڈٹ لاگ",
+        "مشاہدہ اور فیچر فلیگز"
       ],
-      "imageLabel": "Web app dashboard mockup"
+      "imageLabel": "ویب ایپ ڈیش بورڈ"
     },
     {
       "id": "landing-pages",
-      "name": "Landing Pages",
+      "name": "لینڈنگ پیجز",
       "icon": "fas fa-bullseye",
-      "desc": "High-converting pages for marketing campaigns",
-      "longDesc": "One page, one goal, zero distractions. We design and ship campaign landing pages that load instantly, copy that matches the ad, and analytics that tell you what is actually working — A/B tested, instrumented, and ready to scale.",
+      "desc": "مہمات کے لیے زیادہ کنورٹ کرنے والے صفحات",
+      "longDesc": "ایک صفحہ، ایک مقصد۔ فوری لوڈ، اشتہار سے میل کھاتا متن، اور اینالٹکس جو بتائے کیا کام کر رہا ہے۔",
       "bullets": [
-        "A/B testable variants out of the box",
-        "Server-rendered for sub-second TTFB",
-        "Form, calendar, and CRM integrations",
-        "Heatmaps and event tracking wired up"
+        "A/B ٹیسٹ ویریئنٹس",
+        "سب سیکنڈ TTFB",
+        "فارم، کیلنڈر، CRM",
+        "ہیٹ میپس اور ایونٹ ٹریکنگ"
       ],
-      "imageLabel": "Landing page mockup with CTA"
+      "imageLabel": "لینڈنگ پیج CTA کے ساتھ"
     }
   ],
   "process": [

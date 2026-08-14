@@ -23,7 +23,7 @@ function mosaicClass(slug: string): string {
     ordelo: 'wg--ordelo',
     moneybox: 'wg--moneybox',
     numu: 'wg--numu',
-    jemeti: 'wg--jemeti',
+    zyrn: 'wg--zyrn',
     'photorestore-ai': 'wg--photorestore',
     invexo: 'wg--invexo',
   }
@@ -183,10 +183,8 @@ const labClass: Record<string, string> = {
     grid-row: 7 / 13;
   }
 
-  /* Jemeti — wide right (mirror of Deshi/Matrix) */
-  .work-wall__mosaic :global(.wg--jemeti) {
-    grid-column: 4 / 10;
-    grid-row: 7 / 10;
+  .work-wall__mosaic :global(.wg--zyrn .wg__name) {
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
   }
 
   /* Invexo — wide right, under Jemeti */

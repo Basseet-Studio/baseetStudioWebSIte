@@ -32,59 +32,59 @@
   "subServices": [
     {
       "id": "corporate-websites",
-      "name": "Corporate Websites",
+      "name": "कॉर्पोरेट वेबसाइट",
       "icon": "fas fa-building",
-      "desc": "Professional websites that represent your brand",
-      "longDesc": "Your corporate site is often the first impression a prospect has of your business. We design and build fast, on-brand marketing sites that tell your story, answer the right questions, and make the next step obvious — on every device.",
+      "desc": "पेशेवर साइटें जो ब्रांड दिखाएँ",
+      "longDesc": "कॉर्पोरेट साइट अक्सर पहला प्रभाव होती है। हम तेज़, ब्रांड के अनुरूप मार्केटिंग साइटें बनाते हैं जो कहानी कहें और अगला कदम स्पष्ट करें — हर डिवाइस पर।",
       "bullets": [
-        "Multi-page IA tailored to your buyer journey",
-        "Headless CMS so your team can ship copy in minutes, not days",
-        "Multilingual-ready (English, Arabic, and more)",
-        "On-page SEO foundation baked in from day one"
+        "खरीदार यात्रा के अनुसार पेज",
+        "CMS जिससे टीम मिनटों में कॉपी बदले",
+        "बहुभाषी तैयार",
+        "पहले दिन से SEO आधार"
       ],
-      "imageLabel": "Corporate website hero mockup"
+      "imageLabel": "कॉर्पोरेट साइट मॉकअप"
     },
     {
       "id": "ecommerce",
-      "name": "E-commerce Platforms",
+      "name": "ई-कॉमर्स प्लेटफ़ॉर्म",
       "icon": "fas fa-shopping-cart",
-      "desc": "Online stores with secure payment integration",
-      "longDesc": "From boutique Shopify themes to headless commerce on Shopify Hydrogen, Medusa, or custom Stripe, we build stores that turn browsers into buyers. Performance, checkout flow, and merchandising are tuned in parallel — not as an afterthought.",
+      "desc": "सुरक्षित भुगतान वाले ऑनलाइन स्टोर",
+      "longDesc": "बुटीक से हेडलेस कॉमर्स तक, हम स्टोर बनाते हैं जो विज़िटर को खरीदार बनाएँ। परफ़ॉर्मेंस और चेकआउट साथ सेट होते हैं।",
       "bullets": [
-        "Shopify, Medusa, Stripe, and headless commerce",
-        "Subscriptions, digital wallets, and BNPL ready",
-        "Conversion-rate-tuned product and cart pages",
-        "Inventory, tax, and shipping integrated end-to-end"
+        "Shopify, Medusa, Stripe",
+        "सब्सक्रिप्शन और वॉलेट",
+        "कन्वर्ज़न-ट्यून्ड प्रोडक्ट पेज",
+        "इन्वेंटरी, टैक्स, शिपिंग"
       ],
-      "imageLabel": "E-commerce product page mockup"
+      "imageLabel": "ई-कॉमर्स प्रोडक्ट पेज"
     },
     {
       "id": "web-apps",
-      "name": "Web Applications",
+      "name": "वेब ऐप्लिकेशन",
       "icon": "fas fa-window-restore",
-      "desc": "Custom web apps for complex business needs",
-      "longDesc": "When spreadsheets and SaaS tools stop scaling, we build the web app that fits your operation exactly. Internal tools, customer portals, dashboards — TypeScript end-to-end, real auth, real databases, and code your team can maintain.",
+      "desc": "जटिल ज़रूरत के कस्टम वेब ऐप",
+      "longDesc": "जब स्प्रेडशीट और SaaS काफी न हों, हम वही वेब ऐप बनाते हैं जो आपके काम से फिट हो।",
       "bullets": [
-        "React, Next.js, and Astro on the front end",
-        "Postgres, Prisma, and tRPC for type-safe data",
-        "Auth, roles, and audit logs from day one",
-        "Observability and feature flags built in"
+        "React, Next.js, Astro",
+        "Postgres और Prisma",
+        "Auth, रोल्स, ऑडिट लॉग",
+        "ऑब्ज़र्वेबिलिटी और फ़ीचर फ़्लैग"
       ],
-      "imageLabel": "Web app dashboard mockup"
+      "imageLabel": "वेब ऐप डैशबोर्ड"
     },
     {
       "id": "landing-pages",
-      "name": "Landing Pages",
+      "name": "लैंडिंग पेज",
       "icon": "fas fa-bullseye",
-      "desc": "High-converting pages for marketing campaigns",
-      "longDesc": "One page, one goal, zero distractions. We design and ship campaign landing pages that load instantly, copy that matches the ad, and analytics that tell you what is actually working — A/B tested, instrumented, and ready to scale.",
+      "desc": "अभियानों के हाई-कन्वर्ज़न पेज",
+      "longDesc": "एक पेज, एक लक्ष्य। तुरंत लोड, विज्ञापन से मेल खाती कॉपी, और एनालिटिक्स।",
       "bullets": [
-        "A/B testable variants out of the box",
-        "Server-rendered for sub-second TTFB",
-        "Form, calendar, and CRM integrations",
-        "Heatmaps and event tracking wired up"
+        "A/B टेस्ट वेरिएंट",
+        "सब-सेकंड TTFB",
+        "फ़ॉर्म, कैलेंडर, CRM",
+        "हीटमैप और इवेंट ट्रैकिंग"
       ],
-      "imageLabel": "Landing page mockup with CTA"
+      "imageLabel": "लैंडिंग पेज CTA"
     }
   ],
   "process": [

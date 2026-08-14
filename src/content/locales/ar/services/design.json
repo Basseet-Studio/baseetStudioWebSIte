@@ -32,59 +32,59 @@
   "subServices": [
     {
       "id": "user-research",
-      "name": "User Research",
+      "name": "بحث المستخدمين",
       "icon": "fas fa-user-friends",
-      "desc": "Understand your users' needs and behaviors",
-      "longDesc": "We start every project by talking to real users — moderated interviews, unmoderated tests, and analytics deep-dives. The output is not a persona poster; it is a clear, prioritized list of jobs-to-be-done your design has to do well.",
+      "desc": "افهم حاجة الناس وسلوكهم",
+      "longDesc": "نبدأ بالحديث مع مستخدمين حقيقيين. المخرج ليس ملصق شخصية — قائمة أولويات واضحة لما يجب أن يفعله التصميم جيداً.",
       "bullets": [
-        "User interviews and contextual inquiry",
-        "Jobs-to-be-done and opportunity mapping",
-        "Usability testing on Figma or live prototypes",
-        "Insight-to-design handoff briefs"
+        "مقابلات وسياق استخدام",
+        "وظائف مطلوبة وخريطة فرص",
+        "اختبار قابلية على نماذج",
+        "موجز من الرؤى إلى التصميم"
       ],
-      "imageLabel": "Research insight board"
+      "imageLabel": "لوحة رؤى بحث"
     },
     {
       "id": "wireframing",
-      "name": "Wireframing",
+      "name": "هياكل الصفحات",
       "icon": "fas fa-pencil-ruler",
-      "desc": "Blueprint your app's structure and flow",
-      "longDesc": "Before pixels, we draw the skeleton. Low-fidelity wireframes for every key flow, validated against your IA, and iterated fast. Wireframes are the cheapest place to make the most expensive mistakes — so we do not skip them.",
+      "desc": "ارسم هيكل التطبيق وتدفقه",
+      "longDesc": "قبل البكسل نرسم الهيكل. أرخص مكان لتصحيح أغلى الأخطاء — فلا نتخطاه.",
       "bullets": [
-        "Low-fidelity wireframes for every flow",
-        "Information architecture and navigation",
-        "User flow diagrams and edge cases",
-        "Engineering review before visual design"
+        "هياكل منخفضة الدقة لكل تدفق",
+        "معمارية معلومات وتنقّل",
+        "مسارات مستخدم وحالات حدّية",
+        "مراجعة هندسية قبل التصميم البصري"
       ],
-      "imageLabel": "Wireframe set with key flows"
+      "imageLabel": "مجموعة هياكل تدفق"
     },
     {
       "id": "visual-design",
-      "name": "Visual Design",
+      "name": "التصميم البصري",
       "icon": "fas fa-palette",
-      "desc": "Stunning interfaces that reflect your brand",
-      "longDesc": "High-fidelity Figma files, a real type and color system, and motion principles that match your brand personality. The output is a Figma library your team can keep using long after we are done — not a static deliverable.",
+      "desc": "واجهات تعكس علامتك",
+      "longDesc": "ملفات فِغما عالية الدقة، ونظام خط ولون وحركة. المكتبة تبقى لفريقك بعد انتهاء العمل معنا.",
       "bullets": [
-        "High-fidelity Figma screens and components",
-        "Type, color, and motion systems",
-        "Brand-aligned iconography and illustration",
-        "Light, dark, and brand variants"
+        "شاشات ومكوّنات فِغما",
+        "أنظمة خط ولون وحركة",
+        "أيقونات ورسوم على الهوية",
+        "نهار وليل ومتغيرات العلامة"
       ],
-      "imageLabel": "High-fidelity mobile screens"
+      "imageLabel": "شاشات عالية الدقة"
     },
     {
       "id": "prototyping",
-      "name": "Prototyping",
+      "name": "النماذج التفاعلية",
       "icon": "fas fa-laptop-code",
-      "desc": "Interactive prototypes for testing ideas",
-      "longDesc": "Clickable prototypes for stakeholder review, user testing, and crowdfunding. We build them in Figma or with code, depending on fidelity needs — and we use them to test the riskiest assumptions before you spend a dirham on engineering.",
+      "desc": "نماذج قابلة للنقر لاختبار الأفكار",
+      "longDesc": "نماذج لأصحاب المصلحة واختبار المستخدمين. نختبر أخطر الافتراضات قبل أن تُصرف هندسة.",
       "bullets": [
-        "Figma and code-based prototypes",
-        "Micro-interactions and motion specs",
-        "Testable flows for user research",
-        "Stakeholder demo builds"
+        "نماذج فِغما أو بالكود",
+        "تفاعلات دقيقة ومواصفات حركة",
+        "تدفقات قابلة للاختبار",
+        "عروض لأصحاب المصلحة"
       ],
-      "imageLabel": "Interactive prototype in code"
+      "imageLabel": "نموذج تفاعلي"
     }
   ],
   "process": [

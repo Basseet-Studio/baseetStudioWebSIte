@@ -173,7 +173,8 @@
     ],
     "indexTier": "flagship",
     "previewImage": "/images/projects/jemeti-icon.svg",
-    "previewVideo": null
+    "previewVideo": null,
+    "indexHidden": true
   },
   {
     "slug": "geeb",

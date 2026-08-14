@@ -57,11 +57,18 @@ const barePath = stripLocalePrefix(pathname)
     font-weight: 600;
     letter-spacing: 0.02em;
     line-height: 1;
-    padding: 0.45rem 1.6rem 0.45rem 0.7rem;
+    padding: 0.45rem 1.85rem 0.45rem 0.85rem;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 0.45rem center;
-    max-width: 7.5rem;
+    max-width: none;
+    min-width: max-content;
+    width: auto;
+  }
+
+  :global([dir='rtl']) .lang-switcher__select {
+    padding: 0.45rem 0.85rem 0.45rem 1.85rem;
+    background-position: left 0.45rem center;
   }
 
   .lang-switcher__select:focus-visible {

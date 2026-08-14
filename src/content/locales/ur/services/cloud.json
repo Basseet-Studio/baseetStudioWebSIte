@@ -32,59 +32,59 @@
   "subServices": [
     {
       "id": "cloud-migration",
-      "name": "Cloud Migration",
+      "name": "کلاؤڈ مائیگریشن",
       "icon": "fas fa-cloud-upload-alt",
-      "desc": "Move your systems to the cloud securely",
-      "longDesc": "Lift, refactor, or rebuild — depending on what your workload actually needs. We migrate production systems with a zero-downtime cutover plan, a parallel run, and a clean rollback path if anything goes sideways.",
+      "desc": "سسٹمز محفوظ طریقے سے کلاؤڈ پر",
+      "longDesc": "لفٹ یا ری فیکٹر — زیرو ڈاؤن ٹائم کٹ اوور، متوازی رن، اور رول بیک۔",
       "bullets": [
-        "AWS, GCP, Azure, and Cloudflare",
-        "Zero-downtime cutover with parallel run",
-        "Cost and right-sizing assessment",
-        "Networking, IAM, and secrets migration"
+        "AWS، GCP، Azure، Cloudflare",
+        "زیرو ڈاؤن ٹائم کٹ اوور",
+        "لاگت اور سائز",
+        "نیٹ ورکنگ، IAM، سیکرٹس"
       ],
-      "imageLabel": "Cloud migration architecture diagram"
+      "imageLabel": "کلاؤڈ مائیگریشن ڈایاگرام"
     },
     {
       "id": "cicd",
-      "name": "CI/CD Pipelines",
+      "name": "CI/CD پائپ لائنز",
       "icon": "fas fa-code-branch",
-      "desc": "Automated testing and deployment",
-      "longDesc": "We build pipelines that catch the bug, not the developer. Type-check, lint, test, scan, sign, and deploy on every commit — with progressive rollouts, automatic rollback on regressions, and a one-click revert when things go wrong.",
+      "desc": "آٹومیٹڈ ٹیسٹ اور ڈیپلائے",
+      "longDesc": "بگ پکڑنے والی پائپ لائنز، ڈیولپر نہیں۔ ہر کمیٹ پر چیک، ٹیسٹ، اسکین، سائن، ڈیپلائے۔",
       "bullets": [
-        "GitHub Actions, GitLab CI, and Buildkite",
-        "Progressive rollouts and feature flags",
-        "Auto-rollback on regressions",
-        "Signed, attested, and SBOM-tagged releases"
+        "GitHub Actions، GitLab CI",
+        "پروگریسو رول آؤٹس",
+        "ریگریشن پر آٹو رول بیک",
+        "سائنڈ ریلیسز"
       ],
-      "imageLabel": "CI/CD pipeline visualization"
+      "imageLabel": "CI/CD ویژول"
     },
     {
       "id": "server-management",
-      "name": "Server Management",
+      "name": "سرور مینجمنٹ",
       "icon": "fas fa-server",
-      "desc": "Keep your infrastructure running smoothly",
-      "longDesc": "Managed Kubernetes, serverless on AWS Lambda, or a humble VPS — we run the boring but critical parts so you can focus on the product. Patching, scaling, backups, and a 24/7 on-call rotation when something goes wrong.",
+      "desc": "انفراسٹرکچر ہموار چلتا رہے",
+      "longDesc": "K8s، Lambda یا سادہ VPS — بورنگ مگر اہم حصے ہم چلاتے ہیں۔",
       "bullets": [
-        "Kubernetes, ECS, and Lambda",
-        "Patch, backup, and capacity management",
-        "24/7 on-call with a real engineer",
-        "Postmortems that actually change something"
+        "Kubernetes، ECS، Lambda",
+        "پیچ، بیک اپ، کیپیسٹی",
+        "حقیقی انجینئر آن کال",
+        "پوسٹ مارٹمز جو کچھ بدلیں"
       ],
-      "imageLabel": "Server monitoring dashboard"
+      "imageLabel": "سرور مانیٹرنگ"
     },
     {
       "id": "security-audits",
-      "name": "Security Audits",
+      "name": "سیکیورٹی آڈٹس",
       "icon": "fas fa-shield-alt",
-      "desc": "Identify and fix vulnerabilities",
-      "longDesc": "We do not sell scary reports — we sell fixed CVEs. Our security audits end with a prioritized remediation plan, a tracked set of pull requests, and a re-test. We work with SOC 2, ISO 27001, and the UAE PDPL.",
+      "desc": "کمزوریاں ڈھونڈیں اور ٹھیک کریں",
+      "longDesc": "خوفناک رپورٹس نہیں — بند CVEs۔ ترجیحی فکس پلان، PRs، اور ری ٹیسٹ۔ SOC 2، ISO، UAE PDPL۔",
       "bullets": [
-        "Web, API, and cloud config audits",
-        "Pen testing with a real report",
-        "SOC 2 and ISO 27001 readiness",
-        "UAE PDPL and data residency review"
+        "ویب، API، کلاؤڈ کنفگ",
+        "پین ٹیسٹ رپورٹ",
+        "SOC 2 اور ISO تیار",
+        "PDPL اور ڈیٹا ریزیڈنسی"
       ],
-      "imageLabel": "Security audit findings dashboard"
+      "imageLabel": "سیکیورٹی فائنڈنگز"
     }
   ],
   "process": [

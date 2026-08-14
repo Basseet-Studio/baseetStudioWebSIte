@@ -170,11 +170,11 @@
     },
     {
       "id": "little-hands-lab",
-      "name": "Little Hands Lab",
+      "name": "Kudooda",
       "layoutTemplate": "showcase",
       "industry": "کھلونے اور ریٹیل",
       "serviceType": "ای کامرس اسٹور",
-      "color": "#EC4899",
+      "color": "#7C3AED",
       "tagline": "آن لائن کھلونوں کی دکان، Zyrn سے چلتی ہے",
       "shortDescription": "An online toys store on Zyrn — branded catalog, checkout, and customer updates for Little Hands Lab.",
       "fullDescription": "Little Hands Lab runs its toys storefront on Zyrn: products, payments, inventory, and order notifications in one branded commerce system — no paper trail of DMs and notebooks.",

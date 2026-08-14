@@ -360,8 +360,8 @@
       "icon": "fas fa-layer-group"
     },
     {
-      "metric": "3 yrs",
-      "label": "Average partnership length",
+      "metric": "1 yr",
+      "label": "Minimum support",
       "icon": "fas fa-handshake"
     },
     {

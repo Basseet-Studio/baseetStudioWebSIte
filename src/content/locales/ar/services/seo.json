@@ -32,59 +32,59 @@
   "subServices": [
     {
       "id": "technical-seo",
-      "name": "Technical SEO",
+      "name": "تحسين تقني للبحث",
       "icon": "fas fa-code",
-      "desc": "Optimize site structure for search engines",
-      "longDesc": "The best content in the world will not rank if Google cannot crawl and render it. We run a full technical audit, fix the foundations (Core Web Vitals, schema, internal linking, hreflang, JS rendering), and leave a runbook your devs can follow.",
+      "desc": "اجعل الموقع قابلاً للزحف والفهرسة",
+      "longDesc": "أفضل محتوى لا يظهر إن تعذّر الزحف. ندقق الأساس: السرعة والمخطط والروابط الداخلية واللغات، ونترك دليلاً لفريقك.",
       "bullets": [
-        "Crawl, render, and index audits",
-        "Core Web Vitals and JS-rendering fixes",
-        "Schema.org, hreflang, and canonical strategy",
-        "Log-file analysis and internal link rewiring"
+        "تدقيق زحف وتصوير وفهرسة",
+        "مؤشرات الويب وإصلاح الجافاسكربت",
+        "مخطط وhreflang وcanonical",
+        "تحليل السجلات وإعادة ربط داخلي"
       ],
-      "imageLabel": "Technical SEO audit dashboard"
+      "imageLabel": "لوحة تدقيق تقني"
     },
     {
       "id": "content-strategy",
-      "name": "Content Strategy",
+      "name": "استراتيجية المحتوى",
       "icon": "fas fa-pen-fancy",
-      "desc": "Content that ranks and engages users",
-      "longDesc": "We build a 12-month content roadmap grounded in real search demand and your positioning. Briefs, outlines, and review cycles that produce articles your audience actually wants to read — and that earn links.",
+      "desc": "محتوى يظهر وينفع القارئ",
+      "longDesc": "خارطة محتوى مبنية على طلب بحث حقيقي وموقعك في السوق. موجزات ومراجعات تنتج مقالات تُقرأ وتُربط.",
       "bullets": [
-        "Keyword research and topic clustering",
-        "SERP-aware briefs and outlines",
-        "Editorial calendar and review workflow",
-        "Refresh program for aging content"
+        "بحث كلمات وتجميع مواضيع",
+        "موجزات واعية بنتائج البحث",
+        "تقويم تحريري ومراجعة",
+        "تحديث المحتوى القديم"
       ],
-      "imageLabel": "Editorial content calendar"
+      "imageLabel": "تقويم محتوى"
     },
     {
       "id": "local-seo",
-      "name": "Local SEO",
+      "name": "بحث محلي",
       "icon": "fas fa-map-marker-alt",
-      "desc": "Dominate local search results in your area",
-      "longDesc": "If your customers are within driving distance, local SEO is the highest-ROI channel you have. We optimize your Google Business Profile, build location pages, manage reviews, and build the citations and links that move you up the map pack.",
+      "desc": "ظهور محلي في منطقتك",
+      "longDesc": "إن كان عملاؤك على مسافة قيادة، البحث المحلي أعلى عائد. نحسّن ملف غوغل بزنس وصفحات المواقع والتقييمات والاستشهادات.",
       "bullets": [
-        "Google Business Profile optimization",
-        "Location pages and city-by-city content",
-        "Review generation and response workflows",
-        "Citation cleanup and local link building"
+        "تحسين ملف النشاط التجاري",
+        "صفحات مواقع ومحتوى مدن",
+        "توليد تقييمات والرد عليها",
+        "تنظيف الاستشهادات وروابط محلية"
       ],
-      "imageLabel": "Local map pack and Google Business Profile"
+      "imageLabel": "حزمة خرائط وملف غوغل"
     },
     {
       "id": "analytics",
-      "name": "Analytics Setup",
+      "name": "إعداد التحليلات",
       "icon": "fas fa-chart-bar",
-      "desc": "Track performance with proper data tools",
-      "longDesc": "You cannot improve what you cannot measure. We set up GA4, Search Console, server-side tagging, and a dashboard that answers the questions your leadership actually asks — clean data, clean attribution, no spreadsheet gymnastics.",
+      "desc": "قِس الأداء بأدوات بيانات صحيحة",
+      "longDesc": "لا تُحسّن ما لا تقيسه. نضبط GA4 وسيرش كونسول ولوحة تجيب أسئلة القيادة — بيانات نظيفة بلا بهلوانيات جداول.",
       "bullets": [
-        "GA4, Search Console, and Tag Manager",
-        "Server-side tagging and consent mode",
-        "Looker Studio dashboards for every team",
-        "Conversion and revenue attribution"
+        "GA4 وسيرش كونسول وتاغ منجر",
+        "وسم من الخادم ووضع موافقة",
+        "لوحات لكل فريق",
+        "إسناد تحويل وإيراد"
       ],
-      "imageLabel": "Looker Studio KPI dashboard"
+      "imageLabel": "لوحة مؤشرات"
     }
   ],
   "process": [

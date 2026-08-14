@@ -34,57 +34,57 @@
       "id": "technical-seo",
       "name": "Technical SEO",
       "icon": "fas fa-code",
-      "desc": "Optimize site structure for search engines",
-      "longDesc": "The best content in the world will not rank if Google cannot crawl and render it. We run a full technical audit, fix the foundations (Core Web Vitals, schema, internal linking, hreflang, JS rendering), and leave a runbook your devs can follow.",
+      "desc": "I-optimize ang istruktura para sa search",
+      "longDesc": "Ang pinakamagandang content ay hindi raranggo kung hindi ma-crawl. Inaayos namin ang pundasyon.",
       "bullets": [
-        "Crawl, render, and index audits",
-        "Core Web Vitals and JS-rendering fixes",
-        "Schema.org, hreflang, and canonical strategy",
-        "Log-file analysis and internal link rewiring"
+        "Crawl, render, index audit",
+        "Core Web Vitals",
+        "Schema, hreflang, canonical",
+        "Log-file at internal links"
       ],
-      "imageLabel": "Technical SEO audit dashboard"
+      "imageLabel": "Technical SEO audit"
     },
     {
       "id": "content-strategy",
       "name": "Content Strategy",
       "icon": "fas fa-pen-fancy",
-      "desc": "Content that ranks and engages users",
-      "longDesc": "We build a 12-month content roadmap grounded in real search demand and your positioning. Briefs, outlines, and review cycles that produce articles your audience actually wants to read — and that earn links.",
+      "desc": "Content na raranggo at binabasa",
+      "longDesc": "12-buwang roadmap mula sa totoong search demand.",
       "bullets": [
-        "Keyword research and topic clustering",
-        "SERP-aware briefs and outlines",
-        "Editorial calendar and review workflow",
-        "Refresh program for aging content"
+        "Keyword at topic clustering",
+        "SERP-aware briefs",
+        "Editorial calendar",
+        "Refresh ng lumang content"
       ],
-      "imageLabel": "Editorial content calendar"
+      "imageLabel": "Editorial calendar"
     },
     {
       "id": "local-seo",
       "name": "Local SEO",
       "icon": "fas fa-map-marker-alt",
-      "desc": "Dominate local search results in your area",
-      "longDesc": "If your customers are within driving distance, local SEO is the highest-ROI channel you have. We optimize your Google Business Profile, build location pages, manage reviews, and build the citations and links that move you up the map pack.",
+      "desc": "Dominahin ang local search sa area ninyo",
+      "longDesc": "Kung driving distance ang customers, local SEO ang pinakamataas na ROI.",
       "bullets": [
-        "Google Business Profile optimization",
-        "Location pages and city-by-city content",
-        "Review generation and response workflows",
-        "Citation cleanup and local link building"
+        "Google Business Profile",
+        "Location pages",
+        "Review workflows",
+        "Citations at local links"
       ],
-      "imageLabel": "Local map pack and Google Business Profile"
+      "imageLabel": "Map pack at GBP"
     },
     {
       "id": "analytics",
       "name": "Analytics Setup",
       "icon": "fas fa-chart-bar",
-      "desc": "Track performance with proper data tools",
-      "longDesc": "You cannot improve what you cannot measure. We set up GA4, Search Console, server-side tagging, and a dashboard that answers the questions your leadership actually asks — clean data, clean attribution, no spreadsheet gymnastics.",
+      "desc": "Sukatin ang performance sa tamang data tools",
+      "longDesc": "Hindi mo mapapabuti ang hindi nasusukat. GA4, Search Console, at dashboard na sumasagot sa tanong ng leadership.",
       "bullets": [
-        "GA4, Search Console, and Tag Manager",
-        "Server-side tagging and consent mode",
-        "Looker Studio dashboards for every team",
-        "Conversion and revenue attribution"
+        "GA4, Search Console, GTM",
+        "Server-side tagging",
+        "Looker Studio dashboards",
+        "Conversion at revenue"
       ],
-      "imageLabel": "Looker Studio KPI dashboard"
+      "imageLabel": "KPI dashboard"
     }
   ],
   "process": [
