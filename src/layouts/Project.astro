@@ -3,7 +3,6 @@
 // Injects --project-color and --project-gradient CSS custom properties
 // Passes project nav items to AppBar for adaptive navigation
 import Base from './Base.astro'
-import GeebLineWaves from '../components/project/geeb/GeebLineWaves.astro'
 import MoneyBoxDarkVeil from '../components/project/moneybox/MoneyBoxDarkVeil.astro'
 import NumuAurora from '../components/project/numu/NumuAurora.astro'
 import type { Lang, NavItem } from '../types'
@@ -33,7 +32,6 @@ const { title, description, slug, projectColor, projectGradient, projectName, pr
     {/* Soft, theme-aware colour band that fades out gradually as the user
         scrolls. See shared.css `.project-hero-wash` for the rationale. */}
     <div class="project-hero-wash" aria-hidden="true"></div>
-    {slug === 'geeb' && <GeebLineWaves />}
     {slug === 'moneybox' && <MoneyBoxDarkVeil />}
     {slug === 'numu' && <NumuAurora />}
     <slot />

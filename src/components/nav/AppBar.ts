@@ -328,6 +328,7 @@ function syncAppBarFromNewDocument(newDocument: Document): void {
     "data-is-project",
     newBar.getAttribute("data-is-project") || "false",
   );
+  oldBar.setAttribute("data-slug", newBar.getAttribute("data-slug") || "");
 
   const projectColor = newBar.getAttribute("data-project-color");
   if (projectColor) {

@@ -35,7 +35,8 @@
 .zyrn-metrics__tile {
   padding: 24px 20px;
   text-align: center;
-  border-radius: 16px;
+  border-radius: var(--card-window-radius-tight, 18px);
+  background: color-mix(in srgb, var(--project-color) 8%, var(--card-window-bg));
 }
 
 .zyrn-metrics__val {
@@ -63,8 +64,8 @@
 .zyrn-tools__item {
   padding: 20px 22px;
   border-radius: 14px;
-  border: 1px solid color-mix(in srgb, var(--project-color) 12%, transparent);
-  background: color-mix(in srgb, var(--project-color) 4%, transparent);
+  border: 1px solid color-mix(in srgb, var(--project-color) 12%, var(--card-window-border));
+  background: color-mix(in srgb, var(--project-color) 8%, var(--card-window-bg));
 }
 
 .zyrn-tools__item h3 {
@@ -90,7 +91,7 @@
 .zyrn-day__item {
   padding: 22px 20px;
   border-radius: 14px;
-  background: color-mix(in srgb, var(--project-color) 4%, transparent);
+  background: color-mix(in srgb, var(--project-color) 8%, var(--card-window-bg));
 }
 
 .zyrn-day__item h3 {
@@ -118,8 +119,8 @@
 .zyrn-packages__card {
   padding: 24px 22px;
   border-radius: 16px;
-  border: 1px solid color-mix(in srgb, var(--project-color) 14%, transparent);
-  background: color-mix(in srgb, var(--project-color) 3%, transparent);
+  border: 1px solid color-mix(in srgb, var(--project-color) 14%, var(--card-window-border));
+  background: color-mix(in srgb, var(--project-color) 8%, var(--card-window-bg));
 }
 
 .zyrn-packages__card h3 {

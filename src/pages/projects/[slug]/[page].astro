@@ -161,7 +161,13 @@ const next = siblings[0]
       <div class="subpage-section__inner">
         <div class="subpage-bento">
           {project.features!.map((feature, i) => (
-            <div class={`subpage-bento__card ${i === 0 ? 'subpage-bento__card--lead' : ''}`} data-animate="fade-up" style={i > 0 ? `animation-delay:${i * 0.04}s;` : ''}>
+            <div
+              class={`subpage-bento__card ${i === 0 ? 'subpage-bento__card--lead' : ''}`}
+              data-animate="fade-up"
+              style={i === 0
+                ? `background:color-mix(in srgb, ${project.color} 8%, var(--card-window-bg));`
+                : (i > 0 ? `animation-delay:${i * 0.04}s;` : '')}
+            >
               <div class="subpage-bento__icon" style={`background:${project.gradient};`}>
                 <Icon name={resolveIcon(feature.icon).name} size={22} color="white" />
               </div>
@@ -214,10 +220,11 @@ const next = siblings[0]
     <section class="subpage-section">
       <div class="subpage-section__inner">
         {hasPlatforms ? (
+          <>
           <div class="subpage-platforms" data-animate="fade-up">
             {project.platforms!.map(p => (
-              <div class="subpage-platform" style={`border-color: color-mix(in srgb, ${project.color} 25%, transparent);`}>
-                <div class="subpage-platform__icon" style={`background:color-mix(in srgb, ${project.color} 12%, transparent);color:${project.color};`}>
+              <div class="subpage-platform card-window">
+                <div class="subpage-platform__icon" style={`background:color-mix(in srgb, ${project.color} 14%, var(--card-window-bg));color:${project.color};`}>
                   <Icon name={resolveIcon(p.icon).name} size={26} color="currentColor" />
                 </div>
                 <div>
@@ -233,6 +240,12 @@ const next = siblings[0]
               </div>
             ))}
           </div>
+          <div class="subpage-demo-cta" data-animate="fade-up">
+            <a href={localizeHref(lang, '/contact/')} class="subpage-btn subpage-btn--primary" style={`background:${project.gradient};`}>
+              {page === 'download' ? 'Join the waitlist' : 'Request a demo'}
+            </a>
+          </div>
+          </>
         ) : (
           <div class="subpage-empty">
             <Icon name={page === 'download' ? 'download' : 'play'} size={36} color={project.color} />
@@ -240,7 +253,7 @@ const next = siblings[0]
             <p>{page === 'download'
               ? `${project.name} is heading to the stores. Join the waitlist and we will let you know the moment it is live.`
               : `We run personalised demos for serious teams. Tell us a bit about you and we will set one up.`}</p>
-            <a href="/contact/" class="subpage-btn subpage-btn--primary" style={`background:${project.gradient};`}>
+            <a href={localizeHref(lang, '/contact/')} class="subpage-btn subpage-btn--primary" style={`background:${project.gradient};`}>
               {page === 'download' ? 'Join the waitlist' : 'Request a demo'}
             </a>
           </div>
@@ -290,7 +303,7 @@ const next = siblings[0]
   {page === 'pro' && (
     <section class="subpage-section">
       <div class="subpage-section__inner subpage-section__inner--narrow">
-        <div class="subpage-pro-card" data-animate="fade-up" style={`background:linear-gradient(135deg, color-mix(in srgb, ${project.color} 8%, white) 0%, white 60%);border-color:color-mix(in srgb, ${project.color} 25%, transparent);`}>
+        <div class="subpage-pro-card card-window" data-animate="fade-up" style={`background:color-mix(in srgb, ${project.color} 8%, var(--card-window-bg));border-color:color-mix(in srgb, ${project.color} 25%, transparent);`}>
           <Icon name="hard-hat" size={42} color={project.color} />
           <h2>Join the {project.name} network</h2>
           <p>Apply below and our team will review your application within 48 hours.</p>
@@ -363,12 +376,12 @@ const next = siblings[0]
     font-weight: 700;
     line-height: 1.1;
     margin: 0 0 16px;
-    color: var(--heading-text, #1C1917);
+    color: var(--heading-text);
   }
   .subpage-hero__lede {
     font-size: 1.1rem;
     line-height: 1.7;
-    color: var(--muted-text, #57534E);
+    color: var(--muted-text);
     max-width: 640px;
     margin: 0 auto;
   }
@@ -397,15 +410,16 @@ const next = siblings[0]
     .subpage-bento { grid-template-columns: 1fr; }
   }
   .subpage-bento__card {
-    background: white;
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    border-radius: 20px;
+    background: var(--card-window-bg);
+    border: 1px solid var(--card-window-border);
+    border-radius: var(--card-window-radius-tight, 18px);
     padding: 24px;
-    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: var(--card-window-shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
   .subpage-bento__card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 12px 32px -12px rgba(0, 0, 0, 0.12);
+    box-shadow: var(--card-window-shadow-hover);
   }
   .subpage-bento__card--lead {
     grid-column: span 3;
@@ -429,13 +443,13 @@ const next = siblings[0]
     font-size: 1.1rem;
     font-weight: 700;
     margin: 0 0 8px;
-    color: var(--heading-text, #1C1917);
+    color: var(--heading-text);
     font-family: var(--font-display);
   }
   .subpage-bento__card p {
     font-size: 0.92rem;
     line-height: 1.6;
-    color: var(--muted-text, #57534E);
+    color: var(--muted-text);
     margin: 0;
   }
 
@@ -457,15 +471,18 @@ const next = siblings[0]
     align-items: center;
     gap: 16px;
     padding: 18px 20px;
-    border: 1px solid;
-    border-radius: 16px;
-    background: white;
-    transition: transform 0.2s;
+    min-height: 72px;
+    border-radius: var(--card-window-radius-tight, 18px);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
-  .subpage-platform:hover { transform: translateY(-2px); }
+  .subpage-platform:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--card-window-shadow-hover);
+  }
   .subpage-platform__icon {
     width: 48px;
     height: 48px;
+    flex-shrink: 0;
     border-radius: 12px;
     display: inline-flex;
     align-items: center;
@@ -474,15 +491,20 @@ const next = siblings[0]
   .subpage-platform strong {
     display: block;
     font-size: 1rem;
-    color: var(--heading-text, #1C1917);
+    color: var(--heading-text);
   }
   .subpage-platform__version {
     display: block;
     font-size: 0.8rem;
-    color: var(--muted-text, #57534E);
+    color: var(--muted-text);
     margin-top: 2px;
   }
   .subpage-platform .subpage-btn { margin-left: auto; }
+  .subpage-demo-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 28px;
+  }
 
   /* Tech chips */
   .subpage-tech { margin-top: 56px; text-align: center; }
@@ -491,7 +513,7 @@ const next = siblings[0]
     font-size: 1.4rem;
     font-weight: 700;
     margin: 0 0 20px;
-    color: var(--heading-text, #1C1917);
+    color: var(--heading-text);
   }
   .subpage-tech__list {
     display: flex;
@@ -513,13 +535,13 @@ const next = siblings[0]
     font-size: 1.4rem;
     font-weight: 700;
     margin: 40px 0 12px;
-    color: var(--heading-text, #1C1917);
+    color: var(--heading-text);
   }
   .subpage-prose h2:first-child { margin-top: 0; }
   .subpage-prose p {
     font-size: 1rem;
     line-height: 1.75;
-    color: var(--muted-text, #57534E);
+    color: var(--muted-text);
     margin: 0 0 16px;
   }
 
@@ -535,10 +557,10 @@ const next = siblings[0]
     font-size: 1.6rem;
     font-weight: 700;
     margin: 16px 0 8px;
-    color: var(--heading-text, #1C1917);
+    color: var(--heading-text);
   }
   .subpage-pro-card p {
-    color: var(--muted-text, #57534E);
+    color: var(--muted-text);
     margin: 0 0 24px;
   }
 
@@ -554,10 +576,10 @@ const next = siblings[0]
     font-size: 1.5rem;
     font-weight: 700;
     margin: 16px 0 8px;
-    color: var(--heading-text, #1C1917);
+    color: var(--heading-text);
   }
   .subpage-empty p {
-    color: var(--muted-text, #57534E);
+    color: var(--muted-text);
     line-height: 1.6;
     margin: 0 0 24px;
   }
@@ -566,13 +588,15 @@ const next = siblings[0]
   .subpage-btn {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
+    min-height: 44px;
     padding: 12px 24px;
     border-radius: 50px;
     font-weight: 600;
     font-size: 0.95rem;
     text-decoration: none;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     border: none;
     cursor: pointer;
     color: white;
@@ -598,9 +622,10 @@ const next = siblings[0]
     gap: 16px;
     align-items: center;
     padding: 20px 24px;
-    background: white;
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    border-radius: 16px;
+    background: var(--card-window-bg);
+    border: 1px solid var(--card-window-border);
+    border-radius: var(--card-window-radius-tight, 18px);
+    box-shadow: var(--card-window-shadow);
   }
   @media (max-width: 640px) {
     .subpage-pagenav__inner {
@@ -612,13 +637,19 @@ const next = siblings[0]
     display: inline-flex;
     align-items: center;
     gap: 6px;
+    min-height: 44px;
     text-decoration: none;
-    color: var(--muted-text, #57534E);
+    color: var(--muted-text);
     font-size: 0.9rem;
     font-weight: 500;
-    transition: color 0.2s;
+    transition: color 0.2s ease;
+    border-radius: 8px;
   }
-  .subpage-pagenav__link:hover { color: var(--heading-text, #1C1917); }
+  .subpage-pagenav__link:hover { color: var(--heading-text); }
+  .subpage-pagenav__link:focus-visible {
+    outline: 2px solid var(--project-color, var(--color-primary));
+    outline-offset: 3px;
+  }
   .subpage-pagenav__link--prev { justify-self: start; }
   .subpage-pagenav__link--home { justify-self: center; }
   .subpage-pagenav__link--next { justify-self: end; }
@@ -626,5 +657,18 @@ const next = siblings[0]
     .subpage-pagenav__link--prev,
     .subpage-pagenav__link--home,
     .subpage-pagenav__link--next { justify-self: center; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .subpage-bento__card,
+    .subpage-platform,
+    .subpage-btn {
+      transition: none;
+    }
+    .subpage-bento__card:hover,
+    .subpage-platform:hover,
+    .subpage-btn--primary:hover {
+      transform: none;
+    }
   }
 </style>

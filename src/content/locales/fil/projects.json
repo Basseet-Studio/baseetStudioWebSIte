@@ -204,33 +204,6 @@
     "previewVideo": null
   },
   {
-    "slug": "chopshop",
-    "name": "ChopShop",
-    "tagline": "Ang tindahan mo, saanman.",
-    "color": "#E11D48",
-    "gradient": "linear-gradient(135deg, #E11D48 0%, #FB7185 100%)",
-    "status": "Handa nang i-deliver",
-    "iconClass": "fas fa-shopping-bag",
-    "icon": null,
-    "platforms": [
-      {
-        "name": "Web",
-        "icon": "fas fa-globe"
-      },
-      {
-        "name": "iOS",
-        "icon": "fab fa-apple"
-      },
-      {
-        "name": "Android",
-        "icon": "fab fa-android"
-      }
-    ],
-    "indexTier": "more",
-    "previewImage": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1600&q=80",
-    "previewVideo": null
-  },
-  {
     "slug": "medical-education-app",
     "name": "MAI",
     "tagline": "AI-powered medical education platform.",

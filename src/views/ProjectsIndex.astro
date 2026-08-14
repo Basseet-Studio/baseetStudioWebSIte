@@ -32,7 +32,6 @@ function mosaicClass(slug: string): string {
 
 const labClass: Record<string, string> = {
   geeb: 'wg--geeb',
-  chopshop: 'wg--chopshop',
   'medical-education-app': 'wg--mai',
 }
 
@@ -183,14 +182,20 @@ const labClass: Record<string, string> = {
     grid-row: 7 / 13;
   }
 
+  /* Zyrn — wide right, same height as MoneyBox */
+  .work-wall__mosaic :global(.wg--zyrn) {
+    grid-column: 4 / 10;
+    grid-row: 7 / 13;
+  }
+
   .work-wall__mosaic :global(.wg--zyrn .wg__name) {
     font-size: clamp(1.6rem, 3vw, 2.4rem);
   }
 
-  /* Invexo — wide right, under Jemeti */
+  /* Invexo — under MoneyBox */
   .work-wall__mosaic :global(.wg--invexo) {
-    grid-column: 4 / 10;
-    grid-row: 10 / 13;
+    grid-column: 1 / 4;
+    grid-row: 13 / 18;
   }
 
   /* PhotoRestore — wide right, spills below */
@@ -313,6 +318,10 @@ const labClass: Record<string, string> = {
       height: clamp(320px, 88vw, 480px);
       max-width: min(300px, 72vw);
       margin-inline: auto;
+    }
+
+    .work-wall__mosaic :global(.wg--zyrn) {
+      height: clamp(320px, 88vw, 480px);
     }
 
     .work-wall__lab-grid {

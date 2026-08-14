@@ -121,12 +121,6 @@ export const PROJECT_PATCHES = Object.fromEntries([
     hi: { tagline: 'स्वास्थ्य सेवा। सरल।', hero: { title: 'सभी के लिए काम करने वाली Healthcare', subtitle: 'पूर्ण EHR, practice management, patient portal — एक secure platform में।', cta_primary: 'Demo Request करें' }, status: 'डिलीवरी के लिए तैयार' },
     fil: { tagline: 'Healthcare. Pinasimple.', hero: { title: 'Healthcare na Gumagana para sa Lahat', subtitle: 'Kumpletong EHR, practice management, patient portal — sa isang secure platform.', cta_primary: 'Humiling ng Demo' }, status: 'Handa nang i-deliver' },
   }),
-  P('chopshop', {
-    ar: { tagline: 'متجرك، في كل مكان.', hero: { title: 'متجرك، في كل مكان', subtitle: 'منصة B2C كاملة للبائعين لبيع منتجاتهم عبر الإنترنت.', cta_primary: 'اطلب عرضاً' }, status: 'جاهز للتسليم' },
-    ur: { tagline: 'آپ کی دکان، ہر جگہ۔', hero: { title: 'آپ کی دکان، ہر جگہ', subtitle: 'Vendors کے لیے مکمل B2C shopping platform۔', cta_primary: 'Demo Request کریں' }, status: 'ڈیلیور کے لیے تیار' },
-    hi: { tagline: 'आपki दुकान, हर जगह।', hero: { title: 'आपki दुकान, हर जगह', subtitle: 'Vendors के लिए पूर्ण B2C shopping platform।', cta_primary: 'Demo Request करें' }, status: 'डिलीवरी के लिए तैयार' },
-    fil: { tagline: 'Ang tindahan mo, saanman.', hero: { title: 'Ang Tindahan Mo, Saanman', subtitle: 'Kumpletong B2C shopping platform para sa vendors.', cta_primary: 'Humiling ng Demo' }, status: 'Handa nang i-deliver' },
-  }),
   P('invexo', {
     ar: { tagline: 'إدارة مخزون مبنية للمتاجر الصغيرة.', hero: { title: 'أدر كل متجر من لوحة واحدة', subtitle: 'مخزون وPOS وعمولات flexiload ومبيعات يومية — للمتاجر الصغيرة.', cta_primary: 'اطلب عرضاً' }, status: 'جاهز للتسليم' },
     ur: { tagline: 'چھوٹے دکانوں کے لیے inventory management۔', hero: { title: 'ہر Shop ایک Dashboard سے چلائیں', subtitle: 'Inventory، POS، flexiload commissions، daily sales — چھوٹے shops کے لیے۔', cta_primary: 'Demo Request کریں' }, status: 'ڈیلیور کے لیے تیار' },

@@ -48,10 +48,10 @@ const delayStyle = index > 0 ? `animation-delay:${index * 0.05}s;` : ''
      * pre-applied shadow. Lifts on hover. Matches DESIGN.md's card-window
      * token (translucent so the Vanta clouds show through). */
     padding: 32px;
-    border-radius: 24px;
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    box-shadow: var(--card-shadow);
+    border-radius: var(--card-window-radius, 24px);
+    background: var(--card-window-bg);
+    border: 1px solid var(--card-window-border);
+    box-shadow: var(--card-window-shadow);
     transition:
       transform 0.2s,
       box-shadow 0.2s;
@@ -60,11 +60,11 @@ const delayStyle = index > 0 ? `animation-delay:${index * 0.05}s;` : ''
   }
   .project-feature-card:hover {
     transform: translateY(-3px);
-    box-shadow: var(--card-shadow-hover);
+    box-shadow: var(--card-window-shadow-hover);
   }
   .project-feature-card:focus-within {
     transform: translateY(-3px);
-    box-shadow: var(--card-shadow-hover);
+    box-shadow: var(--card-window-shadow-hover);
   }
   .project-feature-card__icon {
     width: 56px;

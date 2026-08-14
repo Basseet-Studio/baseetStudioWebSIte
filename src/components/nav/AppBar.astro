@@ -124,6 +124,7 @@ const socialLinks = (['instagram', 'linkedin', 'github', 'twitter'] as const)
   dir={isRtl(lang) ? 'rtl' : 'ltr'}
   aria-label={t('nav_main', lang)}
   data-is-project={isProject ? 'true' : 'false'}
+  data-slug={slug || ''}
   data-project-color={projectColor || ''}
   style={isProject && projectColor ? `--project-color:${projectColor};` : ''}
   transition:name="app-bar"
@@ -221,6 +222,16 @@ const socialLinks = (['instagram', 'linkedin', 'github', 'twitter'] as const)
     </button>
   </div>
 </nav>
+
+<style is:global>
+  .app-bar[data-slug='geeb'] {
+    --nav-max-width: 1280px;
+  }
+
+  .app-bar[data-slug='geeb'] .app-bar__link {
+    padding: 8px 11px;
+  }
+</style>
 
 <script>
   import '../nav/AppBar.ts'

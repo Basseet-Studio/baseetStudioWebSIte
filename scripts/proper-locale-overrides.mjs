@@ -17,7 +17,7 @@ const files = [
   'home.json', 'team.json', 'services.json', 'clients.json', 'projects.json',
   'services/web.json', 'services/mobile.json', 'services/internal.json',
   'services/seo.json', 'services/design.json', 'services/cloud.json',
-  'projects/invexo.json', 'projects/chopshop.json', 'projects/ordelo.json',
+  'projects/invexo.json', 'projects/ordelo.json',
   'projects/geeb.json', 'projects/jemeti.json', 'projects/matrix.json',
   'projects/medev.json', 'projects/medical-education-app.json', 'projects/moneybox.json',
   'projects/nss-virtual-education-fair.json', 'projects/numu.json',

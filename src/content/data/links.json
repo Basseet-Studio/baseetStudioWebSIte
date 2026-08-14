@@ -26,7 +26,6 @@
   "projects": {
     "invexo": { "ios": "#", "android": "#", "web": "#" },
     "medev": { "ios": "#", "android": "#", "web": "#" },
-    "chopshop": { "ios": "#", "android": "#", "web": "#" },
     "ordelo": { "ios": "#", "android": "#", "web": "https://deshikitchen.com" },
     "moneybox": { "ios": "#", "android": "https://drive.google.com/drive/folders/1_8MswXC-JxPEFU_0-fmeXal_hK7yKs9C?usp=sharing", "web": "#" },
     "numu": { "ios": "https://testflight.apple.com/join/wgRQGpw8", "android": "https://drive.google.com/drive/folders/1_8MswXC-JxPEFU_0-fmeXal_hK7yKs9C?usp=sharing", "web": "#" },
