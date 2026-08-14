@@ -87,7 +87,6 @@ const titleHtml = parseBold(data.title)
     font-optical-sizing: auto;
     font-synthesis: none;
     color: var(--color-primary);
-    visibility: hidden;
     letter-spacing: 0;
   }
 
@@ -173,70 +172,112 @@ const titleHtml = parseBold(data.title)
 </style>
 
 <script>
-  // Typewriter for the hero accent word.
+  // Typewriter for the hero accent word ("best" / «الأفضل» / …).
   //
-  // Astro's ClientRouter persists this <script> module across navigations,
-  // so a module-level `typed` flag would stop the effect re-running after a
-  // swap. Instead we gate on the *current* DOM node via `dataset.typed`, and
-  // tear down the interval + cursor on `astro:before-swap` so a returning
-  // visit starts clean.
-  let interval: ReturnType<typeof setInterval> | null = null
-  let holdTimer: ReturnType<typeof setTimeout> | null = null
-  let activeCursor: HTMLElement | null = null
+  // Astro ClientRouter fires `astro:page-load` on the first visit AND after
+  // every navigation (see Astro view-transitions guide). Calling typewrite()
+  // both immediately and on page-load used to tear down the in-flight interval
+  // then bail on dataset.typed — leaving the accent word empty. One listener
+  // only. GSAP TextPlugin types character-by-character; kill() on swap.
+  import gsap from 'gsap'
+  import { TextPlugin } from 'gsap/TextPlugin'
 
-  function teardown() {
-    if (interval) {
-      clearInterval(interval)
-      interval = null
-    }
+  gsap.registerPlugin(TextPlugin)
+
+  let tween: gsap.core.Tween | null = null
+  let holdTimer: ReturnType<typeof setTimeout> | null = null
+  let failSafe: ReturnType<typeof setTimeout> | null = null
+  let activeCursor: HTMLElement | null = null
+  let activeStrong: HTMLElement | null = null
+
+  function fullText(el: HTMLElement): string {
+    return (el.dataset.typewriter || el.textContent || '').trim()
+  }
+
+  function reveal(el: HTMLElement, text: string): void {
+    el.textContent = text
+    el.style.visibility = 'visible'
+  }
+
+  function teardown(): void {
+    tween?.kill()
+    tween = null
     if (holdTimer) {
       clearTimeout(holdTimer)
       holdTimer = null
+    }
+    if (failSafe) {
+      clearTimeout(failSafe)
+      failSafe = null
     }
     if (activeCursor) {
       activeCursor.remove()
       activeCursor = null
     }
+    if (activeStrong) {
+      const text = fullText(activeStrong)
+      if (text) reveal(activeStrong, text)
+      activeStrong = null
+    }
   }
 
-  function typewrite() {
+  function typewrite(): void {
     teardown()
 
     const strong = document.querySelector<HTMLElement>('.hero__title strong')
-    if (!strong || strong.dataset.typed === '1') return
-    strong.dataset.typed = '1'
+    if (!strong) return
 
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (!strong.dataset.typewriter) {
+      strong.dataset.typewriter = (strong.textContent || '').trim()
+    }
+    const text = strong.dataset.typewriter
+    if (!text) {
       strong.style.visibility = 'visible'
       return
     }
 
-    const text = strong.textContent || ''
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      reveal(strong, text)
+      return
+    }
+
+    activeStrong = strong
     strong.textContent = ''
     strong.style.visibility = 'visible'
 
     const cursor = document.createElement('span')
     cursor.className = 'typewriter-cursor'
+    cursor.setAttribute('aria-hidden', 'true')
     strong.insertAdjacentElement('afterend', cursor)
     activeCursor = cursor
 
-    let i = 0
-    interval = setInterval(() => {
-      if (i >= text.length) {
-        if (interval) clearInterval(interval)
-        interval = null
+    failSafe = setTimeout(() => {
+      if (activeStrong === strong && (strong.textContent || '').length < text.length) {
+        tween?.kill()
+        tween = null
+        reveal(strong, text)
+        cursor.remove()
+        if (activeCursor === cursor) activeCursor = null
+      }
+    }, Math.max(2500, text.length * 80 + 800))
+
+    tween = gsap.to(strong, {
+      duration: Math.max(0.5, text.length * 0.08),
+      text: { value: text, delimiter: '' },
+      ease: 'none',
+      onComplete: () => {
+        if (failSafe) {
+          clearTimeout(failSafe)
+          failSafe = null
+        }
         holdTimer = setTimeout(() => {
           cursor.remove()
-          activeCursor = null
+          if (activeCursor === cursor) activeCursor = null
         }, 2500)
-        return
-      }
-      strong.textContent += text[i]
-      i++
-    }, 80)
+      },
+    })
   }
 
-  typewrite()
   document.addEventListener('astro:page-load', typewrite)
   document.addEventListener('astro:before-swap', teardown)
 </script>

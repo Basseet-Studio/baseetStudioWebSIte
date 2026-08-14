@@ -192,14 +192,14 @@ const labClass: Record<string, string> = {
     font-size: clamp(1.6rem, 3vw, 2.4rem);
   }
 
-  /* Invexo — under MoneyBox */
-  .work-wall__mosaic :global(.wg--invexo) {
+  /* PhotoRestore — under MoneyBox, tall and narrow */
+  .work-wall__mosaic :global(.wg--photorestore) {
     grid-column: 1 / 4;
     grid-row: 13 / 18;
   }
 
-  /* PhotoRestore — wide right, spills below */
-  .work-wall__mosaic :global(.wg--photorestore) {
+  /* Invexo — wide right, spills below */
+  .work-wall__mosaic :global(.wg--invexo) {
     grid-column: 4 / 10;
     grid-row: 13 / 18;
     align-self: stretch;
@@ -320,7 +320,8 @@ const labClass: Record<string, string> = {
       margin-inline: auto;
     }
 
-    .work-wall__mosaic :global(.wg--zyrn) {
+    .work-wall__mosaic :global(.wg--zyrn),
+    .work-wall__mosaic :global(.wg--invexo) {
       height: clamp(320px, 88vw, 480px);
     }
 
