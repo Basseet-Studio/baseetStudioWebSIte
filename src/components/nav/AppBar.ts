@@ -1,6 +1,7 @@
 // AppBar.ts — Glassmorphic navigation: scroll hide/show, mobile sidebar, page detection
 
 import { isLowPowerDevice } from "../../lib/scene/device-tier";
+import { bindLangSwitcher, closeLangSwitcher } from "./lang-switcher";
 
 const HIDE_THRESHOLD = 100;
 const HYSTERESIS = 50;
@@ -249,6 +250,7 @@ function setupMobileSidebar(): void {
   }
 
   function closeSidebar(): void {
+    closeLangSwitcher();
     bar!.classList.remove("open");
     setTimeout(() => {
       bar!.classList.remove("app-bar--mobile-expanded");
@@ -357,6 +359,7 @@ function rebindAfterSwap(): void {
 
   applyGlassMode();
   setupMobileSidebar();
+  bindLangSwitcher();
   updatePageContext();
   startScrollTracking();
 }
@@ -385,6 +388,7 @@ export function destroy(): void {
   stopScrollTracking();
   mobileAbort?.abort();
   mobileAbort = null;
+  closeLangSwitcher();
   document.body.style.overflow = "";
   if (bar) {
     bar.classList.remove("app-bar--mobile-expanded");

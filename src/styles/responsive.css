@@ -15,6 +15,85 @@ body {
   height: 80dvh;
 }
 
+/* RTL row-reverse must not override the expanded mobile column (same as EN). */
+#app-bar.app-bar--mobile-expanded .app-bar__inner,
+#app-bar[dir="rtl"].app-bar--mobile-expanded .app-bar__inner {
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  width: 100%;
+}
+
+#app-bar.app-bar--mobile-expanded .app-bar__logo,
+#app-bar[dir="rtl"].app-bar--mobile-expanded .app-bar__logo,
+#app-bar.app-bar--mobile-expanded .app-bar__project-mark {
+  justify-content: center;
+  width: 100%;
+  max-width: 100%;
+}
+
+#app-bar.app-bar--mobile-expanded .app-bar__links,
+#app-bar[dir="rtl"].app-bar--mobile-expanded .app-bar__links,
+#app-bar.app-bar--mobile-expanded .app-bar__meta,
+#app-bar[dir="rtl"].app-bar--mobile-expanded .app-bar__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+#app-bar.app-bar--mobile-expanded .app-bar__links > li,
+#app-bar.app-bar--mobile-expanded .app-bar__meta > li {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#app-bar.app-bar--mobile-expanded .app-bar__link {
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+}
+
+#app-bar.app-bar--mobile-expanded .app-bar__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(100%, 16rem);
+  max-width: none;
+  margin-inline: auto;
+}
+
+#app-bar.app-bar--mobile-expanded .lang-switcher {
+  width: 100%;
+  justify-content: center;
+}
+
+#app-bar.app-bar--mobile-expanded .theme-switcher {
+  width: auto;
+  margin-inline: auto;
+}
+
+#app-bar.app-bar--mobile-expanded .lang-switcher__trigger {
+  width: 100%;
+  min-height: 4rem;
+  justify-content: center;
+}
+
+#app-bar.app-bar--mobile-expanded .app-bar__social-links {
+  width: 100%;
+  justify-content: center;
+}
+
+#app-bar.app-bar--mobile-expanded .app-bar__mobile-toggle {
+  align-self: center;
+}
+
 #app-bar .app-bar__inner {
   min-width: 0;
 }
@@ -97,8 +176,7 @@ button,
   gap: 1rem;
 }
 
-.lang-switcher__select {
-  min-height: 4rem;
+.lang-switcher__trigger {
   touch-action: manipulation;
 }
 
