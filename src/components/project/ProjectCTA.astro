@@ -34,8 +34,8 @@ const platformLabels: Record<string, string> = {
 const visiblePlatforms = platforms.filter(p => realLink(p.name))
 ---
 
-<section id="cta" style="padding:80px 24px;text-align:center;" data-animate="fade-up">
-  <div class="glass" style="max-width:700px;margin:0 auto;padding:48px;border-radius:20px;border:1px solid var(--card-border);">
+<section id="cta" class="project-cta" data-animate="fade-up">
+  <div class="glass project-cta__card">
     {status === 'Coming Soon' && (
       <>
         <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:12px;color:var(--heading-text);">Coming Soon</h2>

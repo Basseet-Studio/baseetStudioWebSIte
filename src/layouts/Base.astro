@@ -23,6 +23,7 @@ import '../styles/global.css'
 import '../styles/glass.css'
 import '../styles/animations.css'
 import '../styles/nav.css'
+import '../styles/responsive.css'
 
 interface Props {
   title: string
@@ -222,7 +223,7 @@ const jsonLdWebSite = {
     <CloudscapeBg />
     <AppBar lang={lang} slug={slug} projectName={projectName} projectColor={projectColor} projectIconClass={projectIconClass} projectNavItems={projectNavItems} projectNavMeta={projectNavMeta} />
 
-    <main transition:animate="fade" transition:name="content" id="main-content" style="position:relative;z-index:1;min-height:100vh;">
+    <main transition:animate="fade" transition:name="content" id="main-content" style="position:relative;z-index:1;min-height:100dvh;">
       <slot />
     </main>
 

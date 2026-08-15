@@ -7,29 +7,21 @@ Astro.response.status = 404
 
 <Base title="404 — Page Not Found" description="The page you are looking for could not be found. Return to the Baseet Studio homepage." section="home" lang="en">
   <div
-    style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;text-align:center;padding:0 24px;"
+    style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100dvh;text-align:center;padding:4rem 1.5rem;"
   >
-    <h1 style="font-size:6rem;font-weight:700;margin:0;opacity:0.3;line-height:1;">
+    <h1 style="font-size:clamp(1.5rem, 8vw, 4rem);font-weight:700;margin:0;opacity:0.3;line-height:1;">
       404
     </h1>
-    <h2 style="font-size:1.75rem;margin:16px 0 8px;">
+    <h2 style="font-size:1.75rem;margin:1rem 0 0.5rem;">
       Page Not Found
     </h2>
-    <p style="max-width:400px;opacity:0.6;margin-bottom:32px;">
+    <p style="max-width:100%;opacity:0.6;margin-bottom:2rem;">
       The page you're looking for doesn't exist or has been moved.
     </p>
     <a
       href="/"
-      style={`
-        display:inline-block;
-        padding:12px 32px;
-        border-radius:50px;
-        background:var(--color-primary);
-        color:white;
-        text-decoration:none;
-        font-weight:600;
-        transition:opacity 0.2s;
-      `}
+      class="cta-btn--primary"
+      style="background:var(--color-primary);"
     >
       Back to Home
     </a>

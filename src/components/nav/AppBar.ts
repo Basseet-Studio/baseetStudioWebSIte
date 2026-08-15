@@ -1,5 +1,7 @@
 // AppBar.ts — Glassmorphic navigation: scroll hide/show, mobile sidebar, page detection
 
+import { isLowPowerDevice } from "../../lib/scene/device-tier";
+
 const HIDE_THRESHOLD = 100;
 const HYSTERESIS = 50;
 const MOBILE_BREAKPOINT = 720;
@@ -28,6 +30,14 @@ let rafId: number | null = null;
 let bar: HTMLElement | null = null;
 let mobileAbort: AbortController | null = null;
 let hoverTriggerInitialized = false;
+
+function applyGlassMode(): void {
+  if (!bar) return;
+  if (isLowPowerDevice()) {
+    bar.classList.remove("app-bar--glass-svg");
+    bar.classList.add("app-bar--glass-fallback");
+  }
+}
 
 function getPageContext(): string {
   return document.body.dataset.page || "home";
@@ -345,6 +355,7 @@ function rebindAfterSwap(): void {
   bar = document.getElementById("app-bar");
   if (!bar) return;
 
+  applyGlassMode();
   setupMobileSidebar();
   updatePageContext();
   startScrollTracking();
@@ -355,6 +366,7 @@ export function init(): void {
   if (!bar) return;
 
   checkReducedMotion();
+  applyGlassMode();
   setupMobileSidebar();
   setupHoverTrigger();
 

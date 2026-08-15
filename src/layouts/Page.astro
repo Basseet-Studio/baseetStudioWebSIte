@@ -9,9 +9,11 @@ interface Props {
   lang?: Lang
   /** Render the footer in compact (Projects + Services only) mode. */
   footerCompact?: boolean
+  /** Drop the default page padding so a full-viewport hero owns the first screen. */
+  flushHero?: boolean
 }
 
-const { title, description, section, lang = 'en', footerCompact = false } = Astro.props
+const { title, description, section, lang = 'en', footerCompact = false, flushHero = false } = Astro.props
 ---
 
 <Base
@@ -21,7 +23,7 @@ const { title, description, section, lang = 'en', footerCompact = false } = Astr
   lang={lang}
   footerCompact={footerCompact}
 >
-  <div class="page-content" style="max-width:1200px;margin:0 auto;padding:120px 24px 64px;">
+  <div class:list={['page-content', { 'page-content--flush-hero': flushHero }]}>
     <slot />
   </div>
 </Base>

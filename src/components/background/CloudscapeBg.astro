@@ -44,14 +44,9 @@ import { editorDefaultClouds } from '../../content/data/scenes/editor-default'
 </div>
 
 <script>
-  const CLOUDSCAPE_BOOT_FLAG = 'data-baseet-cloudscape-booted'
+  import { shouldSkipCloudscape } from '../../lib/scene/device-tier'
 
-  function matchesMobile(): boolean {
-    return (
-      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
-      || window.innerWidth < 600
-    )
-  }
+  const CLOUDSCAPE_BOOT_FLAG = 'data-baseet-cloudscape-booted'
 
   function showFallback(): void {
     const fallback = document.getElementById('cloudscape-fallback')
@@ -76,12 +71,7 @@ import { editorDefaultClouds } from '../../content/data/scenes/editor-default'
       return
     }
 
-    if (matchesMobile()) {
-      showFallback()
-      return
-    }
-
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (shouldSkipCloudscape()) {
       showFallback()
       return
     }
@@ -117,7 +107,7 @@ import { editorDefaultClouds } from '../../content/data/scenes/editor-default'
     position: fixed;
     inset: 0;
     width: 100%;
-    height: 100vh;
+    height: 100dvh;
     z-index: 1;
     pointer-events: none;
     overflow: hidden;

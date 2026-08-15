@@ -3,6 +3,7 @@
  * Persists across /projects/moneybox/* navigations; lerps warpAmount / hue / speed per route.
  */
 import { Renderer, Program, Mesh, Triangle, Vec2 } from 'ogl'
+import { isLowPowerDevice, prefersReducedMotion } from '../scene/device-tier'
 
 // ══════════════════════════════════════════════════════════
 // EDIT ME — MoneyBox DarkVeil knobs (shared defaults)
@@ -214,17 +215,10 @@ let target = {
 let scrollFadeEnabled = false
 let scrollFadeEnd = SCROLL_FADE_END
 
-function matchesMobile(): boolean {
-  return (
-    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-    window.innerWidth < 600
-  )
-}
-
 function shouldSkip(): boolean {
   if (typeof window === 'undefined') return true
-  if (matchesMobile()) return true
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return true
+  if (isLowPowerDevice()) return true
+  if (prefersReducedMotion()) return true
   return false
 }
 

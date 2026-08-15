@@ -43,11 +43,11 @@ const titleHtml = parseBold(data.title)
   /* Hero — Space Grotesk display + Fraunces accent word + Inter lead.
      Typewriter still targets strong; only the type stack/spacing change. */
   .hero {
-    min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 120px 24px 80px;
+    padding: 7.5rem 1.5rem 5rem;
     position: relative;
     z-index: 1;
   }
@@ -72,12 +72,13 @@ const titleHtml = parseBold(data.title)
 
   .hero__title {
     font-family: var(--font-display);
-    font-size: var(--type-h1);
+    font-size: clamp(2.25rem, 9vw + 0.75rem, 6rem);
     font-weight: 700;
     color: var(--heading-text);
-    margin: 0 0 28px;
+    margin: 0 0 1.75rem;
     line-height: 0.98;
     letter-spacing: -0.03em;
+    text-wrap: balance;
   }
 
   .hero__title :global(strong) {
@@ -117,7 +118,8 @@ const titleHtml = parseBold(data.title)
   .hero__cta {
     display: inline-flex;
     align-items: center;
-    gap: 14px;
+    flex-wrap: wrap;
+    gap: 1rem;
   }
 
   .hero__btn {
@@ -161,7 +163,18 @@ const titleHtml = parseBold(data.title)
 
   @media (max-width: 640px) {
     .hero {
-      padding: 100px 16px 60px;
+      padding: 6rem 1rem 3.75rem;
+    }
+
+    .hero__cta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .hero__btn {
+      min-height: 3rem;
     }
   }
 

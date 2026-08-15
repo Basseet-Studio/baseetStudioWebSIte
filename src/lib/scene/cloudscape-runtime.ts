@@ -20,6 +20,12 @@ import {
 } from './sky-theme'
 import { applyTheme } from '../theme'
 import type { CameraPose, CloudSettings, LightingSettings, SceneConfig } from './types'
+import {
+  cloudQualityForTier,
+  resolveDeviceTier,
+  shouldSkipCloudscape,
+  type CloudQualityPreset,
+} from './device-tier'
 
 export interface CloudscapeRuntime {
   sceneRuntime: SceneRuntime
@@ -152,8 +158,6 @@ export function readSceneConfigFromWindow(): SceneConfig | null {
   return win.__BASEET_SCENE_CONFIG__ ?? null
 }
 
-const RENDER_SCALE_STEPS = [0.75, 0.85, 1] as const
-
 function waitAnimationFrames(count: number): Promise<void> {
   return new Promise((resolve) => {
     let remaining = count
@@ -175,19 +179,31 @@ export function initCloudscape(opts: {
   const config = opts.sceneConfig
   const cameraController = createCameraController(config)
 
-  sceneLog('boot', `init page=${config.pageId} mode=toolcraft-clouds+glb`)
+  let quality = cloudQualityForTier(resolveDeviceTier())
+  let renderScaleSteps = quality.renderScaleSteps
+  let targetFps = quality.targetFps
+  let frameInterval = 1000 / quality.targetFps
+  let lastDrawTime = 0
+  let skipObjects = quality.skipObjects
+
+  sceneLog(
+    'boot',
+    `init page=${config.pageId} mode=toolcraft-clouds+glb tier=${quality.tier} scale=${quality.renderScale} fps=${quality.targetFps}`,
+  )
 
   const renderer = new THREE.WebGLRenderer({
     canvas: opts.canvas,
-    antialias: true,
+    antialias: quality.antialias,
     alpha: true,
-    powerPreference: 'high-performance',
+    powerPreference: quality.tier === 'high' ? 'high-performance' : 'low-power',
   })
   renderer.setPixelRatio(1)
   renderer.setClearColor(0x0b1b2b, 1)
   renderer.autoClear = false
 
-  let baseRenderScale = Math.min(1, Math.max(0.75, readNumber(config.renderScale, 1)))
+  let baseRenderScale = quality.tier === 'high'
+    ? Math.min(1, Math.max(0.75, readNumber(config.renderScale, 1)))
+    : quality.renderScale
   let currentRenderScale = baseRenderScale
 
   const mainCamera = new THREE.PerspectiveCamera(
@@ -240,6 +256,7 @@ export function initCloudscape(opts: {
       uVerticalSpread: { value: 0.5 },
       uViewMatrix: { value: new THREE.Matrix4() },
       uWorldScale: { value: WORLD_SCALE },
+      uQuality: { value: quality.shaderQuality },
     },
     vertexShader: cloudVertexShader,
   })
@@ -263,7 +280,9 @@ export function initCloudscape(opts: {
   })
   objectRegistry.setAnchorIndex(config.scrollAnchors)
   objectRegistry.registerAll(config.objects)
-  objectRegistry.queuePreload(config.objects)
+  if (!skipObjects) {
+    objectRegistry.queuePreload(config.objects)
+  }
 
   const state = {
     config,
@@ -293,19 +312,55 @@ export function initCloudscape(opts: {
   let colorSchemeMq: MediaQueryList | null = null
   let onColorSchemeChange: ((event: MediaQueryListEvent) => void) | null = null
 
+  function applyQualityPreset(next: CloudQualityPreset): void {
+    quality = next
+    renderScaleSteps = next.renderScaleSteps
+    targetFps = next.targetFps
+    frameInterval = 1000 / next.targetFps
+    skipObjects = next.skipObjects
+    backgroundMaterial.uniforms.uQuality.value = next.shaderQuality
+    if (next.tier === 'high') {
+      baseRenderScale = Math.min(1, Math.max(0.75, readNumber(state.config.renderScale, 1)))
+    } else {
+      baseRenderScale = next.renderScale
+    }
+    const floor = renderScaleSteps[0]
+    const ceil = Math.min(baseRenderScale, renderScaleSteps[renderScaleSteps.length - 1])
+    currentRenderScale = Math.min(ceil, Math.max(floor, currentRenderScale))
+    if (skipObjects) {
+      objectRegistry.unloadWhere(() => true)
+    } else {
+      objectRegistry.registerAll(state.config.objects)
+      objectRegistry.queuePreload(state.config.objects)
+    }
+  }
+
+  function nearestScaleIndex(scale: number): number {
+    let best = 0
+    let bestDist = Infinity
+    for (let i = 0; i < renderScaleSteps.length; i++) {
+      const dist = Math.abs(renderScaleSteps[i] - scale)
+      if (dist < bestDist) {
+        best = i
+        bestDist = dist
+      }
+    }
+    return best
+  }
+
   function stepDownRenderScale(): void {
-    const idx = RENDER_SCALE_STEPS.findIndex((s) => s >= currentRenderScale - 0.001)
+    const idx = nearestScaleIndex(currentRenderScale)
     if (idx > 0) {
-      currentRenderScale = RENDER_SCALE_STEPS[idx - 1]
+      currentRenderScale = renderScaleSteps[idx - 1]
       resize()
       sceneLog('perf', `renderScale stepped down to ${currentRenderScale}`)
     }
   }
 
   function stepUpRenderScale(): void {
-    const idx = RENDER_SCALE_STEPS.findIndex((s) => s >= currentRenderScale - 0.001)
-    if (idx < RENDER_SCALE_STEPS.length - 1) {
-      const next = Math.min(RENDER_SCALE_STEPS[idx + 1], baseRenderScale)
+    const idx = nearestScaleIndex(currentRenderScale)
+    if (idx < renderScaleSteps.length - 1) {
+      const next = Math.min(renderScaleSteps[idx + 1], baseRenderScale)
       if (next > currentRenderScale + 0.001) {
         currentRenderScale = next
         resize()
@@ -318,10 +373,12 @@ export function initCloudscape(opts: {
     const fps = state.fps
     if (fps <= 0) return
     const now = performance.now()
+    const lowThreshold = Math.max(16, targetFps - 4)
+    const highThreshold = Math.max(lowThreshold + 2, targetFps - 2)
 
-    if (fps < 50) {
+    if (fps < lowThreshold) {
       if (state.lowFpsSince === 0) state.lowFpsSince = now
-      if (now - state.lowFpsSince >= 2000) {
+      if (now - state.lowFpsSince >= quality.lowFpsMs) {
         stepDownRenderScale()
         state.lowFpsSince = 0
         state.highFpsSince = 0
@@ -330,9 +387,9 @@ export function initCloudscape(opts: {
       state.lowFpsSince = 0
     }
 
-    if (fps > 58) {
+    if (fps > highThreshold) {
       if (state.highFpsSince === 0) state.highFpsSince = now
-      if (now - state.highFpsSince >= 5000) {
+      if (now - state.highFpsSince >= quality.highFpsMs) {
         stepUpRenderScale()
         state.highFpsSince = 0
         state.lowFpsSince = 0
@@ -343,6 +400,10 @@ export function initCloudscape(opts: {
   }
 
   function resize(): void {
+    const next = cloudQualityForTier(resolveDeviceTier())
+    if (next.tier !== quality.tier) {
+      applyQualityPreset(next)
+    }
     const displayW = opts.canvas.clientWidth || window.innerWidth
     const displayH = opts.canvas.clientHeight || window.innerHeight
     const pixelW = Math.max(1, Math.round(displayW * currentRenderScale))
@@ -352,9 +413,11 @@ export function initCloudscape(opts: {
     mainCamera.aspect = displayW / Math.max(1, displayH)
     mainCamera.updateProjectionMatrix()
     backgroundMaterial.uniforms.iResolution.value.set(pixelW, pixelH)
-    const targets = ensureCloudRenderTargets(pixelW, pixelH, behindTarget, middleTarget)
-    behindTarget = targets.behind
-    middleTarget = targets.middle
+    if (!skipObjects) {
+      const targets = ensureCloudRenderTargets(pixelW, pixelH, behindTarget, middleTarget)
+      behindTarget = targets.behind
+      middleTarget = targets.middle
+    }
   }
 
   function applyCamera(cam: CameraPose): void {
@@ -434,7 +497,9 @@ export function initCloudscape(opts: {
     directionalLight.intensity = lightIntensity
     ambientLight.intensity = 0.35 + lightIntensity * 0.2
 
-    const depthGroups = objectRegistry.getGroupsByDepth()
+    const depthGroups = skipObjects
+      ? { behind: [], middle: [], in_front: [] }
+      : objectRegistry.getGroupsByDepth()
     const behindCount = depthGroups.behind.length
     const middleCount = depthGroups.middle.length
     const inFrontCount = depthGroups.in_front.length
@@ -527,14 +592,12 @@ export function initCloudscape(opts: {
       state.pageLighting = { ...(next.lighting || {}) }
       state.clouds = { ...state.pageClouds }
       state.lighting = { ...state.pageLighting }
-      baseRenderScale = Math.min(1, Math.max(0.75, readNumber(next.renderScale, 1)))
-      currentRenderScale = baseRenderScale
       state.lowFpsSince = 0
       state.highFpsSince = 0
       cameraController.setConfig(next)
       objectRegistry.setAnchorIndex(next.scrollAnchors)
       objectRegistry.registerAll(next.objects)
-      objectRegistry.queuePreload(next.objects)
+      applyQualityPreset(cloudQualityForTier(resolveDeviceTier()))
       syncSkyTheme()
       resize()
     },
@@ -659,10 +722,12 @@ export function initCloudscape(opts: {
 
   function startLoop(): void {
     if (rafId !== null) return
-    const tick = (): void => {
+    const tick = (now: number): void => {
       rafId = requestAnimationFrame(tick)
       if (paused) return
       scrollDriver.tick({ source: 'render-loop' })
+      if (now - lastDrawTime < frameInterval) return
+      lastDrawTime = now
       sceneRuntime.renderFrame()
     }
     rafId = requestAnimationFrame(tick)
@@ -723,17 +788,13 @@ export function shouldBootCloudscape(): boolean {
   if (document.documentElement.hasAttribute('data-baseet-cloudscape-booted')) {
     return false
   }
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false
-  const mobile =
-    /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) ||
-    window.innerWidth < 600
-  if (mobile) return false
+  if (shouldSkipCloudscape()) return false
   return document.body.dataset.sceneRenderer === 'cloudscape'
 }
 
 export function bootCloudscapeFromDom(): void {
   if (!shouldBootCloudscape()) {
-    sceneLog('boot', 'skipped — mobile, reduced-motion, or already booted')
+    sceneLog('boot', 'skipped — reduced-motion, no WebGL, or already booted')
     const fb = document.getElementById('cloudscape-fallback')
     if (fb) fb.style.display = 'block'
     return

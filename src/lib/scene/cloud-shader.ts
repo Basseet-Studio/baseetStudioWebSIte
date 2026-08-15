@@ -44,6 +44,7 @@ uniform float uHasSceneDepth;
 uniform float uWorldScale;
 uniform mat4 uViewMatrix;
 uniform float uDepthBias;
+uniform float uQuality;
 
 float hash(float p) {
   p = fract(p * 0.011);
@@ -117,50 +118,64 @@ bool isSampleBehindScene(vec3 cloudPos, float sceneViewZ) {
 vec4 raymarch(in vec3 ro, in vec3 rd, in vec3 bgcol, in float sceneViewZ, in bool useSceneDepth) {
   vec4 sum = vec4(0.0);
   float t = 0.0;
+  float q = clamp(uQuality, 0.2, 1.0);
+  float stepMul = mix(1.8, 1.0, q);
+  int maxA = max(4, int(ceil(20.0 * q)));
+  int maxB = max(4, int(ceil(25.0 * q)));
+  int maxC = max(4, int(ceil(30.0 * q)));
+  int maxD = max(4, int(ceil(40.0 * q)));
+  int octA = max(2, int(ceil(5.0 * q)));
+  int octB = max(2, int(ceil(4.0 * q)));
+  int octC = max(2, int(ceil(3.0 * q)));
+  int octD = 2;
 
   for (int i = 0; i < 20; i++) {
+    if (i >= maxA) break;
     vec3 pos = ro + t * rd;
     if (pos.y < -3.0 || pos.y > 2.0 || sum.a > 0.99) break;
     if (useSceneDepth && isSampleBehindScene(pos, sceneViewZ)) break;
-    float den = fbm(pos, 5);
+    float den = fbm(pos, octA);
     if (den > 0.01) {
-      float dif = clamp((den - fbm(pos + 0.3 * uSunDir, 5)) / 0.6, 0.0, 1.0);
+      float dif = clamp((den - fbm(pos + 0.3 * uSunDir, octA)) / 0.6, 0.0, 1.0);
       sum = integrate(sum, dif, den, bgcol, t);
     }
-    t += max(0.075, 0.02 * t);
+    t += max(0.075, 0.02 * t) * stepMul;
   }
   for (int i = 0; i < 25; i++) {
+    if (i >= maxB) break;
     vec3 pos = ro + t * rd;
     if (pos.y < -3.0 || pos.y > 2.0 || sum.a > 0.99) break;
     if (useSceneDepth && isSampleBehindScene(pos, sceneViewZ)) break;
-    float den = fbm(pos, 4);
+    float den = fbm(pos, octB);
     if (den > 0.01) {
-      float dif = clamp((den - fbm(pos + 0.3 * uSunDir, 4)) / 0.6, 0.0, 1.0);
+      float dif = clamp((den - fbm(pos + 0.3 * uSunDir, octB)) / 0.6, 0.0, 1.0);
       sum = integrate(sum, dif, den, bgcol, t);
     }
-    t += max(0.075, 0.02 * t);
+    t += max(0.075, 0.02 * t) * stepMul;
   }
   for (int i = 0; i < 30; i++) {
+    if (i >= maxC) break;
     vec3 pos = ro + t * rd;
     if (pos.y < -3.0 || pos.y > 2.0 || sum.a > 0.99) break;
     if (useSceneDepth && isSampleBehindScene(pos, sceneViewZ)) break;
-    float den = fbm(pos, 3);
+    float den = fbm(pos, octC);
     if (den > 0.01) {
-      float dif = clamp((den - fbm(pos + 0.3 * uSunDir, 3)) / 0.6, 0.0, 1.0);
+      float dif = clamp((den - fbm(pos + 0.3 * uSunDir, octC)) / 0.6, 0.0, 1.0);
       sum = integrate(sum, dif, den, bgcol, t);
     }
-    t += max(0.075, 0.02 * t);
+    t += max(0.075, 0.02 * t) * stepMul;
   }
   for (int i = 0; i < 40; i++) {
+    if (i >= maxD) break;
     vec3 pos = ro + t * rd;
     if (pos.y < -3.0 || pos.y > 2.0 || sum.a > 0.99) break;
     if (useSceneDepth && isSampleBehindScene(pos, sceneViewZ)) break;
-    float den = fbm(pos, 2);
+    float den = fbm(pos, octD);
     if (den > 0.01) {
-      float dif = clamp((den - fbm(pos + 0.3 * uSunDir, 2)) / 0.6, 0.0, 1.0);
+      float dif = clamp((den - fbm(pos + 0.3 * uSunDir, octD)) / 0.6, 0.0, 1.0);
       sum = integrate(sum, dif, den, bgcol, t);
     }
-    t += max(0.075, 0.02 * t);
+    t += max(0.075, 0.02 * t) * stepMul;
   }
 
   return clamp(sum, 0.0, 1.0);
