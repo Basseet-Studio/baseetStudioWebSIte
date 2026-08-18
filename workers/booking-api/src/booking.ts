@@ -15,11 +15,32 @@ import {
   openDaysForMonth,
   slotsForDate,
   ymdInZone,
+  type BusyBlock,
 } from './slots'
 import type { BookPayload } from './validate'
 
 export function agencyTimeZone(env: Env): string {
   return env.AGENCY_TIMEZONE || 'Asia/Dubai'
+}
+
+function slotWindow(
+  timeZone: string,
+  durationMinutes: number,
+  now: Date,
+  busy: BusyBlock[],
+) {
+  return {
+    durationMinutes,
+    timeZone,
+    now,
+    busy,
+    workingDays: availability.workingDays,
+    workingHours: availability.workingHours,
+    weekendHours: availability.weekendHours,
+    bufferMinutes: availability.bufferMinutes,
+    minNoticeHours: availability.minNoticeHours,
+    maxDaysAhead: availability.maxDaysAhead,
+  }
 }
 
 export async function monthAvailability(
@@ -34,17 +55,7 @@ export async function monthAvailability(
   const range = monthUtcRange(month, timeZone)
   const token = await mintAccessToken(env)
   const busy = await queryFreeBusy(env, token, range.timeMin, range.timeMax)
-  const openDays = openDaysForMonth(month, {
-    durationMinutes: meetingType.durationMinutes,
-    timeZone,
-    now,
-    busy,
-    workingDays: availability.workingDays,
-    workingHours: availability.workingHours,
-    bufferMinutes: availability.bufferMinutes,
-    minNoticeHours: availability.minNoticeHours,
-    maxDaysAhead: availability.maxDaysAhead,
-  })
+  const openDays = openDaysForMonth(month, slotWindow(timeZone, meetingType.durationMinutes, now, busy))
   return { openDays }
 }
 
@@ -57,20 +68,18 @@ export async function dateAvailability(
   const meetingType = getMeetingType(meetingTypeId)
   if (!meetingType) throw new Error('unknown_meeting_type')
   const timeZone = agencyTimeZone(env)
-  const range = dayUtcRange(date, timeZone, availability.workingHours, availability.bufferMinutes)
+  const range = dayUtcRange(
+    date,
+    timeZone,
+    availability.workingHours,
+    availability.bufferMinutes,
+    availability.weekendHours,
+  )
   const token = await mintAccessToken(env)
   const busy = await queryFreeBusy(env, token, range.timeMin, range.timeMax)
   const slots = slotsForDate({
     date,
-    durationMinutes: meetingType.durationMinutes,
-    timeZone,
-    now,
-    busy,
-    workingDays: availability.workingDays,
-    workingHours: availability.workingHours,
-    bufferMinutes: availability.bufferMinutes,
-    minNoticeHours: availability.minNoticeHours,
-    maxDaysAhead: availability.maxDaysAhead,
+    ...slotWindow(timeZone, meetingType.durationMinutes, now, busy),
   })
   return { slots: slots.map((slot) => slot.toISOString()) }
 }
@@ -93,15 +102,7 @@ export async function executeBook(env: Env, payload: BookPayload, now = new Date
   const date = ymdInZone(start, timeZone)
   const grid = slotsForDate({
     date,
-    durationMinutes: meetingType.durationMinutes,
-    timeZone,
-    now,
-    busy: [],
-    workingDays: availability.workingDays,
-    workingHours: availability.workingHours,
-    bufferMinutes: availability.bufferMinutes,
-    minNoticeHours: availability.minNoticeHours,
-    maxDaysAhead: availability.maxDaysAhead,
+    ...slotWindow(timeZone, meetingType.durationMinutes, now, []),
   })
   const startMs = start.getTime()
   if (!grid.some((slot) => slot.getTime() === startMs)) {
@@ -118,15 +119,7 @@ export async function executeBook(env: Env, payload: BookPayload, now = new Date
   )
   const stillFree = slotsForDate({
     date,
-    durationMinutes: meetingType.durationMinutes,
-    timeZone,
-    now,
-    busy,
-    workingDays: availability.workingDays,
-    workingHours: availability.workingHours,
-    bufferMinutes: availability.bufferMinutes,
-    minNoticeHours: availability.minNoticeHours,
-    maxDaysAhead: availability.maxDaysAhead,
+    ...slotWindow(timeZone, meetingType.durationMinutes, now, busy),
   }).some((slot) => slot.getTime() === startMs)
 
   if (!stillFree) throw new SlotTakenError()

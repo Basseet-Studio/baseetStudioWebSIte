@@ -3,6 +3,8 @@ export type BusyBlock = {
   end: Date
 }
 
+export type HoursWindow = { start: string; end: string }
+
 export type SlotInput = {
   date: string
   durationMinutes: number
@@ -10,10 +12,23 @@ export type SlotInput = {
   now: Date
   busy: BusyBlock[]
   workingDays: readonly string[]
-  workingHours: { start: string; end: string }
+  workingHours: HoursWindow
+  weekendHours?: HoursWindow
   bufferMinutes: number
   minNoticeHours: number
   maxDaysAhead: number
+}
+
+const WEEKEND_DAYS = new Set(['Sat', 'Sun'])
+
+export function hoursForDate(
+  date: string,
+  timeZone: string,
+  workingHours: HoursWindow,
+  weekendHours?: HoursWindow,
+): HoursWindow {
+  if (weekendHours && WEEKEND_DAYS.has(weekdayShort(date, timeZone))) return weekendHours
+  return workingHours
 }
 
 const MONTH_RE = /^(\d{4})-(\d{2})$/
@@ -152,6 +167,7 @@ export function slotsForDate(input: SlotInput): Date[] {
     busy,
     workingDays,
     workingHours,
+    weekendHours,
     bufferMinutes,
     minNoticeHours,
     maxDaysAhead,
@@ -162,8 +178,9 @@ export function slotsForDate(input: SlotInput): Date[] {
   if (isPastDay(date, timeZone, now)) return []
   if (isBeyondHorizon(date, timeZone, now, maxDaysAhead)) return []
 
-  const windowStart = zonedLocalToUtc(date, workingHours.start, timeZone)
-  const windowEnd = zonedLocalToUtc(date, workingHours.end, timeZone)
+  const hours = hoursForDate(date, timeZone, workingHours, weekendHours)
+  const windowStart = zonedLocalToUtc(date, hours.start, timeZone)
+  const windowEnd = zonedLocalToUtc(date, hours.end, timeZone)
   const minStart = new Date(now.getTime() + minNoticeHours * 60 * 60 * 1000)
   const durationMs = durationMinutes * 60 * 1000
   const bufferMs = bufferMinutes * 60 * 1000
@@ -200,11 +217,13 @@ export function monthUtcRange(month: string, timeZone: string): { timeMin: Date;
 export function dayUtcRange(
   date: string,
   timeZone: string,
-  workingHours: { start: string; end: string },
+  workingHours: HoursWindow,
   bufferMinutes: number,
+  weekendHours?: HoursWindow,
 ): { timeMin: Date; timeMax: Date } {
-  const start = zonedLocalToUtc(date, workingHours.start, timeZone)
-  const end = zonedLocalToUtc(date, workingHours.end, timeZone)
+  const hours = hoursForDate(date, timeZone, workingHours, weekendHours)
+  const start = zonedLocalToUtc(date, hours.start, timeZone)
+  const end = zonedLocalToUtc(date, hours.end, timeZone)
   const bufferMs = bufferMinutes * 60 * 1000
   return {
     timeMin: new Date(start.getTime() - bufferMs),

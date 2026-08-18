@@ -6,6 +6,9 @@ type Copy = {
   slotsLoading: string
   calendarLoading: string
   noMonthDays: string
+  pickDay: string
+  more: string
+  less: string
   submitting: string
   confirm: string
   successTitle: string
@@ -74,6 +77,9 @@ export function initBookingWidget(): void {
   const statusEl = root.querySelector<HTMLElement>('[data-booking-status]')
   const success = root.querySelector<HTMLElement>('[data-booking-success]')
   const panel = root.querySelector<HTMLElement>('[data-booking-panel]')
+  const extra = root.querySelector<HTMLElement>('[data-booking-extra]')
+  const extraToggle = root.querySelector<HTMLButtonElement>('[data-booking-extra-toggle]')
+  const summaryEl = root.querySelector<HTMLElement>('[data-booking-summary]')
   const submitBtn = root.querySelector<HTMLButtonElement>('[data-booking-submit]')
   const icsLink = root.querySelector<HTMLAnchorElement>('[data-booking-ics]')
   const successWhen = root.querySelector<HTMLElement>('[data-booking-success-when]')
@@ -159,7 +165,9 @@ export function initBookingWidget(): void {
       new Date(year, month - 1, 1),
     )
     if (state.loadingMonth) {
-      calendarEl!.innerHTML = `<p class="booking__empty">${escapeHtml(copy.calendarLoading)}</p>`
+      calendarEl!.innerHTML = Array.from({ length: 35 }, () =>
+        '<span class="booking__day booking__day--pad booking__day--skel" aria-hidden="true"></span>',
+      ).join('')
       return
     }
     const firstDay = weekStart(lang)
@@ -173,14 +181,18 @@ export function initBookingWidget(): void {
 
     const cells: string[] = []
     for (let i = 0; i < startPad; i++) cells.push('<span class="booking__day booking__day--pad" aria-hidden="true"></span>')
+    const dayFmt = new Intl.DateTimeFormat(lang, { weekday: 'long', month: 'long', day: 'numeric' })
     for (const date of days) {
       const open = state.openDays.has(date)
       const selected = state.date === date
       const disabled = !open || date < today || date > maxDate
       const isToday = date === today
       const label = Number(date.slice(8, 10))
+      const [year, month, day] = date.split('-').map(Number)
+      const spoken = dayFmt.format(new Date(year, month - 1, day))
+      const aria = disabled ? `${spoken}` : spoken
       cells.push(
-        `<button type="button" class="booking__day${selected ? ' is-selected' : ''}${isToday ? ' is-today' : ''}" data-date="${date}" ${disabled ? 'disabled' : ''} aria-pressed="${selected ? 'true' : 'false'}" aria-label="${date}">${label}</button>`,
+        `<button type="button" class="booking__day${selected ? ' is-selected' : ''}${isToday ? ' is-today' : ''}" data-date="${date}" ${disabled ? 'disabled' : ''} aria-pressed="${selected ? 'true' : 'false'}" ${isToday ? 'aria-current="date"' : ''} aria-label="${escapeHtml(aria)}">${label}</button>`,
       )
     }
     calendarEl!.innerHTML = cells.join('')
@@ -193,19 +205,22 @@ export function initBookingWidget(): void {
   }
 
   function renderSlots(): void {
+    slotsEl!.hidden = false
     if (state.loadingSlots) {
-      slotsEl!.innerHTML = `<p class="booking__hint">${escapeHtml(copy.slotsLoading)}</p>`
-      slotsEl!.hidden = false
+      slotsEl!.innerHTML = Array.from({ length: 6 }, () =>
+        '<span class="booking__slot booking__slot--skel" aria-hidden="true"></span>',
+      ).join('')
+      renderSummary()
       return
     }
     if (!state.date) {
-      slotsEl!.innerHTML = ''
-      slotsEl!.hidden = true
+      slotsEl!.innerHTML = `<p class="booking__hint">${escapeHtml(copy.pickDay)}</p>`
+      renderSummary()
       return
     }
     if (!state.slots.length) {
       slotsEl!.innerHTML = `<p class="booking__hint">${escapeHtml(copy.slotsEmpty)}</p>`
-      slotsEl!.hidden = false
+      renderSummary()
       return
     }
     const timeFmt = new Intl.DateTimeFormat(lang, {
@@ -213,17 +228,44 @@ export function initBookingWidget(): void {
       hour: 'numeric',
       minute: '2-digit',
     })
-    slotsEl!.hidden = false
     slotsEl!.innerHTML = state.slots
       .map((iso) => {
         const selected = state.slot === iso
         return `<button type="button" class="booking__slot${selected ? ' is-selected' : ''}" data-slot="${iso}" aria-pressed="${selected ? 'true' : 'false'}">${timeFmt.format(new Date(iso))}</button>`
       })
       .join('')
+    renderSummary()
+  }
+
+  function renderSummary(): void {
+    if (!summaryEl) return
+    if (!state.date) {
+      summaryEl.hidden = true
+      summaryEl.textContent = ''
+      return
+    }
+    const typeName =
+      root.querySelector<HTMLElement>('.booking__type:has(input:checked) .booking__type-name')?.textContent?.trim() || ''
+    const [year, month, day] = state.date.split('-').map(Number)
+    const dayLabel = new Intl.DateTimeFormat(lang, { weekday: 'long', month: 'long', day: 'numeric' }).format(
+      new Date(year, month - 1, day),
+    )
+    let text = typeName ? `${typeName} · ${dayLabel}` : dayLabel
+    if (state.slot) {
+      const time = new Intl.DateTimeFormat(lang, {
+        timeZone: visitorTz,
+        hour: 'numeric',
+        minute: '2-digit',
+      }).format(new Date(state.slot))
+      text = `${text} · ${time}`
+    }
+    summaryEl.hidden = false
+    summaryEl.textContent = text
   }
 
   function toggleDetails(): void {
     details!.hidden = !state.slot
+    renderSummary()
   }
 
   function showStatus(message: string, type: 'error' | 'pending' | ''): void {
@@ -235,6 +277,13 @@ export function initBookingWidget(): void {
   function fieldError(name: 'name' | 'email' | 'phone', on: boolean): void {
     const field = form!.querySelector(`[data-field="${name}"]`)
     if (field instanceof HTMLElement) field.dataset.invalid = on ? 'true' : 'false'
+    const hint = form!.querySelector(`[data-error="${name}"]`)
+    if (hint instanceof HTMLElement) {
+      const message = name === 'email' ? copy.errorEmail : name === 'phone' ? copy.errorPhone : copy.errorName
+      hint.textContent = on ? message : ''
+    }
+    const input = form!.querySelector(`[data-field="${name}"] input`)
+    if (input instanceof HTMLInputElement) input.setAttribute('aria-invalid', on ? 'true' : 'false')
   }
 
   root.querySelectorAll<HTMLInputElement>('input[name="meetingType"]').forEach((input) => {
@@ -244,6 +293,7 @@ export function initBookingWidget(): void {
         if (!input.checked) return
         state.typeId = input.value
         void loadMonth()
+        renderSummary()
       },
       { signal },
     )
@@ -313,6 +363,8 @@ export function initBookingWidget(): void {
           first === 'email' ? copy.errorEmail : first === 'phone' ? copy.errorPhone : copy.errorName,
           'error',
         )
+        const focus = form.querySelector(`[data-field="${first}"] input`)
+        if (focus instanceof HTMLInputElement) focus.focus()
         return
       }
 
@@ -359,6 +411,11 @@ export function initBookingWidget(): void {
       success.hidden = true
       panel.hidden = false
       form.reset()
+      if (extra) extra.hidden = true
+      if (extraToggle) {
+        extraToggle.setAttribute('aria-expanded', 'false')
+        extraToggle.textContent = copy.more
+      }
       state.date = null
       state.slot = null
       state.slots = []
@@ -367,6 +424,17 @@ export function initBookingWidget(): void {
       toggleDetails()
       showStatus('', '')
       void loadMonth()
+    },
+    { signal },
+  )
+
+  extraToggle?.addEventListener(
+    'click',
+    () => {
+      if (!extra) return
+      extra.hidden = !extra.hidden
+      extraToggle.setAttribute('aria-expanded', extra.hidden ? 'false' : 'true')
+      extraToggle.textContent = extra.hidden ? copy.more : copy.less
     },
     { signal },
   )

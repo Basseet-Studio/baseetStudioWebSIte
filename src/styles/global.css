@@ -96,6 +96,16 @@
     --type-h2: clamp(34px, 3.4vw + 14px, 52px);
     --type-h1: clamp(2.25rem, 9vw + 0.75rem, 7.375rem);
     --touch-min: 2.75rem;
+
+    /* Paper-post surfaces (contact letter + booking appointment). */
+    --paper-cream: #fdfbf7;
+    --paper-ink: #1c1a16;
+    --paper-muted: #5a5448;
+    --paper-line: rgba(28, 26, 22, 0.16);
+    --airmail-red: #d93025;
+    --airmail-blue: #1a73e8;
+    --radius-envelope: 6px;
+    --radius-paper: 2px;
 }
 
 [data-theme="night"] {
@@ -147,6 +157,11 @@
     --card-window-border: rgba(255, 255, 255, 0.1);
     --card-window-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
     --card-window-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.5);
+
+    --paper-cream: #14202b;
+    --paper-ink: #f0ece1;
+    --paper-muted: rgba(240, 236, 225, 0.62);
+    --paper-line: rgba(240, 236, 225, 0.18);
 }
 
 /* Project pages: each project uses a light pastel hero gradient (set inline on

@@ -30,6 +30,7 @@ const { lang } = Astro.props
   </section>
 
   <section class="booking-section">
+    <p class="booking-section__or">{t('booking_or', lang)}</p>
     <BookingWidget apiUrl={linksData.forms.booking_api_url} lang={lang} />
   </section>
 </Page>
@@ -68,5 +69,13 @@ const { lang } = Astro.props
   .booking-section {
     max-width: 1080px;
     margin: 0 auto 80px;
+  }
+
+  .booking-section__or {
+    font-family: var(--font-handwriting);
+    font-size: 1.45rem;
+    text-align: center;
+    color: var(--muted-text);
+    margin: 0 0 28px;
   }
 </style>

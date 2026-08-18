@@ -6,9 +6,14 @@ export type MeetingType = {
   virtual: boolean
 }
 
+export type HoursWindow = { start: string; end: string }
+
 export type AvailabilityConfig = {
   workingDays: string[]
-  workingHours: { start: string; end: string }
+  /** Mon–Fri window in the agency timezone. */
+  workingHours: HoursWindow
+  /** Sat–Sun window. Falls back to workingHours when omitted. */
+  weekendHours: HoursWindow
   bufferMinutes: number
   minNoticeHours: number
   maxDaysAhead: number
@@ -32,8 +37,9 @@ export const meetingTypes: MeetingType[] = [
 ]
 
 export const availability: AvailabilityConfig = {
-  workingDays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
-  workingHours: { start: '09:00', end: '17:00' },
+  workingDays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+  workingHours: { start: '17:00', end: '22:00' },
+  weekendHours: { start: '09:00', end: '22:00' },
   bufferMinutes: 15,
   minNoticeHours: 4,
   maxDaysAhead: 30,

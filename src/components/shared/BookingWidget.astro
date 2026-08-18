@@ -17,6 +17,9 @@ const copy = {
   slotsLoading: t('booking_slots_loading', lang),
   calendarLoading: t('booking_calendar_loading', lang),
   noMonthDays: t('booking_no_month_days', lang),
+  pickDay: t('booking_pick_day', lang),
+  more: t('booking_more', lang),
+  less: t('booking_less', lang),
   submitting: t('booking_submitting', lang),
   confirm: t('booking_confirm', lang),
   successTitle: t('booking_success_title', lang),
@@ -44,92 +47,167 @@ const copy = {
   <script type="application/json" data-booking-copy set:html={JSON.stringify(copy)} />
 
   <header class="booking__intro">
+    <p class="booking__eyebrow">{t('booking_eyebrow', lang)}</p>
     <h2 class="booking__title">{t('booking_title', lang)}</h2>
     <p class="booking__lead">{t('booking_lead', lang)}</p>
   </header>
 
-  <div class="booking__success" data-booking-success hidden>
-    <p class="booking__success-title">{t('booking_success_title', lang)}</p>
-    <p class="booking__success-when" data-booking-success-when></p>
-    <p class="booking__success-lead" data-booking-success-lead></p>
-    <div class="booking__success-actions">
-      <a class="booking__btn booking__btn--primary" data-booking-ics href="#">{t('booking_add_to_calendar', lang)}</a>
-      <button type="button" class="booking__btn booking__btn--ghost" data-booking-reset>
-        {t('booking_book_another', lang)}
-      </button>
+  <div class="booking__envelope" data-booking-success hidden>
+    <div class="booking__paper" aria-hidden="true"></div>
+    <div class="booking__letter booking__letter--success">
+      <div class="booking__stamp" aria-hidden="true">
+        <span class="booking__stamp-text">{t('booking_stamp', lang)}</span>
+        <span class="booking__stamp-mark">
+          <Icon name="calendar-check" size={26} color="currentColor" />
+        </span>
+        <span class="booking__stamp-rate">RSVP</span>
+      </div>
+      <p class="booking__success-title">{t('booking_success_title', lang)}</p>
+      <p class="booking__success-when" data-booking-success-when></p>
+      <p class="booking__success-lead" data-booking-success-lead></p>
+      <div class="booking__success-actions">
+        <a class="booking__submit" data-booking-ics href="#">{t('booking_add_to_calendar', lang)}</a>
+        <button type="button" class="booking__ghost" data-booking-reset>
+          {t('booking_book_another', lang)}
+        </button>
+      </div>
     </div>
   </div>
 
-  <div class="booking__panel card-window" data-booking-panel>
-    <fieldset class="booking__types">
-      <legend>{t('booking_type_legend', lang)}</legend>
-      {meetingTypes.map((type, index) => (
-        <label class="booking__type">
-          <input type="radio" name="meetingType" value={type.id} checked={index === 0} />
-          <span class="booking__type-body">
-            <span class="booking__type-name">{t(`booking_type_${type.id}`, lang)}</span>
-            <span class="booking__type-desc">{t(`booking_type_${type.id}_desc`, lang)}</span>
-          </span>
-          <span class="booking__type-mins">{t('booking_duration', lang, { n: String(type.durationMinutes) })}</span>
-        </label>
-      ))}
-    </fieldset>
+  <div class="booking__envelope" data-booking-panel>
+    <div class="booking__paper" aria-hidden="true"></div>
+    <div class="booking__letter">
+      <div class="booking__stamp" aria-hidden="true">
+        <span class="booking__stamp-text">{t('booking_stamp', lang)}</span>
+        <span class="booking__stamp-mark">
+          <Icon name="calendar-check" size={26} color="currentColor" />
+        </span>
+        <span class="booking__stamp-rate">RSVP</span>
+      </div>
+      <span class="booking__priority" aria-hidden="true">{t('booking_priority', lang)}</span>
 
-    <div class="booking__cal-wrap">
-      <div class="booking__cal-head">
-        <p class="booking__cal-legend">{t('booking_calendar_legend', lang)}</p>
-        <div class="booking__month-nav">
-          <button type="button" class="booking__nav" data-booking-prev aria-label={copy.monthPrev}>
-            <Icon name="arrow-left" size={18} color="currentColor" />
-          </button>
-          <h3 class="booking__month-label" data-booking-month-label></h3>
-          <button type="button" class="booking__nav" data-booking-next aria-label={copy.monthNext}>
-            <Icon name="arrow-right" size={18} color="currentColor" />
-          </button>
+      <div class="booking__grid">
+        <div class="booking__col booking__col--when">
+          <fieldset class="booking__types">
+            <legend class="booking__label-mono">{t('booking_type_legend', lang)}</legend>
+            {meetingTypes.map((type, index) => (
+              <label class="booking__type" title={t(`booking_type_${type.id}_desc`, lang)}>
+                <input type="radio" name="meetingType" value={type.id} checked={index === 0} />
+                <span class="booking__type-check" aria-hidden="true"></span>
+                <span class="booking__type-name">{t(`booking_type_${type.id}`, lang)}</span>
+                <span class="booking__type-mins">{t('booking_duration', lang, { n: String(type.durationMinutes) })}</span>
+                <span class="booking__sr">{t(`booking_type_${type.id}_desc`, lang)}</span>
+              </label>
+            ))}
+          </fieldset>
+
+          <div class="booking__cal-wrap">
+            <div class="booking__cal-head">
+              <p class="booking__label-mono">{t('booking_calendar_legend', lang)}</p>
+              <div class="booking__month-nav">
+                <button type="button" class="booking__nav" data-booking-prev aria-label={copy.monthPrev}>
+                  <Icon name="arrow-left" size={18} color="currentColor" />
+                </button>
+                <h3 class="booking__month-label" data-booking-month-label></h3>
+                <button type="button" class="booking__nav" data-booking-next aria-label={copy.monthNext}>
+                  <Icon name="arrow-right" size={18} color="currentColor" />
+                </button>
+              </div>
+            </div>
+            <div class="booking__weekdays" data-booking-weekdays></div>
+            <div class="booking__calendar" data-booking-calendar data-state="loading"></div>
+            <p class="booking__tz" data-booking-tz></p>
+          </div>
+        </div>
+
+        <div class="booking__divider" aria-hidden="true"></div>
+
+        <div class="booking__col booking__col--who">
+          <p class="booking__label-mono">{t('booking_slot_legend', lang)}</p>
+          <div class="booking__slots" data-booking-slots hidden></div>
+          <p class="booking__summary" data-booking-summary hidden></p>
+
+          <form class="booking__form" data-booking-form data-booking-details hidden novalidate>
+            <p class="booking__label-mono">{t('booking_details_legend', lang)}</p>
+            <label class="booking__field" data-field="name">
+              <span class="booking__label-mono">{t('booking_name', lang)}</span>
+              <input
+                id="booking-name"
+                type="text"
+                name="name"
+                autocomplete="name"
+                required
+                maxlength="120"
+                aria-describedby="booking-name-err"
+              />
+              <span id="booking-name-err" class="booking__field-hint" data-error="name"></span>
+            </label>
+            <label class="booking__field" data-field="email">
+              <span class="booking__label-mono">{t('booking_email', lang)}</span>
+              <input
+                id="booking-email"
+                type="email"
+                name="email"
+                autocomplete="email"
+                required
+                maxlength="254"
+                aria-describedby="booking-email-err"
+              />
+              <span id="booking-email-err" class="booking__field-hint" data-error="email"></span>
+            </label>
+            <button
+              type="button"
+              class="booking__more"
+              data-booking-extra-toggle
+              aria-expanded="false"
+              aria-controls="booking-extra"
+            >
+              {t('booking_more', lang)}
+            </button>
+            <div id="booking-extra" class="booking__extra" data-booking-extra hidden>
+              <label class="booking__field" data-field="phone">
+                <span class="booking__label-mono">
+                  {t('booking_phone', lang)}
+                  <em>{t('booking_phone_optional', lang)}</em>
+                </span>
+                <input
+                  id="booking-phone"
+                  type="tel"
+                  name="phone"
+                  autocomplete="tel"
+                  aria-describedby="booking-phone-err"
+                />
+                <span id="booking-phone-err" class="booking__field-hint" data-error="phone"></span>
+              </label>
+              <label class="booking__field">
+                <span class="booking__label-mono">
+                  {t('booking_notes', lang)}
+                  <em>{t('booking_phone_optional', lang)}</em>
+                </span>
+                <textarea
+                  id="booking-notes"
+                  name="notes"
+                  rows="3"
+                  maxlength="2000"
+                  placeholder={t('booking_notes_placeholder', lang)}
+                ></textarea>
+              </label>
+            </div>
+            <div class="booking__hp" aria-hidden="true">
+              <label>
+                Website
+                <input type="text" name="website" tabindex="-1" autocomplete="off" />
+              </label>
+            </div>
+            <p class="booking__status" data-booking-status hidden role="status" aria-live="polite"></p>
+            <button type="submit" class="booking__submit" data-booking-submit>
+              {t('booking_confirm', lang)}
+            </button>
+            <p class="booking__signed">{t('booking_signed', lang)}</p>
+          </form>
         </div>
       </div>
-      <div class="booking__weekdays" data-booking-weekdays></div>
-      <div class="booking__calendar" data-booking-calendar data-state="loading"></div>
-      <p class="booking__tz" data-booking-tz></p>
     </div>
-
-    <div class="booking__slots" data-booking-slots hidden></div>
-
-    <form class="booking__form" data-booking-form data-booking-details hidden novalidate>
-      <p class="booking__form-legend">{t('booking_details_legend', lang)}</p>
-      <label class="booking__field" data-field="name">
-        <span>{t('booking_name', lang)}</span>
-        <input type="text" name="name" autocomplete="name" required maxlength="120" />
-      </label>
-      <label class="booking__field" data-field="email">
-        <span>{t('booking_email', lang)}</span>
-        <input type="email" name="email" autocomplete="email" required maxlength="254" />
-      </label>
-      <label class="booking__field" data-field="phone">
-        <span>
-          {t('booking_phone', lang)}
-          <em>{t('booking_phone_optional', lang)}</em>
-        </span>
-        <input type="tel" name="phone" autocomplete="tel" />
-      </label>
-      <label class="booking__field booking__field--notes">
-        <span>
-          {t('booking_notes', lang)}
-          <em>{t('booking_phone_optional', lang)}</em>
-        </span>
-        <textarea name="notes" rows="3" maxlength="2000" placeholder={t('booking_notes_placeholder', lang)}></textarea>
-      </label>
-      <div class="booking__hp" aria-hidden="true">
-        <label>
-          Website
-          <input type="text" name="website" tabindex="-1" autocomplete="off" />
-        </label>
-      </div>
-      <p class="booking__status" data-booking-status hidden role="status" aria-live="polite"></p>
-      <button type="submit" class="booking__btn booking__btn--primary" data-booking-submit>
-        {t('booking_confirm', lang)}
-      </button>
-    </form>
   </div>
 </section>
 
@@ -149,18 +227,28 @@ const copy = {
 
 <style>
   .booking {
-    max-width: 720px;
+    max-width: 1080px;
     margin-inline: auto;
   }
 
   .booking__intro {
-    text-align: start;
-    margin-block-end: 28px;
+    text-align: center;
+    margin: 0 auto 28px;
+    max-width: 40rem;
+  }
+
+  .booking__eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--type-eyebrow);
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--paper-muted);
+    margin: 0 0 10px;
   }
 
   .booking__title {
     font-family: var(--font-display);
-    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-size: clamp(1.7rem, 3.2vw, 2.5rem);
     font-weight: 700;
     letter-spacing: -0.02em;
     color: var(--heading-text);
@@ -175,92 +263,275 @@ const copy = {
     color: var(--muted-text);
     line-height: 1.55;
     margin: 0;
-    max-width: 42rem;
   }
 
-  .booking__panel {
-    padding: 28px 24px 32px;
+  .booking__envelope {
+    position: relative;
+    padding: var(--space-md);
+    background: var(--paper-cream);
+    border-radius: var(--radius-envelope);
+    box-shadow:
+      0 1px 0 color-mix(in srgb, white 55%, transparent) inset,
+      0 50px 100px -24px rgba(28, 22, 14, 0.22),
+      0 24px 48px -28px rgba(28, 22, 14, 0.14);
+  }
+
+  .booking__envelope::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: var(--space-md);
+    background-image: repeating-linear-gradient(
+      -45deg,
+      var(--airmail-red) 0,
+      var(--airmail-red) 14px,
+      var(--paper-cream) 14px,
+      var(--paper-cream) 28px,
+      var(--airmail-blue) 28px,
+      var(--airmail-blue) 42px,
+      var(--paper-cream) 42px,
+      var(--paper-cream) 56px
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .booking__paper {
+    position: absolute;
+    inset: var(--space-md);
+    border-radius: var(--radius-paper);
+    background: var(--paper-cream);
+    filter: url(#paper-realistic);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .booking__letter {
+    position: relative;
+    z-index: 2;
+    color: var(--paper-ink);
+    padding: 36px 48px 40px;
+    min-height: 520px;
+  }
+
+  .booking__letter--success {
+    min-height: 0;
+    padding-block: 56px 40px;
+    max-width: 36rem;
+  }
+
+  .booking__stamp {
+    position: absolute;
+    top: 18px;
+    inset-inline-end: 18px;
+    width: 88px;
+    height: 100px;
+    background: color-mix(in srgb, var(--paper-cream) 82%, var(--color-light));
+    border: var(--radius-paper) dashed var(--paper-ink);
+    padding: var(--space-sm) 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    transform: rotate(6deg);
+    box-shadow: 0 6px 16px rgba(28, 22, 14, 0.14);
+    z-index: 4;
+    pointer-events: none;
+  }
+
+  .booking__stamp::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border: var(--radius-paper) dotted color-mix(in srgb, var(--paper-ink) 30%, transparent);
+    pointer-events: none;
+  }
+
+  .booking__stamp-text {
+    font-family: var(--font-mono);
+    font-size: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: color-mix(in srgb, var(--paper-ink) 60%, transparent);
+  }
+
+  .booking__stamp-mark {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--paper-ink);
+    color: var(--paper-cream);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .booking__stamp-rate {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    color: var(--paper-ink);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .booking__priority {
+    position: absolute;
+    inset-inline-end: 14px;
+    top: 132px;
+    transform: rotate(-90deg);
+    transform-origin: right top;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--paper-muted) 60%, transparent);
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  [dir='rtl'] .booking__priority {
+    transform: rotate(90deg);
+    transform-origin: left top;
+  }
+
+  [dir='rtl'] .booking__stamp {
+    transform: rotate(-6deg);
+  }
+
+  .booking__grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1px 0.85fr;
+    gap: 36px;
+    align-items: start;
+    padding-top: var(--space-sm);
+    padding-inline-end: 28px;
+  }
+
+  .booking__col {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    min-width: 0;
+  }
+
+  .booking__divider {
+    width: 1px;
+    align-self: stretch;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      var(--paper-line) 18%,
+      var(--paper-line) 82%,
+      transparent 100%
+    );
+  }
+
+  .booking__label-mono {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--paper-muted);
+    font-weight: 500;
+    display: block;
+    margin: 0 0 10px;
+    padding: 0;
   }
 
   .booking__types {
     border: 0;
-    margin: 0 0 28px;
+    margin: 0;
     padding: 0;
-    display: grid;
-    gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 18px;
   }
 
-  .booking__types legend,
-  .booking__cal-legend,
-  .booking__form-legend {
-    font-family: var(--font-display);
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--heading-text);
-    margin-block-end: 12px;
-    padding: 0;
+  .booking__types legend {
+    width: 100%;
   }
 
   .booking__type {
-    display: grid;
-    grid-template-columns: 1fr auto;
+    display: inline-flex;
     align-items: center;
-    gap: 8px 16px;
-    padding: 14px 16px;
-    border: 1px solid var(--card-window-border);
-    border-radius: var(--card-window-radius-tight);
-    background: color-mix(in srgb, var(--card-window-bg) 70%, transparent);
+    gap: var(--space-sm);
     cursor: pointer;
-    transition:
-      border-color var(--transition-fast),
-      background var(--transition-fast);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--paper-ink);
+    min-height: var(--touch-min);
+    padding-inline-end: var(--space-xs);
+    transition: opacity var(--transition-fast);
   }
 
   .booking__type:hover {
-    border-color: color-mix(in srgb, var(--color-primary) 35%, var(--card-window-border));
-  }
-
-  .booking__type:has(input:checked) {
-    border-color: var(--color-primary);
-    background: color-mix(in srgb, var(--color-primary) 8%, var(--card-window-bg));
-  }
-
-  .booking__type:has(input:focus-visible) {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 
   .booking__type input {
     position: absolute;
     opacity: 0;
+    width: 1px;
+    height: 1px;
     pointer-events: none;
   }
 
-  .booking__type-body {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    min-width: 0;
+  .booking__type-check {
+    width: var(--space-md);
+    height: var(--space-md);
+    border: var(--radius-paper) solid var(--paper-ink);
+    border-radius: var(--radius-paper);
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+  }
+
+  .booking__type:has(input:checked) .booking__type-check {
+    background: var(--paper-ink);
+  }
+
+  .booking__type:has(input:checked) .booking__type-check::after {
+    content: '';
+    width: var(--space-sm);
+    height: var(--space-xs);
+    border-inline-start: var(--radius-paper) solid var(--paper-cream);
+    border-bottom: var(--radius-paper) solid var(--paper-cream);
+    transform: rotate(-45deg) translate(1px, -1px);
+  }
+
+  .booking__type:has(input:focus-visible) {
+    outline: var(--radius-paper) solid var(--paper-ink);
+    outline-offset: var(--space-xs);
+    border-radius: var(--radius-paper);
   }
 
   .booking__type-name {
-    font-family: var(--font-display);
-    font-weight: 600;
-    color: var(--heading-text);
-  }
-
-  .booking__type-desc {
-    font-size: var(--type-caption);
-    color: var(--muted-text);
-    line-height: 1.4;
+    font-weight: 500;
   }
 
   .booking__type-mins {
-    font-family: var(--font-display);
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--color-primary);
-    white-space: nowrap;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--paper-muted);
+  }
+
+  .booking__sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
   }
 
   .booking__cal-head {
@@ -268,44 +539,45 @@ const copy = {
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
-    margin-block-end: 12px;
+    gap: var(--space-sm);
+    margin-block-end: var(--space-sm);
   }
 
-  .booking__cal-legend {
+  .booking__cal-head .booking__label-mono {
     margin: 0;
   }
 
   .booking__month-nav {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: var(--space-xs);
   }
 
   .booking__month-label {
     font-family: var(--font-display);
     font-size: 1rem;
     font-weight: 600;
-    color: var(--heading-text);
+    color: var(--paper-ink);
     margin: 0;
-    min-width: 10ch;
+    min-width: 11ch;
     text-align: center;
   }
 
   .booking__nav {
-    width: 40px;
-    height: 40px;
+    width: var(--touch-min);
+    height: var(--touch-min);
     display: grid;
     place-items: center;
-    border: 1px solid var(--card-window-border);
-    border-radius: 999px;
+    border: 0;
+    border-bottom: var(--radius-paper) dashed transparent;
     background: transparent;
-    color: var(--heading-text);
+    color: var(--paper-ink);
     cursor: pointer;
+    border-radius: var(--radius-paper);
   }
 
   .booking__nav:hover:not(:disabled) {
-    border-color: var(--color-primary);
+    border-bottom-color: var(--paper-ink);
     color: var(--color-primary);
   }
 
@@ -315,8 +587,8 @@ const copy = {
   }
 
   .booking__nav:focus-visible {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
+    outline: var(--radius-paper) solid var(--paper-ink);
+    outline-offset: var(--radius-paper);
   }
 
   [dir='rtl'] .booking__nav :global(svg) {
@@ -326,152 +598,215 @@ const copy = {
   .booking__weekdays,
   .booking__calendar {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 4px;
-  }
-
-  .booking__weekdays {
-    margin-block-end: 6px;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: var(--space-xs);
   }
 
   .booking__weekdays span {
     text-align: center;
-    font-size: 0.72rem;
-    font-weight: 600;
-    color: var(--muted-text);
-    padding-block: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--paper-muted);
+    padding-block: 6px;
   }
 
   .booking__day {
+    min-height: var(--touch-min);
+    min-width: 0;
     aspect-ratio: 1;
-    min-height: 40px;
     border: 0;
-    border-radius: 12px;
+    border-radius: var(--radius-paper);
     background: transparent;
-    color: var(--heading-text);
+    color: var(--paper-ink);
     font-family: var(--font-display);
     font-size: 0.92rem;
     cursor: pointer;
+    transition: background 180ms ease, color 180ms ease;
   }
 
   .booking__day--pad {
     pointer-events: none;
   }
 
+  .booking__day--skel {
+    background: color-mix(in srgb, var(--paper-ink) 6%, transparent);
+    animation: booking-pulse 1.2s ease-in-out infinite;
+  }
+
   .booking__day:hover:not(:disabled) {
-    background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+    background: color-mix(in srgb, var(--paper-ink) 8%, transparent);
   }
 
   .booking__day.is-today:not(.is-selected) {
-    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-primary) 45%, transparent);
+    box-shadow: inset 0 0 0 var(--radius-paper) dashed color-mix(in srgb, var(--paper-ink) 45%, transparent);
   }
 
   .booking__day.is-selected {
-    background: var(--color-primary);
-    color: var(--on-brand);
+    background: var(--paper-ink);
+    color: var(--paper-cream);
   }
 
   .booking__day:disabled {
-    color: color-mix(in srgb, var(--muted-text) 55%, transparent);
+    color: color-mix(in srgb, var(--paper-muted) 55%, transparent);
     cursor: default;
   }
 
   .booking__day:focus-visible {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
+    outline: var(--radius-paper) solid var(--paper-ink);
+    outline-offset: var(--radius-paper);
   }
 
   .booking__empty,
-  .booking__hint {
-    grid-column: 1 / -1;
-    margin: 12px 0 0;
+  .booking__hint,
+  .booking__tz {
+    margin: 10px 0 0;
     font-size: var(--type-caption);
-    color: var(--muted-text);
+    color: var(--paper-muted);
+    line-height: 1.45;
   }
 
-  .booking__tz {
-    margin: 12px 0 0;
-    font-size: var(--type-caption);
-    color: var(--muted-text);
+  .booking__empty {
+    grid-column: 1 / -1;
   }
 
   .booking__slots {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    margin-block-start: 22px;
+    gap: var(--space-sm);
   }
 
   .booking__slot {
-    border: 1px solid var(--card-window-border);
+    border: var(--radius-paper) solid var(--paper-ink);
     background: transparent;
-    color: var(--heading-text);
-    border-radius: 999px;
+    color: var(--paper-ink);
+    border-radius: var(--radius-paper);
     padding: 10px 14px;
     font-family: var(--font-display);
     font-size: 0.9rem;
     cursor: pointer;
     min-height: var(--touch-min);
+    transition: background 180ms ease, color 180ms ease;
   }
 
   .booking__slot:hover {
-    border-color: var(--color-primary);
+    background: color-mix(in srgb, var(--paper-ink) 8%, transparent);
   }
 
   .booking__slot.is-selected {
-    background: var(--color-primary);
-    border-color: var(--color-primary);
-    color: var(--on-brand);
+    background: var(--paper-ink);
+    color: var(--paper-cream);
   }
 
   .booking__slot:focus-visible {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
+    outline: var(--radius-paper) solid var(--paper-ink);
+    outline-offset: var(--radius-paper);
+  }
+
+  .booking__slot--skel {
+    width: 5.5rem;
+    pointer-events: none;
+    border-color: transparent;
+    background: color-mix(in srgb, var(--paper-ink) 6%, transparent);
+    animation: booking-pulse 1.2s ease-in-out infinite;
+  }
+
+  .booking__summary {
+    margin: 0;
+    font-family: var(--font-handwriting);
+    font-size: 1.35rem;
+    line-height: 1.25;
+    color: var(--paper-ink);
   }
 
   .booking__form {
-    display: grid;
-    gap: 14px;
-    margin-block-start: 28px;
-  }
-
-  .booking__form-legend {
-    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin-block-start: var(--space-xs);
   }
 
   .booking__field {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    font-size: var(--type-caption);
-    color: var(--muted-text);
+    gap: 0;
   }
 
-  .booking__field span em {
+  .booking__field .booking__label-mono {
+    margin-bottom: 6px;
+  }
+
+  .booking__field em {
     font-style: normal;
     opacity: 0.7;
+    letter-spacing: 0.12em;
   }
 
   .booking__field input,
   .booking__field textarea {
-    font: inherit;
-    font-size: var(--type-body-sm);
-    color: var(--heading-text);
-    background: color-mix(in srgb, var(--card-window-bg) 80%, transparent);
-    border: 1px solid var(--card-window-border);
-    border-radius: 12px;
-    padding: 12px 14px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--paper-ink);
+    background: transparent;
+    border: 0;
+    border-bottom: var(--radius-paper) dashed var(--paper-line);
+    border-radius: 0;
+    padding: var(--space-sm) 0 12px;
     width: 100%;
+    min-height: var(--touch-min);
+  }
+
+  .booking__field textarea {
+    min-height: 5.5rem;
+    resize: vertical;
+  }
+
+  .booking__field input:hover,
+  .booking__field textarea:hover {
+    border-bottom-color: color-mix(in srgb, var(--paper-ink) 50%, transparent);
   }
 
   .booking__field input:focus-visible,
   .booking__field textarea:focus-visible {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 1px;
+    outline: none;
+    border-bottom-color: var(--paper-ink);
   }
 
   .booking__field[data-invalid='true'] input {
-    border-color: var(--border-strong);
+    border-bottom-color: color-mix(in srgb, var(--airmail-red) 55%, var(--paper-line));
+  }
+
+  .booking__field-hint {
+    min-height: 1.1em;
+    font-size: 0.78rem;
+    color: color-mix(in srgb, var(--airmail-red) 80%, var(--paper-ink));
+    margin-top: var(--space-xs);
+  }
+
+  .booking__more {
+    align-self: start;
+    background: none;
+    border: 0;
+    padding: var(--space-sm) 0;
+    min-height: var(--touch-min);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--paper-ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+  }
+
+  .booking__more:focus-visible {
+    outline: var(--radius-paper) solid var(--paper-ink);
+    outline-offset: 3px;
+  }
+
+  .booking__extra {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
   }
 
   .booking__hp {
@@ -484,127 +819,210 @@ const copy = {
 
   .booking__status {
     margin: 0;
-    font-size: var(--type-caption);
+    padding: 10px 14px;
+    border: var(--radius-paper) dashed var(--paper-line);
+    font-size: 0.85rem;
+    color: var(--paper-ink);
   }
 
   .booking__status[data-type='error'] {
-    color: var(--heading-text);
-    font-weight: 600;
+    border-color: color-mix(in srgb, var(--airmail-red) 50%, transparent);
+    background: color-mix(in srgb, var(--airmail-red) 8%, transparent);
   }
 
   .booking__status[data-type='pending'] {
-    color: var(--muted-text);
+    border-color: color-mix(in srgb, var(--airmail-blue) 50%, transparent);
+    background: color-mix(in srgb, var(--airmail-blue) 8%, transparent);
   }
 
-  .booking__btn {
+  .booking__submit {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    border-radius: 999px;
-    padding: 14px 28px;
+    width: 100%;
+    background: var(--paper-ink);
+    color: var(--paper-cream);
+    padding: 20px var(--space-md);
+    border: 0;
     font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 1rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
     cursor: pointer;
     text-decoration: none;
-    border: 0;
+    box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.35);
     min-height: var(--touch-min);
     transition:
-      transform 200ms ease,
-      box-shadow 200ms ease;
+      background var(--transition-fast),
+      transform var(--transition-fast);
   }
 
-  .booking__btn--primary {
-    background: var(--color-primary);
-    color: var(--on-brand);
-    box-shadow: 0 4px 16px color-mix(in srgb, var(--color-primary) 35%, transparent);
-  }
-
-  .booking__btn--primary:hover {
+  .booking__submit:hover {
+    background: var(--paper-muted);
     transform: translateY(-2px);
   }
 
-  .booking__btn--ghost {
-    background: transparent;
-    color: var(--heading-text);
-    border: 1px solid var(--card-window-border);
+  .booking__submit:focus-visible {
+    outline: var(--radius-paper) solid var(--paper-ink);
+    outline-offset: var(--space-xs);
   }
 
-  .booking__btn:focus-visible {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 3px;
-  }
-
-  .booking__btn:disabled {
+  .booking__submit:disabled {
     opacity: 0.6;
     cursor: wait;
     transform: none;
   }
 
-  .booking__success {
-    padding: 36px 8px 12px;
-    text-align: start;
+  .booking__ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: var(--touch-min);
+    padding: 12px var(--space-xs);
+    background: none;
+    border: 0;
+    border-bottom: var(--radius-paper) dashed var(--paper-line);
+    color: var(--paper-ink);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    cursor: pointer;
+  }
+
+  .booking__ghost:hover {
+    border-bottom-color: var(--paper-ink);
+    color: var(--color-primary);
+  }
+
+  .booking__ghost:focus-visible {
+    outline: var(--radius-paper) solid var(--paper-ink);
+    outline-offset: 3px;
+  }
+
+  .booking__signed {
+    margin: 0;
+    text-align: center;
+    font-family: var(--font-handwriting);
+    font-size: 1.25rem;
+    color: color-mix(in srgb, var(--paper-ink) 75%, transparent);
   }
 
   .booking__success-title {
     font-family: var(--font-display);
-    font-size: clamp(1.6rem, 3vw, 2rem);
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
     font-weight: 700;
-    color: var(--heading-text);
-    margin: 0 0 10px;
+    color: var(--paper-ink);
+    margin: 0 0 12px;
   }
 
   .booking__success-when {
-    font-family: var(--font-display);
-    font-weight: 600;
-    color: var(--color-primary);
-    margin: 0 0 8px;
+    font-family: var(--font-handwriting);
+    font-size: 1.5rem;
+    color: var(--paper-ink);
+    margin: 0 0 10px;
   }
 
   .booking__success-lead {
-    color: var(--muted-text);
-    margin: 0 0 24px;
-    max-width: 40rem;
+    color: var(--paper-muted);
+    margin: 0 0 28px;
+    line-height: 1.5;
   }
 
   .booking__success-actions {
     display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    max-width: 22rem;
   }
 
   .booking__form,
-  .booking__panel,
+  .booking__col,
   .booking__cal-wrap {
     position: relative;
   }
 
-  @media (min-width: 640px) {
-    .booking__panel {
-      padding: 36px 36px 40px;
+  @keyframes booking-pulse {
+    50% {
+      opacity: 0.45;
+    }
+  }
+
+  @media (max-width: 880px) {
+    .booking__grid {
+      grid-template-columns: 1fr;
+      gap: 28px;
+      padding-inline-end: 0;
     }
 
-    .booking__form {
-      grid-template-columns: 1fr 1fr;
+    .booking__divider {
+      width: auto;
+      height: 1px;
+      background: linear-gradient(
+        to right,
+        transparent 0%,
+        var(--paper-line) 18%,
+        var(--paper-line) 82%,
+        transparent 100%
+      );
     }
 
-    .booking__field--notes,
-    .booking__status,
-    .booking__form-legend,
-    .booking__btn[type='submit'] {
-      grid-column: 1 / -1;
+    .booking__letter {
+      padding: 40px 28px 32px;
+      min-height: 0;
+    }
+
+    .booking__priority {
+      display: none;
+    }
+
+    .booking__stamp {
+      width: 76px;
+      height: 88px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .booking__envelope {
+      padding: 10px;
+    }
+
+    .booking__envelope::before {
+      padding: 10px;
+    }
+
+    .booking__paper {
+      inset: 10px;
+    }
+
+    .booking__letter {
+      padding: 28px 18px 24px;
+    }
+
+    .booking__stamp {
+      position: relative;
+      top: 0;
+      inset-inline-end: 0;
+      margin: 0 auto 20px;
+      transform: rotate(3deg);
+    }
+
+    .booking__letter--success {
+      padding-block-start: 28px;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .booking__btn,
-    .booking__type,
-    .booking__day {
+    .booking__day,
+    .booking__slot,
+    .booking__submit,
+    .booking__day--skel,
+    .booking__slot--skel {
       transition: none;
+      animation: none;
     }
 
-    .booking__btn--primary:hover {
+    .booking__submit:hover {
       transform: none;
     }
   }

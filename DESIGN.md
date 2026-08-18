@@ -25,6 +25,14 @@ colors:
   chip-bg-day: "#f5f5f4"
   chip-bg-night: "rgba(255, 255, 255, 0.08)"
   muted-stone: "#78716c"
+  paper-cream: "#fdfbf7"
+  paper-cream-night: "#14202b"
+  paper-ink: "#1c1a16"
+  paper-ink-night: "#f0ece1"
+  paper-muted: "#5a5448"
+  paper-muted-night: "rgba(240, 236, 225, 0.62)"
+  airmail-red: "#d93025"
+  airmail-blue: "#1a73e8"
 typography:
   display:
     fontFamily: "'Space Grotesk', system-ui, -apple-system, sans-serif"
@@ -60,7 +68,9 @@ rounded:
   chip-square: "14px"
   small: "12px"
   icon: "8px"
+  envelope: "6px"
   tight: "4px"
+  paper: "2px"
 spacing:
   xs: "4px"
   sm: "8px"

@@ -15,8 +15,6 @@ import {
 } from '../workers/booking-api/src/slots.ts'
 
 const dubai = 'Asia/Dubai'
-const hours = availability.workingHours
-const workingDays = availability.workingDays
 
 describe('zonedLocalToUtc — Asia/Dubai (UTC+4, no DST)', () => {
   it('maps 09:00 Dubai to 05:00 UTC', () => {
@@ -27,6 +25,11 @@ describe('zonedLocalToUtc — Asia/Dubai (UTC+4, no DST)', () => {
   it('maps 17:00 Dubai to 13:00 UTC', () => {
     const utc = zonedLocalToUtc('2026-08-18', '17:00', dubai)
     assert.equal(utc.toISOString(), '2026-08-18T13:00:00.000Z')
+  })
+
+  it('maps 22:00 Dubai to 18:00 UTC', () => {
+    const utc = zonedLocalToUtc('2026-08-18', '22:00', dubai)
+    assert.equal(utc.toISOString(), '2026-08-18T18:00:00.000Z')
   })
 })
 
@@ -59,32 +62,46 @@ describe('slotsForDate', () => {
   const base = {
     durationMinutes: 30,
     timeZone: dubai,
-    workingDays,
-    workingHours: hours,
+    workingDays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    workingHours: { start: '17:00', end: '22:00' },
+    weekendHours: { start: '09:00', end: '22:00' },
     bufferMinutes: 15,
     minNoticeHours: 4,
     maxDaysAhead: 30,
     busy: [] as { start: Date; end: Date }[],
   }
 
-  it('returns no slots on Saturday', () => {
-    const slots = slotsForDate({
-      ...base,
-      date: '2026-08-22',
-      now: new Date('2026-08-01T00:00:00.000Z'),
-    })
-    assert.equal(slots.length, 0)
-  })
-
-  it('fills 09:00–17:00 in 30 minute steps when the day is empty', () => {
+  it('returns no weekday slots before 17:00 Dubai', () => {
     const slots = slotsForDate({
       ...base,
       date: '2026-08-18',
       now: new Date('2026-08-01T00:00:00.000Z'),
     })
-    assert.equal(slots[0]?.toISOString(), '2026-08-18T05:00:00.000Z')
-    assert.equal(slots.at(-1)?.toISOString(), '2026-08-18T12:30:00.000Z')
-    assert.equal(slots.length, 16)
+    const isos = slots.map((slot) => slot.toISOString())
+    assert.equal(isos.includes('2026-08-18T05:00:00.000Z'), false)
+    assert.equal(slots[0]?.toISOString(), '2026-08-18T13:00:00.000Z')
+  })
+
+  it('fills 17:00–22:00 on a weekday in 30 minute steps', () => {
+    const slots = slotsForDate({
+      ...base,
+      date: '2026-08-18',
+      now: new Date('2026-08-01T00:00:00.000Z'),
+    })
+    assert.equal(slots[0]?.toISOString(), '2026-08-18T13:00:00.000Z')
+    assert.equal(slots.at(-1)?.toISOString(), '2026-08-18T17:30:00.000Z')
+    assert.equal(slots.length, 10)
+  })
+
+  it('opens Saturday from 09:00 Dubai', () => {
+    const slots = slotsForDate({
+      ...base,
+      date: '2026-08-22',
+      now: new Date('2026-08-01T00:00:00.000Z'),
+    })
+    assert.equal(slots[0]?.toISOString(), '2026-08-22T05:00:00.000Z')
+    assert.equal(slots.at(-1)?.toISOString(), '2026-08-22T17:30:00.000Z')
+    assert.ok(slots.length > 10)
   })
 
   it('skips a busy block plus buffer', () => {
@@ -94,26 +111,26 @@ describe('slotsForDate', () => {
       now: new Date('2026-08-01T00:00:00.000Z'),
       busy: [
         {
-          start: new Date('2026-08-18T05:00:00.000Z'),
-          end: new Date('2026-08-18T05:30:00.000Z'),
+          start: new Date('2026-08-18T13:00:00.000Z'),
+          end: new Date('2026-08-18T13:30:00.000Z'),
         },
       ],
     })
     const isos = slots.map((slot) => slot.toISOString())
-    assert.equal(isos.includes('2026-08-18T05:00:00.000Z'), false)
-    assert.equal(isos.includes('2026-08-18T05:30:00.000Z'), false)
-    assert.equal(isos.includes('2026-08-18T06:00:00.000Z'), true)
+    assert.equal(isos.includes('2026-08-18T13:00:00.000Z'), false)
+    assert.equal(isos.includes('2026-08-18T13:30:00.000Z'), false)
+    assert.equal(isos.includes('2026-08-18T14:00:00.000Z'), true)
   })
 
   it('hides slots inside the minimum notice window', () => {
     const slots = slotsForDate({
       ...base,
       date: '2026-08-18',
-      now: new Date('2026-08-18T04:00:00.000Z'),
+      now: new Date('2026-08-18T12:00:00.000Z'),
     })
     const isos = slots.map((slot) => slot.toISOString())
-    assert.equal(isos.includes('2026-08-18T05:00:00.000Z'), false)
-    assert.equal(isos.includes('2026-08-18T08:00:00.000Z'), true)
+    assert.equal(isos.includes('2026-08-18T13:00:00.000Z'), false)
+    assert.equal(isos.includes('2026-08-18T16:00:00.000Z'), true)
   })
 
   it('returns nothing beyond maxDaysAhead', () => {
@@ -127,20 +144,21 @@ describe('slotsForDate', () => {
 })
 
 describe('openDaysForMonth', () => {
-  it('marks weekdays open when the calendar is empty', () => {
+  it('marks weekdays and weekends open when the calendar is empty', () => {
     const open = openDaysForMonth('2026-08', {
       durationMinutes: 30,
       timeZone: dubai,
       now: new Date('2026-07-01T00:00:00.000Z'),
       busy: [],
-      workingDays,
-      workingHours: hours,
+      workingDays: availability.workingDays,
+      workingHours: availability.workingHours,
+      weekendHours: availability.weekendHours,
       bufferMinutes: 15,
       minNoticeHours: 4,
       maxDaysAhead: 90,
     })
     assert.equal(open.includes('2026-08-17'), true)
-    assert.equal(open.includes('2026-08-22'), false)
+    assert.equal(open.includes('2026-08-22'), true)
   })
 })
 
