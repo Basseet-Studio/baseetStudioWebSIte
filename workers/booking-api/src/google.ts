@@ -48,23 +48,50 @@ async function calendarFetch(
   })
 }
 
+export function calendarId(env: Env): string {
+  let id = env.GOOGLE_CALENDAR_ID?.trim() ?? ''
+  if (
+    (id.startsWith('"') && id.endsWith('"')) ||
+    (id.startsWith("'") && id.endsWith("'"))
+  ) {
+    id = id.slice(1, -1).trim()
+  }
+  return id.includes('@') ? id.toLowerCase() : id
+}
+
+type CalendarBusy = {
+  busy?: Array<{ start: string; end: string }>
+  errors?: Array<{ reason?: string; message?: string }>
+}
+
+function pickCalendar(
+  calendars: Record<string, CalendarBusy> | undefined,
+  id: string,
+): CalendarBusy | undefined {
+  if (!calendars) return undefined
+  if (calendars[id]) return calendars[id]
+  const match = Object.entries(calendars).find(([key]) => key.toLowerCase() === id.toLowerCase())
+  return match?.[1]
+}
+
 export async function queryFreeBusy(
   env: Env,
   token: string,
   timeMin: Date,
   timeMax: Date,
 ): Promise<BusyBlock[]> {
+  const id = calendarId(env)
   const response = await calendarFetch(token, 'https://www.googleapis.com/calendar/v3/freeBusy', {
     method: 'POST',
     body: JSON.stringify({
       timeMin: timeMin.toISOString(),
       timeMax: timeMax.toISOString(),
       timeZone: 'UTC',
-      items: [{ id: env.GOOGLE_CALENDAR_ID }],
+      items: [{ id }],
     }),
   })
   const body = (await response.json().catch(() => null)) as {
-    calendars?: Record<string, { busy?: Array<{ start: string; end: string }>; errors?: unknown[] }>
+    calendars?: Record<string, CalendarBusy>
     error?: { message?: string }
   } | null
 
@@ -72,9 +99,16 @@ export async function queryFreeBusy(
     throw new GoogleError(body?.error?.message ?? 'Google Calendar free/busy lookup failed.', 502)
   }
 
-  const calendar = body?.calendars?.[env.GOOGLE_CALENDAR_ID]
-  if (calendar?.errors?.length) {
-    throw new GoogleError('Google Calendar free/busy returned an error for this calendar.', 502)
+  const calendar = pickCalendar(body?.calendars, id)
+  const reason = calendar?.errors?.[0]?.reason || calendar?.errors?.[0]?.message
+  if (reason) {
+    console.error('[booking-api] freeBusy calendar error', reason)
+    throw new GoogleError(
+      reason === 'notFound'
+        ? 'Google Calendar was not found. Check GOOGLE_CALENDAR_ID matches the connected Google account.'
+        : 'Google Calendar free/busy returned an error for this calendar.',
+      502,
+    )
   }
 
   return (calendar?.busy ?? []).map((block) => ({
@@ -137,14 +171,14 @@ export async function insertEvent(
   token: string,
   input: InsertEventInput,
 ): Promise<CalendarEvent> {
-  const calendarId = encodeURIComponent(env.GOOGLE_CALENDAR_ID)
-  const url = `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?conferenceDataVersion=1&sendUpdates=all`
+  const id = calendarId(env)
+  const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(id)}/events?conferenceDataVersion=1&sendUpdates=all`
   const body: Record<string, unknown> = {
     summary: input.summary,
     description: input.description,
     start: { dateTime: input.start.toISOString(), timeZone: 'UTC' },
     end: { dateTime: input.end.toISOString(), timeZone: 'UTC' },
-    attendees: [{ email: env.GOOGLE_CALENDAR_ID }, { email: input.attendeeEmail }],
+    attendees: [{ email: id }, { email: input.attendeeEmail }],
     guestsCanModify: false,
   }
   if (input.virtual) {
@@ -173,7 +207,7 @@ export async function listEvents(
   timeMin: Date,
   timeMax: Date,
 ): Promise<Array<{ id: string; start: Date; end: Date }>> {
-  const calendarId = encodeURIComponent(env.GOOGLE_CALENDAR_ID)
+  const encodedCalendarId = encodeURIComponent(calendarId(env))
   const params = new URLSearchParams({
     timeMin: timeMin.toISOString(),
     timeMax: timeMax.toISOString(),
@@ -182,7 +216,7 @@ export async function listEvents(
   })
   const response = await calendarFetch(
     token,
-    `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?${params}`,
+    `https://www.googleapis.com/calendar/v3/calendars/${encodedCalendarId}/events?${params}`,
   )
   const body = (await response.json().catch(() => null)) as {
     items?: GoogleEvent[]
@@ -201,11 +235,11 @@ export async function listEvents(
 }
 
 export async function deleteEvent(env: Env, token: string, eventId: string): Promise<void> {
-  const calendarId = encodeURIComponent(env.GOOGLE_CALENDAR_ID)
+  const encodedCalendarId = encodeURIComponent(calendarId(env))
   const encodedEvent = encodeURIComponent(eventId)
   const response = await calendarFetch(
     token,
-    `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events/${encodedEvent}?sendUpdates=all`,
+    `https://www.googleapis.com/calendar/v3/calendars/${encodedCalendarId}/events/${encodedEvent}?sendUpdates=all`,
     { method: 'DELETE' },
   )
   if (!response.ok && response.status !== 404) {

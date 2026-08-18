@@ -1,4 +1,9 @@
-const ALLOWED_ORIGINS = new Set(['https://baseetstudio.com', 'http://localhost:4321'])
+const ALLOWED_ORIGINS = new Set([
+  'https://baseetstudio.com',
+  'https://www.baseetstudio.com',
+  'http://localhost:4321',
+  'http://127.0.0.1:4321',
+])
 
 export type ErrorBody = {
   error: { code: string; message: string }

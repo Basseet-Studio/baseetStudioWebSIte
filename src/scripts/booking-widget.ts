@@ -39,6 +39,7 @@ type WidgetState = {
   slot: string | null
   loadingMonth: boolean
   loadingSlots: boolean
+  monthFailed: boolean
 }
 
 let pageAbort: AbortController | null = null
@@ -94,6 +95,7 @@ export function initBookingWidget(): void {
     slot: null,
     loadingMonth: false,
     loadingSlots: false,
+    monthFailed: false,
   }
 
   if (tzEl) {
@@ -104,6 +106,7 @@ export function initBookingWidget(): void {
 
   async function loadMonth(): Promise<void> {
     state.loadingMonth = true
+    state.monthFailed = false
     state.openDays = new Set()
     state.date = null
     state.slots = []
@@ -120,10 +123,11 @@ export function initBookingWidget(): void {
       state.openDays = new Set(data.openDays)
     } catch (err) {
       if (isAbort(err)) return
-      showStatus(copy.errorNetwork, 'error')
+      state.monthFailed = true
+      showStatus(messageForError(err, copy), 'error')
     } finally {
       state.loadingMonth = false
-      calendarEl!.dataset.state = state.openDays.size ? 'ready' : 'empty'
+      calendarEl!.dataset.state = state.monthFailed ? 'error' : state.openDays.size ? 'ready' : 'empty'
       renderCalendar()
     }
   }
@@ -180,7 +184,7 @@ export function initBookingWidget(): void {
       )
     }
     calendarEl!.innerHTML = cells.join('')
-    if (!state.loadingMonth && state.openDays.size === 0) {
+    if (!state.loadingMonth && !state.monthFailed && state.openDays.size === 0) {
       calendarEl!.insertAdjacentHTML(
         'beforeend',
         `<p class="booking__empty">${escapeHtml(copy.noMonthDays)}</p>`,
