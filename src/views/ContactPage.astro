@@ -2,6 +2,7 @@
 import Page from '../layouts/Page.astro'
 import linksData from '../content/data/links.json'
 import ContactForm from '../components/shared/ContactForm.astro'
+import BookingWidget from '../components/shared/BookingWidget.astro'
 import { t } from '../lib/i18n'
 import type { Lang } from '../types'
 
@@ -26,6 +27,10 @@ const { lang } = Astro.props
 
   <section class="form-section" data-animate="fade-up">
     <ContactForm actionUrl={linksData.forms.contact_form_url} lang={lang} />
+  </section>
+
+  <section class="booking-section">
+    <BookingWidget apiUrl={linksData.forms.booking_api_url} lang={lang} />
   </section>
 </Page>
 
@@ -58,5 +63,10 @@ const { lang } = Astro.props
   .form-section {
     max-width: 1080px;
     margin: 0 auto 64px;
+  }
+
+  .booking-section {
+    max-width: 1080px;
+    margin: 0 auto 80px;
   }
 </style>

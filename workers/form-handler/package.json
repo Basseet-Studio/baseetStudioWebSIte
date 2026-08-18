@@ -1,0 +1,14 @@
+{
+  "name": "baseet-form-handler",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "predev": "ln -sfn ../../.env .env",
+    "dev": "npx wrangler dev",
+    "deploy": "npx wrangler deploy"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260811.1",
+    "wrangler": "^4.123.0"
+  }
+}

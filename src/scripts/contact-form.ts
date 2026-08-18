@@ -125,6 +125,7 @@ export function initContactForm(): void {
       message: form.querySelector<HTMLTextAreaElement>('[name="message"]')?.value.trim() ?? '',
       intent,
       lang: document.body.dataset.lang || 'en',
+      page: window.location.pathname || 'Unknown',
     };
 
     if (!raw.name || raw.name.length < 2) {

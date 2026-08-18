@@ -21,7 +21,8 @@
     "address": "Abu Dhabi - UAE"
   },
   "forms": {
-    "contact_form_url": "https://baseet-form-handler.baseetstudio.workers.dev"
+    "contact_form_url": "https://baseet-form-handler.baseetstudio.workers.dev",
+    "booking_api_url": "https://booking-api.baseetstudio.workers.dev"
   },
   "projects": {
     "invexo": { "ios": "#", "android": "#", "web": "#" },

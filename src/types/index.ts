@@ -301,7 +301,7 @@ export interface LinksData {
     whatsapp_link: string;
     address: string;
   };
-  forms: { contact_form_url: string };
+  forms: { contact_form_url: string; booking_api_url: string };
   projects: Record<string, ProjectLinks>;
 }
 

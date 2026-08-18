@@ -209,6 +209,8 @@ export type WorkerContactPayload = {
   message: string;
   intent: string[];
   lang: string;
+  language: string;
+  page: string;
 } & ContactPayloadExtras;
 
 export function buildWorkerPayload(
@@ -220,6 +222,7 @@ export function buildWorkerPayload(
     message: string;
     intent: string[];
     lang: string;
+    page?: string;
   },
   validation: ContactValidation,
 ): WorkerContactPayload {
@@ -257,6 +260,8 @@ export function buildWorkerPayload(
     ...base,
     email,
     phone: phone || undefined,
+    language: base.lang,
+    page: base.page || 'Unknown',
     ...extras,
   };
 }

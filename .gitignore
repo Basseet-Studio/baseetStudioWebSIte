@@ -30,6 +30,16 @@ assets/jsconfig.json
 .netlify/
 .vercel/
 
+# Cloudflare Workers
+.wrangler/
+workers/booking-api/.wrangler/
+workers/booking-api/.dev.vars
+workers/booking-api/.env
+workers/form-handler/.wrangler/
+workers/form-handler/.dev.vars
+workers/form-handler/.env
+.env
+
 # impeccable-ignore-start
 # Ephemeral output, runtime state, and per-dev overrides.
 .impeccable/config.local.json

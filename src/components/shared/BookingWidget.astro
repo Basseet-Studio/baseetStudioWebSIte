@@ -1,0 +1,611 @@
+---
+import Icon from '../icons/Icon.astro'
+import { meetingTypes, availability } from '../../config/booking'
+import { t } from '../../lib/i18n'
+import type { Lang } from '../../types'
+
+interface Props {
+  apiUrl: string
+  lang: Lang
+}
+
+const { apiUrl, lang } = Astro.props
+
+const copy = {
+  timezone: t('booking_timezone', lang),
+  slotsEmpty: t('booking_slots_empty', lang),
+  slotsLoading: t('booking_slots_loading', lang),
+  calendarLoading: t('booking_calendar_loading', lang),
+  noMonthDays: t('booking_no_month_days', lang),
+  submitting: t('booking_submitting', lang),
+  confirm: t('booking_confirm', lang),
+  successTitle: t('booking_success_title', lang),
+  successLead: t('booking_success_lead', lang),
+  errorGeneric: t('booking_error_generic', lang),
+  errorSlotTaken: t('booking_error_slot_taken', lang),
+  errorRateLimit: t('booking_error_rate_limit', lang),
+  errorNetwork: t('booking_error_network', lang),
+  errorName: t('booking_error_name', lang),
+  errorEmail: t('booking_error_email', lang),
+  errorPhone: t('booking_error_phone', lang),
+  monthPrev: t('booking_month_prev', lang),
+  monthNext: t('booking_month_next', lang),
+}
+---
+
+<section
+  class="booking"
+  data-booking-root
+  data-api-url={apiUrl}
+  data-lang={lang}
+  data-max-days-ahead={String(availability.maxDaysAhead)}
+  data-animate="fade-up"
+>
+  <script type="application/json" data-booking-copy set:html={JSON.stringify(copy)} />
+
+  <header class="booking__intro">
+    <h2 class="booking__title">{t('booking_title', lang)}</h2>
+    <p class="booking__lead">{t('booking_lead', lang)}</p>
+  </header>
+
+  <div class="booking__success" data-booking-success hidden>
+    <p class="booking__success-title">{t('booking_success_title', lang)}</p>
+    <p class="booking__success-when" data-booking-success-when></p>
+    <p class="booking__success-lead" data-booking-success-lead></p>
+    <div class="booking__success-actions">
+      <a class="booking__btn booking__btn--primary" data-booking-ics href="#">{t('booking_add_to_calendar', lang)}</a>
+      <button type="button" class="booking__btn booking__btn--ghost" data-booking-reset>
+        {t('booking_book_another', lang)}
+      </button>
+    </div>
+  </div>
+
+  <div class="booking__panel card-window" data-booking-panel>
+    <fieldset class="booking__types">
+      <legend>{t('booking_type_legend', lang)}</legend>
+      {meetingTypes.map((type, index) => (
+        <label class="booking__type">
+          <input type="radio" name="meetingType" value={type.id} checked={index === 0} />
+          <span class="booking__type-body">
+            <span class="booking__type-name">{t(`booking_type_${type.id}`, lang)}</span>
+            <span class="booking__type-desc">{t(`booking_type_${type.id}_desc`, lang)}</span>
+          </span>
+          <span class="booking__type-mins">{t('booking_duration', lang, { n: String(type.durationMinutes) })}</span>
+        </label>
+      ))}
+    </fieldset>
+
+    <div class="booking__cal-wrap">
+      <div class="booking__cal-head">
+        <p class="booking__cal-legend">{t('booking_calendar_legend', lang)}</p>
+        <div class="booking__month-nav">
+          <button type="button" class="booking__nav" data-booking-prev aria-label={copy.monthPrev}>
+            <Icon name="arrow-left" size={18} color="currentColor" />
+          </button>
+          <h3 class="booking__month-label" data-booking-month-label></h3>
+          <button type="button" class="booking__nav" data-booking-next aria-label={copy.monthNext}>
+            <Icon name="arrow-right" size={18} color="currentColor" />
+          </button>
+        </div>
+      </div>
+      <div class="booking__weekdays" data-booking-weekdays></div>
+      <div class="booking__calendar" data-booking-calendar data-state="loading"></div>
+      <p class="booking__tz" data-booking-tz></p>
+    </div>
+
+    <div class="booking__slots" data-booking-slots hidden></div>
+
+    <form class="booking__form" data-booking-form data-booking-details hidden novalidate>
+      <p class="booking__form-legend">{t('booking_details_legend', lang)}</p>
+      <label class="booking__field" data-field="name">
+        <span>{t('booking_name', lang)}</span>
+        <input type="text" name="name" autocomplete="name" required maxlength="120" />
+      </label>
+      <label class="booking__field" data-field="email">
+        <span>{t('booking_email', lang)}</span>
+        <input type="email" name="email" autocomplete="email" required maxlength="254" />
+      </label>
+      <label class="booking__field" data-field="phone">
+        <span>
+          {t('booking_phone', lang)}
+          <em>{t('booking_phone_optional', lang)}</em>
+        </span>
+        <input type="tel" name="phone" autocomplete="tel" />
+      </label>
+      <label class="booking__field booking__field--notes">
+        <span>
+          {t('booking_notes', lang)}
+          <em>{t('booking_phone_optional', lang)}</em>
+        </span>
+        <textarea name="notes" rows="3" maxlength="2000" placeholder={t('booking_notes_placeholder', lang)}></textarea>
+      </label>
+      <div class="booking__hp" aria-hidden="true">
+        <label>
+          Website
+          <input type="text" name="website" tabindex="-1" autocomplete="off" />
+        </label>
+      </div>
+      <p class="booking__status" data-booking-status hidden role="status" aria-live="polite"></p>
+      <button type="submit" class="booking__btn booking__btn--primary" data-booking-submit>
+        {t('booking_confirm', lang)}
+      </button>
+    </form>
+  </div>
+</section>
+
+<script>
+  import('../../scripts/booking-widget').then((m) => {
+    const run = () => m.initBookingWidget()
+    const stop = () => m.destroyBookingWidget()
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', run, { once: true })
+    } else {
+      run()
+    }
+    document.addEventListener('astro:page-load', run)
+    document.addEventListener('astro:before-swap', stop)
+  })
+</script>
+
+<style>
+  .booking {
+    max-width: 720px;
+    margin-inline: auto;
+  }
+
+  .booking__intro {
+    text-align: start;
+    margin-block-end: 28px;
+  }
+
+  .booking__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--heading-text);
+    margin: 0 0 10px;
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+
+  .booking__lead {
+    font-family: var(--font-body);
+    font-size: var(--type-body);
+    color: var(--muted-text);
+    line-height: 1.55;
+    margin: 0;
+    max-width: 42rem;
+  }
+
+  .booking__panel {
+    padding: 28px 24px 32px;
+  }
+
+  .booking__types {
+    border: 0;
+    margin: 0 0 28px;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+  }
+
+  .booking__types legend,
+  .booking__cal-legend,
+  .booking__form-legend {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--heading-text);
+    margin-block-end: 12px;
+    padding: 0;
+  }
+
+  .booking__type {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 8px 16px;
+    padding: 14px 16px;
+    border: 1px solid var(--card-window-border);
+    border-radius: var(--card-window-radius-tight);
+    background: color-mix(in srgb, var(--card-window-bg) 70%, transparent);
+    cursor: pointer;
+    transition:
+      border-color var(--transition-fast),
+      background var(--transition-fast);
+  }
+
+  .booking__type:hover {
+    border-color: color-mix(in srgb, var(--color-primary) 35%, var(--card-window-border));
+  }
+
+  .booking__type:has(input:checked) {
+    border-color: var(--color-primary);
+    background: color-mix(in srgb, var(--color-primary) 8%, var(--card-window-bg));
+  }
+
+  .booking__type:has(input:focus-visible) {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  .booking__type input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .booking__type-body {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+
+  .booking__type-name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--heading-text);
+  }
+
+  .booking__type-desc {
+    font-size: var(--type-caption);
+    color: var(--muted-text);
+    line-height: 1.4;
+  }
+
+  .booking__type-mins {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    white-space: nowrap;
+  }
+
+  .booking__cal-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-block-end: 12px;
+  }
+
+  .booking__cal-legend {
+    margin: 0;
+  }
+
+  .booking__month-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .booking__month-label {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--heading-text);
+    margin: 0;
+    min-width: 10ch;
+    text-align: center;
+  }
+
+  .booking__nav {
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--card-window-border);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--heading-text);
+    cursor: pointer;
+  }
+
+  .booking__nav:hover:not(:disabled) {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  .booking__nav:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+
+  .booking__nav:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  [dir='rtl'] .booking__nav :global(svg) {
+    transform: scaleX(-1);
+  }
+
+  .booking__weekdays,
+  .booking__calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+  }
+
+  .booking__weekdays {
+    margin-block-end: 6px;
+  }
+
+  .booking__weekdays span {
+    text-align: center;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--muted-text);
+    padding-block: 4px;
+  }
+
+  .booking__day {
+    aspect-ratio: 1;
+    min-height: 40px;
+    border: 0;
+    border-radius: 12px;
+    background: transparent;
+    color: var(--heading-text);
+    font-family: var(--font-display);
+    font-size: 0.92rem;
+    cursor: pointer;
+  }
+
+  .booking__day--pad {
+    pointer-events: none;
+  }
+
+  .booking__day:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+  }
+
+  .booking__day.is-today:not(.is-selected) {
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-primary) 45%, transparent);
+  }
+
+  .booking__day.is-selected {
+    background: var(--color-primary);
+    color: var(--on-brand);
+  }
+
+  .booking__day:disabled {
+    color: color-mix(in srgb, var(--muted-text) 55%, transparent);
+    cursor: default;
+  }
+
+  .booking__day:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  .booking__empty,
+  .booking__hint {
+    grid-column: 1 / -1;
+    margin: 12px 0 0;
+    font-size: var(--type-caption);
+    color: var(--muted-text);
+  }
+
+  .booking__tz {
+    margin: 12px 0 0;
+    font-size: var(--type-caption);
+    color: var(--muted-text);
+  }
+
+  .booking__slots {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-block-start: 22px;
+  }
+
+  .booking__slot {
+    border: 1px solid var(--card-window-border);
+    background: transparent;
+    color: var(--heading-text);
+    border-radius: 999px;
+    padding: 10px 14px;
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    cursor: pointer;
+    min-height: var(--touch-min);
+  }
+
+  .booking__slot:hover {
+    border-color: var(--color-primary);
+  }
+
+  .booking__slot.is-selected {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--on-brand);
+  }
+
+  .booking__slot:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  .booking__form {
+    display: grid;
+    gap: 14px;
+    margin-block-start: 28px;
+  }
+
+  .booking__form-legend {
+    margin: 0;
+  }
+
+  .booking__field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: var(--type-caption);
+    color: var(--muted-text);
+  }
+
+  .booking__field span em {
+    font-style: normal;
+    opacity: 0.7;
+  }
+
+  .booking__field input,
+  .booking__field textarea {
+    font: inherit;
+    font-size: var(--type-body-sm);
+    color: var(--heading-text);
+    background: color-mix(in srgb, var(--card-window-bg) 80%, transparent);
+    border: 1px solid var(--card-window-border);
+    border-radius: 12px;
+    padding: 12px 14px;
+    width: 100%;
+  }
+
+  .booking__field input:focus-visible,
+  .booking__field textarea:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 1px;
+  }
+
+  .booking__field[data-invalid='true'] input {
+    border-color: var(--border-strong);
+  }
+
+  .booking__hp {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  .booking__status {
+    margin: 0;
+    font-size: var(--type-caption);
+  }
+
+  .booking__status[data-type='error'] {
+    color: var(--heading-text);
+    font-weight: 600;
+  }
+
+  .booking__status[data-type='pending'] {
+    color: var(--muted-text);
+  }
+
+  .booking__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 999px;
+    padding: 14px 28px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    border: 0;
+    min-height: var(--touch-min);
+    transition:
+      transform 200ms ease,
+      box-shadow 200ms ease;
+  }
+
+  .booking__btn--primary {
+    background: var(--color-primary);
+    color: var(--on-brand);
+    box-shadow: 0 4px 16px color-mix(in srgb, var(--color-primary) 35%, transparent);
+  }
+
+  .booking__btn--primary:hover {
+    transform: translateY(-2px);
+  }
+
+  .booking__btn--ghost {
+    background: transparent;
+    color: var(--heading-text);
+    border: 1px solid var(--card-window-border);
+  }
+
+  .booking__btn:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+  }
+
+  .booking__btn:disabled {
+    opacity: 0.6;
+    cursor: wait;
+    transform: none;
+  }
+
+  .booking__success {
+    padding: 36px 8px 12px;
+    text-align: start;
+  }
+
+  .booking__success-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3vw, 2rem);
+    font-weight: 700;
+    color: var(--heading-text);
+    margin: 0 0 10px;
+  }
+
+  .booking__success-when {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--color-primary);
+    margin: 0 0 8px;
+  }
+
+  .booking__success-lead {
+    color: var(--muted-text);
+    margin: 0 0 24px;
+    max-width: 40rem;
+  }
+
+  .booking__success-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .booking__form,
+  .booking__panel,
+  .booking__cal-wrap {
+    position: relative;
+  }
+
+  @media (min-width: 640px) {
+    .booking__panel {
+      padding: 36px 36px 40px;
+    }
+
+    .booking__form {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .booking__field--notes,
+    .booking__status,
+    .booking__form-legend,
+    .booking__btn[type='submit'] {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .booking__btn,
+    .booking__type,
+    .booking__day {
+      transition: none;
+    }
+
+    .booking__btn--primary:hover {
+      transform: none;
+    }
+  }
+</style>

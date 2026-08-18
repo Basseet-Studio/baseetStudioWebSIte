@@ -1,0 +1,10 @@
+name = "baseet-form-handler"
+main = "src/index.ts"
+compatibility_date = "2026-08-18"
+
+# Telegram secrets are already on this Worker in the Cloudflare dashboard.
+
+[[d1_databases]]
+binding = "DB"
+database_name = "baseet-form-db"
+database_id = "e05b98a8-bfdd-4786-9e22-e03f5d53f65a"

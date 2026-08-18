@@ -1,0 +1,30 @@
+name = "booking-api"
+main = "src/index.ts"
+compatibility_date = "2026-08-18"
+
+# Secrets are NOT listed here. Wrangler loads the same keys as repo-root
+# example.env from:
+#   local:  workers/booking-api/.env  (symlink to ../../.env)
+#   prod:   Cloudflare Worker secrets (`npm run secrets` from this folder)
+#
+# Required names:
+#   GOOGLE_CLIENT_ID
+#   GOOGLE_CLIENT_SECRET
+#   GOOGLE_REFRESH_TOKEN
+#   GOOGLE_CALENDAR_ID
+#   AGENCY_TIMEZONE
+
+# Replace `id` after: npx wrangler kv namespace create BOOKING_LIMITS
+[[kv_namespaces]]
+binding = "BOOKING_LIMITS"
+id = "08f1ea2d301b4669a713b12c787a361a"
+preview_id = "booking_limits_preview"
+
+[durable_objects]
+bindings = [
+  { name = "BOOKING_LOCK", class_name = "BookingLock" },
+]
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["BookingLock"]

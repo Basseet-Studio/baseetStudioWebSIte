@@ -1,2 +1,0 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/contact-form.CuhsBpxu.js","assets/preload-helper.BlTxHScW.js"])))=>i.map(i=>d[i]);
-import{_ as n}from"./preload-helper.BlTxHScW.js";n(()=>import("./contact-form.CuhsBpxu.js"),__vite__mapDeps([0,1])).then(e=>{const t=()=>e.initContactForm(),o=()=>e.destroyContactForm();document.readyState==="loading"?document.addEventListener("DOMContentLoaded",t,{once:!0}):t(),document.addEventListener("astro:page-load",t),document.addEventListener("astro:before-swap",o)});
