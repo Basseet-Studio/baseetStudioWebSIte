@@ -274,10 +274,10 @@ const { actionUrl, lang = 'en' } = Astro.props
 <style>
   /* =============================================================
      Tokens — paper-post-contact cream surface + airmail stripes.
-     Theme-aware: cream paper in day, deep navy in night.
+     Paper stays cream in day and night so the letter does not invert
+     against the sky (and stays in lockstep with the booking letter).
      ============================================================= */
   .contact-form {
-    /* CSS variables used by the letter + airmail + stamp treatments */
     --paper-cream: #fdfbf7;
     --paper-cream-edge: #e8e2d2;
     --paper-ink: #1c1a16;
@@ -286,15 +286,6 @@ const { actionUrl, lang = 'en' } = Astro.props
     --airmail-red: #d93025;
     --airmail-blue: #1a73e8;
     --airmail-bg: #fdfbf7;
-  }
-
-  [data-theme="night"] .contact-form {
-    --paper-cream: #14202b;
-    --paper-cream-edge: #1f2d3a;
-    --paper-ink: #f0ece1;
-    --paper-muted: rgba(240, 236, 225, 0.62);
-    --paper-line: rgba(240, 236, 225, 0.18);
-    --airmail-bg: #14202b;
   }
 
   /* ===== Envelope — one cohesive paper surface with airmail border ===== */

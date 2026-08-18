@@ -22,6 +22,8 @@ type Copy = {
   errorPhone: string
   monthPrev: string
   monthNext: string
+  dayAvailable: string
+  dayUnavailable: string
 }
 
 type BookedEvent = {
@@ -190,9 +192,11 @@ export function initBookingWidget(): void {
       const label = Number(date.slice(8, 10))
       const [year, month, day] = date.split('-').map(Number)
       const spoken = dayFmt.format(new Date(year, month - 1, day))
-      const aria = disabled ? `${spoken}` : spoken
+      const status = disabled ? copy.dayUnavailable : copy.dayAvailable
+      const aria = `${spoken}, ${status}`
+      const openClass = !disabled ? ' is-open' : ''
       cells.push(
-        `<button type="button" class="booking__day${selected ? ' is-selected' : ''}${isToday ? ' is-today' : ''}" data-date="${date}" ${disabled ? 'disabled' : ''} aria-pressed="${selected ? 'true' : 'false'}" ${isToday ? 'aria-current="date"' : ''} aria-label="${escapeHtml(aria)}">${label}</button>`,
+        `<button type="button" class="booking__day${openClass}${selected ? ' is-selected' : ''}${isToday ? ' is-today' : ''}" data-date="${date}" ${disabled ? 'disabled' : ''} aria-pressed="${selected ? 'true' : 'false'}" ${isToday ? 'aria-current="date"' : ''} aria-label="${escapeHtml(aria)}">${label}</button>`,
       )
     }
     calendarEl!.innerHTML = cells.join('')

@@ -33,6 +33,8 @@ const copy = {
   errorPhone: t('booking_error_phone', lang),
   monthPrev: t('booking_month_prev', lang),
   monthNext: t('booking_month_next', lang),
+  dayAvailable: t('booking_day_available', lang),
+  dayUnavailable: t('booking_day_unavailable', lang),
 }
 ---
 
@@ -116,6 +118,7 @@ const copy = {
             </div>
             <div class="booking__weekdays" data-booking-weekdays></div>
             <div class="booking__calendar" data-booking-calendar data-state="loading"></div>
+            <p class="booking__cal-hint">{t('booking_cal_hint', lang)}</p>
             <p class="booking__tz" data-booking-tz></p>
           </div>
         </div>
@@ -242,7 +245,7 @@ const copy = {
     font-size: var(--type-eyebrow);
     text-transform: uppercase;
     letter-spacing: 0.22em;
-    color: var(--paper-muted);
+    color: var(--muted-text);
     margin: 0 0 10px;
   }
 
@@ -266,6 +269,12 @@ const copy = {
   }
 
   .booking__envelope {
+    --paper-cream: #fdfbf7;
+    --paper-ink: #1c1a16;
+    --paper-muted: #5a5448;
+    --paper-line: rgba(28, 26, 22, 0.16);
+    --airmail-red: #d93025;
+    --airmail-blue: #1a73e8;
     position: relative;
     padding: var(--space-md);
     background: var(--paper-cream);
@@ -613,17 +622,18 @@ const copy = {
   }
 
   .booking__day {
+    position: relative;
     min-height: var(--touch-min);
     min-width: 0;
     aspect-ratio: 1;
-    border: 0;
+    border: 1px solid transparent;
     border-radius: var(--radius-paper);
     background: transparent;
     color: var(--paper-ink);
     font-family: var(--font-display);
     font-size: 0.92rem;
     cursor: pointer;
-    transition: background 180ms ease, color 180ms ease;
+    transition: background 180ms ease, color 180ms ease, border-color 180ms ease;
   }
 
   .booking__day--pad {
@@ -635,8 +645,25 @@ const copy = {
     animation: booking-pulse 1.2s ease-in-out infinite;
   }
 
-  .booking__day:hover:not(:disabled) {
+  .booking__day.is-open {
+    border-color: color-mix(in srgb, var(--paper-ink) 55%, transparent);
     background: color-mix(in srgb, var(--paper-ink) 8%, transparent);
+    font-weight: 600;
+  }
+
+  .booking__day.is-open::after {
+    content: '';
+    position: absolute;
+    inset-inline: 30%;
+    bottom: 6px;
+    height: 1.5px;
+    background: var(--paper-ink);
+    pointer-events: none;
+  }
+
+  .booking__day:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--paper-ink) 16%, transparent);
+    border-color: var(--paper-ink);
   }
 
   .booking__day.is-today:not(.is-selected) {
@@ -646,11 +673,23 @@ const copy = {
   .booking__day.is-selected {
     background: var(--paper-ink);
     color: var(--paper-cream);
+    border-color: var(--paper-ink);
+  }
+
+  .booking__day.is-selected::after {
+    background: var(--paper-cream);
   }
 
   .booking__day:disabled {
-    color: color-mix(in srgb, var(--paper-muted) 55%, transparent);
+    color: color-mix(in srgb, var(--paper-muted) 42%, transparent);
+    background: transparent;
+    border-color: transparent;
     cursor: default;
+    font-weight: 400;
+  }
+
+  .booking__day:disabled::after {
+    content: none;
   }
 
   .booking__day:focus-visible {
@@ -660,7 +699,8 @@ const copy = {
 
   .booking__empty,
   .booking__hint,
-  .booking__tz {
+  .booking__tz,
+  .booking__cal-hint {
     margin: 10px 0 0;
     font-size: var(--type-caption);
     color: var(--paper-muted);
@@ -672,26 +712,35 @@ const copy = {
   }
 
   .booking__slots {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--space-sm);
   }
 
+  .booking__hint {
+    grid-column: 1 / -1;
+  }
+
   .booking__slot {
-    border: var(--radius-paper) solid var(--paper-ink);
+    border: 1.5px solid var(--paper-ink);
     background: transparent;
     color: var(--paper-ink);
     border-radius: var(--radius-paper);
     padding: 10px 14px;
     font-family: var(--font-display);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    font-weight: 600;
     cursor: pointer;
     min-height: var(--touch-min);
-    transition: background 180ms ease, color 180ms ease;
+    transition: background 180ms ease, color 180ms ease, transform 180ms ease;
   }
 
   .booking__slot:hover {
-    background: color-mix(in srgb, var(--paper-ink) 8%, transparent);
+    background: color-mix(in srgb, var(--paper-ink) 10%, transparent);
+  }
+
+  .booking__slot:active {
+    transform: scale(0.98);
   }
 
   .booking__slot.is-selected {
@@ -705,7 +754,7 @@ const copy = {
   }
 
   .booking__slot--skel {
-    width: 5.5rem;
+    width: auto;
     pointer-events: none;
     border-color: transparent;
     background: color-mix(in srgb, var(--paper-ink) 6%, transparent);
@@ -1023,6 +1072,10 @@ const copy = {
     }
 
     .booking__submit:hover {
+      transform: none;
+    }
+
+    .booking__slot:active {
       transform: none;
     }
   }
