@@ -14,7 +14,14 @@ interface Props {
 const { lang: _lang = 'en' } = Astro.props
 ---
 
-<div class="cp" id="cloud-playground" data-playground-root>
+<div
+  class="cp"
+  id="cloud-playground"
+  data-playground-root
+  hidden={!import.meta.env.DEV}
+  transition:persist
+  transition:name="cloud-playground"
+>
   <button
     type="button"
     class="cp__toggle"
@@ -35,6 +42,19 @@ const { lang: _lang = 'en' } = Astro.props
     </header>
 
     <div class="cp__body">
+      <details class="cp__section" open>
+        <summary>Shape</summary>
+        <div class="cp__grid">
+          <label>Seed <input type="range" data-cp="seed" min="0" max="9999" step="1" value={playgroundCloudDefaults.seed ?? 0} /><span data-cp-val="seed">{playgroundCloudDefaults.seed ?? 0}</span></label>
+          <label>Low clump <input type="range" data-cp="lowClumpScale" min="0.2" max="2" step="0.01" value={playgroundCloudDefaults.lowClumpScale ?? 0.55} /><span data-cp-val="lowClumpScale">{playgroundCloudDefaults.lowClumpScale ?? 0.55}</span></label>
+          <label>High clump <input type="range" data-cp="highClumpScale" min="0.2" max="2" step="0.01" value={playgroundCloudDefaults.highClumpScale ?? 1.15} /><span data-cp-val="highClumpScale">{playgroundCloudDefaults.highClumpScale ?? 1.15}</span></label>
+          <label>Apart <input type="range" data-cp="apart" min="0.4" max="2" step="0.01" value={playgroundCloudDefaults.apart ?? 1} /><span data-cp-val="apart">{playgroundCloudDefaults.apart ?? 1}</span></label>
+        </div>
+        <div class="cp__shape-actions">
+          <button type="button" class="cp__btn" id="cp-randomize">Randomize</button>
+        </div>
+      </details>
+
       <details class="cp__section" open>
         <summary>Clouds</summary>
         <div class="cp__grid">
@@ -131,6 +151,11 @@ const { lang: _lang = 'en' } = Astro.props
   .cp {
     position: relative;
     z-index: 10010;
+    pointer-events: auto;
+  }
+
+  .cp[hidden] {
+    display: none !important;
   }
 
   .cp__toggle {
@@ -151,6 +176,7 @@ const { lang: _lang = 'en' } = Astro.props
     font: 600 12px/1.2 system-ui, sans-serif;
     cursor: pointer;
     box-shadow: 0 4px 16px rgba(15, 23, 38, 0.35);
+    pointer-events: auto;
   }
 
   .cp__toggle:hover,
@@ -173,6 +199,15 @@ const { lang: _lang = 'en' } = Astro.props
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+    pointer-events: auto;
+  }
+
+  .cp__panel[hidden] {
+    display: none !important;
+  }
+
+  .cp__panel.is-open {
+    display: block !important;
   }
 
   .cp__header {
@@ -271,6 +306,14 @@ const { lang: _lang = 'en' } = Astro.props
     filter: brightness(1.1);
   }
 
+  .cp__shape-actions {
+    margin-top: 8px;
+  }
+
+  .cp__shape-actions .cp__btn {
+    width: 100%;
+  }
+
   .cp__status {
     min-height: 1.2em;
     font: 11px/1.3 system-ui, sans-serif;
@@ -332,8 +375,9 @@ const { lang: _lang = 'en' } = Astro.props
 
 </style>
 
-<script define:vars={{ cpDefaults: playgroundCloudDefaults }}>
+<script>
   import type { CameraPose, CloudSettings, LightingSettings, PlaygroundPoint } from '../../lib/scene/types'
+  import { playgroundCloudDefaults as cpDefaults } from '../../content/data/scenes/editor-default'
 
   type ListFile = {
     id: string
@@ -362,16 +406,56 @@ const { lang: _lang = 'en' } = Astro.props
     }
   }
 
-  const root = document.getElementById('cloud-playground')
-  const toggle = document.getElementById('cp-toggle')
-  const panel = document.getElementById('cp-panel')
-  const closeBtn = document.getElementById('cp-close')
-  const statusEl = document.getElementById('cp-status')
-  const listEl = document.getElementById('cp-list')
+  const DEBUG_KEY = 'baseet:scene:debug'
 
-  if (root && toggle && panel) {
+  function log(msg: string, extra?: unknown) {
+    if (extra !== undefined) console.log('[cloud-playground]', msg, extra)
+    else console.log('[cloud-playground]', msg)
+  }
+
+  function playgroundWanted(): boolean {
     const params = new URLSearchParams(window.location.search)
-    const forceOpen = params.get('playground') === '1'
+    if (params.get('playground') === '0') return false
+    if (import.meta.env.DEV) return true
+    if (params.get('playground') === '1') return true
+    try {
+      return localStorage.getItem(DEBUG_KEY) === '1'
+    } catch {
+      return false
+    }
+  }
+
+  function bindPlayground() {
+    const root = document.getElementById('cloud-playground')
+    const toggle = document.getElementById('cp-toggle')
+    const panel = document.getElementById('cp-panel')
+    if (!root || !toggle || !panel) return
+
+    const wanted = playgroundWanted()
+    log('bindPlayground', {
+      wanted,
+      cpBound: root.dataset.cpBound,
+      rootHidden: root.hidden,
+      panelHidden: panel.hidden,
+      dev: import.meta.env.DEV,
+    })
+    root.hidden = !wanted
+    if (!wanted) {
+      log('bind skipped: not wanted')
+      return
+    }
+    if (root.dataset.cpBound === '1') {
+      log('bind skipped: already bound')
+      return
+    }
+    root.dataset.cpBound = '1'
+    log('binding listeners')
+
+    const params = new URLSearchParams(window.location.search)
+    const forceOpen = params.get('playground') !== '0'
+    const closeBtn = document.getElementById('cp-close')
+    const statusEl = document.getElementById('cp-status')
+    const listEl = document.getElementById('cp-list')
 
     function setStatus(msg: string) {
       if (statusEl) statusEl.textContent = msg
@@ -420,6 +504,10 @@ const { lang: _lang = 'en' } = Astro.props
         noise: num($('noise')),
         verticalSpread: num($('verticalSpread')),
         syncTheme: bool($('syncTheme')),
+        seed: num($('seed')),
+        lowClumpScale: num($('lowClumpScale')),
+        highClumpScale: num($('highClumpScale')),
+        apart: num($('apart')),
       }
     }
 
@@ -480,6 +568,10 @@ const { lang: _lang = 'en' } = Astro.props
       setVal('noise', clouds.noise ?? 1)
       setVal('verticalSpread', clouds.verticalSpread ?? cpDefaults.verticalSpread)
       setVal('syncTheme', clouds.syncTheme !== false)
+      setVal('seed', clouds.seed ?? cpDefaults.seed ?? 0)
+      setVal('lowClumpScale', clouds.lowClumpScale ?? cpDefaults.lowClumpScale ?? 0.55)
+      setVal('highClumpScale', clouds.highClumpScale ?? cpDefaults.highClumpScale ?? 1.15)
+      setVal('apart', clouds.apart ?? cpDefaults.apart ?? 1)
       setVal('azimuth', lighting.azimuth ?? 62)
       setVal('elevation', lighting.elevation ?? 59)
       setVal('intensity', lighting.intensity ?? 0)
@@ -508,26 +600,40 @@ const { lang: _lang = 'en' } = Astro.props
     }
 
     async function openPanel() {
+      log('openPanel')
       panel!.hidden = false
+      panel!.classList.add('is-open')
       toggle!.setAttribute('aria-expanded', 'true')
       await syncFromRuntime()
       const rt = await getRuntime()
+      log('runtime', { hasRuntime: Boolean(rt) })
       rt?.setPlaygroundLock(true)
       void refreshList()
     }
 
     async function closePanel() {
+      log('closePanel')
       panel!.hidden = true
+      panel!.classList.remove('is-open')
       toggle!.setAttribute('aria-expanded', 'false')
       const rt = await getRuntime()
       rt?.setPlaygroundLock(false)
     }
 
-    toggle.addEventListener('click', () => {
-      if (panel.hidden) void openPanel()
-      else void closePanel()
-    })
+    function walk(current: number, min: number, max: number, delta: number): number {
+      return Math.min(max, Math.max(min, current + (Math.random() * 2 - 1) * delta))
+    }
+
+    function randomizeShape() {
+      setVal('seed', Math.floor(Math.random() * 10000))
+      setVal('lowClumpScale', walk(num($('lowClumpScale')) || 0.55, 0.2, 2, 0.25))
+      setVal('highClumpScale', walk(num($('highClumpScale')) || 1.15, 0.2, 2, 0.25))
+      setVal('apart', walk(num($('apart')) || 1, 0.4, 2, 0.2))
+      void applyLive()
+    }
+
     closeBtn?.addEventListener('click', () => void closePanel())
+    document.getElementById('cp-randomize')?.addEventListener('click', () => randomizeShape())
 
     root.querySelectorAll('[data-cp]').forEach((el) => {
       el.addEventListener('input', () => {
@@ -624,6 +730,10 @@ const { lang: _lang = 'en' } = Astro.props
           setVal('noise', cl.noise ?? 1)
           setVal('verticalSpread', cl.verticalSpread ?? cpDefaults.verticalSpread)
           setVal('syncTheme', false)
+          setVal('seed', cl.seed ?? cpDefaults.seed ?? 0)
+          setVal('lowClumpScale', cl.lowClumpScale ?? cpDefaults.lowClumpScale ?? 0.55)
+          setVal('highClumpScale', cl.highClumpScale ?? cpDefaults.highClumpScale ?? 1.15)
+          setVal('apart', cl.apart ?? cpDefaults.apart ?? 1)
           rt.applyClouds(cl)
         }
         if (point.lighting) {
@@ -726,4 +836,60 @@ const { lang: _lang = 'en' } = Astro.props
 
     if (forceOpen) void openPanel()
   }
+
+  function setPanelOpen(open: boolean) {
+    const panel = document.getElementById('cp-panel')
+    const toggle = document.getElementById('cp-toggle')
+    log('setPanelOpen', {
+      open,
+      hasPanel: Boolean(panel),
+      hidden: panel?.hidden,
+      display: panel ? getComputedStyle(panel).display : null,
+    })
+    if (!panel || !toggle) return
+    if (open) {
+      panel.hidden = false
+      panel.removeAttribute('hidden')
+      panel.classList.add('is-open')
+      toggle.setAttribute('aria-expanded', 'true')
+    } else {
+      panel.hidden = true
+      panel.classList.remove('is-open')
+      toggle.setAttribute('aria-expanded', 'false')
+    }
+  }
+
+  const docWin = window as Window & { __cpDocClick?: boolean }
+  if (!docWin.__cpDocClick) {
+    docWin.__cpDocClick = true
+    document.addEventListener(
+      'click',
+      (event) => {
+        const target = event.target
+        if (!(target instanceof Element)) return
+        const toggleHit = target.closest('#cp-toggle')
+        const closeHit = target.closest('#cp-close')
+        if (!toggleHit && !closeHit) return
+        log('doc click', {
+          toggleHit: Boolean(toggleHit),
+          closeHit: Boolean(closeHit),
+          tag: target.tagName,
+        })
+        event.preventDefault()
+        event.stopPropagation()
+        const panel = document.getElementById('cp-panel')
+        if (closeHit) {
+          setPanelOpen(false)
+          return
+        }
+        const closed = !panel || panel.hidden || !panel.classList.contains('is-open')
+        setPanelOpen(closed)
+      },
+      true,
+    )
+    log('doc click listener attached')
+  }
+
+  bindPlayground()
+  document.addEventListener('astro:page-load', bindPlayground)
 </script>

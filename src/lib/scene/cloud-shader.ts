@@ -1,6 +1,7 @@
 /**
  * Ported from tool-craft/clouds-playground/src/app/renderer/cloud-shader.ts
  * (Vanta.js CLOUDS raymarch). Site-specific additions:
+ * - XZ coverage mask + two altitude bands (gaps of empty sky, not a density slab)
  * - uLightColor tints sunlight in integrate() / renderSkyClouds()
  * - Depth textures + background color from model pre-passes for behind/middle/in-front compositing
  */
@@ -45,6 +46,10 @@ uniform float uWorldScale;
 uniform mat4 uViewMatrix;
 uniform float uDepthBias;
 uniform float uQuality;
+uniform float uSeed;
+uniform float uLowClumpScale;
+uniform float uHighClumpScale;
+uniform float uApart;
 
 float hash(float p) {
   p = fract(p * 0.011);
@@ -67,8 +72,19 @@ float noise(vec3 x) {
 
 const float constantTime = 1000.0;
 
-float fbm(in vec3 p, in int octaves) {
-  vec3 speed1 = vec3(0.5, 0.01, 1.0) * 0.5 * uSpeed;
+const float kLowCoverFreq = 0.22;
+const float kHighCoverFreq = 0.55;
+const float kLowDensity = 1.15;
+const float kHighDensity = 0.55;
+const float kLowSpeedMul = 1.35;
+const float kHighSpeedMul = 0.55;
+
+vec2 seedShift() {
+  return vec2(uSeed * 17.13, uSeed * 9.71);
+}
+
+float detailFbm(in vec3 p, in int octaves, in float speedMul) {
+  vec3 speed1 = vec3(0.5, 0.01, 1.0) * 0.5 * uSpeed * speedMul;
   vec3 q = p - speed1 * (iTime + constantTime);
   float f = 0.0;
   float amp = 0.5;
@@ -78,20 +94,84 @@ float fbm(in vec3 p, in int octaves) {
     q *= 2.0 + 0.02 * float(i);
     amp *= 0.5;
   }
-  float coverageBias = (uDensity - 0.6) * 2.2;
-  float verticalScale = mix(2.6, 1.2, clamp(uVerticalSpread, 0.0, 1.0));
-  return clamp(1.5 - p.y * verticalScale - 2.0 + coverageBias + 1.75 * f, 0.0, 1.0);
+  return f;
 }
 
-vec4 integrate(in vec4 sum, in float dif, in float den, in vec3 bgcol, in float t) {
+float coverageMask(in vec2 xz, in float freq, in float speedMul, in float yOffset) {
+  vec2 wind = vec2(0.5, 1.0) * 0.25 * uSpeed * speedMul * (iTime + constantTime);
+  vec2 q = xz * freq - wind;
+  float n = 0.65 * noise(vec3(q.x, yOffset, q.y));
+  n += 0.35 * noise(vec3(q.x * 2.03 + 17.1, yOffset + 3.7, q.y * 2.03));
+  float edge = mix(0.88, 0.34, clamp(uDensity, 0.0, 1.0));
+  return smoothstep(edge, edge + 0.20, n);
+}
+
+float heightWindow(in float y, in float center, in float halfWidth) {
+  return smoothstep(center - halfWidth, center - halfWidth * 0.35, y)
+    * (1.0 - smoothstep(center + halfWidth * 0.35, center + halfWidth, y));
+}
+
+float highBandWeight(in float y) {
+  return smoothstep(-0.4, 0.8, y);
+}
+
+float bandDensity(
+  in vec3 p,
+  in int octaves,
+  in float t,
+  in float coverFreq,
+  in float clumpScale,
+  in float densScale,
+  in float speedMul,
+  in float coverOffset,
+  in float yCenter,
+  in float yHalf
+) {
+  float distFreq = mix(1.0, 0.78, smoothstep(0.0, 36.0, t));
+  float h = heightWindow(p.y, yCenter, yHalf);
+  if (h < 0.01) {
+    return 0.0;
+  }
+  vec3 seeded = p;
+  seeded.xz += seedShift();
+  float mask = coverageMask(seeded.xz, coverFreq * distFreq, speedMul, coverOffset);
+  if (mask < 0.01) {
+    return 0.0;
+  }
+  float f = detailFbm(seeded * (clumpScale * distFreq), octaves, speedMul);
+  float detail = clamp(1.75 * f - 0.35, 0.0, 1.0);
+  return clamp(h * mask * densScale * detail, 0.0, 1.0);
+}
+
+float cloudDensity(in vec3 p, in int octaves, in float t) {
+  float spread = clamp(uVerticalSpread, 0.0, 1.0);
+  float yHalfLow = mix(0.38, 0.85, spread);
+  float yHalfHigh = mix(0.40, 0.80, spread);
+  float apart = max(uApart, 0.01);
+  float dLow = bandDensity(
+    p, octaves, t,
+    kLowCoverFreq * apart, uLowClumpScale, kLowDensity, kLowSpeedMul,
+    2.7, -0.22, yHalfLow
+  );
+  float dHigh = bandDensity(
+    p, octaves, t,
+    kHighCoverFreq * apart, uHighClumpScale, kHighDensity, kHighSpeedMul,
+    11.3, 0.62, yHalfHigh
+  );
+  return clamp(max(dLow, dHigh), 0.0, 1.0);
+}
+
+vec4 integrate(in vec4 sum, in float dif, in float den, in vec3 bgcol, in float t, in float highBand) {
   vec3 cloudShadowColor = uCloudColor * 0.5;
-  vec3 baseSunlight = mix(vec3(1.0, 0.95, 0.85), vec3(1.0, 0.78, 0.55), 0.4);
+  vec3 baseSunlight = mix(vec3(1.0, 0.95, 0.85), vec3(1.0, 0.78, 0.55), mix(0.55, 0.28, highBand));
   vec3 sunlightColor = baseSunlight * uLightColor * uLightIntensity;
   vec3 lin = uCloudColor * 1.4 + sunlightColor * dif;
   vec4 col = vec4(mix(vec3(1.0, 0.95, 0.8), cloudShadowColor, den), den);
   col.rgb *= lin;
   float fogAmount = 1.0 - exp(-mix(0.0006, 0.02, uFogDensity) * t * t);
+  fogAmount = mix(fogAmount, 1.0, 0.32 * smoothstep(8.0, 42.0, t));
   col.rgb = mix(col.rgb, bgcol, fogAmount);
+  col.rgb = mix(col.rgb, uSkyColor, highBand * 0.4);
   col.a *= 0.4;
   col.rgb *= col.a;
   return sum + col * (1.0 - sum.a);
@@ -134,10 +214,10 @@ vec4 raymarch(in vec3 ro, in vec3 rd, in vec3 bgcol, in float sceneViewZ, in boo
     vec3 pos = ro + t * rd;
     if (pos.y < -3.0 || pos.y > 2.0 || sum.a > 0.99) break;
     if (useSceneDepth && isSampleBehindScene(pos, sceneViewZ)) break;
-    float den = fbm(pos, octA);
+    float den = cloudDensity(pos, octA, t);
     if (den > 0.01) {
-      float dif = clamp((den - fbm(pos + 0.3 * uSunDir, octA)) / 0.6, 0.0, 1.0);
-      sum = integrate(sum, dif, den, bgcol, t);
+      float dif = clamp((den - cloudDensity(pos + 0.3 * uSunDir, octA, t)) / 0.6, 0.0, 1.0);
+      sum = integrate(sum, dif, den, bgcol, t, highBandWeight(pos.y));
     }
     t += max(0.075, 0.02 * t) * stepMul;
   }
@@ -146,10 +226,10 @@ vec4 raymarch(in vec3 ro, in vec3 rd, in vec3 bgcol, in float sceneViewZ, in boo
     vec3 pos = ro + t * rd;
     if (pos.y < -3.0 || pos.y > 2.0 || sum.a > 0.99) break;
     if (useSceneDepth && isSampleBehindScene(pos, sceneViewZ)) break;
-    float den = fbm(pos, octB);
+    float den = cloudDensity(pos, octB, t);
     if (den > 0.01) {
-      float dif = clamp((den - fbm(pos + 0.3 * uSunDir, octB)) / 0.6, 0.0, 1.0);
-      sum = integrate(sum, dif, den, bgcol, t);
+      float dif = clamp((den - cloudDensity(pos + 0.3 * uSunDir, octB, t)) / 0.6, 0.0, 1.0);
+      sum = integrate(sum, dif, den, bgcol, t, highBandWeight(pos.y));
     }
     t += max(0.075, 0.02 * t) * stepMul;
   }
@@ -158,10 +238,10 @@ vec4 raymarch(in vec3 ro, in vec3 rd, in vec3 bgcol, in float sceneViewZ, in boo
     vec3 pos = ro + t * rd;
     if (pos.y < -3.0 || pos.y > 2.0 || sum.a > 0.99) break;
     if (useSceneDepth && isSampleBehindScene(pos, sceneViewZ)) break;
-    float den = fbm(pos, octC);
+    float den = cloudDensity(pos, octC, t);
     if (den > 0.01) {
-      float dif = clamp((den - fbm(pos + 0.3 * uSunDir, octC)) / 0.6, 0.0, 1.0);
-      sum = integrate(sum, dif, den, bgcol, t);
+      float dif = clamp((den - cloudDensity(pos + 0.3 * uSunDir, octC, t)) / 0.6, 0.0, 1.0);
+      sum = integrate(sum, dif, den, bgcol, t, highBandWeight(pos.y));
     }
     t += max(0.075, 0.02 * t) * stepMul;
   }
@@ -170,10 +250,10 @@ vec4 raymarch(in vec3 ro, in vec3 rd, in vec3 bgcol, in float sceneViewZ, in boo
     vec3 pos = ro + t * rd;
     if (pos.y < -3.0 || pos.y > 2.0 || sum.a > 0.99) break;
     if (useSceneDepth && isSampleBehindScene(pos, sceneViewZ)) break;
-    float den = fbm(pos, octD);
+    float den = cloudDensity(pos, octD, t);
     if (den > 0.01) {
-      float dif = clamp((den - fbm(pos + 0.3 * uSunDir, octD)) / 0.6, 0.0, 1.0);
-      sum = integrate(sum, dif, den, bgcol, t);
+      float dif = clamp((den - cloudDensity(pos + 0.3 * uSunDir, octD, t)) / 0.6, 0.0, 1.0);
+      sum = integrate(sum, dif, den, bgcol, t, highBandWeight(pos.y));
     }
     t += max(0.075, 0.02 * t) * stepMul;
   }

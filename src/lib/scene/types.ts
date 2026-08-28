@@ -28,6 +28,10 @@ export interface CloudSettings {
   noise?: number
   verticalSpread?: number
   syncTheme?: boolean
+  seed?: number
+  lowClumpScale?: number
+  highClumpScale?: number
+  apart?: number
 }
 
 export interface LightingSettings {

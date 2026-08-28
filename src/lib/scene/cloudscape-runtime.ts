@@ -257,6 +257,10 @@ export function initCloudscape(opts: {
       uViewMatrix: { value: new THREE.Matrix4() },
       uWorldScale: { value: WORLD_SCALE },
       uQuality: { value: quality.shaderQuality },
+      uSeed: { value: 0 },
+      uLowClumpScale: { value: 0.55 },
+      uHighClumpScale: { value: 1.15 },
+      uApart: { value: 1 },
     },
     vertexShader: cloudVertexShader,
   })
@@ -513,6 +517,10 @@ export function initCloudscape(opts: {
     backgroundMaterial.uniforms.uDensity.value = readNumber(clouds.density, 1)
     backgroundMaterial.uniforms.uNoise.value = readNumber(clouds.noise, 0.5)
     backgroundMaterial.uniforms.uVerticalSpread.value = readNumber(clouds.verticalSpread, 0.78)
+    backgroundMaterial.uniforms.uSeed.value = readNumber(clouds.seed, 0)
+    backgroundMaterial.uniforms.uLowClumpScale.value = readNumber(clouds.lowClumpScale, 0.55)
+    backgroundMaterial.uniforms.uHighClumpScale.value = readNumber(clouds.highClumpScale, 1.15)
+    backgroundMaterial.uniforms.uApart.value = readNumber(clouds.apart, 1)
     backgroundMaterial.uniforms.uFogDensity.value = fogDensity
     backgroundMaterial.uniforms.uSkyColor.value.copy(scratch.skyColor)
     backgroundMaterial.uniforms.uCloudColor.value.copy(scratch.cloudColor)

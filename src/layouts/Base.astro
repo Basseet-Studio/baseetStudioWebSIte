@@ -2,6 +2,7 @@
 // Base.astro — Root layout shell with ViewTransitions, CloudscapeBg, AppBar, Footer
 import { ClientRouter } from 'astro:transitions'
 import CloudscapeBg from '../components/background/CloudscapeBg.astro'
+import CloudPlayground from '../components/shared/CloudPlayground.astro'
 import { resolveSceneConfig } from '../lib/scene/resolve-scene-config'
 import AppBar from '../components/nav/AppBar.astro'
 import Footer from '../components/shared/Footer.astro'
@@ -221,6 +222,7 @@ const jsonLdWebSite = {
     <a href="#main-content" class="skip-to-content">{t('skip_to_content', lang)}</a>
     <PaperFilters />
     <CloudscapeBg />
+    <CloudPlayground lang={lang} />
     <AppBar lang={lang} slug={slug} projectName={projectName} projectColor={projectColor} projectIconClass={projectIconClass} projectNavItems={projectNavItems} projectNavMeta={projectNavMeta} />
 
     <main transition:animate="fade" transition:name="content" id="main-content" style="position:relative;z-index:1;min-height:100dvh;">

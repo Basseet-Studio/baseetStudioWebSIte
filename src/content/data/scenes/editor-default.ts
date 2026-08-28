@@ -17,6 +17,10 @@ export const editorDefaultClouds: CloudSettings = {
   noise: 1,
   verticalSpread: 0.78,
   syncTheme: true,
+  seed: 0,
+  lowClumpScale: 0.55,
+  highClumpScale: 1.15,
+  apart: 1,
 }
 
 /**
@@ -33,7 +37,17 @@ export const CUSTOMER_MODE = true
 /** Cloud defaults used by the playground / debug panels. */
 export const playgroundCloudDefaults: CloudSettings = CUSTOMER_MODE
   ? { ...editorDefaultClouds }
-  : { density: 0.1, speed: 1.8, noise: 1, verticalSpread: 0.6, syncTheme: true }
+  : {
+      density: 0.1,
+      speed: 1.8,
+      noise: 1,
+      verticalSpread: 0.6,
+      syncTheme: true,
+      seed: 0,
+      lowClumpScale: 0.55,
+      highClumpScale: 1.15,
+      apart: 1,
+    }
 
 export const editorDefaultLighting: LightingSettings = {
   azimuth: 62,
