@@ -1,7 +1,7 @@
 {
   "id": "mobile",
   "slug": "mobile",
-  "title": "Mobile Development",
+  "title": "Mobile development",
   "tagline": "Apps people keep on their home screen",
   "color": "#FBCD37",
   "gradient": "linear-gradient(135deg, #F59E0B 0%, #FBCD37 100%)",
@@ -9,7 +9,7 @@
   "shortDescription": "Native and cross-platform mobile applications",
   "hero": {
     "title": "Apps people keep on their home screen",
-    "subtitle": "Apps people keep on their home screen. Native iOS, native Android, or React Native — whichever is actually right for what you're building, not whichever we happen to prefer.",
+    "subtitle": "Native iOS, native Android, or React Native — whichever is actually right for what you're building, not whichever we happen to prefer.",
     "cta_primary": "Plan my app",
     "cta_primary_link": "/contact/",
     "cta_secondary": "See the stack",
@@ -23,10 +23,10 @@
   "subServices": [
     {
       "id": "ios",
-      "name": "iOS Apps",
+      "name": "iOS apps",
       "icon": "fab fa-apple",
       "desc": "Native Swift applications for iPhone and iPad",
-      "longDesc": "Pure SwiftUI and UIKit, written in Swift 5.10+ with async/await throughout. We handle App Store submission, TestFlight betas, privacy manifests, and the small things that turn an app from good to great on Apple silicon.",
+      "longDesc": "Pure SwiftUI and UIKit, written in Swift 5.10+ with async/await throughout. We handle App Store submission, TestFlight betas, privacy manifests, and the small things that make an app feel at home on Apple silicon.",
       "bullets": [
         "Swift, SwiftUI, UIKit, Combine",
         "iPhone, iPad, Apple Watch, Apple TV",
@@ -37,7 +37,7 @@
     },
     {
       "id": "android",
-      "name": "Android Apps",
+      "name": "Android apps",
       "icon": "fab fa-android",
       "desc": "Native Kotlin apps for all Android devices",
       "longDesc": "Kotlin-first Android with Jetpack Compose, Material 3, and the modern AndroidX stack. We build for the long tail of devices your users actually have, with adaptive layouts, predictive back, and a smooth first-run experience.",
@@ -51,7 +51,7 @@
     },
     {
       "id": "cross-platform",
-      "name": "Cross-Platform",
+      "name": "Cross-platform",
       "icon": "fas fa-layer-group",
       "desc": "Flutter & React Native for multi-platform reach",
       "longDesc": "One codebase, two stores, and as much native feel as the platform allows. We pick Flutter for high-fidelity UI and animations, and React Native when the team is already deep in JavaScript and the ecosystem matters.",
@@ -65,7 +65,7 @@
     },
     {
       "id": "aso",
-      "name": "App Store Optimization",
+      "name": "App store optimization",
       "icon": "fas fa-chart-line",
       "desc": "Get discovered with proper ASO strategies",
       "longDesc": "Most apps are never found. We treat the store listing like a product surface — keyword research, screenshot testing, localization, and a steady cadence of experiments so your install graph keeps climbing.",
@@ -105,7 +105,7 @@
     },
     {
       "number": "05",
-      "title": "Ship & Grow",
+      "title": "Ship & grow",
       "desc": "Store submission, then a roadmap of releases, not a one-and-done",
       "icon": "fas fa-rocket"
     }
@@ -149,7 +149,7 @@
   "faq": [
     {
       "question": "Should I pick Flutter, React Native, or fully native?",
-      "answer": "It depends on your team, timeline, and platform ambition. We recommend fully native for apps that lean on platform features (Apple Watch, Material You, NFC). Flutter and React Native are great for cross-platform MVPs and most consumer apps. We will recommend the right choice after a short architecture workshop."
+      "answer": "It depends on your team, timeline, and platform ambition. We recommend fully native for apps that lean on platform features (Apple Watch, Material You, NFC). Flutter and React Native are great for cross-platform MVPs and most consumer apps. We'll recommend the right choice after a short architecture workshop."
     },
     {
       "question": "Do you handle App Store and Play Store submission?",

@@ -1,137 +1,128 @@
 {
   "id": "internal",
   "slug": "internal",
-  "title": "Internal Tools",
-  "tagline": "Operations software na talagang ginagamit",
+  "title": "Mga internal tool",
+  "tagline": "Software sa operations na talagang ginagamit",
   "color": "#0891B2",
   "gradient": "linear-gradient(135deg, #0891B2 0%, #22D3EE 100%)",
   "icon": "fas fa-tools",
-  "shortDescription": "Streamline operations with custom internal solutions",
+  "shortDescription": "Pasimplehin ang operasyon gamit ang mga custom na internal solution",
   "hero": {
-    "title": "Operations Software na Talagang Ginagamit",
-    "subtitle": "Dashboards, CRMs, automation na binubuksan ng team mo tuwing umaga.",
-    "cta_primary": "I-map ang workflow mo",
+    "title": "Software sa operations na talagang ginagamit",
+    "subtitle": "Mga dashboard, CRM, at back-office tool na binubuksan ng team ninyo tuwing Lunes ng umaga nang hindi nagrereklamo.",
+    "cta_primary": "I-mapa ang aking workflow",
     "cta_primary_link": "/contact/",
-    "cta_secondary": "Tingnan ang deliverables",
+    "cta_secondary": "Tingnan ang mga deliverable",
     "cta_secondary_link": "#deliverables"
   },
   "metrics": [
-    {
-      "value": "−40%",
-      "label": "Time on routine ops"
-    },
-    {
-      "value": "1 week",
-      "label": "First usable build"
-    },
-    {
-      "value": "100%",
-      "label": "Auditable actions"
-    }
+    { "value": "−40%", "label": "Oras sa mga nakagawiang gawain" },
+    { "value": "1 linggo", "label": "Unang build na magagamit na" },
+    { "value": "100%", "label": "Mga aksyong nasusuri" }
   ],
   "subServices": [
     {
       "id": "admin-dashboards",
-      "name": "Mga Admin Dashboard",
+      "name": "Mga admin dashboard",
       "icon": "fas fa-tachometer-alt",
-      "desc": "Dashboard na talagang pinapatakbo ang negosyo",
-      "longDesc": "Command center ng team — live data, exceptions, at aksyon mula sa page.",
+      "desc": "Mga live na dashboard para pamahalaan ang negosyo ninyo",
+      "longDesc": "Isang totoong command center para sa team ninyo — hindi isang static na report. Bumubuo kami ng mga internal dashboard na kumukuha ng live na data mula sa stack ninyo, nagpapakita ng mga eksepsiyon, at hinahayaan ang mga operator ninyo na kumilos nang hindi umaalis sa page.",
       "bullets": [
-        "Live data mula DB o API",
-        "Role-based views",
-        "Filters at saved views",
-        "Alerts sa mahalagang metrics"
+        "Live na data mula sa inyong DB, warehouse, o mga SaaS API",
+        "Mga view na nakabatay sa role para sa ops, finance, at pamunuan",
+        "Drill-down, mga filter, at mga naka-save na view",
+        "Mga alerto sa Slack at email para sa mga metric na mahalaga"
       ],
-      "imageLabel": "Live KPI dashboard"
+      "imageLabel": "Admin dashboard na may mga live na KPI"
     },
     {
       "id": "crm",
-      "name": "Mga CRM System",
+      "name": "Mga CRM system",
       "icon": "fas fa-users-cog",
-      "desc": "CRM na tumutugma sa paraan ninyo magbenta",
-      "longDesc": "Kapag sobra ang Salesforce, gumagawa kami ng CRM na tumutugma sa sales motion ninyo.",
+      "desc": "Customer relationship management na iniakma para sa inyo",
+      "longDesc": "Kapag sobra na ang Salesforce o HubSpot para sa inyo, bumubuo kami ng CRM na tugma sa paraan ninyo ng pagbebenta. Mga pipeline stage, follow-up, kontrata, at kalusugan ng customer — eksaktong kailangan ng team ninyo, at wala nang hindi nila kailangan.",
       "bullets": [
-        "Pipeline at forecasting",
-        "Email, tawag, meeting",
-        "Customer health at renewal",
-        "Custom fields nang walang komplikasyon"
+        "Pipeline, mga deal stage, at forecasting",
+        "Integration sa email, tawag, at meeting",
+        "Mga workflow para sa kalusugan ng customer at renewal",
+        "Mga custom na field at object nang hindi na kailangang tumawag sa sales"
       ],
-      "imageLabel": "CRM pipeline"
+      "imageLabel": "View ng pipeline ng custom na CRM"
     },
     {
       "id": "inventory",
-      "name": "Inventory Management",
+      "name": "Pamamahala ng inventory",
       "icon": "fas fa-boxes",
-      "desc": "Subaybayan ang stock, order, at logistics",
-      "longDesc": "Ang inventory ay isang mali palayo sa stockout. Gumagawa kami ng multi-location system na kumokonekta sa POS at channels.",
+      "desc": "Maayos na subaybayan ang stock, mga order, at logistics",
+      "longDesc": "Isang pagkakamali lang ang layo ng inventory sa pagkaubos ng stock o sa pagkalugi. Bumubuo kami ng mga inventory system na tina-track ang mga SKU sa iba't ibang lokasyon, konektado sa inyong POS at mga marketplace channel, at inilalabas ang mga desisyon sa pag-reorder bago pa ito maging problema.",
       "bullets": [
-        "Multi-location stock",
-        "POS at marketplace sync",
-        "Lot, serial, expiry",
-        "Purchase orders at suppliers"
+        "Stock at paglilipat sa maraming lokasyon",
+        "Sync sa POS, Shopify, at mga marketplace",
+        "Pag-track ng lot, serial, at expiry",
+        "Mga purchase order at workflow sa supplier"
       ],
-      "imageLabel": "Stock at reorder"
+      "imageLabel": "View ng antas ng inventory at pag-reorder"
     },
     {
       "id": "automation",
-      "name": "Workflow Automation",
+      "name": "Automation ng workflow",
       "icon": "fas fa-robot",
-      "desc": "I-automate ang paulit-ulit na gawain",
-      "longDesc": "Ang manual na hakbang na kumakain ng linggo ay nagiging maaasahang automation.",
+      "desc": "I-automate ang paulit-ulit na gawain at makatipid ng oras",
+      "longDesc": "Ginagawa naming maaasahang automation ang mga manu-manong hakbang na umuubos ng linggo ninyo. Pag-route ng lead, paggawa ng invoice, mga sequence sa onboarding ng customer, at ang pandikit sa pagitan ng mga tool na walang Zapier template.",
       "bullets": [
-        "Workflow na may version history",
-        "Retry at error handling",
-        "Audit log ng bawat aksyon",
-        "Connectors sa daan-daang tools"
+        "Visual na workflow designer na may version history",
+        "Retry, idempotency, at paghawak ng error",
+        "Audit log ng bawat aksyon at desisyon",
+        "Mga connector para sa 200+ na SaaS tool, handa agad"
       ],
-      "imageLabel": "Automation canvas"
+      "imageLabel": "Canvas ng workflow automation"
     }
   ],
   "process": [
     {
       "number": "01",
-      "title": "Map the workflow",
-      "desc": "Sit with the team, sketch the steps, and find the highest-leverage bottleneck",
+      "title": "I-mapa ang workflow",
+      "desc": "Umupo kasama ang team, i-sketch ang mga hakbang, at hanapin ang bottleneck na may pinakamalaking epekto",
       "icon": "fas fa-lightbulb"
     },
     {
       "number": "02",
-      "title": "Scope the MVP",
-      "desc": "A tight first cut that ships in a week — the 80% your team will use daily",
+      "title": "I-scope ang MVP",
+      "desc": "Isang siksik na unang bersyon na nailulunsad sa loob ng isang linggo — ang 80% na araw-araw gagamitin ng team ninyo",
       "icon": "fas fa-bullseye"
     },
     {
       "number": "03",
-      "title": "Build & instrument",
-      "desc": "Type-safe, real database, and a feature-flag system so we can iterate live",
+      "title": "Bumuo at mag-instrument",
+      "desc": "Type-safe, totoong database, at feature-flag system para makapag-iterate kami nang live",
       "icon": "fas fa-code"
     },
     {
       "number": "04",
-      "title": "Train & hand off",
-      "desc": "Loom walkthroughs, a short guide, and a 30-day window of small tweaks",
+      "title": "Magturo at magpasa",
+      "desc": "Mga Loom walkthrough, maikling gabay, at 30 araw para sa maliliit na pagbabago",
       "icon": "fas fa-graduation-cap"
     }
   ],
   "deliverables": [
     {
-      "title": "Working internal app",
-      "description": "A deployed app with auth, roles, and an admin area your IT team can own.",
+      "title": "Gumaganang internal app",
+      "description": "Isang naka-deploy na app na may auth, mga role, at admin area na kayang hawakan ng IT team ninyo.",
       "icon": "fas fa-server"
     },
     {
-      "title": "Data integrations",
-      "description": "Live connectors to your database, SaaS tools, and spreadsheets.",
+      "title": "Mga data integration",
+      "description": "Mga live na connector sa inyong database, mga SaaS tool, at mga spreadsheet.",
       "icon": "fas fa-plug"
     },
     {
-      "title": "Operator training",
-      "description": "Recorded walkthroughs and a written playbook for the day-to-day.",
+      "title": "Training para sa mga operator",
+      "description": "Mga naka-record na walkthrough at nakasulat na playbook para sa araw-araw na gawain.",
       "icon": "fas fa-book-open"
     },
     {
-      "title": "Handover & support",
-      "description": "Source code, infrastructure as code, and 30 days of post-launch support.",
+      "title": "Pagpasa at suporta",
+      "description": "Source code, infrastructure as code, at 30 araw na suporta pagkatapos ng launch.",
       "icon": "fas fa-handshake"
     }
   ],
@@ -151,20 +142,20 @@
   ],
   "faq": [
     {
-      "question": "How is this different from off-the-shelf SaaS?",
-      "answer": "Off-the-shelf SaaS optimizes for the average customer. A custom internal tool optimizes for your exact workflow — and you stop paying per seat as you grow. We recommend SaaS when it is the right answer, and a custom build when it is not."
+      "question": "Paano ito naiiba sa off-the-shelf na SaaS?",
+      "answer": "Ang off-the-shelf na SaaS ay ginawa para sa karaniwang customer. Ang custom na internal tool ay ginawa para sa eksaktong workflow ninyo — at hindi na kayo magbabayad kada seat habang lumalaki kayo. Inirerekomenda namin ang SaaS kapag iyon ang tamang sagot, at custom na build kapag hindi."
     },
     {
-      "question": "How long until my team can use it?",
-      "answer": "Our target is a usable first build in one to two weeks, with a feature-complete v1 in 6–10 weeks depending on integrations. We ship in weekly increments and demo every Friday."
+      "question": "Gaano katagal bago ito magamit ng team ko?",
+      "answer": "Target namin ang unang build na magagamit na sa loob ng isa hanggang dalawang linggo, at kumpletong v1 sa loob ng 6–10 linggo depende sa mga integration. Naglalabas kami ng update linggo-linggo at nagde-demo tuwing Biyernes."
     },
     {
-      "question": "Will my team be able to maintain it?",
-      "answer": "Yes. We pick boring, well-documented stacks, write the README your future team will read, and run a handover sprint where we pair with whoever owns the tool day-to-day."
+      "question": "Kaya ba itong i-maintain ng team ko?",
+      "answer": "Oo. Pumipili kami ng mga simple at maayos ang dokumentasyong stack, isinusulat namin ang README na babasahin ng susunod ninyong team, at nagsasagawa kami ng handover sprint kung saan katuwang namin ang sinumang hahawak sa tool araw-araw."
     },
     {
-      "question": "What if the requirements change mid-build?",
-      "answer": "Expected. Our process is built around short feedback loops — weekly demos, shared roadmap, and a feature flag system that lets you turn changes on and off without redeploying."
+      "question": "Paano kung magbago ang mga requirement habang binubuo?",
+      "answer": "Inaasahan namin iyan. Nakabatay ang proseso namin sa maiikling feedback loop — lingguhang demo, iisang roadmap, at feature flag system na hinahayaan kayong buksan at isara ang mga pagbabago nang hindi na nagre-redeploy."
     }
   ]
 }

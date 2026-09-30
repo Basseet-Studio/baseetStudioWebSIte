@@ -159,8 +159,14 @@ let themeCallback: ((update: SkyThemeUpdate) => void) | null = null
 let debugPreviewHour: number | null = null
 let debugPreviewPeriodId: SkyPeriodId = 'auto'
 
+export const SKY_HOUR_EVENT = 'baseet:sky-hour'
+
 export function getDebugPreviewHour(): number | null {
   return debugPreviewHour
+}
+
+export function getSkyHour(): number {
+  return getDebugPreviewHour() ?? getEffectiveSkyHour()
 }
 
 export function getDebugPreviewPeriodId(): SkyPeriodId {
@@ -169,6 +175,46 @@ export function getDebugPreviewPeriodId(): SkyPeriodId {
 
 export function isDebugSkyLocked(): boolean {
   return debugPreviewHour !== null
+}
+
+function dispatchSkyHour(): void {
+  if (typeof document === 'undefined') return
+  document.dispatchEvent(
+    new CustomEvent(SKY_HOUR_EVENT, {
+      detail: { hour: debugPreviewHour, periodId: debugPreviewPeriodId },
+    }),
+  )
+}
+
+/** Pin a continuous 0–24 hour for preview (`null` = follow live clock). */
+export function setDebugPreviewHour(hour: number | null): void {
+  if (hour === null) {
+    debugPreviewHour = null
+    debugPreviewPeriodId = 'auto'
+  } else {
+    const wrapped = ((hour % 24) + 24) % 24
+    debugPreviewHour = wrapped
+    let best: SkyPeriodId = 'day'
+    let bestDist = Infinity
+    for (const preset of SKY_PERIOD_PRESETS) {
+      if (preset.hour === null) continue
+      const dist = Math.abs(preset.hour - wrapped)
+      if (dist < bestDist) {
+        bestDist = dist
+        best = preset.id
+      }
+    }
+    debugPreviewPeriodId = best
+  }
+
+  const win = window as Window & {
+    __BASEET_SCENE_CONFIG__?: { clouds?: CloudSettings; lighting?: LightingSettings }
+  }
+  const pageClouds = win.__BASEET_SCENE_CONFIG__?.clouds ?? {}
+  const pageLighting = win.__BASEET_SCENE_CONFIG__?.lighting ?? {}
+  const update = applyResolvedSkyToRuntime(pageClouds, pageLighting)
+  applyTheme(update.uiTheme)
+  dispatchSkyHour()
 }
 
 /** Preview a sky period from the debug panel (`null` = follow live clock). */
@@ -187,6 +233,7 @@ export function setDebugPreviewPeriod(periodId: SkyPeriodId): void {
 
   const update = applyResolvedSkyToRuntime(pageClouds, pageLighting)
   applyTheme(update.uiTheme)
+  dispatchSkyHour()
 }
 
 export { SKY_PERIOD_PRESETS }

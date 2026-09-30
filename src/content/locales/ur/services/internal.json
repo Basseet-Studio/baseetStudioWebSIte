@@ -2,136 +2,127 @@
   "id": "internal",
   "slug": "internal",
   "title": "اندرونی ٹولز",
-  "tagline": "Operations software جو واقعی استعمال ہو",
+  "tagline": "آپریشنز کا سافٹ ویئر جو واقعی استعمال ہوتا ہے",
   "color": "#0891B2",
   "gradient": "linear-gradient(135deg, #0891B2 0%, #22D3EE 100%)",
   "icon": "fas fa-tools",
-  "shortDescription": "Streamline operations with custom internal solutions",
+  "shortDescription": "اپنے لیے بنائے گئے اندرونی حل سے روزمرہ کام آسان بنائیں",
   "hero": {
-    "title": "Operations Software جو واقعی استعمال ہو",
-    "subtitle": "Dashboards، CRMs، automation جو آپ کی team ہر صبح کھولتی ہے۔",
-    "cta_primary": "اپنا workflow map کریں",
+    "title": "آپریشنز کا سافٹ ویئر جو واقعی استعمال ہوتا ہے",
+    "subtitle": "ڈیش بورڈز، CRM اور بیک آفس ٹولز جنہیں آپ کی ٹیم پیر کی صبح بغیر شکایت کے کھولتی ہے۔",
+    "cta_primary": "میرے کام کا نقشہ بنائیں",
     "cta_primary_link": "/contact/",
-    "cta_secondary": "Deliverables دیکھیں",
+    "cta_secondary": "دیکھیں آپ کو کیا ملے گا",
     "cta_secondary_link": "#deliverables"
   },
   "metrics": [
-    {
-      "value": "−40%",
-      "label": "Time on routine ops"
-    },
-    {
-      "value": "1 week",
-      "label": "First usable build"
-    },
-    {
-      "value": "100%",
-      "label": "Auditable actions"
-    }
+    { "value": "−40%", "label": "روزمرہ کاموں میں لگنے والا وقت" },
+    { "value": "1 ہفتہ", "label": "پہلا قابلِ استعمال ورژن" },
+    { "value": "100%", "label": "ہر کارروائی کا ریکارڈ" }
   ],
   "subServices": [
     {
       "id": "admin-dashboards",
       "name": "ایڈمن ڈیش بورڈز",
       "icon": "fas fa-tachometer-alt",
-      "desc": "کاروبار چلانے کے طاقتور ڈیش بورڈز",
-      "longDesc": "ٹیم کے لیے کمانڈ سینٹر — لائیو ڈیٹا، استثنا، اور صفحے سے عمل۔",
+      "desc": "کاروبار چلانے کے لیے لائیو ڈیش بورڈز",
+      "longDesc": "آپ کی ٹیم کے لیے ایک اصل کنٹرول روم — کوئی جامد رپورٹ نہیں۔ ہم ایسے اندرونی ڈیش بورڈ بناتے ہیں جو آپ کے سسٹمز سے لائیو ڈیٹا لیتے ہیں، غیر معمولی باتیں سامنے لاتے ہیں، اور آپ کے عملے کو صفحہ چھوڑے بغیر کارروائی کرنے دیتے ہیں۔",
       "bullets": [
-        "DB یا APIs سے لائیو ڈیٹا",
-        "رول کے مطابق ویوز",
-        "فلٹرز اور محفوظ ویوز",
-        "اہم میٹرکس پر الرٹس"
+        "آپ کے ڈیٹا بیس، ڈیٹا ویئر ہاؤس یا SaaS API سے لائیو ڈیٹا",
+        "آپریشنز، فنانس اور قیادت کے لیے الگ الگ ویوز",
+        "تفصیل میں جانے کی سہولت، فلٹرز اور محفوظ ویوز",
+        "اہم اعداد و شمار پر Slack اور ای میل الرٹس"
       ],
-      "imageLabel": "لائیو KPI ڈیش بورڈ"
+      "imageLabel": "لائیو KPI کے ساتھ ایڈمن ڈیش بورڈ"
     },
     {
       "id": "crm",
       "name": "CRM سسٹمز",
       "icon": "fas fa-users-cog",
-      "desc": "آپ کے بیچنے کے انداز کا CRM",
-      "longDesc": "جب Salesforce زیادہ ہو، ہم وہ CRM بناتے ہیں جو آپ کی سیلز سے میل کھائے۔",
+      "desc": "گاہکوں سے تعلقات کا انتظام، آپ کے مطابق",
+      "longDesc": "جب Salesforce یا HubSpot ضرورت سے زیادہ ہوں، تو ہم ایسا CRM بناتے ہیں جو آپ کے بیچنے کے طریقے کے مطابق ہو۔ پائپ لائن کے مراحل، فالو اپس، معاہدے اور گاہکوں کی صورتحال — بالکل وہی جو آپ کی ٹیم کو چاہیے، اور کچھ بھی ایسا نہیں جو نہ چاہیے۔",
       "bullets": [
-        "پائپ لائن اور فورکاسٹ",
-        "ای میل، کال، میٹنگ",
-        "کسٹمر ہیلتھ اور تجدید",
-        "کسٹم فیلڈز بغیر پیچیدگی"
+        "پائپ لائن، ڈیل کے مراحل اور پیش گوئی",
+        "ای میل، کال اور میٹنگ سے جڑاؤ",
+        "گاہکوں کی صورتحال اور تجدید کا نظام",
+        "اپنی مرضی کے فیلڈز اور ریکارڈز، کسی سیلز کال کے بغیر"
       ],
-      "imageLabel": "CRM پائپ لائن"
+      "imageLabel": "خاص CRM کا پائپ لائن ویو"
     },
     {
       "id": "inventory",
       "name": "انوینٹری مینجمنٹ",
       "icon": "fas fa-boxes",
-      "desc": "اسٹاک، آرڈرز اور لاجسٹکس",
-      "longDesc": "انوینٹری ایک غلطی سے ختم یا رائٹ آف۔ ہم ملٹی لوکیشن سسٹمز بناتے ہیں جو POS اور چینلز سے جڑتے ہیں۔",
+      "desc": "اسٹاک، آرڈرز اور لاجسٹکس پر مؤثر نظر",
+      "longDesc": "انوینٹری میں ایک غلطی کا مطلب ہے یا تو مال ختم، یا نقصان میں لکھا گیا اسٹاک۔ ہم ایسے انوینٹری سسٹم بناتے ہیں جو مختلف مقامات پر SKU کا حساب رکھیں، آپ کے POS اور مارکیٹ پلیس چینلز سے جڑیں، اور دوبارہ آرڈر کرنے کے فیصلے مسئلہ بننے سے پہلے سامنے لے آئیں۔",
       "bullets": [
-        "ملٹی لوکیشن اسٹاک",
-        "POS اور مارکیٹ پلیس سنک",
-        "لاٹ، سیریل، ایکسپائری",
-        "پرچیز آرڈرز اور سپلائرز"
+        "کئی مقامات پر اسٹاک اور ان کے بیچ منتقلی",
+        "POS، Shopify اور مارکیٹ پلیس کے ساتھ سنک",
+        "لاٹ، سیریل نمبر اور میعاد کی ٹریکنگ",
+        "خریداری کے آرڈرز اور سپلائرز کا نظام"
       ],
-      "imageLabel": "اسٹاک اور ری آرڈر"
+      "imageLabel": "اسٹاک کی سطح اور دوبارہ آرڈر کا ویو"
     },
     {
       "id": "automation",
       "name": "ورک فلو آٹومیشن",
       "icon": "fas fa-robot",
-      "desc": "دہرائی جانے والی ٹاسکس آٹومیٹ کریں",
-      "longDesc": "ہفتے کھانے والے دستی قدم قابل اعتماد آٹومیشن بن جاتے ہیں۔",
+      "desc": "بار بار کے کام خودکار بنائیں اور وقت بچائیں",
+      "longDesc": "ہم ان دستی کاموں کو، جو آپ کا پورا ہفتہ کھا جاتے ہیں، قابلِ بھروسہ آٹومیشن میں بدل دیتے ہیں۔ لیڈز کو صحیح شخص تک پہنچانا، انوائس بنانا، نئے گاہکوں کو شامل کرنے کے مراحل، اور ٹولز کے بیچ وہ رابطے جن کا کوئی Zapier ٹیمپلیٹ موجود نہیں۔",
       "bullets": [
-        "ورژن ہسٹری والا ورک فلو",
-        "ری ٹرائی اور ایرر ہینڈلنگ",
-        "ہر ایکشن کا آڈٹ لاگ",
-        "سینکڑوں ٹولز کے کنیکٹرز"
+        "ورژن ہسٹری کے ساتھ بصری ورک فلو ڈیزائنر",
+        "دوبارہ کوشش، ایک کام کے دو بار نہ ہونے کی ضمانت، اور غلطیوں کو سنبھالنا",
+        "ہر کارروائی اور فیصلے کا آڈٹ لاگ",
+        "200 سے زیادہ SaaS ٹولز کے لیے پہلے سے تیار کنیکٹرز"
       ],
-      "imageLabel": "آٹومیشن کینوس"
+      "imageLabel": "ورک فلو آٹومیشن کینوس"
     }
   ],
   "process": [
     {
       "number": "01",
-      "title": "Map the workflow",
-      "desc": "Sit with the team, sketch the steps, and find the highest-leverage bottleneck",
+      "title": "کام کا نقشہ",
+      "desc": "ٹیم کے ساتھ بیٹھ کر مراحل کا خاکہ بنانا، اور وہ رکاوٹ ڈھونڈنا جسے ہٹانے سے سب سے زیادہ فرق پڑے",
       "icon": "fas fa-lightbulb"
     },
     {
       "number": "02",
-      "title": "Scope the MVP",
-      "desc": "A tight first cut that ships in a week — the 80% your team will use daily",
+      "title": "MVP کا دائرہ",
+      "desc": "ایک مختصر پہلا ورژن جو ایک ہفتے میں تیار ہو — وہ 80% جو آپ کی ٹیم روز استعمال کرے گی",
       "icon": "fas fa-bullseye"
     },
     {
       "number": "03",
-      "title": "Build & instrument",
-      "desc": "Type-safe, real database, and a feature-flag system so we can iterate live",
+      "title": "تعمیر اور نگرانی",
+      "desc": "ٹائپ سیف کوڈ، اصل ڈیٹا بیس، اور فیچر فلیگ سسٹم تاکہ ہم لائیو رہتے ہوئے بہتری لا سکیں",
       "icon": "fas fa-code"
     },
     {
       "number": "04",
-      "title": "Train & hand off",
-      "desc": "Loom walkthroughs, a short guide, and a 30-day window of small tweaks",
+      "title": "تربیت اور حوالگی",
+      "desc": "Loom ویڈیوز، ایک مختصر گائیڈ، اور 30 دن تک چھوٹی موٹی تبدیلیوں کی سہولت",
       "icon": "fas fa-graduation-cap"
     }
   ],
   "deliverables": [
     {
-      "title": "Working internal app",
-      "description": "A deployed app with auth, roles, and an admin area your IT team can own.",
+      "title": "چلتی ہوئی اندرونی ایپ",
+      "description": "ڈیپلائے شدہ ایپ، لاگ اِن، رولز اور ایک ایڈمن حصے کے ساتھ جسے آپ کی IT ٹیم خود سنبھال سکے۔",
       "icon": "fas fa-server"
     },
     {
-      "title": "Data integrations",
-      "description": "Live connectors to your database, SaaS tools, and spreadsheets.",
+      "title": "ڈیٹا انٹیگریشنز",
+      "description": "آپ کے ڈیٹا بیس، SaaS ٹولز اور اسپریڈشیٹس سے لائیو کنیکٹرز۔",
       "icon": "fas fa-plug"
     },
     {
-      "title": "Operator training",
-      "description": "Recorded walkthroughs and a written playbook for the day-to-day.",
+      "title": "عملے کی تربیت",
+      "description": "ریکارڈ شدہ ویڈیوز اور روزمرہ کام کے لیے ایک تحریری رہنما کتابچہ۔",
       "icon": "fas fa-book-open"
     },
     {
-      "title": "Handover & support",
-      "description": "Source code, infrastructure as code, and 30 days of post-launch support.",
+      "title": "حوالگی اور سپورٹ",
+      "description": "سورس کوڈ، کوڈ کی شکل میں انفراسٹرکچر، اور لانچ کے بعد 30 دن کی سپورٹ۔",
       "icon": "fas fa-handshake"
     }
   ],
@@ -151,20 +142,20 @@
   ],
   "faq": [
     {
-      "question": "How is this different from off-the-shelf SaaS?",
-      "answer": "Off-the-shelf SaaS optimizes for the average customer. A custom internal tool optimizes for your exact workflow — and you stop paying per seat as you grow. We recommend SaaS when it is the right answer, and a custom build when it is not."
+      "question": "یہ بازار میں دستیاب SaaS سے کیسے مختلف ہے؟",
+      "answer": "بازار میں دستیاب SaaS اوسط گاہک کو سامنے رکھ کر بنتا ہے۔ آپ کے لیے بنایا گیا اندرونی ٹول آپ کے اپنے کام کے طریقے کے مطابق بنتا ہے — اور بڑھنے کے ساتھ آپ کو فی صارف ادائیگی نہیں کرنی پڑتی۔ جہاں SaaS صحیح جواب ہو، ہم وہی تجویز کرتے ہیں، اور جہاں نہ ہو، وہاں خاص طور پر بنانے کا۔"
     },
     {
-      "question": "How long until my team can use it?",
-      "answer": "Our target is a usable first build in one to two weeks, with a feature-complete v1 in 6–10 weeks depending on integrations. We ship in weekly increments and demo every Friday."
+      "question": "میری ٹیم اسے کب سے استعمال کر سکے گی؟",
+      "answer": "ہمارا ہدف ایک سے دو ہفتوں میں پہلا قابلِ استعمال ورژن ہے، اور انٹیگریشنز کے حساب سے 6–10 ہفتوں میں تمام فیچرز کے ساتھ پہلا مکمل ورژن۔ ہم ہر ہفتے کام آگے بڑھاتے ہیں اور ہر جمعے کو ڈیمو دکھاتے ہیں۔"
     },
     {
-      "question": "Will my team be able to maintain it?",
-      "answer": "Yes. We pick boring, well-documented stacks, write the README your future team will read, and run a handover sprint where we pair with whoever owns the tool day-to-day."
+      "question": "کیا میری ٹیم اسے خود سنبھال سکے گی؟",
+      "answer": "جی ہاں۔ ہم سادہ، اچھی طرح دستاویزی ٹیکنالوجیز چنتے ہیں، وہ README لکھتے ہیں جو آپ کی آنے والی ٹیم واقعی پڑھے گی، اور ایک حوالگی اسپرنٹ کرتے ہیں جس میں ہم اس شخص کے ساتھ مل کر کام کرتے ہیں جو روزانہ یہ ٹول چلائے گا۔"
     },
     {
-      "question": "What if the requirements change mid-build?",
-      "answer": "Expected. Our process is built around short feedback loops — weekly demos, shared roadmap, and a feature flag system that lets you turn changes on and off without redeploying."
+      "question": "اگر کام کے دوران ضرورتیں بدل جائیں تو؟",
+      "answer": "یہ تو ہونا ہی ہے۔ ہمارا طریقۂ کار مختصر فیڈ بیک کے گرد بنا ہے — ہفتہ وار ڈیمو، مشترکہ روڈ میپ، اور ایک فیچر فلیگ سسٹم جس سے آپ دوبارہ ڈیپلائے کیے بغیر تبدیلیاں آن اور آف کر سکتے ہیں۔"
     }
   ]
 }

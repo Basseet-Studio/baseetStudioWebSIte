@@ -1,15 +1,15 @@
 {
   "id": "design",
   "slug": "design",
-  "title": "UI/UX Design",
+  "title": "UI/UX design",
   "tagline": "Design that earns its second tap",
   "color": "#AF52DE",
   "gradient": "linear-gradient(135deg, #AF52DE 0%, #D8A0F5 100%)",
   "icon": "fas fa-paint-brush",
-  "shortDescription": "Beautiful, intuitive interfaces users love",
+  "shortDescription": "Clear, intuitive interfaces people come back to",
   "hero": {
     "title": "Design that earns its second tap",
-    "subtitle": "Design that earns its second tap. Interfaces shaped by how people actually use the thing, not by what looks good in a moodboard.",
+    "subtitle": "Interfaces shaped by how people actually use the thing, not by what looks good in a moodboard.",
     "cta_primary": "Brief us on a project",
     "cta_primary_link": "/contact/",
     "cta_secondary": "See the deliverables",
@@ -23,10 +23,10 @@
   "subServices": [
     {
       "id": "user-research",
-      "name": "User Research",
+      "name": "User research",
       "icon": "fas fa-user-friends",
       "desc": "Understand your users' needs and behaviors",
-      "longDesc": "We start every project by talking to real users — moderated interviews, unmoderated tests, and analytics deep-dives. The output is not a persona poster; it is a clear, prioritized list of jobs-to-be-done your design has to do well.",
+      "longDesc": "We start every project by talking to real users — moderated interviews, unmoderated tests, and analytics deep-dives. The output isn't a persona poster; it's a clear, prioritized list of jobs-to-be-done your design has to do well.",
       "bullets": [
         "User interviews and contextual inquiry",
         "Jobs-to-be-done and opportunity mapping",
@@ -40,7 +40,7 @@
       "name": "Wireframing",
       "icon": "fas fa-pencil-ruler",
       "desc": "Blueprint your app's structure and flow",
-      "longDesc": "Before pixels, we draw the skeleton. Low-fidelity wireframes for every key flow, validated against your IA, and iterated fast. Wireframes are the cheapest place to make the most expensive mistakes — so we do not skip them.",
+      "longDesc": "Before pixels, we draw the skeleton. Low-fidelity wireframes for every key flow, validated against your IA, and iterated fast. Wireframes are the cheapest place to make the most expensive mistakes — so we don't skip them.",
       "bullets": [
         "Low-fidelity wireframes for every flow",
         "Information architecture and navigation",
@@ -51,10 +51,10 @@
     },
     {
       "id": "visual-design",
-      "name": "Visual Design",
+      "name": "Visual design",
       "icon": "fas fa-palette",
-      "desc": "Stunning interfaces that reflect your brand",
-      "longDesc": "High-fidelity Figma files, a real type and color system, and motion principles that match your brand personality. The output is a Figma library your team can keep using long after we are done — not a static deliverable.",
+      "desc": "Consistent interfaces that reflect your brand",
+      "longDesc": "High-fidelity Figma files, a real type and color system, and motion principles that match your brand personality. The output is a Figma library your team can keep using long after we're done — not a static deliverable.",
       "bullets": [
         "High-fidelity Figma screens and components",
         "Type, color, and motion systems",
@@ -147,19 +147,19 @@
   "faq": [
     {
       "question": "Do you also build the design in code?",
-      "answer": "Yes. Most of our engagements end with a working front end. We can ship Astro, Next.js, SvelteKit, or React Native — whatever your stack prefers. The handoff is smooth because we are the same team doing both."
+      "answer": "Yes. Most of our engagements end with a working front end. We can ship Astro, Next.js, SvelteKit, or React Native — whatever your stack prefers. Nothing gets lost in handoff because we're the same team doing both."
     },
     {
       "question": "Can you take over an existing design system?",
-      "answer": "Frequently. We start with a design system audit, propose a path to clean it up, and ship it in a Storybook that your engineers actually use. We have rescued Figma files with 2,000+ components and turned them into something maintainable."
+      "answer": "Frequently. We start with a design system audit, propose a path to clean it up, and ship it in a Storybook that your engineers actually use. We've rescued Figma files with 2,000+ components and turned them into something maintainable."
     },
     {
       "question": "How do you handle accessibility?",
-      "answer": "Accessibility is not a checklist we run at the end. We design for keyboard, screen readers, and color contrast from the first wireframe, and we test with real assistive tech before handoff. WCAG AA is our default; AAA where it matters."
+      "answer": "Accessibility isn't a checklist we run at the end. We design for keyboard, screen readers, and color contrast from the first wireframe, and we test with real assistive tech before handoff. WCAG AA is our default; AAA where it matters."
     },
     {
       "question": "What if I only have a brand, not a product idea?",
-      "answer": "That is a great place to start. We run a 2-week discovery sprint that ends in a product brief, a feature list, and a prototype you can use to raise, recruit, or sell. From there, we can design and build the first version."
+      "answer": "That's a great place to start. We run a 2-week discovery sprint that ends in a product brief, a feature list, and a prototype you can use to raise, recruit, or sell. From there, we can design and build the first version."
     }
   ]
 }

@@ -3,7 +3,7 @@
   "slug": "invexo",
   "type": "branded",
   "tagline": "Inventory management built for small shops",
-  "description": "## About Invexo\n\nInvexo is an inventory management system designed for small shops — telecom counters, corner stores, and multi-location retailers who need real-time stock, sales, and cash flow in one place.\n\n### Built for Small Shops\n\nTrack products, barcodes, and customers across every location. Run POS from the same dashboard, monitor flexiload and MFS commissions, and see what's due outstanding at a glance.\n\n### One Dashboard, Every Shop\n\nSwitch between shops instantly. Revenue, cash collected, gross profit, and commission numbers update as you move — so owners always know where they stand.\n\n## Ready to Streamline Your Shop?\n\nContact us for a demo tailored to your business.\n",
+  "description": "## About Invexo\n\nInvexo is an inventory management system designed for small shops — telecom counters, corner stores, and multi-location retailers who need real-time stock, sales, and cash flow in one place.\n\n### Built for small shops\n\nTrack products, barcodes, and customers across every location. Run POS from the same dashboard, monitor flexiload and MFS commissions, and see what's due outstanding at a glance.\n\n### One dashboard, every shop\n\nSwitch between shops instantly. Revenue, cash collected, gross profit, and commission numbers update as you move — so owners always know where they stand.\n\n## Ready to streamline your shop?\n\nContact us for a demo tailored to your business.\n",
   "iconClass": "fas fa-cash-register",
   "color": "#10B981",
   "gradient": "linear-gradient(135deg, #059669 0%, #34D399 100%)",
@@ -19,16 +19,16 @@
   "bgFallbackGradient": "linear-gradient(180deg, #ECFDF5 0%, #D1FAE5 40%, #A7F3D0 100%)",
   "clientIds": ["faruk-technology-store"],
   "hero": {
-    "title": "Run Every Shop From One Dashboard",
+    "title": "Run every shop from one dashboard",
     "subtitle": "Inventory, POS, flexiload commissions, and daily sales — built for small shops that need clarity without enterprise complexity.",
-    "cta_primary": "Request Demo",
+    "cta_primary": "Request a demo",
     "cta_primary_link": "/contact",
-    "cta_secondary": "View Features",
+    "cta_secondary": "View features",
     "cta_secondary_link": "#features"
   },
   "features": [
     {
-      "title": "Multi-Shop Dashboard",
+      "title": "Multi-shop dashboard",
       "description": "Switch between locations and watch revenue, cash collected, gross profit, and due outstanding update in real time.",
       "icon": "fas fa-store"
     },
@@ -43,17 +43,17 @@
       "icon": "fas fa-mobile-alt"
     },
     {
-      "title": "Sales Trends",
+      "title": "Sales trends",
       "description": "Seven-day line charts, overdue case tracking, and backup status — see patterns before they become problems.",
       "icon": "fas fa-chart-line"
     },
     {
-      "title": "Customer Ledger",
+      "title": "Customer ledger",
       "description": "Due outstanding, overdue cases, and payment history per shop — know who owes what at a glance.",
       "icon": "fas fa-receipt"
     },
     {
-      "title": "Reports & Alerts",
+      "title": "Reports & alerts",
       "description": "Stock transfers, audit logs, user permissions, and configurable alerts for low stock and overdue payments.",
       "icon": "fas fa-bell"
     }
@@ -62,7 +62,7 @@
     {
       "name": "Web",
       "icon": "fas fa-globe",
-      "version": "Web App",
+      "version": "Web app",
       "link": "#"
     }
   ],
@@ -118,7 +118,7 @@
     },
     {
       "question": "Does it support flexiload and MFS commissions?",
-      "answer": "Absolutely. Flexiload and mobile financial service commissions are tracked alongside product sales in your daily summary."
+      "answer": "Yes. Flexiload and mobile financial service commissions are tracked alongside product sales in your daily summary."
     },
     {
       "question": "Is there a demo available?",

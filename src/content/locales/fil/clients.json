@@ -1,42 +1,42 @@
 {
-  "title": "Aming Mga Kliyente",
-  "subtitle": "Mga Success Story",
-  "description": "Tingnan kung paano nakakamit ng mga negosyong katulad mo ang resulta gamit ang aming mga solusyon.",
+  "title": "Ang aming mga kliyente",
+  "subtitle": "Mga kuwento ng tagumpay",
+  "description": "Tingnan kung paano nakakakuha ng resulta ang mga negosyong tulad ng sa inyo gamit ang aming mga solusyon.",
   "clients": [
     {
       "id": "portia-grid",
       "name": "Portia Grid",
       "layoutTemplate": "timeline",
       "logo": "",
-      "industry": "Logistics at Data Intelligence",
-      "serviceType": "Internal Tool",
+      "industry": "Logistics at data intelligence",
+      "serviceType": "Internal na tool",
       "color": "#2563EB",
-      "tagline": "Matalinong Pamamahala ng Fleet at Data",
-      "shortDescription": "Isang komprehensibong web platform para pamahalaan ang mga delivery truck fleet at kanilang maintenance schedule.",
-      "fullDescription": "Ang Portia Grid ay isang makapangyarihang internal tool na binuo namin upang tulungan ang mga logistics company na pamahalaan ang kanilang buong fleet ng delivery truck. Mula sa pagsubaybay sa lokasyon ng sasakyan hanggang sa pag-schedule ng maintenance, lahat ay pinamamahalaan sa isang sentralisadong dashboard.",
-      "challenge": "Pinamamahalaan ng kliyente ang 50+ delivery truck gamit ang spreadsheets at tawag sa telepono. Madalas na-mi-miss ang maintenance, na humahantong sa breakdowns at delays. Wala silang visibility sa real-time na status ng kanilang fleet.",
-      "solution": "Bumuo kami ng custom web platform na nagbibigay ng real-time GPS tracking, automated maintenance scheduling batay sa mileage at oras, pamamahala ng driver assignment, at komprehensibong reporting.",
+      "tagline": "Matalinong pamamahala ng fleet at data",
+      "shortDescription": "Isang kumpletong web platform para pamahalaan ang mga fleet ng delivery truck at ang iskedyul ng maintenance nila.",
+      "fullDescription": "Ang Portia Grid ay isang internal tool na sadyang binuo namin para tulungan ang mga logistics company na pamahalaan ang buong fleet nila ng delivery truck. Mula sa pag-track ng lokasyon ng mga sasakyan hanggang sa pag-schedule ng maintenance, lahat ay hawak sa iisang sentralisadong dashboard.",
+      "challenge": "Pinamamahalaan ng kliyente ang 50+ na delivery truck gamit ang mga spreadsheet at tawag sa telepono. Madalas na nakakaligtaan ang maintenance, kaya nagkakaroon ng mga sira at pagkaantala. Wala silang nakikita sa real-time na kalagayan ng fleet nila.",
+      "solution": "Bumuo kami ng custom na web platform na may real-time GPS tracking, awtomatikong pag-schedule ng maintenance batay sa mileage at oras, pamamahala ng assignment ng mga driver, at kumpletong reporting.",
       "results": [
         {
           "metric": "30%",
-          "label": "Pagbaba sa breakdowns"
+          "label": "Pagbaba ng mga sira sa sasakyan"
         },
         {
           "metric": "2hrs",
-          "label": "Natipid araw-araw sa admin"
+          "label": "Natitipid araw-araw sa admin"
         },
         {
           "metric": "100%",
-          "label": "Buong fleet visibility"
+          "label": "Nakikita ang buong fleet"
         }
       ],
       "features": [
-        "Real-time GPS fleet tracking",
-        "Automated maintenance alerts",
-        "Driver assignment at scheduling",
-        "Pagsubaybay sa pagkonsumo ng gasolina",
-        "Mga log ng maintenance history",
-        "Custom reporting dashboard"
+        "Real-time GPS tracking ng fleet",
+        "Awtomatikong alerto sa maintenance",
+        "Assignment at scheduling ng driver",
+        "Pag-track ng konsumo ng gasolina",
+        "Mga log ng kasaysayan ng maintenance",
+        "Custom na reporting dashboard"
       ],
       "technologies": [
         "React",
@@ -45,9 +45,9 @@
         "Google Maps API"
       ],
       "testimonial": {
-        "quote": "Karamihan sa mga dev ay binubuo lang ang sinasabi mo; ang team na ito ay talagang nag-iisip ng logic kasama mo. Ang pagbuo ng Portia Grid ay nangailangan ng maraming tactical intelligence at kumplikadong data handling, at napakahusay nina Mohamed, Asad, at Ariyan. May magandang energy sila, alam nila ang kanilang tech nang husto, at inakay nila ako sa buong proseso. Kung gusto mo ng team na may ownership sa resulta, ito na iyon.",
+        "quote": "Karamihan ng developer ay binubuo lang ang sinasabi mo; ang team na ito, talagang pinag-iisipan kasama mo ang logic. Kinailangan ng Portia Grid ng maraming taktikal na pag-iisip at kumplikadong paghawak ng data, at talagang nakuha ito nina Mohamed, Asad, at Ariyan. Maganda ang enerhiya nila, kabisado nila ang tech nila, at ginabayan nila ako sa buong proseso. Kung gusto mo ng team na inaako ang resulta, sila na iyon.",
         "author": "Hassan",
-        "role": "CEO at Founder ng Portia Grid"
+        "role": "CEO at tagapagtatag ng Portia Grid"
       },
       "steps": [],
       "screenshots": []
@@ -57,29 +57,29 @@
       "name": "Iyat",
       "layoutTemplate": "showcase",
       "logo": "",
-      "industry": "Digital Marketing at Creative",
+      "industry": "Digital marketing at creative",
       "serviceType": "Website",
       "color": "#8B5CF6",
-      "tagline": "Portfolio ng Digital Agency",
-      "shortDescription": "Isang modern at visually rich na website para sa Iyat, isang digital agency na nagpapakita ng kanilang creative portfolio at mga serbisyo.",
-      "fullDescription": "Nagdisenyo at bumuo kami ng premium portfolio website para sa Iyat, isang digital agency na espesyalista sa creative marketing solutions.",
-      "challenge": "Kailangan ng Iyat ng propesyonal na online presence na magpapakita ng kanilang creative work at makakaakit ng bagong kliyente.",
-      "solution": "Bumuo kami ng sleek at modern na portfolio website na may smooth animations, responsive design, at engaging user experience.",
+      "tagline": "Portfolio ng isang digital agency",
+      "shortDescription": "Isang moderno at makulay na website para sa Iyat, isang digital agency na nagpapakita ng kanilang creative portfolio at mga serbisyo.",
+      "fullDescription": "Nagdisenyo at bumuo kami ng premium na portfolio website para sa Iyat, isang digital agency na espesyalista sa mga creative marketing solution.",
+      "challenge": "Kailangan ng Iyat ng propesyonal na presensya online na magpapakita ng kanilang creative na gawa at makakaakit ng mga bagong kliyente.",
+      "solution": "Bumuo kami ng mabilis at modernong portfolio website na may maayos na animation, responsive na design, at user experience na madaling sundan.",
       "results": [
         {
           "metric": "100%",
-          "label": "Custom design"
+          "label": "Custom na design"
         },
         {
           "metric": "< 2s",
-          "label": "Load time"
+          "label": "Bilis ng pag-load"
         }
       ],
       "features": [
-        "Custom portfolio design",
-        "Responsive layout",
-        "Smooth animations",
-        "Modern UI/UX"
+        "Custom na design ng portfolio",
+        "Responsive na layout",
+        "Maayos na animation",
+        "Modernong UI/UX"
       ],
       "technologies": [
         "HTML/CSS",
@@ -94,29 +94,29 @@
       "name": "Veeramangalam Juma Masjid Finance",
       "layoutTemplate": "stack",
       "logo": "",
-      "industry": "Community Finance",
+      "industry": "Pananalapi ng komunidad",
       "serviceType": "Jamia System",
       "color": "#059669",
-      "tagline": "Pananalapi ng masjid — cloud at offline sa isa",
-      "shortDescription": "Pinapalitan ng Jamia System ang mga Excel sheet at paper trail para sa gastusin ng masjid at lokal na kontribusyon.",
-      "fullDescription": "Binuo namin ang Jamia System para sa Veeramangalam Juma Masjid Finance — isang two-in-one platform sa Firebase na may buong offline support. Pinapalitan nito ang mga Excel sheet at handwritten ledger na ginagamit ng komunidad para subaybayan ang gastusin at lokal na kontribusyon.",
-      "challenge": "Sinusubaybayan ng finance team ng masjid ang mga kontribusyon ng miyembro at operational expenses sa spreadsheets at paper records. Mabagal ang reconciliation, may mga error, at walang gumagana kapag nawalan ng internet.",
-      "solution": "Binuo namin ang Jamia System — isang Firebase-backed finance platform na may offline-first sync. Ang mga kontribusyon, gastusin, at jamia ledger ay nasa isang lugar, connected man o hindi.",
+      "tagline": "Pananalapi ng masjid — cloud at offline sa iisa",
+      "shortDescription": "Pinapalitan ng Jamia System ang mga Excel sheet at papeles para sa gastusin ng masjid at mga lokal na kontribusyon.",
+      "fullDescription": "Binuo namin ang Jamia System para sa Veeramangalam Juma Masjid Finance — isang two-in-one na platform sa Firebase na may buong offline support. Pinapalitan nito ang mga Excel sheet at sulat-kamay na ledger na dating ginagamit ng komunidad para i-track ang gastusin at mga lokal na kontribusyon.",
+      "challenge": "Tina-track ng finance team ng masjid ang mga kontribusyon ng miyembro at mga gastusin sa operasyon sa mga spreadsheet at papel. Mabagal ang pagtutugma ng mga account, nakakalusot ang mga mali, at walang gumagana kapag nawalan ng internet.",
+      "solution": "Binuo namin ang Jamia System — isang finance platform na nakabatay sa Firebase na may offline-first sync. Nasa iisang lugar ang mga kontribusyon, gastusin, at jamia ledger, may koneksyon man o wala.",
       "results": [
         {
           "metric": "100%",
-          "label": "Paper-free tracking"
+          "label": "Tracking na walang papel"
         },
         {
           "metric": "2-in-1",
-          "label": "Cloud + offline"
+          "label": "Sabay na cloud + offline"
         }
       ],
       "features": [
-        "Pagsubaybay sa gastusin",
+        "Pag-track ng gastusin",
         "Ledger ng lokal na kontribusyon",
-        "Offline-first sync",
-        "Firebase backend"
+        "Offline-first na sync",
+        "Backend sa Firebase"
       ],
       "technologies": [
         "Flutter",
@@ -130,10 +130,10 @@
       "id": "malaysian-business-websites",
       "name": "Malaysian Business Websites",
       "layoutTemplate": "showcase",
-      "industry": "Corporate Web",
+      "industry": "Corporate na web",
       "serviceType": "Website",
       "color": "#F59E0B",
-      "tagline": "Mga Solusyon sa Corporate Web",
+      "tagline": "Mga solusyon sa corporate web",
       "shortDescription": "",
       "technologies": [
         "WordPress",
@@ -151,10 +151,10 @@
       "id": "bd-railway-automated-timetable",
       "name": "BD Railway Automated Timetable",
       "layoutTemplate": "timeline",
-      "industry": "Railway Operations",
-      "serviceType": "Internal Tool",
+      "industry": "Operasyon ng tren",
+      "serviceType": "Internal na tool",
       "color": "#16A34A",
-      "tagline": "Sistema ng Railway Scheduling",
+      "tagline": "Sistema ng scheduling para sa tren",
       "shortDescription": "",
       "technologies": [
         "Python",
@@ -172,19 +172,19 @@
       "id": "little-hands-lab",
       "name": "Kudooda",
       "layoutTemplate": "showcase",
-      "industry": "Mga Laruan at Retail",
-      "serviceType": "Ecommerce Store",
+      "industry": "Mga laruan at retail",
+      "serviceType": "Online na tindahan",
       "color": "#7C3AED",
-      "tagline": "Online toy store, powered by Zyrn",
-      "shortDescription": "An online toys store on Zyrn — branded catalog, checkout, and customer updates for Little Hands Lab.",
-      "fullDescription": "Little Hands Lab runs its toys storefront on Zyrn: products, payments, inventory, and order notifications in one branded commerce system — no paper trail of DMs and notebooks.",
-      "challenge": "Needed a real online toys store without drowning in chat orders and disconnected tools.",
-      "solution": "Launched on Zyrn with a branded storefront, catalog, checkout, and live customer order updates.",
+      "tagline": "Online na tindahan ng laruan, pinapagana ng Zyrn",
+      "shortDescription": "Isang online na tindahan ng laruan sa Zyrn — branded na katalogo, checkout, at mga update sa customer para sa Little Hands Lab.",
+      "fullDescription": "Pinapatakbo ng Little Hands Lab ang tindahan nito ng laruan sa Zyrn: mga produkto, bayad, inventory, at notification ng order sa iisang branded na commerce system — wala nang kalat na DM at notebook.",
+      "challenge": "Kailangan nila ng totoong online na tindahan ng laruan nang hindi nalulunod sa mga order sa chat at sa mga tool na hindi magkakakonekta.",
+      "solution": "Inilunsad sa Zyrn na may branded na storefront, katalogo, checkout, at live na update ng order para sa mga customer.",
       "technologies": [
         "Zyrn",
-        "Catalog",
+        "Katalogo",
         "Checkout",
-        "Notifications"
+        "Mga notification"
       ],
       "steps": [],
       "screenshots": [],
@@ -194,17 +194,17 @@
       "id": "faruk-technology-store",
       "name": "Faruk Technology Store",
       "layoutTemplate": "showcase",
-      "industry": "Retail at Telecom",
-      "serviceType": "Inventory Management",
+      "industry": "Retail at telecom",
+      "serviceType": "Pamamahala ng inventory",
       "color": "#10B981",
-      "tagline": "Mga operasyon ng tindahan sa Invexo",
-      "shortDescription": "Gumagamit ang Faruk Technology Store ng Invexo para sa inventory, POS, at araw-araw na operasyon ng tindahan.",
-      "fullDescription": "Pinapatakbo ng Faruk Technology Store ang stock, sales, at multi-location clarity sa pamamagitan ng Invexo — inventory management na ginawa para sa maliliit na tindahan.",
-      "challenge": "Kailangan ng malinaw na inventory at sales tracking nang walang enterprise complexity.",
-      "solution": "Na-deploy ang Invexo para sa stock, POS, at araw-araw na shop dashboards.",
+      "tagline": "Operasyon ng tindahan sa Invexo",
+      "shortDescription": "Ginagamit ng Faruk Technology Store ang Invexo para sa inventory, POS, at araw-araw na operasyon ng tindahan.",
+      "fullDescription": "Sa Invexo pinapatakbo ng Faruk Technology Store ang stock, benta, at malinaw na pagtingin sa maraming lokasyon — pamamahala ng inventory na binuo para sa maliliit na tindahan.",
+      "challenge": "Kailangan nila ng malinaw na pag-track ng inventory at benta nang walang komplikasyon ng enterprise software.",
+      "solution": "In-deploy namin ang Invexo para sa stock, POS, at mga araw-araw na dashboard ng tindahan.",
       "technologies": [
         "Invexo",
-        "Web Dashboard"
+        "Dashboard sa web"
       ],
       "steps": [],
       "screenshots": [],

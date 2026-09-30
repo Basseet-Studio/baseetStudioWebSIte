@@ -2,136 +2,127 @@
   "id": "cloud",
   "slug": "cloud",
   "title": "کلاؤڈ اور DevOps",
-  "tagline": "تیزی سے ship کریں، اطمینان سے سوئیں",
+  "tagline": "جلدی لانچ کریں، بے فکر سوئیں",
   "color": "#0EA5E9",
   "gradient": "linear-gradient(135deg, #0369A1 0%, #38BDF8 100%)",
   "icon": "fas fa-cloud",
-  "shortDescription": "Scalable infrastructure and deployment",
+  "shortDescription": "بڑھنے کے قابل انفراسٹرکچر اور ڈیپلائمنٹ",
   "hero": {
-    "title": "تیزی سے Ship کریں، اطمینان سے سوئیں",
-    "subtitle": "AWS، GCP، Cloudflare cloud platforms — IaC، observability، release process۔",
-    "cta_primary": "اپna infra review کریں",
+    "title": "جلدی لانچ کریں، بے فکر سوئیں",
+    "subtitle": "بڑھنے کے قابل انفراسٹرکچر، CI/CD اور مانیٹرنگ، تاکہ نئی ریلیز ایسا واقعہ نہ رہے جس سے سب گھبرائیں۔",
+    "cta_primary": "میرے انفراسٹرکچر کا جائزہ لیں",
     "cta_primary_link": "/contact/",
-    "cta_secondary": "Stack دیکھیں",
+    "cta_secondary": "ٹیکنالوجی دیکھیں",
     "cta_secondary_link": "#tech"
   },
   "metrics": [
-    {
-      "value": "99.9%",
-      "label": "Target uptime SLA"
-    },
-    {
-      "value": "<5min",
-      "label": "Mean time to rollback"
-    },
-    {
-      "value": "0",
-      "label": "Manual deploys"
-    }
+    { "value": "99.9%", "label": "اپ ٹائم SLA کا ہدف" },
+    { "value": "<5 منٹ", "label": "پچھلے ورژن پر واپسی کا اوسط وقت" },
+    { "value": "0", "label": "ہاتھ سے کیے گئے ڈیپلائے" }
   ],
   "subServices": [
     {
       "id": "cloud-migration",
-      "name": "کلاؤڈ مائیگریشن",
+      "name": "کلاؤڈ پر منتقلی",
       "icon": "fas fa-cloud-upload-alt",
-      "desc": "سسٹمز محفوظ طریقے سے کلاؤڈ پر",
-      "longDesc": "لفٹ یا ری فیکٹر — زیرو ڈاؤن ٹائم کٹ اوور، متوازی رن، اور رول بیک۔",
+      "desc": "اپنے سسٹمز محفوظ طریقے سے کلاؤڈ پر منتقل کریں",
+      "longDesc": "جوں کا توں منتقل کرنا، بہتر بنا کر منتقل کرنا، یا نئے سرے سے بنانا — یہ اس پر منحصر ہے کہ آپ کے سسٹم کو اصل میں کیا چاہیے۔ ہم پروڈکشن سسٹمز کو بغیر کسی رکاوٹ کے منتقل کرتے ہیں: منتقلی کا واضح منصوبہ، کچھ عرصہ دونوں نظام ساتھ ساتھ، اور اگر کچھ گڑبڑ ہو تو واپسی کا صاف راستہ۔",
       "bullets": [
-        "AWS، GCP، Azure، Cloudflare",
-        "زیرو ڈاؤن ٹائم کٹ اوور",
-        "لاگت اور سائز",
-        "نیٹ ورکنگ، IAM، سیکرٹس"
+        "AWS، GCP، Azure اور Cloudflare",
+        "دونوں نظام ساتھ چلا کر بغیر رکاوٹ کے منتقلی",
+        "اخراجات اور درست سائز کا جائزہ",
+        "نیٹ ورکنگ، IAM اور خفیہ معلومات کی منتقلی"
       ],
-      "imageLabel": "کلاؤڈ مائیگریشن ڈایاگرام"
+      "imageLabel": "کلاؤڈ منتقلی کے آرکیٹیکچر کا خاکہ"
     },
     {
       "id": "cicd",
       "name": "CI/CD پائپ لائنز",
       "icon": "fas fa-code-branch",
-      "desc": "آٹومیٹڈ ٹیسٹ اور ڈیپلائے",
-      "longDesc": "بگ پکڑنے والی پائپ لائنز، ڈیولپر نہیں۔ ہر کمیٹ پر چیک، ٹیسٹ، اسکین، سائن، ڈیپلائے۔",
+      "desc": "خودکار ٹیسٹنگ اور ڈیپلائمنٹ",
+      "longDesc": "ہم ایسی پائپ لائنز بناتے ہیں جو ڈیولپر کو نہیں، بگ کو پکڑیں۔ ہر کمٹ پر ٹائپ چیک، لنٹ، ٹیسٹ، اسکین، سائن اور ڈیپلائے — مرحلہ وار رول آؤٹ، خرابی آنے پر خودکار واپسی، اور کچھ غلط ہو جائے تو ایک کلک میں پچھلا ورژن۔",
       "bullets": [
-        "GitHub Actions، GitLab CI",
-        "پروگریسو رول آؤٹس",
-        "ریگریشن پر آٹو رول بیک",
-        "سائنڈ ریلیسز"
+        "GitHub Actions، GitLab CI اور Buildkite",
+        "مرحلہ وار رول آؤٹ اور فیچر فلیگز",
+        "خرابی آنے پر خودکار واپسی",
+        "سائن شدہ، تصدیق شدہ اور SBOM کے ساتھ ریلیزز"
       ],
-      "imageLabel": "CI/CD ویژول"
+      "imageLabel": "CI/CD پائپ لائن کا خاکہ"
     },
     {
       "id": "server-management",
       "name": "سرور مینجمنٹ",
       "icon": "fas fa-server",
-      "desc": "انفراسٹرکچر ہموار چلتا رہے",
-      "longDesc": "K8s، Lambda یا سادہ VPS — بورنگ مگر اہم حصے ہم چلاتے ہیں۔",
+      "desc": "اپنا انفراسٹرکچر بغیر رکاوٹ چلتا رکھیں",
+      "longDesc": "منیجڈ Kubernetes، AWS Lambda پر سرور لیس، یا ایک سادہ سا VPS — ہم وہ غیر دلچسپ مگر اہم حصے چلاتے ہیں تاکہ آپ اپنی پروڈکٹ پر توجہ دے سکیں۔ اپ ڈیٹس، اسکیلنگ، بیک اپس، اور کچھ خراب ہو جائے تو 24/7 آن کال ٹیم۔",
       "bullets": [
-        "Kubernetes، ECS، Lambda",
-        "پیچ، بیک اپ، کیپیسٹی",
-        "حقیقی انجینئر آن کال",
-        "پوسٹ مارٹمز جو کچھ بدلیں"
+        "Kubernetes، ECS اور Lambda",
+        "اپ ڈیٹس، بیک اپ اور گنجائش کا انتظام",
+        "24/7 آن کال، ایک اصل انجینئر کے ساتھ",
+        "واقعات کے بعد ایسے جائزے جن سے واقعی کچھ بدلے"
       ],
-      "imageLabel": "سرور مانیٹرنگ"
+      "imageLabel": "سرور مانیٹرنگ ڈیش بورڈ"
     },
     {
       "id": "security-audits",
-      "name": "سیکیورٹی آڈٹس",
+      "name": "سیکیورٹی کا جائزہ",
       "icon": "fas fa-shield-alt",
-      "desc": "کمزوریاں ڈھونڈیں اور ٹھیک کریں",
-      "longDesc": "خوفناک رپورٹس نہیں — بند CVEs۔ ترجیحی فکس پلان، PRs، اور ری ٹیسٹ۔ SOC 2، ISO، UAE PDPL۔",
+      "desc": "کمزوریاں تلاش کریں اور انہیں ٹھیک کریں",
+      "longDesc": "ہم ڈرانے والی رپورٹس نہیں بیچتے — ہم ٹھیک کی گئی CVE دیتے ہیں۔ ہمارے سیکیورٹی جائزے کا اختتام ترجیحی بنیاد پر اصلاح کے منصوبے، ٹریک کیے گئے پُل ریکویسٹس کے ایک سیٹ، اور دوبارہ جانچ پر ہوتا ہے۔ ہم SOC 2، ISO 27001 اور متحدہ عرب امارات کے PDPL کے ساتھ کام کرتے ہیں۔",
       "bullets": [
-        "ویب، API، کلاؤڈ کنفگ",
-        "پین ٹیسٹ رپورٹ",
-        "SOC 2 اور ISO تیار",
-        "PDPL اور ڈیٹا ریزیڈنسی"
+        "ویب، API اور کلاؤڈ کنفیگریشن کا جائزہ",
+        "پینیٹریشن ٹیسٹنگ، ایک اصل رپورٹ کے ساتھ",
+        "SOC 2 اور ISO 27001 کی تیاری",
+        "متحدہ عرب امارات کے PDPL اور ڈیٹا کے مقام کا جائزہ"
       ],
-      "imageLabel": "سیکیورٹی فائنڈنگز"
+      "imageLabel": "سیکیورٹی جائزے کے نتائج کا ڈیش بورڈ"
     }
   ],
   "process": [
     {
       "number": "01",
-      "title": "Assess",
-      "desc": "Architecture review, cost audit, and reliability scorecard",
+      "title": "جائزہ",
+      "desc": "آرکیٹیکچر کا جائزہ، اخراجات کی جانچ، اور بھروسے کا اسکور کارڈ",
       "icon": "fas fa-magnifying-glass"
     },
     {
       "number": "02",
-      "title": "Plan",
-      "desc": "Migration or hardening plan, sized in weeks and cost",
+      "title": "منصوبہ",
+      "desc": "منتقلی یا مضبوطی کا منصوبہ، ہفتوں اور لاگت کے حساب سے",
       "icon": "fas fa-map"
     },
     {
       "number": "03",
-      "title": "Build",
-      "desc": "IaC, pipelines, and observability — committed and reviewed",
+      "title": "تعمیر",
+      "desc": "IaC، پائپ لائنز اور مانیٹرنگ — کمٹ اور ریویو شدہ",
       "icon": "fas fa-code"
     },
     {
       "number": "04",
-      "title": "Operate",
-      "desc": "Handover with runbooks, dashboards, and an on-call rotation",
+      "title": "چلانا",
+      "desc": "رن بکس، ڈیش بورڈز اور آن کال شیڈول کے ساتھ حوالگی",
       "icon": "fas fa-headset"
     }
   ],
   "deliverables": [
     {
-      "title": "IaC repository",
-      "description": "Terraform or Pulumi, committed in your repo, peer-reviewed, and applied from CI.",
+      "title": "IaC ریپوزٹری",
+      "description": "Terraform یا Pulumi، آپ کی ریپوزٹری میں کمٹ شدہ، ساتھیوں کی جانب سے ریویو شدہ، اور CI سے لاگو۔",
       "icon": "fas fa-code"
     },
     {
-      "title": "Pipeline",
-      "description": "Build, test, sign, and deploy on every commit — with progressive rollouts.",
+      "title": "پائپ لائن",
+      "description": "ہر کمٹ پر بلڈ، ٹیسٹ، سائن اور ڈیپلائے — مرحلہ وار رول آؤٹ کے ساتھ۔",
       "icon": "fas fa-code-branch"
     },
     {
-      "title": "Observability",
-      "description": "Metrics, logs, traces, and alerts wired to Slack or PagerDuty — no console-diving.",
+      "title": "مانیٹرنگ",
+      "description": "میٹرکس، لاگز، ٹریسز اور الرٹس، Slack یا PagerDuty سے جڑے ہوئے — کنسول میں کھوج لگانے کی ضرورت نہیں۔",
       "icon": "fas fa-chart-line"
     },
     {
-      "title": "Runbooks & handover",
-      "description": "A real runbook for the on-call, plus a 30-day post-handover window for tweaks.",
+      "title": "رن بکس اور حوالگی",
+      "description": "آن کال ٹیم کے لیے ایک اصل رن بک، اور حوالگی کے بعد 30 دن تک چھوٹی موٹی تبدیلیوں کی سہولت۔",
       "icon": "fas fa-book"
     }
   ],
@@ -151,20 +142,20 @@
   ],
   "faq": [
     {
-      "question": "Which cloud do you recommend?",
-      "answer": "It depends on your existing commitments, regulatory requirements, and team. We are agnostic across AWS, GCP, Azure, and Cloudflare. We will recommend the right one for your workload after a short architecture review."
+      "question": "آپ کون سا کلاؤڈ تجویز کرتے ہیں؟",
+      "answer": "یہ آپ کے موجودہ معاہدوں، قانونی تقاضوں اور ٹیم پر منحصر ہے۔ ہم AWS، GCP، Azure اور Cloudflare میں سے کسی کی طرف جھکاؤ نہیں رکھتے۔ ایک مختصر آرکیٹیکچر جائزے کے بعد ہم آپ کے کام کے لیے صحیح انتخاب تجویز کریں گے۔"
     },
     {
-      "question": "Can you take over an existing cloud setup?",
-      "answer": "Yes. We start with a paid audit — architecture, cost, security, and reliability scorecard — then propose a phased plan. We have rescued accounts with surprise bills, manual deploys, and a single point of failure or two."
+      "question": "کیا آپ کسی موجودہ کلاؤڈ سیٹ اپ کو سنبھال سکتے ہیں؟",
+      "answer": "جی ہاں۔ ہم ایک معاوضے والے جائزے سے شروع کرتے ہیں — آرکیٹیکچر، اخراجات، سیکیورٹی اور بھروسے کا اسکور کارڈ — پھر مرحلہ وار منصوبہ تجویز کرتے ہیں۔ ہم ایسے اکاؤنٹس بچا چکے ہیں جن میں اچانک آنے والے بل، ہاتھ سے کیے گئے ڈیپلائے، اور ایک آدھ ایسی جگہ تھی جس کے بیٹھنے سے سب کچھ رک جاتا۔"
     },
     {
-      "question": "Do you offer 24/7 on-call?",
-      "answer": "We do. We pair with your team during business hours and own a real on-call rotation outside it. Response times are documented up front, and we run a quarterly chaos test to keep the runbooks honest."
+      "question": "کیا آپ 24/7 آن کال سپورٹ دیتے ہیں؟",
+      "answer": "جی ہاں۔ دفتری اوقات میں ہم آپ کی ٹیم کے ساتھ مل کر کام کرتے ہیں، اور ان کے باہر آن کال کی پوری ذمہ داری ہماری ہوتی ہے۔ جواب دینے کے اوقات پہلے سے لکھ کر طے ہوتے ہیں، اور ہم ہر سہ ماہی جان بوجھ کر خرابی پیدا کرنے کا ٹیسٹ کرتے ہیں تاکہ رن بکس درست رہیں۔"
     },
     {
-      "question": "How do you handle data residency in the UAE?",
-      "answer": "All major providers now have UAE regions, and we design for residency from the first diagram. We have shipped UAE-only deployments for healthcare, education, and government clients and can walk you through the trade-offs."
+      "question": "متحدہ عرب امارات میں ڈیٹا کے مقام کا مسئلہ آپ کیسے حل کرتے ہیں؟",
+      "answer": "اب تمام بڑے کلاؤڈ فراہم کنندگان کے متحدہ عرب امارات میں ریجنز ہیں، اور ہم پہلے خاکے سے ہی ڈیٹا کو ملک کے اندر رکھنے کے حساب سے ڈیزائن کرتے ہیں۔ ہم صحت، تعلیم اور سرکاری کلائنٹس کے لیے صرف متحدہ عرب امارات کے اندر چلنے والے سسٹمز لانچ کر چکے ہیں، اور آپ کو ہر فیصلے کے فائدے اور نقصان تفصیل سے سمجھا سکتے ہیں۔"
     }
   ]
 }

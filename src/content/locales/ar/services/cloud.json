@@ -2,136 +2,127 @@
   "id": "cloud",
   "slug": "cloud",
   "title": "السحابة وDevOps",
-  "tagline": "أطلق أسرع، نم باطمئنان",
+  "tagline": "أطلق أسرع، ونم مطمئناً",
   "color": "#0EA5E9",
   "gradient": "linear-gradient(135deg, #0369A1 0%, #38BDF8 100%)",
   "icon": "fas fa-cloud",
-  "shortDescription": "Scalable infrastructure and deployment",
+  "shortDescription": "بنية تحتية قابلة للتوسع ونشر مؤتمت",
   "hero": {
-    "title": "أطلق أسرع، نم باطمئنان",
-    "subtitle": "أطلق أسرع، نم باطمئنان. بنية تحتية قابلة للتوسع وCI/CD ومراقبة حتى تتوقف الإصدارات عن أن تكون حدثاً يقلق الجميع.",
-    "cta_primary": "راجع بنيتك",
+    "title": "أطلق أسرع، ونم مطمئناً",
+    "subtitle": "بنية تحتية قابلة للتوسع، وCI/CD، ومراقبة — حتى لا يبقى كل إصدار جديد حدثاً يتوتر الجميع بسببه.",
+    "cta_primary": "راجعوا بنيتي التحتية",
     "cta_primary_link": "/contact/",
-    "cta_secondary": "شاهد التقنيات",
+    "cta_secondary": "تعرّف على التقنيات",
     "cta_secondary_link": "#tech"
   },
   "metrics": [
-    {
-      "value": "99.9%",
-      "label": "Target uptime SLA"
-    },
-    {
-      "value": "<5min",
-      "label": "Mean time to rollback"
-    },
-    {
-      "value": "0",
-      "label": "Manual deploys"
-    }
+    { "value": "99.9%", "label": "نسبة التشغيل المستهدفة في اتفاقية الخدمة" },
+    { "value": "<5 دقائق", "label": "متوسط زمن التراجع عن الإصدار" },
+    { "value": "0", "label": "عمليات نشر يدوية" }
   ],
   "subServices": [
     {
       "id": "cloud-migration",
       "name": "الانتقال إلى السحابة",
       "icon": "fas fa-cloud-upload-alt",
-      "desc": "انقل أنظمتك بأمان",
-      "longDesc": "رفع أو إعادة هيكلة حسب ما يحتاجه العمل. ننتقل بقطع دون توقف، وتشغيل موازٍ، ومسار رجوع إن انحرف شيء.",
+      "desc": "انقل أنظمتك إلى السحابة بأمان",
+      "longDesc": "نقل كما هو، أو إعادة هيكلة، أو إعادة بناء — بحسب ما يحتاجه نظامك فعلاً. ننقل أنظمة التشغيل الفعلي بخطة تحويل بلا توقف، وتشغيل متوازٍ، ومسار تراجع واضح إن سار أي شيء على غير المتوقع.",
       "bullets": [
-        "AWS وGCP وأزور وكلاودفلير",
-        "قطع دون توقف مع تشغيل موازٍ",
-        "تقييم تكلفة وحجم مناسب",
-        "شبكات وصلاحيات وأسرار"
+        "AWS وGCP وAzure وCloudflare",
+        "تحويل بلا توقف مع تشغيل متوازٍ",
+        "تقييم للتكلفة ولحجم الموارد المناسب",
+        "نقل إعدادات الشبكات وIAM والأسرار"
       ],
-      "imageLabel": "مخطط انتقال سحابي"
+      "imageLabel": "مخطط هيكلة الانتقال إلى السحابة"
     },
     {
       "id": "cicd",
-      "name": "خطوط CI/CD",
+      "name": "مسارات CI/CD",
       "icon": "fas fa-code-branch",
-      "desc": "اختبار ونشر آلي",
-      "longDesc": "خطوط تمسك الخطأ لا المطوّر. فحص واختبار ومسح وتوقيع ونشر مع كل إيداع — وإطلاق متدرج ورجوع تلقائي.",
+      "desc": "اختبار ونشر مؤتمتان",
+      "longDesc": "نبني مسارات تكتشف الخلل قبل أن يكتشفه المطوّر. فحص الأنواع، وتدقيق الكود، والاختبار، والفحص الأمني، والتوقيع، والنشر مع كل تعديل — مع طرح تدريجي، وتراجع تلقائي عند ظهور أي تراجع في الأداء، وإلغاء بنقرة واحدة حين تسوء الأمور.",
       "bullets": [
-        "GitHub Actions وGitLab CI",
-        "إطلاق متدرج وأعلام ميزات",
-        "رجوع تلقائي عند التراجع",
-        "إصدارات موقّعة مع قائمة مكونات"
+        "GitHub Actions وGitLab CI وBuildkite",
+        "طرح تدريجي ومفاتيح تفعيل الميزات",
+        "تراجع تلقائي عند ظهور أي خلل",
+        "إصدارات موقّعة وموثّقة ومرفقة بقائمة SBOM"
       ],
-      "imageLabel": "تصور خط CI/CD"
+      "imageLabel": "عرض مرئي لمسار CI/CD"
     },
     {
       "id": "server-management",
       "name": "إدارة الخوادم",
       "icon": "fas fa-server",
-      "desc": "أبقِ البنية تعمل بهدوء",
-      "longDesc": "كوبيرنتس أو لامبدا أو VPS بسيط — ندير الجزء الممل والحاسم: تحديث ونسخ احتياطي وتوسّع.",
+      "desc": "أبقِ بنيتك التحتية تعمل بسلاسة",
+      "longDesc": "Kubernetes مُدار، أو حوسبة دون خوادم على AWS Lambda، أو خادم VPS متواضع — نتولى الأجزاء المملة لكن الحساسة لتتفرغ أنت للمنتج. التحديثات الأمنية، والتوسع، والنسخ الاحتياطي، ومناوبة على مدار الساعة حين يحدث خلل.",
       "bullets": [
-        "كوبيرنتس وECS ولامبدا",
-        "تحديث ونسخ وسعة",
-        "مناوبة مهندس حقيقي",
-        "مراجعات بعد الحادث تغيّر شيئاً"
+        "Kubernetes وECS وLambda",
+        "إدارة التحديثات والنسخ الاحتياطي والسعة",
+        "مناوبة على مدار الساعة مع مهندس حقيقي",
+        "مراجعات ما بعد الأعطال تُحدث تغييراً فعلياً"
       ],
-      "imageLabel": "لوحة مراقبة خوادم"
+      "imageLabel": "لوحة مراقبة الخوادم"
     },
     {
       "id": "security-audits",
-      "name": "تدقيق أمني",
+      "name": "التدقيق الأمني",
       "icon": "fas fa-shield-alt",
       "desc": "اكتشف الثغرات وأصلحها",
-      "longDesc": "لا نبيع تقارير مخيفة — نبيع ثغرات أُغلقت. التدقيق ينتهي بخطة إصلاح وتتبع طلبات سحب وإعادة اختبار. نعمل مع SOC 2 وISO وPDPL الإمارات.",
+      "longDesc": "لا نبيع تقارير مخيفة — نبيع ثغرات CVE مُصلحة. ينتهي تدقيقنا الأمني بخطة معالجة مرتبة حسب الأولوية، ومجموعة طلبات دمج (Pull Requests) قابلة للتتبع، واختبار ثانٍ للتأكد. نعمل وفق SOC 2 وISO 27001 وقانون حماية البيانات الشخصية في الإمارات (PDPL).",
       "bullets": [
-        "تدقيق ويب وواجهة وسحابة",
-        "اختبار اختراق بتقرير حقيقي",
-        "جاهزية SOC 2 وISO 27001",
-        "مراجعة PDPL ومكان البيانات"
+        "تدقيق الويب وAPI وإعدادات السحابة",
+        "اختبار اختراق مع تقرير حقيقي",
+        "الجاهزية لـ SOC 2 وISO 27001",
+        "مراجعة الامتثال لـ PDPL الإماراتي وتوطين البيانات"
       ],
-      "imageLabel": "لوحة نتائج تدقيق أمني"
+      "imageLabel": "لوحة نتائج التدقيق الأمني"
     }
   ],
   "process": [
     {
       "number": "01",
-      "title": "Assess",
-      "desc": "Architecture review, cost audit, and reliability scorecard",
+      "title": "التقييم",
+      "desc": "مراجعة للهيكلة، وتدقيق للتكاليف، وبطاقة تقييم للاعتمادية",
       "icon": "fas fa-magnifying-glass"
     },
     {
       "number": "02",
-      "title": "Plan",
-      "desc": "Migration or hardening plan, sized in weeks and cost",
+      "title": "التخطيط",
+      "desc": "خطة انتقال أو تحصين، محددة بالأسابيع والتكلفة",
       "icon": "fas fa-map"
     },
     {
       "number": "03",
-      "title": "Build",
-      "desc": "IaC, pipelines, and observability — committed and reviewed",
+      "title": "البناء",
+      "desc": "البنية التحتية ككود، والمسارات، والمراقبة — محفوظة في المستودع ومُراجعة",
       "icon": "fas fa-code"
     },
     {
       "number": "04",
-      "title": "Operate",
-      "desc": "Handover with runbooks, dashboards, and an on-call rotation",
+      "title": "التشغيل",
+      "desc": "تسليم مع أدلة تشغيل، ولوحات متابعة، وجدول مناوبة",
       "icon": "fas fa-headset"
     }
   ],
   "deliverables": [
     {
-      "title": "IaC repository",
-      "description": "Terraform or Pulumi, committed in your repo, peer-reviewed, and applied from CI.",
+      "title": "مستودع البنية التحتية ككود",
+      "description": "Terraform أو Pulumi، محفوظ في مستودعك، ومُراجَع من الزملاء، ويُطبَّق من خلال CI.",
       "icon": "fas fa-code"
     },
     {
-      "title": "Pipeline",
-      "description": "Build, test, sign, and deploy on every commit — with progressive rollouts.",
+      "title": "مسار النشر",
+      "description": "بناء واختبار وتوقيع ونشر مع كل تعديل — مع طرح تدريجي.",
       "icon": "fas fa-code-branch"
     },
     {
-      "title": "Observability",
-      "description": "Metrics, logs, traces, and alerts wired to Slack or PagerDuty — no console-diving.",
+      "title": "المراقبة",
+      "description": "مقاييس، وسجلات، وتتبّع للطلبات، وتنبيهات مربوطة بـ Slack أو PagerDuty — دون البحث في لوحات التحكم.",
       "icon": "fas fa-chart-line"
     },
     {
-      "title": "Runbooks & handover",
-      "description": "A real runbook for the on-call, plus a 30-day post-handover window for tweaks.",
+      "title": "أدلة التشغيل والتسليم",
+      "description": "دليل تشغيل حقيقي لفريق المناوبة، إضافة إلى 30 يوماً بعد التسليم للتعديلات.",
       "icon": "fas fa-book"
     }
   ],
@@ -151,20 +142,20 @@
   ],
   "faq": [
     {
-      "question": "Which cloud do you recommend?",
-      "answer": "It depends on your existing commitments, regulatory requirements, and team. We are agnostic across AWS, GCP, Azure, and Cloudflare. We will recommend the right one for your workload after a short architecture review."
+      "question": "أي مزوّد سحابي تنصحون به؟",
+      "answer": "يعتمد ذلك على التزاماتك الحالية، ومتطلباتك التنظيمية، وفريقك. لا نتحيّز لأي من AWS أو GCP أو Azure أو Cloudflare. سنوصيك بالأنسب لطبيعة عملك بعد مراجعة قصيرة للهيكلة."
     },
     {
-      "question": "Can you take over an existing cloud setup?",
-      "answer": "Yes. We start with a paid audit — architecture, cost, security, and reliability scorecard — then propose a phased plan. We have rescued accounts with surprise bills, manual deploys, and a single point of failure or two."
+      "question": "هل يمكنكم استلام بيئة سحابية قائمة؟",
+      "answer": "نعم. نبدأ بتدقيق مدفوع — بطاقة تقييم للهيكلة والتكلفة والأمان والاعتمادية — ثم نقترح خطة على مراحل. سبق أن أنقذنا حسابات فيها فواتير مفاجئة، وعمليات نشر يدوية، ونقطة فشل واحدة أو اثنتان."
     },
     {
-      "question": "Do you offer 24/7 on-call?",
-      "answer": "We do. We pair with your team during business hours and own a real on-call rotation outside it. Response times are documented up front, and we run a quarterly chaos test to keep the runbooks honest."
+      "question": "هل تقدّمون مناوبة على مدار الساعة؟",
+      "answer": "نعم. نعمل جنباً إلى جنب مع فريقك في ساعات العمل، ونتولى جدول مناوبة حقيقياً خارجها. أزمنة الاستجابة موثّقة مسبقاً، ونجري اختبار فوضى كل ربع سنة لنتأكد أن أدلة التشغيل ما زالت صحيحة."
     },
     {
-      "question": "How do you handle data residency in the UAE?",
-      "answer": "All major providers now have UAE regions, and we design for residency from the first diagram. We have shipped UAE-only deployments for healthcare, education, and government clients and can walk you through the trade-offs."
+      "question": "كيف تتعاملون مع توطين البيانات في الإمارات؟",
+      "answer": "لدى جميع المزوّدين الكبار الآن مناطق خوادم في الإمارات، ونصمم لتوطين البيانات منذ أول مخطط. سبق أن أطلقنا أنظمة مستضافة داخل الإمارات فقط لعملاء في الرعاية الصحية والتعليم والقطاع الحكومي، ويمكننا أن نشرح لك المفاضلات بوضوح."
     }
   ]
 }

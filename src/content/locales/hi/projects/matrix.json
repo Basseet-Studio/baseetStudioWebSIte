@@ -2,12 +2,12 @@
   "name": "Matrix",
   "slug": "matrix",
   "type": "branded",
-  "tagline": "एक platform। आपके business का हर हिस्सा। Tool fatigue शून्य।",
-  "description": "## About Matrix\n\nMatrix is a high-performance, all-in-one SaaS workspace built to replace the patchwork of separate tools most teams juggle. Projects, people, customers, and finances all live in a single, cohesive ecosystem — and the data flows between them.\n\n### The Problem We Solve\n\nMost growing teams stitch together 5–10 different subscriptions: a CRM here, a task manager there, invoicing somewhere else, docs in yet another tab. The result is **tool fatigue**, broken integrations, and data trapped in silos. Matrix exists to eliminate that — one login, one interface, one source of truth.\n\n### Five Modules in One Workspace\n\n- **📊 Project & Task Management** — Kanban workflow with drag-and-drop boards, customizable columns and priorities, task hierarchies with subtasks and full parent–child relationships, real-time collaboration with instant updates across the team.\n- **🤝 Customer Relationship Management (CRM)** — Centralized contact database for clients, leads, and stakeholders, a sales pipeline that tracks every customer from first lead to closed deal, and full engagement tracking with interaction history and status monitoring.\n- **👥 Human Resource Management (HRM)** — Employee directory with detailed records, full lifecycle management from onboarding through performance tracking, and granular workspace roles for precise permission control.\n- **🧾 Professional Invoicing** — Generate professional invoices with built-in **Stripe** integration, automated status tracking (Draft, Paid, Overdue) updated in real time, and itemized billing with detailed line items, tax, and quantity calculations.\n- **📄 Document & Knowledge Management** — Collaborative docs with internal and external sharing on the same document, full version control that tracks every change and reverts to any previous version, and granular public/private access control.\n\n### Enterprise-Grade from Day One\n\n- **🔀 Multi-Workspace Support** — Seamlessly switch between organizations or departments.\n- **📜 Audit Logging** — Complete traceability of actions for security and compliance.\n- **🔒 Secure Multi-Tenancy** — Hard data isolation between workspaces.\n- **📈 Scalable Architecture** — Built for horizontal scaling from the ground up.\n\n### Built on a Modern, High-Performance Stack\n\nA stack chosen for **speed, security, and developer experience** — and one that translates into a noticeably faster product for end users.\n\n- **Frontend** — Next.js 15 (App Router) + TypeScript\n- **Backend** — Bun + Elysia.js (ultra-low latency)\n- **Database** — PostgreSQL via Prisma ORM\n- **Caching** — Redis (sessions + performance)\n- **Auth** — Better Auth (RBAC + multi-tenancy)\n- **UI/UX** — Tailwind CSS + shadcn/ui\n\n### Why Matrix\n\n- **Replace 5+ tools** with one subscription.\n- **Stop losing context** between modules — data flows, not fragments.\n- **Built to scale** with multi-workspace and multi-tenant architecture from day one.\n- **Modern UX** — clean, accessible, fast.\n\n*Developed with a focus on rich aesthetics, performance, and developer experience.*\n",
+  "tagline": "एक प्लेटफ़ॉर्म। आपके कारोबार का हर हिस्सा। टूल्स की थकान से छुटकारा।",
+  "description": "## Matrix के बारे में\n\nMatrix एक तेज़, ऑल-इन-वन SaaS वर्कस्पेस है, जिसे उन अलग-अलग टूल्स की जगह लेने के लिए बनाया गया है जिन्हें ज़्यादातर टीमें एक साथ संभालती हैं। प्रोजेक्ट, लोग, ग्राहक और वित्त — सब एक ही सुसंगत इकोसिस्टम में रहते हैं, और डेटा इनके बीच अपने-आप आता-जाता है।\n\n### हम कौन-सी समस्या हल करते हैं\n\nज़्यादातर बढ़ती टीमें 5–10 अलग-अलग सब्सक्रिप्शन जोड़-तोड़कर काम चलाती हैं: कहीं CRM, कहीं टास्क मैनेजर, इनवॉइसिंग कहीं और, और डॉक्स किसी दूसरे टैब में। नतीजा होता है **टूल्स की थकान**, टूटे हुए इंटीग्रेशन और अलग-अलग खानों में फँसा डेटा। Matrix इसी को ख़त्म करने के लिए है — एक लॉगिन, एक इंटरफ़ेस, सच्चाई का एक ही स्रोत।\n\n### एक वर्कस्पेस में पाँच मॉड्यूल\n\n- **📊 प्रोजेक्ट और टास्क मैनेजमेंट** — ड्रैग-एंड-ड्रॉप बोर्ड वाला Kanban वर्कफ़्लो, अपनी ज़रूरत के हिसाब से कॉलम और प्राथमिकताएँ, सबटास्क और पूरे पैरेंट–चाइल्ड रिश्तों वाली टास्क हायरार्की, और पूरी टीम में तुरंत अपडेट होने वाला रियल-टाइम सहयोग।\n- **🤝 कस्टमर रिलेशनशिप मैनेजमेंट (CRM)** — क्लाइंट, लीड और स्टेकहोल्डर्स के लिए एक केंद्रीय कॉन्टैक्ट डेटाबेस, पहली लीड से डील पक्की होने तक हर ग्राहक को ट्रैक करने वाली सेल्स पाइपलाइन, और बातचीत के इतिहास व स्थिति की निगरानी के साथ पूरी एंगेजमेंट ट्रैकिंग।\n- **👥 ह्यूमन रिसोर्स मैनेजमेंट (HRM)** — विस्तृत रिकॉर्ड वाली कर्मचारी डायरेक्टरी, ऑनबोर्डिंग से लेकर परफ़ॉर्मेंस ट्रैकिंग तक पूरे सफ़र का मैनेजमेंट, और अनुमतियों पर सटीक नियंत्रण के लिए बारीक वर्कस्पेस रोल।\n- **🧾 प्रोफ़ेशनल इनवॉइसिंग** — बिल्ट-इन **Stripe** इंटीग्रेशन के साथ प्रोफ़ेशनल इनवॉइस बनाएँ, रियल टाइम में अपडेट होने वाली ऑटोमैटिक स्टेटस ट्रैकिंग (ड्राफ़्ट, भुगतान हो गया, बकाया), और लाइन आइटम, टैक्स व मात्रा की गणना के साथ आइटम-वार बिलिंग।\n- **📄 डॉक्यूमेंट और नॉलेज मैनेजमेंट** — साथ मिलकर लिखे जाने वाले डॉक्स, जिन्हें एक ही डॉक्यूमेंट पर अंदर और बाहर दोनों तरफ़ शेयर किया जा सकता है, हर बदलाव को ट्रैक करने और किसी भी पुराने वर्ज़न पर लौटने वाला पूरा वर्ज़न कंट्रोल, और पब्लिक/प्राइवेट एक्सेस पर बारीक नियंत्रण।\n\n### पहले दिन से एंटरप्राइज़-स्तर\n\n- **🔀 मल्टी-वर्कस्पेस सपोर्ट** — एक ही लॉगिन से अलग-अलग संगठनों या विभागों के बीच जाएँ।\n- **📜 ऑडिट लॉगिंग** — सुरक्षा और कंप्लायंस के लिए हर कार्रवाई का पूरा रिकॉर्ड।\n- **🔒 सुरक्षित मल्टी-टेनेंसी** — वर्कस्पेस के बीच डेटा का पक्का अलगाव।\n- **📈 बढ़ने लायक आर्किटेक्चर** — शुरुआत से ही हॉरिज़ॉन्टल स्केलिंग के लिए बना।\n\n### आधुनिक, तेज़ स्टैक पर बना\n\nयह स्टैक **रफ़्तार, सुरक्षा और डेवलपर अनुभव** को ध्यान में रखकर चुना गया है — और इसका नतीजा इस्तेमाल करने वालों के लिए साफ़ तौर पर तेज़ प्रोडक्ट है।\n\n- **फ़्रंटएंड** — Next.js 15 (App Router) + TypeScript\n- **बैकएंड** — Bun + Elysia.js (बेहद कम लेटेंसी)\n- **डेटाबेस** — Prisma ORM के ज़रिए PostgreSQL\n- **कैशिंग** — Redis (सेशन + परफ़ॉर्मेंस)\n- **ऑथ** — Better Auth (RBAC + मल्टी-टेनेंसी)\n- **UI/UX** — Tailwind CSS + shadcn/ui\n\n### Matrix क्यों\n\n- **5+ टूल्स की जगह** एक सब्सक्रिप्शन।\n- **मॉड्यूल्स के बीच संदर्भ खोना बंद** — डेटा बहता है, टुकड़ों में नहीं बँटता।\n- **बढ़ने के लिए बना** — पहले दिन से मल्टी-वर्कस्पेस और मल्टी-टेनेंट आर्किटेक्चर के साथ।\n- **आधुनिक UX** — साफ़-सुथरा, सबके लिए सुलभ, तेज़।\n\n*सोच-समझकर किए गए विज़ुअल डिज़ाइन, परफ़ॉर्मेंस और डेवलपर अनुभव पर ध्यान देकर बनाया गया।*\n",
   "iconClass": "fas fa-th-large",
   "color": "#0891B2",
   "gradient": "linear-gradient(135deg, #0891B2 0%, #22D3EE 100%)",
-  "status": "जल्द आ रहा है",
+  "status": "Coming Soon",
   "layoutVariant": "matrix",
   "fontHeading": "JetBrains Mono",
   "fontBody": "IBM Plex Sans",
@@ -19,42 +19,42 @@
   "bgFallbackGradient": "linear-gradient(180deg, #ECFEFF 0%, #CFFAFE 40%, #A5F3FC 100%)",
   "clientIds": [],
   "hero": {
-    "title": "Projects, People, Customers & Finance के लिए One Workspace",
-    "subtitle": "Matrix 5+ tools replace करता है — CRM, HRM, invoicing, docs एक multi-tenant SaaS workspace में।",
-    "cta_primary": "Early Access लें",
+    "title": "प्रोजेक्ट, लोग, ग्राहक और वित्त के लिए एक वर्कस्पेस",
+    "subtitle": "Matrix उन 5+ टूल्स की जगह लेता है जिन्हें ज़्यादातर टीमें जोड़-तोड़कर चलाती हैं। प्रोजेक्ट, CRM, HRM, इनवॉइसिंग और डॉक्स — रफ़्तार के लिए बने एक सुसंगत, मल्टी-टेनेंट SaaS वर्कस्पेस में।",
+    "cta_primary": "अर्ली एक्सेस पाएँ",
     "cta_primary_link": "/contact",
-    "cta_secondary": "View Features",
+    "cta_secondary": "फ़ीचर्स देखें",
     "cta_secondary_link": "#features"
   },
   "features": [
     {
-      "title": "Project & Task Management",
-      "description": "Drag-and-drop Kanban boards with customizable columns, task hierarchies with subtasks and parent–child relationships, and real-time collaboration for instant team updates.",
+      "title": "प्रोजेक्ट और टास्क मैनेजमेंट",
+      "description": "अपनी ज़रूरत के हिसाब से कॉलम वाले ड्रैग-एंड-ड्रॉप Kanban बोर्ड, सबटास्क और पैरेंट–चाइल्ड रिश्तों वाली टास्क हायरार्की, और टीम में तुरंत अपडेट के लिए रियल-टाइम सहयोग।",
       "icon": "fas fa-tasks"
     },
     {
-      "title": "Built-in CRM",
-      "description": "Centralized contact database for clients, leads, and stakeholders, a sales pipeline from first lead to closed deal, and engagement tracking with full interaction history.",
+      "title": "बिल्ट-इन CRM",
+      "description": "क्लाइंट, लीड और स्टेकहोल्डर्स के लिए केंद्रीय कॉन्टैक्ट डेटाबेस, पहली लीड से डील पक्की होने तक की सेल्स पाइपलाइन, और बातचीत के पूरे इतिहास के साथ एंगेजमेंट ट्रैकिंग।",
       "icon": "fas fa-handshake"
     },
     {
-      "title": "HRM & Granular Roles",
-      "description": "Employee directory with detailed records, full lifecycle management from onboarding to performance tracking, and precise workspace-level permission control.",
+      "title": "HRM और बारीक रोल",
+      "description": "विस्तृत रिकॉर्ड वाली कर्मचारी डायरेक्टरी, ऑनबोर्डिंग से परफ़ॉर्मेंस ट्रैकिंग तक पूरे सफ़र का मैनेजमेंट, और वर्कस्पेस स्तर पर अनुमतियों का सटीक नियंत्रण।",
       "icon": "fas fa-users"
     },
     {
-      "title": "Invoicing with Stripe",
-      "description": "Generate professional invoices with built-in Stripe integration, automated status tracking (Draft, Paid, Overdue) in real time, and itemized billing with tax and quantity calculations.",
+      "title": "Stripe के साथ इनवॉइसिंग",
+      "description": "बिल्ट-इन Stripe इंटीग्रेशन के साथ प्रोफ़ेशनल इनवॉइस बनाएँ, रियल टाइम में ऑटोमैटिक स्टेटस ट्रैकिंग (ड्राफ़्ट, भुगतान हो गया, बकाया), और टैक्स व मात्रा की गणना के साथ आइटम-वार बिलिंग।",
       "icon": "fas fa-file-invoice-dollar"
     },
     {
-      "title": "Collaborative Docs & Version Control",
-      "description": "Internal and external sharing on the same document, full version control that tracks every change, and granular public/private access control.",
+      "title": "साझा डॉक्स और वर्ज़न कंट्रोल",
+      "description": "एक ही डॉक्यूमेंट को अंदर और बाहर दोनों तरफ़ शेयर करें, हर बदलाव ट्रैक करने वाला पूरा वर्ज़न कंट्रोल, और पब्लिक/प्राइवेट एक्सेस पर बारीक नियंत्रण।",
       "icon": "fas fa-file-alt"
     },
     {
-      "title": "Multi-Workspace & Multi-Tenancy",
-      "description": "Switch seamlessly between organizations, with hard data isolation between workspaces, complete audit logging, and horizontal-scaling architecture from day one.",
+      "title": "मल्टी-वर्कस्पेस और मल्टी-टेनेंसी",
+      "description": "एक ही लॉगिन से अलग-अलग संगठनों के बीच जाएँ — वर्कस्पेस के बीच डेटा का पक्का अलगाव, पूरी ऑडिट लॉगिंग, और पहले दिन से हॉरिज़ॉन्टल स्केलिंग वाला आर्किटेक्चर।",
       "icon": "fas fa-layer-group"
     }
   ],
@@ -62,7 +62,7 @@
     {
       "name": "Web",
       "icon": "fas fa-globe",
-      "version": "Web App (Next.js 15 + Bun)",
+      "version": "वेब ऐप (Next.js 15 + Bun)",
       "link": "#"
     }
   ],
@@ -70,73 +70,73 @@
     "Next.js 15 (App Router)",
     "TypeScript",
     "Bun",
-    "Elysia.js (ultra-low latency backend)",
+    "Elysia.js (बेहद कम लेटेंसी वाला बैकएंड)",
     "PostgreSQL",
     "Prisma ORM",
-    "Redis (sessions + performance)",
-    "Better Auth (RBAC + multi-tenancy)",
+    "Redis (सेशन + परफ़ॉर्मेंस)",
+    "Better Auth (RBAC + मल्टी-टेनेंसी)",
     "Tailwind CSS",
     "shadcn/ui",
-    "Stripe (invoicing & payments)"
+    "Stripe (इनवॉइसिंग और भुगतान)"
   ],
   "navItems": [
     {
-      "label": "Home",
+      "label": "होम",
       "url": "",
       "i18nKey": "project_nav_home"
     },
     {
-      "label": "Features",
+      "label": "फ़ीचर्स",
       "url": "features/",
       "i18nKey": "project_nav_features"
     },
     {
-      "label": "Demo",
+      "label": "डेमो",
       "url": "demo/",
       "i18nKey": "project_nav_demo"
     },
     {
-      "label": "Privacy Policy",
+      "label": "गोपनीयता नीति",
       "url": "terms/",
       "i18nKey": "project_nav_terms"
     }
   ],
   "navMetaItems": [
     {
-      "label": "Work",
+      "label": "काम",
       "url": "/projects/",
       "i18nKey": "nav_work"
     },
     {
-      "label": "Contact",
+      "label": "संपर्क",
       "url": "/contact/",
       "i18nKey": "nav_contact"
     }
   ],
   "faq": [
     {
-      "question": "When will Matrix be available?",
-      "answer": "Matrix is currently in development. Sign up for early access to be among the first to try it when we launch."
+      "question": "Matrix कब उपलब्ध होगा?",
+      "answer": "Matrix अभी बन रहा है। अर्ली एक्सेस के लिए साइन अप करें, ताकि लॉन्च होते ही आप इसे आज़माने वाले पहले लोगों में हों।"
     },
     {
-      "question": "How is Matrix different from other project management tools?",
-      "answer": "Matrix isn't just a task manager — it unifies Project Management, CRM, HRM, Invoicing (with Stripe), and Document Collaboration in one workspace, with data flowing between modules rather than trapped in silos."
+      "question": "Matrix दूसरे प्रोजेक्ट मैनेजमेंट टूल्स से कैसे अलग है?",
+      "answer": "Matrix सिर्फ़ टास्क मैनेजर नहीं है — यह प्रोजेक्ट मैनेजमेंट, CRM, HRM, इनवॉइसिंग (Stripe के साथ) और डॉक्यूमेंट पर साथ मिलकर काम करने को एक ही वर्कस्पेस में जोड़ता है, और डेटा अलग-अलग खानों में फँसने के बजाय मॉड्यूल्स के बीच बहता है।"
     },
     {
-      "question": "Will there be a free plan?",
-      "answer": "Yes! Matrix will offer a generous free tier for small teams, with premium features available for larger organizations."
+      "question": "क्या कोई मुफ़्त प्लान होगा?",
+      "answer": "हाँ। Matrix छोटी टीमों के हिसाब से एक मुफ़्त प्लान देगा, और बड़े संगठनों के लिए प्रीमियम फ़ीचर्स उपलब्ध होंगे।"
     },
     {
-      "question": "Can I import from other tools?",
-      "answer": "We plan to support imports from popular tools like Notion, Trello, Asana, and Jira at launch."
+      "question": "क्या मैं दूसरे टूल्स से डेटा इम्पोर्ट कर सकता हूँ?",
+      "answer": "हमारी योजना है कि लॉन्च के समय Notion, Trello, Asana और Jira जैसे लोकप्रिय टूल्स से इम्पोर्ट सपोर्ट हो।"
     },
     {
-      "question": "How does multi-workspace support work?",
-      "answer": "You can seamlessly switch between organizations or departments from a single login. Each workspace has hard data isolation (multi-tenancy) and its own granular roles, so cross-team access is controlled, not accidental."
+      "question": "मल्टी-वर्कस्पेस सपोर्ट कैसे काम करता है?",
+      "answer": "आप एक ही लॉगिन से सीधे अलग-अलग संगठनों या विभागों के बीच जा सकते हैं। हर वर्कस्पेस में डेटा पूरी तरह अलग रहता है (मल्टी-टेनेंसी) और उसके अपने बारीक रोल होते हैं, इसलिए एक टीम से दूसरी टीम का एक्सेस नियंत्रित रहता है, ग़लती से नहीं मिलता।"
     },
     {
-      "question": "Is my data secure and auditable?",
-      "answer": "Yes — Matrix ships with complete audit logging for traceability and compliance, secure multi-tenancy for data isolation, and horizontal-scaling architecture designed for reliability as you grow."
+      "question": "क्या मेरा डेटा सुरक्षित और ऑडिट करने लायक है?",
+      "answer": "हाँ — Matrix में ट्रेसबिलिटी और कंप्लायंस के लिए पूरी ऑडिट लॉगिंग, डेटा अलग रखने के लिए सुरक्षित मल्टी-टेनेंसी, और आपके बढ़ने के साथ भरोसेमंद बने रहने के लिए हॉरिज़ॉन्टल स्केलिंग वाला आर्किटेक्चर शामिल है।"
     }
   ]
 }

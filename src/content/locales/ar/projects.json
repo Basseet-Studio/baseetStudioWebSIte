@@ -2,10 +2,10 @@
   {
     "slug": "matrix",
     "name": "Matrix",
-    "tagline": "منصة واحدة. كل جزء من عملك. بلا إرهاق الأدوات.",
+    "tagline": "منصة واحدة. كل أجزاء عملك. ولا إرهاق من كثرة الأدوات.",
     "color": "#0891B2",
     "gradient": "linear-gradient(135deg, #0891B2 0%, #22D3EE 100%)",
-    "status": "قريباً",
+    "status": "Coming Soon",
     "iconClass": "fas fa-th-large",
     "icon": null,
     "platforms": [
@@ -22,10 +22,10 @@
   {
     "slug": "zyrn",
     "name": "Zyrn",
-    "tagline": "متجرك. علامتك. عملاؤك — يُبلَّغون فوراً.",
+    "tagline": "متجرك. علامتك. عملاؤك — يصلهم الإشعار في اللحظة نفسها.",
     "color": "#EC4899",
     "gradient": "linear-gradient(135deg, #EC4899 0%, #F9A8D4 100%)",
-    "status": "جاهز للتسليم",
+    "status": "Ready to Deliver",
     "iconClass": "fas fa-th-large",
     "icon": null,
     "platforms": [
@@ -41,10 +41,10 @@
   {
     "slug": "ordelo",
     "name": "Ordelo",
-    "tagline": "عملك. أونلاين. منظّم. ملكك.",
+    "tagline": "عملك. على الإنترنت. منظّم. ملكك.",
     "color": "#F97316",
     "gradient": "linear-gradient(135deg, #F97316 0%, #FB923C 100%)",
-    "status": "مباشر",
+    "status": "Live",
     "iconClass": "fas fa-utensils",
     "icon": "/images/projects/ordelo-icon.png",
     "platforms": [
@@ -53,15 +53,15 @@
         "icon": "fas fa-globe"
       },
       {
-        "name": "Admin",
+        "name": "الإدارة",
         "icon": "fas fa-user-shield"
       },
       {
-        "name": "Kitchen",
+        "name": "المطبخ",
         "icon": "fas fa-hat-chef"
       },
       {
-        "name": "Delivery",
+        "name": "التوصيل",
         "icon": "fas fa-truck"
       }
     ],
@@ -75,7 +75,7 @@
     "tagline": "أموالك، منظّمة.",
     "color": "#16A34A",
     "gradient": "linear-gradient(135deg, #16A34A 0%, #4ADE80 100%)",
-    "status": "مباشر",
+    "status": "Live",
     "iconClass": "fas fa-piggy-bank",
     "icon": null,
     "platforms": [
@@ -96,10 +96,10 @@
   {
     "slug": "numu",
     "name": "Numu",
-    "tagline": "تتبّع ما تفعل. ابنِ الشخص الذي تريد أن تصبح.",
+    "tagline": "تتبّع ما تفعله. وابنِ الشخص الذي تريد أن تكونه.",
     "color": "#AF52DE",
     "gradient": "linear-gradient(135deg, #AF52DE 0%, #BF5AF2 100%)",
-    "status": "قريباً",
+    "status": "Coming Soon",
     "iconClass": null,
     "icon": "/images/projects/numu-icon.png",
     "platforms": [
@@ -120,10 +120,10 @@
   {
     "slug": "photorestore-ai",
     "name": "PhotoRestore AI",
-    "tagline": "استعد الصور القديمة بالذكاء الاصطناعي.",
+    "tagline": "رمّم صورك القديمة بالذكاء الاصطناعي.",
     "color": "#6366F1",
     "gradient": "linear-gradient(135deg, #6366F1 0%, #818CF8 100%)",
-    "status": "مباشر",
+    "status": "Live",
     "iconClass": "fas fa-wand-magic-sparkles",
     "icon": null,
     "platforms": [
@@ -139,10 +139,10 @@
   {
     "slug": "invexo",
     "name": "Invexo",
-    "tagline": "إدارة مخزون مبنية للمتاجر الصغيرة.",
+    "tagline": "إدارة مخزون مصممة للمتاجر الصغيرة.",
     "color": "#10B981",
     "gradient": "linear-gradient(135deg, #059669 0%, #34D399 100%)",
-    "status": "جاهز للتسليم",
+    "status": "Ready to Deliver",
     "iconClass": "fas fa-cash-register",
     "icon": null,
     "platforms": [
@@ -159,10 +159,10 @@
   {
     "slug": "jemeti",
     "name": "Jemeti",
-    "tagline": "ورش الصيانة، مُدارة.",
+    "tagline": "الورش ومراكز الصيانة، تحت السيطرة.",
     "color": "#DC2626",
     "gradient": "linear-gradient(135deg, #DC2626 0%, #EF4444 100%)",
-    "status": "قريباً",
+    "status": "Coming Soon",
     "iconClass": null,
     "icon": "/images/projects/jemeti-icon.svg",
     "platforms": [
@@ -179,23 +179,23 @@
   {
     "slug": "geeb",
     "name": "Geeb",
-    "tagline": "محترفو خدمات منزلية موثوقون، عند الطلب.",
+    "tagline": "فنيّو خدمات منزلية موثوقون، عند الطلب.",
     "color": "#B45309",
     "gradient": "linear-gradient(135deg, #B45309 0%, #F59E0B 100%)",
-    "status": "قريباً",
+    "status": "Coming Soon",
     "iconClass": "fas fa-wrench",
     "icon": null,
     "platforms": [
       {
-        "name": "Customer",
+        "name": "العميل",
         "icon": "fas fa-mobile-alt"
       },
       {
-        "name": "Vendor",
+        "name": "المزوّد",
         "icon": "fas fa-hard-hat"
       },
       {
-        "name": "Admin",
+        "name": "الإدارة",
         "icon": "fas fa-user-shield"
       }
     ],
@@ -206,10 +206,10 @@
   {
     "slug": "medical-education-app",
     "name": "MAI",
-    "tagline": "منصة تعليم طبي مدعومة بالذكاء الاصطناعي.",
+    "tagline": "منصة تعليم طبي تعمل بالذكاء الاصطناعي.",
     "color": "#0F766E",
     "gradient": "linear-gradient(135deg, #0F766E 0%, #14B8A6 100%)",
-    "status": "قريباً",
+    "status": "Coming Soon",
     "iconClass": "fas fa-stethoscope",
     "icon": null,
     "platforms": [
@@ -226,7 +226,7 @@
         "icon": "fas fa-globe"
       },
       {
-        "name": "Desktop",
+        "name": "سطح المكتب",
         "icon": "fas fa-desktop"
       }
     ],
@@ -240,7 +240,7 @@
     "tagline": "الرعاية الصحية. ببساطة.",
     "color": "#0A6E74",
     "gradient": "linear-gradient(135deg, #0A6E74 0%, #14B8A6 100%)",
-    "status": "جاهز للتسليم",
+    "status": "Ready to Deliver",
     "iconClass": "fas fa-hospital",
     "icon": null,
     "platforms": [
@@ -261,7 +261,7 @@
     "tagline": "منصة معرض تعليمي افتراضي",
     "color": "#0EA5E9",
     "gradient": "linear-gradient(135deg, #0EA5E9 0%, #38BDF8 100%)",
-    "status": "مكتمل",
+    "status": "Completed",
     "iconClass": "fas fa-graduation-cap",
     "icon": null,
     "platforms": [

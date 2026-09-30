@@ -248,7 +248,7 @@ const cardArrowIcon = copy.cardArrowIcon ?? arrowIcon
     gap: 12px;
   }
 
-  [dir="rtl"] .ready-to-ship__action {
+  :global([dir="rtl"]) .ready-to-ship__action {
     align-items: flex-start;
   }
 
@@ -279,7 +279,7 @@ const cardArrowIcon = copy.cardArrowIcon ?? arrowIcon
     text-align: right;
   }
 
-  [dir="rtl"] .ready-to-ship__note {
+  :global([dir="rtl"]) .ready-to-ship__note {
     text-align: left;
   }
 
@@ -292,7 +292,7 @@ const cardArrowIcon = copy.cardArrowIcon ?? arrowIcon
     .ready-to-ship__action {
       align-items: flex-start;
     }
-    [dir="rtl"] .ready-to-ship__action {
+    :global([dir="rtl"]) .ready-to-ship__action {
       align-items: flex-end;
     }
     .ready-to-ship__title {
@@ -301,7 +301,7 @@ const cardArrowIcon = copy.cardArrowIcon ?? arrowIcon
     .ready-to-ship__note {
       text-align: left;
     }
-    [dir="rtl"] .ready-to-ship__note {
+    :global([dir="rtl"]) .ready-to-ship__note {
       text-align: right;
     }
   }

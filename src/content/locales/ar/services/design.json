@@ -6,138 +6,129 @@
   "color": "#AF52DE",
   "gradient": "linear-gradient(135deg, #AF52DE 0%, #D8A0F5 100%)",
   "icon": "fas fa-paint-brush",
-  "shortDescription": "Beautiful, intuitive interfaces users love",
+  "shortDescription": "واجهات واضحة وسهلة يعود إليها الناس",
   "hero": {
     "title": "تصميم يستحق النقرة الثانية",
-    "subtitle": "تصميم يستحق النقرة الثانية. واجهات مصممة حول كيفية استخدام الشيء فعلاً، لا حول ما يبدو جميلاً في لوحة مزاج.",
-    "cta_primary": "أخبرنا عن مشروعك",
+    "subtitle": "واجهات تتشكل من الطريقة التي يستخدم بها الناس المنتج فعلاً، لا مما يبدو جميلاً على لوحة إلهام.",
+    "cta_primary": "حدّثنا عن مشروعك",
     "cta_primary_link": "/contact/",
-    "cta_secondary": "شاهد المخرجات",
+    "cta_secondary": "اطّلع على المُخرجات",
     "cta_secondary_link": "#deliverables"
   },
   "metrics": [
-    {
-      "value": "12+",
-      "label": "Design systems shipped"
-    },
-    {
-      "value": "WCAG AA",
-      "label": "Default accessibility target"
-    },
-    {
-      "value": "1 source",
-      "label": "Figma source of truth"
-    }
+    { "value": "12+", "label": "أنظمة تصميم أطلقناها" },
+    { "value": "WCAG AA", "label": "معيار الإتاحة الافتراضي لدينا" },
+    { "value": "مصدر واحد", "label": "ملف Figma مرجعي واحد" }
   ],
   "subServices": [
     {
       "id": "user-research",
-      "name": "بحث المستخدمين",
+      "name": "أبحاث المستخدمين",
       "icon": "fas fa-user-friends",
-      "desc": "افهم حاجة الناس وسلوكهم",
-      "longDesc": "نبدأ بالحديث مع مستخدمين حقيقيين. المخرج ليس ملصق شخصية — قائمة أولويات واضحة لما يجب أن يفعله التصميم جيداً.",
+      "desc": "افهم احتياجات مستخدميك وسلوكهم",
+      "longDesc": "نبدأ كل مشروع بالحديث مع مستخدمين حقيقيين — مقابلات موجَّهة، واختبارات غير موجَّهة، وتعمّق في التحليلات. والناتج ليس ملصقاً لشخصيات افتراضية، بل قائمة واضحة ومرتبة حسب الأولوية بالمهام التي يجب أن يُتقنها تصميمك.",
       "bullets": [
-        "مقابلات وسياق استخدام",
-        "وظائف مطلوبة وخريطة فرص",
-        "اختبار قابلية على نماذج",
-        "موجز من الرؤى إلى التصميم"
+        "مقابلات مع المستخدمين وملاحظتهم في بيئة عملهم",
+        "تحليل المهام المطلوب إنجازها ورسم الفرص",
+        "اختبارات قابلية الاستخدام على Figma أو نماذج تفاعلية حية",
+        "ملخصات تنقل ما تعلّمناه من البحث إلى التصميم"
       ],
-      "imageLabel": "لوحة رؤى بحث"
+      "imageLabel": "لوحة نتائج البحث"
     },
     {
       "id": "wireframing",
-      "name": "هياكل الصفحات",
+      "name": "المخططات الأولية",
       "icon": "fas fa-pencil-ruler",
-      "desc": "ارسم هيكل التطبيق وتدفقه",
-      "longDesc": "قبل البكسل نرسم الهيكل. أرخص مكان لتصحيح أغلى الأخطاء — فلا نتخطاه.",
+      "desc": "ارسم هيكل تطبيقك ومسار التنقل فيه",
+      "longDesc": "قبل الألوان والتفاصيل، نرسم الهيكل. مخططات أولية منخفضة الدقة لكل مسار رئيسي، نتحقق منها مقابل هيكلة المعلومات، ونعدّلها بسرعة. المخططات الأولية هي أرخص مكان لارتكاب أغلى الأخطاء — لذلك لا نتجاوزها.",
       "bullets": [
-        "هياكل منخفضة الدقة لكل تدفق",
-        "معمارية معلومات وتنقّل",
-        "مسارات مستخدم وحالات حدّية",
+        "مخططات أولية منخفضة الدقة لكل مسار",
+        "هيكلة المعلومات والتنقل",
+        "مخططات لمسارات المستخدم والحالات الاستثنائية",
         "مراجعة هندسية قبل التصميم البصري"
       ],
-      "imageLabel": "مجموعة هياكل تدفق"
+      "imageLabel": "مجموعة مخططات أولية للمسارات الرئيسية"
     },
     {
       "id": "visual-design",
       "name": "التصميم البصري",
       "icon": "fas fa-palette",
-      "desc": "واجهات تعكس علامتك",
-      "longDesc": "ملفات فِغما عالية الدقة، ونظام خط ولون وحركة. المكتبة تبقى لفريقك بعد انتهاء العمل معنا.",
+      "desc": "واجهات متّسقة تعكس علامتك التجارية",
+      "longDesc": "ملفات Figma عالية الدقة، ونظام حقيقي للخطوط والألوان، ومبادئ للحركة تناسب شخصية علامتك. والناتج مكتبة Figma يواصل فريقك استخدامها بعد انتهاء عملنا بوقت طويل — لا ملف ثابت يُسلَّم ويُنسى.",
       "bullets": [
-        "شاشات ومكوّنات فِغما",
-        "أنظمة خط ولون وحركة",
-        "أيقونات ورسوم على الهوية",
-        "نهار وليل ومتغيرات العلامة"
+        "شاشات ومكوّنات Figma عالية الدقة",
+        "أنظمة للخطوط والألوان والحركة",
+        "أيقونات ورسوم منسجمة مع العلامة التجارية",
+        "نسخ للوضع الفاتح والداكن ونسخ خاصة بالعلامة"
       ],
-      "imageLabel": "شاشات عالية الدقة"
+      "imageLabel": "شاشات جوال عالية الدقة"
     },
     {
       "id": "prototyping",
       "name": "النماذج التفاعلية",
       "icon": "fas fa-laptop-code",
-      "desc": "نماذج قابلة للنقر لاختبار الأفكار",
-      "longDesc": "نماذج لأصحاب المصلحة واختبار المستخدمين. نختبر أخطر الافتراضات قبل أن تُصرف هندسة.",
+      "desc": "نماذج تفاعلية لاختبار الأفكار",
+      "longDesc": "نماذج قابلة للنقر لمراجعات أصحاب القرار، واختبارات المستخدمين، وحملات التمويل الجماعي. نبنيها على Figma أو بالكود بحسب مستوى الدقة المطلوب — ونستخدمها لاختبار أخطر الافتراضات قبل أن تنفق درهماً واحداً على التطوير.",
       "bullets": [
-        "نماذج فِغما أو بالكود",
-        "تفاعلات دقيقة ومواصفات حركة",
-        "تدفقات قابلة للاختبار",
-        "عروض لأصحاب المصلحة"
+        "نماذج على Figma ونماذج مبنية بالكود",
+        "مواصفات للتفاعلات الدقيقة والحركة",
+        "مسارات قابلة للاختبار لأبحاث المستخدمين",
+        "نسخ عرض لأصحاب القرار"
       ],
-      "imageLabel": "نموذج تفاعلي"
+      "imageLabel": "نموذج تفاعلي مبني بالكود"
     }
   ],
   "process": [
     {
       "number": "01",
-      "title": "Discover",
-      "desc": "Research, analytics review, and a 1-page problem statement",
+      "title": "الاستكشاف",
+      "desc": "البحث، ومراجعة التحليلات، وصياغة المشكلة في صفحة واحدة",
       "icon": "fas fa-lightbulb"
     },
     {
       "number": "02",
-      "title": "Define",
-      "desc": "Jobs to be done, success metrics, and the v1 scope",
+      "title": "التحديد",
+      "desc": "المهام المطلوب إنجازها، ومؤشرات النجاح، ونطاق النسخة الأولى",
       "icon": "fas fa-bullseye"
     },
     {
       "number": "03",
-      "title": "Design",
-      "desc": "Wireframes, then visual design in Figma, with weekly reviews",
+      "title": "التصميم",
+      "desc": "مخططات أولية، ثم تصميم بصري على Figma، مع مراجعات أسبوعية",
       "icon": "fas fa-pencil-ruler"
     },
     {
       "number": "04",
-      "title": "Validate",
-      "desc": "User testing on prototypes, iterate, and lock the system",
+      "title": "التحقق",
+      "desc": "اختبار النماذج مع المستخدمين، والتعديل، ثم تثبيت النظام",
       "icon": "fas fa-vial"
     },
     {
       "number": "05",
-      "title": "Handoff",
-      "desc": "Annotated Figma, a Storybook-ready component library, and a working session with your devs",
+      "title": "التسليم",
+      "desc": "ملف Figma مشروح، ومكتبة مكوّنات جاهزة لـ Storybook، وجلسة عمل مع مطوّريك",
       "icon": "fas fa-handshake"
     }
   ],
   "deliverables": [
     {
-      "title": "Figma source of truth",
-      "description": "A clean, organized Figma file with components, variables, and ready-to-handoff frames.",
+      "title": "ملف Figma المرجعي",
+      "description": "ملف Figma نظيف ومنظّم، يضم المكوّنات والمتغيرات وإطارات جاهزة للتسليم.",
       "icon": "fas fa-pen-ruler"
     },
     {
-      "title": "Design system",
-      "description": "Type, color, spacing, motion, and iconography — documented and ready to scale.",
+      "title": "نظام التصميم",
+      "description": "الخطوط، والألوان، والمسافات، والحركة، والأيقونات — موثّقة وجاهزة للتوسع.",
       "icon": "fas fa-shapes"
     },
     {
-      "title": "Prototype",
-      "description": "Clickable prototype in Figma or code, for stakeholder review and user testing.",
+      "title": "النموذج التفاعلي",
+      "description": "نموذج قابل للنقر على Figma أو بالكود، لمراجعات أصحاب القرار واختبارات المستخدمين.",
       "icon": "fas fa-laptop"
     },
     {
-      "title": "Handoff package",
-      "description": "Specs, redlines, assets, and a working session with your engineering team.",
+      "title": "حزمة التسليم",
+      "description": "المواصفات، والقياسات التفصيلية، والملفات، وجلسة عمل مع فريقك الهندسي.",
       "icon": "fas fa-box"
     }
   ],
@@ -155,20 +146,20 @@
   ],
   "faq": [
     {
-      "question": "Do you also build the design in code?",
-      "answer": "Yes. Most of our engagements end with a working front end. We can ship Astro, Next.js, SvelteKit, or React Native — whatever your stack prefers. The handoff is smooth because we are the same team doing both."
+      "question": "هل تبنون التصميم بالكود أيضاً؟",
+      "answer": "نعم. تنتهي معظم مشاريعنا بواجهة أمامية تعمل فعلاً. نستطيع التسليم بـ Astro أو Next.js أو SvelteKit أو React Native — أياً كانت التقنية التي تفضّلها. ولا يضيع شيء أثناء التسليم، لأن الفريق نفسه يتولى الأمرين."
     },
     {
-      "question": "Can you take over an existing design system?",
-      "answer": "Frequently. We start with a design system audit, propose a path to clean it up, and ship it in a Storybook that your engineers actually use. We have rescued Figma files with 2,000+ components and turned them into something maintainable."
+      "question": "هل يمكنكم استلام نظام تصميم قائم؟",
+      "answer": "يحدث هذا كثيراً. نبدأ بتدقيق نظام التصميم، ونقترح طريقاً لترتيبه، ثم نسلّمه في Storybook يستخدمه مهندسوك فعلاً. سبق أن أنقذنا ملفات Figma تضم أكثر من 2,000 مكوّن، وحوّلناها إلى شيء يمكن صيانته."
     },
     {
-      "question": "How do you handle accessibility?",
-      "answer": "Accessibility is not a checklist we run at the end. We design for keyboard, screen readers, and color contrast from the first wireframe, and we test with real assistive tech before handoff. WCAG AA is our default; AAA where it matters."
+      "question": "كيف تتعاملون مع إتاحة الوصول؟",
+      "answer": "الإتاحة ليست قائمة تحقق نمرّ عليها في النهاية. نصمم لاستخدام لوحة المفاتيح، وقارئات الشاشة، وتباين الألوان منذ أول مخطط أولي، ونختبر بتقنيات مساعدة حقيقية قبل التسليم. معيارنا الافتراضي WCAG AA، وAAA حيث يكون ذلك مهماً."
     },
     {
-      "question": "What if I only have a brand, not a product idea?",
-      "answer": "That is a great place to start. We run a 2-week discovery sprint that ends in a product brief, a feature list, and a prototype you can use to raise, recruit, or sell. From there, we can design and build the first version."
+      "question": "ماذا لو كانت لدي علامة تجارية فقط، دون فكرة منتج؟",
+      "answer": "هذه نقطة بداية ممتازة. ننفّذ دورة استكشاف مدتها أسبوعان، تنتهي بموجز للمنتج، وقائمة بالميزات، ونموذج تفاعلي تستطيع استخدامه لجمع التمويل أو التوظيف أو البيع. ومن هناك، يمكننا تصميم النسخة الأولى وبناؤها."
     }
   ]
 }

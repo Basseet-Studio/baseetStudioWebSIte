@@ -2,54 +2,54 @@
   "name": "Medical Education App (MAI)",
   "slug": "medical-education-app",
   "type": "standalone",
-  "tagline": "AI-powered medical education platform۔",
-  "description": "## About MAI\n\nMedical Education App (MAI) is an AI-powered learning and clinical decision support platform built for resident doctors. It combines realistic case simulations, structured diagnostic workflows, and personalized learning tools into one integrated experience.\n\n### Core Modules\n\nClinical decision support (two-stage differential diagnosis), patient case management and documentation, medical imaging workflows with AI annotations, pharmacology safety checks and dosing tools, clinical rounds summaries and document generation, and personalized learning with quizzes, flashcards, and mind maps.\n\n### Architecture\n\nMAI follows a clean, feature-first architecture with a shared core layer and mock data generation service. State management uses the Provider pattern, and routing is handled with Go Router.\n\n### Mock Data System\n\nThe MVP uses a robust mock data service to simulate ICD-10 diagnoses, patient demographics, lab results, and learning progress for realistic workflows.\n",
+  "tagline": "AI پر مبنی میڈیکل ایجوکیشن پلیٹ فارم",
+  "description": "## MAI کا تعارف\n\nMedical Education App (MAI) ریزیڈنٹ ڈاکٹرز کے لیے بنایا گیا AI پر مبنی لرننگ اور کلینیکل فیصلہ سازی میں مدد کا پلیٹ فارم ہے۔ یہ حقیقت کے قریب کیس سیمولیشنز، منظم تشخیصی ورک فلو اور ذاتی نوعیت کے لرننگ ٹولز کو ایک مربوط تجربے میں یکجا کرتا ہے۔\n\n### بنیادی ماڈیولز\n\nکلینیکل فیصلہ سازی میں مدد (دو مرحلوں والی ڈفرینشل ڈائیگنوسس)، مریضوں کے کیسز کی مینجمنٹ اور دستاویز سازی، AI اینوٹیشنز کے ساتھ میڈیکل امیجنگ ورک فلو، ادویات کی حفاظتی جانچ اور خوراک کے حساب کے ٹولز، کلینیکل راؤنڈز کے خلاصے اور دستاویزات کی تیاری، اور کوئزز، فلیش کارڈز اور مائنڈ میپس کے ساتھ ذاتی نوعیت کی لرننگ۔\n\n### آرکیٹیکچر\n\nMAI ایک صاف، فیچر فرسٹ آرکیٹیکچر پر بنا ہے جس میں ایک مشترکہ کور لیئر اور فرضی ڈیٹا بنانے والی سروس شامل ہے۔ اسٹیٹ مینجمنٹ کے لیے Provider پیٹرن استعمال ہوتا ہے، اور روٹنگ Go Router سنبھالتا ہے۔\n\n### فرضی ڈیٹا کا نظام\n\nMVP میں ایک مضبوط فرضی ڈیٹا سروس استعمال ہوتی ہے جو ICD-10 تشخیص، مریضوں کی آبادیاتی معلومات، لیب رزلٹس اور لرننگ کی پیش رفت کو سیمولیٹ کرتی ہے، تاکہ ورک فلو حقیقت کے قریب رہیں۔\n",
   "iconClass": "fas fa-stethoscope",
   "color": "#0F766E",
   "gradient": "linear-gradient(135deg, #0F766E 0%, #14B8A6 100%)",
-  "status": "جلد آرہا ہے",
+  "status": "Coming Soon",
   "hero": {
-    "title": "Clinical Learning، نئے سرے سے",
-    "subtitle": "Resident doctors کے لیے AI-powered education platform۔",
-    "cta_primary": "Demo Request کریں",
+    "title": "کلینیکل تعلیم، نئے انداز میں",
+    "subtitle": "AI پر مبنی ایک تعلیمی پلیٹ فارم جو ریزیڈنٹ ڈاکٹرز کے لیے کلینیکل فیصلہ سازی میں مدد، مریضوں کے کیسز کی مینجمنٹ اور ذاتی نوعیت کی لرننگ کو یکجا کرتا ہے۔",
+    "cta_primary": "ڈیمو کی درخواست کریں",
     "cta_primary_link": "/contact",
-    "cta_secondary": "Explore Features",
+    "cta_secondary": "فیچرز دیکھیں",
     "cta_secondary_link": "#features"
   },
   "features": [
     {
-      "title": "Clinical Decision Support",
-      "description": "Two-stage differential diagnosis workflow with history taking, physical exam, tests, and management planning.",
+      "title": "کلینیکل فیصلہ سازی میں مدد",
+      "description": "دو مرحلوں والا ڈفرینشل ڈائیگنوسس ورک فلو — مریض کی ہسٹری، جسمانی معائنہ، ٹیسٹ اور علاج کی منصوبہ بندی۔",
       "icon": "fas fa-user-doctor"
     },
     {
-      "title": "Case Management",
-      "description": "Patient dashboard with filtering, new case workflow, privacy settings, and tabbed case views.",
+      "title": "کیس مینجمنٹ",
+      "description": "فلٹرنگ والا پیشنٹ ڈیش بورڈ، نیا کیس بنانے کا ورک فلو، پرائیویسی سیٹنگز، اور ٹیبز میں تقسیم کیس ویوز۔",
       "icon": "fas fa-folder-open"
     },
     {
-      "title": "Medical Imaging",
-      "description": "DICOM upload simulation, AI scan analysis, annotated viewer, comparisons, and report generation.",
+      "title": "میڈیکل امیجنگ",
+      "description": "DICOM اپ لوڈ سیمولیشن، AI سے اسکین کا تجزیہ، اینوٹیشن والا ویوور، موازنے، اور رپورٹ کی تیاری۔",
       "icon": "fas fa-x-ray"
     },
     {
-      "title": "Pharmacology & Drug Safety",
-      "description": "Treatment plans, interaction alerts, dosing calculator, and alternative medication suggestions.",
+      "title": "فارماکولوجی اور ادویات کی حفاظت",
+      "description": "علاج کے منصوبے، ادویات کے باہمی اثرات کے الرٹس، خوراک کا کیلکولیٹر، اور متبادل ادویات کی تجاویز۔",
       "icon": "fas fa-pills"
     },
     {
-      "title": "Clinical Rounds",
-      "description": "Rounds dashboard, voice recording simulation, AI transcript review, and automated summaries.",
+      "title": "کلینیکل راؤنڈز",
+      "description": "راؤنڈز ڈیش بورڈ، وائس ریکارڈنگ سیمولیشن، AI ٹرانسکرپٹ کا جائزہ، اور خودکار خلاصے۔",
       "icon": "fas fa-notes-medical"
     },
     {
-      "title": "Personalized Learning",
-      "description": "Learning hub with mind maps, flashcards, quizzes, audio summaries, videos, and guideline scenarios.",
+      "title": "ذاتی نوعیت کی لرننگ",
+      "description": "لرننگ ہب جس میں مائنڈ میپس، فلیش کارڈز، کوئزز، آڈیو خلاصے، ویڈیوز اور گائیڈ لائن پر مبنی منظرنامے شامل ہیں۔",
       "icon": "fas fa-graduation-cap"
     },
     {
-      "title": "Analytics & Progress",
-      "description": "Performance dashboard, mastery heatmaps, and case completion tracking.",
+      "title": "تجزیات اور پیش رفت",
+      "description": "کارکردگی کا ڈیش بورڈ، مہارت کے ہیٹ میپس، اور کیسز مکمل کرنے کی ٹریکنگ۔",
       "icon": "fas fa-chart-line"
     }
   ],
@@ -69,11 +69,11 @@
     {
       "name": "Web",
       "icon": "fas fa-globe",
-      "version": "Web App",
+      "version": "ویب ایپ",
       "link": "#"
     },
     {
-      "name": "Desktop",
+      "name": "ڈیسک ٹاپ",
       "icon": "fas fa-desktop",
       "version": "macOS | Windows",
       "link": "#"
@@ -89,16 +89,16 @@
   ],
   "faq": [
     {
-      "question": "Is this connected to real patient data?",
-      "answer": "No. This MVP uses mock data only. It is designed as a proof-of-concept for educational workflows."
+      "question": "کیا یہ مریضوں کے اصل ڈیٹا سے جڑا ہے؟",
+      "answer": "نہیں۔ یہ MVP صرف فرضی ڈیٹا استعمال کرتا ہے۔ اسے تعلیمی ورک فلو کے پروف آف کانسیپٹ کے طور پر بنایا گیا ہے۔"
     },
     {
-      "question": "Does it support multiple platforms?",
-      "answer": "Yes. The app targets iOS, Android, Web, and Desktop using Flutter's multi-platform capabilities."
+      "question": "کیا یہ کئی پلیٹ فارمز پر چلتا ہے؟",
+      "answer": "جی ہاں۔ Flutter کی ملٹی پلیٹ فارم صلاحیتوں کی بدولت یہ ایپ iOS، Android، Web اور ڈیسک ٹاپ کے لیے بنائی گئی ہے۔"
     },
     {
-      "question": "Can this be integrated with a backend?",
-      "answer": "Planned for future phases. The roadmap includes REST APIs, authentication, and cloud persistence."
+      "question": "کیا اسے کسی بیک اینڈ سے جوڑا جا سکتا ہے؟",
+      "answer": "یہ آئندہ مراحل میں شامل ہے۔ روڈ میپ میں REST API، تصدیق اور کلاؤڈ پر ڈیٹا محفوظ کرنا شامل ہیں۔"
     }
   ]
 }

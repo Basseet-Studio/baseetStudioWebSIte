@@ -2,12 +2,12 @@
   "name": "Geeb",
   "slug": "geeb",
   "type": "branded",
-  "tagline": "विश्वसनीय home-service pros, demand पर।",
-  "description": "## About Geeb (CNG)\n\nGeeb — the brand for our CNG service marketplace platform — bridges the gap between customers who need a service and the providers who deliver it. It's a full multi-app ecosystem: a customer-facing app, a vendor-facing app, and an admin-facing app, all sharing a single, well-architected backend.\n\n### The Vision\n\nFinding a trusted service provider shouldn't be a gamble. Whether it's a home service, a professional, or a local business, customers deserve to **discover, compare, book, and review** with confidence. Geeb makes that experience seamless for everyone in the loop.\n\n### Three Apps, One Platform\n\n- **📱 Customer App** — Discover nearby and trending vendors, browse by category and area, book, track, and review services, and manage your profile, avatar, and account security.\n- **🛠️ Vendor App** — Manage service offerings and delivery areas, receive and respond to customer requests, and track performance via reviews and ratings. Includes OTP-based email verification, Hive-based offline caching, background sync, and smart error handling.\n- **🛡️ Admin App** — Monitor the full ecosystem, manage users, vendors, and content, and review system health and security events.\n- **📦 Shared Package** — Common widgets, utilities, services, and business logic reused across all three apps for consistency and velocity.\n\n### Feature Highlights\n\n- **🏆 Trending Vendors** — Curated discovery that surfaces the most relevant, highest-rated providers.\n- **🏠 Customer Home Screen** — Personalized landing with smart recommendations and quick category access.\n- **🗺️ Hierarchical Area System** — Multi-level geographic organization (city → district → neighborhood) for accurate local discovery.\n- **🧑 Avatar Management** — Full spec for avatar uploads, storage, and rendering across all apps.\n- **🔐 Auth & Security** — Google OAuth, Two-Factor Authentication (TOTP), and OTP-based email verification for vendors — with a professional guided signup and pending-verification recovery flow.\n- **⭐ Reviews & Ratings v2.1** — Automatic rating calculation at service and vendor level, real-time UI refresh, cross-app updates via smart polling, and PostgreSQL RLS for secure access.\n- **💾 Offline-First Sync** — Hive-based local caching, background data sync, and 5-minute refresh intervals to keep things fast.\n- **🧰 Developer-First Foundations** — Strict Android NDK pinning (`29.0.13113456`), iOS 14.0 deployment target, `.vscode/launch.json` ready to go.\n\n### What Geeb Delivers\n\n| For Customers | For Vendors | For Admins |\n|---|---|---|\n| Easy discovery | Streamlined onboarding | Full ecosystem visibility |\n| Trusted reviews | Real-time requests | User & content management |\n| Local-area search | Offline-capable app | Security event monitoring |\n| Secure account | Performance tracking | Scalable moderation tools |\n\n### Engineering Principles\n\n- **Modular by design** — Easy to expand into new service categories or geographies.\n- **Localization-first** — Multi-language support from day one.\n- **Security-first** — RLS policies, 2FA, OTP verification, and audit-friendly flows.\n- **Accessibility-aware** — Semantic markup, screen-reader friendly UI.\n- **Modern Flutter** — Clean architecture shared across customer, vendor, and admin.\n\n*Built for accessibility, localization, and scale. Designed to grow into new industries and regions with the same proven architecture.*",
+  "tagline": "भरोसेमंद होम-सर्विस प्रो, जब चाहें तब",
+  "description": "## Geeb (CNG) के बारे में\n\nGeeb — हमारे CNG सर्विस मार्केटप्लेस प्लेटफ़ॉर्म का ब्रांड — उन ग्राहकों को, जिन्हें कोई सेवा चाहिए, उन प्रोवाइडर्स से जोड़ता है जो वह सेवा देते हैं। यह एक पूरा मल्टी-ऐप इकोसिस्टम है: ग्राहकों के लिए एक ऐप, वेंडर्स के लिए एक ऐप और एडमिन के लिए एक ऐप — तीनों एक ही सुव्यवस्थित बैकएंड पर चलते हैं।\n\n### हमारा नज़रिया\n\nभरोसेमंद सर्विस प्रोवाइडर ढूँढना जुआ नहीं होना चाहिए। चाहे घर का कोई काम हो, कोई प्रोफ़ेशनल हो या कोई स्थानीय कारोबार, ग्राहक को पूरे भरोसे के साथ **खोजने, तुलना करने, बुक करने और रिव्यू देने** की सुविधा मिलनी चाहिए। Geeb इस पूरे अनुभव को इससे जुड़े हर व्यक्ति के लिए आसान और अनुमान लगाने लायक बनाता है।\n\n### तीन ऐप, एक प्लेटफ़ॉर्म\n\n- **📱 कस्टमर ऐप** — आस-पास के और ट्रेंडिंग वेंडर्स खोजें, कैटेगरी और इलाके के हिसाब से देखें, सेवाएँ बुक करें, ट्रैक करें और रिव्यू दें, और अपनी प्रोफ़ाइल, अवतार और अकाउंट सुरक्षा संभालें।\n- **🛠️ वेंडर ऐप** — अपनी सेवाएँ और डिलीवरी इलाके मैनेज करें, ग्राहकों के अनुरोध पाएँ और उनका जवाब दें, और रिव्यू व रेटिंग से अपना प्रदर्शन ट्रैक करें। इसमें OTP-आधारित ईमेल सत्यापन, Hive-आधारित ऑफ़लाइन कैशिंग, बैकग्राउंड सिंक और समझदारी से एरर हैंडलिंग शामिल है।\n- **🛡️ एडमिन ऐप** — पूरे इकोसिस्टम पर नज़र रखें, यूज़र्स, वेंडर्स और कंटेंट मैनेज करें, और सिस्टम की सेहत व सुरक्षा से जुड़ी घटनाओं की समीक्षा करें।\n- **📦 शेयर्ड पैकेज** — साझा विजेट, यूटिलिटी, सर्विसेज़ और बिज़नेस लॉजिक, जो तीनों ऐप में दोबारा इस्तेमाल होते हैं — ताकि सब कुछ एक जैसा रहे और काम तेज़ी से हो।\n\n### मुख्य फ़ीचर्स\n\n- **🏆 ट्रेंडिंग वेंडर्स** — चुनी हुई खोज, जो सबसे प्रासंगिक और सबसे ऊँची रेटिंग वाले प्रोवाइडर्स को सामने लाती है।\n- **🏠 कस्टमर होम स्क्रीन** — आपके हिसाब से बनी शुरुआती स्क्रीन, समझदार सुझावों और कैटेगरी तक तुरंत पहुँच के साथ।\n- **🗺️ क्रमबद्ध एरिया सिस्टम** — कई स्तरों वाला भौगोलिक ढाँचा (शहर → ज़िला → मोहल्ला), ताकि स्थानीय खोज सटीक हो।\n- **🧑 अवतार मैनेजमेंट** — सभी ऐप में अवतार अपलोड, स्टोरेज और डिस्प्ले का पूरा स्पेसिफ़िकेशन।\n- **🔐 ऑथ और सुरक्षा** — Google OAuth, टू-फ़ैक्टर ऑथेंटिकेशन (TOTP) और वेंडर्स के लिए OTP-आधारित ईमेल सत्यापन — साथ में प्रोफ़ेशनल गाइडेड साइनअप और लंबित सत्यापन को पूरा करने का फ़्लो।\n- **⭐ रिव्यू और रेटिंग v2.1** — सेवा और वेंडर दोनों स्तर पर अपने-आप रेटिंग की गणना, रियल-टाइम UI रिफ़्रेश, स्मार्ट पोलिंग से सभी ऐप में अपडेट, और सुरक्षित एक्सेस के लिए PostgreSQL RLS।\n- **💾 ऑफ़लाइन-फ़र्स्ट सिंक** — Hive-आधारित लोकल कैशिंग, बैकग्राउंड डेटा सिंक और हर 5 मिनट में रिफ़्रेश, ताकि सब कुछ तेज़ चले।\n- **🧰 डेवलपर-फ़र्स्ट बुनियाद** — Android NDK का सख़्त पिन किया हुआ वर्ज़न (`29.0.13113456`), iOS 14.0 डिप्लॉयमेंट टारगेट, और तैयार `.vscode/launch.json`।\n\n### Geeb क्या देता है\n\n| ग्राहकों के लिए | वेंडर्स के लिए | एडमिन के लिए |\n|---|---|---|\n| आसान खोज | सरल ऑनबोर्डिंग | पूरे इकोसिस्टम पर नज़र |\n| भरोसेमंद रिव्यू | रियल-टाइम अनुरोध | यूज़र और कंटेंट मैनेजमेंट |\n| स्थानीय इलाके में खोज | ऑफ़लाइन चलने वाला ऐप | सुरक्षा घटनाओं की निगरानी |\n| सुरक्षित अकाउंट | प्रदर्शन की ट्रैकिंग | बढ़ने लायक मॉडरेशन टूल |\n\n### इंजीनियरिंग के सिद्धांत\n\n- **मॉड्यूलर डिज़ाइन** — नई सर्विस कैटेगरी या नए इलाकों तक फैलाना आसान।\n- **लोकलाइज़ेशन पहले** — पहले दिन से कई भाषाओं का सपोर्ट।\n- **सुरक्षा पहले** — RLS पॉलिसी, 2FA, OTP सत्यापन और ऑडिट के अनुकूल फ़्लो।\n- **एक्सेसिबिलिटी का ध्यान** — सिमैंटिक मार्कअप और स्क्रीन-रीडर के अनुकूल UI।\n- **आधुनिक Flutter** — ग्राहक, वेंडर और एडमिन के बीच साझा, साफ़-सुथरा आर्किटेक्चर।\n\n*एक्सेसिबिलिटी, लोकलाइज़ेशन और बड़े पैमाने के लिए बना। उसी आज़माए हुए आर्किटेक्चर के साथ नए उद्योगों और क्षेत्रों तक बढ़ने के लिए डिज़ाइन किया गया।*",
   "iconClass": "fas fa-wrench",
   "color": "#B45309",
   "gradient": "linear-gradient(135deg, #B45309 0%, #F59E0B 100%)",
-  "status": "जल्द आ रहा है",
+  "status": "Coming Soon",
   "layoutVariant": "geeb",
   "fontHeading": "Manrope",
   "fontBody": "Inter",
@@ -18,60 +18,60 @@
   "bgEffect": "none",
   "bgFallbackGradient": "linear-gradient(180deg, #FFFBEB 0%, #FEF3C7 40%, #FDE68A 100%)",
   "hero": {
-    "title": "मिनटों में Trusted Pro Book करें",
-    "subtitle": "Geeb verified plumbers, electricians, cleaners से जोड़ता है — real-time tracking, quality guarantee।",
-    "cta_primary": "ऐप लें",
+    "title": "मिनटों में भरोसेमंद प्रो बुक करें",
+    "subtitle": "Geeb आपको सत्यापित प्लंबर, इलेक्ट्रीशियन, हैंडीमैन, सफ़ाईकर्मी और दूसरे होम-सर्विस प्रो से जोड़ता है। पारदर्शी कीमतें, रियल-टाइम ट्रैकिंग और हर काम पर क्वालिटी की गारंटी — बड़े पैमाने के लिए बने मल्टी-ऐप सर्विस मार्केटप्लेस पर।",
+    "cta_primary": "ऐप डाउनलोड करें",
     "cta_primary_link": "/contact",
-    "cta_secondary": "Pro बनें",
+    "cta_secondary": "प्रो बनें",
     "cta_secondary_link": "/contact"
   },
   "features": [
     {
-      "title": "Three Apps, One Platform",
-      "description": "Customer, vendor, and admin apps share a single Flutter codebase, monorepo, and shared package — consistent UX, faster iteration, and easier scaling across every service category.",
+      "title": "तीन ऐप, एक प्लेटफ़ॉर्म",
+      "description": "कस्टमर, वेंडर और एडमिन ऐप एक ही Flutter कोडबेस, मोनोरेपो और शेयर्ड पैकेज पर चलते हैं — एक जैसा UX, तेज़ बदलाव और हर सर्विस कैटेगरी में आसानी से विस्तार।",
       "icon": "fas fa-layer-group"
     },
     {
-      "title": "Trending Vendors & Smart Discovery",
-      "description": "Curated discovery surfaces the most relevant, highest-rated providers, with a personalized home screen and quick access to categories — so customers never have to guess who to hire.",
+      "title": "ट्रेंडिंग वेंडर्स और स्मार्ट खोज",
+      "description": "चुनी हुई खोज सबसे प्रासंगिक और सबसे ऊँची रेटिंग वाले प्रोवाइडर्स को सामने लाती है, साथ में आपके हिसाब से बनी होम स्क्रीन और कैटेगरी तक तुरंत पहुँच — ताकि ग्राहकों को अंदाज़ा न लगाना पड़े कि किसे बुलाएँ।",
       "icon": "fas fa-fire"
     },
     {
-      "title": "Hierarchical Area System",
-      "description": "Multi-level geographic organization (city → district → neighborhood) for accurate local discovery, smart job routing, and vendors serving exactly the right service areas.",
+      "title": "क्रमबद्ध एरिया सिस्टम",
+      "description": "कई स्तरों वाला भौगोलिक ढाँचा (शहर → ज़िला → मोहल्ला) — सटीक स्थानीय खोज, काम को सही व्यक्ति तक पहुँचाने की समझदार व्यवस्था, और वेंडर्स ठीक उन्हीं इलाकों में सेवा देते हैं जो उनके लिए सही हैं।",
       "icon": "fas fa-map-marked-alt"
     },
     {
-      "title": "Verified Pros, Secure Auth & 2FA",
-      "description": "Background-checked, ID-verified pros. Customers can opt into Google OAuth and Two-Factor (TOTP); vendors get a streamlined OTP email verification flow with a guided signup and pending-verification recovery.",
+      "title": "सत्यापित प्रो, सुरक्षित ऑथ और 2FA",
+      "description": "बैकग्राउंड चेक और ID सत्यापन वाले प्रो। ग्राहक चाहें तो Google OAuth और टू-फ़ैक्टर (TOTP) चालू कर सकते हैं; वेंडर्स के लिए सरल OTP ईमेल सत्यापन फ़्लो है, जिसमें गाइडेड साइनअप और लंबित सत्यापन को पूरा करने की सुविधा है।",
       "icon": "fas fa-shield-alt"
     },
     {
-      "title": "Reviews & Ratings v2.1",
-      "description": "Automatic rating calculation at service and vendor level, real-time UI refresh in both customer and vendor apps, and cross-app updates via smart polling — all secured by PostgreSQL Row-Level Security.",
+      "title": "रिव्यू और रेटिंग v2.1",
+      "description": "सेवा और वेंडर दोनों स्तर पर अपने-आप रेटिंग की गणना, कस्टमर और वेंडर दोनों ऐप में रियल-टाइम UI रिफ़्रेश, और स्मार्ट पोलिंग से सभी ऐप में अपडेट — सब कुछ PostgreSQL Row-Level Security से सुरक्षित।",
       "icon": "fas fa-star"
     },
     {
-      "title": "Offline-First Vendor App",
-      "description": "Hive-based local caching, background data sync for profiles, services, areas, and notifications, plus 5-minute refresh intervals — so vendors keep working even on shaky connections.",
+      "title": "ऑफ़लाइन-फ़र्स्ट वेंडर ऐप",
+      "description": "Hive-आधारित लोकल कैशिंग, प्रोफ़ाइल, सेवाओं, इलाकों और नोटिफ़िकेशन का बैकग्राउंड डेटा सिंक, और हर 5 मिनट में रिफ़्रेश — ताकि कमज़ोर नेटवर्क पर भी वेंडर्स का काम न रुके।",
       "icon": "fas fa-sync-alt"
     }
   ],
   "platforms": [
     {
-      "name": "Customer App",
+      "name": "कस्टमर ऐप",
       "icon": "fas fa-mobile-alt",
       "version": "iOS · Android · Web",
       "link": "#"
     },
     {
-      "name": "Vendor App",
+      "name": "वेंडर ऐप",
       "icon": "fas fa-hard-hat",
       "version": "iOS · Android · Web",
       "link": "#"
     },
     {
-      "name": "Admin Console",
+      "name": "एडमिन कंसोल",
       "icon": "fas fa-user-shield",
       "version": "Web",
       "link": "#"
@@ -87,28 +87,28 @@
     "Row-Level Security",
     "Google OAuth",
     "TOTP / 2FA",
-    "OTP Email Verification",
+    "OTP ईमेल सत्यापन",
     "Stripe Connect",
     "Google Maps Platform"
   ],
   "navItems": [
     {
-      "label": "Home",
+      "label": "होम",
       "url": "",
       "i18nKey": "project_nav_home"
     },
     {
-      "label": "Features",
+      "label": "फ़ीचर्स",
       "url": "features/",
       "i18nKey": "project_nav_features"
     },
     {
-      "label": "Download",
+      "label": "डाउनलोड",
       "url": "download/",
       "i18nKey": "project_nav_download"
     },
     {
-      "label": "Pro signup",
+      "label": "प्रो साइनअप",
       "url": "pro/",
       "i18nKey": "project_nav_pro"
     },
@@ -118,52 +118,52 @@
       "i18nKey": "project_nav_faq"
     },
     {
-      "label": "Terms",
+      "label": "नियम",
       "url": "terms/",
       "i18nKey": "project_nav_terms"
     },
     {
-      "label": "Privacy",
+      "label": "गोपनीयता",
       "url": "privacy/",
       "i18nKey": "project_nav_privacy"
     }
   ],
   "navMetaItems": [
     {
-      "label": "Work",
+      "label": "काम",
       "url": "/projects/",
       "i18nKey": "nav_work"
     },
     {
-      "label": "Contact",
+      "label": "संपर्क",
       "url": "/contact/",
       "i18nKey": "nav_contact"
     }
   ],
   "faq": [
     {
-      "question": "What kinds of services can I book on Geeb?",
-      "answer": "Plumbing, electrical, carpentry, painting, appliance repair, AC service, cleaning, pest control, handyman jobs, and more. New categories are added every month as pros join the platform."
+      "question": "Geeb पर मैं कौन-कौन सी सेवाएँ बुक कर सकता हूँ?",
+      "answer": "प्लंबिंग, बिजली का काम, बढ़ईगीरी, पेंटिंग, घरेलू उपकरणों की मरम्मत, AC सर्विस, सफ़ाई, पेस्ट कंट्रोल, छोटे-मोटे मरम्मत के काम और भी बहुत कुछ। जैसे-जैसे नए प्रो प्लेटफ़ॉर्म से जुड़ते हैं, हर महीने नई कैटेगरी जुड़ती हैं।"
     },
     {
-      "question": "How are service pros verified?",
-      "answer": "Every pro submits government ID, trade certificates (where applicable), and passes a background check. We also collect reviews after every job so quality stays high."
+      "question": "सर्विस प्रो का सत्यापन कैसे होता है?",
+      "answer": "हर प्रो सरकारी ID और (जहाँ लागू हो) ट्रेड सर्टिफ़िकेट जमा करता है, और उसका बैकग्राउंड चेक होता है। हम हर काम के बाद रिव्यू भी लेते हैं, ताकि क्वालिटी ऊँची बनी रहे।"
     },
     {
-      "question": "When do I pay?",
-      "answer": "You don't pay until the job is finished and you approve the work. Funds are held in escrow by Geeb and released to the pro on your confirmation — so you're never out of pocket for unfinished work."
+      "question": "भुगतान कब करना होता है?",
+      "answer": "जब तक काम पूरा न हो और आप उसे मंज़ूर न कर दें, आपको भुगतान नहीं करना होता। रक़म Geeb के पास एस्क्रो में रहती है और आपकी पुष्टि के बाद ही प्रो को जारी होती है — इसलिए अधूरे काम के लिए आपका पैसा कभी नहीं फँसता।"
     },
     {
-      "question": "How do I become a service pro on Geeb?",
-      "answer": "Tap 'Become a Pro' on the home page, complete the application (ID, trade details, service area), and our team reviews it within 48 hours. Once approved, you can set your schedule and start receiving job requests."
+      "question": "मैं Geeb पर सर्विस प्रो कैसे बनूँ?",
+      "answer": "होम पेज पर 'प्रो बनें' पर टैप करें, आवेदन पूरा करें (ID, काम का ब्योरा, सेवा का इलाका), और हमारी टीम 48 घंटों के भीतर उसकी समीक्षा करती है। मंज़ूरी मिलते ही आप अपना शेड्यूल तय करके काम के अनुरोध पाना शुरू कर सकते हैं।"
     },
     {
-      "question": "Does Geeb work offline?",
-      "answer": "Yes — the vendor app is offline-first, using Hive-based local caching. Vendors can manage offerings, areas, and notifications even without an active connection, and changes sync automatically when they're back online."
+      "question": "क्या Geeb ऑफ़लाइन काम करता है?",
+      "answer": "हाँ — वेंडर ऐप ऑफ़लाइन-फ़र्स्ट है और Hive-आधारित लोकल कैशिंग इस्तेमाल करता है। वेंडर्स इंटरनेट न होने पर भी अपनी सेवाएँ, इलाके और नोटिफ़िकेशन मैनेज कर सकते हैं, और ऑनलाइन लौटते ही बदलाव अपने-आप सिंक हो जाते हैं।"
     },
     {
-      "question": "How is my data secured?",
-      "answer": "All sensitive data is protected by Supabase Row-Level Security policies. Customers and vendors can opt into Two-Factor Authentication (TOTP), and the entire platform is built with security-first principles from day one."
+      "question": "मेरा डेटा कैसे सुरक्षित रहता है?",
+      "answer": "सारा संवेदनशील डेटा Supabase की Row-Level Security पॉलिसी से सुरक्षित है। ग्राहक और वेंडर चाहें तो टू-फ़ैक्टर ऑथेंटिकेशन (TOTP) चालू कर सकते हैं, और पूरा प्लेटफ़ॉर्म पहले दिन से सुरक्षा को प्राथमिकता देकर बनाया गया है।"
     }
   ]
 }

@@ -2,10 +2,10 @@
   {
     "slug": "matrix",
     "name": "Matrix",
-    "tagline": "एक प्लेटफ़ॉर्म। आपके व्यवसाय का हर हिस्सा। टूल थकान शून्य।",
+    "tagline": "एक प्लेटफ़ॉर्म। आपके कारोबार का हर हिस्सा। टूल बदलते-बदलते थकने का झंझट ख़त्म।",
     "color": "#0891B2",
     "gradient": "linear-gradient(135deg, #0891B2 0%, #22D3EE 100%)",
-    "status": "जल्द आ रहा है",
+    "status": "Coming Soon",
     "iconClass": "fas fa-th-large",
     "icon": null,
     "platforms": [
@@ -22,10 +22,10 @@
   {
     "slug": "zyrn",
     "name": "Zyrn",
-    "tagline": "आपका स्टोर। आपका ब्रांड। आपके ग्राहक — तुरंत सूचना।",
+    "tagline": "आपकी दुकान। आपका ब्रांड। आपके ग्राहक — जिन्हें उसी पल ख़बर मिलती है।",
     "color": "#EC4899",
     "gradient": "linear-gradient(135deg, #EC4899 0%, #F9A8D4 100%)",
-    "status": "डिलीवरी के लिए तैयार",
+    "status": "Ready to Deliver",
     "iconClass": "fas fa-th-large",
     "icon": null,
     "platforms": [
@@ -41,7 +41,7 @@
   {
     "slug": "ordelo",
     "name": "Ordelo",
-    "tagline": "आपका व्यवसाय। ऑनलाइन। व्यवस्थित। आपका।",
+    "tagline": "आपका कारोबार। ऑनलाइन। व्यवस्थित। पूरी तरह आपका।",
     "color": "#F97316",
     "gradient": "linear-gradient(135deg, #F97316 0%, #FB923C 100%)",
     "status": "Live",
@@ -53,15 +53,15 @@
         "icon": "fas fa-globe"
       },
       {
-        "name": "Admin",
+        "name": "एडमिन",
         "icon": "fas fa-user-shield"
       },
       {
-        "name": "Kitchen",
+        "name": "किचन",
         "icon": "fas fa-hat-chef"
       },
       {
-        "name": "Delivery",
+        "name": "डिलीवरी",
         "icon": "fas fa-truck"
       }
     ],
@@ -72,7 +72,7 @@
   {
     "slug": "moneybox",
     "name": "MoneyBox",
-    "tagline": "आपके पैसे, व्यवस्थित।",
+    "tagline": "आपका पैसा, व्यवस्थित।",
     "color": "#16A34A",
     "gradient": "linear-gradient(135deg, #16A34A 0%, #4ADE80 100%)",
     "status": "Live",
@@ -96,10 +96,10 @@
   {
     "slug": "numu",
     "name": "Numu",
-    "tagline": "जो आप करते हैं, ट्रैक करें। वह व्यक्ति बनें जो बनना चाहते हैं।",
+    "tagline": "जो करते हैं, उसे ट्रैक कीजिए। वह इंसान बनिए जो आप बनना चाहते हैं।",
     "color": "#AF52DE",
     "gradient": "linear-gradient(135deg, #AF52DE 0%, #BF5AF2 100%)",
-    "status": "जल्द आ रहा है",
+    "status": "Coming Soon",
     "iconClass": null,
     "icon": "/images/projects/numu-icon.png",
     "platforms": [
@@ -120,7 +120,7 @@
   {
     "slug": "photorestore-ai",
     "name": "PhotoRestore AI",
-    "tagline": "AI से पुरानी तस्वीरें बहाल करें।",
+    "tagline": "AI से पुरानी तस्वीरें फिर से नई करें।",
     "color": "#6366F1",
     "gradient": "linear-gradient(135deg, #6366F1 0%, #818CF8 100%)",
     "status": "Live",
@@ -139,10 +139,10 @@
   {
     "slug": "invexo",
     "name": "Invexo",
-    "tagline": "छोटी दुकानों के लिए inventory management।",
+    "tagline": "छोटी दुकानों के लिए बना इन्वेंटरी मैनेजमेंट।",
     "color": "#10B981",
     "gradient": "linear-gradient(135deg, #059669 0%, #34D399 100%)",
-    "status": "डिलीवरी के लिए तैयार",
+    "status": "Ready to Deliver",
     "iconClass": "fas fa-cash-register",
     "icon": null,
     "platforms": [
@@ -159,10 +159,10 @@
   {
     "slug": "jemeti",
     "name": "Jemeti",
-    "tagline": "वर्कशॉप और maintenance shops, managed।",
+    "tagline": "वर्कशॉप और मरम्मत की दुकानें, पूरी तरह व्यवस्थित।",
     "color": "#DC2626",
     "gradient": "linear-gradient(135deg, #DC2626 0%, #EF4444 100%)",
-    "status": "जल्द आ रहा है",
+    "status": "Coming Soon",
     "iconClass": null,
     "icon": "/images/projects/jemeti-icon.svg",
     "platforms": [
@@ -179,23 +179,23 @@
   {
     "slug": "geeb",
     "name": "Geeb",
-    "tagline": "विश्वसनीय home-service pros, demand पर।",
+    "tagline": "भरोसेमंद घरेलू सेवा विशेषज्ञ, जब चाहें तब।",
     "color": "#B45309",
     "gradient": "linear-gradient(135deg, #B45309 0%, #F59E0B 100%)",
-    "status": "जल्द आ रहा है",
+    "status": "Coming Soon",
     "iconClass": "fas fa-wrench",
     "icon": null,
     "platforms": [
       {
-        "name": "Customer",
+        "name": "ग्राहक",
         "icon": "fas fa-mobile-alt"
       },
       {
-        "name": "Vendor",
+        "name": "वेंडर",
         "icon": "fas fa-hard-hat"
       },
       {
-        "name": "Admin",
+        "name": "एडमिन",
         "icon": "fas fa-user-shield"
       }
     ],
@@ -206,10 +206,10 @@
   {
     "slug": "medical-education-app",
     "name": "MAI",
-    "tagline": "AI-powered medical education platform।",
+    "tagline": "AI से चलने वाला मेडिकल शिक्षा प्लेटफ़ॉर्म।",
     "color": "#0F766E",
     "gradient": "linear-gradient(135deg, #0F766E 0%, #14B8A6 100%)",
-    "status": "जल्द आ रहा है",
+    "status": "Coming Soon",
     "iconClass": "fas fa-stethoscope",
     "icon": null,
     "platforms": [
@@ -226,7 +226,7 @@
         "icon": "fas fa-globe"
       },
       {
-        "name": "Desktop",
+        "name": "डेस्कटॉप",
         "icon": "fas fa-desktop"
       }
     ],
@@ -237,10 +237,10 @@
   {
     "slug": "medev",
     "name": "Medev",
-    "tagline": "स्वास्थ्य सेवा। सरल।",
+    "tagline": "हेल्थकेयर। आसान।",
     "color": "#0A6E74",
     "gradient": "linear-gradient(135deg, #0A6E74 0%, #14B8A6 100%)",
-    "status": "डिलीवरी के लिए तैयार",
+    "status": "Ready to Deliver",
     "iconClass": "fas fa-hospital",
     "icon": null,
     "platforms": [
@@ -258,10 +258,10 @@
   {
     "slug": "nss-virtual-education-fair",
     "name": "NSS Virtual Education Fair",
-    "tagline": "Virtual Education Fair Platform",
+    "tagline": "वर्चुअल शिक्षा मेले का प्लेटफ़ॉर्म",
     "color": "#0EA5E9",
     "gradient": "linear-gradient(135deg, #0EA5E9 0%, #38BDF8 100%)",
-    "status": "पूर्ण",
+    "status": "Completed",
     "iconClass": "fas fa-graduation-cap",
     "icon": null,
     "platforms": [

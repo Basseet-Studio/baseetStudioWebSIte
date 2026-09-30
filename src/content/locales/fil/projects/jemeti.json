@@ -2,13 +2,13 @@
   "name": "Jemeti",
   "slug": "jemeti",
   "type": "branded",
-  "tagline": "Mga workshop at maintenance shop, naka-manage.",
-  "description": "## Tungkol sa Jemeti\n\nTinutulungan ng Jemeti ang mga may-ari ng workshop na mag-schedule ng trabaho, mag-track ng parts, at pamahalaan ang mga sasakyan ng customer — sa isang lugar.\n",
+  "tagline": "Maayos na pamamahala ng workshop at maintenance shop",
+  "description": "## Tungkol sa Jemeti\n\nTinutulungan ng Jemeti ang mga may-ari ng workshop at maintenance shop na mag-iskedyul ng trabaho, subaybayan ang mga piyesa, at pamahalaan ang mga sasakyan ng customer — lahat sa iisang lugar.\n\n### Ginawa para sa mga service shop\n\nMula change oil hanggang full rebuild, pinananatiling maayos ng Jemeti ang mga work order, assignment ng technician, at inventory ng piyesa.\n\n### Malapit na\n\nBinubuo namin ang Jemeti kasama ang mga totoong may-ari ng shop. Makipag-ugnayan sa amin kung gusto ninyo ng early access.\n",
   "icon": "/images/projects/jemeti-icon.svg",
   "iconClass": null,
   "color": "#DC2626",
   "gradient": "linear-gradient(135deg, #DC2626 0%, #EF4444 100%)",
-  "status": "Malapit na",
+  "status": "Coming Soon",
   "layoutVariant": "default",
   "fontHeading": "Space Grotesk",
   "fontBody": "Inter",
@@ -17,27 +17,27 @@
   "bgEffect": "none",
   "clientIds": [],
   "hero": {
-    "title": "Ang Iyong Workshop, Nakaayos",
-    "subtitle": "Job scheduling, parts tracking, at customer management para sa maintenance at repair shops.",
-    "cta_primary": "Kumuha ng Early Access",
+    "title": "Maayos na ang inyong workshop",
+    "subtitle": "Pag-iskedyul ng trabaho, pagsubaybay ng piyesa, at pamamahala ng customer para sa mga maintenance at repair shop.",
+    "cta_primary": "Kumuha ng early access",
     "cta_primary_link": "/contact",
     "cta_secondary": null,
     "cta_secondary_link": null
   },
   "features": [
     {
-      "title": "Work Orders",
-      "description": "Gumawa, mag-assign, at mag-track ng trabaho mula intake hanggang completion.",
+      "title": "Mga work order",
+      "description": "Gumawa, mag-assign, at subaybayan ang mga trabaho mula pagtanggap hanggang matapos.",
       "icon": "fas fa-clipboard-list"
     },
     {
-      "title": "Parts Inventory",
-      "description": "Alamin ang nasa shelf bago mangako ng repair date.",
+      "title": "Inventory ng piyesa",
+      "description": "Alamin kung ano ang nasa estante bago kayo mangako ng petsa ng repair.",
       "icon": "fas fa-wrench"
     },
     {
-      "title": "Customer Vehicles",
-      "description": "Service history, reminders, at notes bawat sasakyan.",
+      "title": "Mga sasakyan ng customer",
+      "description": "Service history, mga paalala, at mga tala para sa bawat sasakyan.",
       "icon": "fas fa-car"
     }
   ],
@@ -45,7 +45,7 @@
     {
       "name": "Web",
       "icon": "fas fa-globe",
-      "version": "Web App",
+      "version": "App sa web",
       "link": "#"
     }
   ],
@@ -58,12 +58,12 @@
   ],
   "navMetaItems": [
     {
-      "label": "Work",
+      "label": "Mga gawa",
       "url": "/projects/",
       "i18nKey": "nav_work"
     },
     {
-      "label": "Contact",
+      "label": "Makipag-ugnayan",
       "url": "/contact/",
       "i18nKey": "nav_contact"
     }

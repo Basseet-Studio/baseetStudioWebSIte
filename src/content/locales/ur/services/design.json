@@ -2,142 +2,133 @@
   "id": "design",
   "slug": "design",
   "title": "UI/UX ڈیزائن",
-  "tagline": "ڈیزائن جو اپنی دوسری tap заслуж کرے",
+  "tagline": "ایسا ڈیزائن کہ صارف دوسری بار بھی ٹیپ کرے",
   "color": "#AF52DE",
   "gradient": "linear-gradient(135deg, #AF52DE 0%, #D8A0F5 100%)",
   "icon": "fas fa-paint-brush",
-  "shortDescription": "Beautiful, intuitive interfaces users love",
+  "shortDescription": "واضح اور آسانی سے سمجھ آنے والے انٹرفیس، جن پر لوگ بار بار لوٹتے ہیں",
   "hero": {
-    "title": "ڈیزائن جو اپنی دوسری Tap заслуж کرے",
-    "subtitle": "وہ moments ڈیزائن کرتے ہیں جو decide کرتے ہیں user واپس آئے گا — research-driven، real design system۔",
-    "cta_primary": "Project brief کریں",
+    "title": "ایسا ڈیزائن کہ صارف دوسری بار بھی ٹیپ کرے",
+    "subtitle": "انٹرفیس جو اس بات سے بنتے ہیں کہ لوگ چیز کو اصل میں کیسے استعمال کرتے ہیں، اس سے نہیں کہ موڈ بورڈ میں کیا اچھا لگتا ہے۔",
+    "cta_primary": "ہمیں اپنے پروجیکٹ کے بارے میں بتائیں",
     "cta_primary_link": "/contact/",
-    "cta_secondary": "Deliverables دیکھیں",
+    "cta_secondary": "دیکھیں آپ کو کیا ملے گا",
     "cta_secondary_link": "#deliverables"
   },
   "metrics": [
-    {
-      "value": "12+",
-      "label": "Design systems shipped"
-    },
-    {
-      "value": "WCAG AA",
-      "label": "Default accessibility target"
-    },
-    {
-      "value": "1 source",
-      "label": "Figma source of truth"
-    }
+    { "value": "12+", "label": "تیار کیے گئے ڈیزائن سسٹمز" },
+    { "value": "WCAG AA", "label": "رسائی کا بنیادی ہدف" },
+    { "value": "1 ماخذ", "label": "Figma میں ایک ہی مستند ماخذ" }
   ],
   "subServices": [
     {
       "id": "user-research",
-      "name": "یوزر ریسرچ",
+      "name": "صارفین پر تحقیق",
       "icon": "fas fa-user-friends",
-      "desc": "صارف کی ضرورت اور رویہ سمجھیں",
-      "longDesc": "حقیقی صارفین سے بات۔ آؤٹ پٹ پرسونا پوسٹر نہیں — ترجیحی فہرست جو ڈیزائن کو اچھا کرنا ہے۔",
+      "desc": "اپنے صارفین کی ضرورتیں اور رویے سمجھیں",
+      "longDesc": "ہم ہر پروجیکٹ کا آغاز اصل صارفین سے بات کر کے کرتے ہیں — نگرانی میں انٹرویوز، خود سے کیے جانے والے ٹیسٹس، اور اینالیٹکس کا گہرا جائزہ۔ نتیجہ کوئی پرسونا پوسٹر نہیں ہوتا؛ بلکہ ان کاموں کی ایک واضح، ترجیحی فہرست ہوتی ہے جو آپ کے ڈیزائن کو اچھی طرح کرنے ہیں۔",
       "bullets": [
-        "انٹرویوز اور کانٹیکسٹ",
-        "جابز ٹو بی ڈن",
-        "یوزیبلٹی ٹیسٹ",
-        "ان سائٹ سے ڈیزائن بریف"
+        "صارفین کے انٹرویوز اور ان کے ماحول میں مشاہدہ",
+        "صارف کے اصل کام اور مواقع کا نقشہ",
+        "Figma یا لائیو پروٹوٹائپس پر استعمال کی جانچ",
+        "تحقیق کے نتائج سے ڈیزائن تک کے بریفس"
       ],
-      "imageLabel": "ریسرچ بورڈ"
+      "imageLabel": "تحقیق کے نتائج کا بورڈ"
     },
     {
       "id": "wireframing",
-      "name": "وائر فریمز",
+      "name": "وائر فریمنگ",
       "icon": "fas fa-pencil-ruler",
-      "desc": "ایپ کا ڈھانچہ اور فلو",
-      "longDesc": "پکسلز سے پہلے ڈھانچہ۔ سب سے سستی جگہ مہنگی غلطیاں درست کرنے کی۔",
+      "desc": "اپنی ایپ کے ڈھانچے اور فلو کا نقشہ بنائیں",
+      "longDesc": "بصری تفصیل سے پہلے ہم ڈھانچہ بناتے ہیں۔ ہر اہم فلو کے لیے سادہ وائر فریمز، جو آپ کے معلوماتی ڈھانچے سے جانچے جاتے ہیں اور تیزی سے بہتر ہوتے ہیں۔ وائر فریمز وہ سب سے سستی جگہ ہیں جہاں سب سے مہنگی غلطیاں پکڑی جا سکتی ہیں — اس لیے ہم انہیں کبھی نہیں چھوڑتے۔",
       "bullets": [
-        "ہر فلو کے لو فائی وائر فریمز",
-        "IA اور نیویگیشن",
-        "یوزر فلو اور ایج کیسز",
-        "بصری ڈیزائن سے پہلے انجینئرنگ ریویو"
+        "ہر فلو کے لیے سادہ وائر فریمز",
+        "معلومات کا ڈھانچہ اور نیویگیشن",
+        "صارف کے فلو کے خاکے اور غیر معمولی صورتیں",
+        "بصری ڈیزائن سے پہلے انجینئرنگ کا جائزہ"
       ],
-      "imageLabel": "وائر فریم سیٹ"
+      "imageLabel": "اہم فلوز کے وائر فریمز کا سیٹ"
     },
     {
       "id": "visual-design",
       "name": "بصری ڈیزائن",
       "icon": "fas fa-palette",
-      "desc": "برانڈ کی عکاسی کرنے والی انٹرفیس",
-      "longDesc": "ہائی فائی Figma، ٹائپ اور رنگ سسٹم۔ لائبریری ٹیم کے پاس رہتی ہے۔",
+      "desc": "یکساں انٹرفیس جو آپ کے برانڈ کی عکاسی کریں",
+      "longDesc": "تفصیلی Figma فائلیں، ٹائپوگرافی اور رنگوں کا اصل نظام، اور حرکت کے اصول جو آپ کے برانڈ کے مزاج سے میل کھائیں۔ نتیجہ ایک Figma لائبریری ہے جسے آپ کی ٹیم ہمارے کام ختم ہونے کے بہت بعد تک استعمال کرتی رہے — کوئی جامد فائل نہیں۔",
       "bullets": [
-        "Figma اسکرینز اور کمپوننٹس",
-        "ٹائپ، رنگ، موشن",
-        "برانڈ آئیکنوگرافی",
-        "لائٹ، ڈارک، برانڈ ویریئنٹس"
+        "تفصیلی Figma اسکرینز اور کمپوننٹس",
+        "ٹائپوگرافی، رنگ اور حرکت کے نظام",
+        "برانڈ کے مطابق آئیکنز اور تصویری خاکے",
+        "لائٹ، ڈارک اور برانڈ ورژنز"
       ],
-      "imageLabel": "ہائی فائی موبائل اسکرینز"
+      "imageLabel": "تفصیلی موبائل اسکرینز"
     },
     {
       "id": "prototyping",
-      "name": "پروٹو ٹائپنگ",
+      "name": "پروٹوٹائپنگ",
       "icon": "fas fa-laptop-code",
-      "desc": "خیالات جانچنے کے انٹرایکٹو ماڈل",
-      "longDesc": "اسٹیک ہولڈر ریویو اور یوزر ٹیسٹ کے لیے کلک ایبل پروٹو ٹائپس — مہنگی انجینئرنگ سے پہلے۔",
+      "desc": "خیالات کو جانچنے کے لیے انٹرایکٹو پروٹوٹائپس",
+      "longDesc": "اسٹیک ہولڈرز کے جائزے، صارفین کی جانچ اور کراؤڈ فنڈنگ کے لیے کلک کیے جا سکنے والے پروٹوٹائپس۔ ہم ضرورت کے مطابق انہیں Figma میں یا کوڈ سے بناتے ہیں — اور انجینئرنگ پر ایک درہم خرچ کرنے سے پہلے سب سے خطرناک مفروضوں کو انہی سے جانچتے ہیں۔",
       "bullets": [
-        "Figma اور کوڈ پروٹو ٹائپس",
-        "مائیکرو انٹریکشنز",
-        "ٹیسٹ ایبل فلو",
-        "اسٹیک ہولڈر ڈیمو"
+        "Figma اور کوڈ پر مبنی پروٹوٹائپس",
+        "چھوٹے تعاملات اور حرکت کی تفصیلات",
+        "صارفین پر تحقیق کے لیے قابلِ جانچ فلوز",
+        "اسٹیک ہولڈرز کے لیے ڈیمو ورژنز"
       ],
-      "imageLabel": "انٹرایکٹو پروٹو ٹائپ"
+      "imageLabel": "کوڈ میں انٹرایکٹو پروٹوٹائپ"
     }
   ],
   "process": [
     {
       "number": "01",
-      "title": "Discover",
-      "desc": "Research, analytics review, and a 1-page problem statement",
+      "title": "سمجھنا",
+      "desc": "تحقیق، اینالیٹکس کا جائزہ، اور ایک صفحے میں مسئلے کا بیان",
       "icon": "fas fa-lightbulb"
     },
     {
       "number": "02",
-      "title": "Define",
-      "desc": "Jobs to be done, success metrics, and the v1 scope",
+      "title": "تعین",
+      "desc": "صارف کے اصل کام، کامیابی کے پیمانے، اور پہلے ورژن کا دائرہ",
       "icon": "fas fa-bullseye"
     },
     {
       "number": "03",
-      "title": "Design",
-      "desc": "Wireframes, then visual design in Figma, with weekly reviews",
+      "title": "ڈیزائن",
+      "desc": "پہلے وائر فریمز، پھر Figma میں بصری ڈیزائن، ہفتہ وار جائزوں کے ساتھ",
       "icon": "fas fa-pencil-ruler"
     },
     {
       "number": "04",
-      "title": "Validate",
-      "desc": "User testing on prototypes, iterate, and lock the system",
+      "title": "تصدیق",
+      "desc": "پروٹوٹائپس پر صارفین کی جانچ، بہتری، اور نظام کو حتمی شکل دینا",
       "icon": "fas fa-vial"
     },
     {
       "number": "05",
-      "title": "Handoff",
-      "desc": "Annotated Figma, a Storybook-ready component library, and a working session with your devs",
+      "title": "حوالگی",
+      "desc": "وضاحتی نوٹس والی Figma فائل، Storybook کے لیے تیار کمپوننٹ لائبریری، اور آپ کے ڈیولپرز کے ساتھ ایک ورکنگ سیشن",
       "icon": "fas fa-handshake"
     }
   ],
   "deliverables": [
     {
-      "title": "Figma source of truth",
-      "description": "A clean, organized Figma file with components, variables, and ready-to-handoff frames.",
+      "title": "Figma میں ایک مستند ماخذ",
+      "description": "صاف اور منظم Figma فائل، کمپوننٹس، ویری ایبلز اور حوالگی کے لیے تیار فریمز کے ساتھ۔",
       "icon": "fas fa-pen-ruler"
     },
     {
-      "title": "Design system",
-      "description": "Type, color, spacing, motion, and iconography — documented and ready to scale.",
+      "title": "ڈیزائن سسٹم",
+      "description": "ٹائپوگرافی، رنگ، فاصلے، حرکت اور آئیکنز — دستاویزی شکل میں اور بڑھنے کے لیے تیار۔",
       "icon": "fas fa-shapes"
     },
     {
-      "title": "Prototype",
-      "description": "Clickable prototype in Figma or code, for stakeholder review and user testing.",
+      "title": "پروٹوٹائپ",
+      "description": "Figma یا کوڈ میں کلک کیا جا سکنے والا پروٹوٹائپ، اسٹیک ہولڈرز کے جائزے اور صارفین کی جانچ کے لیے۔",
       "icon": "fas fa-laptop"
     },
     {
-      "title": "Handoff package",
-      "description": "Specs, redlines, assets, and a working session with your engineering team.",
+      "title": "حوالگی کا پیکج",
+      "description": "تفصیلات، پیمائشی نشانات، ایسٹس، اور آپ کی انجینئرنگ ٹیم کے ساتھ ایک ورکنگ سیشن۔",
       "icon": "fas fa-box"
     }
   ],
@@ -155,20 +146,20 @@
   ],
   "faq": [
     {
-      "question": "Do you also build the design in code?",
-      "answer": "Yes. Most of our engagements end with a working front end. We can ship Astro, Next.js, SvelteKit, or React Native — whatever your stack prefers. The handoff is smooth because we are the same team doing both."
+      "question": "کیا آپ ڈیزائن کو کوڈ میں بھی بناتے ہیں؟",
+      "answer": "جی ہاں۔ ہمارے زیادہ تر پروجیکٹس ایک چلتے ہوئے فرنٹ اینڈ پر ختم ہوتے ہیں۔ ہم Astro، Next.js، SvelteKit یا React Native میں کام دے سکتے ہیں — جو بھی آپ کی ٹیکنالوجی کو پسند ہو۔ حوالگی میں کچھ ضائع نہیں ہوتا، کیونکہ دونوں کام ایک ہی ٹیم کرتی ہے۔"
     },
     {
-      "question": "Can you take over an existing design system?",
-      "answer": "Frequently. We start with a design system audit, propose a path to clean it up, and ship it in a Storybook that your engineers actually use. We have rescued Figma files with 2,000+ components and turned them into something maintainable."
+      "question": "کیا آپ کسی موجودہ ڈیزائن سسٹم کو سنبھال سکتے ہیں؟",
+      "answer": "اکثر یہی کرتے ہیں۔ ہم ڈیزائن سسٹم کے جائزے سے شروع کرتے ہیں، اسے صاف کرنے کا راستہ تجویز کرتے ہیں، اور اسے ایسے Storybook میں تیار کرتے ہیں جو آپ کے انجینئرز واقعی استعمال کریں۔ ہم 2,000 سے زیادہ کمپوننٹس والی Figma فائلوں کو بچا کر قابلِ انتظام بنا چکے ہیں۔"
     },
     {
-      "question": "How do you handle accessibility?",
-      "answer": "Accessibility is not a checklist we run at the end. We design for keyboard, screen readers, and color contrast from the first wireframe, and we test with real assistive tech before handoff. WCAG AA is our default; AAA where it matters."
+      "question": "آپ رسائی (ایکسیسبلٹی) کا خیال کیسے رکھتے ہیں؟",
+      "answer": "رسائی کوئی چیک لسٹ نہیں جو ہم آخر میں چلائیں۔ پہلے وائر فریم سے ہی ہم کی بورڈ، اسکرین ریڈرز اور رنگوں کے تضاد کو سامنے رکھ کر ڈیزائن کرتے ہیں، اور حوالگی سے پہلے اصل معاون ٹیکنالوجی سے جانچ کرتے ہیں۔ WCAG AA ہمارا معمول ہے؛ جہاں ضروری ہو وہاں AAA۔"
     },
     {
-      "question": "What if I only have a brand, not a product idea?",
-      "answer": "That is a great place to start. We run a 2-week discovery sprint that ends in a product brief, a feature list, and a prototype you can use to raise, recruit, or sell. From there, we can design and build the first version."
+      "question": "اگر میرے پاس صرف برانڈ ہو، پروڈکٹ کا کوئی آئیڈیا نہ ہو تو؟",
+      "answer": "یہ شروع کرنے کی بہت اچھی جگہ ہے۔ ہم 2 ہفتوں کا ایک ابتدائی اسپرنٹ کرتے ہیں جس کے آخر میں پروڈکٹ بریف، فیچرز کی فہرست، اور ایک پروٹوٹائپ ہوتا ہے جسے آپ سرمایہ جمع کرنے، لوگوں کو ٹیم میں لانے یا بیچنے کے لیے استعمال کر سکتے ہیں۔ وہاں سے ہم پہلا ورژن ڈیزائن کر کے بنا سکتے ہیں۔"
     }
   ]
 }

@@ -6,132 +6,123 @@
   "color": "#16A34A",
   "gradient": "linear-gradient(135deg, #16A34A 0%, #4ADE80 100%)",
   "icon": "fas fa-search",
-  "shortDescription": "Get found online and grow your audience",
+  "shortDescription": "ليجدك الناس على الإنترنت ويكبر جمهورك",
   "hero": {
     "title": "كن العلامة التي يجدها الباحثون فعلاً",
-    "subtitle": "كن العلامة التي يجدها الباحثون فعلاً. SEO تقني ومحتوى وبحث محلي — نقيسه بالنتائج التجارية، لا بلقطة ترتيب لا يستطيع أحد إنفاقها.",
-    "cta_primary": "راجع موقعك",
+    "subtitle": "SEO تقني، ومحتوى، وبحث محلي — نقيسه بالعملاء المحتملين الذين يصلون إليك، لا بلقطة شاشة لترتيب في البحث لا تُدرّ عليك شيئاً.",
+    "cta_primary": "دقّق موقعي",
     "cta_primary_link": "/contact/",
-    "cta_secondary": "كيف نقيس",
+    "cta_secondary": "كيف نقيس النتائج",
     "cta_secondary_link": "#process"
   },
   "metrics": [
-    {
-      "value": "3x",
-      "label": "Median organic lift in 6mo"
-    },
-    {
-      "value": "30+",
-      "label": "Tracked KPIs per engagement"
-    },
-    {
-      "value": "Weekly",
-      "label": "Reporting cadence"
-    }
+    { "value": "3×", "label": "متوسط نمو الزيارات العضوية خلال 6 أشهر" },
+    { "value": "30+", "label": "مؤشر أداء نتابعه في كل مشروع" },
+    { "value": "أسبوعياً", "label": "وتيرة التقارير" }
   ],
   "subServices": [
     {
       "id": "technical-seo",
-      "name": "تحسين تقني للبحث",
+      "name": "SEO التقني",
       "icon": "fas fa-code",
-      "desc": "اجعل الموقع قابلاً للزحف والفهرسة",
-      "longDesc": "أفضل محتوى لا يظهر إن تعذّر الزحف. ندقق الأساس: السرعة والمخطط والروابط الداخلية واللغات، ونترك دليلاً لفريقك.",
+      "desc": "هيّئ بنية موقعك لمحركات البحث",
+      "longDesc": "أفضل محتوى في العالم لن يتصدّر النتائج إن لم يستطع Google الزحف إليه وعرضه. نجري تدقيقاً تقنياً شاملاً، ونصلح الأساسات (Core Web Vitals، والبيانات المنظّمة، والروابط الداخلية، وhreflang، وعرض JavaScript)، ونترك دليل عمل يستطيع مطوّروك اتباعه.",
       "bullets": [
-        "تدقيق زحف وتصوير وفهرسة",
-        "مؤشرات الويب وإصلاح الجافاسكربت",
-        "مخطط وhreflang وcanonical",
-        "تحليل السجلات وإعادة ربط داخلي"
+        "تدقيق الزحف والعرض والفهرسة",
+        "إصلاحات Core Web Vitals وعرض JavaScript",
+        "استراتيجية Schema.org وhreflang والروابط الأساسية",
+        "تحليل ملفات السجل وإعادة بناء الروابط الداخلية"
       ],
-      "imageLabel": "لوحة تدقيق تقني"
+      "imageLabel": "لوحة تدقيق SEO التقني"
     },
     {
       "id": "content-strategy",
       "name": "استراتيجية المحتوى",
       "icon": "fas fa-pen-fancy",
-      "desc": "محتوى يظهر وينفع القارئ",
-      "longDesc": "خارطة محتوى مبنية على طلب بحث حقيقي وموقعك في السوق. موجزات ومراجعات تنتج مقالات تُقرأ وتُربط.",
+      "desc": "محتوى يتصدّر النتائج ويشدّ القرّاء",
+      "longDesc": "نبني خارطة طريق للمحتوى مدتها 12 شهراً، قائمة على طلب بحث حقيقي وعلى موقعك في السوق. موجزات ومخططات ودورات مراجعة تُنتج مقالات يريد جمهورك قراءتها فعلاً — وتكسب روابط من مواقع أخرى.",
       "bullets": [
-        "بحث كلمات وتجميع مواضيع",
-        "موجزات واعية بنتائج البحث",
-        "تقويم تحريري ومراجعة",
-        "تحديث المحتوى القديم"
+        "بحث الكلمات المفتاحية وتجميع المواضيع",
+        "موجزات ومخططات مبنية على صفحات نتائج البحث",
+        "تقويم تحريري وسير عمل للمراجعة",
+        "برنامج لتحديث المحتوى القديم"
       ],
-      "imageLabel": "تقويم محتوى"
+      "imageLabel": "تقويم المحتوى التحريري"
     },
     {
       "id": "local-seo",
-      "name": "بحث محلي",
+      "name": "SEO المحلي",
       "icon": "fas fa-map-marker-alt",
-      "desc": "ظهور محلي في منطقتك",
-      "longDesc": "إن كان عملاؤك على مسافة قيادة، البحث المحلي أعلى عائد. نحسّن ملف غوغل بزنس وصفحات المواقع والتقييمات والاستشهادات.",
+      "desc": "ارتقِ في نتائج البحث المحلي في منطقتك",
+      "longDesc": "إن كان عملاؤك على مسافة قيادة منك، فالـ SEO المحلي هو القناة ذات أعلى عائد على الاستثمار لديك. نحسّن ملفك على Google Business Profile، ونبني صفحات للمواقع، وندير المراجعات، ونبني الإشارات والروابط التي ترفعك في نتائج الخريطة.",
       "bullets": [
-        "تحسين ملف النشاط التجاري",
-        "صفحات مواقع ومحتوى مدن",
-        "توليد تقييمات والرد عليها",
-        "تنظيف الاستشهادات وروابط محلية"
+        "تحسين ملف Google Business Profile",
+        "صفحات للمواقع ومحتوى لكل مدينة",
+        "جمع المراجعات وسير عمل للرد عليها",
+        "تنظيف الإشارات إلى نشاطك وبناء روابط محلية"
       ],
-      "imageLabel": "حزمة خرائط وملف غوغل"
+      "imageLabel": "نتائج الخريطة المحلية وملف Google Business Profile"
     },
     {
       "id": "analytics",
       "name": "إعداد التحليلات",
       "icon": "fas fa-chart-bar",
-      "desc": "قِس الأداء بأدوات بيانات صحيحة",
-      "longDesc": "لا تُحسّن ما لا تقيسه. نضبط GA4 وسيرش كونسول ولوحة تجيب أسئلة القيادة — بيانات نظيفة بلا بهلوانيات جداول.",
+      "desc": "تابع الأداء بأدوات بيانات مضبوطة",
+      "longDesc": "لا يمكنك تحسين ما لا تستطيع قياسه. نُعدّ GA4 وSearch Console والوسوم من جهة الخادم، ولوحة متابعة تجيب عن الأسئلة التي تطرحها إدارتك فعلاً — بيانات نظيفة، وإسناد واضح للنتائج، ودون ألعاب بهلوانية في جداول البيانات.",
       "bullets": [
-        "GA4 وسيرش كونسول وتاغ منجر",
-        "وسم من الخادم ووضع موافقة",
-        "لوحات لكل فريق",
-        "إسناد تحويل وإيراد"
+        "GA4 وSearch Console وTag Manager",
+        "الوسوم من جهة الخادم ووضع الموافقة",
+        "لوحات Looker Studio لكل فريق",
+        "إسناد التحويلات والإيرادات"
       ],
-      "imageLabel": "لوحة مؤشرات"
+      "imageLabel": "لوحة مؤشرات KPI على Looker Studio"
     }
   ],
   "process": [
     {
       "number": "01",
-      "title": "Audit",
-      "desc": "Technical, content, and backlink audit with a 1-page findings doc",
+      "title": "التدقيق",
+      "desc": "تدقيق تقني وللمحتوى والروابط الخارجية، مع ملخص للنتائج في صفحة واحدة",
       "icon": "fas fa-magnifying-glass"
     },
     {
       "number": "02",
-      "title": "Strategy",
-      "desc": "12-month plan tied to commercial KPIs, not vanity metrics",
+      "title": "الاستراتيجية",
+      "desc": "خطة لمدة 12 شهراً مرتبطة بمؤشرات تجارية، لا بأرقام للتباهي",
       "icon": "fas fa-bullseye"
     },
     {
       "number": "03",
-      "title": "Execute",
-      "desc": "Monthly sprints across technical, content, and links",
+      "title": "التنفيذ",
+      "desc": "دورات عمل شهرية تشمل الجانب التقني والمحتوى والروابط",
       "icon": "fas fa-rocket"
     },
     {
       "number": "04",
-      "title": "Report",
-      "desc": "Weekly check-ins, monthly business reviews, and a quarterly reset",
+      "title": "التقارير",
+      "desc": "متابعات أسبوعية، ومراجعات عمل شهرية، وإعادة ضبط كل ربع سنة",
       "icon": "fas fa-chart-line"
     }
   ],
   "deliverables": [
     {
-      "title": "Technical audit & runbook",
-      "description": "A prioritized list of fixes with effort and impact — handed to your dev team in a clean ticket format.",
+      "title": "التدقيق التقني ودليل العمل",
+      "description": "قائمة إصلاحات مرتبة حسب الأولوية مع الجهد والأثر المتوقع — تُسلَّم لفريق التطوير لديك على شكل مهام واضحة.",
       "icon": "fas fa-clipboard-list"
     },
     {
-      "title": "Content roadmap",
-      "description": "12 months of briefs and outlines, refreshed every quarter based on what is ranking.",
+      "title": "خارطة طريق المحتوى",
+      "description": "موجزات ومخططات لمدة 12 شهراً، تُحدَّث كل ربع سنة بحسب ما يتصدّر النتائج.",
       "icon": "fas fa-calendar"
     },
     {
-      "title": "Dashboard & alerts",
-      "description": "A live Looker Studio dashboard plus Slack or email alerts on the metrics that matter.",
+      "title": "لوحة المتابعة والتنبيهات",
+      "description": "لوحة مباشرة على Looker Studio، مع تنبيهات عبر Slack أو البريد الإلكتروني للمؤشرات المهمة.",
       "icon": "fas fa-chart-line"
     },
     {
-      "title": "Monthly report",
-      "description": "Plain-English review of what changed, what we shipped, and what is next.",
+      "title": "التقرير الشهري",
+      "description": "مراجعة بلغة واضحة لما تغيّر، وما أنجزناه، وما هو قادم.",
       "icon": "fas fa-file-lines"
     }
   ],
@@ -149,20 +140,20 @@
   ],
   "faq": [
     {
-      "question": "How long until I see results?",
-      "answer": "Technical improvements usually show in 4–8 weeks. Content and links take 3–6 months to compound, which is why we think in quarters, not weeks. We will give you a realistic timeline after the audit."
+      "question": "متى سأرى النتائج؟",
+      "answer": "تظهر التحسينات التقنية عادةً خلال 4–8 أسابيع. أما المحتوى والروابط فتحتاج إلى 3–6 أشهر حتى يتراكم أثرها، ولهذا نخطط بالأرباع لا بالأسابيع. سنعطيك جدولاً زمنياً واقعياً بعد التدقيق."
     },
     {
-      "question": "Do you guarantee rankings?",
-      "answer": "No reputable agency can, and we will not pretend to. We can guarantee the work, the process, and the reporting. Rankings and traffic are an output of doing the work well over time — and we will show you the inputs that drive them."
+      "question": "هل تضمنون الترتيب في نتائج البحث؟",
+      "answer": "لا توجد وكالة جديرة بالثقة تستطيع ذلك، ولن نتظاهر بأننا نستطيع. ما نضمنه هو العمل، والمنهجية، والتقارير. الترتيب والزيارات نتيجة لإتقان العمل على مدى الوقت — وسنريك العوامل التي تصنع هذه النتيجة."
     },
     {
-      "question": "Do you do link building?",
-      "answer": "Yes, but only digital PR and outreach that earns real links. We do not buy links or run PBNs. Our link work is the kind that gets your brand into the publications your customers already read."
+      "question": "هل تعملون على بناء الروابط؟",
+      "answer": "نعم، لكن عبر العلاقات الإعلامية الرقمية والتواصل الذي يكسب روابط حقيقية فقط. لا نشتري روابط ولا نستخدم شبكات المدونات الخاصة. عملنا على الروابط من النوع الذي يُوصل علامتك إلى المنصات التي يقرؤها عملاؤك أصلاً."
     },
     {
-      "question": "Can you work with our existing agency or in-house team?",
-      "answer": "Frequently. We are happy to slot in as a specialist, run a parallel strategy track, or take over the whole channel. We will propose the right shape after a short conversation."
+      "question": "هل يمكنكم العمل مع وكالتنا الحالية أو فريقنا الداخلي؟",
+      "answer": "كثيراً ما نفعل ذلك. يسعدنا أن ننضم كفريق متخصص، أو ندير مساراً استراتيجياً موازياً، أو نتولى القناة بالكامل. سنقترح الشكل المناسب بعد محادثة قصيرة."
     }
   ]
 }

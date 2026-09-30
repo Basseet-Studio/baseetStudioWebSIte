@@ -418,7 +418,7 @@ const slotIcons = [
     border-radius: 0 22px 22px 0;
     min-width: 0;
   }
-  [dir="rtl"] .ticket__stub {
+  :global([dir="rtl"]) .ticket__stub {
     border-radius: 22px 0 0 22px;
   }
 
@@ -486,7 +486,7 @@ const slotIcons = [
       padding: 24px 28px 28px;
       gap: 18px;
     }
-    [dir="rtl"] .ticket__stub {
+    :global([dir="rtl"]) .ticket__stub {
       border-radius: 0 0 22px 22px;
     }
   }

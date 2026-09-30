@@ -26,3 +26,16 @@ export function t(key: UiKey | string, lang: Lang = 'en', vars?: Record<string, 
   }
   return text
 }
+
+const STATUS_KEYS: Record<string, string> = {
+  'Coming Soon': 'status_coming_soon',
+  'Ready to Deliver': 'status_ready_to_deliver',
+  Live: 'status_live',
+  Completed: 'status_completed',
+  Confidential: 'status_confidential',
+}
+
+export function statusLabel(status: string, lang: Lang = 'en'): string {
+  const key = STATUS_KEYS[status]
+  return key ? t(key, lang) : status
+}

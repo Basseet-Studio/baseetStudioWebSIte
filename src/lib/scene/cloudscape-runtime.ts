@@ -13,13 +13,15 @@ import {
 } from './scene-debug'
 import {
   applyResolvedSkyToRuntime,
+  getDebugPreviewHour,
   hexToVec3,
   isDebugSkyLocked,
   registerCloudscapeThemeCallback,
   type SkyThemeUpdate,
 } from './sky-theme'
-import { applyTheme } from '../theme'
+import { applyTheme, getEffectiveSkyHour } from '../theme'
 import type { CameraPose, CloudSettings, LightingSettings, SceneConfig } from './types'
+import { createSkyDomeController, type SkyDomeManifest, type SkyDomeSettings } from './sky-dome'
 import {
   cloudQualityForTier,
   resolveDeviceTier,
@@ -40,9 +42,12 @@ export interface SceneRuntime {
   applyCamera: (cam: CameraPose) => void
   applyClouds: (clouds: CloudSettings) => void
   applyLighting: (lighting: LightingSettings) => void
+  applySkydome: (settings: Partial<SkyDomeSettings>) => void
   getCurrentCamera: () => CameraPose
   getCurrentClouds: () => CloudSettings
   getCurrentLighting: () => LightingSettings
+  getSkydome: () => SkyDomeSettings
+  getSkyDomeManifest: () => SkyDomeManifest | null
   /** When locked, scroll evaluation does not overwrite camera/clouds/lighting (playground). */
   setPlaygroundLock: (locked: boolean) => void
   isPlaygroundLocked: () => boolean
@@ -261,6 +266,19 @@ export function initCloudscape(opts: {
       uLowClumpScale: { value: 0.55 },
       uHighClumpScale: { value: 1.15 },
       uApart: { value: 1 },
+      tSkyALo: { value: null as THREE.Texture | null },
+      tSkyAHi: { value: null as THREE.Texture | null },
+      tSkyBLo: { value: null as THREE.Texture | null },
+      tSkyBHi: { value: null as THREE.Texture | null },
+      uSkyFullMixA: { value: 0 },
+      uSkyFullMixB: { value: 0 },
+      uSkyBlend: { value: 0 },
+      uSkyYaw: { value: 0 },
+      uSkyMix: { value: 1 },
+      uSkyHorizon: { value: new THREE.Color('#a8c6e8') },
+      uSkyZenith: { value: new THREE.Color('#5f9be0') },
+      uSkyFloor: { value: 1 },
+      uFocal: { value: 1.5 },
     },
     vertexShader: cloudVertexShader,
   })
@@ -271,6 +289,22 @@ export function initCloudscape(opts: {
   const emptyColorTexture = new THREE.DataTexture(new Uint8Array([0, 0, 0, 255]), 1, 1)
   emptyColorTexture.needsUpdate = true
   backgroundMaterial.uniforms.tBackground.value = emptyColorTexture
+
+  const skyDome = createSkyDomeController(
+    {
+      tSkyALo: backgroundMaterial.uniforms.tSkyALo,
+      tSkyAHi: backgroundMaterial.uniforms.tSkyAHi,
+      tSkyBLo: backgroundMaterial.uniforms.tSkyBLo,
+      tSkyBHi: backgroundMaterial.uniforms.tSkyBHi,
+      uSkyFullMixA: backgroundMaterial.uniforms.uSkyFullMixA,
+      uSkyFullMixB: backgroundMaterial.uniforms.uSkyFullMixB,
+      uSkyBlend: backgroundMaterial.uniforms.uSkyBlend,
+      uSkyYaw: backgroundMaterial.uniforms.uSkyYaw,
+      uSkyMix: backgroundMaterial.uniforms.uSkyMix,
+      uSkyFloor: backgroundMaterial.uniforms.uSkyFloor,
+    },
+    { tier: quality.tier },
+  )
 
   let behindTarget: THREE.WebGLRenderTarget | null = null
   let middleTarget: THREE.WebGLRenderTarget | null = null
@@ -310,11 +344,14 @@ export function initCloudscape(opts: {
     sunDir: new THREE.Vector3(),
     cameraPos: new THREE.Vector3(),
     cameraTarget: new THREE.Vector3(),
+    domeSunDir: new THREE.Vector3(),
+    domeColor: new THREE.Color(),
   }
 
   let themeIntervalId: ReturnType<typeof setInterval> | null = null
   let colorSchemeMq: MediaQueryList | null = null
   let onColorSchemeChange: ((event: MediaQueryListEvent) => void) | null = null
+  let lastSkyElapsed = 0
 
   function applyQualityPreset(next: CloudQualityPreset): void {
     quality = next
@@ -448,6 +485,10 @@ export function initCloudscape(opts: {
     }
   }
 
+  function applySkydome(partial: Partial<SkyDomeSettings>): void {
+    skyDome.applySettings(partial)
+  }
+
   let playgroundLocked = false
 
   function applySkyThemeUpdate(update: SkyThemeUpdate): void {
@@ -484,12 +525,34 @@ export function initCloudscape(opts: {
       scratch.sunDir,
     )
 
-    const lightIntensity = readNumber(lighting.intensity, 1)
+    let lightIntensity = readNumber(lighting.intensity, 1)
     const fogDensity = readNumber(lighting.fogDensity, 0.35)
 
     copyHexToThreeColor(clouds.skyColor, '#6FA8DC', scratch.skyColor)
     copyHexToThreeColor(clouds.cloudColor, '#FFFFFF', scratch.cloudColor)
     copyHexToThreeColor(lighting.color, '#FFFFFF', scratch.lightColor)
+
+    // Skydome lighting: blend the page lighting toward the sky photo's sun
+    // and horizon so clouds, GLB models and fog share one light source.
+    const domeSettings = skyDome.getSettings()
+    const domeMix = domeSettings.enabled ? Math.max(0, Math.min(1, domeSettings.mix)) : 0
+    const domeLight = domeMix > 0 && domeSettings.sunFromSky ? skyDome.getLighting() : null
+    const uSkyHorizon = backgroundMaterial.uniforms.uSkyHorizon.value as THREE.Color
+    const uSkyZenith = backgroundMaterial.uniforms.uSkyZenith.value as THREE.Color
+    if (domeLight) {
+      scratch.domeSunDir.set(domeLight.sunDir[0], domeLight.sunDir[1], domeLight.sunDir[2])
+      scratch.sunDir.lerp(scratch.domeSunDir, 0.85 * domeMix).normalize()
+      scratch.domeColor.setRGB(domeLight.sunColor[0], domeLight.sunColor[1], domeLight.sunColor[2])
+      scratch.lightColor.lerp(scratch.domeColor, 0.6 * domeMix)
+      scratch.domeColor.setRGB(domeLight.horizon[0], domeLight.horizon[1], domeLight.horizon[2])
+      scratch.skyColor.lerp(scratch.domeColor, 0.75 * domeMix)
+      lightIntensity = Math.max(lightIntensity, domeLight.sunStrength * domeMix * 1.4)
+      uSkyHorizon.setRGB(domeLight.horizon[0], domeLight.horizon[1], domeLight.horizon[2])
+      uSkyZenith.setRGB(domeLight.zenith[0], domeLight.zenith[1], domeLight.zenith[2])
+    } else {
+      uSkyHorizon.copy(scratch.skyColor)
+      uSkyZenith.copy(scratch.cloudColor)
+    }
 
     const sceneFog = mainScene.fog
     if (sceneFog instanceof THREE.FogExp2) {
@@ -512,7 +575,12 @@ export function initCloudscape(opts: {
     renderer.setRenderTarget(null)
     renderer.clear(true, true, true)
 
-    backgroundMaterial.uniforms.iTime.value = clock.getElapsedTime()
+    const elapsed = clock.getElapsedTime()
+    backgroundMaterial.uniforms.iTime.value = elapsed
+    const skyDt = lastSkyElapsed === 0 ? 1 / 60 : Math.max(0, elapsed - lastSkyElapsed)
+    lastSkyElapsed = elapsed
+    const skyHour = getDebugPreviewHour() ?? getEffectiveSkyHour()
+    skyDome.tick(skyHour, skyDt)
     backgroundMaterial.uniforms.uSpeed.value = readNumber(clouds.speed, 1)
     backgroundMaterial.uniforms.uDensity.value = readNumber(clouds.density, 1)
     backgroundMaterial.uniforms.uNoise.value = readNumber(clouds.noise, 0.5)
@@ -531,6 +599,13 @@ export function initCloudscape(opts: {
     backgroundMaterial.uniforms.uCameraTarget.value.copy(scratch.cameraTarget)
     backgroundMaterial.uniforms.uCameraNear.value = mainCamera.near
     backgroundMaterial.uniforms.uCameraFar.value = mainCamera.far
+    // Match the background ray lens to the live camera FOV. The background
+    // is intentionally wider than the content camera (1.5x, clamped) so the
+    // dome reads as a vast sky around the scene, while yaw/pitch stay locked
+    // to the camera so it rotates with the view like a real skydome.
+    const camFov = Math.max(1, Math.min(179, readNumber(cam.fov, 50)))
+    const bgFov = Math.min(100, Math.max(55, camFov * 1.5))
+    backgroundMaterial.uniforms.uFocal.value = 1 / Math.tan((bgFov * Math.PI) / 360)
     backgroundMaterial.uniforms.uViewMatrix.value.copy(mainCamera.matrixWorldInverse)
     backgroundMaterial.uniforms.uWorldScale.value = WORLD_SCALE
 
@@ -587,9 +662,12 @@ export function initCloudscape(opts: {
     applyCamera,
     applyClouds,
     applyLighting,
+    applySkydome,
     getCurrentCamera: () => ({ ...state.currentCamera }),
     getCurrentClouds: () => ({ ...state.clouds }),
     getCurrentLighting: () => ({ ...state.lighting }),
+    getSkydome: () => skyDome.getSettings(),
+    getSkyDomeManifest: () => skyDome.getManifest(),
     setPlaygroundLock: (locked: boolean) => {
       playgroundLocked = locked
     },
@@ -770,6 +848,7 @@ export function initCloudscape(opts: {
     behindTarget?.dispose()
     middleTarget?.dispose()
     emptyColorTexture.dispose()
+    skyDome.dispose()
     backgroundMaterial.dispose()
     backgroundQuad.geometry.dispose()
     renderer.dispose()

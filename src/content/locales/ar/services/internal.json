@@ -2,136 +2,127 @@
   "id": "internal",
   "slug": "internal",
   "title": "الأدوات الداخلية",
-  "tagline": "برمجيات تشغيل يُستخدمها فعلاً",
+  "tagline": "برمجيات تشغيلية تُستخدم فعلاً",
   "color": "#0891B2",
   "gradient": "linear-gradient(135deg, #0891B2 0%, #22D3EE 100%)",
   "icon": "fas fa-tools",
-  "shortDescription": "Streamline operations with custom internal solutions",
+  "shortDescription": "بسّط عملياتك بحلول داخلية مصممة لك",
   "hero": {
-    "title": "برمجيات تشغيل يُستخدمها فعلاً",
-    "subtitle": "برمجيات تشغيل يُستخدمها فعلاً. لوحات تحكم وCRMs وأدوات مكتبية يفتحها فريقك صباح الاثنين دون تذمر.",
-    "cta_primary": "ارسم سير عملك",
+    "title": "برمجيات تشغيلية تُستخدم فعلاً",
+    "subtitle": "لوحات تحكم، وأنظمة CRM، وأدوات إدارية يفتحها فريقك صباح الإثنين دون أن يتذمّر منها.",
+    "cta_primary": "ارسم معنا سير عملك",
     "cta_primary_link": "/contact/",
-    "cta_secondary": "شاهد المخرجات",
+    "cta_secondary": "اطّلع على المُخرجات",
     "cta_secondary_link": "#deliverables"
   },
   "metrics": [
-    {
-      "value": "−40%",
-      "label": "Time on routine ops"
-    },
-    {
-      "value": "1 week",
-      "label": "First usable build"
-    },
-    {
-      "value": "100%",
-      "label": "Auditable actions"
-    }
+    { "value": "−40%", "label": "من الوقت المستهلك في المهام الروتينية" },
+    { "value": "أسبوع واحد", "label": "حتى أول نسخة قابلة للاستخدام" },
+    { "value": "100%", "label": "من الإجراءات قابلة للتدقيق" }
   ],
   "subServices": [
     {
       "id": "admin-dashboards",
-      "name": "لوحات الإدارة",
+      "name": "لوحات التحكم الإدارية",
       "icon": "fas fa-tachometer-alt",
-      "desc": "لوحات تدير العمل لا تقارير ثابتة",
-      "longDesc": "مركز قيادة لفريقك — بيانات حية واستثناءات وإجراء من الصفحة نفسها دون التنقل بين أدوات.",
+      "desc": "لوحات تحكم لحظية لإدارة عملك",
+      "longDesc": "غرفة قيادة حقيقية لفريقك — لا تقرير جامد. نبني لوحات تحكم داخلية تسحب البيانات لحظياً من أنظمتك، وتُبرز الحالات الاستثنائية، وتتيح لفريق التشغيل اتخاذ الإجراء دون مغادرة الصفحة.",
       "bullets": [
-        "بيانات حية من قاعدتك أو واجهاتك",
-        "عروض حسب الدور للتشغيل والمالية",
-        "فلاتر وعروض محفوظة",
-        "تنبيهات على المقاييس المهمة"
+        "بيانات لحظية من قاعدة بياناتك أو مستودع بياناتك أو واجهات API لأدوات SaaS",
+        "عروض بحسب الدور لفرق التشغيل والمالية والإدارة العليا",
+        "تعمّق في التفاصيل، وفلاتر، وعروض محفوظة",
+        "تنبيهات عبر Slack والبريد الإلكتروني للمؤشرات المهمة"
       ],
-      "imageLabel": "لوحة مؤشرات حية"
+      "imageLabel": "لوحة تحكم إدارية بمؤشرات KPI لحظية"
     },
     {
       "id": "crm",
-      "name": "أنظمة علاقات العملاء",
+      "name": "أنظمة CRM",
       "icon": "fas fa-users-cog",
-      "desc": "CRM يطابق طريقة بيعك لا العكس",
-      "longDesc": "حين يكون سيلزفورس أكبر من حاجتك، نبني CRM يناسب حركتك: مراحل ومتابعات وعقود وصحة العميل — ما يحتاجه الفريق فقط.",
+      "desc": "إدارة علاقات العملاء مفصّلة على مقاسك",
+      "longDesc": "حين يكون Salesforce أو HubSpot أكبر من حاجتك، نبني نظام CRM يطابق طريقة البيع لديك. مراحل الصفقات، والمتابعات، والعقود، وحالة العملاء — بالضبط ما يحتاجه فريقك، ولا شيء مما لا يحتاجه.",
       "bullets": [
-        "مسار صفقات وتوقع",
-        "بريد ومكالمات واجتماعات",
-        "صحة العميل وتجديد العقود",
-        "حقول مخصصة بلا تعقيد مبيعات"
+        "مسار المبيعات، ومراحل الصفقات، والتوقعات",
+        "تكامل مع البريد الإلكتروني والمكالمات والاجتماعات",
+        "متابعة حالة العملاء وسير عمل التجديد",
+        "حقول وكيانات مخصصة دون الحاجة إلى مكالمة مع مندوب مبيعات"
       ],
-      "imageLabel": "عرض مسار CRM"
+      "imageLabel": "عرض مسار المبيعات في نظام CRM مخصص"
     },
     {
       "id": "inventory",
       "name": "إدارة المخزون",
       "icon": "fas fa-boxes",
-      "desc": "تتبع المخزون والطلبات والخدمات اللوجستية",
-      "longDesc": "خطأ واحد يفصل بين النفاد والشطب. نبني أنظمة تتتبع الأصناف عبر المواقع وتربط نقاط البيع والقنوات، وتُظهر قرار إعادة الطلب قبل أن يصير مشكلة.",
+      "desc": "تتبّع المخزون والطلبات والشحن بكفاءة",
+      "longDesc": "المخزون على بُعد خطأ واحد من نفاد البضاعة أو شطب خسارة. نبني أنظمة مخزون تتتبع الأصناف عبر الفروع، وتتكامل مع نقاط البيع وقنوات الأسواق الإلكترونية، وتُظهر قرارات إعادة الطلب قبل أن تتحول إلى مشكلة.",
       "bullets": [
-        "مخزون متعدد المواقع والتحويلات",
-        "مزامنة نقاط البيع والمتاجر",
-        "دفعات وأرقام تسلسلية وصلاحية",
-        "أوامر شراء وموردون"
+        "مخزون وتحويلات بين فروع متعددة",
+        "مزامنة مع نقاط البيع POS وShopify والأسواق الإلكترونية",
+        "تتبع الدُفعات والأرقام التسلسلية وتواريخ الانتهاء",
+        "أوامر الشراء وسير العمل مع الموردين"
       ],
-      "imageLabel": "مستويات المخزون وإعادة الطلب"
+      "imageLabel": "عرض مستويات المخزون وإعادة الطلب"
     },
     {
       "id": "automation",
       "name": "أتمتة سير العمل",
       "icon": "fas fa-robot",
-      "desc": "أتمت المهام المتكررة ووفّر الوقت",
-      "longDesc": "نحوّل الخطوات اليدوية التي تأكل الأسبوع إلى أتمتة موثوقة: توجيه العملاء والفواتير والتأهيل والغراء بين الأدوات.",
+      "desc": "أتمت المهام المتكررة ووفّر وقتك",
+      "longDesc": "نحوّل الخطوات اليدوية التي تستهلك أسبوعك إلى عمليات مؤتمتة يُعتمد عليها. توزيع العملاء المحتملين، وإصدار الفواتير، وسلاسل تهيئة العملاء الجدد، والربط بين الأدوات التي لا يوجد لها قالب جاهز على Zapier.",
       "bullets": [
-        "مصمم سير مع سجل نسخ",
-        "إعادة محاولة ومعالجة أخطاء",
-        "سجل لكل إجراء",
-        "ربط بمئات الأدوات"
+        "مصمم مرئي لسير العمل مع سجل للإصدارات",
+        "إعادة المحاولة، ومنع التكرار، ومعالجة الأخطاء",
+        "سجل تدقيق لكل إجراء وكل قرار",
+        "موصلات جاهزة لأكثر من 200 أداة SaaS"
       ],
-      "imageLabel": "لوحة أتمتة سير العمل"
+      "imageLabel": "مساحة تصميم أتمتة سير العمل"
     }
   ],
   "process": [
     {
       "number": "01",
-      "title": "Map the workflow",
-      "desc": "Sit with the team, sketch the steps, and find the highest-leverage bottleneck",
+      "title": "رسم سير العمل",
+      "desc": "نجلس مع الفريق، ونرسم الخطوات، ونحدد نقطة الاختناق التي يُحدث حلّها أكبر أثر",
       "icon": "fas fa-lightbulb"
     },
     {
       "number": "02",
-      "title": "Scope the MVP",
-      "desc": "A tight first cut that ships in a week — the 80% your team will use daily",
+      "title": "تحديد النسخة الأولى",
+      "desc": "نسخة أولى مركّزة تُطلق خلال أسبوع — الـ 80% التي سيستخدمها فريقك يومياً",
       "icon": "fas fa-bullseye"
     },
     {
       "number": "03",
-      "title": "Build & instrument",
-      "desc": "Type-safe, real database, and a feature-flag system so we can iterate live",
+      "title": "البناء والقياس",
+      "desc": "كود آمن الأنواع، وقاعدة بيانات حقيقية، ونظام لمفاتيح تفعيل الميزات لنطوّر مباشرةً",
       "icon": "fas fa-code"
     },
     {
       "number": "04",
-      "title": "Train & hand off",
-      "desc": "Loom walkthroughs, a short guide, and a 30-day window of small tweaks",
+      "title": "التدريب والتسليم",
+      "desc": "شروحات مصوّرة على Loom، ودليل مختصر، و30 يوماً للتعديلات الصغيرة",
       "icon": "fas fa-graduation-cap"
     }
   ],
   "deliverables": [
     {
-      "title": "Working internal app",
-      "description": "A deployed app with auth, roles, and an admin area your IT team can own.",
+      "title": "تطبيق داخلي يعمل",
+      "description": "تطبيق منشور مع تسجيل دخول وأدوار ومنطقة إدارة يستطيع فريق تقنية المعلومات لديك تولّيها.",
       "icon": "fas fa-server"
     },
     {
-      "title": "Data integrations",
-      "description": "Live connectors to your database, SaaS tools, and spreadsheets.",
+      "title": "تكامل البيانات",
+      "description": "موصلات مباشرة بقاعدة بياناتك وأدوات SaaS وجداول البيانات.",
       "icon": "fas fa-plug"
     },
     {
-      "title": "Operator training",
-      "description": "Recorded walkthroughs and a written playbook for the day-to-day.",
+      "title": "تدريب فريق التشغيل",
+      "description": "شروحات مسجّلة ودليل عمل مكتوب للمهام اليومية.",
       "icon": "fas fa-book-open"
     },
     {
-      "title": "Handover & support",
-      "description": "Source code, infrastructure as code, and 30 days of post-launch support.",
+      "title": "التسليم والدعم",
+      "description": "الكود المصدري، والبنية التحتية ككود، و30 يوماً من الدعم بعد الإطلاق.",
       "icon": "fas fa-handshake"
     }
   ],
@@ -151,20 +142,20 @@
   ],
   "faq": [
     {
-      "question": "How is this different from off-the-shelf SaaS?",
-      "answer": "Off-the-shelf SaaS optimizes for the average customer. A custom internal tool optimizes for your exact workflow — and you stop paying per seat as you grow. We recommend SaaS when it is the right answer, and a custom build when it is not."
+      "question": "ما الفرق بين هذا وبين برامج SaaS الجاهزة؟",
+      "answer": "برامج SaaS الجاهزة مصممة لتناسب العميل المتوسط. أما الأداة الداخلية المخصصة فمصممة لسير عملك أنت بالضبط — وتتوقف عن الدفع مقابل كل مستخدم كلما كبر فريقك. ننصحك بـ SaaS حين يكون هو الحل الصحيح، وبالبناء المخصص حين لا يكون كذلك."
     },
     {
-      "question": "How long until my team can use it?",
-      "answer": "Our target is a usable first build in one to two weeks, with a feature-complete v1 in 6–10 weeks depending on integrations. We ship in weekly increments and demo every Friday."
+      "question": "متى يستطيع فريقي البدء باستخدامها؟",
+      "answer": "هدفنا نسخة أولى قابلة للاستخدام خلال أسبوع إلى أسبوعين، ونسخة أولى مكتملة الميزات خلال 6–10 أسابيع بحسب التكاملات المطلوبة. نسلّم على دفعات أسبوعية، ونعرض ما أنجزناه كل يوم جمعة."
     },
     {
-      "question": "Will my team be able to maintain it?",
-      "answer": "Yes. We pick boring, well-documented stacks, write the README your future team will read, and run a handover sprint where we pair with whoever owns the tool day-to-day."
+      "question": "هل سيتمكن فريقي من صيانتها؟",
+      "answer": "نعم. نختار تقنيات مجرّبة وموثّقة جيداً، ونكتب ملف README الذي سيقرؤه فريقك مستقبلاً، ونخصص دورة تسليم نعمل فيها جنباً إلى جنب مع الشخص الذي سيتولى الأداة يومياً."
     },
     {
-      "question": "What if the requirements change mid-build?",
-      "answer": "Expected. Our process is built around short feedback loops — weekly demos, shared roadmap, and a feature flag system that lets you turn changes on and off without redeploying."
+      "question": "ماذا لو تغيّرت المتطلبات أثناء البناء؟",
+      "answer": "هذا متوقع. طريقة عملنا مبنية على دورات ملاحظات قصيرة — عروض أسبوعية، وخارطة طريق مشتركة، ونظام لمفاتيح الميزات يتيح لك تشغيل التغييرات وإيقافها دون إعادة النشر."
     }
   ]
 }

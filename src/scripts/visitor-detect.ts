@@ -4,20 +4,20 @@
 // the footer's <p id="visitor-info"> element. Ported from the old Hugo site's
 // assets/js/visitor-detect.js with TypeScript types.
 
-const CACHE_KEY = 'baseet_visitor_country'
+const CACHE_KEY = 'baseet_visitor_country_code'
 const TIMEOUT_MS = 3000
 
-type Device = 'Mobile' | 'Tablet' | 'Desktop'
+type Device = 'mobile' | 'tablet' | 'desktop'
 
 function detectDevice(): Device {
   const ua = (typeof navigator !== 'undefined' && navigator.userAgent) || ''
   if (/Mobi|Android.*Mobile|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua)) {
-    return 'Mobile'
+    return 'mobile'
   }
   if (/iPad|Android(?!.*Mobile)|Tablet/i.test(ua)) {
-    return 'Tablet'
+    return 'tablet'
   }
-  return 'Desktop'
+  return 'desktop'
 }
 
 function fetchWithTimeout(url: string, ms: number): Promise<any> {
@@ -32,7 +32,7 @@ function fetchWithTimeout(url: string, ms: number): Promise<any> {
   ])
 }
 
-function detectCountry(): Promise<string> {
+function detectCountryCode(): Promise<string> {
   let cached: string | null = null
   try {
     cached = sessionStorage.getItem(CACHE_KEY)
@@ -42,22 +42,30 @@ function detectCountry(): Promise<string> {
   if (cached) return Promise.resolve(cached)
 
   return fetchWithTimeout('https://ipapi.co/json/', TIMEOUT_MS)
-    .then(data => (data && data.country_name ? String(data.country_name) : ''))
+    .then(data => (data && data.country_code ? String(data.country_code) : ''))
     .catch(() =>
-      fetchWithTimeout('https://ip-api.com/json/?fields=country', TIMEOUT_MS)
-        .then(data => (data && data.country ? String(data.country) : ''))
+      fetchWithTimeout('https://ip-api.com/json/?fields=countryCode', TIMEOUT_MS)
+        .then(data => (data && data.countryCode ? String(data.countryCode) : ''))
         .catch(() => ''),
     )
-    .then(country => {
-      if (country) {
+    .then(code => {
+      if (code) {
         try {
-          sessionStorage.setItem(CACHE_KEY, country)
+          sessionStorage.setItem(CACHE_KEY, code)
         } catch {
           /* ignore */
         }
       }
-      return country
+      return code
     })
+}
+
+function countryName(code: string, lang: string): string {
+  try {
+    return new Intl.DisplayNames([lang], { type: 'region' }).of(code.toUpperCase()) || code
+  } catch {
+    return code
+  }
 }
 
 export function init(): void {
@@ -65,15 +73,15 @@ export function init(): void {
   const el = document.getElementById('visitor-info')
   if (!el) return
 
-  const visitingLabel = el.getAttribute('data-visiting') || 'Visiting from'
-  const deviceLabel = el.getAttribute('data-device') || 'Device'
-  const unknownLabel = el.getAttribute('data-unknown') || 'Unknown'
-
+  const lang = el.dataset.lang || 'en'
+  const template = el.dataset.template || 'Visiting from {country} · {device}'
+  const unknownLabel = el.dataset.unknown || 'somewhere'
   const device = detectDevice()
+  const deviceLabel = el.getAttribute(`data-device-${device}`) || device
 
-  detectCountry().then(country => {
-    const countryText = country || unknownLabel
+  detectCountryCode().then(code => {
+    const countryText = code ? countryName(code, lang) : unknownLabel
     // textContent only — never innerHTML — to prevent XSS from a malicious geo response.
-    el.textContent = `${visitingLabel}: ${countryText} · ${deviceLabel}: ${device}`
+    el.textContent = template.replace('{country}', countryText).replace('{device}', deviceLabel)
   })
 }

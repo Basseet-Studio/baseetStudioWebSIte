@@ -1,143 +1,134 @@
 {
   "id": "mobile",
   "slug": "mobile",
-  "title": "Mobile Development",
-  "tagline": "Apps na pinapanatili sa home screen",
+  "title": "Pagbuo ng mobile app",
+  "tagline": "Mga app na hindi binubura sa home screen",
   "color": "#FBCD37",
   "gradient": "linear-gradient(135deg, #F59E0B 0%, #FBCD37 100%)",
   "icon": "fas fa-mobile-alt",
-  "shortDescription": "Native and cross-platform mobile applications",
+  "shortDescription": "Mga native at cross-platform na mobile application",
   "hero": {
-    "title": "Apps na Pinapanatili sa Home Screen",
-    "subtitle": "iOS, Android, cross-platform — mabilis, polished, battery-friendly.",
-    "cta_primary": "I-plan ang app mo",
+    "title": "Mga app na hindi binubura sa home screen",
+    "subtitle": "Native iOS, native Android, o React Native — kung alin ang talagang tama para sa binubuo ninyo, hindi kung alin ang nagkataong gusto namin.",
+    "cta_primary": "Planuhin ang aking app",
     "cta_primary_link": "/contact/",
     "cta_secondary": "Tingnan ang stack",
     "cta_secondary_link": "#tech"
   },
   "metrics": [
-    {
-      "value": "60fps",
-      "label": "Animation target"
-    },
-    {
-      "value": "10+",
-      "label": "Apps shipped"
-    },
-    {
-      "value": "4.8★",
-      "label": "Avg. store rating"
-    }
+    { "value": "60fps", "label": "Target sa animation" },
+    { "value": "10+", "label": "Mga app na nailunsad na" },
+    { "value": "4.8★", "label": "Karaniwang rating sa store" }
   ],
   "subServices": [
     {
       "id": "ios",
-      "name": "Mga iOS App",
+      "name": "Mga iOS app",
       "icon": "fab fa-apple",
-      "desc": "Native Swift para sa iPhone at iPad",
-      "longDesc": "SwiftUI at UIKit, App Store submission, TestFlight, at privacy manifests.",
+      "desc": "Mga native na Swift application para sa iPhone at iPad",
+      "longDesc": "Purong SwiftUI at UIKit, isinulat sa Swift 5.10+ na may async/await sa kabuuan. Kami ang humahawak sa submission sa App Store, mga TestFlight beta, privacy manifest, at sa maliliit na detalyeng nagpaparamdam na bagay na bagay ang app sa Apple silicon.",
       "bullets": [
-        "Swift, SwiftUI, UIKit",
-        "iPhone, iPad, Watch",
-        "StoreKit at Sign in with Apple",
-        "TestFlight at App Store Connect"
+        "Swift, SwiftUI, UIKit, at Combine",
+        "iPhone, iPad, Apple Watch, at Apple TV",
+        "StoreKit, Sign in with Apple, at Wallet",
+        "TestFlight, App Store Connect, at mga privacy manifest"
       ],
-      "imageLabel": "iOS app screen"
+      "imageLabel": "Mockup ng screen ng iOS app"
     },
     {
       "id": "android",
-      "name": "Mga Android App",
+      "name": "Mga Android app",
       "icon": "fab fa-android",
-      "desc": "Native Kotlin para sa lahat ng Android",
-      "longDesc": "Kotlin-first Android, Jetpack Compose at Material 3 — para sa device na hawak talaga ng user.",
+      "desc": "Mga native na Kotlin app para sa lahat ng Android device",
+      "longDesc": "Android na Kotlin ang inuuna, gamit ang Jetpack Compose, Material 3, at ang modernong AndroidX stack. Bumubuo kami para sa napakaraming klase ng device na talagang hawak ng mga user ninyo, may adaptive layout, predictive back, at maayos na karanasan sa unang pagbukas.",
       "bullets": [
-        "Kotlin, Compose, Material 3",
-        "Phone, foldable, tablet",
-        "Play Billing at Data Safety",
-        "Internal tracks at staged rollout"
+        "Kotlin, Jetpack Compose, at Material 3",
+        "Adaptive layout para sa phone, foldable, at tablet",
+        "Play Billing, Play Integrity, at Data Safety",
+        "Mga internal track, staged rollout, at pre-launch report"
       ],
-      "imageLabel": "Android app screen"
+      "imageLabel": "Mockup ng screen ng Android app"
     },
     {
       "id": "cross-platform",
-      "name": "Cross-Platform",
+      "name": "Cross-platform na app",
       "icon": "fas fa-layer-group",
-      "desc": "Flutter at React Native para sa mas malawak na abot",
-      "longDesc": "Isang codebase, dalawang store. Flutter para sa detalyadong UI, React Native kung JS ang team.",
+      "desc": "Flutter at React Native para maabot ang maraming platform",
+      "longDesc": "Iisang codebase, dalawang store, at kasing-native na pakiramdam hangga't pinapayagan ng platform. Pinipili namin ang Flutter para sa high-fidelity na UI at animation, at React Native kapag malalim na ang team sa JavaScript at mahalaga ang ecosystem.",
       "bullets": [
-        "Flutter 3 at Dart 3",
-        "React Native, Expo, Hermes",
-        "Bluetooth, NFC, camera",
-        "Shared design system"
+        "Flutter 3 na may Dart 3, Material You, at Cupertino",
+        "React Native na may Expo, EAS, at Hermes",
+        "Mga native module para sa Bluetooth, NFC, at camera",
+        "Iisang design system para sa iOS at Android"
       ],
-      "imageLabel": "Cross-platform mockup"
+      "imageLabel": "Mockup ng cross-platform na app"
     },
     {
       "id": "aso",
-      "name": "App Store Optimization",
+      "name": "Optimization sa app store",
       "icon": "fas fa-chart-line",
-      "desc": "Matagpuan sa tamang ASO",
-      "longDesc": "Karamihan ng app hindi natatagpuan. Tinatrato namin ang store listing bilang produkto.",
+      "desc": "Mahanap ng mga user gamit ang tamang estratehiya sa ASO",
+      "longDesc": "Karamihan ng app ay hindi kailanman nahahanap. Itinuturing namin ang store listing na bahagi ng produkto — keyword research, pag-test ng screenshot, localization, at tuloy-tuloy na mga eksperimento para patuloy na tumaas ang graph ng mga install ninyo.",
       "bullets": [
-        "Keyword research at metadata",
-        "Screenshot at video test",
-        "Localization sa priority markets",
-        "Reviews at reply workflow"
+        "Keyword research at pag-refresh ng metadata",
+        "A/B testing ng screenshot at video",
+        "Localization para sa mga prayoridad na merkado",
+        "Mga review, rating, at workflow sa pagsagot"
       ],
-      "imageLabel": "App store analytics"
+      "imageLabel": "Dashboard ng analytics sa app store"
     }
   ],
   "process": [
     {
       "number": "01",
-      "title": "Validate",
-      "desc": "Prototype the core loop, prove the value, and size the build",
+      "title": "Pagpapatunay",
+      "desc": "Gumawa ng prototype ng core loop, patunayan ang halaga, at tantiyahin ang laki ng build",
       "icon": "fas fa-compass"
     },
     {
       "number": "02",
-      "title": "Architect",
-      "desc": "Pick the stack, sketch the navigation, and design the data flow",
+      "title": "Arkitektura",
+      "desc": "Pumili ng stack, i-sketch ang navigation, at idisenyo ang daloy ng data",
       "icon": "fas fa-sitemap"
     },
     {
       "number": "03",
-      "title": "Design",
-      "desc": "Mobile-first flows, motion studies, and an icon and color system",
+      "title": "Disenyo",
+      "desc": "Mga flow na mobile-first, pag-aaral ng motion, at sistema ng icon at kulay",
       "icon": "fas fa-pencil-ruler"
     },
     {
       "number": "04",
-      "title": "Build",
-      "desc": "Sprint-by-sprint with TestFlight and Play Internal Track demos",
+      "title": "Pagbuo",
+      "desc": "Sprint kada sprint, may demo sa TestFlight at Play Internal Track",
       "icon": "fas fa-code"
     },
     {
       "number": "05",
-      "title": "Ship & Grow",
-      "desc": "Store submission, then a roadmap of releases, not a one-and-done",
+      "title": "Paglulunsad at paglago",
+      "desc": "Submission sa store, saka isang roadmap ng mga release — hindi isang beses lang",
       "icon": "fas fa-rocket"
     }
   ],
   "deliverables": [
     {
-      "title": "Production app binaries",
-      "description": "Signed builds for App Store and Play Store, with internal and external tracks set up.",
+      "title": "Mga production app binary",
+      "description": "Mga signed build para sa App Store at Play Store, naka-set up na ang mga internal at external track.",
       "icon": "fas fa-mobile"
     },
     {
-      "title": "Source & CI",
-      "description": "Clean repo, GitHub Actions or Bitrise, and signed release pipelines for both stores.",
+      "title": "Source code at CI",
+      "description": "Malinis na repo, GitHub Actions o Bitrise, at mga signed release pipeline para sa parehong store.",
       "icon": "fas fa-code-branch"
     },
     {
-      "title": "Store listings",
-      "description": "Screenshots, videos, descriptions, and keywords in every locale you operate in.",
+      "title": "Mga store listing",
+      "description": "Mga screenshot, video, paglalarawan, at keyword sa bawat locale kung saan kayo nag-o-operate.",
       "icon": "fas fa-store"
     },
     {
-      "title": "Analytics & crash reporting",
-      "description": "Firebase, Sentry, or your stack of choice wired up and dashboard-ready.",
+      "title": "Analytics at crash reporting",
+      "description": "Nakakonekta at handa na sa dashboard ang Firebase, Sentry, o ang stack na pinili ninyo.",
       "icon": "fas fa-chart-bar"
     }
   ],
@@ -157,20 +148,20 @@
   ],
   "faq": [
     {
-      "question": "Should I pick Flutter, React Native, or fully native?",
-      "answer": "It depends on your team, timeline, and platform ambition. We recommend fully native for apps that lean on platform features (Apple Watch, Material You, NFC). Flutter and React Native are great for cross-platform MVPs and most consumer apps. We will recommend the right choice after a short architecture workshop."
+      "question": "Flutter, React Native, o fully native ba ang dapat kong piliin?",
+      "answer": "Nakadepende ito sa team, timeline, at ambisyon ninyo sa platform. Inirerekomenda namin ang fully native para sa mga app na umaasa sa mga feature ng platform (Apple Watch, Material You, NFC). Mahusay ang Flutter at React Native para sa mga cross-platform MVP at sa karamihan ng consumer app. Irerekomenda namin ang tamang pagpili pagkatapos ng maikling architecture workshop."
     },
     {
-      "question": "Do you handle App Store and Play Store submission?",
-      "answer": "Yes. We manage the whole submission process, including review notes, privacy nutrition labels, Data Safety, signing certificates, and store listing copy. We also set up staged rollouts so you can watch crash-free sessions and roll back if needed."
+      "question": "Kayo ba ang humahawak sa submission sa App Store at Play Store?",
+      "answer": "Oo. Kami ang namamahala sa buong proseso ng submission, kasama ang review notes, privacy nutrition labels, Data Safety, signing certificates, at copy ng store listing. Nagse-set up din kami ng staged rollout para mabantayan ninyo ang mga crash-free session at maibalik ang dating bersyon kung kailangan."
     },
     {
-      "question": "Can you take over an existing app?",
-      "answer": "Frequently. We do a paid audit first — architecture review, dependency analysis, crash reports, and a one-page plan — then propose a phased engagement. Most rescue projects start with a 2-week stabilization sprint before we touch features."
+      "question": "Kaya ba ninyong saluhin ang isang existing na app?",
+      "answer": "Madalas naming gawin iyan. Nagsasagawa muna kami ng bayad na audit — review ng architecture, pagsusuri ng mga dependency, mga crash report, at planong isang pahina — saka kami magmumungkahi ng engagement na paunti-unti. Karamihan ng rescue project ay nagsisimula sa 2-linggong stabilization sprint bago namin galawin ang mga feature."
     },
     {
-      "question": "How do you handle ongoing maintenance?",
-      "answer": "We offer monthly retainer plans that include store updates, dependency upgrades, crash triage, and a small number of feature hours. Most clients keep us on for 6–12 months after launch to keep the app fresh."
+      "question": "Paano ninyo hinahawakan ang tuloy-tuloy na maintenance?",
+      "answer": "May mga buwanang retainer plan kami na kasama ang mga update sa store, pag-upgrade ng dependency, pag-triage ng crash, at kaunting oras para sa mga feature. Karamihan ng kliyente ay pinananatili kami nang 6–12 buwan pagkatapos ng launch para manatiling bago ang app."
     }
   ]
 }

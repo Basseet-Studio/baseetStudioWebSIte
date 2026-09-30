@@ -1,6 +1,6 @@
 {
-  "title": "Our Services",
-  "subtitle": "Comprehensive Digital Solutions",
+  "title": "Our services",
+  "subtitle": "Comprehensive digital solutions",
   "description": "We don't just build websites. We create complete digital ecosystems tailored to your business needs — explore each service to see how we work.",
   "categories": [
     {
@@ -9,7 +9,7 @@
       "icon": "fas fa-globe",
       "color": "#496BC1",
       "gradient": "linear-gradient(135deg, #496BC1 0%, #6B8AD9 100%)",
-      "title": "Web Development",
+      "title": "Web development",
       "shortDescription": "Modern, responsive websites and web applications built on stacks we actually maintain — not throwaway templates.",
       "tagline": "Websites that work as hard as you do"
     },
@@ -19,7 +19,7 @@
       "icon": "fas fa-mobile-alt",
       "color": "#FBCD37",
       "gradient": "linear-gradient(135deg, #F59E0B 0%, #FBCD37 100%)",
-      "title": "Mobile Development",
+      "title": "Mobile development",
       "shortDescription": "Native and cross-platform apps designed for the small screen first, then everything else.",
       "tagline": "Apps people keep on their home screen"
     },
@@ -29,7 +29,7 @@
       "icon": "fas fa-tools",
       "color": "#0891B2",
       "gradient": "linear-gradient(135deg, #0891B2 0%, #22D3EE 100%)",
-      "title": "Internal Tools",
+      "title": "Internal tools",
       "shortDescription": "Dashboards, CRMs, and back-office tools your team opens on Monday morning without complaining.",
       "tagline": "Operations software that actually gets used"
     },
@@ -39,7 +39,7 @@
       "icon": "fas fa-search",
       "color": "#16A34A",
       "gradient": "linear-gradient(135deg, #16A34A 0%, #4ADE80 100%)",
-      "title": "SEO & Marketing",
+      "title": "SEO & marketing",
       "shortDescription": "Technical SEO, content, and local search — measured by pipeline, not vanity rankings.",
       "tagline": "Be the brand searchers actually find"
     },
@@ -49,8 +49,8 @@
       "icon": "fas fa-paint-brush",
       "color": "#AF52DE",
       "gradient": "linear-gradient(135deg, #AF52DE 0%, #D8A0F5 100%)",
-      "title": "UI/UX Design",
-      "shortDescription": "Interfaces shaped by real user sessions, not moodboards. Beautiful because it's clear.",
+      "title": "UI/UX design",
+      "shortDescription": "Interfaces shaped by real user sessions, not moodboards. It looks good because it's clear.",
       "tagline": "Design that earns its second tap"
     },
     {
@@ -116,6 +116,6 @@
     "title": "Not sure what you need?",
     "subtitle": "That's exactly what the first call is for.",
     "description": "Every business is unique. We'll help you identify the right solutions for your specific needs and budget.",
-    "button": "Get Free Consultation"
+    "button": "Get a free consultation"
   }
 }

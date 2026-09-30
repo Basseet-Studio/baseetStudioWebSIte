@@ -91,9 +91,9 @@ const servicesData = {
     font-style: italic;
   }
 
-  [lang="ar"] .services-hero__title-accent,
-  [lang="ur"] .services-hero__title-accent,
-  [dir="rtl"] .services-hero__title-accent {
+  :global([lang="ar"]) .services-hero__title-accent,
+  :global([lang="ur"]) .services-hero__title-accent,
+  :global([dir="rtl"]) .services-hero__title-accent {
     font-style: normal;
   }
 

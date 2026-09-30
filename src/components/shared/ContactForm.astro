@@ -15,6 +15,8 @@
 
 import Icon from '../icons/Icon.astro'
 import type { Lang } from '../../types'
+import { t } from '../../lib/i18n'
+import { localizedPath } from '../../lib/locale'
 
 interface Props {
   actionUrl: string
@@ -33,7 +35,7 @@ const { actionUrl, lang = 'en' } = Astro.props
           flanks it. Both rotate slightly and have their own float keyframes
           so the corner reads as a stack of cards dropped on the envelope. ===== */}
       <div class="contact-form__corner">
-        <ul class="contact-form__social-stamps" aria-label="Find us on social">
+        <ul class="contact-form__social-stamps" aria-label={t('contact_form_social_label', lang)}>
         <li class="contact-form__social-stamp" style="--rot:-4deg;--delay:0s;">
           <a href="https://instagram.com/baseet.studio" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
             <Icon name="instagram-logo" size={22} color="currentColor" />
@@ -78,14 +80,14 @@ const { actionUrl, lang = 'en' } = Astro.props
       {/* ===== Left column — subject, message, intent, sender ===== */}
       <div class="contact-form__col contact-form__col--left">
         <div class="contact-form__subject">
-          <span class="contact-form__label-mono">The Subject</span>
+          <span class="contact-form__label-mono">{t('contact_form_subject_label', lang)}</span>
           <div class="contact-form__field contact-form__field--subject">
             <input
               type="text"
               id="contact-subject"
               name="subject"
               class="contact-form__dashed contact-form__dashed--subject"
-              placeholder="A New Chapter"
+              placeholder={t('contact_form_subject_placeholder', lang)}
             />
           </div>
         </div>
@@ -98,18 +100,18 @@ const { actionUrl, lang = 'en' } = Astro.props
             minlength="10"
             rows="5"
             class="contact-form__dashed contact-form__dashed--textarea"
-            placeholder="What story shall we write together?"
+            placeholder={t('contact_form_message_placeholder', lang)}
           ></textarea>
-          <span class="contact-form__label-floating">Message</span>
+          <span class="contact-form__label-floating">{t('contact_form_message_label', lang)}</span>
         </div>
 
         <div class="contact-form__field contact-form__field--full">
-          <span class="contact-form__label-mono">Intent</span>
+          <span class="contact-form__label-mono">{t('contact_form_intent_label', lang)}</span>
           <div class="contact-form__intent">
-            {['Branding', 'Digital', 'Mobile', 'Strategy'].map((label) => (
+            {['branding', 'digital', 'mobile', 'strategy'].map((intent) => (
               <label class="contact-form__intent-chip">
-                <input type="checkbox" name="intent" value={label.toLowerCase()} />
-                <span>{label}</span>
+                <input type="checkbox" name="intent" value={intent} />
+                <span>{t(`contact_form_intent_${intent}`, lang)}</span>
               </label>
             ))}
           </div>
@@ -117,7 +119,7 @@ const { actionUrl, lang = 'en' } = Astro.props
 
         <div class="contact-form__field-group">
           <div class="contact-form__field">
-            <span class="contact-form__label-mono">Name</span>
+            <span class="contact-form__label-mono">{t('contact_form_name', lang)}</span>
             <input
               type="text"
               id="contact-name"
@@ -129,7 +131,7 @@ const { actionUrl, lang = 'en' } = Astro.props
             />
           </div>
           <div class="contact-form__field">
-            <span class="contact-form__label-mono">Email</span>
+            <span class="contact-form__label-mono">{t('contact_form_email', lang)}</span>
             <input
               type="email"
               id="contact-email"
@@ -141,7 +143,7 @@ const { actionUrl, lang = 'en' } = Astro.props
             <span id="contact-email-hint" class="contact-form__field-hint" aria-live="polite"></span>
           </div>
           <div class="contact-form__field">
-            <span class="contact-form__label-mono">Phone</span>
+            <span class="contact-form__label-mono">{t('contact_form_phone', lang)}</span>
             <input
               type="tel"
               id="contact-phone"
@@ -161,11 +163,11 @@ const { actionUrl, lang = 'en' } = Astro.props
       {/* ===== Right column — recipient + submit ===== */}
       <div class="contact-form__col contact-form__col--right">
         <div class="contact-form__recipient">
-          <span class="contact-form__label-mono">Recipient</span>
+          <span class="contact-form__label-mono">{t('contact_form_recipient', lang)}</span>
           <ul class="contact-form__recipient-list">
             <li class="contact-form__recipient-name">
               {/* Agency name — handwritten font. */}
-              <a href="/" class="contact-form__recipient-link contact-form__recipient-link--hand">Baseet Studio</a>
+              <a href={localizedPath(lang, '/')} class="contact-form__recipient-link contact-form__recipient-link--hand">Baseet Studio</a>
             </li>
             <li>
               <a
@@ -173,16 +175,16 @@ const { actionUrl, lang = 'en' } = Astro.props
                 target="_blank"
                 rel="noopener noreferrer"
                 class="contact-form__recipient-link"
-                aria-label="Open Abu Dhabi, UAE in Google Maps"
+                aria-label={t('contact_form_maps_aria', lang)}
               >
-                Abu Dhabi, UAE
+                {t('contact_form_location', lang)}
               </a>
             </li>
             <li>
               <a
                 href="mailto:baseet.socials@gmail.com"
                 class="contact-form__recipient-link"
-                aria-label="Email Baseet Studio"
+                aria-label={t('contact_form_email_aria', lang)}
               >
                 baseet.socials@gmail.com
               </a>
@@ -191,7 +193,7 @@ const { actionUrl, lang = 'en' } = Astro.props
               <a
                 href="tel:+971507566474"
                 class="contact-form__recipient-link"
-                aria-label="Call Baseet Studio"
+                aria-label={t('contact_form_call_aria', lang)}
               >
                 +971 50 756 6474
               </a>
@@ -202,9 +204,9 @@ const { actionUrl, lang = 'en' } = Astro.props
                 target="_blank"
                 rel="noopener noreferrer"
                 class="contact-form__recipient-link"
-                aria-label="Open WhatsApp chat with Baseet Studio"
+                aria-label={t('contact_form_whatsapp_aria', lang)}
               >
-                WhatsApp chat
+                {t('contact_form_whatsapp', lang)}
               </a>
             </li>
             <li>
@@ -213,10 +215,10 @@ const { actionUrl, lang = 'en' } = Astro.props
               <a
                 href="#"
                 class="contact-form__recipient-link contact-form__recipient-link--placeholder"
-                aria-label="Studio location (coming soon)"
-                title="Studio location — coming soon"
+                aria-label={t('contact_form_studio_location_aria', lang)}
+                title={t('contact_form_studio_location_aria', lang)}
               >
-                Studio location · coming soon
+                {t('contact_form_studio_location', lang)}
               </a>
             </li>
           </ul>
@@ -224,10 +226,10 @@ const { actionUrl, lang = 'en' } = Astro.props
 
         <div class="contact-form__submit-wrap">
           <button type="submit" class="contact-form__submit">
-            Post Inquiry
+            {t('contact_form_submit', lang)}
           </button>
           <p class="contact-form__submit-note contact-form__submit-note--hand">
-            Signed, sealed, delivered.
+            {t('contact_form_signed', lang)}
           </p>
         </div>
 
@@ -237,7 +239,7 @@ const { actionUrl, lang = 'en' } = Astro.props
 
     {/* Decorative airmail priority line, sitting along the bottom edge */}
     <span class="contact-form__priority" aria-hidden="true">
-      Baseet · Airmail · Priority
+      {t('contact_form_priority', lang)}
     </span>
     </div>
   </div>

@@ -2,136 +2,127 @@
   "id": "seo",
   "slug": "seo",
   "title": "SEO اور مارکیٹنگ",
-  "tagline": "وہ brand بنیں جسے تلاش کرنے والے واقعی پائیں",
+  "tagline": "وہ برانڈ بنیں جو تلاش کرنے والوں کو واقعی ملے",
   "color": "#16A34A",
   "gradient": "linear-gradient(135deg, #16A34A 0%, #4ADE80 100%)",
   "icon": "fas fa-search",
-  "shortDescription": "Get found online and grow your audience",
+  "shortDescription": "آن لائن نظر میں آئیں اور اپنے ناظرین بڑھائیں",
   "hero": {
-    "title": "وہ Brand بنیں جسے Searchers واقعی پائیں",
-    "subtitle": "Search اور content engine جو ideal customers لاتا ہے — pipeline سے measured۔",
-    "cta_primary": "اپنی site audit کریں",
+    "title": "وہ برانڈ بنیں جو تلاش کرنے والوں کو واقعی ملے",
+    "subtitle": "تکنیکی SEO، مواد اور مقامی سرچ — جن کی کامیابی آنے والے گاہکوں سے ناپی جاتی ہے، رینکنگ کے کسی اسکرین شاٹ سے نہیں جس سے کوئی کمائی نہ ہو۔",
+    "cta_primary": "میری سائٹ کا جائزہ لیں",
     "cta_primary_link": "/contact/",
-    "cta_secondary": "ہم کیسے measure کرتے ہیں",
+    "cta_secondary": "ہم نتائج کیسے ناپتے ہیں",
     "cta_secondary_link": "#process"
   },
   "metrics": [
-    {
-      "value": "3x",
-      "label": "Median organic lift in 6mo"
-    },
-    {
-      "value": "30+",
-      "label": "Tracked KPIs per engagement"
-    },
-    {
-      "value": "Weekly",
-      "label": "Reporting cadence"
-    }
+    { "value": "3x", "label": "6 مہینوں میں آرگینک ٹریفک میں اوسط اضافہ" },
+    { "value": "30+", "label": "ہر پروجیکٹ میں ٹریک کیے جانے والے KPI" },
+    { "value": "ہفتہ وار", "label": "رپورٹنگ کا معمول" }
   ],
   "subServices": [
     {
       "id": "technical-seo",
-      "name": "ٹیکنیکل SEO",
+      "name": "تکنیکی SEO",
       "icon": "fas fa-code",
-      "desc": "سرچ انجن کے لیے سائٹ سٹرکچر",
-      "longDesc": "بہترین مواد نہیں رینک کرے گا اگر کرال نہ ہو۔ ہم بنیاد ٹھیک کرتے ہیں اور رن بُک چھوڑتے ہیں۔",
+      "desc": "سرچ انجنز کے لیے سائٹ کا ڈھانچہ بہتر بنائیں",
+      "longDesc": "دنیا کا بہترین مواد بھی رینک نہیں کرے گا اگر Google اسے پڑھ اور دکھا نہ سکے۔ ہم مکمل تکنیکی جائزہ لیتے ہیں، بنیادیں درست کرتے ہیں (Core Web Vitals، اسکیما، اندرونی لنکس، hreflang، JavaScript رینڈرنگ)، اور ایک رن بک چھوڑتے ہیں جس پر آپ کے ڈیولپرز عمل کر سکیں۔",
       "bullets": [
-        "کرال، رینڈر، انڈیکس آڈٹ",
-        "Core Web Vitals",
-        "Schema، hreflang، canonical",
-        "لاگ فائل اور انٹرنل لنکس"
+        "کرال، رینڈر اور انڈیکس کا جائزہ",
+        "Core Web Vitals اور JavaScript رینڈرنگ کی خرابیوں کا حل",
+        "Schema.org، hreflang اور کینونیکل حکمتِ عملی",
+        "لاگ فائلز کا تجزیہ اور اندرونی لنکس کی نئی ترتیب"
       ],
-      "imageLabel": "ٹیکنیکل SEO آڈٹ"
+      "imageLabel": "تکنیکی SEO جائزے کا ڈیش بورڈ"
     },
     {
       "id": "content-strategy",
-      "name": "کنٹینٹ سٹریٹجی",
+      "name": "مواد کی حکمتِ عملی",
       "icon": "fas fa-pen-fancy",
-      "desc": "مواد جو رینک کرے اور پڑھا جائے",
-      "longDesc": "حقیقی سرچ ڈیمانڈ پر 12 ماہ کا روڈ میپ۔ بریف اور ریویو جو مضامین پیدا کریں۔",
+      "desc": "ایسا مواد جو رینک بھی کرے اور پڑھا بھی جائے",
+      "longDesc": "ہم اصل سرچ ڈیمانڈ اور آپ کی مارکیٹ میں پوزیشن کی بنیاد پر 12 مہینوں کا مواد روڈ میپ بناتے ہیں۔ بریفس، خاکے اور جائزے کے مراحل، جن سے ایسے مضامین بنتے ہیں جو آپ کے ناظرین واقعی پڑھنا چاہیں — اور جن کی وجہ سے دوسرے آپ کو لنک کریں۔",
       "bullets": [
-        "کی ورڈ اور ٹاپک کلسٹرز",
-        "SERP بریف",
-        "ایڈیٹوریل کیلنڈر",
-        "پرانی مواد کی ری فریش"
+        "کی ورڈ ریسرچ اور موضوعات کی گروپ بندی",
+        "سرچ نتائج کو سامنے رکھ کر بنے بریفس اور خاکے",
+        "اشاعت کا کیلنڈر اور جائزے کا نظام",
+        "پرانے مواد کو تازہ کرنے کا پروگرام"
       ],
-      "imageLabel": "ایڈیٹوریل کیلنڈر"
+      "imageLabel": "مواد کی اشاعت کا کیلنڈر"
     },
     {
       "id": "local-seo",
-      "name": "لوکل SEO",
+      "name": "مقامی SEO",
       "icon": "fas fa-map-marker-alt",
-      "desc": "اپنے علاقے میں لوکل سرچ",
-      "longDesc": "اگر گاہک ڈرائیو کی دوری پر ہیں، لوکل SEO سب سے اونچا ROI ہے۔",
+      "desc": "اپنے علاقے کے مقامی سرچ نتائج میں اوپر آئیں",
+      "longDesc": "اگر آپ کے گاہک گاڑی کے فاصلے پر ہیں، تو مقامی SEO آپ کے لیے سب سے زیادہ منافع دینے والا ذریعہ ہے۔ ہم آپ کا Google Business Profile بہتر بناتے ہیں، مقامات کے صفحات بناتے ہیں، ریویوز سنبھالتے ہیں، اور وہ حوالے اور لنکس بناتے ہیں جو آپ کو نقشے کے نتائج میں اوپر لے آئیں۔",
       "bullets": [
-        "گوگل بزنس پروفائل",
-        "لوکیشن پیجز",
-        "ریویو ورک فلو",
-        "سائٹیشن اور لوکل لنکس"
+        "Google Business Profile کی بہتری",
+        "مقامات کے صفحات اور ہر شہر کے لیے الگ مواد",
+        "ریویوز حاصل کرنے اور جواب دینے کا نظام",
+        "حوالوں کی صفائی اور مقامی لنکس بنانا"
       ],
-      "imageLabel": "میپ پیک اور GBP"
+      "imageLabel": "مقامی نقشے کے نتائج اور Google Business Profile"
     },
     {
       "id": "analytics",
-      "name": "اینالٹکس سیٹ اپ",
+      "name": "اینالیٹکس سیٹ اپ",
       "icon": "fas fa-chart-bar",
-      "desc": "صحیح ڈیٹا ٹولز سے کارکردگی",
-      "longDesc": "جو ناپ نہ سکیں بہتر نہیں کرتے۔ GA4، سرچ کنسول، اور ڈیش بورڈ جو قیادت کے سوالوں کا جواب دے۔",
+      "desc": "درست ڈیٹا ٹولز سے کارکردگی پر نظر رکھیں",
+      "longDesc": "جسے آپ ناپ نہیں سکتے، اسے بہتر بھی نہیں کر سکتے۔ ہم GA4، Search Console، سرور سائیڈ ٹیگنگ اور ایک ایسا ڈیش بورڈ ترتیب دیتے ہیں جو ان سوالوں کا جواب دے جو آپ کی قیادت واقعی پوچھتی ہے — صاف ڈیٹا، صاف انتساب، اسپریڈشیٹس کی کوئی کلابازی نہیں۔",
       "bullets": [
-        "GA4، Search Console، GTM",
-        "سرور سائیڈ ٹیگنگ",
-        "Looker Studio ڈیش بورڈز",
-        "کنورژن اور ریونیو"
+        "GA4، Search Console اور Tag Manager",
+        "سرور سائیڈ ٹیگنگ اور صارف کی رضامندی کا موڈ",
+        "ہر ٹیم کے لیے Looker Studio ڈیش بورڈز",
+        "کنورژن اور آمدنی کا انتساب"
       ],
-      "imageLabel": "KPI ڈیش بورڈ"
+      "imageLabel": "Looker Studio کا KPI ڈیش بورڈ"
     }
   ],
   "process": [
     {
       "number": "01",
-      "title": "Audit",
-      "desc": "Technical, content, and backlink audit with a 1-page findings doc",
+      "title": "جائزہ",
+      "desc": "تکنیکی پہلو، مواد اور بیک لنکس کا جائزہ، نتائج ایک صفحے کی دستاویز میں",
       "icon": "fas fa-magnifying-glass"
     },
     {
       "number": "02",
-      "title": "Strategy",
-      "desc": "12-month plan tied to commercial KPIs, not vanity metrics",
+      "title": "حکمتِ عملی",
+      "desc": "12 مہینوں کا منصوبہ، کاروباری KPI سے جڑا ہوا، دکھاوے کے اعداد سے نہیں",
       "icon": "fas fa-bullseye"
     },
     {
       "number": "03",
-      "title": "Execute",
-      "desc": "Monthly sprints across technical, content, and links",
+      "title": "عمل درآمد",
+      "desc": "تکنیکی کام، مواد اور لنکس پر ماہانہ اسپرنٹس",
       "icon": "fas fa-rocket"
     },
     {
       "number": "04",
-      "title": "Report",
-      "desc": "Weekly check-ins, monthly business reviews, and a quarterly reset",
+      "title": "رپورٹ",
+      "desc": "ہفتہ وار رابطہ، ماہانہ کاروباری جائزے، اور ہر سہ ماہی نئی ترتیب",
       "icon": "fas fa-chart-line"
     }
   ],
   "deliverables": [
     {
-      "title": "Technical audit & runbook",
-      "description": "A prioritized list of fixes with effort and impact — handed to your dev team in a clean ticket format.",
+      "title": "تکنیکی جائزہ اور رن بک",
+      "description": "محنت اور اثر کے حساب سے ترتیب دی گئی خرابیوں کی فہرست — آپ کی ڈیولپمنٹ ٹیم کو صاف ستھرے ٹکٹس کی شکل میں۔",
       "icon": "fas fa-clipboard-list"
     },
     {
-      "title": "Content roadmap",
-      "description": "12 months of briefs and outlines, refreshed every quarter based on what is ranking.",
+      "title": "مواد کا روڈ میپ",
+      "description": "12 مہینوں کے بریفس اور خاکے، جو ہر سہ ماہی اس حساب سے تازہ ہوتے ہیں کہ کیا رینک کر رہا ہے۔",
       "icon": "fas fa-calendar"
     },
     {
-      "title": "Dashboard & alerts",
-      "description": "A live Looker Studio dashboard plus Slack or email alerts on the metrics that matter.",
+      "title": "ڈیش بورڈ اور الرٹس",
+      "description": "ایک لائیو Looker Studio ڈیش بورڈ، ساتھ میں اہم اعداد و شمار پر Slack یا ای میل الرٹس۔",
       "icon": "fas fa-chart-line"
     },
     {
-      "title": "Monthly report",
-      "description": "Plain-English review of what changed, what we shipped, and what is next.",
+      "title": "ماہانہ رپورٹ",
+      "description": "سادہ زبان میں جائزہ کہ کیا بدلا، ہم نے کیا کیا، اور آگے کیا ہے۔",
       "icon": "fas fa-file-lines"
     }
   ],
@@ -149,20 +140,20 @@
   ],
   "faq": [
     {
-      "question": "How long until I see results?",
-      "answer": "Technical improvements usually show in 4–8 weeks. Content and links take 3–6 months to compound, which is why we think in quarters, not weeks. We will give you a realistic timeline after the audit."
+      "question": "نتائج نظر آنے میں کتنا وقت لگتا ہے؟",
+      "answer": "تکنیکی بہتری عموماً 4–8 ہفتوں میں نظر آنے لگتی ہے۔ مواد اور لنکس کا اثر جمع ہونے میں 3–6 مہینے لگتے ہیں، اسی لیے ہم ہفتوں میں نہیں، سہ ماہیوں میں سوچتے ہیں۔ جائزے کے بعد ہم آپ کو ایک حقیقت پسندانہ ٹائم لائن دیں گے۔"
     },
     {
-      "question": "Do you guarantee rankings?",
-      "answer": "No reputable agency can, and we will not pretend to. We can guarantee the work, the process, and the reporting. Rankings and traffic are an output of doing the work well over time — and we will show you the inputs that drive them."
+      "question": "کیا آپ رینکنگ کی ضمانت دیتے ہیں؟",
+      "answer": "کوئی بھی معتبر ایجنسی یہ ضمانت نہیں دے سکتی، اور ہم اس کا دکھاوا نہیں کریں گے۔ ہم کام، طریقۂ کار اور رپورٹنگ کی ضمانت دے سکتے ہیں۔ رینکنگ اور ٹریفک وقت کے ساتھ اچھے کام کا نتیجہ ہیں — اور ہم آپ کو وہ چیزیں دکھائیں گے جو انہیں آگے بڑھاتی ہیں۔"
     },
     {
-      "question": "Do you do link building?",
-      "answer": "Yes, but only digital PR and outreach that earns real links. We do not buy links or run PBNs. Our link work is the kind that gets your brand into the publications your customers already read."
+      "question": "کیا آپ لنک بلڈنگ کرتے ہیں؟",
+      "answer": "جی ہاں، لیکن صرف ڈیجیٹل PR اور رابطہ مہم، جس سے اصل لنکس ملیں۔ ہم لنکس نہیں خریدتے اور نہ ہی PBN چلاتے ہیں۔ ہمارا لنک کا کام ایسا ہوتا ہے جو آپ کے برانڈ کو ان اشاعتوں تک پہنچائے جو آپ کے گاہک پہلے سے پڑھتے ہیں۔"
     },
     {
-      "question": "Can you work with our existing agency or in-house team?",
-      "answer": "Frequently. We are happy to slot in as a specialist, run a parallel strategy track, or take over the whole channel. We will propose the right shape after a short conversation."
+      "question": "کیا آپ ہماری موجودہ ایجنسی یا اندرونی ٹیم کے ساتھ کام کر سکتے ہیں؟",
+      "answer": "اکثر یہی کرتے ہیں۔ ہم خوشی سے ماہر کے طور پر شامل ہو سکتے ہیں، ساتھ ساتھ الگ حکمتِ عملی چلا سکتے ہیں، یا پورا شعبہ سنبھال سکتے ہیں۔ ایک مختصر گفتگو کے بعد ہم صحیح طریقہ تجویز کریں گے۔"
     }
   ]
 }

@@ -22,49 +22,49 @@
   "hero": {
     "title": "Order in. Notify on the spot. Own your customers.",
     "subtitle": "Menus, checkout, payments, kitchen alerts, customer updates, and growth tools — without the paper, the guessing, or the panic.",
-    "cta_primary": "Request a Demo",
+    "cta_primary": "Request a demo",
     "cta_primary_link": "/contact",
-    "cta_secondary": "View Features",
+    "cta_secondary": "View features",
     "cta_secondary_link": "#features"
   },
   "features": [
     {
-      "title": "Branded Ordering Storefront",
+      "title": "Branded ordering storefront",
       "description": "Mobile-first menu and catalog with customization, cart, and checkout — your name on the order, not a marketplace’s.",
       "icon": "fas fa-store"
     },
     {
-      "title": "Kitchen & Ops Calm",
+      "title": "Kitchen & ops calm",
       "description": "Kitchen display, live status flow, busy mode, and assignment — orders land where work happens, not buried in a phone.",
       "icon": "fas fa-hat-chef"
     },
     {
-      "title": "Notified on the Spot",
+      "title": "Notified on the spot",
       "description": "Confirmation and status updates the moment something changes — received → preparing → ready → completed.",
       "icon": "fas fa-bell"
     },
     {
-      "title": "Delivery, Pickup & Dine-In",
+      "title": "Delivery, pickup & dine-in",
       "description": "Fulfillment modes the business actually runs — plus reservations, multi-location hours, and delivery hooks when you need wheels.",
       "icon": "fas fa-truck"
     },
     {
-      "title": "Payments & Coupons",
+      "title": "Payments & coupons",
       "description": "Clear checkout, configurable payment methods, campaign codes, and accounting-friendly exports — not cash-in-a-jar folklore.",
       "icon": "fas fa-credit-card"
     },
     {
-      "title": "Reports That Don’t Lie",
+      "title": "Reports that don’t lie",
       "description": "Orders over time, top items, coupon performance, location comparisons, and visitor insights you can act on.",
       "icon": "fas fa-chart-line"
     },
     {
-      "title": "Automations & Webhooks",
+      "title": "Automations & webhooks",
       "description": "New order → kitchen + customer. Status change → SMS. Busy mode → pause checkout. Connect CRM, Slack, and partners.",
       "icon": "fas fa-robot"
     },
     {
-      "title": "Grow Beyond Food",
+      "title": "Grow beyond food",
       "description": "Digital products, gift vouchers, subscriptions, memberships, and social campaign pages — same customers, more revenue lanes.",
       "icon": "fas fa-gift"
     }
@@ -73,25 +73,25 @@
     {
       "name": "Customer",
       "icon": "fas fa-globe",
-      "version": "Storefront + Tracking",
+      "version": "Storefront + tracking",
       "link": "#"
     },
     {
       "name": "Admin",
       "icon": "fas fa-user-shield",
-      "version": "Ops Console",
+      "version": "Ops console",
       "link": "#"
     },
     {
       "name": "Kitchen",
       "icon": "fas fa-hat-chef",
-      "version": "Kitchen Display",
+      "version": "Kitchen display",
       "link": "#"
     },
     {
       "name": "Delivery",
       "icon": "fas fa-truck",
-      "version": "Driver / Dispatch Hooks",
+      "version": "Driver / dispatch hooks",
       "link": "#"
     }
   ],
@@ -143,7 +143,7 @@
       "i18nKey": "project_nav_demo"
     },
     {
-      "label": "Privacy Policy",
+      "label": "Privacy policy",
       "url": "terms/",
       "i18nKey": "project_nav_terms"
     }

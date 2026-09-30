@@ -1,50 +1,50 @@
 {
-  "name": "NSS Virtual Education Fair",
+  "name": "NSS वर्चुअल एजुकेशन फ़ेयर",
   "slug": "nss-virtual-education-fair",
   "type": "standalone",
-  "tagline": "Virtual Education Fair Platform",
-  "description": "## About NSS Virtual Education Fair\n\nThe NSS Virtual Education Fair revolutionizes how students connect with universities worldwide. Born from the need to make quality education accessible regardless of geographical barriers, our platform bridges the gap between ambitious students and prestigious institutions.\n\n### Why Virtual?\n\nTraditional education fairs limit students to nearby events and brief interactions. Our virtual platform offers 24/7 access, global reach, deep engagement, and no travel costs.\n\n### For Universities\n\nShowcase programs through interactive booths, host live sessions and webinars, collect and manage student leads, and analyze engagement to optimize outreach.\n\n### For Students\n\nComprehensive university information in one place, smart recommendations based on profile, direct communication with admissions teams, and document management with application tracking.\n\n## Success Stories\n\nOver 50,000 students have used our platform to find their ideal universities.\n",
+  "tagline": "वर्चुअल एजुकेशन फ़ेयर प्लेटफ़ॉर्म",
+  "description": "## NSS वर्चुअल एजुकेशन फ़ेयर के बारे में\n\nNSS वर्चुअल एजुकेशन फ़ेयर उस तरीक़े को बदल देता है जिससे छात्र दुनिया भर की यूनिवर्सिटीज़ से जुड़ते हैं। यह इस ज़रूरत से पैदा हुआ कि अच्छी शिक्षा भौगोलिक दूरियों के बावजूद हर किसी की पहुँच में हो, और हमारा प्लेटफ़ॉर्म महत्वाकांक्षी छात्रों और प्रतिष्ठित संस्थानों के बीच की दूरी मिटाता है।\n\n### वर्चुअल क्यों?\n\nपारंपरिक एजुकेशन फ़ेयर छात्रों को आस-पास के आयोजनों और छोटी-सी मुलाक़ातों तक सीमित रखते हैं। हमारा वर्चुअल प्लेटफ़ॉर्म 24/7 पहुँच, दुनिया भर तक पहुँच, गहरा जुड़ाव देता है — और यात्रा का कोई ख़र्च नहीं।\n\n### यूनिवर्सिटीज़ के लिए\n\nइंटरैक्टिव बूथ के ज़रिए अपने प्रोग्राम दिखाएँ, लाइव सेशन और वेबिनार करें, छात्रों की लीड जुटाएँ और मैनेज करें, और अपनी आउटरीच बेहतर बनाने के लिए जुड़ाव का विश्लेषण करें।\n\n### छात्रों के लिए\n\nयूनिवर्सिटीज़ की पूरी जानकारी एक ही जगह, प्रोफ़ाइल के आधार पर समझदार सुझाव, एडमिशन टीमों से सीधी बातचीत, और आवेदन की ट्रैकिंग के साथ दस्तावेज़ों का मैनेजमेंट।\n\n## सफलता की कहानियाँ\n\n50,000 से ज़्यादा छात्र हमारे प्लेटफ़ॉर्म से अपनी पसंद की यूनिवर्सिटी ढूँढ चुके हैं।\n",
   "iconClass": "fas fa-graduation-cap",
   "color": "#0EA5E9",
   "gradient": "linear-gradient(135deg, #0EA5E9 0%, #38BDF8 100%)",
-  "status": "पूर्ण",
+  "status": "Completed",
   "hero": {
-    "title": "दुनिया भर की Universities से Connect करें",
-    "subtitle": "Education fairs का नया अनुभव — घर से।",
-    "cta_primary": "Universities Explore करें",
+    "title": "दुनिया भर की यूनिवर्सिटीज़ से जुड़ें",
+    "subtitle": "बिना यात्रा और बिना लंबी क़तारों के एजुकेशन फ़ेयर में शामिल हों। यूनिवर्सिटीज़ को जानें, लाइव सेशन में हिस्सा लें और अपने भविष्य की योजना बनाएँ — सब कुछ घर बैठे आराम से।",
+    "cta_primary": "यूनिवर्सिटीज़ देखें",
     "cta_primary_link": "https://nssedufair.com",
-    "cta_secondary": "Register Now",
+    "cta_secondary": "अभी रजिस्टर करें",
     "cta_secondary_link": "#features"
   },
   "features": [
     {
-      "title": "Virtual University Booths",
-      "description": "Explore interactive virtual booths from top universities. Access brochures, videos, and connect with admission representatives.",
+      "title": "वर्चुअल यूनिवर्सिटी बूथ",
+      "description": "बड़ी यूनिवर्सिटीज़ के इंटरैक्टिव वर्चुअल बूथ देखें। ब्रोशर और वीडियो देखें, और एडमिशन प्रतिनिधियों से जुड़ें।",
       "icon": "fas fa-building"
     },
     {
-      "title": "Live Sessions & Webinars",
-      "description": "Attend live presentations, Q&A sessions, and webinars hosted by university representatives and education experts.",
+      "title": "लाइव सेशन और वेबिनार",
+      "description": "यूनिवर्सिटी प्रतिनिधियों और शिक्षा विशेषज्ञों के लाइव प्रेज़ेंटेशन, सवाल-जवाब सेशन और वेबिनार में शामिल हों।",
       "icon": "fas fa-video"
     },
     {
-      "title": "Smart Matching Algorithm",
-      "description": "Our AI-powered system recommends universities based on your academic profile, interests, and career goals.",
+      "title": "स्मार्ट मैचिंग एल्गोरिदम",
+      "description": "हमारा AI पर आधारित सिस्टम आपकी अकादमिक प्रोफ़ाइल, रुचियों और करियर लक्ष्यों के आधार पर यूनिवर्सिटीज़ सुझाता है।",
       "icon": "fas fa-brain"
     },
     {
-      "title": "Document Upload & Management",
-      "description": "Upload your academic documents once and share with multiple universities. Track your application status in real-time.",
+      "title": "दस्तावेज़ अपलोड और मैनेजमेंट",
+      "description": "अपने अकादमिक दस्तावेज़ एक बार अपलोड करें और कई यूनिवर्सिटीज़ के साथ साझा करें। अपने आवेदन की स्थिति रियल टाइम में ट्रैक करें।",
       "icon": "fas fa-folder-open"
     },
     {
-      "title": "Multi-language Support",
-      "description": "Access the platform in multiple languages including English, Arabic, and Bengali.",
+      "title": "कई भाषाओं का सपोर्ट",
+      "description": "प्लेटफ़ॉर्म को अंग्रेज़ी, अरबी और बांग्ला समेत कई भाषाओं में इस्तेमाल करें।",
       "icon": "fas fa-language"
     },
     {
-      "title": "Analytics Dashboard",
-      "description": "Universities get detailed analytics on booth visits, engagement, and lead quality.",
+      "title": "एनालिटिक्स डैशबोर्ड",
+      "description": "यूनिवर्सिटीज़ को बूथ विज़िट, जुड़ाव और लीड की क्वालिटी पर विस्तृत एनालिटिक्स मिलते हैं।",
       "icon": "fas fa-chart-line"
     }
   ],
@@ -52,7 +52,7 @@
     {
       "name": "Web",
       "icon": "fas fa-globe",
-      "version": "Web Platform",
+      "version": "वेब प्लेटफ़ॉर्म",
       "link": "#"
     }
   ],
@@ -68,32 +68,32 @@
   "screenshots": [],
   "testimonials": [
     {
-      "quote": "The virtual fair made it so easy to explore universities from my country. I found my dream university without leaving home!",
+      "quote": "वर्चुअल फ़ेयर की वजह से अपने देश से ही यूनिवर्सिटीज़ को देखना बहुत आसान हो गया। घर छोड़े बिना मुझे अपने सपनों की यूनिवर्सिटी मिल गई!",
       "author": "Fatima K.",
-      "role": "Student"
+      "role": "छात्रा"
     },
     {
-      "quote": "We reached 10x more students compared to physical fairs. The analytics helped us understand what students really want.",
+      "quote": "फ़िज़िकल फ़ेयर की तुलना में हम 10 गुना ज़्यादा छात्रों तक पहुँचे। एनालिटिक्स से हमें समझ आया कि छात्र असल में क्या चाहते हैं।",
       "author": "Dr. James Wilson",
-      "role": "University Recruiter"
+      "role": "यूनिवर्सिटी रिक्रूटर"
     }
   ],
   "faq": [
     {
-      "question": "How do I register for the virtual fair?",
-      "answer": "Simply create an account on our platform and register for upcoming fairs. You'll receive access credentials and fair schedule via email."
+      "question": "मैं वर्चुअल फ़ेयर के लिए रजिस्टर कैसे करूँ?",
+      "answer": "बस हमारे प्लेटफ़ॉर्म पर अकाउंट बनाएँ और आने वाले फ़ेयर के लिए रजिस्टर करें। आपको ईमेल पर लॉगिन की जानकारी और फ़ेयर का शेड्यूल मिल जाएगा।"
     },
     {
-      "question": "Is it free for students?",
-      "answer": "Yes! Student registration and participation is completely free."
+      "question": "क्या छात्रों के लिए यह मुफ़्त है?",
+      "answer": "हाँ। छात्रों के लिए रजिस्ट्रेशन और हिस्सा लेना पूरी तरह मुफ़्त है।"
     },
     {
-      "question": "How do universities participate?",
-      "answer": "Universities can sign up for booth packages that include virtual booth customization, live session slots, and analytics access."
+      "question": "यूनिवर्सिटीज़ कैसे हिस्सा लेती हैं?",
+      "answer": "यूनिवर्सिटीज़ बूथ पैकेज ले सकती हैं, जिनमें वर्चुअल बूथ को अपने हिसाब से बनाना, लाइव सेशन के स्लॉट और एनालिटिक्स का एक्सेस शामिल है।"
     },
     {
-      "question": "Can I interact with university representatives in real-time?",
-      "answer": "Absolutely! Each booth has live chat and video call options to connect directly with admission counselors during fair hours."
+      "question": "क्या मैं यूनिवर्सिटी प्रतिनिधियों से रियल टाइम में बात कर सकता हूँ?",
+      "answer": "हाँ। हर बूथ में लाइव चैट और वीडियो कॉल के विकल्प हैं, ताकि फ़ेयर के समय में आप सीधे एडमिशन काउंसलर्स से जुड़ सकें।"
     }
   ]
 }

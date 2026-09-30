@@ -164,7 +164,7 @@ const sizeClass = `service-card--${size}`
     transition: color 0.3s ease;
   }
 
-  [dir="rtl"] .service-card__number {
+  :global([dir="rtl"]) .service-card__number {
     right: auto;
     left: 22px;
   }
@@ -264,7 +264,7 @@ const sizeClass = `service-card--${size}`
     transform: translateX(4px);
   }
 
-  [dir="rtl"] .service-card:hover .service-card__cta {
+  :global([dir="rtl"]) .service-card:hover .service-card__cta {
     transform: translateX(-4px);
   }
 
@@ -326,7 +326,7 @@ const sizeClass = `service-card--${size}`
     margin-left: auto;
     padding-top: 0;
   }
-  [dir="rtl"] .service-card--wide .service-card__cta {
+  :global([dir="rtl"]) .service-card--wide .service-card__cta {
     margin-left: 0;
     margin-right: auto;
   }
@@ -376,7 +376,7 @@ const sizeClass = `service-card--${size}`
       margin-top: auto;
       padding-top: 16px;
     }
-    [dir="rtl"] .service-card--wide .service-card__cta {
+    :global([dir="rtl"]) .service-card--wide .service-card__cta {
       margin-right: 0;
       margin-left: auto;
     }

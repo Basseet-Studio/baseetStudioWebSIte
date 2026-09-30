@@ -1,11 +1,11 @@
 {
-  "title": "हमारी विशेषज्ञ टीम से मिलें",
-  "subtitle": "आपकी डिजिटल सफलता के पीछे प्रतिभाशाली डेवलपर",
+  "title": "हमारी अनुभवी टीम से मिलिए",
+  "subtitle": "छोटी, अनुभवी टीम, जो आपकी डिजिटल कामयाबी के पीछे खड़ी है",
   "members": [
     {
       "name": "Mohamed Abdallah",
-      "role": "Founder / Product Lead / PM / Senior Engineer",
-      "bio": "संस्थापक और product lead जो गहरी engineering expertise को product strategy के साथ मिलाकर उच्च गुणवत्ता वाले software products बनाते हैं।",
+      "role": "संस्थापक / प्रोडक्ट लीड / PM / सीनियर इंजीनियर",
+      "bio": "संस्थापक और प्रोडक्ट लीड, जो गहरी इंजीनियरिंग समझ को प्रोडक्ट रणनीति के साथ जोड़कर ऊँची क्वालिटी के सॉफ़्टवेयर प्रोडक्ट गढ़ते हैं।",
       "image": "/images/home/team/mohamed-abdallah.jpg",
       "social": {
         "github": "https://github.com/mohamed-a-elobaid",
@@ -16,8 +16,8 @@
     },
     {
       "name": "Asadur Rahman",
-      "role": "Tech Lead / System Architect",
-      "bio": "Tech lead और systems architect जो scalable distributed systems और robust cloud infrastructure डिज़ाइन पर केंद्रित हैं।",
+      "role": "टेक लीड / सिस्टम आर्किटेक्ट",
+      "bio": "टेक लीड और सिस्टम आर्किटेक्ट, जिनका ध्यान बड़े पैमाने पर चलने वाले डिस्ट्रिब्यूटेड सिस्टम और मज़बूत क्लाउड इंफ्रास्ट्रक्चर डिज़ाइन करने पर रहता है।",
       "image": "/images/home/team/asadur-rahman.png",
       "social": {
         "github": "https://github.com/ViX3L",
@@ -28,8 +28,8 @@
     },
     {
       "name": "Ariyan Rehman",
-      "role": "Product Experience & Docs Engineer",
-      "bio": "UX, developer docs, और content-driven workflows पर ध्यान देकर product experience और documentation excellence सुनिश्चित करते हैं।",
+      "role": "प्रोडक्ट एक्सपीरियंस और डॉक्स इंजीनियर",
+      "bio": "UX, डेवलपर डॉक्यूमेंटेशन और कंटेंट पर आधारित वर्कफ़्लो पर ध्यान देकर प्रोडक्ट के अनुभव और डॉक्यूमेंटेशन की क्वालिटी पक्की करते हैं।",
       "image": "/images/home/team/ariyan-rehman.jpg",
       "social": {
         "github": "https://github.com/ariyangd",
@@ -40,8 +40,8 @@
     },
     {
       "name": "Dibakar Sutra Dhar",
-      "role": "Backend Engineer & Data Engineer",
-      "bio": "Backend engineer जो distributed systems और web & cloud applications के लिए scalable server solutions में विशेषज्ञ हैं।",
+      "role": "बैकएंड इंजीनियर और डेटा इंजीनियर",
+      "bio": "बैकएंड इंजीनियर, जो वेब और क्लाउड ऐप्लिकेशन के लिए डिस्ट्रिब्यूटेड सिस्टम और बड़े पैमाने पर चलने वाले सर्वर सॉल्यूशन में माहिर हैं।",
       "image": "/images/home/team/dibakar-sutradhar.JPG",
       "social": {
         "github": "https://github.com/dibakarsutradhar",
@@ -53,7 +53,7 @@
     {
       "name": "Burhan Ayub",
       "role": "CFO",
-      "bio": "Chief Financial Officer.",
+      "bio": "मुख्य वित्तीय अधिकारी।",
       "image": "/images/home/team/burhan-ayub-placeholder.svg",
       "iconPattern": "money",
       "social": {}

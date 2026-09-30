@@ -1,143 +1,134 @@
 {
   "id": "mobile",
   "slug": "mobile",
-  "title": "تطوير الجوال",
-  "tagline": "تطبيقات يبقيها الناس على شاشتهم الرئيسية",
+  "title": "تطوير تطبيقات الجوال",
+  "tagline": "تطبيقات يُبقيها الناس على شاشتهم الرئيسية",
   "color": "#FBCD37",
   "gradient": "linear-gradient(135deg, #F59E0B 0%, #FBCD37 100%)",
   "icon": "fas fa-mobile-alt",
-  "shortDescription": "Native and cross-platform mobile applications",
+  "shortDescription": "تطبيقات جوال أصلية ومتعددة المنصات",
   "hero": {
-    "title": "تطبيقات يبقيها الناس على شاشتهم الرئيسية",
-    "subtitle": "تطبيقات يبقيها الناس على شاشتهم الرئيسية. iOS أصلي، Android أصلي، أو React Native — أيها يناسب ما تبنيه فعلاً، لا أيها نفضله نحن.",
-    "cta_primary": "خطط لتطبيقك",
+    "title": "تطبيقات يُبقيها الناس على شاشتهم الرئيسية",
+    "subtitle": "iOS أصلي، أو Android أصلي، أو React Native — أياً كان الأنسب فعلاً لما تبنيه، لا أياً كان ما نفضّله نحن.",
+    "cta_primary": "خطّط لتطبيقي",
     "cta_primary_link": "/contact/",
-    "cta_secondary": "شاهد التقنيات",
+    "cta_secondary": "تعرّف على التقنيات",
     "cta_secondary_link": "#tech"
   },
   "metrics": [
-    {
-      "value": "60fps",
-      "label": "Animation target"
-    },
-    {
-      "value": "10+",
-      "label": "Apps shipped"
-    },
-    {
-      "value": "4.8★",
-      "label": "Avg. store rating"
-    }
+    { "value": "60 إطار/ث", "label": "هدفنا في سلاسة الحركة" },
+    { "value": "10+", "label": "تطبيقات أطلقناها" },
+    { "value": "4.8★", "label": "متوسط التقييم في المتاجر" }
   ],
   "subServices": [
     {
       "id": "ios",
       "name": "تطبيقات iOS",
       "icon": "fab fa-apple",
-      "desc": "تطبيقات سويفت أصلية لآيفون وآيباد",
-      "longDesc": "سويفت ويو آي كِت كما ينبغي، مع رفع المتجر وTestFlight وملفات الخصوصية والتفاصيل الصغيرة التي تجعل التطبيق ممتازاً على أجهزة آبل.",
+      "desc": "تطبيقات Swift أصلية لأجهزة iPhone وiPad",
+      "longDesc": "SwiftUI وUIKit خالصان، مكتوبان بـ Swift 5.10 أو أحدث مع async/await في كل مكان. نتولى رفع التطبيق إلى App Store، والنسخ التجريبية عبر TestFlight، وبيانات الخصوصية المطلوبة، والتفاصيل الصغيرة التي تجعل التطبيق يبدو في بيته على معالجات Apple.",
       "bullets": [
-        "سويفت وSwiftUI وUIKit",
-        "آيفون وآيباد وآبل واتش",
-        "StoreKit وتسجيل آبل وWallet",
-        "TestFlight وApp Store Connect"
+        "Swift وSwiftUI وUIKit وCombine",
+        "iPhone وiPad وApple Watch وApple TV",
+        "StoreKit وتسجيل الدخول عبر Apple وWallet",
+        "TestFlight وApp Store Connect وبيانات الخصوصية"
       ],
-      "imageLabel": "شاشة تطبيق iOS"
+      "imageLabel": "نموذج لشاشة تطبيق iOS"
     },
     {
       "id": "android",
-      "name": "تطبيقات أندرويد",
+      "name": "تطبيقات Android",
       "icon": "fab fa-android",
-      "desc": "تطبيقات كوتلن أصلية لكل الأجهزة",
-      "longDesc": "كوتلن أولاً مع جيتباك كومبوز وMaterial 3. نبني للأجهزة التي يستخدمها الناس فعلاً، بتخطيطات مرنة وتجربة أول تشغيل سلسة.",
+      "desc": "تطبيقات Kotlin أصلية لجميع أجهزة Android",
+      "longDesc": "تطبيقات Android مبنية بـ Kotlin أولاً، مع Jetpack Compose وMaterial 3 وحزمة AndroidX الحديثة. نبني لطيف الأجهزة الواسع الذي يملكه مستخدموك فعلاً، بتخطيطات متكيّفة، وإيماءة الرجوع التنبؤية، وتجربة أولى سلسة.",
       "bullets": [
-        "كوتلن وJetpack Compose وMaterial 3",
-        "هواتف وقابل للطي وتابلت",
-        "فواتير بلاي وسلامة البيانات",
-        "مسارات داخلية وإطلاق متدرج"
+        "Kotlin وJetpack Compose وMaterial 3",
+        "تخطيطات متكيّفة للهواتف والأجهزة القابلة للطي والأجهزة اللوحية",
+        "Play Billing وPlay Integrity وقسم أمان البيانات",
+        "مسارات اختبار داخلية، وطرح تدريجي، وتقارير ما قبل الإطلاق"
       ],
-      "imageLabel": "شاشة تطبيق أندرويد"
+      "imageLabel": "نموذج لشاشة تطبيق Android"
     },
     {
       "id": "cross-platform",
-      "name": "متعدد المنصات",
+      "name": "تطبيقات متعددة المنصات",
       "icon": "fas fa-layer-group",
-      "desc": "فلاتر ورياكت نيتف للوصول الأوسع",
-      "longDesc": "كود واحد ومتجران، بإحساس أصلي قدر ما تسمح المنصة. فلاتر للواجهة الدقيقة، ورياكت نيتف حين يكون الفريق في جافاسكربت.",
+      "desc": "Flutter وReact Native للوصول إلى أكثر من منصة",
+      "longDesc": "قاعدة كود واحدة، ومتجران، وأقرب إحساس أصلي تسمح به المنصة. نختار Flutter للواجهات والحركات عالية الدقة، وReact Native حين يكون الفريق متمرساً في JavaScript ويكون النظام البيئي المحيط بها مهماً.",
       "bullets": [
-        "فلاتر 3 مع دارت 3",
-        "رياكت نيتف مع Expo وHermes",
-        "وحدات أصلية لبلوتوث وكاميرا",
-        "نظام تصميم مشترك بين iOS وأندرويد"
+        "Flutter 3 مع Dart 3 وMaterial You وCupertino",
+        "React Native مع Expo وEAS وHermes",
+        "وحدات أصلية للبلوتوث وNFC والكاميرا",
+        "نظام تصميم موحّد بين iOS وAndroid"
       ],
-      "imageLabel": "نموذج تطبيق متعدد المنصات"
+      "imageLabel": "نموذج لتطبيق متعدد المنصات"
     },
     {
       "id": "aso",
-      "name": "تحسين متاجر التطبيقات",
+      "name": "تحسين الظهور في متاجر التطبيقات",
       "icon": "fas fa-chart-line",
-      "desc": "تُكتشف تطبيقك باستراتيجية ظهور صحيحة",
-      "longDesc": "معظم التطبيقات لا تُوجد. نعامل صفحة المتجر كمنتج: كلمات مفتاحية ولقطات ولغات وتجارب مستمرة حتى يصعد منحنى التثبيت.",
+      "desc": "ليجدك الناس، باستراتيجيات ASO مدروسة",
+      "longDesc": "معظم التطبيقات لا يعثر عليها أحد. نتعامل مع صفحة التطبيق في المتجر كجزء من المنتج — بحث في الكلمات المفتاحية، واختبار لقطات الشاشة، وتوطين للأسواق، وسلسلة منتظمة من التجارب حتى يواصل منحنى التثبيت صعوده.",
       "bullets": [
-        "بحث كلمات وتحديث البيانات",
-        "اختبار لقطات وفيديو",
-        "ترجمة للأسواق ذات الأولوية",
-        "تقييمات وردود منظّمة"
+        "بحث في الكلمات المفتاحية وتحديث البيانات الوصفية",
+        "اختبارات A/B للقطات الشاشة والفيديو",
+        "توطين للأسواق ذات الأولوية",
+        "سير عمل للمراجعات والتقييمات والرد عليها"
       ],
-      "imageLabel": "لوحة تحليلات المتجر"
+      "imageLabel": "لوحة تحليلات متجر التطبيقات"
     }
   ],
   "process": [
     {
       "number": "01",
-      "title": "Validate",
-      "desc": "Prototype the core loop, prove the value, and size the build",
+      "title": "التحقق",
+      "desc": "نموذج أولي للتجربة الأساسية، وإثبات للقيمة، وتقدير لحجم العمل",
       "icon": "fas fa-compass"
     },
     {
       "number": "02",
-      "title": "Architect",
-      "desc": "Pick the stack, sketch the navigation, and design the data flow",
+      "title": "الهيكلة",
+      "desc": "اختيار التقنيات، ورسم التنقل، وتصميم تدفق البيانات",
       "icon": "fas fa-sitemap"
     },
     {
       "number": "03",
-      "title": "Design",
-      "desc": "Mobile-first flows, motion studies, and an icon and color system",
+      "title": "التصميم",
+      "desc": "مسارات مصممة للجوال أولاً، ودراسات للحركة، ونظام للأيقونات والألوان",
       "icon": "fas fa-pencil-ruler"
     },
     {
       "number": "04",
-      "title": "Build",
-      "desc": "Sprint-by-sprint with TestFlight and Play Internal Track demos",
+      "title": "البناء",
+      "desc": "دورة عمل بعد أخرى، مع عروض عبر TestFlight ومسار Play الداخلي",
       "icon": "fas fa-code"
     },
     {
       "number": "05",
-      "title": "Ship & Grow",
-      "desc": "Store submission, then a roadmap of releases, not a one-and-done",
+      "title": "الإطلاق والنمو",
+      "desc": "الرفع إلى المتاجر، ثم خارطة طريق للإصدارات — لا إطلاق لمرة واحدة ثم نمضي",
       "icon": "fas fa-rocket"
     }
   ],
   "deliverables": [
     {
-      "title": "Production app binaries",
-      "description": "Signed builds for App Store and Play Store, with internal and external tracks set up.",
+      "title": "ملفات التطبيق الجاهزة للنشر",
+      "description": "نسخ موقّعة لـ App Store وPlay Store، مع إعداد مسارات الاختبار الداخلية والخارجية.",
       "icon": "fas fa-mobile"
     },
     {
-      "title": "Source & CI",
-      "description": "Clean repo, GitHub Actions or Bitrise, and signed release pipelines for both stores.",
+      "title": "الكود المصدري وCI",
+      "description": "مستودع كود نظيف، وGitHub Actions أو Bitrise، ومسارات إصدار موقّعة لكلا المتجرين.",
       "icon": "fas fa-code-branch"
     },
     {
-      "title": "Store listings",
-      "description": "Screenshots, videos, descriptions, and keywords in every locale you operate in.",
+      "title": "صفحات المتاجر",
+      "description": "لقطات شاشة، وفيديوهات، وأوصاف، وكلمات مفتاحية بكل لغة تعمل بها.",
       "icon": "fas fa-store"
     },
     {
-      "title": "Analytics & crash reporting",
-      "description": "Firebase, Sentry, or your stack of choice wired up and dashboard-ready.",
+      "title": "التحليلات وتقارير الأعطال",
+      "description": "Firebase أو Sentry أو الأدوات التي تختارها، مربوطة وجاهزة بلوحات المتابعة.",
       "icon": "fas fa-chart-bar"
     }
   ],
@@ -157,20 +148,20 @@
   ],
   "faq": [
     {
-      "question": "Should I pick Flutter, React Native, or fully native?",
-      "answer": "It depends on your team, timeline, and platform ambition. We recommend fully native for apps that lean on platform features (Apple Watch, Material You, NFC). Flutter and React Native are great for cross-platform MVPs and most consumer apps. We will recommend the right choice after a short architecture workshop."
+      "question": "هل أختار Flutter أم React Native أم تطبيقاً أصلياً بالكامل؟",
+      "answer": "يعتمد ذلك على فريقك وجدولك الزمني وطموحك على كل منصة. ننصح بالتطبيق الأصلي بالكامل للتطبيقات التي تعتمد على ميزات المنصة (Apple Watch، وMaterial You، وNFC). أما Flutter وReact Native فممتازان للنسخ الأولى متعددة المنصات ولمعظم تطبيقات المستهلكين. سنوصيك بالخيار المناسب بعد ورشة قصيرة لهيكلة التطبيق."
     },
     {
-      "question": "Do you handle App Store and Play Store submission?",
-      "answer": "Yes. We manage the whole submission process, including review notes, privacy nutrition labels, Data Safety, signing certificates, and store listing copy. We also set up staged rollouts so you can watch crash-free sessions and roll back if needed."
+      "question": "هل تتولون رفع التطبيق إلى App Store وPlay Store؟",
+      "answer": "نعم. ندير عملية الرفع كاملة، بما فيها ملاحظات المراجعة، وملصقات الخصوصية، وقسم أمان البيانات، وشهادات التوقيع، ونصوص صفحة المتجر. ونُعدّ أيضاً الطرح التدريجي لتتابع نسبة الجلسات الخالية من الأعطال، وتتراجع عن الإصدار عند الحاجة."
     },
     {
-      "question": "Can you take over an existing app?",
-      "answer": "Frequently. We do a paid audit first — architecture review, dependency analysis, crash reports, and a one-page plan — then propose a phased engagement. Most rescue projects start with a 2-week stabilization sprint before we touch features."
+      "question": "هل يمكنكم استلام تطبيق قائم؟",
+      "answer": "يحدث هذا كثيراً. نبدأ بتدقيق مدفوع — مراجعة للهيكلة، وتحليل للاعتماديات، وتقارير الأعطال، وخطة في صفحة واحدة — ثم نقترح عملاً على مراحل. تبدأ معظم مشاريع الإنقاذ بدورة تثبيت مدتها أسبوعان قبل أن نلمس أي ميزة."
     },
     {
-      "question": "How do you handle ongoing maintenance?",
-      "answer": "We offer monthly retainer plans that include store updates, dependency upgrades, crash triage, and a small number of feature hours. Most clients keep us on for 6–12 months after launch to keep the app fresh."
+      "question": "كيف تتعاملون مع الصيانة المستمرة؟",
+      "answer": "نقدّم باقات اشتراك شهرية تشمل تحديثات المتاجر، وترقية الاعتماديات، وفرز الأعطال ومعالجتها، وعدداً محدوداً من ساعات تطوير الميزات. يُبقينا معظم العملاء معهم لمدة 6–12 شهراً بعد الإطلاق ليظل التطبيق محدّثاً."
     }
   ]
 }

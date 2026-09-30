@@ -1,7 +1,7 @@
 {
   "hero": {
     "title": "بساطت سے **بہترین**",
-    "text": "ہم وہ چیزیں بناتے ہیں جو آپ کی ضرورتوں کو پورا کرتی ہیں—بغیر فضول بات کے—صرف مسئلے کا سب سے سادہ حل۔",
+    "text": "ہم وہی بناتے ہیں جس کی آپ کو اصل میں ضرورت ہے — نہ فالتو باتیں، نہ بھرتی، نہ کچھ لانچ ہونے سے پہلے چھ مہینے کا “ڈسکوری فیز”۔ بس آپ کے سامنے موجود مسئلے کا سب سے سادہ حل۔",
     "image": "/images/home/hero/bill-sitting.png",
     "buttons": [
       {
@@ -20,25 +20,25 @@
         "icon": "fas fa-laptop-code",
         "color": "#B45309",
         "title": "ویب پلیٹ فارمز",
-        "text": "جدید فریم ورکس پر بنائے گئے پروڈکشن گریڈ ویbsites اور ڈیش بورڈز"
+        "text": "جدید فریم ورکس سے بنی، پروڈکشن کے معیار کی ویب سائٹس اور ڈیش بورڈز"
       },
       {
         "icon": "fas fa-mobile-alt",
         "color": "#F59E0B",
         "title": "موبائل ایپس",
-        "text": "iOS اور Android ایپس جو مقامی محسوس ہوں اور تیزی سے لوڈ ہوں"
+        "text": "iOS اور Android ایپس جو نیٹو محسوس ہوں اور تیزی سے کھلیں"
       },
       {
         "icon": "fas fa-paint-brush",
         "color": "#EA580C",
         "title": "UI / UX ڈیزائن",
-        "text": "وہ انٹرفیسز جو پہلی بار آنے والے وزیٹرز کو طویل مدتی صارف بناتے ہیں"
+        "text": "ایسے انٹرفیس جو پہلی بار آنے والوں کو مستقل صارف بنا دیں"
       },
       {
         "icon": "fas fa-rocket",
         "color": "#D97706",
-        "title": "مارکیٹ میں آمد",
-        "text": "لانچ پلان سے growth experiments تک، شروع سے آخر تک"
+        "title": "مارکیٹ میں لانچ",
+        "text": "لانچ پلان سے ترقی کے تجربات تک، شروع سے آخر تک"
       }
     ]
   },
@@ -49,7 +49,7 @@
       "pretitle": "تعمیر",
       "pretext": "انجینئرنگ",
       "title": "**فل اسٹیک** پروڈکٹ ڈیولپمنٹ",
-      "text": "ویب، موبائل، بیک اینڈ، انفراسٹرکچر۔ ہم پورا pipeline سنبھالتے ہیں تاکہ آپ تیزی سے ship کریں اور اطمینان سے سوئیں — صاف architecture، automated tests، اور observability پہلے دن سے۔",
+      "text": "ویب، موبائل، بیک اینڈ، انفراسٹرکچر۔ پوری پائپ لائن ہمارے ذمے ہوتی ہے تاکہ آپ جلدی لانچ کریں اور بے فکر سوئیں — صاف آرکیٹیکچر، خودکار ٹیسٹس، اور پہلے دن سے سسٹم کی نگرانی۔",
       "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=600&fit=crop"
     },
     {
@@ -57,26 +57,26 @@
       "color": "#F59E0B",
       "pretitle": "لانچ",
       "pretext": "پروڈکٹ لانچ",
-      "title": "**موبائل ایپس** جو اپنی جگہ заслуж کرتی ہیں",
-      "text": "Native iOS، native Android، اور React Native — صحیح ٹول منتخب کریں، دونوں stores پر ship کریں، اور CI/CD اور crash monitoring کے ساتھ release train چلتی رکھیں۔",
+      "title": "**موبائل ایپس** جو اپنی جگہ کی حقدار ہوں",
+      "text": "نیٹو iOS، نیٹو Android، اور React Native — صحیح ٹول چنیں، دونوں اسٹورز پر لانچ کریں، اور CI/CD اور کریش مانیٹرنگ کے ساتھ ریلیز کا سلسلہ جاری رکھیں۔",
       "image": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=600&fit=crop"
     },
     {
       "icon": "fas fa-compass",
       "color": "#EA580C",
       "pretitle": "توسیع",
-      "pretext": "حکمت عملی اور ترقی",
-      "title": "**پروڈکٹ حکمت عملی** اور جاری شراکت",
-      "text": "روڈ میپس، صارفین کی تحقیق، قیمتوں کے تجربات، اور analytics کی ترتیب۔ ہم صرف بناتے اور چلے نہیں جاتے — ہم آپ کو اہم چیزوں کی پیمائش اور ان پر بہتری لانے میں مدد کرتے ہیں۔",
+      "pretext": "حکمتِ عملی اور ترقی",
+      "title": "**پروڈکٹ حکمتِ عملی** اور مسلسل شراکت",
+      "text": "روڈ میپس، صارفین پر تحقیق، قیمتوں کے تجربات، اور اینالیٹکس کی تیاری۔ ہم بنا کر چلے نہیں جاتے — ہم آپ کی مدد کرتے ہیں کہ جو اہم ہے اسے ناپیں اور اسی پر بہتری لاتے رہیں۔",
       "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop"
     },
     {
       "icon": "fas fa-paint-brush",
       "color": "#FBCD37",
-      "pretitle": "صارف مرکوز ڈیزائن",
+      "pretitle": "صارف پر مرکوز ڈیزائن",
       "pretext": "پہلے ڈیزائن",
       "title": "**UI/UX** ڈیزائن",
-      "text": "ہم خوبصورت، بدیہی انٹرفیسز بناتے ہیں جنہیں صارفین پسند کرتے ہیں۔ wireframes اور prototypes سے pixel-perfect visual design تک، ہر interaction تمام devices پر قدرتی اور خوشگوار محسوس ہو۔",
+      "text": "ہم ایسے واضح اور آسانی سے سمجھ آنے والے انٹرفیس ڈیزائن کرتے ہیں جن پر لوگ بار بار لوٹتے ہیں۔ وائر فریمز اور پروٹوٹائپس سے لے کر درست اور یکساں بصری ڈیزائن تک، ہم یقینی بناتے ہیں کہ ہر تعامل تمام ڈیوائسز پر فطری اور قابلِ پیش گوئی محسوس ہو۔",
       "image": "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop"
     }
   ],
@@ -85,8 +85,8 @@
       "name": "Numu",
       "slug": "numu",
       "type": "branded",
-      "tagline": "بہتر عادات بنائیں، ایک دن میں ایک",
-      "description": "iOS اور Android کے لیے خوبصورت habit-tracking ایپ۔ Streaks، check-ins، analytics، اور smart reminders جو آپ کو مستقل رکھتے ہیں۔",
+      "tagline": "بہتر عادتیں بنائیں، روز ایک قدم",
+      "description": "iOS اور Android کے لیے ایک صاف ستھری، یکسو عادت ٹریکنگ ایپ۔ اسٹریکس، روزانہ چیک اِن، اینالیٹکس اور سمجھدار یاد دہانیاں جو آپ کو مستقل مزاج رکھتی ہیں۔",
       "iconClass": "fas fa-chart-line",
       "platforms": [
         {
@@ -99,21 +99,21 @@
         }
       ],
       "features": [
-        "عادت کی streaks",
-        "روزانہ check-ins",
-        "ترقی کے analytics",
-        "سمارٹ reminders"
+        "عادتوں کے اسٹریکس",
+        "روزانہ چیک اِن",
+        "پیش رفت کا تجزیہ",
+        "سمارٹ یاد دہانیاں"
       ],
       "color": "#9333EA",
       "gradient": "linear-gradient(135deg, #9333EA 0%, #C084FC 100%)",
-      "status": "جلد آرہا ہے"
+      "status": "Coming Soon"
     },
     {
       "name": "Matrix",
       "slug": "matrix",
       "type": "branded",
-      "tagline": "ذہین ڈیٹا، فوری دستیاب",
-      "description": "متحد ڈیٹا intelligence پلیٹ فارم جو جدید ٹیموں کے لیے real-time analytics، automated workflows، اور predictive insights فراہم کرتا ہے۔",
+      "tagline": "ذہین ڈیٹا، ایک اشارے پر",
+      "description": "ایک متحد ڈیٹا انٹیلیجنس پلیٹ فارم جو آج کی ٹیموں کو ریئل ٹائم اینالیٹکس، خودکار ورک فلوز اور پیش گوئی پر مبنی بصیرت دیتا ہے۔",
       "iconClass": "fas fa-database",
       "platforms": [
         {
@@ -122,21 +122,21 @@
         }
       ],
       "features": [
-        "Real-time analytics",
-        "Automated ETL pipelines",
-        "Custom dashboards",
-        "Predictive insights"
+        "ریئل ٹائم اینالیٹکس",
+        "خودکار ETL پائپ لائنز",
+        "حسبِ ضرورت ڈیش بورڈز",
+        "پیش گوئی پر مبنی بصیرت"
       ],
       "color": "#0891B2",
       "gradient": "linear-gradient(135deg, #0891B2 0%, #22D3EE 100%)",
-      "status": "جلد آرہا ہے"
+      "status": "Coming Soon"
     },
     {
       "name": "Invexo",
       "slug": "invexo",
       "type": "branded",
-      "tagline": "چھوٹے دکانوں کے لیے inventory management",
-      "description": "Multi-shop inventory، POS، flexiload commissions، اور daily sales — چھوٹے retail businesses کے لیے بنایا گیا۔",
+      "tagline": "چھوٹی دکانوں کے لیے انوینٹری مینجمنٹ",
+      "description": "کئی دکانوں کی انوینٹری، POS، فلیکسی لوڈ کمیشن اور روزانہ کی فروخت — چھوٹے ریٹیل کاروباروں کے لیے بنایا گیا۔",
       "iconClass": "fas fa-cash-register",
       "platforms": [
         {
@@ -145,21 +145,21 @@
         }
       ],
       "features": [
-        "Multi-shop dashboard",
-        "Inventory & POS",
-        "Flexiload & MFS",
-        "Sales trends"
+        "کئی دکانوں کا ڈیش بورڈ",
+        "انوینٹری اور POS",
+        "فلیکسی لوڈ اور MFS",
+        "فروخت کے رجحانات"
       ],
       "color": "#10B981",
       "gradient": "linear-gradient(135deg, #059669 0%, #34D399 100%)",
-      "status": "ڈیلیور کے لیے تیار"
+      "status": "Ready to Deliver"
     },
     {
       "name": "Ordelo",
       "slug": "ordelo",
       "type": "branded",
-      "tagline": "آپ کا کاروبار۔ آن لائن۔ منظم۔ آپ کا۔",
-      "description": "برانڈڈ آرڈرنگ اور کامرس — مینو، چیک آؤٹ، کچن الرٹس، گاہک نوٹیفکیشنز اور گروتھ ٹولز۔ بغیر کاغذ۔ بغیر اندازہ۔",
+      "tagline": "آپ کا کاروبار۔ آن لائن۔ منظم۔ آپ کی ملکیت۔",
+      "description": "برانڈڈ آرڈرنگ اور کامرس — مینو، چیک آؤٹ، کچن الرٹس، گاہکوں کو اطلاعات اور ترقی کے ٹولز۔ کاغذی جھنجھٹ نہیں۔ اندازے نہیں۔",
       "iconClass": "fas fa-utensils",
       "platforms": [
         {
@@ -168,10 +168,10 @@
         }
       ],
       "features": [
-        "R3F کے ساتھ 3D hero",
-        "Real-time order tracking",
-        "Live social proof",
-        "Stripe payments"
+        "R3F کے ساتھ 3D ہیرو",
+        "ریئل ٹائم آرڈر ٹریکنگ",
+        "لائیو سوشل پروف",
+        "Stripe سے ادائیگیاں"
       ],
       "color": "#F97316",
       "gradient": "linear-gradient(135deg, #F97316 0%, #FB923C 100%)",
@@ -181,8 +181,8 @@
       "name": "MoneyBox",
       "slug": "moneybox",
       "type": "branded",
-      "tagline": "آپ کے پیسے، منظم۔",
-      "description": "Budgets، goals، اور صاف reporting کے ساتھ personal finance tracker۔",
+      "tagline": "آپ کا پیسہ، منظم۔",
+      "description": "بجٹ، اہداف اور صاف ستھری رپورٹنگ کے ساتھ ذاتی مالیات کا ٹریکر۔",
       "iconClass": "fas fa-piggy-bank",
       "platforms": [
         {
@@ -202,8 +202,8 @@
       "name": "Geeb",
       "slug": "geeb",
       "type": "branded",
-      "tagline": "قابل اعتماد home-service pros، demand پر",
-      "description": "B2C پلیٹ فارم جو customers کو verified vendors اور service pros سے plumbing، electrical، handyman، cleaning، اور مزید کے لیے جوڑتا ہے۔",
+      "tagline": "بھروسے کے قابل گھریلو سروس ماہرین، جب چاہیں",
+      "description": "ایک B2C پلیٹ فارم جو گاہکوں کو پلمبنگ، بجلی کے کام، چھوٹی موٹی مرمت، صفائی اور بہت کچھ کے لیے تصدیق شدہ وینڈرز اور سروس ماہرین سے جوڑتا ہے۔",
       "iconClass": "fas fa-wrench",
       "platforms": [
         {
@@ -220,21 +220,21 @@
         }
       ],
       "features": [
-        "Verified pros",
-        "Instant booking",
-        "Real-time tracking",
-        "In-app payments"
+        "تصدیق شدہ ماہرین",
+        "فوری بکنگ",
+        "ریئل ٹائم ٹریکنگ",
+        "ایپ کے اندر ادائیگی"
       ],
       "color": "#B45309",
       "gradient": "linear-gradient(135deg, #B45309 0%, #F59E0B 100%)",
-      "status": "جلد آرہا ہے"
+      "status": "Coming Soon"
     },
     {
       "name": "PhotoRestore AI",
       "slug": "photorestore-ai",
       "type": "branded",
       "tagline": "AI سے پرانی تصاویر بحال کریں",
-      "description": "مدھم، خراب، اور black-and-white تصاویر کو on-device AI restoration، colorization، اور enhancement کے ساتھ زندہ کریں۔",
+      "description": "دھندلی، خراب اور بلیک اینڈ وائٹ تصاویر کو ڈیوائس پر چلنے والی AI بحالی، رنگ بھرائی اور بہتری کے ساتھ دوبارہ زندہ کریں۔",
       "iconClass": "fas fa-wand-magic-sparkles",
       "platforms": [
         {
@@ -243,10 +243,10 @@
         }
       ],
       "features": [
-        "AI restoration",
-        "Auto colorization",
-        "Scratch & damage repair",
-        "Before / after slider"
+        "AI بحالی",
+        "خودکار رنگ بھرائی",
+        "خراشوں اور نقصان کی مرمت",
+        "پہلے / بعد کا سلائیڈر"
       ],
       "color": "#6366F1",
       "gradient": "linear-gradient(135deg, #6366F1 0%, #818CF8 100%)",
@@ -257,7 +257,7 @@
       "slug": "medev",
       "type": "branded",
       "tagline": "صحت کی دیکھ بھال۔ آسان۔",
-      "description": "Clinic + patient پلیٹ فارم جو appointments، records، اور follow-ups کو ایک doctor-friendly workflow میں یکجا کرتا ہے۔",
+      "description": "کلینک اور مریضوں کا ایک پلیٹ فارم جو اپائنٹمنٹس، ریکارڈز اور فالو اپس کو ایک ایسے ورک فلو میں یکجا کرتا ہے جو ڈاکٹروں کے لیے آسان ہو۔",
       "iconClass": "fas fa-hospital",
       "platforms": [
         {
@@ -270,21 +270,21 @@
         }
       ],
       "features": [
-        "Patient records",
-        "Smart scheduling",
-        "e-Prescriptions",
-        "Doctor dashboard"
+        "مریضوں کے ریکارڈز",
+        "سمارٹ شیڈولنگ",
+        "ای نسخے",
+        "ڈاکٹر ڈیش بورڈ"
       ],
       "color": "#0A6E74",
       "gradient": "linear-gradient(135deg, #0A6E74 0%, #14B8A6 100%)",
-      "status": "ڈیلیور کے لیے تیار"
+      "status": "Ready to Deliver"
     }
   ],
   "team": [
     {
       "name": "Mohamed Abdallah",
-      "role": "بانی / Product Lead / PM / Senior Engineer",
-      "bio": "بانی اور product lead جو گہری engineering expertise کو product strategy کے ساتھ ملا کر high-quality software products بناتے ہیں۔",
+      "role": "بانی / پروڈکٹ لیڈ / پروجیکٹ مینیجر / سینئر انجینئر",
+      "bio": "بانی اور پروڈکٹ لیڈ، جو گہری انجینئرنگ مہارت کو پروڈکٹ حکمتِ عملی کے ساتھ ملا کر اعلیٰ معیار کی سافٹ ویئر پروڈکٹس تشکیل دیتے ہیں۔",
       "image": "/images/home/team/mohamed-abdallah.jpg",
       "social": {
         "github": "https://github.com/mohamed-a-elobaid",
@@ -295,8 +295,8 @@
     },
     {
       "name": "Asadur Rahman",
-      "role": "Tech Lead / System Architect",
-      "bio": "Tech lead اور systems architect جو scalable distributed systems اور robust cloud infrastructure ڈیزائن پر توجہ دیتے ہیں۔",
+      "role": "ٹیک لیڈ / سسٹم آرکیٹیکٹ",
+      "bio": "ٹیک لیڈ اور سسٹمز آرکیٹیکٹ، جن کی توجہ بڑے پیمانے پر چلنے والے ڈسٹری بیوٹڈ سسٹمز اور مضبوط کلاؤڈ انفراسٹرکچر کے ڈیزائن پر ہے۔",
       "image": "/images/home/team/asadur-rahman.png",
       "social": {
         "github": "https://github.com/ViX3L",
@@ -307,8 +307,8 @@
     },
     {
       "name": "Ariyan Rehman",
-      "role": "Product Experience & Docs Engineer",
-      "bio": "UX، developer docs، اور content-driven workflows پر توجہ دے کر product experience اور documentation excellence یقینی بناتے ہیں۔",
+      "role": "پروڈکٹ ایکسپیرینس اور ڈاکیومینٹیشن انجینئر",
+      "bio": "UX، ڈیولپر ڈاکیومینٹیشن اور مواد پر مبنی ورک فلوز پر توجہ دے کر پروڈکٹ کے تجربے اور ڈاکیومینٹیشن کا معیار یقینی بناتے ہیں۔",
       "image": "/images/home/team/ariyan-rehman.jpg",
       "social": {
         "github": "https://github.com/ariyangd",
@@ -319,8 +319,8 @@
     },
     {
       "name": "Dibakar Sutra Dhar",
-      "role": "Backend Engineer & Data Engineer",
-      "bio": "Backend engineer جو distributed systems اور web & cloud applications کے لیے scalable server solutions میں مہارت رکھتے ہیں۔",
+      "role": "بیک اینڈ انجینئر اور ڈیٹا انجینئر",
+      "bio": "بیک اینڈ انجینئر، جو ویب اور کلاؤڈ ایپلیکیشنز کے لیے ڈسٹری بیوٹڈ سسٹمز اور بڑے پیمانے پر چلنے والے سرور حل میں مہارت رکھتے ہیں۔",
       "image": "/images/home/team/dibakar-sutradhar.JPG",
       "social": {
         "github": "https://github.com/dibakarsutradhar",
@@ -331,8 +331,8 @@
     },
     {
       "name": "Burhan Ayub",
-      "role": "CFO",
-      "bio": "Chief Financial Officer.",
+      "role": "چیف فنانشل آفیسر",
+      "bio": "چیف فنانشل آفیسر۔",
       "image": "/images/home/team/burhan-ayub-placeholder.svg",
       "iconPattern": "money",
       "social": {}
@@ -351,7 +351,7 @@
   "highlights": [
     {
       "metric": "12+",
-      "label": "مصنوعات لانچ یا مارکیٹ میں",
+      "label": "لانچ شدہ یا مارکیٹ میں موجود پروڈکٹس",
       "icon": "fas fa-rocket"
     },
     {

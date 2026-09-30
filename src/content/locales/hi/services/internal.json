@@ -1,137 +1,128 @@
 {
   "id": "internal",
   "slug": "internal",
-  "title": "आंतरिक टूल",
-  "tagline": "Operations software जो वास्तव में use हो",
+  "title": "इंटरनल टूल",
+  "tagline": "कामकाज का ऐसा सॉफ़्टवेयर जो सच में इस्तेमाल हो",
   "color": "#0891B2",
   "gradient": "linear-gradient(135deg, #0891B2 0%, #22D3EE 100%)",
   "icon": "fas fa-tools",
-  "shortDescription": "Streamline operations with custom internal solutions",
+  "shortDescription": "अपनी ज़रूरत के हिसाब से बने इंटरनल सिस्टम से कामकाज को आसान बनाइए",
   "hero": {
-    "title": "Operations Software जो वास्तव में Use हो",
-    "subtitle": "Dashboards, CRMs, automation जो आपकी team हर सुबह खोलती है।",
-    "cta_primary": "अपना workflow map करें",
+    "title": "कामकाज का ऐसा सॉफ़्टवेयर जो सच में इस्तेमाल हो",
+    "subtitle": "डैशबोर्ड, CRM और बैक-ऑफ़िस टूल, जिन्हें आपकी टीम सोमवार सुबह बिना किसी शिकायत के खोलती है।",
+    "cta_primary": "मेरे वर्कफ़्लो का नक़्शा बनाएँ",
     "cta_primary_link": "/contact/",
-    "cta_secondary": "Deliverables देखें",
+    "cta_secondary": "क्या मिलेगा, देखें",
     "cta_secondary_link": "#deliverables"
   },
   "metrics": [
-    {
-      "value": "−40%",
-      "label": "Time on routine ops"
-    },
-    {
-      "value": "1 week",
-      "label": "First usable build"
-    },
-    {
-      "value": "100%",
-      "label": "Auditable actions"
-    }
+    { "value": "−40%", "label": "रोज़मर्रा के कामों में लगने वाला समय" },
+    { "value": "1 हफ़्ता", "label": "पहला इस्तेमाल लायक़ बिल्ड" },
+    { "value": "100%", "label": "हर कार्रवाई का रिकॉर्ड" }
   ],
   "subServices": [
     {
       "id": "admin-dashboards",
       "name": "एडमिन डैशबोर्ड",
       "icon": "fas fa-tachometer-alt",
-      "desc": "व्यवसाय चलाने वाले डैशबोर्ड",
-      "longDesc": "टीम का कमांड सेंटर — लाइव डेटा, अपवाद, और पेज से कार्रवाई।",
+      "desc": "अपना कारोबार चलाने के लिए लाइव डैशबोर्ड",
+      "longDesc": "आपकी टीम के लिए एक असली कंट्रोल रूम — कोई स्थिर रिपोर्ट नहीं। हम ऐसे इंटरनल डैशबोर्ड बनाते हैं जो आपके सिस्टम से लाइव डेटा खींचें, गड़बड़ियों को सामने लाएँ, और आपकी टीम को पेज छोड़े बिना कार्रवाई करने दें।",
       "bullets": [
-        "DB या API से लाइव डेटा",
-        "रोल के अनुसार व्यू",
-        "फ़िल्टर और सेव्ड व्यू",
-        "ज़रूरी मेट्रिक पर अलर्ट"
+        "आपके डेटाबेस, डेटा वेयरहाउस या SaaS API से लाइव डेटा",
+        "ऑपरेशन, फ़ाइनेंस और लीडरशिप के लिए उनकी भूमिका के हिसाब से अलग व्यू",
+        "गहराई में जाकर देखना, फ़िल्टर और सेव किए हुए व्यू",
+        "ज़रूरी आँकड़ों पर Slack और ईमेल अलर्ट"
       ],
-      "imageLabel": "लाइव KPI डैशबोर्ड"
+      "imageLabel": "लाइव KPI वाला एडमिन डैशबोर्ड"
     },
     {
       "id": "crm",
       "name": "CRM सिस्टम",
       "icon": "fas fa-users-cog",
-      "desc": "आपकी बिक्री के हिसाब का CRM",
-      "longDesc": "जब Salesforce ज़्यादा हो, हम वही CRM बनाते हैं जो आपकी गति से मेल खाए।",
+      "desc": "आपके हिसाब से बना ग्राहक संबंध मैनेजमेंट",
+      "longDesc": "जब Salesforce या HubSpot आपकी ज़रूरत से कहीं ज़्यादा हों, तब हम ऐसा CRM बनाते हैं जो आपकी बिक्री के तरीक़े से मेल खाए। पाइपलाइन के चरण, फ़ॉलो-अप, कॉन्ट्रैक्ट और ग्राहकों की स्थिति — ठीक वही जो आपकी टीम को चाहिए, और कुछ भी ऐसा नहीं जो न चाहिए।",
       "bullets": [
-        "पाइपलाइन और फ़ोरकास्ट",
-        "ईमेल, कॉल, मीटिंग",
-        "कस्टमर हेल्थ और रिन्यूअल",
-        "कस्टम फ़ील्ड बिना जटिलता"
+        "पाइपलाइन, डील के चरण और बिक्री का अनुमान",
+        "ईमेल, कॉल और मीटिंग इंटीग्रेशन",
+        "ग्राहकों की स्थिति और रिन्यूअल के वर्कफ़्लो",
+        "किसी सेल्स कॉल के बिना कस्टम फ़ील्ड और ऑब्जेक्ट"
       ],
-      "imageLabel": "CRM पाइपलाइन"
+      "imageLabel": "कस्टम CRM का पाइपलाइन व्यू"
     },
     {
       "id": "inventory",
-      "name": "इन्वेंटरी प्रबंधन",
+      "name": "इन्वेंटरी मैनेजमेंट",
       "icon": "fas fa-boxes",
-      "desc": "स्टॉक, ऑर्डर और लॉजिस्टिक्स",
-      "longDesc": "इन्वेंटरी एक गलती से खत्म या राइट-ऑफ। मल्टी-लोकेशन सिस्टम जो POS और चैनल से जुड़ें।",
+      "desc": "स्टॉक, ऑर्डर और लॉजिस्टिक्स पर कुशलता से नज़र",
+      "longDesc": "इन्वेंटरी में एक गलती और या तो स्टॉक ख़त्म, या माल बेकार। हम ऐसे इन्वेंटरी सिस्टम बनाते हैं जो अलग-अलग जगहों पर हर SKU का हिसाब रखें, आपके POS और मार्केटप्लेस चैनलों से जुड़ें, और दोबारा ऑर्डर करने के फ़ैसले समस्या बनने से पहले ही सामने ले आएँ।",
       "bullets": [
-        "मल्टी-लोकेशन स्टॉक",
-        "POS और मार्केटप्लेस सिंक",
-        "लॉट, सीरियल, एक्सपायरी",
-        "परचेज़ ऑर्डर और सप्लायर"
+        "कई जगहों का स्टॉक और उनके बीच ट्रांसफ़र",
+        "POS, Shopify और मार्केटप्लेस के साथ सिंक",
+        "लॉट, सीरियल नंबर और एक्सपायरी की ट्रैकिंग",
+        "परचेज़ ऑर्डर और सप्लायर वर्कफ़्लो"
       ],
-      "imageLabel": "स्टॉक और रीऑर्डर"
+      "imageLabel": "इन्वेंटरी स्तर और दोबारा ऑर्डर का व्यू"
     },
     {
       "id": "automation",
       "name": "वर्कफ़्लो ऑटोमेशन",
       "icon": "fas fa-robot",
-      "desc": "दोहराए जाने वाले काम ऑटोमेट करें",
-      "longDesc": "हफ़्ता खाने वाले मैन्युअल कदम भरोसेमंद ऑटोमेशन बन जाते हैं।",
+      "desc": "बार-बार होने वाले काम ऑटोमेट करें और समय बचाएँ",
+      "longDesc": "जो हाथ से किए जाने वाले काम आपका पूरा हफ़्ता खा जाते हैं, हम उन्हें भरोसेमंद ऑटोमेशन में बदल देते हैं। लीड को सही व्यक्ति तक पहुँचाना, इनवॉइस बनाना, नए ग्राहकों की ऑनबोर्डिंग, और अलग-अलग टूल्स को जोड़ने वाली वह कड़ी जिसका कोई Zapier टेम्पलेट नहीं है।",
       "bullets": [
-        "वर्ज़न हिस्ट्री वाला वर्कफ़्लो",
-        "रीट्राई और एरर हैंडलिंग",
-        "हर एक्शन का ऑडिट लॉग",
-        "सैकड़ों टूल कनेक्टर"
+        "वर्ज़न हिस्ट्री के साथ विज़ुअल वर्कफ़्लो डिज़ाइनर",
+        "दोबारा कोशिश, डुप्लिकेट से बचाव और एरर हैंडलिंग",
+        "हर कार्रवाई और फ़ैसले का ऑडिट लॉग",
+        "200+ SaaS टूल्स के लिए पहले से तैयार कनेक्टर"
       ],
-      "imageLabel": "ऑटोमेशन कैनवस"
+      "imageLabel": "वर्कफ़्लो ऑटोमेशन कैनवस"
     }
   ],
   "process": [
     {
       "number": "01",
-      "title": "Map the workflow",
-      "desc": "Sit with the team, sketch the steps, and find the highest-leverage bottleneck",
+      "title": "वर्कफ़्लो का नक़्शा",
+      "desc": "टीम के साथ बैठकर हर क़दम का ख़ाका बनाना और वह रुकावट ढूँढना जिसे हटाने से सबसे ज़्यादा फ़ायदा हो",
       "icon": "fas fa-lightbulb"
     },
     {
       "number": "02",
-      "title": "Scope the MVP",
-      "desc": "A tight first cut that ships in a week — the 80% your team will use daily",
+      "title": "MVP का दायरा",
+      "desc": "एक कसा हुआ पहला वर्ज़न जो एक हफ़्ते में तैयार हो — वह 80% जो आपकी टीम रोज़ इस्तेमाल करेगी",
       "icon": "fas fa-bullseye"
     },
     {
       "number": "03",
-      "title": "Build & instrument",
-      "desc": "Type-safe, real database, and a feature-flag system so we can iterate live",
+      "title": "निर्माण और निगरानी",
+      "desc": "टाइप-सेफ़ कोड, असली डेटाबेस, और फ़ीचर फ़्लैग सिस्टम, ताकि हम लाइव रहते हुए सुधार कर सकें",
       "icon": "fas fa-code"
     },
     {
       "number": "04",
-      "title": "Train & hand off",
-      "desc": "Loom walkthroughs, a short guide, and a 30-day window of small tweaks",
+      "title": "ट्रेनिंग और हैंडओवर",
+      "desc": "Loom वीडियो, एक छोटी गाइड, और छोटे-मोटे बदलावों के लिए 30 दिन का समय",
       "icon": "fas fa-graduation-cap"
     }
   ],
   "deliverables": [
     {
-      "title": "Working internal app",
-      "description": "A deployed app with auth, roles, and an admin area your IT team can own.",
+      "title": "चालू इंटरनल ऐप",
+      "description": "ऑथेंटिकेशन, रोल और एडमिन एरिया वाला डिप्लॉय किया हुआ ऐप, जिसकी ज़िम्मेदारी आपकी IT टीम ले सके।",
       "icon": "fas fa-server"
     },
     {
-      "title": "Data integrations",
-      "description": "Live connectors to your database, SaaS tools, and spreadsheets.",
+      "title": "डेटा इंटीग्रेशन",
+      "description": "आपके डेटाबेस, SaaS टूल्स और स्प्रेडशीट से लाइव कनेक्टर।",
       "icon": "fas fa-plug"
     },
     {
-      "title": "Operator training",
-      "description": "Recorded walkthroughs and a written playbook for the day-to-day.",
+      "title": "टीम की ट्रेनिंग",
+      "description": "रिकॉर्ड किए हुए वीडियो और रोज़मर्रा के काम के लिए लिखी हुई गाइड।",
       "icon": "fas fa-book-open"
     },
     {
-      "title": "Handover & support",
-      "description": "Source code, infrastructure as code, and 30 days of post-launch support.",
+      "title": "हैंडओवर और सपोर्ट",
+      "description": "सोर्स कोड, कोड के रूप में इंफ्रास्ट्रक्चर, और लॉन्च के बाद 30 दिन का सपोर्ट।",
       "icon": "fas fa-handshake"
     }
   ],
@@ -151,20 +142,20 @@
   ],
   "faq": [
     {
-      "question": "How is this different from off-the-shelf SaaS?",
-      "answer": "Off-the-shelf SaaS optimizes for the average customer. A custom internal tool optimizes for your exact workflow — and you stop paying per seat as you grow. We recommend SaaS when it is the right answer, and a custom build when it is not."
+      "question": "यह बाज़ार में मिलने वाले तैयार SaaS से कैसे अलग है?",
+      "answer": "तैयार SaaS औसत ग्राहक को ध्यान में रखकर बनता है। कस्टम इंटरनल टूल ठीक आपके वर्कफ़्लो के हिसाब से बनता है — और टीम बढ़ने पर आपको हर यूज़र के हिसाब से पैसे नहीं देने पड़ते। जहाँ SaaS सही जवाब हो, वहाँ हम SaaS की ही सलाह देते हैं, और जहाँ न हो, वहाँ कस्टम बिल्ड की।"
     },
     {
-      "question": "How long until my team can use it?",
-      "answer": "Our target is a usable first build in one to two weeks, with a feature-complete v1 in 6–10 weeks depending on integrations. We ship in weekly increments and demo every Friday."
+      "question": "मेरी टीम इसे कब से इस्तेमाल कर पाएगी?",
+      "answer": "हमारा लक्ष्य एक से दो हफ़्तों में पहला इस्तेमाल लायक़ बिल्ड देना है, और इंटीग्रेशन के हिसाब से 6–10 हफ़्तों में सारे फ़ीचर वाला पहला वर्ज़न। हम हर हफ़्ते काम आगे बढ़ाते हैं और हर शुक्रवार डेमो दिखाते हैं।"
     },
     {
-      "question": "Will my team be able to maintain it?",
-      "answer": "Yes. We pick boring, well-documented stacks, write the README your future team will read, and run a handover sprint where we pair with whoever owns the tool day-to-day."
+      "question": "क्या मेरी टीम इसे संभाल पाएगी?",
+      "answer": "हाँ। हम सीधे-सादे, अच्छी तरह डॉक्यूमेंट किए हुए स्टैक चुनते हैं, वह README लिखते हैं जिसे आपकी आगे की टीम सच में पढ़ेगी, और एक हैंडओवर स्प्रिंट करते हैं जिसमें हम उस व्यक्ति के साथ मिलकर काम करते हैं जो रोज़ यह टूल संभालेगा।"
     },
     {
-      "question": "What if the requirements change mid-build?",
-      "answer": "Expected. Our process is built around short feedback loops — weekly demos, shared roadmap, and a feature flag system that lets you turn changes on and off without redeploying."
+      "question": "अगर काम के बीच में ज़रूरतें बदल जाएँ तो?",
+      "answer": "ऐसा होना तय है। हमारी पूरी प्रक्रिया छोटे-छोटे फ़ीडबैक चक्रों पर टिकी है — हर हफ़्ते डेमो, साझा रोडमैप, और फ़ीचर फ़्लैग सिस्टम, जिससे आप दोबारा डिप्लॉय किए बिना बदलावों को चालू या बंद कर सकते हैं।"
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
   "hero": {
     "title": "Simply the **best**",
-    "text": "We build things that address your needs—no fluff—just the simplest solution for the problem.",
+    "text": "We build what you actually need — no fluff, no bloat, no six-month “discovery phase” before anything ships. Just the simplest solution to the problem in front of you.",
     "image": "/images/home/hero/bill-sitting.png",
     "buttons": [
       {
@@ -19,25 +19,25 @@
       {
         "icon": "fas fa-laptop-code",
         "color": "#B45309",
-        "title": "Web Platforms",
+        "title": "Web platforms",
         "text": "Production-grade websites and dashboards built with modern frameworks"
       },
       {
         "icon": "fas fa-mobile-alt",
         "color": "#F59E0B",
-        "title": "Mobile Apps",
+        "title": "Mobile apps",
         "text": "iOS and Android apps that feel native and load fast"
       },
       {
         "icon": "fas fa-paint-brush",
         "color": "#EA580C",
-        "title": "UI / UX Design",
+        "title": "UI / UX design",
         "text": "Interfaces that turn first-time visitors into long-term users"
       },
       {
         "icon": "fas fa-rocket",
         "color": "#D97706",
-        "title": "Go-to-Market",
+        "title": "Go-to-market",
         "text": "From launch plan to growth experiments, end to end"
       }
     ]
@@ -73,10 +73,10 @@
     {
       "icon": "fas fa-paint-brush",
       "color": "#FBCD37",
-      "pretitle": "User-Centered Design",
-      "pretext": "Design First",
-      "title": "**UI/UX** Design",
-      "text": "We craft beautiful, intuitive interfaces that users love. From wireframes and prototypes to pixel-perfect visual design, we ensure every interaction feels natural and delightful across all devices.",
+      "pretitle": "User-centered design",
+      "pretext": "Design first",
+      "title": "**UI/UX** design",
+      "text": "We design clear, intuitive interfaces people keep coming back to. From wireframes and prototypes to precise, consistent visual design, we make sure every interaction feels natural and predictable across all devices.",
       "image": "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop"
     }
   ],
@@ -86,7 +86,7 @@
       "slug": "numu",
       "type": "branded",
       "tagline": "Build better habits, one day at a time",
-      "description": "A beautiful habit-tracking app for iOS and Android. Streaks, check-ins, analytics, and smart reminders that keep you consistent.",
+      "description": "A clean, focused habit-tracking app for iOS and Android. Streaks, check-ins, analytics, and smart reminders that keep you consistent.",
       "iconClass": "fas fa-chart-line",
       "platforms": [
         {
@@ -181,7 +181,7 @@
       "name": "MoneyBox",
       "slug": "moneybox",
       "type": "branded",
-      "tagline": "Your money, organised.",
+      "tagline": "Your money, organized.",
       "description": "A personal finance tracker with budgets, goals, and clean reporting.",
       "iconClass": "fas fa-piggy-bank",
       "platforms": [
@@ -283,47 +283,59 @@
   "team": [
     {
       "name": "Mohamed Abdallah",
-      "role": "Founder / Product Lead / PM / Senior Engineer",
+      "role": "Founder / Product lead / PM / Senior engineer",
       "bio": "Founder and product lead combining deep engineering expertise with product strategy to shape high-quality software products.",
       "image": "/images/home/team/mohamed-abdallah.jpg",
       "social": {
         "github": "https://github.com/mohamed-a-elobaid",
         "linkedin": "https://www.linkedin.com/in/mohamed-abdalla-elobaid-29937b227/",
         "twitter": "#"
-      }
+      },
+      "iconPattern": "code"
     },
     {
       "name": "Asadur Rahman",
-      "role": "Tech Lead / System Architect",
+      "role": "Tech lead / System architect",
       "bio": "Tech lead and systems architect focused on designing scalable distributed systems and robust cloud infrastructure.",
       "image": "/images/home/team/asadur-rahman.png",
       "social": {
         "github": "https://github.com/ViX3L",
         "linkedin": "https://www.linkedin.com/in/vix3l/",
         "twitter": "#"
-      }
+      },
+      "iconPattern": "code"
     },
     {
       "name": "Ariyan Rehman",
-      "role": "Product Experience & Docs Engineer",
+      "role": "Product experience & docs engineer",
       "bio": "Ensures product experience and documentation excellence by focusing on UX, developer docs, and content-driven workflows.",
       "image": "/images/home/team/ariyan-rehman.jpg",
       "social": {
         "github": "https://github.com/ariyangd",
         "linkedin": "https://www.linkedin.com/in/ariyangd/",
         "twitter": "https://x.com/ariyangd"
-      }
+      },
+      "iconPattern": "code"
     },
     {
       "name": "Dibakar Sutra Dhar",
-      "role": "Backend Engineer & Data Engineer",
+      "role": "Backend engineer & data engineer",
       "bio": "Backend engineer specializing in distributed systems and scalable server solutions for web & cloud applications.",
       "image": "/images/home/team/dibakar-sutradhar.JPG",
       "social": {
         "github": "https://github.com/dibakarsutradhar",
         "linkedin": "https://www.linkedin.com/in/dibakarsutradhar/",
         "twitter": "https://x.com/iamdibakardipu"
-      }
+      },
+      "iconPattern": "code"
+    },
+    {
+      "name": "Burhan Ayub",
+      "role": "CFO",
+      "bio": "Chief Financial Officer.",
+      "image": "/images/home/team/burhan-ayub-placeholder.svg",
+      "iconPattern": "money",
+      "social": {}
     }
   ],
   "clients": [
@@ -348,8 +360,8 @@
       "icon": "fas fa-layer-group"
     },
     {
-      "metric": "3 yrs",
-      "label": "Average partnership length",
+      "metric": "1 yr",
+      "label": "Minimum support",
       "icon": "fas fa-handshake"
     },
     {

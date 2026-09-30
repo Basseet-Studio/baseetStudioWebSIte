@@ -406,12 +406,12 @@ const copy = {
     white-space: nowrap;
   }
 
-  [dir='rtl'] .booking__priority {
+  :global([dir='rtl']) .booking__priority {
     transform: rotate(90deg);
     transform-origin: left top;
   }
 
-  [dir='rtl'] .booking__stamp {
+  :global([dir='rtl']) .booking__stamp {
     transform: rotate(-6deg);
   }
 
@@ -568,8 +568,11 @@ const copy = {
     font-weight: 600;
     color: var(--paper-ink);
     margin: 0;
-    min-width: 11ch;
+    inline-size: 11rem;
     text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .booking__nav {
@@ -600,7 +603,7 @@ const copy = {
     outline-offset: var(--radius-paper);
   }
 
-  [dir='rtl'] .booking__nav :global(svg) {
+  :global([dir='rtl']) .booking__nav :global(svg) {
     transform: scaleX(-1);
   }
 
@@ -611,7 +614,7 @@ const copy = {
     gap: var(--space-xs);
   }
 
-  .booking__weekdays span {
+  .booking__weekdays :global(span) {
     text-align: center;
     font-family: var(--font-mono);
     font-size: 0.62rem;
@@ -619,86 +622,101 @@ const copy = {
     text-transform: uppercase;
     color: var(--paper-muted);
     padding-block: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  .booking__day {
+  :global([dir='rtl']) .booking__weekdays :global(span),
+  :global([lang='hi']) .booking__weekdays :global(span) {
+    letter-spacing: 0;
+    text-transform: none;
+    font-size: 0.72rem;
+  }
+
+  .booking__calendar :global(.booking__day) {
     position: relative;
+    display: grid;
+    place-items: center;
     min-height: var(--touch-min);
     min-width: 0;
     aspect-ratio: 1;
-    border: 1px solid transparent;
+    padding: 0;
+    border: 0;
     border-radius: var(--radius-paper);
     background: transparent;
     color: var(--paper-ink);
     font-family: var(--font-display);
     font-size: 0.92rem;
+    font-variant-numeric: tabular-nums;
     cursor: pointer;
-    transition: background 180ms ease, color 180ms ease, border-color 180ms ease;
+    transition: background 180ms ease, color 180ms ease;
   }
 
-  .booking__day--pad {
+  .booking__calendar :global(.booking__day--pad) {
     pointer-events: none;
   }
 
-  .booking__day--skel {
+  .booking__calendar :global(.booking__day--skel) {
     background: color-mix(in srgb, var(--paper-ink) 6%, transparent);
     animation: booking-pulse 1.2s ease-in-out infinite;
   }
 
-  .booking__day.is-open {
-    border-color: color-mix(in srgb, var(--paper-ink) 55%, transparent);
-    background: color-mix(in srgb, var(--paper-ink) 8%, transparent);
+  .booking__calendar :global(.booking__day.is-open) {
+    background: color-mix(in srgb, var(--paper-ink) 6%, transparent);
     font-weight: 600;
   }
 
-  .booking__day.is-open::after {
+  .booking__calendar :global(.booking__day.is-open)::after {
     content: '';
     position: absolute;
-    inset-inline: 30%;
+    left: 50%;
     bottom: 6px;
-    height: 1.5px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
     background: var(--paper-ink);
+    transform: translateX(-50%);
     pointer-events: none;
   }
 
-  .booking__day:hover:not(:disabled) {
-    background: color-mix(in srgb, var(--paper-ink) 16%, transparent);
-    border-color: var(--paper-ink);
+  .booking__calendar :global(.booking__day:hover:not(:disabled)) {
+    background: color-mix(in srgb, var(--paper-ink) 14%, transparent);
   }
 
-  .booking__day.is-today:not(.is-selected) {
-    box-shadow: inset 0 0 0 var(--radius-paper) dashed color-mix(in srgb, var(--paper-ink) 45%, transparent);
+  .booking__calendar :global(.booking__day.is-today:not(.is-selected)) {
+    outline: 1.5px dashed color-mix(in srgb, var(--paper-ink) 45%, transparent);
+    outline-offset: -3px;
   }
 
-  .booking__day.is-selected {
+  .booking__calendar :global(.booking__day.is-selected),
+  .booking__calendar :global(.booking__day.is-selected:hover) {
     background: var(--paper-ink);
     color: var(--paper-cream);
-    border-color: var(--paper-ink);
   }
 
-  .booking__day.is-selected::after {
+  .booking__calendar :global(.booking__day.is-selected)::after {
     background: var(--paper-cream);
   }
 
-  .booking__day:disabled {
+  .booking__calendar :global(.booking__day:disabled) {
     color: color-mix(in srgb, var(--paper-muted) 42%, transparent);
     background: transparent;
-    border-color: transparent;
     cursor: default;
     font-weight: 400;
   }
 
-  .booking__day:disabled::after {
+  .booking__calendar :global(.booking__day:disabled)::after {
     content: none;
   }
 
-  .booking__day:focus-visible {
+  .booking__calendar :global(.booking__day:focus-visible) {
     outline: var(--radius-paper) solid var(--paper-ink);
     outline-offset: var(--radius-paper);
   }
 
-  .booking__empty,
-  .booking__hint,
+  .booking__calendar :global(.booking__empty),
+  .booking__slots :global(.booking__hint),
   .booking__tz,
   .booking__cal-hint {
     margin: 10px 0 0;
@@ -707,7 +725,7 @@ const copy = {
     line-height: 1.45;
   }
 
-  .booking__empty {
+  .booking__calendar :global(.booking__empty) {
     grid-column: 1 / -1;
   }
 
@@ -717,11 +735,11 @@ const copy = {
     gap: var(--space-sm);
   }
 
-  .booking__hint {
+  .booking__slots :global(.booking__hint) {
     grid-column: 1 / -1;
   }
 
-  .booking__slot {
+  .booking__slots :global(.booking__slot) {
     border: 1.5px solid var(--paper-ink);
     background: transparent;
     color: var(--paper-ink);
@@ -735,25 +753,25 @@ const copy = {
     transition: background 180ms ease, color 180ms ease, transform 180ms ease;
   }
 
-  .booking__slot:hover {
+  .booking__slots :global(.booking__slot:hover) {
     background: color-mix(in srgb, var(--paper-ink) 10%, transparent);
   }
 
-  .booking__slot:active {
+  .booking__slots :global(.booking__slot:active) {
     transform: scale(0.98);
   }
 
-  .booking__slot.is-selected {
+  .booking__slots :global(.booking__slot.is-selected) {
     background: var(--paper-ink);
     color: var(--paper-cream);
   }
 
-  .booking__slot:focus-visible {
+  .booking__slots :global(.booking__slot:focus-visible) {
     outline: var(--radius-paper) solid var(--paper-ink);
     outline-offset: var(--radius-paper);
   }
 
-  .booking__slot--skel {
+  .booking__slots :global(.booking__slot--skel) {
     width: auto;
     pointer-events: none;
     border-color: transparent;
@@ -767,6 +785,12 @@ const copy = {
     font-size: 1.35rem;
     line-height: 1.25;
     color: var(--paper-ink);
+  }
+
+  .booking__form[hidden],
+  .booking__slots[hidden],
+  .booking__summary[hidden] {
+    display: none;
   }
 
   .booking__form {
@@ -1048,6 +1072,20 @@ const copy = {
       padding: 28px 18px 24px;
     }
 
+    .booking__weekdays,
+    .booking__calendar {
+      gap: 2px;
+    }
+
+    .booking__calendar :global(.booking__day) {
+      aspect-ratio: auto;
+      min-height: 2.75rem;
+    }
+
+    .booking__month-label {
+      inline-size: 9rem;
+    }
+
     .booking__stamp {
       position: relative;
       top: 0;
@@ -1062,11 +1100,11 @@ const copy = {
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .booking__day,
-    .booking__slot,
+    .booking__calendar :global(.booking__day),
+    .booking__slots :global(.booking__slot),
     .booking__submit,
-    .booking__day--skel,
-    .booking__slot--skel {
+    .booking__calendar :global(.booking__day--skel),
+    .booking__slots :global(.booking__slot--skel) {
       transition: none;
       animation: none;
     }
@@ -1075,7 +1113,7 @@ const copy = {
       transform: none;
     }
 
-    .booking__slot:active {
+    .booking__slots :global(.booking__slot:active) {
       transform: none;
     }
   }

@@ -2,8 +2,8 @@
   "name": "MoneyBox",
   "slug": "moneybox",
   "type": "branded",
-  "tagline": "आपके पैसे, व्यवस्थित।",
-  "description": "## About MoneyBox\n\nMoneyBox is a personal finance tracker that helps you see where your money goes, set savings goals, and stay on budget — without the clutter of a full banking app.\n\n### Smart savings goals\n\nSet targets for trips, emergencies, or big purchases and watch your progress with clear visual charts.\n\n### Expense tracking\n\nLog spending by category, spot patterns early, and keep daily habits honest.\n\n### Clean reporting\n\nMonthly summaries and trend views that make sense at a glance — no spreadsheet required.\n",
+  "tagline": "आपका पैसा, व्यवस्थित।",
+  "description": "## MoneyBox के बारे में\n\nMoneyBox एक पर्सनल फ़ाइनेंस ट्रैकर है, जो आपको दिखाता है कि आपका पैसा कहाँ जा रहा है, बचत के लक्ष्य तय करने में मदद करता है और आपको बजट के भीतर रखता है — पूरे बैंकिंग ऐप की भीड़-भाड़ के बिना।\n\n### बचत के समझदार लक्ष्य\n\nयात्रा, आपात स्थिति या बड़ी ख़रीदारी के लिए लक्ष्य तय करें और साफ़ विज़ुअल चार्ट में अपनी प्रगति देखें।\n\n### ख़र्च की ट्रैकिंग\n\nकैटेगरी के हिसाब से ख़र्च दर्ज करें, पैटर्न जल्दी पहचानें और अपनी रोज़ की आदतों का ईमानदार हिसाब रखें।\n\n### साफ़ रिपोर्टिंग\n\nमहीने के सारांश और रुझान वाले व्यू, जो एक नज़र में समझ आ जाएँ — स्प्रेडशीट की कोई ज़रूरत नहीं।\n",
   "iconClass": "fas fa-piggy-bank",
   "color": "#16A34A",
   "gradient": "linear-gradient(135deg, #16A34A 0%, #4ADE80 100%)",
@@ -18,23 +18,43 @@
   "bgEffect": "leaves",
   "bgFallbackGradient": "linear-gradient(180deg, #F0FDF4 0%, #DCFCE7 40%, #BBF7D0 100%)",
   "hero": {
-    "title": "आपके पैसे, आखिरकार व्यवस्थित।",
-    "subtitle": "Budgets, goals, और clean reporting के साथ personal finance tracker।",
-    "cta_primary": "ऐप लें",
+    "title": "आपका पैसा, आख़िरकार व्यवस्थित।",
+    "subtitle": "बजट, लक्ष्यों और साफ़ रिपोर्टिंग वाला पर्सनल फ़ाइनेंस ट्रैकर — ताकि बचत हर दिन आसान और आँखों के सामने रहे।",
+    "cta_primary": "ऐप डाउनलोड करें",
     "cta_primary_link": "https://drive.google.com/drive/folders/1_8MswXC-JxPEFU_0-fmeXal_hK7yKs9C?usp=sharing",
-    "cta_secondary": "View Features",
+    "cta_secondary": "फ़ीचर्स देखें",
     "cta_secondary_link": "#features"
   },
   "features": [
     {
-      "title": "Smart Savings Goals",
-      "description": "Targets set करें और visual charts से progress track करें।",
+      "title": "बचत के समझदार लक्ष्य",
+      "description": "किसी भी चीज़ के लिए लक्ष्य तय करें — आपात स्थिति, यात्रा या बड़ी ख़रीदारी — और हौसला बढ़ाने वाले विज़ुअल चार्ट में प्रगति देखें।",
       "icon": "fas fa-bullseye"
     },
     {
-      "title": "Expense Tracking",
-      "description": "Category के हिसाब से spending log करें।",
+      "title": "ख़र्च की ट्रैकिंग",
+      "description": "कैटेगरी के हिसाब से ख़र्च दर्ज करें, पैटर्न जल्दी पहचानें और स्प्रेडशीट में उलझे बिना रोज़ की आदतों का ईमानदार हिसाब रखें।",
       "icon": "fas fa-receipt"
+    },
+    {
+      "title": "बजट की झलक",
+      "description": "महीने के सारांश में एक नज़र में आमदनी और ख़र्च देखें — मोबाइल पर भी आसानी से पढ़ने लायक।",
+      "icon": "fas fa-chart-pie"
+    },
+    {
+      "title": "साफ़ रिपोर्टिंग",
+      "description": "रुझान वाले व्यू और कैटेगरी के हिसाब से ब्योरा, जो झटपट जाँच के लिए बने हैं — महीने के आख़िर में पुराने हिसाब खंगालने के लिए नहीं।",
+      "icon": "fas fa-chart-line"
+    },
+    {
+      "title": "रोज़ के रिमाइंडर",
+      "description": "ख़र्च दर्ज करने और लक्ष्यों पर नज़र डालने के लिए हल्की-सी याद-दहानी, ताकि ऐप आपकी दिनचर्या के साथ चले, उसके ख़िलाफ़ नहीं।",
+      "icon": "fas fa-bell"
+    },
+    {
+      "title": "शुरू से ही प्राइवेट",
+      "description": "आपकी वित्तीय जानकारी आपके डिवाइस पर ही रहती है। न विज्ञापन, न डेटा की बिक्री — बस एक टूल जो आपके आँकड़ों का सम्मान करता है।",
+      "icon": "fas fa-lock"
     }
   ],
   "platforms": [
@@ -51,63 +71,30 @@
       "link": "https://drive.google.com/drive/folders/1_8MswXC-JxPEFU_0-fmeXal_hK7yKs9C?usp=sharing"
     }
   ],
-  "tech": [
-    "Flutter",
-    "Dart",
-    "SQLite",
-    "Riverpod"
-  ],
+  "tech": ["Flutter", "Dart", "SQLite", "Riverpod"],
   "navItems": [
-    {
-      "label": "Home",
-      "url": "",
-      "i18nKey": "project_nav_home"
-    },
-    {
-      "label": "Features",
-      "url": "features/",
-      "i18nKey": "project_nav_features"
-    },
-    {
-      "label": "Download",
-      "url": "download/",
-      "i18nKey": "project_nav_download"
-    },
-    {
-      "label": "Terms",
-      "url": "terms/",
-      "i18nKey": "project_nav_terms"
-    },
-    {
-      "label": "Privacy",
-      "url": "privacy/",
-      "i18nKey": "project_nav_privacy"
-    }
+    { "label": "होम", "url": "", "i18nKey": "project_nav_home" },
+    { "label": "फ़ीचर्स", "url": "features/", "i18nKey": "project_nav_features" },
+    { "label": "डाउनलोड", "url": "download/", "i18nKey": "project_nav_download" },
+    { "label": "नियम", "url": "terms/", "i18nKey": "project_nav_terms" },
+    { "label": "गोपनीयता", "url": "privacy/", "i18nKey": "project_nav_privacy" }
   ],
   "navMetaItems": [
-    {
-      "label": "Work",
-      "url": "/projects/",
-      "i18nKey": "nav_work"
-    },
-    {
-      "label": "Contact",
-      "url": "/contact/",
-      "i18nKey": "nav_contact"
-    }
+    { "label": "काम", "url": "/projects/", "i18nKey": "nav_work" },
+    { "label": "संपर्क", "url": "/contact/", "i18nKey": "nav_contact" }
   ],
   "faq": [
     {
-      "question": "Is MoneyBox free?",
-      "answer": "MoneyBox is a live product from Baseet Studio. Download links and pricing are available on the Android build; iOS availability is coming soon."
+      "question": "क्या MoneyBox मुफ़्त है?",
+      "answer": "MoneyBox, Baseet Studio का लाइव प्रोडक्ट है। डाउनलोड लिंक और कीमत की जानकारी Android बिल्ड पर उपलब्ध है; iOS वर्ज़न जल्द आ रहा है।"
     },
     {
-      "question": "Does it connect to my bank?",
-      "answer": "MoneyBox focuses on manual tracking and goal setting — simple, private, and fully under your control."
+      "question": "क्या यह मेरे बैंक से जुड़ता है?",
+      "answer": "MoneyBox का ध्यान ख़ुद से ख़र्च दर्ज करने और लक्ष्य तय करने पर है — सरल, प्राइवेट और पूरी तरह आपके नियंत्रण में।"
     },
     {
-      "question": "Where is my data stored?",
-      "answer": "Your data stays on your device. We do not sell or share your financial information."
+      "question": "मेरा डेटा कहाँ सेव होता है?",
+      "answer": "आपका डेटा आपके डिवाइस पर ही रहता है। हम आपकी वित्तीय जानकारी न बेचते हैं, न किसी से साझा करते हैं।"
     }
   ],
   "links": {

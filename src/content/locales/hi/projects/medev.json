@@ -2,12 +2,12 @@
   "name": "Medev",
   "slug": "medev",
   "type": "branded",
-  "tagline": "स्वास्थ्य सेवा। सरल।",
-  "description": "## About Medev\n\nMedev is the healthcare management system built for clinics and hospitals that want full control without complexity. Whether you host it yourself or we host it for you, you get a complete solution with a customizable frontend that reflects your brand.\n\n### Built for Modern Healthcare\n\nMedev combines the robustness of enterprise healthcare systems with the flexibility of open-source technology. It's designed to grow with your practice — from small clinics to large hospital networks.\n\n### Your Brand, Your Way\n\nThe included frontend website can be fully customized to match your clinic's branding and design requirements. You specify the look; we build it with the standardized Medev backend powering everything underneath.\n\n## Ready to Transform Your Practice?\n\nContact us to learn how Medev can streamline your healthcare operations.\n",
+  "tagline": "हेल्थकेयर। आसान।",
+  "description": "## Medev के बारे में\n\nMedev उन क्लिनिकों और अस्पतालों के लिए बना हेल्थकेयर मैनेजमेंट सिस्टम है, जो बिना उलझन के पूरा नियंत्रण चाहते हैं। चाहे आप इसे ख़ुद होस्ट करें या हम आपके लिए होस्ट करें, आपको एक पूरा समाधान मिलता है, जिसमें आपके ब्रांड को दिखाने वाला कस्टमाइज़ करने लायक फ़्रंटएंड शामिल है।\n\n### आधुनिक हेल्थकेयर के लिए बना\n\nMedev एंटरप्राइज़ हेल्थकेयर सिस्टम की मज़बूती को ओपन-सोर्स टेक्नोलॉजी के लचीलेपन के साथ जोड़ता है। इसे आपकी प्रैक्टिस के साथ बढ़ने के लिए डिज़ाइन किया गया है — छोटे क्लिनिक से लेकर बड़े अस्पताल नेटवर्क तक।\n\n### आपका ब्रांड, आपके तरीक़े से\n\nसाथ मिलने वाली फ़्रंटएंड वेबसाइट को आपके क्लिनिक की ब्रांडिंग और डिज़ाइन की ज़रूरतों के हिसाब से पूरी तरह बदला जा सकता है। लुक आप तय करते हैं; हम उसे बनाते हैं, और नीचे सब कुछ मानक Medev बैकएंड पर चलता है।\n\n## अपनी प्रैक्टिस को बदलने के लिए तैयार हैं?\n\nMedev आपके हेल्थकेयर संचालन को कैसे आसान बना सकता है, यह जानने के लिए हमसे संपर्क करें।\n",
   "iconClass": "fas fa-hospital",
   "color": "#0A6E74",
   "gradient": "linear-gradient(135deg, #0A6E74 0%, #14B8A6 100%)",
-  "status": "डिलीवरी के लिए तैयार",
+  "status": "Ready to Deliver",
   "layoutVariant": "medev",
   "fontHeading": "IBM Plex Sans",
   "fontBody": "IBM Plex Sans",
@@ -18,42 +18,42 @@
   "bgEffect": "grid",
   "bgFallbackGradient": "linear-gradient(180deg, #F0FDFA 0%, #CCFBF1 40%, #99F6E4 100%)",
   "hero": {
-    "title": "सभी के लिए काम करने वाली Healthcare",
-    "subtitle": "पूर्ण EHR, practice management, patient portal — एक secure platform में।",
-    "cta_primary": "Demo Request करें",
+    "title": "ऐसा हेल्थकेयर जो सबके काम आए",
+    "subtitle": "पूरे इलेक्ट्रॉनिक हेल्थ रिकॉर्ड, प्रैक्टिस मैनेजमेंट, पेशेंट पोर्टल और FHIR-अनुरूप API — सब एक सुरक्षित, सेल्फ़-होस्टेड प्लेटफ़ॉर्म पर।",
+    "cta_primary": "डेमो का अनुरोध करें",
     "cta_primary_link": "/contact",
-    "cta_secondary": "View Features",
+    "cta_secondary": "फ़ीचर्स देखें",
     "cta_secondary_link": "#features"
   },
   "features": [
     {
-      "title": "Full EHR System",
-      "description": "Comprehensive patient records including encounters, vitals, SOAP notes, diagnoses, and electronic prescriptions.",
+      "title": "पूरा EHR सिस्टम",
+      "description": "मरीज़ों के विस्तृत रिकॉर्ड — विज़िट, वाइटल्स, SOAP नोट्स, निदान और इलेक्ट्रॉनिक प्रिस्क्रिप्शन समेत।",
       "icon": "fas fa-file-medical"
     },
     {
-      "title": "Practice Management",
-      "description": "Streamlined scheduling, appointments, waiting lists, and billing for healthcare practices of any size.",
+      "title": "प्रैक्टिस मैनेजमेंट",
+      "description": "किसी भी आकार की हेल्थकेयर प्रैक्टिस के लिए सरल शेड्यूलिंग, अपॉइंटमेंट, वेटिंग लिस्ट और बिलिंग।",
       "icon": "fas fa-calendar-check"
     },
     {
-      "title": "Patient Portal",
-      "description": "Self-service portal for patients to view records, schedule appointments, and communicate with their care team.",
+      "title": "पेशेंट पोर्टल",
+      "description": "मरीज़ों के लिए सेल्फ़-सर्विस पोर्टल, जहाँ वे अपने रिकॉर्ड देख सकें, अपॉइंटमेंट बुक कर सकें और अपनी केयर टीम से बात कर सकें।",
       "icon": "fas fa-users"
     },
     {
       "title": "FHIR R4 + REST API",
-      "description": "SMART on FHIR v2.2.0 app integration with OAuth2-secured REST APIs for seamless third-party integrations.",
+      "description": "मानकों पर आधारित थर्ड-पार्टी इंटीग्रेशन के लिए OAuth2 से सुरक्षित REST API के साथ SMART on FHIR v2.2.0 ऐप इंटीग्रेशन।",
       "icon": "fas fa-plug"
     },
     {
-      "title": "Docker Deployment",
-      "description": "Self-hosted or cloud-deployed via Docker. Full control over your data with enterprise-grade security.",
+      "title": "Docker डिप्लॉयमेंट",
+      "description": "Docker के ज़रिए सेल्फ़-होस्टेड या क्लाउड पर डिप्लॉय। एंटरप्राइज़-स्तर की सुरक्षा के साथ अपने डेटा पर पूरा नियंत्रण।",
       "icon": "fas fa-docker"
     },
     {
-      "title": "Custom Branding",
-      "description": "White-label ready with fully customizable frontend websites. Your clinic, your brand, your patient experience.",
+      "title": "अपनी ब्रांडिंग",
+      "description": "पूरी तरह कस्टमाइज़ होने वाली फ़्रंटएंड वेबसाइट के साथ व्हाइट-लेबल के लिए तैयार। आपका क्लिनिक, आपका ब्रांड, आपके मरीज़ों का अनुभव।",
       "icon": "fas fa-palette"
     }
   ],
@@ -61,13 +61,13 @@
     {
       "name": "Web",
       "icon": "fas fa-globe",
-      "version": "Web App",
+      "version": "वेब ऐप",
       "link": "#"
     },
     {
       "name": "Docker",
       "icon": "fab fa-docker",
-      "version": "Self-Hosted",
+      "version": "सेल्फ़-होस्टेड",
       "link": "#"
     }
   ],
@@ -81,54 +81,54 @@
   ],
   "navItems": [
     {
-      "label": "Home",
+      "label": "होम",
       "url": "",
       "i18nKey": "project_nav_home"
     },
     {
-      "label": "Features",
+      "label": "फ़ीचर्स",
       "url": "features/",
       "i18nKey": "project_nav_features"
     },
     {
-      "label": "Demo",
+      "label": "डेमो",
       "url": "demo/",
       "i18nKey": "project_nav_demo"
     },
     {
-      "label": "Privacy Policy",
+      "label": "गोपनीयता नीति",
       "url": "terms/",
       "i18nKey": "project_nav_terms"
     }
   ],
   "navMetaItems": [
     {
-      "label": "Work",
+      "label": "काम",
       "url": "/projects/",
       "i18nKey": "nav_work"
     },
     {
-      "label": "Contact",
+      "label": "संपर्क",
       "url": "/contact/",
       "i18nKey": "nav_contact"
     }
   ],
   "faq": [
     {
-      "question": "What is Medev?",
-      "answer": "Medev is a rebranded instance of Medev v7.0.3+ — the world's leading open-source Electronic Health Records and Medical Practice Management system. It runs on a VPS via Docker."
+      "question": "Medev क्या है?",
+      "answer": "Medev, Medev v7.0.3+ का रीब्रांड किया हुआ इंस्टेंस है — दुनिया का अग्रणी ओपन-सोर्स इलेक्ट्रॉनिक हेल्थ रिकॉर्ड और मेडिकल प्रैक्टिस मैनेजमेंट सिस्टम। यह Docker के ज़रिए VPS पर चलता है।"
     },
     {
-      "question": "What features does Medev include?",
-      "answer": "Medev includes full EHR (patient records, encounters, vitals, SOAP notes, prescriptions), practice management (scheduling, appointments, billing), patient portal, FHIR R4 + REST API with OAuth2, and SMART on FHIR v2.2.0 app integration."
+      "question": "Medev में कौन-से फ़ीचर्स शामिल हैं?",
+      "answer": "Medev में पूरा EHR (मरीज़ों के रिकॉर्ड, विज़िट, वाइटल्स, SOAP नोट्स, प्रिस्क्रिप्शन), प्रैक्टिस मैनेजमेंट (शेड्यूलिंग, अपॉइंटमेंट, बिलिंग), पेशेंट पोर्टल, OAuth2 के साथ FHIR R4 + REST API, और SMART on FHIR v2.2.0 ऐप इंटीग्रेशन शामिल है।"
     },
     {
-      "question": "Can I customize the patient-facing frontend?",
-      "answer": "Yes! Medev includes a customizable frontend website that your clinic or hospital can brand and design. You control the patient experience while the backend remains standardized with many available features and add-ons."
+      "question": "क्या मैं मरीज़ों को दिखने वाला फ़्रंटएंड कस्टमाइज़ कर सकता हूँ?",
+      "answer": "हाँ। Medev में एक कस्टमाइज़ करने लायक फ़्रंटएंड वेबसाइट शामिल है, जिसकी ब्रांडिंग और डिज़ाइन आपका क्लिनिक या अस्पताल तय कर सकता है। मरीज़ों का अनुभव आपके हाथ में रहता है, जबकि बैकएंड मानक रहता है और उसमें कई फ़ीचर्स व ऐड-ऑन उपलब्ध हैं।"
     },
     {
-      "question": "Is Medev self-hosted?",
-      "answer": "Yes, Medev is fully self-hosted via Docker. You have full control over your data. We also offer hosting options if you prefer us to manage it for you."
+      "question": "क्या Medev सेल्फ़-होस्टेड है?",
+      "answer": "हाँ, Medev पूरी तरह Docker के ज़रिए सेल्फ़-होस्टेड है। आपके डेटा पर पूरा नियंत्रण आपका है। अगर आप चाहें कि हम इसे आपके लिए संभालें, तो हम होस्टिंग के विकल्प भी देते हैं।"
     }
   ]
 }

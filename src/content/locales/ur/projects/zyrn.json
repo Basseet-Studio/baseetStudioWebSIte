@@ -2,12 +2,12 @@
   "name": "Zyrn",
   "slug": "zyrn",
   "type": "branded",
-  "tagline": "آپ کا اسٹور۔ آپ کا برانڈ۔ آپ کے گاہک — فوراً مطلع۔",
-  "description": "## About Zyrn\n\nZyrn is a complete digital commerce package for business owners and new entrepreneurs who want to sell online without drowning in spreadsheets, WhatsApp orders, and sticky notes. It runs a real store — products, payments, customers, marketing, returns, reports — and grows into subscriptions, digital goods, bookings, and automations that keep your business moving while you sleep.\n\n### No paper trail. No guessing.\n\nOrders stop living in Instagram DMs and chat threads. Stock stops living in notebooks. Customers get updates the moment something changes — order placed, payment confirmed, shipped, delivered, return opened.\n\n### Sell what you actually sell\n\nPhysical products, digital downloads, subscriptions and memberships, bookings and appointments, bundles and multi-currency storefronts — one branded system, not a brochure site.\n",
+  "tagline": "آپ کا اسٹور۔ آپ کا برانڈ۔ آپ کے کسٹمرز — جنہیں فوراً اطلاع ملتی ہے۔",
+  "description": "## Zyrn کا تعارف\n\nZyrn ڈیجیٹل کامرس کا ایک مکمل پیکج ہے — ان کاروباری مالکان اور نئے کاروباری افراد کے لیے جو اسپریڈ شیٹس، WhatsApp آرڈرز اور چپکنے والی پرچیوں میں ڈوبے بغیر آن لائن بیچنا چاہتے ہیں۔ یہ ایک حقیقی اسٹور چلاتا ہے — پروڈکٹس، ادائیگیاں، کسٹمرز، مارکیٹنگ، واپسیاں، رپورٹس — اور آگے چل کر سبسکرپشنز، ڈیجیٹل پروڈکٹس، بکنگز اور ایسی آٹومیشنز تک بڑھتا ہے جو آپ کے سوتے ہوئے بھی کاروبار چلاتی رہتی ہیں۔\n\n### نہ کاغذی کارروائی۔ نہ اندازے۔\n\nآرڈرز اب Instagram کے DMs اور چیٹ تھریڈز میں نہیں پڑے رہتے۔ اسٹاک کا حساب اب نوٹ بکس میں نہیں رہتا۔ جیسے ہی کچھ بدلتا ہے، کسٹمرز کو اپ ڈیٹ مل جاتی ہے — آرڈر دیا گیا، ادائیگی کی تصدیق ہوئی، روانہ ہوا، پہنچ گیا، واپسی کی درخواست کھلی۔\n\n### وہی بیچیں جو آپ واقعی بیچتے ہیں\n\nفزیکل پروڈکٹس، ڈیجیٹل ڈاؤن لوڈز، سبسکرپشنز اور ممبرشپس، بکنگز اور اپائنٹمنٹس، بنڈلز اور کئی کرنسیوں والے اسٹور فرنٹس — آپ کے برانڈ والا ایک ہی نظام، کوئی بروشر ویب سائٹ نہیں۔\n",
   "iconClass": "fas fa-th-large",
   "color": "#EC4899",
   "gradient": "linear-gradient(135deg, #EC4899 0%, #F9A8D4 100%)",
-  "status": "ڈیلیور کے لیے تیار",
+  "status": "Ready to Deliver",
   "layoutVariant": "zyrn",
   "fontHeading": "Space Grotesk",
   "fontBody": "Inter",
@@ -19,8 +19,8 @@
   "bgFallbackGradient": "linear-gradient(180deg, #FDF2F8 0%, #FCE7F3 40%, #FBCFE8 100%)",
   "clientIds": ["little-hands-lab"],
   "hero": {
-    "title": "سمارٹ بیچیں۔ گاہکوں کے قریب رہیں۔ بغیر افراتفری بڑھیں۔",
-    "subtitle": "فزیکل، ڈیجیٹل اور سبسکرپشن مصنوعات کے لیے برانڈڈ آن لائن اسٹور — لائیو اپڈیٹس، واضح اعداد و ارقام اور آٹومیشن کے ساتھ۔",
+    "title": "سمجھ داری سے بیچیں۔ کسٹمرز کے قریب رہیں۔ افراتفری کے بغیر آگے بڑھیں۔",
+    "subtitle": "فزیکل پروڈکٹس، ڈیجیٹل پروڈکٹس اور سبسکرپشنز کے لیے آپ کے برانڈ والا آن لائن اسٹور سسٹم — کسٹمرز کے لیے لائیو اپ ڈیٹس، واضح اعداد و شمار اور آٹومیشنز کے ساتھ، تاکہ آپ کو کبھی اندازہ نہ لگانا پڑے کہ آپ کے کاروبار میں کیا ہو رہا ہے۔",
     "cta_primary": "ڈیمو کی درخواست کریں",
     "cta_primary_link": "/contact",
     "cta_secondary": "فیچرز دیکھیں",
@@ -28,43 +28,43 @@
   },
   "features": [
     {
-      "title": "Branded Storefront",
-      "description": "Your logo, colors, and content on a mobile-ready store — premium from day one, not a temporary link in bio.",
+      "title": "آپ کے برانڈ والا اسٹور فرنٹ",
+      "description": "موبائل کے لیے تیار اسٹور پر آپ کا لوگو، رنگ اور مواد — پہلے دن سے معیاری، بائیو میں دیا گیا کوئی عارضی لنک نہیں۔",
       "icon": "fas fa-store"
     },
     {
-      "title": "Sell Anything",
-      "description": "Physical products, digital downloads, subscriptions, bookings, bundles, and multi-currency or multi-language storefronts.",
+      "title": "کچھ بھی بیچیں",
+      "description": "فزیکل پروڈکٹس، ڈیجیٹل ڈاؤن لوڈز، سبسکرپشنز، بکنگز، بنڈلز، اور کئی کرنسیوں یا کئی زبانوں والے اسٹور فرنٹس۔",
       "icon": "fas fa-boxes-stacked"
     },
     {
-      "title": "Notified on the Spot",
-      "description": "Order placed → payment confirmed → shipped → delivered → return opened. Customers stay informed without chasing you.",
+      "title": "فوراً اطلاع",
+      "description": "آرڈر دیا گیا ← ادائیگی کی تصدیق ← روانہ ← پہنچ گیا ← واپسی کی درخواست۔ کسٹمرز کو آپ کے پیچھے بھاگے بغیر ہر بات کا علم رہتا ہے۔",
       "icon": "fas fa-bell"
     },
     {
-      "title": "Checkout & Payments",
-      "description": "Smooth cart and checkout with cards, wallets, COD, bank transfer, and major gateways — take the money, confirm, move on.",
+      "title": "چیک آؤٹ اور ادائیگیاں",
+      "description": "کارڈز، والیٹس، کیش آن ڈیلیوری، بینک ٹرانسفر اور بڑے پیمنٹ گیٹ ویز کے ساتھ ہموار کارٹ اور چیک آؤٹ — رقم وصول کریں، تصدیق کریں، آگے بڑھیں۔",
       "icon": "fas fa-credit-card"
     },
     {
-      "title": "Marketing & Growth",
-      "description": "Coupons, catalog rules, email campaigns, SEO, social share, and newsletter tools — offers, timing, and follow-through.",
+      "title": "مارکیٹنگ اور ترقی",
+      "description": "کوپنز، کیٹلاگ رولز، ای میل کیمپینز، SEO، سوشل شیئرنگ اور نیوز لیٹر ٹولز — آفرز، صحیح وقت، اور آخر تک پیروی۔",
       "icon": "fas fa-bullhorn"
     },
     {
-      "title": "Live Statistics",
-      "description": "Sales, bestsellers, customers, carts, promotions, inventory — open the numbers and decide what to do next.",
+      "title": "لائیو اعداد و شمار",
+      "description": "سیلز، سب سے زیادہ بکنے والی چیزیں، کسٹمرز، کارٹس، پروموشنز، انوینٹری — اعداد و شمار کھولیں اور فیصلہ کریں کہ آگے کیا کرنا ہے۔",
       "icon": "fas fa-chart-line"
     },
     {
-      "title": "Automations",
-      "description": "Order emails, status alerts, promotion rules, stock signals, and extendable flows like cart recovery and WhatsApp updates.",
+      "title": "آٹومیشنز",
+      "description": "آرڈر ای میلز، اسٹیٹس الرٹس، پروموشن رولز، اسٹاک کے اشارے، اور ادھورے کارٹ کی بحالی اور WhatsApp اپ ڈیٹس جیسے قابلِ توسیع فلو۔",
       "icon": "fas fa-robot"
     },
     {
-      "title": "Inventory & Team Control",
-      "description": "Stock that updates with sales, import/export, returns/RMA, and staff roles so your team works from one system.",
+      "title": "انوینٹری اور ٹیم پر کنٹرول",
+      "description": "سیلز کے ساتھ اپ ڈیٹ ہونے والا اسٹاک، امپورٹ/ایکسپورٹ، واپسیاں/RMA، اور اسٹاف رولز، تاکہ آپ کی پوری ٹیم ایک ہی نظام سے کام کرے۔",
       "icon": "fas fa-sitemap"
     }
   ],
@@ -72,82 +72,82 @@
     {
       "name": "Web",
       "icon": "fas fa-globe",
-      "version": "Branded Storefront + Admin",
+      "version": "برانڈڈ اسٹور فرنٹ + ایڈمن",
       "link": "#"
     }
   ],
   "tech": [
-    "Branded storefront",
-    "Catalog & inventory",
-    "Checkout & payments",
-    "Order notifications",
-    "Subscriptions",
-    "Digital products",
-    "Bookings",
-    "Marketing & coupons",
-    "Statistics & reports",
-    "Automations",
-    "Multi-language / multi-currency",
-    "Returns / RMA"
+    "برانڈڈ اسٹور فرنٹ",
+    "کیٹلاگ اور انوینٹری",
+    "چیک آؤٹ اور ادائیگیاں",
+    "آرڈر نوٹیفکیشنز",
+    "سبسکرپشنز",
+    "ڈیجیٹل پروڈکٹس",
+    "بکنگز",
+    "مارکیٹنگ اور کوپنز",
+    "اعداد و شمار اور رپورٹس",
+    "آٹومیشنز",
+    "کئی زبانیں / کئی کرنسیاں",
+    "واپسیاں / RMA"
   ],
   "navItems": [
     {
-      "label": "Home",
+      "label": "ہوم",
       "url": "",
       "i18nKey": "project_nav_home"
     },
     {
-      "label": "Features",
+      "label": "خصوصیات",
       "url": "features/",
       "i18nKey": "project_nav_features"
     },
     {
-      "label": "Demo",
+      "label": "ڈیمو",
       "url": "demo/",
       "i18nKey": "project_nav_demo"
     },
     {
-      "label": "Privacy Policy",
+      "label": "رازداری کی پالیسی",
       "url": "terms/",
       "i18nKey": "project_nav_terms"
     }
   ],
   "navMetaItems": [
     {
-      "label": "Work",
+      "label": "کام",
       "url": "/projects/",
       "i18nKey": "nav_work"
     },
     {
-      "label": "Contact",
+      "label": "رابطہ",
       "url": "/contact/",
       "i18nKey": "nav_contact"
     }
   ],
   "faq": [
     {
-      "question": "I already sell on Instagram. Why do I need Zyrn?",
-      "answer": "Instagram is discovery. Zyrn is checkout, stock, notifications, and ownership of the customer relationship — so orders stop living in DMs."
+      "question": "میں پہلے ہی Instagram پر بیچتا ہوں۔ مجھے Zyrn کی کیا ضرورت؟",
+      "answer": "Instagram پر لوگ آپ کو دریافت کرتے ہیں۔ Zyrn چیک آؤٹ، اسٹاک، نوٹیفکیشنز، اور کسٹمر سے تعلق کی ملکیت دیتا ہے — تاکہ آرڈرز DMs میں نہ پڑے رہیں۔"
     },
     {
-      "question": "Can’t I just use a form?",
-      "answer": "Forms take requests. Zyrn takes payment, tracks inventory, and updates the customer automatically when something changes."
+      "question": "کیا میں بس ایک فارم استعمال نہیں کر سکتا؟",
+      "answer": "فارم صرف درخواستیں لیتا ہے۔ Zyrn ادائیگی وصول کرتا ہے، انوینٹری کا حساب رکھتا ہے، اور کچھ بدلنے پر کسٹمر کو خود بخود اپ ڈیٹ کرتا ہے۔"
     },
     {
-      "question": "I’m too small for software. Is this for me?",
-      "answer": "That is exactly when chaos starts. Zyrn keeps a small business clean before the mess becomes expensive — launch lean, add subscriptions, digital, and automations later."
+      "question": "میرا کاروبار سافٹ ویئر کے لیے بہت چھوٹا ہے۔ کیا یہ میرے لیے ہے؟",
+      "answer": "افراتفری ٹھیک اسی وقت شروع ہوتی ہے۔ Zyrn چھوٹے کاروبار کو اس سے پہلے منظم رکھتا ہے کہ گڑبڑ مہنگی پڑنے لگے — کم سے شروع کریں، سبسکرپشنز، ڈیجیٹل پروڈکٹس اور آٹومیشنز بعد میں شامل کریں۔"
     },
     {
-      "question": "Can I sell digital products or subscriptions?",
-      "answer": "Yes. Instant delivery for downloads and licenses, plus subscription and membership flows for boxes, plans, and recurring revenue."
+      "question": "کیا میں ڈیجیٹل پروڈکٹس یا سبسکرپشنز بیچ سکتا ہوں؟",
+      "answer": "جی ہاں۔ ڈاؤن لوڈز اور لائسنسز کی فوری ڈیلیوری، اور ساتھ میں باکسز، پلانز اور بار بار آنے والی آمدنی کے لیے سبسکرپشن اور ممبرشپ فلو۔"
     },
     {
-      "question": "Will customers know what is happening with their order?",
-      "answer": "Yes. Notified on the spot — order, payment, shipping, and returns — so you are not typing the same update fifty times a day."
+      "question": "کیا کسٹمرز کو پتا رہے گا کہ ان کے آرڈر کے ساتھ کیا ہو رہا ہے؟",
+      "answer": "جی ہاں۔ فوراً اطلاع — آرڈر، ادائیگی، شپنگ اور واپسی — تاکہ آپ کو دن میں پچاس بار ایک ہی اپ ڈیٹ ٹائپ نہ کرنی پڑے۔"
     },
     {
-      "question": "How do I know what to sell next?",
-      "answer": "Statistics. Bestsellers. Customer behavior. Cart and promotion views. No guessing — open the dashboard and decide."
+      "question": "مجھے کیسے پتا چلے کہ آگے کیا بیچوں؟",
+      "answer": "اعداد و شمار۔ سب سے زیادہ بکنے والی چیزیں۔ کسٹمرز کا رویہ۔ کارٹس اور پروموشنز کا جائزہ۔ کوئی اندازہ نہیں — ڈیش بورڈ کھولیں اور فیصلہ کریں۔"
     }
   ]
 }

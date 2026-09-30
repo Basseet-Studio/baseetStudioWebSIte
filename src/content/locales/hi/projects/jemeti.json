@@ -2,13 +2,13 @@
   "name": "Jemeti",
   "slug": "jemeti",
   "type": "branded",
-  "tagline": "वर्कशॉप और maintenance shops, managed.",
-  "description": "## Jemeti के बारे में\n\nJemeti workshop और maintenance shop owners को jobs schedule, parts track, और customer vehicles manage करने में मदद करता है — सब एक जगह से।\n",
+  "tagline": "वर्कशॉप और मेंटेनेंस शॉप, पूरी तरह व्यवस्थित",
+  "description": "## Jemeti के बारे में\n\nJemeti वर्कशॉप और मेंटेनेंस शॉप के मालिकों को काम शेड्यूल करने, पार्ट्स ट्रैक करने और ग्राहकों की गाड़ियों का हिसाब रखने में मदद करता है — सब कुछ एक ही जगह से।\n\n### सर्विस शॉप के लिए बना\n\nऑयल बदलने से लेकर पूरी ओवरहॉलिंग तक, Jemeti वर्क ऑर्डर, टेक्नीशियन को सौंपे गए काम और पार्ट्स की इन्वेंटरी को व्यवस्थित रखता है।\n\n### जल्द आ रहा है\n\nहम Jemeti को असली शॉप मालिकों के साथ मिलकर बना रहे हैं। अगर आप इसे सबसे पहले आज़माना चाहते हैं, तो हमसे संपर्क करें।\n",
   "icon": "/images/projects/jemeti-icon.svg",
   "iconClass": null,
   "color": "#DC2626",
   "gradient": "linear-gradient(135deg, #DC2626 0%, #EF4444 100%)",
-  "status": "जल्द आ रहा है",
+  "status": "Coming Soon",
   "layoutVariant": "default",
   "fontHeading": "Space Grotesk",
   "fontBody": "Inter",
@@ -17,27 +17,27 @@
   "bgEffect": "none",
   "clientIds": [],
   "hero": {
-    "title": "आपki Workshop, organized",
-    "subtitle": "Maintenance और repair shops के लिए job scheduling, parts tracking, customer management।",
-    "cta_primary": "Early Access लें",
+    "title": "आपकी वर्कशॉप, व्यवस्थित",
+    "subtitle": "मेंटेनेंस और रिपेयर शॉप के लिए काम की शेड्यूलिंग, पार्ट्स की ट्रैकिंग और ग्राहक मैनेजमेंट।",
+    "cta_primary": "अर्ली एक्सेस पाएँ",
     "cta_primary_link": "/contact",
     "cta_secondary": null,
     "cta_secondary_link": null
   },
   "features": [
     {
-      "title": "Work Orders",
-      "description": "Intake से completion तक jobs create, assign, track करें।",
+      "title": "वर्क ऑर्डर",
+      "description": "गाड़ी आने से लेकर काम पूरा होने तक, हर काम बनाएँ, सौंपें और ट्रैक करें।",
       "icon": "fas fa-clipboard-list"
     },
     {
-      "title": "Parts Inventory",
-      "description": "Repair date promise से पहले shelf पर क्या है जानें।",
+      "title": "पार्ट्स इन्वेंटरी",
+      "description": "मरम्मत की तारीख़ का वादा करने से पहले जानें कि शेल्फ़ पर क्या मौजूद है।",
       "icon": "fas fa-wrench"
     },
     {
-      "title": "Customer Vehicles",
-      "description": "हर vehicle के लिए service history, reminders, notes।",
+      "title": "ग्राहकों की गाड़ियाँ",
+      "description": "हर गाड़ी की सर्विस हिस्ट्री, रिमाइंडर और नोट्स।",
       "icon": "fas fa-car"
     }
   ],
@@ -45,25 +45,25 @@
     {
       "name": "Web",
       "icon": "fas fa-globe",
-      "version": "Web App",
+      "version": "वेब ऐप",
       "link": "#"
     }
   ],
   "navItems": [
     {
-      "label": "Home",
+      "label": "होम",
       "url": "",
       "i18nKey": "project_nav_home"
     }
   ],
   "navMetaItems": [
     {
-      "label": "Work",
+      "label": "काम",
       "url": "/projects/",
       "i18nKey": "nav_work"
     },
     {
-      "label": "Contact",
+      "label": "संपर्क",
       "url": "/contact/",
       "i18nKey": "nav_contact"
     }

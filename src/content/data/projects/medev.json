@@ -3,7 +3,7 @@
   "slug": "medev",
   "type": "branded",
   "tagline": "Healthcare. Simplified.",
-  "description": "## About Medev\n\nMedev is the healthcare management system built for clinics and hospitals that want full control without complexity. Whether you host it yourself or we host it for you, you get a complete solution with a customizable frontend that reflects your brand.\n\n### Built for Modern Healthcare\n\nMedev combines the robustness of enterprise healthcare systems with the flexibility of open-source technology. It's designed to grow with your practice — from small clinics to large hospital networks.\n\n### Your Brand, Your Way\n\nThe included frontend website can be fully customized to match your clinic's branding and design requirements. You specify the look; we build it with the standardized Medev backend powering everything underneath.\n\n## Ready to Transform Your Practice?\n\nContact us to learn how Medev can streamline your healthcare operations.\n",
+  "description": "## About Medev\n\nMedev is the healthcare management system built for clinics and hospitals that want full control without complexity. Whether you host it yourself or we host it for you, you get a complete solution with a customizable frontend that reflects your brand.\n\n### Built for modern healthcare\n\nMedev combines the robustness of enterprise healthcare systems with the flexibility of open-source technology. It's designed to grow with your practice — from small clinics to large hospital networks.\n\n### Your brand, your way\n\nThe included frontend website can be fully customized to match your clinic's branding and design requirements. You specify the look; we build it with the standardized Medev backend powering everything underneath.\n\n## Ready to transform your practice?\n\nContact us to learn how Medev can streamline your healthcare operations.\n",
   "iconClass": "fas fa-hospital",
   "color": "#0A6E74",
   "gradient": "linear-gradient(135deg, #0A6E74 0%, #14B8A6 100%)",
@@ -18,41 +18,41 @@
   "bgEffect": "grid",
   "bgFallbackGradient": "linear-gradient(180deg, #F0FDFA 0%, #CCFBF1 40%, #99F6E4 100%)",
   "hero": {
-    "title": "Healthcare That Works for Everyone",
-    "subtitle": "Complete Electronic Health Records, practice management, patient portal, and FHIR-compliant APIs — all in one secure, self-hosted platform.",
-    "cta_primary": "Request Demo",
+    "title": "Healthcare that works for everyone",
+    "subtitle": "Complete electronic health records, practice management, patient portal, and FHIR-compliant APIs — all in one secure, self-hosted platform.",
+    "cta_primary": "Request a demo",
     "cta_primary_link": "/contact",
-    "cta_secondary": "View Features",
+    "cta_secondary": "View features",
     "cta_secondary_link": "#features"
   },
   "features": [
     {
-      "title": "Full EHR System",
+      "title": "Full EHR system",
       "description": "Comprehensive patient records including encounters, vitals, SOAP notes, diagnoses, and electronic prescriptions.",
       "icon": "fas fa-file-medical"
     },
     {
-      "title": "Practice Management",
+      "title": "Practice management",
       "description": "Streamlined scheduling, appointments, waiting lists, and billing for healthcare practices of any size.",
       "icon": "fas fa-calendar-check"
     },
     {
-      "title": "Patient Portal",
+      "title": "Patient portal",
       "description": "Self-service portal for patients to view records, schedule appointments, and communicate with their care team.",
       "icon": "fas fa-users"
     },
     {
       "title": "FHIR R4 + REST API",
-      "description": "SMART on FHIR v2.2.0 app integration with OAuth2-secured REST APIs for seamless third-party integrations.",
+      "description": "SMART on FHIR v2.2.0 app integration with OAuth2-secured REST APIs for standards-based third-party integrations.",
       "icon": "fas fa-plug"
     },
     {
-      "title": "Docker Deployment",
+      "title": "Docker deployment",
       "description": "Self-hosted or cloud-deployed via Docker. Full control over your data with enterprise-grade security.",
       "icon": "fas fa-docker"
     },
     {
-      "title": "Custom Branding",
+      "title": "Custom branding",
       "description": "White-label ready with fully customizable frontend websites. Your clinic, your brand, your patient experience.",
       "icon": "fas fa-palette"
     }
@@ -61,13 +61,13 @@
     {
       "name": "Web",
       "icon": "fas fa-globe",
-      "version": "Web App",
+      "version": "Web app",
       "link": "#"
     },
     {
       "name": "Docker",
       "icon": "fab fa-docker",
-      "version": "Self-Hosted",
+      "version": "Self-hosted",
       "link": "#"
     }
   ],
@@ -96,7 +96,7 @@
       "i18nKey": "project_nav_demo"
     },
     {
-      "label": "Privacy Policy",
+      "label": "Privacy policy",
       "url": "terms/",
       "i18nKey": "project_nav_terms"
     }
@@ -116,7 +116,7 @@
   "faq": [
     {
       "question": "What is Medev?",
-      "answer": "Medev is a rebranded instance of Medev v7.0.3+ — the world's leading open-source Electronic Health Records and Medical Practice Management system. It runs on a VPS via Docker."
+      "answer": "Medev is a rebranded instance of Medev v7.0.3+ — the world's leading open-source electronic health records and medical practice management system. It runs on a VPS via Docker."
     },
     {
       "question": "What features does Medev include?",
@@ -124,7 +124,7 @@
     },
     {
       "question": "Can I customize the patient-facing frontend?",
-      "answer": "Yes! Medev includes a customizable frontend website that your clinic or hospital can brand and design. You control the patient experience while the backend remains standardized with many available features and add-ons."
+      "answer": "Yes. Medev includes a customizable frontend website that your clinic or hospital can brand and design. You control the patient experience while the backend remains standardized with many available features and add-ons."
     },
     {
       "question": "Is Medev self-hosted?",

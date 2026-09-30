@@ -2,10 +2,10 @@
   {
     "slug": "matrix",
     "name": "Matrix",
-    "tagline": "Isang platform. Bawat bahagi ng negosyo mo. Walang tool fatigue.",
+    "tagline": "Iisang platform. Bawat bahagi ng negosyo ninyo. Walang pagod sa napakaraming tool.",
     "color": "#0891B2",
     "gradient": "linear-gradient(135deg, #0891B2 0%, #22D3EE 100%)",
-    "status": "Malapit na",
+    "status": "Coming Soon",
     "iconClass": "fas fa-th-large",
     "icon": null,
     "platforms": [
@@ -22,10 +22,10 @@
   {
     "slug": "zyrn",
     "name": "Zyrn",
-    "tagline": "Iyong store. Iyong brand. Iyong customers — notified agad.",
+    "tagline": "Ang tindahan ninyo. Ang brand ninyo. Ang mga customer ninyo — naaabisuhan agad.",
     "color": "#EC4899",
     "gradient": "linear-gradient(135deg, #EC4899 0%, #F9A8D4 100%)",
-    "status": "Handa nang i-deliver",
+    "status": "Ready to Deliver",
     "iconClass": "fas fa-th-large",
     "icon": null,
     "platforms": [
@@ -41,7 +41,7 @@
   {
     "slug": "ordelo",
     "name": "Ordelo",
-    "tagline": "Iyong business. Online. Ordered. Owned.",
+    "tagline": "Ang negosyo ninyo. Online. Nasa ayos. Sa inyo.",
     "color": "#F97316",
     "gradient": "linear-gradient(135deg, #F97316 0%, #FB923C 100%)",
     "status": "Live",
@@ -72,7 +72,7 @@
   {
     "slug": "moneybox",
     "name": "MoneyBox",
-    "tagline": "Ang pera mo, nakaayos.",
+    "tagline": "Ang pera ninyo, nasa ayos.",
     "color": "#16A34A",
     "gradient": "linear-gradient(135deg, #16A34A 0%, #4ADE80 100%)",
     "status": "Live",
@@ -96,10 +96,10 @@
   {
     "slug": "numu",
     "name": "Numu",
-    "tagline": "I-track ang ginagawa mo. Hubugin ang taong gusto mong maging.",
+    "tagline": "Subaybayan ang ginagawa ninyo. Hubugin ang taong gusto ninyong maging.",
     "color": "#AF52DE",
     "gradient": "linear-gradient(135deg, #AF52DE 0%, #BF5AF2 100%)",
-    "status": "Malapit na",
+    "status": "Coming Soon",
     "iconClass": null,
     "icon": "/images/projects/numu-icon.png",
     "platforms": [
@@ -120,7 +120,7 @@
   {
     "slug": "photorestore-ai",
     "name": "PhotoRestore AI",
-    "tagline": "I-restore ang lumang larawan gamit ang AI.",
+    "tagline": "Ibalik ang mga lumang larawan gamit ang AI.",
     "color": "#6366F1",
     "gradient": "linear-gradient(135deg, #6366F1 0%, #818CF8 100%)",
     "status": "Live",
@@ -139,10 +139,10 @@
   {
     "slug": "invexo",
     "name": "Invexo",
-    "tagline": "Inventory management para sa maliliit na tindahan.",
+    "tagline": "Pamamahala ng inventory na binuo para sa maliliit na tindahan.",
     "color": "#10B981",
     "gradient": "linear-gradient(135deg, #059669 0%, #34D399 100%)",
-    "status": "Handa nang i-deliver",
+    "status": "Ready to Deliver",
     "iconClass": "fas fa-cash-register",
     "icon": null,
     "platforms": [
@@ -159,10 +159,10 @@
   {
     "slug": "jemeti",
     "name": "Jemeti",
-    "tagline": "Mga workshop at maintenance shop, naka-manage.",
+    "tagline": "Mga workshop at maintenance shop, maayos na napapamahalaan.",
     "color": "#DC2626",
     "gradient": "linear-gradient(135deg, #DC2626 0%, #EF4444 100%)",
-    "status": "Malapit na",
+    "status": "Coming Soon",
     "iconClass": null,
     "icon": "/images/projects/jemeti-icon.svg",
     "platforms": [
@@ -179,10 +179,10 @@
   {
     "slug": "geeb",
     "name": "Geeb",
-    "tagline": "Mapagkakatiwalaang home-service pros, on demand.",
+    "tagline": "Mapagkakatiwalaang pro sa serbisyong pambahay, kapag kailangan ninyo.",
     "color": "#B45309",
     "gradient": "linear-gradient(135deg, #B45309 0%, #F59E0B 100%)",
-    "status": "Malapit na",
+    "status": "Coming Soon",
     "iconClass": "fas fa-wrench",
     "icon": null,
     "platforms": [
@@ -206,10 +206,10 @@
   {
     "slug": "medical-education-app",
     "name": "MAI",
-    "tagline": "AI-powered medical education platform.",
+    "tagline": "Platform para sa medical education na pinapagana ng AI.",
     "color": "#0F766E",
     "gradient": "linear-gradient(135deg, #0F766E 0%, #14B8A6 100%)",
-    "status": "Malapit na",
+    "status": "Coming Soon",
     "iconClass": "fas fa-stethoscope",
     "icon": null,
     "platforms": [
@@ -237,10 +237,10 @@
   {
     "slug": "medev",
     "name": "Medev",
-    "tagline": "Healthcare. Pinasimple.",
+    "tagline": "Kalusugan. Pinasimple.",
     "color": "#0A6E74",
     "gradient": "linear-gradient(135deg, #0A6E74 0%, #14B8A6 100%)",
-    "status": "Handa nang i-deliver",
+    "status": "Ready to Deliver",
     "iconClass": "fas fa-hospital",
     "icon": null,
     "platforms": [
@@ -258,10 +258,10 @@
   {
     "slug": "nss-virtual-education-fair",
     "name": "NSS Virtual Education Fair",
-    "tagline": "Virtual Education Fair Platform",
+    "tagline": "Platform para sa virtual na education fair",
     "color": "#0EA5E9",
     "gradient": "linear-gradient(135deg, #0EA5E9 0%, #38BDF8 100%)",
-    "status": "Natapos",
+    "status": "Completed",
     "iconClass": "fas fa-graduation-cap",
     "icon": null,
     "platforms": [

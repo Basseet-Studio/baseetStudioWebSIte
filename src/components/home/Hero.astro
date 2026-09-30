@@ -179,7 +179,7 @@ const titleHtml = parseBold(data.title)
   }
 
   /* RTL: flip directional chevrons so they point along the reading direction. */
-  [dir="rtl"] .hero__cta .icon-chevron :global(svg) {
+  :global([dir="rtl"]) .hero__cta .icon-chevron :global(svg) {
     transform: scaleX(-1);
   }
 </style>

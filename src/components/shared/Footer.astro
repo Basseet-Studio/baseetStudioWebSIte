@@ -117,11 +117,19 @@ const contactHref = localizedPath(lang, '/contact/')
 
   <div class="footer__bottom">
     <p class="footer__copyright">{footerData.copyright}</p>
-    <p id="visitor-info" data-visiting={t('footer_visiting', lang).split('{')[0].trim() || 'Visiting from'} data-device="Device" data-unknown="Unknown"></p>
+    <p
+      id="visitor-info"
+      data-lang={lang}
+      data-template={t('footer_visitor_line', lang)}
+      data-unknown={t('footer_country_unknown', lang)}
+      data-device-mobile={t('footer_device_mobile', lang)}
+      data-device-tablet={t('footer_device_tablet', lang)}
+      data-device-desktop={t('footer_device_desktop', lang)}
+    ></p>
   </div>
 </footer>
 
-<button id="back-to-top" class="footer-back-to-top" aria-label="Back to top" type="button">
+<button id="back-to-top" class="footer-back-to-top" aria-label={t('footer_back_to_top', lang)} type="button">
   <Icon name="caret-up" size={20} color="currentColor" />
 </button>
 

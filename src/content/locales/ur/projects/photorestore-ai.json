@@ -3,14 +3,14 @@
   "slug": "photorestore-ai",
   "type": "standalone",
   "tagline": "AI سے پرانی تصاویر بحال کریں",
-  "description": "## About PhotoRestore AI\n\nPhotoRestore AI combines cutting-edge artificial intelligence with a passion for preserving memories. We believe every photo tells a story, and no damage should stand in the way of sharing those precious moments.\n\n### Our Technology\n\nBuilt on state-of-the-art machine learning models, PhotoRestore AI can detect and repair scratches, tears, and creases; restore faded or discolored areas; enhance image clarity and sharpness; colorize black & white photographs; and remove stains and water damage.\n\n### Privacy First\n\nWe take your privacy seriously. All photos are processed in isolated secure environments and automatically deleted within 24 hours of processing. Your memories stay yours.\n\n## Try It Today\n\nExperience the magic of AI photo restoration. Upload your damaged photo and see the transformation in seconds.\n",
+  "description": "## PhotoRestore AI کا تعارف\n\nPhotoRestore AI تربیت یافتہ ریسٹوریشن ماڈلز کو یادیں محفوظ رکھنے کے جذبے کے ساتھ جوڑتا ہے۔ ہمارا ماننا ہے کہ ہر تصویر ایک کہانی سناتی ہے، اور کوئی نقصان ان قیمتی لمحوں کو دوسروں تک پہنچانے میں رکاوٹ نہیں بننا چاہیے۔\n\n### ہماری ٹیکنالوجی\n\nڈیپ لرننگ پر مبنی امیج ریسٹوریشن ماڈلز پر بنا PhotoRestore AI خراشوں، پھٹے حصوں اور سلوٹوں کو پہچان کر ٹھیک کر سکتا ہے؛ مدھم یا بے رنگ حصوں کو بحال کر سکتا ہے؛ تصویر کی وضاحت اور شارپنس بہتر بنا سکتا ہے؛ بلیک اینڈ وائٹ تصاویر میں رنگ بھر سکتا ہے؛ اور داغ دھبے اور پانی سے ہونے والا نقصان دور کر سکتا ہے۔\n\n### پرائیویسی سب سے پہلے\n\nہم آپ کی پرائیویسی کو سنجیدگی سے لیتے ہیں۔ تمام تصاویر الگ تھلگ، محفوظ ماحول میں پروسیس ہوتی ہیں اور پروسیسنگ کے 24 گھنٹوں کے اندر خود بخود حذف ہو جاتی ہیں۔ آپ کی یادیں آپ ہی کی رہتی ہیں۔\n\n## آج ہی آزمائیں\n\nدیکھیں کہ AI فوٹو ریسٹوریشن آپ کی تصاویر کے لیے کیا کر سکتی ہے۔ اپنی خراب تصویر اپ لوڈ کریں اور چند سیکنڈز میں فرق دیکھیں۔\n",
   "iconClass": "fas fa-wand-magic-sparkles",
   "color": "#6366F1",
   "gradient": "linear-gradient(135deg, #6366F1 0%, #818CF8 100%)",
   "status": "Live",
   "hero": {
     "title": "اپنی قیمتی یادیں بحال کریں",
-    "subtitle": "جدید AI سے پرانی، خراب، یا مدھم تصاویر سیکنڈوں میں زندہ کریں۔",
+    "subtitle": "تربیت یافتہ AI ماڈلز کی مدد سے پرانی، خراب یا مدھم تصاویر کو چند سیکنڈز میں پھر سے زندہ کریں۔",
     "cta_primary": "ابھی آزمائیں",
     "cta_primary_link": "#",
     "cta_secondary": "مثالیں دیکھیں",
@@ -18,36 +18,51 @@
   },
   "features": [
     {
-      "title": "AI-Powered Restoration",
-      "description": "Advanced AI algorithms scratches، tears، fading خودکار ٹھیک کرتے ہیں۔",
+      "title": "AI پر مبنی ریسٹوریشن",
+      "description": "ہمارے جدید AI الگورتھمز آپ کی تصاویر کا تجزیہ کر کے انہیں پیشہ ورانہ معیار کے ساتھ بحال کرتے ہیں۔ خراشیں، پھٹے حصے اور مدھم پن خود بخود ٹھیک ہو جاتے ہیں۔",
       "icon": "fas fa-wand-magic-sparkles"
     },
     {
-      "title": "بجلی جیسی رفتار",
-      "description": "بحال تصاویر سیکنڈوں میں، گھنٹوں میں نہیں۔",
+      "title": "انتہائی تیز پروسیسنگ",
+      "description": "بحال شدہ تصاویر گھنٹوں میں نہیں، سیکنڈز میں حاصل کریں۔ ہمارا بہتر بنایا گیا انفراسٹرکچر کام جلد مکمل ہونے کو یقینی بناتا ہے۔",
       "icon": "fas fa-bolt"
     },
     {
-      "title": "محفوظ اور Private",
-      "description": "Processing کے بعد تصاویر خودکار delete۔",
+      "title": "پیشہ ورانہ معیار کے نتائج",
+      "description": "پیشہ ور فوٹو ریسٹوریشن سروسز جیسے نتائج، ان کی لاگت کے ایک چھوٹے سے حصے میں۔",
       "icon": "fas fa-award"
+    },
+    {
+      "title": "محفوظ اور نجی",
+      "description": "پروسیسنگ کے بعد آپ کی تصاویر خود بخود حذف ہو جاتی ہیں۔ ہم آپ کی ذاتی تصاویر نہ کبھی محفوظ رکھتے ہیں، نہ کسی سے شیئر کرتے ہیں۔",
+      "icon": "fas fa-shield-alt"
+    },
+    {
+      "title": "ادائیگی کے کئی طریقے",
+      "description": "Stripe یا SSLCommerz کے ذریعے محفوظ ادائیگی کریں۔ ایک تصویر ہو یا بڑی تعداد میں، قیمتیں لچکدار ہیں۔",
+      "icon": "fas fa-credit-card"
+    },
+    {
+      "title": "ہر اسکرین کے مطابق جدید UI",
+      "description": "صاف اور سمجھنے میں آسان انٹرفیس جو ڈیسک ٹاپ، ٹیبلٹ اور موبائل اسکرینز کے مطابق ڈھل جاتا ہے۔",
+      "icon": "fas fa-mobile-alt"
     }
   ],
   "platforms": [
     {
       "name": "Web",
       "icon": "fas fa-globe",
-      "version": "Web App",
+      "version": "ویب ایپ",
       "link": "#"
     }
   ],
   "tech": [
-    "AI/ML Models",
+    "AI/ML ماڈلز",
     "React.js",
     "Node.js",
     "Stripe API",
     "SSLCommerz",
-    "Cloud Processing"
+    "کلاؤڈ پروسیسنگ"
   ],
   "galleryType": "mobile",
   "screenshots": [
@@ -60,27 +75,27 @@
   ],
   "testimonials": [
     {
-      "quote": "PhotoRestore AI brought my grandmother's wedding photo back to life. The results were incredible!",
+      "quote": "PhotoRestore AI نے میری دادی کی شادی کی تصویر کو پھر سے زندہ کر دیا۔ نتائج حیرت انگیز تھے!",
       "author": "Ahmed R.",
-      "role": "Customer"
+      "role": "کسٹمر"
     }
   ],
   "faq": [
     {
-      "question": "How does the AI restoration work?",
-      "answer": "Our AI analyzes your photo to detect damage, fading, and imperfections, then intelligently restores the image using trained neural networks."
+      "question": "AI ریسٹوریشن کیسے کام کرتی ہے؟",
+      "answer": "ہمارا AI آپ کی تصویر کا تجزیہ کر کے نقصان، مدھم پن اور خامیوں کو پہچانتا ہے، پھر تربیت یافتہ نیورل نیٹ ورکس کے ذریعے سمجھ داری سے تصویر بحال کرتا ہے۔"
     },
     {
-      "question": "Is my photo data secure?",
-      "answer": "Absolutely. All uploaded photos are processed securely and automatically deleted after 24 hours. We never store or share your images."
+      "question": "کیا میری تصاویر محفوظ ہیں؟",
+      "answer": "جی ہاں۔ اپ لوڈ کی گئی تمام تصاویر محفوظ طریقے سے پروسیس ہوتی ہیں اور 24 گھنٹوں بعد خود بخود حذف ہو جاتی ہیں۔ ہم آپ کی تصاویر نہ کبھی محفوظ رکھتے ہیں، نہ کسی سے شیئر کرتے ہیں۔"
     },
     {
-      "question": "What types of damage can be fixed?",
-      "answer": "Our AI can restore faded colors, fix scratches and tears, remove stains, enhance clarity, and even colorize black & white photos."
+      "question": "کس قسم کا نقصان ٹھیک ہو سکتا ہے؟",
+      "answer": "ہمارا AI مدھم رنگ بحال کر سکتا ہے، خراشیں اور پھٹے حصے ٹھیک کر سکتا ہے، داغ دھبے ہٹا سکتا ہے، وضاحت بہتر بنا سکتا ہے، اور بلیک اینڈ وائٹ تصاویر میں رنگ بھی بھر سکتا ہے۔"
     },
     {
-      "question": "How much does it cost?",
-      "answer": "We offer flexible pricing starting from $2 per photo. Bulk packages are available for larger restoration projects."
+      "question": "اس کی قیمت کتنی ہے؟",
+      "answer": "ہماری قیمتیں لچکدار ہیں اور $2 فی تصویر سے شروع ہوتی ہیں۔ بڑے ریسٹوریشن پروجیکٹس کے لیے بلک پیکجز بھی دستیاب ہیں۔"
     }
   ]
 }

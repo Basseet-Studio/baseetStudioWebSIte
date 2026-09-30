@@ -2,49 +2,49 @@
   "name": "NSS Virtual Education Fair",
   "slug": "nss-virtual-education-fair",
   "type": "standalone",
-  "tagline": "Virtual Education Fair Platform",
-  "description": "## About NSS Virtual Education Fair\n\nThe NSS Virtual Education Fair revolutionizes how students connect with universities worldwide. Born from the need to make quality education accessible regardless of geographical barriers, our platform bridges the gap between ambitious students and prestigious institutions.\n\n### Why Virtual?\n\nTraditional education fairs limit students to nearby events and brief interactions. Our virtual platform offers 24/7 access, global reach, deep engagement, and no travel costs.\n\n### For Universities\n\nShowcase programs through interactive booths, host live sessions and webinars, collect and manage student leads, and analyze engagement to optimize outreach.\n\n### For Students\n\nComprehensive university information in one place, smart recommendations based on profile, direct communication with admissions teams, and document management with application tracking.\n\n## Success Stories\n\nOver 50,000 students have used our platform to find their ideal universities.\n",
+  "tagline": "ورچوئل تعلیمی میلے کا پلیٹ فارم",
+  "description": "## NSS Virtual Education Fair کا تعارف\n\nNSS Virtual Education Fair طلبہ اور دنیا بھر کی یونیورسٹیوں کے رابطے کا طریقہ بدل دیتا ہے۔ یہ پلیٹ فارم اس ضرورت سے وجود میں آیا کہ معیاری تعلیم جغرافیائی رکاوٹوں سے قطع نظر سب کی پہنچ میں ہو، اور یہ باصلاحیت طلبہ کو معتبر اداروں سے جوڑتا ہے۔\n\n### ورچوئل کیوں؟\n\nروایتی تعلیمی میلے طلبہ کو قریبی ایونٹس اور مختصر ملاقاتوں تک محدود رکھتے ہیں۔ ہمارا ورچوئل پلیٹ فارم 24/7 رسائی، عالمی پہنچ، گہری بات چیت اور سفر کے اخراجات سے نجات دیتا ہے۔\n\n### یونیورسٹیوں کے لیے\n\nانٹرایکٹو بوتھس کے ذریعے اپنے پروگرام پیش کریں، لائیو سیشنز اور ویبینارز منعقد کریں، طلبہ کی لیڈز جمع اور منظم کریں، اور رابطے کی کوششیں بہتر بنانے کے لیے انگیجمنٹ کا تجزیہ کریں۔\n\n### طلبہ کے لیے\n\nیونیورسٹیوں کی جامع معلومات ایک جگہ، پروفائل کی بنیاد پر سمجھ دار تجاویز، داخلہ ٹیموں سے براہِ راست بات چیت، اور درخواست کی ٹریکنگ کے ساتھ دستاویزات کی مینجمنٹ۔\n\n## کامیابی کی کہانیاں\n\n50,000 سے زیادہ طلبہ ہمارے پلیٹ فارم کے ذریعے اپنی پسندیدہ یونیورسٹی تلاش کر چکے ہیں۔\n",
   "iconClass": "fas fa-graduation-cap",
   "color": "#0EA5E9",
   "gradient": "linear-gradient(135deg, #0EA5E9 0%, #38BDF8 100%)",
-  "status": "مکمل",
+  "status": "Completed",
   "hero": {
-    "title": "دنیا بھر کی Universities سے Connect کریں",
-    "subtitle": "Education fairs کا نیا تجربہ — گھر سے۔",
-    "cta_primary": "Universities Explore کریں",
+    "title": "دنیا بھر کی یونیورسٹیوں سے جڑیں",
+    "subtitle": "سفر اور قطاروں کے بغیر تعلیمی میلوں میں شرکت کریں۔ یونیورسٹیوں کو دیکھیں، لائیو سیشنز میں شامل ہوں، اور اپنے مستقبل کی منصوبہ بندی کریں — سب کچھ گھر بیٹھے آرام سے۔",
+    "cta_primary": "یونیورسٹیاں دیکھیں",
     "cta_primary_link": "https://nssedufair.com",
-    "cta_secondary": "Register Now",
+    "cta_secondary": "ابھی رجسٹر کریں",
     "cta_secondary_link": "#features"
   },
   "features": [
     {
-      "title": "Virtual University Booths",
-      "description": "Explore interactive virtual booths from top universities. Access brochures, videos, and connect with admission representatives.",
+      "title": "یونیورسٹیوں کے ورچوئل بوتھس",
+      "description": "صفِ اول کی یونیورسٹیوں کے انٹرایکٹو ورچوئل بوتھس دیکھیں۔ بروشرز اور ویڈیوز تک رسائی حاصل کریں اور داخلہ نمائندوں سے رابطہ کریں۔",
       "icon": "fas fa-building"
     },
     {
-      "title": "Live Sessions & Webinars",
-      "description": "Attend live presentations, Q&A sessions, and webinars hosted by university representatives and education experts.",
+      "title": "لائیو سیشنز اور ویبینارز",
+      "description": "یونیورسٹی نمائندوں اور تعلیمی ماہرین کی لائیو پریزنٹیشنز، سوال و جواب کے سیشنز اور ویبینارز میں شرکت کریں۔",
       "icon": "fas fa-video"
     },
     {
-      "title": "Smart Matching Algorithm",
-      "description": "Our AI-powered system recommends universities based on your academic profile, interests, and career goals.",
+      "title": "سمارٹ میچنگ الگورتھم",
+      "description": "ہمارا AI پر مبنی نظام آپ کے تعلیمی پروفائل، دلچسپیوں اور کیریئر کے اہداف کی بنیاد پر یونیورسٹیاں تجویز کرتا ہے۔",
       "icon": "fas fa-brain"
     },
     {
-      "title": "Document Upload & Management",
-      "description": "Upload your academic documents once and share with multiple universities. Track your application status in real-time.",
+      "title": "دستاویزات کا اپ لوڈ اور مینجمنٹ",
+      "description": "اپنی تعلیمی دستاویزات ایک بار اپ لوڈ کریں اور کئی یونیورسٹیوں سے شیئر کریں۔ اپنی درخواست کی صورتحال لمحہ بہ لمحہ دیکھیں۔",
       "icon": "fas fa-folder-open"
     },
     {
-      "title": "Multi-language Support",
-      "description": "Access the platform in multiple languages including English, Arabic, and Bengali.",
+      "title": "کئی زبانوں کی سپورٹ",
+      "description": "پلیٹ فارم کو انگریزی، عربی اور بنگالی سمیت کئی زبانوں میں استعمال کریں۔",
       "icon": "fas fa-language"
     },
     {
-      "title": "Analytics Dashboard",
-      "description": "Universities get detailed analytics on booth visits, engagement, and lead quality.",
+      "title": "تجزیاتی ڈیش بورڈ",
+      "description": "یونیورسٹیوں کو بوتھ وزٹس، انگیجمنٹ اور لیڈز کے معیار کے بارے میں تفصیلی تجزیات ملتے ہیں۔",
       "icon": "fas fa-chart-line"
     }
   ],
@@ -52,7 +52,7 @@
     {
       "name": "Web",
       "icon": "fas fa-globe",
-      "version": "Web Platform",
+      "version": "ویب پلیٹ فارم",
       "link": "#"
     }
   ],
@@ -68,32 +68,32 @@
   "screenshots": [],
   "testimonials": [
     {
-      "quote": "The virtual fair made it so easy to explore universities from my country. I found my dream university without leaving home!",
+      "quote": "ورچوئل میلے نے اپنے ملک سے ہی یونیورسٹیاں دیکھنا بہت آسان بنا دیا۔ مجھے گھر سے نکلے بغیر اپنی خوابوں کی یونیورسٹی مل گئی!",
       "author": "Fatima K.",
-      "role": "Student"
+      "role": "طالبہ"
     },
     {
-      "quote": "We reached 10x more students compared to physical fairs. The analytics helped us understand what students really want.",
+      "quote": "ہم نے روایتی میلوں کے مقابلے میں 10 گنا زیادہ طلبہ تک رسائی حاصل کی۔ تجزیات سے ہمیں سمجھ آیا کہ طلبہ واقعی کیا چاہتے ہیں۔",
       "author": "Dr. James Wilson",
-      "role": "University Recruiter"
+      "role": "یونیورسٹی ریکروٹر"
     }
   ],
   "faq": [
     {
-      "question": "How do I register for the virtual fair?",
-      "answer": "Simply create an account on our platform and register for upcoming fairs. You'll receive access credentials and fair schedule via email."
+      "question": "ورچوئل میلے کے لیے رجسٹریشن کیسے کروں؟",
+      "answer": "بس ہمارے پلیٹ فارم پر اکاؤنٹ بنائیں اور آنے والے میلوں کے لیے رجسٹر کریں۔ آپ کو لاگ اِن کی تفصیلات اور میلے کا شیڈول ای میل پر مل جائے گا۔"
     },
     {
-      "question": "Is it free for students?",
-      "answer": "Yes! Student registration and participation is completely free."
+      "question": "کیا یہ طلبہ کے لیے مفت ہے؟",
+      "answer": "جی ہاں۔ طلبہ کے لیے رجسٹریشن اور شرکت بالکل مفت ہے۔"
     },
     {
-      "question": "How do universities participate?",
-      "answer": "Universities can sign up for booth packages that include virtual booth customization, live session slots, and analytics access."
+      "question": "یونیورسٹیاں کیسے حصہ لیتی ہیں؟",
+      "answer": "یونیورسٹیاں بوتھ پیکجز کے لیے سائن اپ کر سکتی ہیں، جن میں ورچوئل بوتھ کی تخصیص، لائیو سیشن کے سلاٹس اور تجزیات تک رسائی شامل ہے۔"
     },
     {
-      "question": "Can I interact with university representatives in real-time?",
-      "answer": "Absolutely! Each booth has live chat and video call options to connect directly with admission counselors during fair hours."
+      "question": "کیا میں یونیورسٹی نمائندوں سے براہِ راست بات کر سکتا ہوں؟",
+      "answer": "جی ہاں۔ ہر بوتھ میں لائیو چیٹ اور ویڈیو کال کے آپشنز ہیں، تاکہ آپ میلے کے اوقات میں داخلہ کونسلرز سے براہِ راست بات کر سکیں۔"
     }
   ]
 }

@@ -2,12 +2,12 @@
   "name": "Medev",
   "slug": "medev",
   "type": "branded",
-  "tagline": "الرعاية الصحية. ببساطة.",
-  "description": "## About Medev\n\nMedev is the healthcare management system built for clinics and hospitals that want full control without complexity. Whether you host it yourself or we host it for you, you get a complete solution with a customizable frontend that reflects your brand.\n\n### Built for Modern Healthcare\n\nMedev combines the robustness of enterprise healthcare systems with the flexibility of open-source technology. It's designed to grow with your practice — from small clinics to large hospital networks.\n\n### Your Brand, Your Way\n\nThe included frontend website can be fully customized to match your clinic's branding and design requirements. You specify the look; we build it with the standardized Medev backend powering everything underneath.\n\n## Ready to Transform Your Practice?\n\nContact us to learn how Medev can streamline your healthcare operations.\n",
+  "tagline": "رعاية صحية. ببساطة.",
+  "description": "## عن Medev\n\nنظام Medev لإدارة الرعاية الصحية مصمَّم للعيادات والمستشفيات التي تريد تحكماً كاملاً دون تعقيد. سواء استضفته بنفسك أو تولّينا استضافته عنك، تحصل على حل متكامل بواجهة أمامية قابلة للتخصيص تعكس هويتك التجارية.\n\n### مصمَّم للرعاية الصحية الحديثة\n\nيجمع Medev بين متانة أنظمة الرعاية الصحية المؤسسية ومرونة التقنيات مفتوحة المصدر، وهو مصمَّم لينمو مع منشأتك — من العيادات الصغيرة إلى شبكات المستشفيات الكبرى.\n\n### هويتك، بطريقتك\n\nيمكن تخصيص الموقع الإلكتروني المرفق بالكامل ليطابق هوية عيادتك ومتطلباتها التصميمية. أنت تحدد الشكل، ونحن نبنيه فوق الواجهة الخلفية الموحّدة لـ Medev التي تشغّل كل شيء من الداخل.\n\n## جاهز لتغيير طريقة عمل منشأتك؟\n\nتواصل معنا لتعرف كيف ينظّم Medev عملياتك الصحية ويختصرها.\n",
   "iconClass": "fas fa-hospital",
   "color": "#0A6E74",
   "gradient": "linear-gradient(135deg, #0A6E74 0%, #14B8A6 100%)",
-  "status": "جاهز للتسليم",
+  "status": "Ready to Deliver",
   "layoutVariant": "medev",
   "fontHeading": "IBM Plex Sans",
   "fontBody": "IBM Plex Sans",
@@ -18,42 +18,42 @@
   "bgEffect": "grid",
   "bgFallbackGradient": "linear-gradient(180deg, #F0FDFA 0%, #CCFBF1 40%, #99F6E4 100%)",
   "hero": {
-    "title": "رعاية صحية تناسب الجميع",
-    "subtitle": "سجلات صحية إلكترونية كاملة وإدارة ممارسة وبوابة مرضى — في منصة آمنة.",
-    "cta_primary": "اطلب عرضاً",
+    "title": "رعاية صحية تخدم الجميع",
+    "subtitle": "سجلات صحية إلكترونية متكاملة، وإدارة للعيادة، وبوابة للمرضى، وواجهات API متوافقة مع FHIR — في منصة واحدة آمنة تستضيفها بنفسك.",
+    "cta_primary": "اطلب عرضاً تجريبياً",
     "cta_primary_link": "/contact",
-    "cta_secondary": "View Features",
+    "cta_secondary": "استعرض الميزات",
     "cta_secondary_link": "#features"
   },
   "features": [
     {
-      "title": "Full EHR System",
-      "description": "Comprehensive patient records including encounters, vitals, SOAP notes, diagnoses, and electronic prescriptions.",
+      "title": "نظام EHR متكامل",
+      "description": "سجلات شاملة للمرضى تشمل الزيارات، والعلامات الحيوية، وملاحظات SOAP، والتشخيصات، والوصفات الإلكترونية.",
       "icon": "fas fa-file-medical"
     },
     {
-      "title": "Practice Management",
-      "description": "Streamlined scheduling, appointments, waiting lists, and billing for healthcare practices of any size.",
+      "title": "إدارة العيادة",
+      "description": "جدولة ومواعيد وقوائم انتظار وفوترة مبسّطة للمنشآت الصحية بكل أحجامها.",
       "icon": "fas fa-calendar-check"
     },
     {
-      "title": "Patient Portal",
-      "description": "Self-service portal for patients to view records, schedule appointments, and communicate with their care team.",
+      "title": "بوابة المرضى",
+      "description": "بوابة خدمة ذاتية يطّلع فيها المرضى على سجلاتهم، ويحجزون مواعيدهم، ويتواصلون مع فريق الرعاية.",
       "icon": "fas fa-users"
     },
     {
-      "title": "FHIR R4 + REST API",
-      "description": "SMART on FHIR v2.2.0 app integration with OAuth2-secured REST APIs for seamless third-party integrations.",
+      "title": "FHIR R4 وREST API",
+      "description": "تكامل التطبيقات عبر SMART on FHIR ‏(الإصدار 2.2.0) مع واجهات REST API محمية بـ OAuth2، للتكامل مع الأطراف الخارجية وفق المعايير المعتمدة.",
       "icon": "fas fa-plug"
     },
     {
-      "title": "Docker Deployment",
-      "description": "Self-hosted or cloud-deployed via Docker. Full control over your data with enterprise-grade security.",
+      "title": "النشر عبر Docker",
+      "description": "استضافة ذاتية أو نشر سحابي عبر Docker. تحكم كامل في بياناتك مع أمان بمستوى المؤسسات.",
       "icon": "fas fa-docker"
     },
     {
-      "title": "Custom Branding",
-      "description": "White-label ready with fully customizable frontend websites. Your clinic, your brand, your patient experience.",
+      "title": "هوية مخصّصة",
+      "description": "جاهز للعمل بعلامتك التجارية مع مواقع أمامية قابلة للتخصيص بالكامل. عيادتك، وهويتك، وتجربة مرضاك.",
       "icon": "fas fa-palette"
     }
   ],
@@ -61,13 +61,13 @@
     {
       "name": "Web",
       "icon": "fas fa-globe",
-      "version": "Web App",
+      "version": "تطبيق ويب",
       "link": "#"
     },
     {
       "name": "Docker",
       "icon": "fab fa-docker",
-      "version": "Self-Hosted",
+      "version": "استضافة ذاتية",
       "link": "#"
     }
   ],
@@ -81,54 +81,54 @@
   ],
   "navItems": [
     {
-      "label": "Home",
+      "label": "الرئيسية",
       "url": "",
       "i18nKey": "project_nav_home"
     },
     {
-      "label": "Features",
+      "label": "الميزات",
       "url": "features/",
       "i18nKey": "project_nav_features"
     },
     {
-      "label": "Demo",
+      "label": "عرض تجريبي",
       "url": "demo/",
       "i18nKey": "project_nav_demo"
     },
     {
-      "label": "Privacy Policy",
+      "label": "سياسة الخصوصية",
       "url": "terms/",
       "i18nKey": "project_nav_terms"
     }
   ],
   "navMetaItems": [
     {
-      "label": "Work",
+      "label": "أعمالنا",
       "url": "/projects/",
       "i18nKey": "nav_work"
     },
     {
-      "label": "Contact",
+      "label": "تواصل",
       "url": "/contact/",
       "i18nKey": "nav_contact"
     }
   ],
   "faq": [
     {
-      "question": "What is Medev?",
-      "answer": "Medev is a rebranded instance of Medev v7.0.3+ — the world's leading open-source Electronic Health Records and Medical Practice Management system. It runs on a VPS via Docker."
+      "question": "ما هو Medev؟",
+      "answer": "Medev نسخة بعلامة تجارية جديدة من Medev بالإصدار 7.0.3 أو أحدث — النظام مفتوح المصدر الرائد عالمياً للسجلات الصحية الإلكترونية وإدارة العيادات الطبية. ويعمل على خادم VPS عبر Docker."
     },
     {
-      "question": "What features does Medev include?",
-      "answer": "Medev includes full EHR (patient records, encounters, vitals, SOAP notes, prescriptions), practice management (scheduling, appointments, billing), patient portal, FHIR R4 + REST API with OAuth2, and SMART on FHIR v2.2.0 app integration."
+      "question": "ما الميزات التي يتضمنها Medev؟",
+      "answer": "يتضمن Medev نظام EHR متكاملاً (سجلات المرضى، والزيارات، والعلامات الحيوية، وملاحظات SOAP، والوصفات)، وإدارة العيادة (الجدولة، والمواعيد، والفوترة)، وبوابة للمرضى، وFHIR R4 وREST API مع OAuth2، وتكامل التطبيقات عبر SMART on FHIR ‏(الإصدار 2.2.0)."
     },
     {
-      "question": "Can I customize the patient-facing frontend?",
-      "answer": "Yes! Medev includes a customizable frontend website that your clinic or hospital can brand and design. You control the patient experience while the backend remains standardized with many available features and add-ons."
+      "question": "هل يمكنني تخصيص الواجهة التي يراها المرضى؟",
+      "answer": "نعم. يتضمن Medev موقعاً أمامياً قابلاً للتخصيص، تصمّمه عيادتك أو مستشفاك بهويته الخاصة. أنت تتحكم في تجربة المريض، بينما تبقى الواجهة الخلفية موحّدة مع كثير من الميزات والإضافات المتاحة."
     },
     {
-      "question": "Is Medev self-hosted?",
-      "answer": "Yes, Medev is fully self-hosted via Docker. You have full control over your data. We also offer hosting options if you prefer us to manage it for you."
+      "question": "هل يُستضاف Medev ذاتياً؟",
+      "answer": "نعم، يُستضاف Medev ذاتياً بالكامل عبر Docker، وتبقى بياناتك تحت سيطرتك الكاملة. ونوفّر أيضاً خيارات استضافة إن فضّلت أن نتولّى إدارته عنك."
     }
   ]
 }

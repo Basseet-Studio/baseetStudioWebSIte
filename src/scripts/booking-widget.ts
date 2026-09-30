@@ -60,7 +60,7 @@ export function initBookingWidget(): void {
   if (!root) return
 
   const apiUrl = root.dataset.apiUrl?.replace(/\/$/, '') ?? ''
-  const lang = root.dataset.lang || 'en'
+  const lang = intlLocale(root.dataset.lang || 'en')
   const maxDaysAhead = Number(root.dataset.maxDaysAhead || '30')
   const copy = readCopy(root)
   if (!apiUrl || !copy) return
@@ -166,15 +166,16 @@ export function initBookingWidget(): void {
     monthLabel!.textContent = new Intl.DateTimeFormat(lang, { month: 'long', year: 'numeric' }).format(
       new Date(year, month - 1, 1),
     )
+    const firstDay = weekStart(lang)
+    const days = daysInMonth(state.month)
+    const startPad = weekdayIndex(`${state.month}-01`, firstDay)
+    const totalCells = Math.ceil((startPad + days.length) / 7) * 7
     if (state.loadingMonth) {
-      calendarEl!.innerHTML = Array.from({ length: 35 }, () =>
+      calendarEl!.innerHTML = Array.from({ length: totalCells }, () =>
         '<span class="booking__day booking__day--pad booking__day--skel" aria-hidden="true"></span>',
       ).join('')
       return
     }
-    const firstDay = weekStart(lang)
-    const days = daysInMonth(state.month)
-    const startPad = weekdayIndex(`${state.month}-01`, firstDay)
     const today = todayYmd()
     const maxDate = addDays(today, maxDaysAhead)
 
@@ -184,12 +185,13 @@ export function initBookingWidget(): void {
     const cells: string[] = []
     for (let i = 0; i < startPad; i++) cells.push('<span class="booking__day booking__day--pad" aria-hidden="true"></span>')
     const dayFmt = new Intl.DateTimeFormat(lang, { weekday: 'long', month: 'long', day: 'numeric' })
+    const numFmt = new Intl.NumberFormat(lang)
     for (const date of days) {
       const open = state.openDays.has(date)
       const selected = state.date === date
       const disabled = !open || date < today || date > maxDate
       const isToday = date === today
-      const label = Number(date.slice(8, 10))
+      const label = numFmt.format(Number(date.slice(8, 10)))
       const [year, month, day] = date.split('-').map(Number)
       const spoken = dayFmt.format(new Date(year, month - 1, day))
       const status = disabled ? copy.dayUnavailable : copy.dayAvailable
@@ -199,6 +201,7 @@ export function initBookingWidget(): void {
         `<button type="button" class="booking__day${openClass}${selected ? ' is-selected' : ''}${isToday ? ' is-today' : ''}" data-date="${date}" ${disabled ? 'disabled' : ''} aria-pressed="${selected ? 'true' : 'false'}" ${isToday ? 'aria-current="date"' : ''} aria-label="${escapeHtml(aria)}">${label}</button>`,
       )
     }
+    while (cells.length < totalCells) cells.push('<span class="booking__day booking__day--pad" aria-hidden="true"></span>')
     calendarEl!.innerHTML = cells.join('')
     if (!state.loadingMonth && !state.monthFailed && state.openDays.size === 0) {
       calendarEl!.insertAdjacentHTML(
@@ -456,11 +459,15 @@ function readCopy(root: HTMLElement): Copy | null {
   }
 }
 
+function intlLocale(lang: string): string {
+  return `${lang}-u-nu-latn`
+}
+
 function renderWeekdays(el: HTMLElement, lang: string): void {
   const start = weekStart(lang)
   const monday = Date.UTC(2026, 0, 5, 12)
   const offset = start === 7 ? -1 : start - 1
-  const fmt = new Intl.DateTimeFormat(lang, { weekday: 'short' })
+  const fmt = new Intl.DateTimeFormat(lang, { weekday: lang.startsWith('ar') ? 'narrow' : 'short', timeZone: 'UTC' })
   el.innerHTML = Array.from({ length: 7 }, (_, i) => {
     const label = fmt.format(new Date(monday + (offset + i) * 86400000))
     return `<span>${escapeHtml(label)}</span>`

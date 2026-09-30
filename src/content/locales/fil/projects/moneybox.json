@@ -2,8 +2,8 @@
   "name": "MoneyBox",
   "slug": "moneybox",
   "type": "branded",
-  "tagline": "Ang pera mo, nakaayos.",
-  "description": "## About MoneyBox\n\nMoneyBox is a personal finance tracker that helps you see where your money goes, set savings goals, and stay on budget — without the clutter of a full banking app.\n\n### Smart savings goals\n\nSet targets for trips, emergencies, or big purchases and watch your progress with clear visual charts.\n\n### Expense tracking\n\nLog spending by category, spot patterns early, and keep daily habits honest.\n\n### Clean reporting\n\nMonthly summaries and trend views that make sense at a glance — no spreadsheet required.\n",
+  "tagline": "Maayos na ang inyong pera.",
+  "description": "## Tungkol sa MoneyBox\n\nAng MoneyBox ay isang personal finance tracker na tumutulong sa inyong makita kung saan napupunta ang inyong pera, magtakda ng savings goal, at manatili sa budget — nang walang kalat ng isang buong banking app.\n\n### Matatalinong savings goal\n\nMagtakda ng target para sa biyahe, emergency, o malalaking bilihin at subaybayan ang inyong progreso gamit ang malinaw na visual chart.\n\n### Pagsubaybay sa gastos\n\nItala ang gastos ayon sa kategorya, mapansin agad ang mga pattern, at panatilihing tapat ang araw-araw na gawi.\n\n### Malinis na reporting\n\nMga buwanang buod at trend view na madaling maintindihan sa isang tingin — hindi kailangan ng spreadsheet.\n",
   "iconClass": "fas fa-piggy-bank",
   "color": "#16A34A",
   "gradient": "linear-gradient(135deg, #16A34A 0%, #4ADE80 100%)",
@@ -18,23 +18,43 @@
   "bgEffect": "leaves",
   "bgFallbackGradient": "linear-gradient(180deg, #F0FDF4 0%, #DCFCE7 40%, #BBF7D0 100%)",
   "hero": {
-    "title": "Ang pera mo, sa wakas nakaayos.",
-    "subtitle": "Personal finance tracker na may budgets, goals, at malinaw na reporting.",
-    "cta_primary": "Kunin ang App",
+    "title": "Sa wakas, maayos na ang inyong pera.",
+    "subtitle": "Isang personal finance tracker na may budget, goal, at malinis na reporting — ginawa para manatiling simple at kita ang pag-iipon araw-araw.",
+    "cta_primary": "Kunin ang app",
     "cta_primary_link": "https://drive.google.com/drive/folders/1_8MswXC-JxPEFU_0-fmeXal_hK7yKs9C?usp=sharing",
-    "cta_secondary": "View Features",
+    "cta_secondary": "Tingnan ang mga feature",
     "cta_secondary_link": "#features"
   },
   "features": [
     {
-      "title": "Smart Savings Goals",
-      "description": "Mag-set ng targets at subaybayan ang progress sa visual charts.",
+      "title": "Matatalinong savings goal",
+      "description": "Magtakda ng target para sa kahit ano — emergency, biyahe, o malalaking bilihin — at subaybayan ang progreso gamit ang mga visual chart na nakakaganyak.",
       "icon": "fas fa-bullseye"
     },
     {
-      "title": "Expense Tracking",
-      "description": "I-log ang gastos ayon sa category.",
+      "title": "Pagsubaybay sa gastos",
+      "description": "Itala ang gastos ayon sa kategorya, mapansin agad ang mga pattern, at panatilihing tapat ang araw-araw na gawi nang hindi nalulunod sa spreadsheet.",
       "icon": "fas fa-receipt"
+    },
+    {
+      "title": "Buod ng budget",
+      "description": "Makita agad ang pumapasok at lumalabas na pera gamit ang mga buwanang buod na madaling basahin sa mobile.",
+      "icon": "fas fa-chart-pie"
+    },
+    {
+      "title": "Malinis na reporting",
+      "description": "Mga trend view at breakdown ayon sa kategorya na ginawa para sa mabilisang pag-check — hindi para sa paghuhukay ng record sa katapusan ng buwan.",
+      "icon": "fas fa-chart-line"
+    },
+    {
+      "title": "Araw-araw na paalala",
+      "description": "Mahinahong paalala na magtala ng gastos at silipin ang mga goal, para umaayon ang app sa inyong routine at hindi kumokontra rito.",
+      "icon": "fas fa-bell"
+    },
+    {
+      "title": "Pribado mula sa disenyo",
+      "description": "Nananatili sa inyong device ang inyong pananalapi. Walang ads, walang pagbebenta ng data — isang tool lang na gumagalang sa inyong mga numero.",
+      "icon": "fas fa-lock"
     }
   ],
   "platforms": [
@@ -51,63 +71,30 @@
       "link": "https://drive.google.com/drive/folders/1_8MswXC-JxPEFU_0-fmeXal_hK7yKs9C?usp=sharing"
     }
   ],
-  "tech": [
-    "Flutter",
-    "Dart",
-    "SQLite",
-    "Riverpod"
-  ],
+  "tech": ["Flutter", "Dart", "SQLite", "Riverpod"],
   "navItems": [
-    {
-      "label": "Home",
-      "url": "",
-      "i18nKey": "project_nav_home"
-    },
-    {
-      "label": "Features",
-      "url": "features/",
-      "i18nKey": "project_nav_features"
-    },
-    {
-      "label": "Download",
-      "url": "download/",
-      "i18nKey": "project_nav_download"
-    },
-    {
-      "label": "Terms",
-      "url": "terms/",
-      "i18nKey": "project_nav_terms"
-    },
-    {
-      "label": "Privacy",
-      "url": "privacy/",
-      "i18nKey": "project_nav_privacy"
-    }
+    { "label": "Home", "url": "", "i18nKey": "project_nav_home" },
+    { "label": "Mga feature", "url": "features/", "i18nKey": "project_nav_features" },
+    { "label": "I-download", "url": "download/", "i18nKey": "project_nav_download" },
+    { "label": "Mga tuntunin", "url": "terms/", "i18nKey": "project_nav_terms" },
+    { "label": "Privacy", "url": "privacy/", "i18nKey": "project_nav_privacy" }
   ],
   "navMetaItems": [
-    {
-      "label": "Work",
-      "url": "/projects/",
-      "i18nKey": "nav_work"
-    },
-    {
-      "label": "Contact",
-      "url": "/contact/",
-      "i18nKey": "nav_contact"
-    }
+    { "label": "Mga gawa", "url": "/projects/", "i18nKey": "nav_work" },
+    { "label": "Makipag-ugnayan", "url": "/contact/", "i18nKey": "nav_contact" }
   ],
   "faq": [
     {
-      "question": "Is MoneyBox free?",
-      "answer": "MoneyBox is a live product from Baseet Studio. Download links and pricing are available on the Android build; iOS availability is coming soon."
+      "question": "Libre ba ang MoneyBox?",
+      "answer": "Ang MoneyBox ay isang live na produkto ng Baseet Studio. Makikita ang mga download link at presyo sa Android build; malapit na rin itong maging available sa iOS."
     },
     {
-      "question": "Does it connect to my bank?",
-      "answer": "MoneyBox focuses on manual tracking and goal setting — simple, private, and fully under your control."
+      "question": "Nakakonekta ba ito sa aking bangko?",
+      "answer": "Nakatuon ang MoneyBox sa manual na pagtatala at pagtatakda ng goal — simple, pribado, at buong nasa inyong kontrol."
     },
     {
-      "question": "Where is my data stored?",
-      "answer": "Your data stays on your device. We do not sell or share your financial information."
+      "question": "Saan naka-store ang aking data?",
+      "answer": "Nananatili sa inyong device ang inyong data. Hindi namin ibinebenta o ibinabahagi ang inyong impormasyong pampinansyal."
     }
   ],
   "links": {

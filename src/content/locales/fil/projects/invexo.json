@@ -2,12 +2,12 @@
   "name": "Invexo",
   "slug": "invexo",
   "type": "branded",
-  "tagline": "Inventory management para sa maliliit na tindahan.",
-  "description": "## About Invexo\n\nInvexo is an inventory management system designed for small shops — telecom counters, corner stores, and multi-location retailers who need real-time stock, sales, and cash flow in one place.\n\n### Built for Small Shops\n\nTrack products, barcodes, and customers across every location. Run POS from the same dashboard, monitor flexiload and MFS commissions, and see what's due outstanding at a glance.\n\n### One Dashboard, Every Shop\n\nSwitch between shops instantly. Revenue, cash collected, gross profit, and commission numbers update as you move — so owners always know where they stand.\n\n## Ready to Streamline Your Shop?\n\nContact us for a demo tailored to your business.\n",
+  "tagline": "Inventory management na ginawa para sa maliliit na tindahan",
+  "description": "## Tungkol sa Invexo\n\nAng Invexo ay isang inventory management system na idinisenyo para sa maliliit na tindahan — mga telecom counter, sari-sari store, at mga retailer na may maraming branch na kailangang makita ang real-time na stock, benta, at cash flow sa iisang lugar.\n\n### Ginawa para sa maliliit na tindahan\n\nSubaybayan ang mga produkto, barcode, at customer sa bawat branch. Patakbuhin ang POS mula sa parehong dashboard, bantayan ang mga komisyon sa flexiload at MFS, at makita agad kung magkano pa ang dapat singilin.\n\n### Iisang dashboard, lahat ng tindahan\n\nMagpalipat-lipat agad sa mga tindahan. Nag-a-update ang kita, nakolektang cash, gross profit, at mga komisyon habang lumilipat kayo — kaya laging alam ng may-ari ang kalagayan ng negosyo.\n\n## Handa na bang pasimplehin ang takbo ng inyong tindahan?\n\nMakipag-ugnayan sa amin para sa demo na iniakma sa inyong negosyo.\n",
   "iconClass": "fas fa-cash-register",
   "color": "#10B981",
   "gradient": "linear-gradient(135deg, #059669 0%, #34D399 100%)",
-  "status": "Handa nang i-deliver",
+  "status": "Ready to Deliver",
   "layoutVariant": "invexo",
   "fontHeading": "Space Grotesk",
   "fontBody": "Inter",
@@ -17,46 +17,44 @@
   "brandName": "Invexo",
   "bgEffect": "none",
   "bgFallbackGradient": "linear-gradient(180deg, #ECFDF5 0%, #D1FAE5 40%, #A7F3D0 100%)",
-  "clientIds": [
-    "faruk-technology-store"
-  ],
+  "clientIds": ["faruk-technology-store"],
   "hero": {
-    "title": "Patakbuhin ang Bawat Tindahan mula sa Isang Dashboard",
-    "subtitle": "Inventory, POS, flexiload commissions, daily sales — para sa maliliit na tindahan.",
-    "cta_primary": "Humiling ng Demo",
+    "title": "Patakbuhin ang bawat tindahan mula sa iisang dashboard",
+    "subtitle": "Inventory, POS, mga komisyon sa flexiload, at araw-araw na benta — ginawa para sa maliliit na tindahang kailangan ng linaw nang walang komplikasyon ng enterprise system.",
+    "cta_primary": "Humingi ng demo",
     "cta_primary_link": "/contact",
-    "cta_secondary": "View Features",
+    "cta_secondary": "Tingnan ang mga feature",
     "cta_secondary_link": "#features"
   },
   "features": [
     {
-      "title": "Multi-Shop Dashboard",
-      "description": "Switch between locations and watch revenue, cash collected, gross profit, and due outstanding update in real time.",
+      "title": "Dashboard para sa maraming tindahan",
+      "description": "Magpalipat-lipat sa mga branch at panoorin ang real-time na pag-update ng kita, nakolektang cash, gross profit, at natitirang singilin.",
       "icon": "fas fa-store"
     },
     {
-      "title": "Inventory & POS",
-      "description": "Barcode scanning, stock alerts, low-stock warnings, and a full POS terminal — all connected to the same ledger.",
+      "title": "Inventory at POS",
+      "description": "Barcode scanning, stock alert, babala kapag paubos na ang stock, at buong POS terminal — lahat ay konektado sa iisang ledger.",
       "icon": "fas fa-boxes-stacked"
     },
     {
-      "title": "Flexiload & MFS",
-      "description": "Track flexiload and mobile financial service commissions alongside product sales in one daily summary.",
+      "title": "Flexiload at MFS",
+      "description": "Subaybayan ang mga komisyon sa flexiload at mobile financial service kasabay ng benta ng mga produkto sa iisang buod bawat araw.",
       "icon": "fas fa-mobile-alt"
     },
     {
-      "title": "Sales Trends",
-      "description": "Seven-day line charts, overdue case tracking, and backup status — see patterns before they become problems.",
+      "title": "Trend ng benta",
+      "description": "Line chart ng huling 7 araw, pagsubaybay sa mga overdue na account, at status ng backup — makita ang mga pattern bago pa sila maging problema.",
       "icon": "fas fa-chart-line"
     },
     {
-      "title": "Customer Ledger",
-      "description": "Due outstanding, overdue cases, and payment history per shop — know who owes what at a glance.",
+      "title": "Ledger ng customer",
+      "description": "Natitirang singilin, mga overdue na account, at history ng bayad bawat tindahan — alamin agad kung sino ang may utang at magkano.",
       "icon": "fas fa-receipt"
     },
     {
-      "title": "Reports & Alerts",
-      "description": "Stock transfers, audit logs, user permissions, and configurable alerts for low stock and overdue payments.",
+      "title": "Mga report at alert",
+      "description": "Stock transfer, audit log, permission ng user, at mga alert na puwedeng i-configure para sa paubos na stock at overdue na bayad.",
       "icon": "fas fa-bell"
     }
   ],
@@ -64,7 +62,7 @@
     {
       "name": "Web",
       "icon": "fas fa-globe",
-      "version": "Web App",
+      "version": "App sa web",
       "link": "#"
     }
   ],
@@ -82,7 +80,7 @@
       "i18nKey": "project_nav_home"
     },
     {
-      "label": "Features",
+      "label": "Mga feature",
       "url": "features/",
       "i18nKey": "project_nav_features"
     },
@@ -92,39 +90,39 @@
       "i18nKey": "project_nav_demo"
     },
     {
-      "label": "Terms",
+      "label": "Mga tuntunin",
       "url": "terms/",
       "i18nKey": "project_nav_terms"
     }
   ],
   "navMetaItems": [
     {
-      "label": "Work",
+      "label": "Mga gawa",
       "url": "/projects/",
       "i18nKey": "nav_work"
     },
     {
-      "label": "Contact",
+      "label": "Makipag-ugnayan",
       "url": "/contact/",
       "i18nKey": "nav_contact"
     }
   ],
   "faq": [
     {
-      "question": "What types of shops is Invexo built for?",
-      "answer": "Invexo is designed for small retail shops — telecom counters, libraries, convenience stores, and multi-location businesses that need inventory, POS, and commission tracking in one place."
+      "question": "Para sa anong mga tindahan ginawa ang Invexo?",
+      "answer": "Idinisenyo ang Invexo para sa maliliit na retail shop — mga telecom counter, library, convenience store, at mga negosyong may maraming branch na kailangan ng inventory, POS, at pagsubaybay ng komisyon sa iisang lugar."
     },
     {
-      "question": "Can I manage multiple shop locations?",
-      "answer": "Yes. Switch between shops from the dashboard sidebar. Revenue, cash collected, profit, and due outstanding update per location."
+      "question": "Puwede ko bang pamahalaan ang maraming branch?",
+      "answer": "Oo. Magpalipat-lipat sa mga tindahan mula sa sidebar ng dashboard. Hiwalay na nag-a-update bawat branch ang kita, nakolektang cash, tubo, at natitirang singilin."
     },
     {
-      "question": "Does it support flexiload and MFS commissions?",
-      "answer": "Absolutely. Flexiload and mobile financial service commissions are tracked alongside product sales in your daily summary."
+      "question": "Sinusuportahan ba nito ang mga komisyon sa flexiload at MFS?",
+      "answer": "Oo. Sinusubaybayan ang mga komisyon sa flexiload at mobile financial service kasabay ng benta ng mga produkto sa inyong araw-araw na buod."
     },
     {
-      "question": "Is there a demo available?",
-      "answer": "Contact us for a personalized walkthrough. We tailor onboarding to your shop's workflow."
+      "question": "May available bang demo?",
+      "answer": "Makipag-ugnayan sa amin para sa personalized na walkthrough. Iniaakma namin ang onboarding sa daloy ng trabaho ng inyong tindahan."
     }
   ]
 }

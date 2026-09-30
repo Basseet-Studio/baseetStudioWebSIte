@@ -1,143 +1,134 @@
 {
   "id": "design",
   "slug": "design",
-  "title": "UI/UX Design",
-  "tagline": "Design na karapat-dapat sa second tap",
+  "title": "Disenyong UI/UX",
+  "tagline": "Disenyong sulit balikan sa ikalawang tap",
   "color": "#AF52DE",
   "gradient": "linear-gradient(135deg, #AF52DE 0%, #D8A0F5 100%)",
   "icon": "fas fa-paint-brush",
-  "shortDescription": "Beautiful, intuitive interfaces users love",
+  "shortDescription": "Malinaw at madaling gamiting interface na binabalik-balikan ng mga tao",
   "hero": {
-    "title": "Design na Karapat-dapat sa Second Tap",
-    "subtitle": "Dinidisenyo namin ang mga sandaling magpapasya kung babalik ang user — research-driven, tunay na design system.",
-    "cta_primary": "Mag-brief ng proyekto",
+    "title": "Disenyong sulit balikan sa ikalawang tap",
+    "subtitle": "Mga interface na hinubog ayon sa kung paano talaga ginagamit ng mga tao ang produkto, hindi ayon sa kung ano ang maganda sa isang moodboard.",
+    "cta_primary": "Ikuwento sa amin ang proyekto",
     "cta_primary_link": "/contact/",
-    "cta_secondary": "Tingnan ang deliverables",
+    "cta_secondary": "Tingnan ang mga deliverable",
     "cta_secondary_link": "#deliverables"
   },
   "metrics": [
-    {
-      "value": "12+",
-      "label": "Design systems shipped"
-    },
-    {
-      "value": "WCAG AA",
-      "label": "Default accessibility target"
-    },
-    {
-      "value": "1 source",
-      "label": "Figma source of truth"
-    }
+    { "value": "12+", "label": "Mga design system na nailunsad na" },
+    { "value": "WCAG AA", "label": "Default na target sa accessibility" },
+    { "value": "1 batayan", "label": "Figma bilang iisang pinagmumulan" }
   ],
   "subServices": [
     {
       "id": "user-research",
-      "name": "User Research",
+      "name": "Pananaliksik sa user",
       "icon": "fas fa-user-friends",
-      "desc": "Unawain ang pangangailangan at ugali ng user",
-      "longDesc": "Nagsisimula sa totoong user. Ang output ay hindi persona poster — priyoridad na listahan ng dapat gawing maayos ng design.",
+      "desc": "Unawain ang mga pangangailangan at kilos ng mga user ninyo",
+      "longDesc": "Sinisimulan namin ang bawat proyekto sa pakikipag-usap sa mga totoong user — mga moderated interview, unmoderated test, at malalimang pagsusuri ng analytics. Ang resulta ay hindi isang poster ng persona; isa itong malinaw at naka-prayoridad na listahan ng mga jobs-to-be-done na kailangang magawa nang mahusay ng inyong disenyo.",
       "bullets": [
-        "Interviews at contextual inquiry",
-        "Jobs-to-be-done",
-        "Usability testing",
-        "Insight-to-design briefs"
+        "Mga user interview at contextual inquiry",
+        "Jobs-to-be-done at pagmamapa ng oportunidad",
+        "Usability testing sa Figma o sa mga live na prototype",
+        "Mga brief na nagpapasa ng insight papunta sa disenyo"
       ],
-      "imageLabel": "Research board"
+      "imageLabel": "Board ng mga insight mula sa research"
     },
     {
       "id": "wireframing",
-      "name": "Wireframing",
+      "name": "Paggawa ng wireframe",
       "icon": "fas fa-pencil-ruler",
-      "desc": "Iguhit ang istruktura at daloy ng app",
-      "longDesc": "Bago ang pixel, ang skeleton. Pinakamurang lugar para ayusin ang pinakamahal na pagkakamali.",
+      "desc": "Iguhit ang balangkas at daloy ng inyong app",
+      "longDesc": "Bago ang mga pixel, iginuguhit muna namin ang kalansay. Mga low-fidelity wireframe para sa bawat pangunahing flow, sinusuri laban sa inyong IA, at mabilis na inuulit. Ang wireframe ang pinakamurang lugar para magkamali ng pinakamamahaling pagkakamali — kaya hindi namin ito nilalaktawan.",
       "bullets": [
-        "Low-fi wireframes sa bawat flow",
-        "IA at navigation",
-        "User flows at edge cases",
-        "Engineering review bago visual"
+        "Mga low-fidelity wireframe para sa bawat flow",
+        "Information architecture at navigation",
+        "Mga diagram ng user flow at mga edge case",
+        "Review ng engineering bago ang visual design"
       ],
-      "imageLabel": "Wireframe set"
+      "imageLabel": "Set ng wireframe ng mga pangunahing flow"
     },
     {
       "id": "visual-design",
-      "name": "Visual Design",
+      "name": "Biswal na disenyo",
       "icon": "fas fa-palette",
-      "desc": "Interface na sumasalamin sa brand",
-      "longDesc": "High-fi Figma, type at color system. Nananatili ang library sa team.",
+      "desc": "Pare-parehong interface na sumasalamin sa inyong brand",
+      "longDesc": "Mga high-fidelity na Figma file, totoong sistema ng typography at kulay, at mga prinsipyo ng motion na tugma sa personalidad ng brand ninyo. Ang resulta ay isang Figma library na patuloy na magagamit ng team ninyo kahit matagal na kaming tapos — hindi isang static na deliverable.",
       "bullets": [
-        "Figma screens at components",
-        "Type, color, motion",
-        "Brand iconography",
-        "Light, dark, brand variants"
+        "Mga high-fidelity na screen at component sa Figma",
+        "Mga sistema ng typography, kulay, at motion",
+        "Iconography at illustration na tugma sa brand",
+        "Mga light, dark, at brand na variant"
       ],
-      "imageLabel": "High-fi mobile screens"
+      "imageLabel": "Mga high-fidelity na mobile screen"
     },
     {
       "id": "prototyping",
-      "name": "Prototyping",
+      "name": "Paggawa ng prototype",
       "icon": "fas fa-laptop-code",
-      "desc": "Interactive prototype para sa pagsubok",
-      "longDesc": "Clickable prototype para sa stakeholder at user test — bago ang engineering spend.",
+      "desc": "Mga interactive na prototype para subukan ang mga ideya",
+      "longDesc": "Mga clickable na prototype para sa review ng mga stakeholder, user testing, at crowdfunding. Binubuo namin ang mga ito sa Figma o gamit ang code, depende sa kinakailangang fidelity — at ginagamit namin ang mga ito para subukan ang pinakamapanganib na mga palagay bago pa kayo gumastos ng kahit isang dirham sa engineering.",
       "bullets": [
-        "Figma at code prototypes",
-        "Micro-interactions",
-        "Testable flows",
-        "Stakeholder demos"
+        "Mga prototype sa Figma at gamit ang code",
+        "Mga micro-interaction at spec ng motion",
+        "Mga flow na puwedeng i-test para sa user research",
+        "Mga build na pang-demo sa mga stakeholder"
       ],
-      "imageLabel": "Interactive prototype"
+      "imageLabel": "Interactive na prototype gamit ang code"
     }
   ],
   "process": [
     {
       "number": "01",
-      "title": "Discover",
-      "desc": "Research, analytics review, and a 1-page problem statement",
+      "title": "Pagtuklas",
+      "desc": "Research, review ng analytics, at isang pahinang problem statement",
       "icon": "fas fa-lightbulb"
     },
     {
       "number": "02",
-      "title": "Define",
-      "desc": "Jobs to be done, success metrics, and the v1 scope",
+      "title": "Pagtukoy",
+      "desc": "Mga jobs to be done, sukatan ng tagumpay, at ang scope ng v1",
       "icon": "fas fa-bullseye"
     },
     {
       "number": "03",
-      "title": "Design",
-      "desc": "Wireframes, then visual design in Figma, with weekly reviews",
+      "title": "Disenyo",
+      "desc": "Mga wireframe muna, saka visual design sa Figma, na may lingguhang review",
       "icon": "fas fa-pencil-ruler"
     },
     {
       "number": "04",
-      "title": "Validate",
-      "desc": "User testing on prototypes, iterate, and lock the system",
+      "title": "Pagpapatunay",
+      "desc": "User testing sa mga prototype, pag-uulit, at pag-lock ng sistema",
       "icon": "fas fa-vial"
     },
     {
       "number": "05",
-      "title": "Handoff",
-      "desc": "Annotated Figma, a Storybook-ready component library, and a working session with your devs",
+      "title": "Pagpasa",
+      "desc": "Figma na may anotasyon, component library na handa para sa Storybook, at working session kasama ang mga developer ninyo",
       "icon": "fas fa-handshake"
     }
   ],
   "deliverables": [
     {
-      "title": "Figma source of truth",
-      "description": "A clean, organized Figma file with components, variables, and ready-to-handoff frames.",
+      "title": "Figma bilang iisang pinagmumulan",
+      "description": "Isang malinis at organisadong Figma file na may mga component, variable, at frame na handa nang ipasa.",
       "icon": "fas fa-pen-ruler"
     },
     {
-      "title": "Design system",
-      "description": "Type, color, spacing, motion, and iconography — documented and ready to scale.",
+      "title": "Sistema ng disenyo",
+      "description": "Typography, kulay, spacing, motion, at iconography — may dokumentasyon at handang palakihin.",
       "icon": "fas fa-shapes"
     },
     {
-      "title": "Prototype",
-      "description": "Clickable prototype in Figma or code, for stakeholder review and user testing.",
+      "title": "Clickable na prototype",
+      "description": "Clickable na prototype sa Figma o gamit ang code, para sa review ng mga stakeholder at user testing.",
       "icon": "fas fa-laptop"
     },
     {
-      "title": "Handoff package",
-      "description": "Specs, redlines, assets, and a working session with your engineering team.",
+      "title": "Pakete ng handoff",
+      "description": "Mga spec, redline, asset, at working session kasama ang engineering team ninyo.",
       "icon": "fas fa-box"
     }
   ],
@@ -155,20 +146,20 @@
   ],
   "faq": [
     {
-      "question": "Do you also build the design in code?",
-      "answer": "Yes. Most of our engagements end with a working front end. We can ship Astro, Next.js, SvelteKit, or React Native — whatever your stack prefers. The handoff is smooth because we are the same team doing both."
+      "question": "Kayo rin ba ang bumubuo ng disenyo sa code?",
+      "answer": "Oo. Karamihan ng engagement namin ay nagtatapos sa gumaganang front end. Kaya naming maglunsad ng Astro, Next.js, SvelteKit, o React Native — kung ano ang gusto ng stack ninyo. Walang nawawala sa handoff dahil iisang team ang gumagawa ng pareho."
     },
     {
-      "question": "Can you take over an existing design system?",
-      "answer": "Frequently. We start with a design system audit, propose a path to clean it up, and ship it in a Storybook that your engineers actually use. We have rescued Figma files with 2,000+ components and turned them into something maintainable."
+      "question": "Kaya ba ninyong saluhin ang isang existing na design system?",
+      "answer": "Madalas naming gawin iyan. Nagsisimula kami sa audit ng design system, nagmumungkahi ng paraan para linisin ito, at inilalabas ito sa isang Storybook na talagang ginagamit ng mga engineer ninyo. Nakasagip na kami ng mga Figma file na may 2,000+ na component at ginawa naming madaling i-maintain ang mga ito."
     },
     {
-      "question": "How do you handle accessibility?",
-      "answer": "Accessibility is not a checklist we run at the end. We design for keyboard, screen readers, and color contrast from the first wireframe, and we test with real assistive tech before handoff. WCAG AA is our default; AAA where it matters."
+      "question": "Paano ninyo hinahawakan ang accessibility?",
+      "answer": "Hindi checklist na pinapatakbo lang namin sa dulo ang accessibility. Nagdidisenyo kami para sa keyboard, screen reader, at color contrast mula sa unang wireframe, at nagte-test kami gamit ang totoong assistive tech bago ang handoff. WCAG AA ang default namin; AAA kung saan ito mahalaga."
     },
     {
-      "question": "What if I only have a brand, not a product idea?",
-      "answer": "That is a great place to start. We run a 2-week discovery sprint that ends in a product brief, a feature list, and a prototype you can use to raise, recruit, or sell. From there, we can design and build the first version."
+      "question": "Paano kung brand lang ang mayroon ako, wala pang ideya ng produkto?",
+      "answer": "Magandang simula iyan. Nagsasagawa kami ng 2-linggong discovery sprint na nagtatapos sa isang product brief, listahan ng mga feature, at prototype na magagamit ninyo para makalikom ng pondo, mag-recruit, o magbenta. Mula roon, kaya naming idisenyo at buuin ang unang bersyon."
     }
   ]
 }

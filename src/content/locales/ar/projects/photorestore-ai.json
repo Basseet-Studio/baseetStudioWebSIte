@@ -2,52 +2,67 @@
   "name": "PhotoRestore AI",
   "slug": "photorestore-ai",
   "type": "standalone",
-  "tagline": "استعد الصور القديمة بالذكاء الاصطناعي",
-  "description": "## About PhotoRestore AI\n\nPhotoRestore AI combines cutting-edge artificial intelligence with a passion for preserving memories. We believe every photo tells a story, and no damage should stand in the way of sharing those precious moments.\n\n### Our Technology\n\nBuilt on state-of-the-art machine learning models, PhotoRestore AI can detect and repair scratches, tears, and creases; restore faded or discolored areas; enhance image clarity and sharpness; colorize black & white photographs; and remove stains and water damage.\n\n### Privacy First\n\nWe take your privacy seriously. All photos are processed in isolated secure environments and automatically deleted within 24 hours of processing. Your memories stay yours.\n\n## Try It Today\n\nExperience the magic of AI photo restoration. Upload your damaged photo and see the transformation in seconds.\n",
+  "tagline": "رمّم صورك القديمة بالذكاء الاصطناعي",
+  "description": "## عن PhotoRestore AI\n\nيجمع PhotoRestore AI بين نماذج ترميم مدرَّبة وشغف حقيقي بحفظ الذكريات. نؤمن بأن لكل صورة حكاية، وأن التلف لا ينبغي أن يحول دون مشاركة تلك اللحظات الثمينة.\n\n### تقنيتنا\n\nيعتمد PhotoRestore AI على نماذج تعلّم عميق لترميم الصور، فيكتشف الخدوش والتمزقات والطيّات ويصلحها، ويستعيد المناطق الباهتة أو المتغيّرة اللون، ويحسّن وضوح الصورة وحدّتها، ويلوّن الصور بالأبيض والأسود، ويزيل البقع وآثار المياه.\n\n### الخصوصية أولاً\n\nنأخذ خصوصيتك بجدية. تُعالَج كل الصور في بيئات آمنة ومعزولة، وتُحذف تلقائياً خلال 24 ساعة من المعالجة. ذكرياتك تبقى لك.\n\n## جرّبه اليوم\n\nاكتشف ما يمكن أن يقدّمه ترميم الصور بالذكاء الاصطناعي لصورك. ارفع صورتك التالفة وشاهد الفرق خلال ثوانٍ.\n",
   "iconClass": "fas fa-wand-magic-sparkles",
   "color": "#6366F1",
   "gradient": "linear-gradient(135deg, #6366F1 0%, #818CF8 100%)",
   "status": "Live",
   "hero": {
     "title": "استعد ذكرياتك الثمينة",
-    "subtitle": "استخدم الذكاء الاصطناعي المتقدم لإحياء الصور القديمة أو التالفة في ثوانٍ.",
-    "cta_primary": "جرّب الآن",
+    "subtitle": "استخدم نماذج ذكاء اصطناعي مدرَّبة لتعيد الحياة إلى صورك القديمة أو التالفة أو الباهتة خلال ثوانٍ.",
+    "cta_primary": "جرّبه الآن",
     "cta_primary_link": "#",
     "cta_secondary": "شاهد أمثلة",
     "cta_secondary_link": "#features"
   },
   "features": [
     {
-      "title": "استعادة بالذكاء الاصطناعي",
-      "description": "خوارزميات متقدمة تصلح الخدوش والتمزق والبهتان تلقائياً.",
+      "title": "ترميم بالذكاء الاصطناعي",
+      "description": "تحلّل خوارزمياتنا المتقدمة صورك وترمّمها بنتائج بجودة احترافية، فتصلح الخدوش والتمزقات والبهتان تلقائياً.",
       "icon": "fas fa-wand-magic-sparkles"
     },
     {
-      "title": "معالجة سريعة",
-      "description": "احصل على صورك الم restored في ثوانٍ.",
+      "title": "معالجة فائقة السرعة",
+      "description": "احصل على صورك المرمَّمة خلال ثوانٍ لا ساعات، فبنيتنا التحتية المحسّنة تضمن سرعة التسليم.",
       "icon": "fas fa-bolt"
     },
     {
-      "title": "خصوصية أولاً",
-      "description": "تُحذف صورك تلقائياً بعد المعالجة.",
+      "title": "نتائج بجودة احترافية",
+      "description": "نتائج تضاهي خدمات ترميم الصور الاحترافية بجزء بسيط من التكلفة.",
       "icon": "fas fa-award"
+    },
+    {
+      "title": "آمن وخاص",
+      "description": "تُحذف صورك تلقائياً بعد المعالجة. لا نخزّن صورك الشخصية ولا نشاركها أبداً.",
+      "icon": "fas fa-shield-alt"
+    },
+    {
+      "title": "خيارات دفع متعددة",
+      "description": "ادفع بأمان عبر Stripe أو SSLCommerz، مع أسعار مرنة للصور الفردية أو للمعالجة بالجملة.",
+      "icon": "fas fa-credit-card"
+    },
+    {
+      "title": "واجهة حديثة متجاوبة",
+      "description": "واجهة واضحة وسهلة الاستخدام تتكيّف مع شاشات الحاسوب والأجهزة اللوحية والجوال.",
+      "icon": "fas fa-mobile-alt"
     }
   ],
   "platforms": [
     {
       "name": "Web",
       "icon": "fas fa-globe",
-      "version": "Web App",
+      "version": "تطبيق ويب",
       "link": "#"
     }
   ],
   "tech": [
-    "AI/ML Models",
+    "نماذج AI/ML",
     "React.js",
     "Node.js",
     "Stripe API",
     "SSLCommerz",
-    "Cloud Processing"
+    "معالجة سحابية"
   ],
   "galleryType": "mobile",
   "screenshots": [
@@ -60,27 +75,27 @@
   ],
   "testimonials": [
     {
-      "quote": "PhotoRestore AI brought my grandmother's wedding photo back to life. The results were incredible!",
+      "quote": "أعاد PhotoRestore AI الحياة إلى صورة زفاف جدتي. كانت النتيجة مذهلة!",
       "author": "Ahmed R.",
-      "role": "Customer"
+      "role": "عميل"
     }
   ],
   "faq": [
     {
-      "question": "How does the AI restoration work?",
-      "answer": "Our AI analyzes your photo to detect damage, fading, and imperfections, then intelligently restores the image using trained neural networks."
+      "question": "كيف يعمل الترميم بالذكاء الاصطناعي؟",
+      "answer": "يحلّل نظامنا صورتك ليكتشف التلف والبهتان والعيوب، ثم يرمّمها بذكاء باستخدام شبكات عصبية مدرَّبة."
     },
     {
-      "question": "Is my photo data secure?",
-      "answer": "Absolutely. All uploaded photos are processed securely and automatically deleted after 24 hours. We never store or share your images."
+      "question": "هل بيانات صوري آمنة؟",
+      "answer": "نعم. تُعالَج كل الصور المرفوعة بأمان وتُحذف تلقائياً بعد 24 ساعة. لا نخزّن صورك ولا نشاركها أبداً."
     },
     {
-      "question": "What types of damage can be fixed?",
-      "answer": "Our AI can restore faded colors, fix scratches and tears, remove stains, enhance clarity, and even colorize black & white photos."
+      "question": "ما أنواع التلف التي يمكن إصلاحها؟",
+      "answer": "يستطيع نظامنا استعادة الألوان الباهتة، وإصلاح الخدوش والتمزقات، وإزالة البقع، وتحسين الوضوح، بل وتلوين الصور بالأبيض والأسود أيضاً."
     },
     {
-      "question": "How much does it cost?",
-      "answer": "We offer flexible pricing starting from $2 per photo. Bulk packages are available for larger restoration projects."
+      "question": "كم التكلفة؟",
+      "answer": "نقدّم أسعاراً مرنة تبدأ من $2 للصورة الواحدة، وتتوفر باقات بالجملة لمشاريع الترميم الأكبر."
     }
   ]
 }

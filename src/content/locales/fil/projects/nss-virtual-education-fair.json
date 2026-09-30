@@ -2,49 +2,49 @@
   "name": "NSS Virtual Education Fair",
   "slug": "nss-virtual-education-fair",
   "type": "standalone",
-  "tagline": "Virtual Education Fair Platform",
-  "description": "## About NSS Virtual Education Fair\n\nThe NSS Virtual Education Fair revolutionizes how students connect with universities worldwide. Born from the need to make quality education accessible regardless of geographical barriers, our platform bridges the gap between ambitious students and prestigious institutions.\n\n### Why Virtual?\n\nTraditional education fairs limit students to nearby events and brief interactions. Our virtual platform offers 24/7 access, global reach, deep engagement, and no travel costs.\n\n### For Universities\n\nShowcase programs through interactive booths, host live sessions and webinars, collect and manage student leads, and analyze engagement to optimize outreach.\n\n### For Students\n\nComprehensive university information in one place, smart recommendations based on profile, direct communication with admissions teams, and document management with application tracking.\n\n## Success Stories\n\nOver 50,000 students have used our platform to find their ideal universities.\n",
+  "tagline": "Platform para sa virtual education fair",
+  "description": "## Tungkol sa NSS Virtual Education Fair\n\nBinabago ng NSS Virtual Education Fair ang paraan ng pakikipag-ugnayan ng mga estudyante sa mga unibersidad sa buong mundo. Nabuo ito mula sa pangangailangang gawing abot-kamay ang de-kalidad na edukasyon anuman ang layo, at pinaglalapit ng aming platform ang mga ambisyosong estudyante at mga kilalang institusyon.\n\n### Bakit virtual?\n\nNililimitahan ng tradisyonal na education fair ang mga estudyante sa mga kalapit na event at maiikling usapan. Nag-aalok ang aming virtual na platform ng access 24/7, abot sa buong mundo, mas malalim na engagement, at walang gastos sa biyahe.\n\n### Para sa mga unibersidad\n\nIpakita ang mga programa sa pamamagitan ng mga interactive na booth, mag-host ng live session at webinar, mangolekta at mamahala ng mga student lead, at suriin ang engagement para ma-optimize ang outreach.\n\n### Para sa mga estudyante\n\nKumpletong impormasyon tungkol sa mga unibersidad sa iisang lugar, matatalinong rekomendasyon batay sa profile, direktang komunikasyon sa mga admissions team, at pamamahala ng dokumento na may pagsubaybay sa application.\n\n## Mga kuwento ng tagumpay\n\nMahigit 50,000 estudyante na ang gumamit ng aming platform para mahanap ang unibersidad na para sa kanila.\n",
   "iconClass": "fas fa-graduation-cap",
   "color": "#0EA5E9",
   "gradient": "linear-gradient(135deg, #0EA5E9 0%, #38BDF8 100%)",
-  "status": "Natapos",
+  "status": "Completed",
   "hero": {
-    "title": "Kumonekta sa mga Unibersidad sa Buong Mundo",
-    "subtitle": "Bagong karanasan sa education fairs — mula sa bahay.",
-    "cta_primary": "Tuklasin ang mga Unibersidad",
+    "title": "Kumonekta sa mga unibersidad sa buong mundo",
+    "subtitle": "Dumalo sa mga education fair nang walang biyahe at walang pila. Tuklasin ang mga unibersidad, sumali sa mga live session, at planuhin ang inyong kinabukasan — lahat mula sa ginhawa ng inyong tahanan.",
+    "cta_primary": "Tuklasin ang mga unibersidad",
     "cta_primary_link": "https://nssedufair.com",
-    "cta_secondary": "Register Now",
+    "cta_secondary": "Magparehistro na",
     "cta_secondary_link": "#features"
   },
   "features": [
     {
-      "title": "Virtual University Booths",
-      "description": "Explore interactive virtual booths from top universities. Access brochures, videos, and connect with admission representatives.",
+      "title": "Mga virtual na booth ng unibersidad",
+      "description": "Tuklasin ang mga interactive na virtual booth ng mga nangungunang unibersidad. Buksan ang mga brochure at video, at kumonekta sa mga admission representative.",
       "icon": "fas fa-building"
     },
     {
-      "title": "Live Sessions & Webinars",
-      "description": "Attend live presentations, Q&A sessions, and webinars hosted by university representatives and education experts.",
+      "title": "Mga live session at webinar",
+      "description": "Dumalo sa mga live na presentasyon, Q&A session, at webinar na hino-host ng mga kinatawan ng unibersidad at mga eksperto sa edukasyon.",
       "icon": "fas fa-video"
     },
     {
-      "title": "Smart Matching Algorithm",
-      "description": "Our AI-powered system recommends universities based on your academic profile, interests, and career goals.",
+      "title": "Matalinong matching algorithm",
+      "description": "Nagrerekomenda ang aming AI-powered na sistema ng mga unibersidad batay sa inyong academic profile, interes, at career goal.",
       "icon": "fas fa-brain"
     },
     {
-      "title": "Document Upload & Management",
-      "description": "Upload your academic documents once and share with multiple universities. Track your application status in real-time.",
+      "title": "Pag-upload at pamamahala ng dokumento",
+      "description": "I-upload nang isang beses ang inyong mga academic document at ibahagi ito sa maraming unibersidad. Subaybayan nang real time ang status ng inyong application.",
       "icon": "fas fa-folder-open"
     },
     {
-      "title": "Multi-language Support",
-      "description": "Access the platform in multiple languages including English, Arabic, and Bengali.",
+      "title": "Suporta sa maraming wika",
+      "description": "Gamitin ang platform sa iba't ibang wika, kabilang ang English, Arabic, at Bengali.",
       "icon": "fas fa-language"
     },
     {
-      "title": "Analytics Dashboard",
-      "description": "Universities get detailed analytics on booth visits, engagement, and lead quality.",
+      "title": "Dashboard ng analytics",
+      "description": "Nakakakuha ang mga unibersidad ng detalyadong analytics sa mga pagbisita sa booth, engagement, at kalidad ng lead.",
       "icon": "fas fa-chart-line"
     }
   ],
@@ -52,7 +52,7 @@
     {
       "name": "Web",
       "icon": "fas fa-globe",
-      "version": "Web Platform",
+      "version": "Platform sa web",
       "link": "#"
     }
   ],
@@ -68,32 +68,32 @@
   "screenshots": [],
   "testimonials": [
     {
-      "quote": "The virtual fair made it so easy to explore universities from my country. I found my dream university without leaving home!",
+      "quote": "Talagang pinadali ng virtual fair ang pagtuklas ng mga unibersidad mula sa aking bansa. Nahanap ko ang pangarap kong unibersidad nang hindi umaalis ng bahay!",
       "author": "Fatima K.",
-      "role": "Student"
+      "role": "Estudyante"
     },
     {
-      "quote": "We reached 10x more students compared to physical fairs. The analytics helped us understand what students really want.",
+      "quote": "Umabot kami sa 10x na mas maraming estudyante kumpara sa mga pisikal na fair. Nakatulong ang analytics para maintindihan namin kung ano talaga ang gusto ng mga estudyante.",
       "author": "Dr. James Wilson",
-      "role": "University Recruiter"
+      "role": "Recruiter ng unibersidad"
     }
   ],
   "faq": [
     {
-      "question": "How do I register for the virtual fair?",
-      "answer": "Simply create an account on our platform and register for upcoming fairs. You'll receive access credentials and fair schedule via email."
+      "question": "Paano ako magpaparehistro sa virtual fair?",
+      "answer": "Gumawa lang ng account sa aming platform at magparehistro sa mga paparating na fair. Matatanggap ninyo sa email ang inyong access credentials at ang iskedyul ng fair."
     },
     {
-      "question": "Is it free for students?",
-      "answer": "Yes! Student registration and participation is completely free."
+      "question": "Libre ba ito para sa mga estudyante?",
+      "answer": "Oo. Libre ang pagpaparehistro at pakikilahok ng mga estudyante."
     },
     {
-      "question": "How do universities participate?",
-      "answer": "Universities can sign up for booth packages that include virtual booth customization, live session slots, and analytics access."
+      "question": "Paano nakikilahok ang mga unibersidad?",
+      "answer": "Puwedeng mag-sign up ang mga unibersidad sa mga booth package na may kasamang pag-customize ng virtual booth, mga slot para sa live session, at access sa analytics."
     },
     {
-      "question": "Can I interact with university representatives in real-time?",
-      "answer": "Absolutely! Each booth has live chat and video call options to connect directly with admission counselors during fair hours."
+      "question": "Puwede ko bang makausap nang real time ang mga kinatawan ng unibersidad?",
+      "answer": "Oo. May live chat at video call ang bawat booth para direktang makausap ang mga admission counselor sa oras ng fair."
     }
   ]
 }

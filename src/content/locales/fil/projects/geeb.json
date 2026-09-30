@@ -2,12 +2,12 @@
   "name": "Geeb",
   "slug": "geeb",
   "type": "branded",
-  "tagline": "Mapagkakatiwalaang home-service pros, on demand.",
-  "description": "## About Geeb (CNG)\n\nGeeb — the brand for our CNG service marketplace platform — bridges the gap between customers who need a service and the providers who deliver it. It's a full multi-app ecosystem: a customer-facing app, a vendor-facing app, and an admin-facing app, all sharing a single, well-architected backend.\n\n### The Vision\n\nFinding a trusted service provider shouldn't be a gamble. Whether it's a home service, a professional, or a local business, customers deserve to **discover, compare, book, and review** with confidence. Geeb makes that experience seamless for everyone in the loop.\n\n### Three Apps, One Platform\n\n- **📱 Customer App** — Discover nearby and trending vendors, browse by category and area, book, track, and review services, and manage your profile, avatar, and account security.\n- **🛠️ Vendor App** — Manage service offerings and delivery areas, receive and respond to customer requests, and track performance via reviews and ratings. Includes OTP-based email verification, Hive-based offline caching, background sync, and smart error handling.\n- **🛡️ Admin App** — Monitor the full ecosystem, manage users, vendors, and content, and review system health and security events.\n- **📦 Shared Package** — Common widgets, utilities, services, and business logic reused across all three apps for consistency and velocity.\n\n### Feature Highlights\n\n- **🏆 Trending Vendors** — Curated discovery that surfaces the most relevant, highest-rated providers.\n- **🏠 Customer Home Screen** — Personalized landing with smart recommendations and quick category access.\n- **🗺️ Hierarchical Area System** — Multi-level geographic organization (city → district → neighborhood) for accurate local discovery.\n- **🧑 Avatar Management** — Full spec for avatar uploads, storage, and rendering across all apps.\n- **🔐 Auth & Security** — Google OAuth, Two-Factor Authentication (TOTP), and OTP-based email verification for vendors — with a professional guided signup and pending-verification recovery flow.\n- **⭐ Reviews & Ratings v2.1** — Automatic rating calculation at service and vendor level, real-time UI refresh, cross-app updates via smart polling, and PostgreSQL RLS for secure access.\n- **💾 Offline-First Sync** — Hive-based local caching, background data sync, and 5-minute refresh intervals to keep things fast.\n- **🧰 Developer-First Foundations** — Strict Android NDK pinning (`29.0.13113456`), iOS 14.0 deployment target, `.vscode/launch.json` ready to go.\n\n### What Geeb Delivers\n\n| For Customers | For Vendors | For Admins |\n|---|---|---|\n| Easy discovery | Streamlined onboarding | Full ecosystem visibility |\n| Trusted reviews | Real-time requests | User & content management |\n| Local-area search | Offline-capable app | Security event monitoring |\n| Secure account | Performance tracking | Scalable moderation tools |\n\n### Engineering Principles\n\n- **Modular by design** — Easy to expand into new service categories or geographies.\n- **Localization-first** — Multi-language support from day one.\n- **Security-first** — RLS policies, 2FA, OTP verification, and audit-friendly flows.\n- **Accessibility-aware** — Semantic markup, screen-reader friendly UI.\n- **Modern Flutter** — Clean architecture shared across customer, vendor, and admin.\n\n*Built for accessibility, localization, and scale. Designed to grow into new industries and regions with the same proven architecture.*",
+  "tagline": "Mapagkakatiwalaang home-service pro, kapag kailangan ninyo",
+  "description": "## Tungkol sa Geeb (CNG)\n\nAng Geeb — ang brand ng aming CNG service marketplace platform — ang nag-uugnay sa mga customer na nangangailangan ng serbisyo at sa mga provider na nagbibigay nito. Isa itong buong multi-app ecosystem: isang app para sa customer, isang app para sa vendor, at isang app para sa admin, na lahat ay gumagamit ng iisang backend na maayos ang pagkakabuo.\n\n### Ang layunin\n\nHindi dapat maging sugal ang paghahanap ng mapagkakatiwalaang service provider. Home service man, propesyonal, o lokal na negosyo, dapat kayang **maghanap, magkumpara, mag-book, at mag-review** ng mga customer nang may kumpiyansa. Ginagawang simple at predictable ng Geeb ang karanasang ito para sa lahat ng kasali.\n\n### Tatlong app, iisang platform\n\n- **📱 App ng customer** — Maghanap ng mga kalapit at trending na vendor, mag-browse ayon sa kategorya at lugar, mag-book, mag-track, at mag-review ng mga serbisyo, at pamahalaan ang inyong profile, avatar, at seguridad ng account.\n- **🛠️ App ng vendor** — Pamahalaan ang mga inaalok na serbisyo at mga lugar na sinasaklaw, tumanggap at tumugon sa mga request ng customer, at subaybayan ang performance sa pamamagitan ng mga review at rating. May kasamang OTP-based na email verification, offline caching gamit ang Hive, background sync, at matalinong pag-handle ng error.\n- **🛡️ App ng admin** — Bantayan ang buong ecosystem, pamahalaan ang mga user, vendor, at content, at suriin ang kalagayan ng system at mga security event.\n- **📦 Shared na package** — Mga karaniwang widget, utility, serbisyo, at business logic na muling ginagamit sa tatlong app para sa consistency at bilis.\n\n### Mga pangunahing feature\n\n- **🏆 Mga trending na vendor** — Piniling discovery na naglalabas ng pinakaangkop at pinakamataas ang rating na mga provider.\n- **🏠 Home screen ng customer** — Personalized na landing na may matatalinong rekomendasyon at mabilis na access sa mga kategorya.\n- **🗺️ Hierarchical na sistema ng lugar** — Multi-level na pag-aayos ng heograpiya (lungsod → distrito → kapitbahayan) para sa tumpak na lokal na paghahanap.\n- **🧑 Pamamahala ng avatar** — Buong spec para sa pag-upload, pag-store, at pag-render ng avatar sa lahat ng app.\n- **🔐 Auth at seguridad** — Google OAuth, Two-Factor Authentication (TOTP), at OTP-based na email verification para sa mga vendor — kasama ang propesyonal at guided na signup at recovery flow para sa mga naghihintay pa ng verification.\n- **⭐ Mga review at rating v2.1** — Awtomatikong pagkalkula ng rating sa antas ng serbisyo at vendor, real-time na pag-refresh ng UI, mga update sa iba't ibang app sa pamamagitan ng smart polling, at PostgreSQL RLS para sa ligtas na access.\n- **💾 Offline-first na sync** — Local caching gamit ang Hive, background data sync, at refresh bawat 5 minuto para manatiling mabilis ang lahat.\n- **🧰 Pundasyong inuuna ang developer** — Mahigpit na pag-pin ng Android NDK (`29.0.13113456`), iOS 14.0 bilang deployment target, at nakahanda nang `.vscode/launch.json`.\n\n### Ang hatid ng Geeb\n\n| Para sa mga customer | Para sa mga vendor | Para sa mga admin |\n|---|---|---|\n| Madaling paghahanap | Mas simpleng onboarding | Buong tanaw sa ecosystem |\n| Mapagkakatiwalaang review | Real-time na request | Pamamahala ng user at content |\n| Paghahanap ayon sa lugar | App na gumagana offline | Pagbabantay sa security event |\n| Ligtas na account | Pagsubaybay sa performance | Moderation tools na kayang lumaki |\n\n### Mga prinsipyo sa engineering\n\n- **Modular ang disenyo** — Madaling palawakin sa mga bagong kategorya ng serbisyo o sa mga bagong lugar.\n- **Localization ang inuuna** — Suporta sa maraming wika mula pa sa unang araw.\n- **Seguridad ang inuuna** — Mga RLS policy, 2FA, OTP verification, at mga flow na madaling i-audit.\n- **Isinasaalang-alang ang accessibility** — Semantic markup at UI na akma sa screen reader.\n- **Modernong Flutter** — Malinis na arkitekturang pinaghahatian ng customer, vendor, at admin.\n\n*Binuo para sa accessibility, localization, at scale. Dinisenyong lumago sa mga bagong industriya at rehiyon gamit ang parehong subok nang arkitektura.*",
   "iconClass": "fas fa-wrench",
   "color": "#B45309",
   "gradient": "linear-gradient(135deg, #B45309 0%, #F59E0B 100%)",
-  "status": "Malapit na",
+  "status": "Coming Soon",
   "layoutVariant": "geeb",
   "fontHeading": "Manrope",
   "fontBody": "Inter",
@@ -18,60 +18,60 @@
   "bgEffect": "none",
   "bgFallbackGradient": "linear-gradient(180deg, #FFFBEB 0%, #FEF3C7 40%, #FDE68A 100%)",
   "hero": {
-    "title": "Mag-book ng Trusted Pro sa Ilang Minuto",
-    "subtitle": "Ikinokonekta ka ng Geeb sa verified plumbers, electricians, cleaners — real-time tracking, quality guarantee.",
-    "cta_primary": "Kunin ang App",
+    "title": "Mag-book ng mapagkakatiwalaang pro sa loob ng ilang minuto",
+    "subtitle": "Ikinokonekta kayo ng Geeb sa mga verified na tubero, electrician, handyman, tagalinis, at iba pang home-service pro. Malinaw na presyo, real-time na tracking, at quality guarantee sa bawat trabaho — pinapatakbo ng isang multi-app service marketplace na binuo para lumaki.",
+    "cta_primary": "Kunin ang app",
     "cta_primary_link": "/contact",
-    "cta_secondary": "Maging Pro",
+    "cta_secondary": "Maging pro",
     "cta_secondary_link": "/contact"
   },
   "features": [
     {
-      "title": "Three Apps, One Platform",
-      "description": "Customer, vendor, and admin apps share a single Flutter codebase, monorepo, and shared package — consistent UX, faster iteration, and easier scaling across every service category.",
+      "title": "Tatlong app, iisang platform",
+      "description": "Iisang Flutter codebase, monorepo, at shared na package ang ginagamit ng mga app ng customer, vendor, at admin — pare-parehong UX, mas mabilis na iteration, at mas madaling pagpapalawak sa bawat kategorya ng serbisyo.",
       "icon": "fas fa-layer-group"
     },
     {
-      "title": "Trending Vendors & Smart Discovery",
-      "description": "Curated discovery surfaces the most relevant, highest-rated providers, with a personalized home screen and quick access to categories — so customers never have to guess who to hire.",
+      "title": "Mga trending na vendor at matalinong discovery",
+      "description": "Inilalabas ng piniling discovery ang pinakaangkop at pinakamataas ang rating na mga provider, kasama ang personalized na home screen at mabilis na access sa mga kategorya — kaya hindi na kailangang manghula ng mga customer kung sino ang kukunin.",
       "icon": "fas fa-fire"
     },
     {
-      "title": "Hierarchical Area System",
-      "description": "Multi-level geographic organization (city → district → neighborhood) for accurate local discovery, smart job routing, and vendors serving exactly the right service areas.",
+      "title": "Hierarchical na sistema ng lugar",
+      "description": "Multi-level na pag-aayos ng heograpiya (lungsod → distrito → kapitbahayan) para sa tumpak na lokal na paghahanap, matalinong pag-route ng trabaho, at mga vendor na eksaktong sumasaklaw sa tamang service area.",
       "icon": "fas fa-map-marked-alt"
     },
     {
-      "title": "Verified Pros, Secure Auth & 2FA",
-      "description": "Background-checked, ID-verified pros. Customers can opt into Google OAuth and Two-Factor (TOTP); vendors get a streamlined OTP email verification flow with a guided signup and pending-verification recovery.",
+      "title": "Verified na pro, ligtas na auth at 2FA",
+      "description": "Mga pro na dumaan sa background check at ID verification. Puwedeng i-on ng mga customer ang Google OAuth at Two-Factor (TOTP); ang mga vendor naman ay may pinasimpleng OTP email verification flow na may guided na signup at recovery para sa mga naghihintay pa ng verification.",
       "icon": "fas fa-shield-alt"
     },
     {
-      "title": "Reviews & Ratings v2.1",
-      "description": "Automatic rating calculation at service and vendor level, real-time UI refresh in both customer and vendor apps, and cross-app updates via smart polling — all secured by PostgreSQL Row-Level Security.",
+      "title": "Mga review at rating v2.1",
+      "description": "Awtomatikong pagkalkula ng rating sa antas ng serbisyo at vendor, real-time na pag-refresh ng UI sa app ng customer at ng vendor, at mga update sa iba't ibang app sa pamamagitan ng smart polling — lahat ay protektado ng PostgreSQL Row-Level Security.",
       "icon": "fas fa-star"
     },
     {
-      "title": "Offline-First Vendor App",
-      "description": "Hive-based local caching, background data sync for profiles, services, areas, and notifications, plus 5-minute refresh intervals — so vendors keep working even on shaky connections.",
+      "title": "Offline-first na app ng vendor",
+      "description": "Local caching gamit ang Hive, background data sync para sa mga profile, serbisyo, lugar, at notification, at refresh bawat 5 minuto — kaya tuloy ang trabaho ng mga vendor kahit mahina ang koneksyon.",
       "icon": "fas fa-sync-alt"
     }
   ],
   "platforms": [
     {
-      "name": "Customer App",
+      "name": "App ng customer",
       "icon": "fas fa-mobile-alt",
       "version": "iOS · Android · Web",
       "link": "#"
     },
     {
-      "name": "Vendor App",
+      "name": "App ng vendor",
       "icon": "fas fa-hard-hat",
       "version": "iOS · Android · Web",
       "link": "#"
     },
     {
-      "name": "Admin Console",
+      "name": "Console ng admin",
       "icon": "fas fa-user-shield",
       "version": "Web",
       "link": "#"
@@ -87,7 +87,7 @@
     "Row-Level Security",
     "Google OAuth",
     "TOTP / 2FA",
-    "OTP Email Verification",
+    "Email verification gamit ang OTP",
     "Stripe Connect",
     "Google Maps Platform"
   ],
@@ -98,17 +98,17 @@
       "i18nKey": "project_nav_home"
     },
     {
-      "label": "Features",
+      "label": "Mga feature",
       "url": "features/",
       "i18nKey": "project_nav_features"
     },
     {
-      "label": "Download",
+      "label": "I-download",
       "url": "download/",
       "i18nKey": "project_nav_download"
     },
     {
-      "label": "Pro signup",
+      "label": "Mag-sign up bilang pro",
       "url": "pro/",
       "i18nKey": "project_nav_pro"
     },
@@ -118,7 +118,7 @@
       "i18nKey": "project_nav_faq"
     },
     {
-      "label": "Terms",
+      "label": "Mga tuntunin",
       "url": "terms/",
       "i18nKey": "project_nav_terms"
     },
@@ -130,40 +130,40 @@
   ],
   "navMetaItems": [
     {
-      "label": "Work",
+      "label": "Mga gawa",
       "url": "/projects/",
       "i18nKey": "nav_work"
     },
     {
-      "label": "Contact",
+      "label": "Makipag-ugnayan",
       "url": "/contact/",
       "i18nKey": "nav_contact"
     }
   ],
   "faq": [
     {
-      "question": "What kinds of services can I book on Geeb?",
-      "answer": "Plumbing, electrical, carpentry, painting, appliance repair, AC service, cleaning, pest control, handyman jobs, and more. New categories are added every month as pros join the platform."
+      "question": "Anong mga serbisyo ang puwede kong i-book sa Geeb?",
+      "answer": "Pagtutubero, gawaing elektrikal, karpinterya, pagpipintura, pag-aayos ng appliance, serbisyo sa AC, paglilinis, pest control, mga handyman na trabaho, at marami pang iba. May mga bagong kategoryang idinadagdag bawat buwan habang dumarami ang mga pro sa platform."
     },
     {
-      "question": "How are service pros verified?",
-      "answer": "Every pro submits government ID, trade certificates (where applicable), and passes a background check. We also collect reviews after every job so quality stays high."
+      "question": "Paano vine-verify ang mga service pro?",
+      "answer": "Nagsusumite ang bawat pro ng government ID at trade certificate (kung kailangan), at dumadaan sa background check. Nangongolekta rin kami ng review pagkatapos ng bawat trabaho para manatiling mataas ang kalidad."
     },
     {
-      "question": "When do I pay?",
-      "answer": "You don't pay until the job is finished and you approve the work. Funds are held in escrow by Geeb and released to the pro on your confirmation — so you're never out of pocket for unfinished work."
+      "question": "Kailan ako magbabayad?",
+      "answer": "Hindi kayo magbabayad hangga't hindi tapos ang trabaho at hindi ninyo ito inaaprubahan. Hawak ng Geeb ang bayad sa escrow at ibinibigay lang ito sa pro kapag nakumpirma ninyo — kaya hindi kayo malulugi sa trabahong hindi natapos."
     },
     {
-      "question": "How do I become a service pro on Geeb?",
-      "answer": "Tap 'Become a Pro' on the home page, complete the application (ID, trade details, service area), and our team reviews it within 48 hours. Once approved, you can set your schedule and start receiving job requests."
+      "question": "Paano ako magiging service pro sa Geeb?",
+      "answer": "I-tap ang 'Maging pro' sa home page, kumpletuhin ang application (ID, detalye ng trade, service area), at rerepasuhin ito ng aming team sa loob ng 48 oras. Kapag naaprubahan, puwede na ninyong itakda ang inyong schedule at magsimulang tumanggap ng mga job request."
     },
     {
-      "question": "Does Geeb work offline?",
-      "answer": "Yes — the vendor app is offline-first, using Hive-based local caching. Vendors can manage offerings, areas, and notifications even without an active connection, and changes sync automatically when they're back online."
+      "question": "Gumagana ba ang Geeb kahit offline?",
+      "answer": "Oo — offline-first ang app ng vendor, gamit ang local caching ng Hive. Kayang pamahalaan ng mga vendor ang kanilang mga alok, lugar, at notification kahit walang koneksyon, at awtomatikong nagsi-sync ang mga pagbabago kapag online na ulit sila."
     },
     {
-      "question": "How is my data secured?",
-      "answer": "All sensitive data is protected by Supabase Row-Level Security policies. Customers and vendors can opt into Two-Factor Authentication (TOTP), and the entire platform is built with security-first principles from day one."
+      "question": "Paano pinoprotektahan ang aking data?",
+      "answer": "Protektado ng mga Row-Level Security policy ng Supabase ang lahat ng sensitibong data. Puwedeng i-on ng mga customer at vendor ang Two-Factor Authentication (TOTP), at binuo ang buong platform nang inuuna ang seguridad mula pa sa unang araw."
     }
   ]
 }

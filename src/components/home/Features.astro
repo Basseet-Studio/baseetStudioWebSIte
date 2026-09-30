@@ -190,22 +190,22 @@ const servicesHref = localizeHref(lang, '/services/')
     transform: translateX(4px);
   }
 
-  [dir="rtl"] .features__card:hover .features__cta {
+  :global([dir="rtl"]) .features__card:hover .features__cta {
     transform: translateX(-4px);
   }
 
-  [dir="rtl"] .features__intro-link,
-  [dir="rtl"] .features__cta {
+  :global([dir="rtl"]) .features__intro-link,
+  :global([dir="rtl"]) .features__cta {
     flex-direction: row;
     direction: ltr;
   }
 
-  [dir="rtl"] .features__cta-label {
+  :global([dir="rtl"]) .features__cta-label {
     direction: rtl;
     unicode-bidi: isolate;
   }
 
-  [dir="rtl"] .features .icon-chevron :global(svg) {
+  :global([dir="rtl"]) .features .icon-chevron :global(svg) {
     transform: scaleX(-1);
   }
 

@@ -2,12 +2,12 @@
   "name": "Invexo",
   "slug": "invexo",
   "type": "branded",
-  "tagline": "إدارة مخزون مبنية للمتاجر الصغيرة.",
-  "description": "## About Invexo\n\nInvexo is an inventory management system designed for small shops — telecom counters, corner stores, and multi-location retailers who need real-time stock, sales, and cash flow in one place.\n\n### Built for Small Shops\n\nTrack products, barcodes, and customers across every location. Run POS from the same dashboard, monitor flexiload and MFS commissions, and see what's due outstanding at a glance.\n\n### One Dashboard, Every Shop\n\nSwitch between shops instantly. Revenue, cash collected, gross profit, and commission numbers update as you move — so owners always know where they stand.\n\n## Ready to Streamline Your Shop?\n\nContact us for a demo tailored to your business.\n",
+  "tagline": "إدارة مخزون مصمَّمة للمتاجر الصغيرة",
+  "description": "## عن Invexo\n\nنظام Invexo لإدارة المخزون مصمَّم للمتاجر الصغيرة — محلات الاتصالات، والبقالات، ومتاجر التجزئة متعددة الفروع التي تحتاج إلى متابعة المخزون والمبيعات والتدفق النقدي لحظياً في مكان واحد.\n\n### مبني للمتاجر الصغيرة\n\nتتبّع المنتجات والباركود والعملاء في كل فرع. شغّل نقطة البيع (POS) من اللوحة نفسها، وراقب عمولات Flexiload وخدمات MFS، واطّلع على المستحقات غير المسددة بنظرة واحدة.\n\n### لوحة واحدة لكل المتاجر\n\nبدّل بين المتاجر فوراً. تتحدّث أرقام الإيرادات والنقد المحصّل وإجمالي الربح والعمولات أثناء تنقّلك — ليعرف المالك وضعه في كل لحظة.\n\n## جاهز لتنظيم متجرك؟\n\nتواصل معنا لعرض تجريبي مصمَّم على مقاس نشاطك التجاري.\n",
   "iconClass": "fas fa-cash-register",
   "color": "#10B981",
   "gradient": "linear-gradient(135deg, #059669 0%, #34D399 100%)",
-  "status": "جاهز للتسليم",
+  "status": "Ready to Deliver",
   "layoutVariant": "invexo",
   "fontHeading": "Space Grotesk",
   "fontBody": "Inter",
@@ -17,46 +17,44 @@
   "brandName": "Invexo",
   "bgEffect": "none",
   "bgFallbackGradient": "linear-gradient(180deg, #ECFDF5 0%, #D1FAE5 40%, #A7F3D0 100%)",
-  "clientIds": [
-    "faruk-technology-store"
-  ],
+  "clientIds": ["faruk-technology-store"],
   "hero": {
-    "title": "أدر كل متجر من لوحة واحدة",
-    "subtitle": "مخزون وPOS وعمولات flexiload ومبيعات يومية — للمتاجر الصغيرة.",
-    "cta_primary": "اطلب عرضاً",
+    "title": "أدِر كل متاجرك من لوحة واحدة",
+    "subtitle": "المخزون ونقطة البيع وعمولات Flexiload والمبيعات اليومية — مصمَّم للمتاجر الصغيرة التي تحتاج إلى وضوح دون تعقيد أنظمة الشركات الكبرى.",
+    "cta_primary": "اطلب عرضاً تجريبياً",
     "cta_primary_link": "/contact",
-    "cta_secondary": "View Features",
+    "cta_secondary": "استعرض الميزات",
     "cta_secondary_link": "#features"
   },
   "features": [
     {
-      "title": "Multi-Shop Dashboard",
-      "description": "Switch between locations and watch revenue, cash collected, gross profit, and due outstanding update in real time.",
+      "title": "لوحة تحكم متعددة المتاجر",
+      "description": "بدّل بين الفروع وتابع الإيرادات والنقد المحصّل وإجمالي الربح والمستحقات غير المسددة وهي تتحدّث لحظياً.",
       "icon": "fas fa-store"
     },
     {
-      "title": "Inventory & POS",
-      "description": "Barcode scanning, stock alerts, low-stock warnings, and a full POS terminal — all connected to the same ledger.",
+      "title": "المخزون ونقطة البيع",
+      "description": "مسح الباركود، وتنبيهات المخزون، وتحذيرات انخفاض الكمية، ونقطة بيع متكاملة — وكلها مرتبطة بدفتر الحسابات نفسه.",
       "icon": "fas fa-boxes-stacked"
     },
     {
-      "title": "Flexiload & MFS",
-      "description": "Track flexiload and mobile financial service commissions alongside product sales in one daily summary.",
+      "title": "Flexiload وMFS",
+      "description": "تتبّع عمولات Flexiload وخدمات الدفع عبر الجوال إلى جانب مبيعات المنتجات في ملخص يومي واحد.",
       "icon": "fas fa-mobile-alt"
     },
     {
-      "title": "Sales Trends",
-      "description": "Seven-day line charts, overdue case tracking, and backup status — see patterns before they become problems.",
+      "title": "اتجاهات المبيعات",
+      "description": "رسوم بيانية خطية لسبعة أيام، وتتبّع الحالات المتأخرة، وحالة النسخ الاحتياطي — لترى الأنماط قبل أن تتحول إلى مشكلات.",
       "icon": "fas fa-chart-line"
     },
     {
-      "title": "Customer Ledger",
-      "description": "Due outstanding, overdue cases, and payment history per shop — know who owes what at a glance.",
+      "title": "دفتر العملاء",
+      "description": "المستحقات غير المسددة، والحالات المتأخرة، وسجل المدفوعات لكل متجر — لتعرف بنظرة واحدة ما على كل عميل.",
       "icon": "fas fa-receipt"
     },
     {
-      "title": "Reports & Alerts",
-      "description": "Stock transfers, audit logs, user permissions, and configurable alerts for low stock and overdue payments.",
+      "title": "التقارير والتنبيهات",
+      "description": "نقل المخزون بين الفروع، وسجلات التدقيق، وصلاحيات المستخدمين، وتنبيهات قابلة للضبط عند انخفاض المخزون أو تأخر المدفوعات.",
       "icon": "fas fa-bell"
     }
   ],
@@ -64,7 +62,7 @@
     {
       "name": "Web",
       "icon": "fas fa-globe",
-      "version": "Web App",
+      "version": "تطبيق ويب",
       "link": "#"
     }
   ],
@@ -77,54 +75,54 @@
   ],
   "navItems": [
     {
-      "label": "Home",
+      "label": "الرئيسية",
       "url": "",
       "i18nKey": "project_nav_home"
     },
     {
-      "label": "Features",
+      "label": "الميزات",
       "url": "features/",
       "i18nKey": "project_nav_features"
     },
     {
-      "label": "Demo",
+      "label": "عرض تجريبي",
       "url": "demo/",
       "i18nKey": "project_nav_demo"
     },
     {
-      "label": "Terms",
+      "label": "الشروط",
       "url": "terms/",
       "i18nKey": "project_nav_terms"
     }
   ],
   "navMetaItems": [
     {
-      "label": "Work",
+      "label": "أعمالنا",
       "url": "/projects/",
       "i18nKey": "nav_work"
     },
     {
-      "label": "Contact",
+      "label": "تواصل",
       "url": "/contact/",
       "i18nKey": "nav_contact"
     }
   ],
   "faq": [
     {
-      "question": "What types of shops is Invexo built for?",
-      "answer": "Invexo is designed for small retail shops — telecom counters, libraries, convenience stores, and multi-location businesses that need inventory, POS, and commission tracking in one place."
+      "question": "لأي نوع من المتاجر صُمّم Invexo؟",
+      "answer": "صُمّم Invexo لمتاجر التجزئة الصغيرة — محلات الاتصالات، والمكتبات، ومتاجر البقالة، والأنشطة متعددة الفروع التي تحتاج إلى المخزون ونقطة البيع وتتبّع العمولات في مكان واحد."
     },
     {
-      "question": "Can I manage multiple shop locations?",
-      "answer": "Yes. Switch between shops from the dashboard sidebar. Revenue, cash collected, profit, and due outstanding update per location."
+      "question": "هل يمكنني إدارة أكثر من فرع؟",
+      "answer": "نعم. بدّل بين المتاجر من الشريط الجانبي في لوحة التحكم، وستتحدّث الإيرادات والنقد المحصّل والأرباح والمستحقات غير المسددة لكل فرع على حدة."
     },
     {
-      "question": "Does it support flexiload and MFS commissions?",
-      "answer": "Absolutely. Flexiload and mobile financial service commissions are tracked alongside product sales in your daily summary."
+      "question": "هل يدعم عمولات Flexiload وMFS؟",
+      "answer": "نعم. تُتتبَّع عمولات Flexiload وخدمات الدفع عبر الجوال إلى جانب مبيعات المنتجات في ملخصك اليومي."
     },
     {
-      "question": "Is there a demo available?",
-      "answer": "Contact us for a personalized walkthrough. We tailor onboarding to your shop's workflow."
+      "question": "هل يتوفر عرض تجريبي؟",
+      "answer": "تواصل معنا لجولة تعريفية مخصّصة. نصمّم مرحلة الإعداد بما يناسب سير العمل في متجرك."
     }
   ]
 }

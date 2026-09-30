@@ -59,3 +59,11 @@ workers/form-handler/.env
 .impeccable/live/*.png
 # impeccable-ignore-end
 3d-glb/*.blend
+
+# Poly Haven raw skies (~20MB each) and local review artifacts.
+# Processed copies live in public/images/skyscapes/.
+skyscapes/*.jpg
+skyscapes/*.hdr
+skyscapes/.thumbs/
+skyscapes/raw/
+skyscapes/contact-sheet.jpg

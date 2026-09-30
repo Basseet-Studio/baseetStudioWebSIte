@@ -1,11 +1,11 @@
 {
-  "title": "Kilalanin ang Aming Expert Team",
-  "subtitle": "Ang mga talentadong developer sa likod ng iyong digital success",
+  "title": "Kilalanin ang aming mga eksperto",
+  "subtitle": "Ang maliit at senior na team sa likod ng inyong tagumpay sa digital",
   "members": [
     {
       "name": "Mohamed Abdallah",
-      "role": "Founder / Product Lead / PM / Senior Engineer",
-      "bio": "Founder at product lead na pinagsasama ang malalim na engineering expertise at product strategy upang hubugin ang de-kalidad na software products.",
+      "role": "Tagapagtatag / Product lead / PM / Senior engineer",
+      "bio": "Tagapagtatag at product lead na pinagsasama ang malalim na kaalaman sa engineering at product strategy para hubugin ang mga de-kalidad na software product.",
       "image": "/images/home/team/mohamed-abdallah.jpg",
       "social": {
         "github": "https://github.com/mohamed-a-elobaid",
@@ -16,8 +16,8 @@
     },
     {
       "name": "Asadur Rahman",
-      "role": "Tech Lead / System Architect",
-      "bio": "Tech lead at systems architect na nakatuon sa pag-disenyo ng scalable distributed systems at matibay na cloud infrastructure.",
+      "role": "Tech lead / Arkitekto ng sistema",
+      "bio": "Tech lead at systems architect na nakatutok sa pagdidisenyo ng mga scalable na distributed system at matibay na cloud infrastructure.",
       "image": "/images/home/team/asadur-rahman.png",
       "social": {
         "github": "https://github.com/ViX3L",
@@ -28,8 +28,8 @@
     },
     {
       "name": "Ariyan Rehman",
-      "role": "Product Experience & Docs Engineer",
-      "bio": "Tinitiyak ang product experience at documentation excellence sa pamamagitan ng UX, developer docs, at content-driven workflows.",
+      "role": "Engineer ng product experience at dokumentasyon",
+      "bio": "Tinitiyak ang husay ng product experience at dokumentasyon sa pamamagitan ng pagtutok sa UX, developer docs, at mga workflow na nakabatay sa content.",
       "image": "/images/home/team/ariyan-rehman.jpg",
       "social": {
         "github": "https://github.com/ariyangd",
@@ -40,8 +40,8 @@
     },
     {
       "name": "Dibakar Sutra Dhar",
-      "role": "Backend Engineer & Data Engineer",
-      "bio": "Backend engineer na dalubhasa sa distributed systems at scalable server solutions para sa web at cloud applications.",
+      "role": "Backend engineer at data engineer",
+      "bio": "Backend engineer na espesyalista sa mga distributed system at scalable na server solution para sa mga web at cloud application.",
       "image": "/images/home/team/dibakar-sutradhar.JPG",
       "social": {
         "github": "https://github.com/dibakarsutradhar",
@@ -53,7 +53,7 @@
     {
       "name": "Burhan Ayub",
       "role": "CFO",
-      "bio": "Chief Financial Officer.",
+      "bio": "Punong opisyal sa pananalapi ng studio.",
       "image": "/images/home/team/burhan-ayub-placeholder.svg",
       "iconPattern": "money",
       "social": {}

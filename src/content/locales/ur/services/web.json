@@ -2,142 +2,133 @@
   "id": "web",
   "slug": "web",
   "title": "ویب ڈیولپمنٹ",
-  "tagline": "ویb سائٹس جو آپ کی طرح محنت کرتی ہیں",
+  "tagline": "ویب سائٹس جو آپ جتنی ہی محنت کریں",
   "color": "#496BC1",
   "gradient": "linear-gradient(135deg, #496BC1 0%, #6B8AD9 100%)",
   "icon": "fas fa-globe",
-  "shortDescription": "جدید، جوابدہ ویb سائٹس اور ویb ایپلیکیشنز",
+  "shortDescription": "جدید، ہر اسکرین پر ٹھیک چلنے والی ویب سائٹس اور ویب ایپلیکیشنز",
   "hero": {
-    "title": "ویb سائٹس جو آپ کی طرح محنت کرتی ہیں",
-    "subtitle": "اعلیٰ تبدیلی والے مارکیٹng sites سے پیچیدہ web apps تک — Astro، Next.js، TypeScript۔",
+    "title": "ویب سائٹس جو آپ جتنی ہی محنت کریں",
+    "subtitle": "جدید، ہر اسکرین پر ٹھیک چلنے والی سائٹس اور ویب ایپلیکیشنز، ان ٹیکنالوجیز پر جنہیں ہم خود سنبھالتے ہیں — کوئی ایسی تھیم نہیں جو انسٹال کر کے دوبارہ ہاتھ نہ لگایا جائے۔",
     "cta_primary": "اپنا پروجیکٹ شروع کریں",
     "cta_primary_link": "/contact/",
-    "cta_secondary": "عملہ دیکھیں",
+    "cta_secondary": "ہمارا طریقۂ کار دیکھیں",
     "cta_secondary_link": "#process"
   },
   "metrics": [
-    {
-      "value": "<1s",
-      "label": "لوڈ وقت (اوسط)"
-    },
-    {
-      "value": "100",
-      "label": "Lighthouse ہدف"
-    },
-    {
-      "value": "12+",
-      "label": "شipped stacks"
-    }
+    { "value": "<1s", "label": "اوسط لوڈ ٹائم" },
+    { "value": "100", "label": "Lighthouse ہدف" },
+    { "value": "12+", "label": "لانچ کیے گئے اسٹیکس" }
   ],
   "subServices": [
     {
       "id": "corporate-websites",
       "name": "کارپوریٹ ویب سائٹس",
       "icon": "fas fa-building",
-      "desc": "پروفیشنل سائٹس جو آپ کی برانڈ کی نمائندگی کریں",
-      "longDesc": "آپ کی کارپوریٹ سائٹ اکثر پہلا تاثر ہوتی ہے۔ ہم تیز، برانڈ کے مطابق مارکیٹنگ سائٹس بناتے ہیں جو کہانی بتائیں، درست سوالات کا جواب دیں، اور اگلا قدم واضح کریں — ہر ڈیوائس پر۔",
+      "desc": "پیشہ ورانہ ویب سائٹس جو آپ کے برانڈ کی نمائندگی کریں",
+      "longDesc": "آپ کی کارپوریٹ سائٹ اکثر وہ پہلا تاثر ہوتی ہے جو کسی ممکنہ گاہک کو آپ کے کاروبار کے بارے میں ملتا ہے۔ ہم تیز رفتار، برانڈ کے مطابق مارکیٹنگ سائٹس ڈیزائن کرتے اور بناتے ہیں جو آپ کی کہانی سنائیں، صحیح سوالوں کے جواب دیں، اور اگلا قدم صاف دکھائیں — ہر ڈیوائس پر۔",
       "bullets": [
-        "خریدار کے سفر کے مطابق صفحات",
-        "CMS تاکہ ٹیم منٹس میں متن بدل سکے",
-        "کئی زبانیں (انگریزی، عربی اور مزید)",
-        "SEO بنیاد پہلے دن سے"
+        "کئی صفحات کا ڈھانچہ، آپ کے خریدار کے سفر کے مطابق",
+        "ہیڈلیس CMS، تاکہ آپ کی ٹیم متن دنوں میں نہیں، منٹوں میں بدل سکے",
+        "کئی زبانوں کے لیے تیار (انگریزی، عربی اور مزید)",
+        "پہلے دن سے صفحات کے اندر SEO کی بنیاد شامل"
       ],
-      "imageLabel": "کارپوریٹ سائٹ ماک اپ"
+      "imageLabel": "کارپوریٹ ویب سائٹ کے ہیرو سیکشن کا ماک اپ"
     },
     {
       "id": "ecommerce",
       "name": "ای کامرس پلیٹ فارمز",
       "icon": "fas fa-shopping-cart",
       "desc": "محفوظ ادائیگی کے ساتھ آن لائن اسٹورز",
-      "longDesc": "بوٹیک سے ہیڈلیس کامرس تک، ہم اسٹورز بناتے ہیں جو براؤزر کو خریدار بناتے ہیں۔ پرفارمنس، چیک آؤٹ اور مرچنڈائزنگ ساتھ چلتے ہیں۔",
+      "longDesc": "چھوٹے بوتیک کے لیے Shopify تھیمز سے لے کر Shopify Hydrogen، Medusa یا خاص Stripe سیٹ اپ پر ہیڈلیس کامرس تک، ہم ایسے اسٹور بناتے ہیں جو دیکھنے والوں کو خریدار بنا دیں۔ رفتار، چیک آؤٹ کا طریقہ اور پروڈکٹس کی نمائش ساتھ ساتھ بہتر کی جاتی ہیں — بعد میں سوچی گئی بات کے طور پر نہیں۔",
       "bullets": [
-        "Shopify، Medusa، Stripe اور ہیڈلیس",
-        "سبسکرپشنز اور ڈیجیٹل والیٹس",
-        "کنورژن کے لیے پروڈکٹ اور کارٹ",
-        "انوینٹری، ٹیکس اور شپنگ مربوط"
+        "Shopify، Medusa، Stripe اور ہیڈلیس کامرس",
+        "سبسکرپشنز، ڈیجیٹل والٹس اور BNPL کے لیے تیار",
+        "خریداری کی شرح بڑھانے کے لیے بہتر بنائے گئے پروڈکٹ اور کارٹ صفحات",
+        "انوینٹری، ٹیکس اور شپنگ شروع سے آخر تک جڑی ہوئی"
       ],
-      "imageLabel": "ای کامرس پروڈکٹ صفحہ"
+      "imageLabel": "ای کامرس پروڈکٹ صفحے کا ماک اپ"
     },
     {
       "id": "web-apps",
       "name": "ویب ایپلیکیشنز",
       "icon": "fas fa-window-restore",
-      "desc": "پیچیدہ کاروباری ضرورت کے لیے حسب ضرورت ایپس",
-      "longDesc": "جب اسپریڈشیٹ اور SaaS کام نہ کریں، ہم وہ ویب ایپ بناتے ہیں جو آپ کے عمل سے فٹ ہو۔ اندرونی ٹولز، پورٹلز، ڈیش بورڈز — کوڈ جو ٹیم سنبھال سکے۔",
+      "desc": "پیچیدہ کاروباری ضرورتوں کے لیے خاص ویب ایپس",
+      "longDesc": "جب اسپریڈشیٹس اور SaaS ٹولز آپ کے کام کا بوجھ نہ اٹھا سکیں، تو ہم وہ ویب ایپ بناتے ہیں جو آپ کے کام کے طریقے پر بالکل پوری اترے۔ اندرونی ٹولز، کسٹمر پورٹلز، ڈیش بورڈز — شروع سے آخر تک TypeScript، اصل لاگ اِن سسٹم، اصل ڈیٹا بیس، اور ایسا کوڈ جسے آپ کی ٹیم سنبھال سکے۔",
       "bullets": [
-        "React، Next.js، Astro فرنٹ اینڈ",
-        "Postgres اور Prisma ڈیٹا",
-        "Auth، رولز اور آڈٹ لاگ",
-        "مشاہدہ اور فیچر فلیگز"
+        "فرنٹ اینڈ پر React، Next.js اور Astro",
+        "ٹائپ سیف ڈیٹا کے لیے Postgres، Prisma اور tRPC",
+        "لاگ اِن، رولز اور آڈٹ لاگز پہلے دن سے",
+        "مانیٹرنگ اور فیچر فلیگز پہلے سے شامل"
       ],
-      "imageLabel": "ویب ایپ ڈیش بورڈ"
+      "imageLabel": "ویب ایپ ڈیش بورڈ کا ماک اپ"
     },
     {
       "id": "landing-pages",
       "name": "لینڈنگ پیجز",
       "icon": "fas fa-bullseye",
-      "desc": "مہمات کے لیے زیادہ کنورٹ کرنے والے صفحات",
-      "longDesc": "ایک صفحہ، ایک مقصد۔ فوری لوڈ، اشتہار سے میل کھاتا متن، اور اینالٹکس جو بتائے کیا کام کر رہا ہے۔",
+      "desc": "مارکیٹنگ مہمات کے لیے زیادہ نتائج دینے والے صفحات",
+      "longDesc": "ایک صفحہ، ایک مقصد، کوئی توجہ ہٹانے والی چیز نہیں۔ ہم مہمات کے لیے ایسے لینڈنگ پیجز ڈیزائن کر کے لانچ کرتے ہیں جو فوراً کھلیں، جن کا متن اشتہار سے میل کھائے، اور جن کی اینالیٹکس بتائے کہ اصل میں کیا کام کر رہا ہے — A/B ٹیسٹ شدہ، ٹریکنگ کے ساتھ، اور بڑھنے کے لیے تیار۔",
       "bullets": [
-        "A/B ٹیسٹ ویریئنٹس",
-        "سب سیکنڈ TTFB",
-        "فارم، کیلنڈر، CRM",
-        "ہیٹ میپس اور ایونٹ ٹریکنگ"
+        "شروع سے ہی A/B ٹیسٹ کے قابل ورژنز",
+        "ایک سیکنڈ سے کم TTFB کے لیے سرور پر رینڈرنگ",
+        "فارم، کیلنڈر اور CRM سے جڑاؤ",
+        "ہیٹ میپس اور ایونٹ ٹریکنگ جڑی ہوئی"
       ],
-      "imageLabel": "لینڈنگ پیج CTA کے ساتھ"
+      "imageLabel": "CTA کے ساتھ لینڈنگ پیج کا ماک اپ"
     }
   ],
   "process": [
     {
       "number": "01",
-      "title": "Discover",
-      "desc": "Workshops to define goals, audiences, KPIs, and constraints",
+      "title": "سمجھنا",
+      "desc": "ورکشاپس جن میں اہداف، ناظرین، KPI اور حدود طے ہوتی ہیں",
       "icon": "fas fa-lightbulb"
     },
     {
       "number": "02",
-      "title": "Architect",
-      "desc": "Information architecture, stack pick, and a milestone plan",
+      "title": "ڈھانچہ",
+      "desc": "معلومات کا ڈھانچہ، ٹیکنالوجی کا انتخاب، اور مرحلہ وار منصوبہ",
       "icon": "fas fa-sitemap"
     },
     {
       "number": "03",
-      "title": "Design",
-      "desc": "Wireframes, then a high-fidelity visual system in Figma",
+      "title": "ڈیزائن",
+      "desc": "پہلے وائر فریمز، پھر Figma میں تفصیلی بصری نظام",
       "icon": "fas fa-pencil-ruler"
     },
     {
       "number": "04",
-      "title": "Build",
-      "desc": "Component-by-component in a public preview environment",
+      "title": "تعمیر",
+      "desc": "ایک ایک کمپوننٹ کر کے، ایک کھلے پری ویو ماحول میں",
       "icon": "fas fa-code"
     },
     {
       "number": "05",
-      "title": "QA & Launch",
-      "desc": "Cross-browser, accessibility, performance, and a clean handoff",
+      "title": "جانچ اور لانچ",
+      "desc": "مختلف براؤزرز، رسائی، رفتار کی جانچ، اور صاف ستھری حوالگی",
       "icon": "fas fa-rocket"
     }
   ],
   "deliverables": [
     {
-      "title": "Production-ready site",
-      "description": "Deployed on Vercel, Netlify, Cloudflare, or your own infrastructure — with a clear runbook.",
+      "title": "لانچ کے لیے تیار سائٹ",
+      "description": "Vercel، Netlify، Cloudflare یا آپ کے اپنے انفراسٹرکچر پر ڈیپلائے — ساتھ میں واضح رن بک۔",
       "icon": "fas fa-server"
     },
     {
-      "title": "CMS access",
-      "description": "Your team can edit pages, posts, and products without a developer in the loop.",
+      "title": "CMS تک رسائی",
+      "description": "آپ کی ٹیم کسی ڈیولپر کے بغیر صفحات، پوسٹس اور پروڈکٹس میں تبدیلی کر سکتی ہے۔",
       "icon": "fas fa-pen"
     },
     {
-      "title": "Analytics & search console",
-      "description": "GA4, Search Console, and any paid pixels wired up and verified end-to-end.",
+      "title": "اینالیٹکس اور Search Console",
+      "description": "GA4، Search Console اور تمام پیڈ پکسلز جڑے ہوئے اور شروع سے آخر تک تصدیق شدہ۔",
       "icon": "fas fa-chart-line"
     },
     {
-      "title": "Source code & documentation",
-      "description": "Clean repo, a real README, and Loom walkthroughs so future-you knows where everything is.",
+      "title": "سورس کوڈ اور دستاویزات",
+      "description": "صاف ستھری ریپوزٹری، ایک کام کی README، اور Loom ویڈیوز، تاکہ آگے چل کر آپ کو معلوم ہو کہ کیا چیز کہاں ہے۔",
       "icon": "fas fa-book"
     }
   ],
@@ -157,20 +148,20 @@
   ],
   "faq": [
     {
-      "question": "How long does a typical marketing website take?",
-      "answer": "Most marketing sites ship in 4–6 weeks from kickoff to launch. Larger sites with custom CMS, multilingual, or heavy integrations usually run 8–12 weeks. We will give you a fixed plan with milestones after the discovery workshop."
+      "question": "ایک عام مارکیٹنگ ویب سائٹ میں کتنا وقت لگتا ہے؟",
+      "answer": "زیادہ تر مارکیٹنگ سائٹس آغاز سے لانچ تک 4–6 ہفتوں میں تیار ہو جاتی ہیں۔ بڑی سائٹس جن میں خاص CMS، کئی زبانیں یا بھاری انٹیگریشنز ہوں، عموماً 8–12 ہفتے لیتی ہیں۔ ابتدائی ورکشاپ کے بعد ہم آپ کو مراحل کے ساتھ ایک طے شدہ منصوبہ دیں گے۔"
     },
     {
-      "question": "Will I be able to update the site myself?",
-      "answer": "Yes. Every site we ship is wired to a headless CMS (Sanity, Contentful, or your preferred tool). Your team gets a short Loom walkthrough and a written guide, and we stay on call for the first month."
+      "question": "کیا میں سائٹ خود اپ ڈیٹ کر سکوں گا؟",
+      "answer": "جی ہاں۔ ہماری ہر سائٹ ایک ہیڈلیس CMS (Sanity، Contentful یا آپ کا پسندیدہ ٹول) سے جڑی ہوتی ہے۔ آپ کی ٹیم کو ایک مختصر Loom ویڈیو اور تحریری گائیڈ ملتی ہے، اور پہلے مہینے ہم ہر وقت دستیاب رہتے ہیں۔"
     },
     {
-      "question": "Do you only build with Astro and Next.js?",
-      "answer": "We specialize in modern TypeScript stacks — Astro, Next.js, SvelteKit, and React + Vite. If you have an existing site in a different stack that needs new features, we are happy to extend it instead of forcing a rewrite."
+      "question": "کیا آپ صرف Astro اور Next.js سے بناتے ہیں؟",
+      "answer": "ہماری مہارت جدید TypeScript اسٹیکس میں ہے — Astro، Next.js، SvelteKit اور React + Vite۔ اگر آپ کی موجودہ سائٹ کسی اور ٹیکنالوجی پر ہے اور اس میں نئے فیچرز چاہییں، تو ہم خوشی سے اسی کو آگے بڑھائیں گے، زبردستی دوبارہ لکھنے پر مجبور نہیں کریں گے۔"
     },
     {
-      "question": "Can you take over an existing project?",
-      "answer": "Absolutely. We do technical audits before we touch anything, then propose a phased plan. Many of our best engagements start as a rescue from another agency."
+      "question": "کیا آپ کسی موجودہ پروجیکٹ کو سنبھال سکتے ہیں؟",
+      "answer": "بالکل۔ کسی چیز کو ہاتھ لگانے سے پہلے ہم تکنیکی جائزہ لیتے ہیں، پھر مرحلہ وار منصوبہ پیش کرتے ہیں۔ ہمارے کئی بہترین پروجیکٹس کسی دوسری ایجنسی سے کام بچانے کے طور پر شروع ہوئے۔"
     }
   ]
 }

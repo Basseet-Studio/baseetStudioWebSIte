@@ -2,12 +2,12 @@
   "name": "Medev",
   "slug": "medev",
   "type": "branded",
-  "tagline": "Healthcare. Pinasimple.",
-  "description": "## About Medev\n\nMedev is the healthcare management system built for clinics and hospitals that want full control without complexity. Whether you host it yourself or we host it for you, you get a complete solution with a customizable frontend that reflects your brand.\n\n### Built for Modern Healthcare\n\nMedev combines the robustness of enterprise healthcare systems with the flexibility of open-source technology. It's designed to grow with your practice — from small clinics to large hospital networks.\n\n### Your Brand, Your Way\n\nThe included frontend website can be fully customized to match your clinic's branding and design requirements. You specify the look; we build it with the standardized Medev backend powering everything underneath.\n\n## Ready to Transform Your Practice?\n\nContact us to learn how Medev can streamline your healthcare operations.\n",
+  "tagline": "Pangangalagang pangkalusugan. Pinasimple.",
+  "description": "## Tungkol sa Medev\n\nAng Medev ay healthcare management system na ginawa para sa mga clinic at ospital na gusto ng buong kontrol nang walang komplikasyon. Kayo man ang mag-host nito o kami ang mag-host para sa inyo, makakakuha kayo ng kumpletong solusyon na may frontend na puwedeng i-customize para ipakita ang inyong brand.\n\n### Ginawa para sa modernong healthcare\n\nPinagsasama ng Medev ang tibay ng mga enterprise healthcare system at ang flexibility ng open-source na teknolohiya. Idinisenyo itong lumago kasabay ng inyong practice — mula maliliit na clinic hanggang malalaking network ng ospital.\n\n### Inyong brand, sa paraang gusto ninyo\n\nPuwedeng i-customize nang buo ang kasamang frontend website para tumugma sa branding at disenyo ng inyong clinic. Kayo ang magsasabi ng itsura; kami ang bubuo nito, habang ang standardized na Medev backend ang nagpapatakbo ng lahat sa ilalim.\n\n## Handa na bang baguhin ang takbo ng inyong practice?\n\nMakipag-ugnayan sa amin para malaman kung paano mapapasimple ng Medev ang inyong healthcare operations.\n",
   "iconClass": "fas fa-hospital",
   "color": "#0A6E74",
   "gradient": "linear-gradient(135deg, #0A6E74 0%, #14B8A6 100%)",
-  "status": "Handa nang i-deliver",
+  "status": "Ready to Deliver",
   "layoutVariant": "medev",
   "fontHeading": "IBM Plex Sans",
   "fontBody": "IBM Plex Sans",
@@ -18,42 +18,42 @@
   "bgEffect": "grid",
   "bgFallbackGradient": "linear-gradient(180deg, #F0FDFA 0%, #CCFBF1 40%, #99F6E4 100%)",
   "hero": {
-    "title": "Healthcare na Gumagana para sa Lahat",
-    "subtitle": "Kumpletong EHR, practice management, patient portal — sa isang secure platform.",
-    "cta_primary": "Humiling ng Demo",
+    "title": "Healthcare na gumagana para sa lahat",
+    "subtitle": "Kumpletong electronic health records, practice management, patient portal, at FHIR-compliant na API — lahat sa iisang ligtas at self-hosted na platform.",
+    "cta_primary": "Humingi ng demo",
     "cta_primary_link": "/contact",
-    "cta_secondary": "View Features",
+    "cta_secondary": "Tingnan ang mga feature",
     "cta_secondary_link": "#features"
   },
   "features": [
     {
-      "title": "Full EHR System",
-      "description": "Comprehensive patient records including encounters, vitals, SOAP notes, diagnoses, and electronic prescriptions.",
+      "title": "Buong EHR system",
+      "description": "Komprehensibong record ng pasyente kasama ang mga encounter, vital sign, SOAP note, diagnosis, at electronic na reseta.",
       "icon": "fas fa-file-medical"
     },
     {
-      "title": "Practice Management",
-      "description": "Streamlined scheduling, appointments, waiting lists, and billing for healthcare practices of any size.",
+      "title": "Pamamahala ng practice",
+      "description": "Mas simpleng pag-iskedyul, appointment, waiting list, at billing para sa mga healthcare practice ng kahit anong laki.",
       "icon": "fas fa-calendar-check"
     },
     {
-      "title": "Patient Portal",
-      "description": "Self-service portal for patients to view records, schedule appointments, and communicate with their care team.",
+      "title": "Portal ng pasyente",
+      "description": "Self-service na portal kung saan makikita ng mga pasyente ang kanilang record, makakapag-iskedyul ng appointment, at makakausap ang kanilang care team.",
       "icon": "fas fa-users"
     },
     {
       "title": "FHIR R4 + REST API",
-      "description": "SMART on FHIR v2.2.0 app integration with OAuth2-secured REST APIs for seamless third-party integrations.",
+      "description": "Integration ng app sa SMART on FHIR v2.2.0 na may mga REST API na protektado ng OAuth2, para sa mga third-party integration na sumusunod sa pamantayan.",
       "icon": "fas fa-plug"
     },
     {
-      "title": "Docker Deployment",
-      "description": "Self-hosted or cloud-deployed via Docker. Full control over your data with enterprise-grade security.",
+      "title": "Deployment gamit ang Docker",
+      "description": "Self-hosted o naka-deploy sa cloud gamit ang Docker. Buong kontrol sa inyong data na may seguridad na pang-enterprise.",
       "icon": "fas fa-docker"
     },
     {
-      "title": "Custom Branding",
-      "description": "White-label ready with fully customizable frontend websites. Your clinic, your brand, your patient experience.",
+      "title": "Sariling branding",
+      "description": "Handa sa white-label na may frontend website na puwedeng i-customize nang buo. Inyong clinic, inyong brand, inyong karanasan para sa pasyente.",
       "icon": "fas fa-palette"
     }
   ],
@@ -61,13 +61,13 @@
     {
       "name": "Web",
       "icon": "fas fa-globe",
-      "version": "Web App",
+      "version": "App sa web",
       "link": "#"
     },
     {
       "name": "Docker",
       "icon": "fab fa-docker",
-      "version": "Self-Hosted",
+      "version": "Naka-self-host",
       "link": "#"
     }
   ],
@@ -86,7 +86,7 @@
       "i18nKey": "project_nav_home"
     },
     {
-      "label": "Features",
+      "label": "Mga feature",
       "url": "features/",
       "i18nKey": "project_nav_features"
     },
@@ -96,39 +96,39 @@
       "i18nKey": "project_nav_demo"
     },
     {
-      "label": "Privacy Policy",
+      "label": "Patakaran sa privacy",
       "url": "terms/",
       "i18nKey": "project_nav_terms"
     }
   ],
   "navMetaItems": [
     {
-      "label": "Work",
+      "label": "Mga gawa",
       "url": "/projects/",
       "i18nKey": "nav_work"
     },
     {
-      "label": "Contact",
+      "label": "Makipag-ugnayan",
       "url": "/contact/",
       "i18nKey": "nav_contact"
     }
   ],
   "faq": [
     {
-      "question": "What is Medev?",
-      "answer": "Medev is a rebranded instance of Medev v7.0.3+ — the world's leading open-source Electronic Health Records and Medical Practice Management system. It runs on a VPS via Docker."
+      "question": "Ano ang Medev?",
+      "answer": "Ang Medev ay isang rebranded na instance ng Medev v7.0.3+ — ang nangungunang open-source na electronic health records at medical practice management system sa buong mundo. Tumatakbo ito sa isang VPS gamit ang Docker."
     },
     {
-      "question": "What features does Medev include?",
-      "answer": "Medev includes full EHR (patient records, encounters, vitals, SOAP notes, prescriptions), practice management (scheduling, appointments, billing), patient portal, FHIR R4 + REST API with OAuth2, and SMART on FHIR v2.2.0 app integration."
+      "question": "Anong mga feature ang kasama sa Medev?",
+      "answer": "Kasama sa Medev ang buong EHR (record ng pasyente, encounter, vital sign, SOAP note, reseta), practice management (pag-iskedyul, appointment, billing), patient portal, FHIR R4 + REST API na may OAuth2, at integration ng app sa SMART on FHIR v2.2.0."
     },
     {
-      "question": "Can I customize the patient-facing frontend?",
-      "answer": "Yes! Medev includes a customizable frontend website that your clinic or hospital can brand and design. You control the patient experience while the backend remains standardized with many available features and add-ons."
+      "question": "Puwede ko bang i-customize ang frontend na nakikita ng mga pasyente?",
+      "answer": "Oo. May kasamang frontend website ang Medev na puwedeng lagyan ng brand at disenyo ng inyong clinic o ospital. Kayo ang may kontrol sa karanasan ng pasyente, habang nananatiling standardized ang backend na may maraming available na feature at add-on."
     },
     {
-      "question": "Is Medev self-hosted?",
-      "answer": "Yes, Medev is fully self-hosted via Docker. You have full control over your data. We also offer hosting options if you prefer us to manage it for you."
+      "question": "Self-hosted ba ang Medev?",
+      "answer": "Oo, buong self-hosted ang Medev gamit ang Docker. Hawak ninyo nang buo ang inyong data. Nag-aalok din kami ng hosting kung mas gusto ninyong kami ang mamahala nito para sa inyo."
     }
   ]
 }

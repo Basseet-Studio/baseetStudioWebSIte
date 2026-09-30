@@ -3,7 +3,7 @@
   "slug": "moneybox",
   "type": "branded",
   "tagline": "أموالك، منظّمة.",
-  "description": "## About MoneyBox\n\nMoneyBox is a personal finance tracker that helps you see where your money goes, set savings goals, and stay on budget — without the clutter of a full banking app.\n\n### Smart savings goals\n\nSet targets for trips, emergencies, or big purchases and watch your progress with clear visual charts.\n\n### Expense tracking\n\nLog spending by category, spot patterns early, and keep daily habits honest.\n\n### Clean reporting\n\nMonthly summaries and trend views that make sense at a glance — no spreadsheet required.\n",
+  "description": "## عن MoneyBox\n\nتطبيق MoneyBox لتتبّع أموالك الشخصية يساعدك على معرفة أين تذهب أموالك، ووضع أهداف للادخار، والالتزام بميزانيتك — دون زحام تطبيق بنكي متكامل.\n\n### أهداف ادخار ذكية\n\nحدّد أهدافاً لرحلة أو لحالات الطوارئ أو لمشتريات كبيرة، وتابع تقدّمك برسوم بيانية واضحة.\n\n### تتبّع المصروفات\n\nسجّل مصروفاتك حسب الفئة، والتقط الأنماط مبكراً، وابقَ صادقاً مع عاداتك اليومية.\n\n### تقارير واضحة\n\nملخصات شهرية وعروض للاتجاهات تفهمها بنظرة واحدة — دون الحاجة إلى جداول بيانات.\n",
   "iconClass": "fas fa-piggy-bank",
   "color": "#16A34A",
   "gradient": "linear-gradient(135deg, #16A34A 0%, #4ADE80 100%)",
@@ -19,22 +19,42 @@
   "bgFallbackGradient": "linear-gradient(180deg, #F0FDF4 0%, #DCFCE7 40%, #BBF7D0 100%)",
   "hero": {
     "title": "أموالك، منظّمة أخيراً.",
-    "subtitle": "متتبع مالي شخصي مع ميزانيات وأهداف وتقارير واضحة.",
+    "subtitle": "تطبيق لتتبّع أموالك الشخصية بميزانيات وأهداف وتقارير واضحة — مصمَّم ليبقى الادخار بسيطاً وأمام عينيك كل يوم.",
     "cta_primary": "حمّل التطبيق",
     "cta_primary_link": "https://drive.google.com/drive/folders/1_8MswXC-JxPEFU_0-fmeXal_hK7yKs9C?usp=sharing",
-    "cta_secondary": "View Features",
+    "cta_secondary": "استعرض الميزات",
     "cta_secondary_link": "#features"
   },
   "features": [
     {
       "title": "أهداف ادخار ذكية",
-      "description": "حدّد أهدافاً وتتبع التقدم برسوم بيانية واضحة.",
+      "description": "حدّد أهدافاً لأي شيء — الطوارئ أو السفر أو المشتريات الكبيرة — وتابع تقدّمك برسوم بيانية تحفّزك على الاستمرار.",
       "icon": "fas fa-bullseye"
     },
     {
-      "title": "تتبع المصروفات",
-      "description": "سجّل الإنفاق حسب الفئة وراقب الأنماط مبكراً.",
+      "title": "تتبّع المصروفات",
+      "description": "سجّل مصروفاتك حسب الفئة، والتقط الأنماط مبكراً، وابقَ صادقاً مع عاداتك اليومية دون أن تغرق في جداول البيانات.",
       "icon": "fas fa-receipt"
+    },
+    {
+      "title": "نظرة على الميزانية",
+      "description": "قارن دخلك بمصروفاتك بنظرة واحدة، مع ملخصات شهرية تبقى سهلة القراءة على الجوال.",
+      "icon": "fas fa-chart-pie"
+    },
+    {
+      "title": "تقارير واضحة",
+      "description": "عروض للاتجاهات وتفصيل حسب الفئات، مصمَّمة لمراجعات سريعة — لا لعمليات تنقيب في نهاية الشهر.",
+      "icon": "fas fa-chart-line"
+    },
+    {
+      "title": "تذكيرات يومية",
+      "description": "تنبيهات لطيفة لتسجيل المصروفات ومراجعة الأهداف، ليعمل التطبيق مع روتينك لا ضده.",
+      "icon": "fas fa-bell"
+    },
+    {
+      "title": "الخصوصية من الأساس",
+      "description": "تبقى بياناتك المالية على جهازك. لا إعلانات، ولا بيع للبيانات — مجرد أداة تحترم أرقامك.",
+      "icon": "fas fa-lock"
     }
   ],
   "platforms": [
@@ -51,63 +71,30 @@
       "link": "https://drive.google.com/drive/folders/1_8MswXC-JxPEFU_0-fmeXal_hK7yKs9C?usp=sharing"
     }
   ],
-  "tech": [
-    "Flutter",
-    "Dart",
-    "SQLite",
-    "Riverpod"
-  ],
+  "tech": ["Flutter", "Dart", "SQLite", "Riverpod"],
   "navItems": [
-    {
-      "label": "Home",
-      "url": "",
-      "i18nKey": "project_nav_home"
-    },
-    {
-      "label": "Features",
-      "url": "features/",
-      "i18nKey": "project_nav_features"
-    },
-    {
-      "label": "Download",
-      "url": "download/",
-      "i18nKey": "project_nav_download"
-    },
-    {
-      "label": "Terms",
-      "url": "terms/",
-      "i18nKey": "project_nav_terms"
-    },
-    {
-      "label": "Privacy",
-      "url": "privacy/",
-      "i18nKey": "project_nav_privacy"
-    }
+    { "label": "الرئيسية", "url": "", "i18nKey": "project_nav_home" },
+    { "label": "الميزات", "url": "features/", "i18nKey": "project_nav_features" },
+    { "label": "تحميل", "url": "download/", "i18nKey": "project_nav_download" },
+    { "label": "الشروط", "url": "terms/", "i18nKey": "project_nav_terms" },
+    { "label": "الخصوصية", "url": "privacy/", "i18nKey": "project_nav_privacy" }
   ],
   "navMetaItems": [
-    {
-      "label": "Work",
-      "url": "/projects/",
-      "i18nKey": "nav_work"
-    },
-    {
-      "label": "Contact",
-      "url": "/contact/",
-      "i18nKey": "nav_contact"
-    }
+    { "label": "أعمالنا", "url": "/projects/", "i18nKey": "nav_work" },
+    { "label": "تواصل", "url": "/contact/", "i18nKey": "nav_contact" }
   ],
   "faq": [
     {
-      "question": "Is MoneyBox free?",
-      "answer": "MoneyBox is a live product from Baseet Studio. Download links and pricing are available on the Android build; iOS availability is coming soon."
+      "question": "هل MoneyBox مجاني؟",
+      "answer": "MoneyBox منتج متاح حالياً من Baseet Studio. روابط التحميل والأسعار متوفرة على نسخة Android، ونسخة iOS قادمة قريباً."
     },
     {
-      "question": "Does it connect to my bank?",
-      "answer": "MoneyBox focuses on manual tracking and goal setting — simple, private, and fully under your control."
+      "question": "هل يتصل بحسابي البنكي؟",
+      "answer": "يركّز MoneyBox على التتبّع اليدوي وتحديد الأهداف — بسيط، وخاص، وتحت سيطرتك بالكامل."
     },
     {
-      "question": "Where is my data stored?",
-      "answer": "Your data stays on your device. We do not sell or share your financial information."
+      "question": "أين تُخزَّن بياناتي؟",
+      "answer": "تبقى بياناتك على جهازك. لا نبيع معلوماتك المالية ولا نشاركها."
     }
   ],
   "links": {

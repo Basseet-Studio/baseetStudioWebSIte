@@ -2,54 +2,54 @@
   "name": "Medical Education App (MAI)",
   "slug": "medical-education-app",
   "type": "standalone",
-  "tagline": "AI-powered medical education platform.",
-  "description": "## About MAI\n\nMedical Education App (MAI) is an AI-powered learning and clinical decision support platform built for resident doctors. It combines realistic case simulations, structured diagnostic workflows, and personalized learning tools into one integrated experience.\n\n### Core Modules\n\nClinical decision support (two-stage differential diagnosis), patient case management and documentation, medical imaging workflows with AI annotations, pharmacology safety checks and dosing tools, clinical rounds summaries and document generation, and personalized learning with quizzes, flashcards, and mind maps.\n\n### Architecture\n\nMAI follows a clean, feature-first architecture with a shared core layer and mock data generation service. State management uses the Provider pattern, and routing is handled with Go Router.\n\n### Mock Data System\n\nThe MVP uses a robust mock data service to simulate ICD-10 diagnoses, patient demographics, lab results, and learning progress for realistic workflows.\n",
+  "tagline": "Platform para sa medical education na pinapagana ng AI",
+  "description": "## Tungkol sa MAI\n\nAng Medical Education App (MAI) ay isang platform para sa pag-aaral at clinical decision support na pinapagana ng AI, ginawa para sa mga resident doctor. Pinagsasama nito ang makatotohanang case simulation, istrukturadong diagnostic workflow, at personalized na learning tools sa iisang karanasan.\n\n### Mga pangunahing module\n\nClinical decision support (differential diagnosis sa dalawang yugto), pamamahala at dokumentasyon ng patient case, medical imaging workflow na may AI annotation, pharmacology safety check at dosing tool, buod ng clinical rounds at pagbuo ng dokumento, at personalized na pag-aaral gamit ang quiz, flashcard, at mind map.\n\n### Arkitektura\n\nSumusunod ang MAI sa malinis at feature-first na arkitektura na may shared na core layer at serbisyong gumagawa ng mock data. Provider pattern ang gamit sa state management, at Go Router naman sa routing.\n\n### Sistema ng mock data\n\nGumagamit ang MVP ng matibay na mock data service para i-simulate ang mga ICD-10 diagnosis, demographics ng pasyente, resulta ng lab, at progreso sa pag-aaral para sa makatotohanang workflow.\n",
   "iconClass": "fas fa-stethoscope",
   "color": "#0F766E",
   "gradient": "linear-gradient(135deg, #0F766E 0%, #14B8A6 100%)",
-  "status": "Malapit na",
+  "status": "Coming Soon",
   "hero": {
-    "title": "Clinical Learning, Muling Binuo",
-    "subtitle": "AI-powered education platform para sa resident doctors.",
-    "cta_primary": "Humiling ng Demo",
+    "title": "Bagong paraan ng clinical learning",
+    "subtitle": "Isang education platform na pinapagana ng AI na pinagsasama ang clinical decision support, pamamahala ng patient case, at personalized na pag-aaral para sa mga resident doctor.",
+    "cta_primary": "Humingi ng demo",
     "cta_primary_link": "/contact",
-    "cta_secondary": "Explore Features",
+    "cta_secondary": "Tuklasin ang mga feature",
     "cta_secondary_link": "#features"
   },
   "features": [
     {
-      "title": "Clinical Decision Support",
-      "description": "Two-stage differential diagnosis workflow with history taking, physical exam, tests, and management planning.",
+      "title": "Suporta sa clinical na desisyon",
+      "description": "Differential diagnosis workflow sa dalawang yugto na may history taking, physical exam, mga test, at pagpaplano ng management.",
       "icon": "fas fa-user-doctor"
     },
     {
-      "title": "Case Management",
-      "description": "Patient dashboard with filtering, new case workflow, privacy settings, and tabbed case views.",
+      "title": "Pamamahala ng case",
+      "description": "Dashboard ng pasyente na may filtering, workflow para sa bagong case, privacy settings, at mga case view na naka-tab.",
       "icon": "fas fa-folder-open"
     },
     {
-      "title": "Medical Imaging",
-      "description": "DICOM upload simulation, AI scan analysis, annotated viewer, comparisons, and report generation.",
+      "title": "Imaging na medikal",
+      "description": "Simulation ng DICOM upload, AI na pagsusuri ng scan, viewer na may annotation, paghahambing, at pagbuo ng report.",
       "icon": "fas fa-x-ray"
     },
     {
-      "title": "Pharmacology & Drug Safety",
-      "description": "Treatment plans, interaction alerts, dosing calculator, and alternative medication suggestions.",
+      "title": "Pharmacology at kaligtasan sa gamot",
+      "description": "Mga treatment plan, alerto sa interaksyon ng gamot, dosing calculator, at mungkahing alternatibong gamot.",
       "icon": "fas fa-pills"
     },
     {
-      "title": "Clinical Rounds",
-      "description": "Rounds dashboard, voice recording simulation, AI transcript review, and automated summaries.",
+      "title": "Mga clinical round",
+      "description": "Dashboard ng rounds, simulation ng voice recording, pag-review ng AI transcript, at awtomatikong buod.",
       "icon": "fas fa-notes-medical"
     },
     {
-      "title": "Personalized Learning",
-      "description": "Learning hub with mind maps, flashcards, quizzes, audio summaries, videos, and guideline scenarios.",
+      "title": "Personalized na pag-aaral",
+      "description": "Learning hub na may mind map, flashcard, quiz, audio summary, video, at mga scenario batay sa guideline.",
       "icon": "fas fa-graduation-cap"
     },
     {
-      "title": "Analytics & Progress",
-      "description": "Performance dashboard, mastery heatmaps, and case completion tracking.",
+      "title": "Analytics at progreso",
+      "description": "Dashboard ng performance, mastery heatmap, at pagsubaybay sa mga natapos na case.",
       "icon": "fas fa-chart-line"
     }
   ],
@@ -69,7 +69,7 @@
     {
       "name": "Web",
       "icon": "fas fa-globe",
-      "version": "Web App",
+      "version": "App sa web",
       "link": "#"
     },
     {
@@ -89,16 +89,16 @@
   ],
   "faq": [
     {
-      "question": "Is this connected to real patient data?",
-      "answer": "No. This MVP uses mock data only. It is designed as a proof-of-concept for educational workflows."
+      "question": "Nakakonekta ba ito sa totoong data ng pasyente?",
+      "answer": "Hindi. Mock data lang ang gamit ng MVP na ito. Idinisenyo ito bilang proof of concept para sa mga educational workflow."
     },
     {
-      "question": "Does it support multiple platforms?",
-      "answer": "Yes. The app targets iOS, Android, Web, and Desktop using Flutter's multi-platform capabilities."
+      "question": "Sinusuportahan ba nito ang iba't ibang platform?",
+      "answer": "Oo. Para sa iOS, Android, Web, at Desktop ang app, gamit ang multi-platform na kakayahan ng Flutter."
     },
     {
-      "question": "Can this be integrated with a backend?",
-      "answer": "Planned for future phases. The roadmap includes REST APIs, authentication, and cloud persistence."
+      "question": "Puwede ba itong ikonekta sa isang backend?",
+      "answer": "Nakaplano ito sa mga susunod na yugto. Kasama sa roadmap ang mga REST API, authentication, at cloud persistence."
     }
   ]
 }

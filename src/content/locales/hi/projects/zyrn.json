@@ -2,12 +2,12 @@
   "name": "Zyrn",
   "slug": "zyrn",
   "type": "branded",
-  "tagline": "आपका स्टोर। आपका ब्रांड। आपके ग्राहक — तुरंत सूचना।",
-  "description": "## About Zyrn\n\nZyrn is a complete digital commerce package for business owners and new entrepreneurs who want to sell online without drowning in spreadsheets, WhatsApp orders, and sticky notes. It runs a real store — products, payments, customers, marketing, returns, reports — and grows into subscriptions, digital goods, bookings, and automations that keep your business moving while you sleep.\n\n### No paper trail. No guessing.\n\nOrders stop living in Instagram DMs and chat threads. Stock stops living in notebooks. Customers get updates the moment something changes — order placed, payment confirmed, shipped, delivered, return opened.\n\n### Sell what you actually sell\n\nPhysical products, digital downloads, subscriptions and memberships, bookings and appointments, bundles and multi-currency storefronts — one branded system, not a brochure site.\n",
+  "tagline": "आपका स्टोर। आपका ब्रांड। आपके ग्राहक — जिन्हें उसी पल सूचना मिलती है।",
+  "description": "## Zyrn के बारे में\n\nZyrn उन कारोबार मालिकों और नए उद्यमियों के लिए एक पूरा डिजिटल कॉमर्स पैकेज है, जो स्प्रेडशीट, WhatsApp ऑर्डर और चिपकने वाली पर्चियों में डूबे बिना ऑनलाइन बेचना चाहते हैं। यह एक असली स्टोर चलाता है — प्रोडक्ट, भुगतान, ग्राहक, मार्केटिंग, रिटर्न, रिपोर्ट — और आगे चलकर सब्सक्रिप्शन, डिजिटल सामान, बुकिंग और ऐसे ऑटोमेशन तक बढ़ता है जो आपके सोते समय भी कारोबार को चलाते रहते हैं।\n\n### न काग़ज़ों का ढेर। न अंदाज़े।\n\nऑर्डर अब Instagram DM और चैट थ्रेड में नहीं पड़े रहते। स्टॉक अब नोटबुक में नहीं लिखा रहता। कुछ भी बदलते ही ग्राहकों को अपडेट मिलता है — ऑर्डर हुआ, भुगतान की पुष्टि हुई, शिप हुआ, डिलीवर हुआ, रिटर्न शुरू हुआ।\n\n### वही बेचें जो आप सच में बेचते हैं\n\nफ़िज़िकल प्रोडक्ट, डिजिटल डाउनलोड, सब्सक्रिप्शन और मेंबरशिप, बुकिंग और अपॉइंटमेंट, बंडल और कई करेंसी वाले स्टोरफ़्रंट — अपने ब्रांड वाला एक पूरा सिस्टम, कोई ब्रोशर साइट नहीं।\n",
   "iconClass": "fas fa-th-large",
   "color": "#EC4899",
   "gradient": "linear-gradient(135deg, #EC4899 0%, #F9A8D4 100%)",
-  "status": "डिलीवर के लिए तैयार",
+  "status": "Ready to Deliver",
   "layoutVariant": "zyrn",
   "fontHeading": "Space Grotesk",
   "fontBody": "Inter",
@@ -19,52 +19,52 @@
   "bgFallbackGradient": "linear-gradient(180deg, #FDF2F8 0%, #FCE7F3 40%, #FBCFE8 100%)",
   "clientIds": ["little-hands-lab"],
   "hero": {
-    "title": "स्मार्ट बेचें। ग्राहकों के करीब रहें। अराजकता के बिना बढ़ें।",
-    "subtitle": "भौतिक उत्पाद, डिजिटल उत्पाद और सब्सक्रिप्शन के लिए ब्रांडेड ऑनलाइन स्टोर — लाइव अपडेट, साफ़ आंकड़े और ऑटोमेशन के साथ।",
+    "title": "समझदारी से बेचें। ग्राहकों के क़रीब रहें। बिना अफ़रा-तफ़री के बढ़ें।",
+    "subtitle": "फ़िज़िकल प्रोडक्ट, डिजिटल प्रोडक्ट और सब्सक्रिप्शन के लिए अपने ब्रांड वाला ऑनलाइन स्टोर सिस्टम — ग्राहकों को लाइव अपडेट, साफ़ आँकड़े और ऑटोमेशन के साथ, ताकि आपको कभी अंदाज़ा न लगाना पड़े कि आपके कारोबार में क्या चल रहा है।",
     "cta_primary": "डेमो का अनुरोध करें",
     "cta_primary_link": "/contact",
-    "cta_secondary": "फीचर्स देखें",
+    "cta_secondary": "फ़ीचर्स देखें",
     "cta_secondary_link": "#features"
   },
   "features": [
     {
-      "title": "Branded Storefront",
-      "description": "Your logo, colors, and content on a mobile-ready store — premium from day one, not a temporary link in bio.",
+      "title": "अपने ब्रांड वाला स्टोरफ़्रंट",
+      "description": "मोबाइल के लिए तैयार स्टोर पर आपका लोगो, आपके रंग और आपका कंटेंट — पहले दिन से प्रीमियम, बायो में दिया गया कोई अस्थायी लिंक नहीं।",
       "icon": "fas fa-store"
     },
     {
-      "title": "Sell Anything",
-      "description": "Physical products, digital downloads, subscriptions, bookings, bundles, and multi-currency or multi-language storefronts.",
+      "title": "कुछ भी बेचें",
+      "description": "फ़िज़िकल प्रोडक्ट, डिजिटल डाउनलोड, सब्सक्रिप्शन, बुकिंग, बंडल, और कई करेंसी या कई भाषाओं वाले स्टोरफ़्रंट।",
       "icon": "fas fa-boxes-stacked"
     },
     {
-      "title": "Notified on the Spot",
-      "description": "Order placed → payment confirmed → shipped → delivered → return opened. Customers stay informed without chasing you.",
+      "title": "उसी पल सूचना",
+      "description": "ऑर्डर हुआ → भुगतान की पुष्टि → शिप हुआ → डिलीवर हुआ → रिटर्न शुरू हुआ। ग्राहकों को आपके पीछे पड़े बिना हर जानकारी मिलती रहती है।",
       "icon": "fas fa-bell"
     },
     {
-      "title": "Checkout & Payments",
-      "description": "Smooth cart and checkout with cards, wallets, COD, bank transfer, and major gateways — take the money, confirm, move on.",
+      "title": "चेकआउट और भुगतान",
+      "description": "कार्ड, वॉलेट, COD, बैंक ट्रांसफ़र और बड़े पेमेंट गेटवे के साथ आसान कार्ट और चेकआउट — पैसे लें, पुष्टि करें, आगे बढ़ें।",
       "icon": "fas fa-credit-card"
     },
     {
-      "title": "Marketing & Growth",
-      "description": "Coupons, catalog rules, email campaigns, SEO, social share, and newsletter tools — offers, timing, and follow-through.",
+      "title": "मार्केटिंग और ग्रोथ",
+      "description": "कूपन, कैटलॉग नियम, ईमेल कैंपेन, SEO, सोशल शेयर और न्यूज़लेटर टूल्स — ऑफ़र, सही समय और लगातार फ़ॉलो-अप।",
       "icon": "fas fa-bullhorn"
     },
     {
-      "title": "Live Statistics",
-      "description": "Sales, bestsellers, customers, carts, promotions, inventory — open the numbers and decide what to do next.",
+      "title": "लाइव आँकड़े",
+      "description": "बिक्री, सबसे ज़्यादा बिकने वाले प्रोडक्ट, ग्राहक, कार्ट, प्रमोशन, इन्वेंटरी — आँकड़े खोलें और तय करें कि आगे क्या करना है।",
       "icon": "fas fa-chart-line"
     },
     {
-      "title": "Automations",
-      "description": "Order emails, status alerts, promotion rules, stock signals, and extendable flows like cart recovery and WhatsApp updates.",
+      "title": "ऑटोमेशन",
+      "description": "ऑर्डर ईमेल, स्टेटस अलर्ट, प्रमोशन के नियम, स्टॉक के संकेत, और कार्ट रिकवरी व WhatsApp अपडेट जैसे बढ़ाए जा सकने वाले फ़्लो।",
       "icon": "fas fa-robot"
     },
     {
-      "title": "Inventory & Team Control",
-      "description": "Stock that updates with sales, import/export, returns/RMA, and staff roles so your team works from one system.",
+      "title": "इन्वेंटरी और टीम पर नियंत्रण",
+      "description": "बिक्री के साथ अपडेट होने वाला स्टॉक, इम्पोर्ट/एक्सपोर्ट, रिटर्न/RMA, और स्टाफ़ रोल — ताकि आपकी पूरी टीम एक ही सिस्टम से काम करे।",
       "icon": "fas fa-sitemap"
     }
   ],
@@ -72,82 +72,82 @@
     {
       "name": "Web",
       "icon": "fas fa-globe",
-      "version": "Branded Storefront + Admin",
+      "version": "अपने ब्रांड वाला स्टोरफ़्रंट + एडमिन",
       "link": "#"
     }
   ],
   "tech": [
-    "Branded storefront",
-    "Catalog & inventory",
-    "Checkout & payments",
-    "Order notifications",
-    "Subscriptions",
-    "Digital products",
-    "Bookings",
-    "Marketing & coupons",
-    "Statistics & reports",
-    "Automations",
-    "Multi-language / multi-currency",
-    "Returns / RMA"
+    "अपने ब्रांड वाला स्टोरफ़्रंट",
+    "कैटलॉग और इन्वेंटरी",
+    "चेकआउट और भुगतान",
+    "ऑर्डर नोटिफ़िकेशन",
+    "सब्सक्रिप्शन",
+    "डिजिटल प्रोडक्ट",
+    "बुकिंग",
+    "मार्केटिंग और कूपन",
+    "आँकड़े और रिपोर्ट",
+    "ऑटोमेशन",
+    "कई भाषाएँ / कई करेंसी",
+    "रिटर्न / RMA"
   ],
   "navItems": [
     {
-      "label": "Home",
+      "label": "होम",
       "url": "",
       "i18nKey": "project_nav_home"
     },
     {
-      "label": "Features",
+      "label": "फ़ीचर्स",
       "url": "features/",
       "i18nKey": "project_nav_features"
     },
     {
-      "label": "Demo",
+      "label": "डेमो",
       "url": "demo/",
       "i18nKey": "project_nav_demo"
     },
     {
-      "label": "Privacy Policy",
+      "label": "गोपनीयता नीति",
       "url": "terms/",
       "i18nKey": "project_nav_terms"
     }
   ],
   "navMetaItems": [
     {
-      "label": "Work",
+      "label": "काम",
       "url": "/projects/",
       "i18nKey": "nav_work"
     },
     {
-      "label": "Contact",
+      "label": "संपर्क",
       "url": "/contact/",
       "i18nKey": "nav_contact"
     }
   ],
   "faq": [
     {
-      "question": "I already sell on Instagram. Why do I need Zyrn?",
-      "answer": "Instagram is discovery. Zyrn is checkout, stock, notifications, and ownership of the customer relationship — so orders stop living in DMs."
+      "question": "मैं पहले से Instagram पर बेचता हूँ। मुझे Zyrn की ज़रूरत क्यों है?",
+      "answer": "Instagram पर लोग आपको खोजते हैं। Zyrn चेकआउट, स्टॉक, नोटिफ़िकेशन और ग्राहक से रिश्ते पर आपका हक़ देता है — ताकि ऑर्डर DM में पड़े न रहें।"
     },
     {
-      "question": "Can’t I just use a form?",
-      "answer": "Forms take requests. Zyrn takes payment, tracks inventory, and updates the customer automatically when something changes."
+      "question": "क्या मैं बस एक फ़ॉर्म से काम नहीं चला सकता?",
+      "answer": "फ़ॉर्म सिर्फ़ अनुरोध लेते हैं। Zyrn भुगतान लेता है, इन्वेंटरी ट्रैक करता है, और कुछ भी बदलने पर ग्राहक को अपने-आप अपडेट करता है।"
     },
     {
-      "question": "I’m too small for software. Is this for me?",
-      "answer": "That is exactly when chaos starts. Zyrn keeps a small business clean before the mess becomes expensive — launch lean, add subscriptions, digital, and automations later."
+      "question": "मेरा कारोबार सॉफ़्टवेयर के लिए बहुत छोटा है। क्या यह मेरे लिए है?",
+      "answer": "अफ़रा-तफ़री ठीक इसी वक़्त शुरू होती है। Zyrn छोटे कारोबार को तब तक व्यवस्थित रखता है जब तक गड़बड़ी महँगी न पड़ने लगे — छोटे से शुरू करें, और सब्सक्रिप्शन, डिजिटल प्रोडक्ट और ऑटोमेशन बाद में जोड़ें।"
     },
     {
-      "question": "Can I sell digital products or subscriptions?",
-      "answer": "Yes. Instant delivery for downloads and licenses, plus subscription and membership flows for boxes, plans, and recurring revenue."
+      "question": "क्या मैं डिजिटल प्रोडक्ट या सब्सक्रिप्शन बेच सकता हूँ?",
+      "answer": "हाँ। डाउनलोड और लाइसेंस की तुरंत डिलीवरी, साथ में बॉक्स, प्लान और नियमित कमाई के लिए सब्सक्रिप्शन और मेंबरशिप फ़्लो।"
     },
     {
-      "question": "Will customers know what is happening with their order?",
-      "answer": "Yes. Notified on the spot — order, payment, shipping, and returns — so you are not typing the same update fifty times a day."
+      "question": "क्या ग्राहकों को पता रहेगा कि उनके ऑर्डर का क्या हो रहा है?",
+      "answer": "हाँ। उन्हें उसी पल सूचना मिलती है — ऑर्डर, भुगतान, शिपिंग और रिटर्न — ताकि आपको दिन में पचास बार एक ही अपडेट टाइप न करना पड़े।"
     },
     {
-      "question": "How do I know what to sell next?",
-      "answer": "Statistics. Bestsellers. Customer behavior. Cart and promotion views. No guessing — open the dashboard and decide."
+      "question": "मुझे कैसे पता चलेगा कि आगे क्या बेचना है?",
+      "answer": "आँकड़े। सबसे ज़्यादा बिकने वाले प्रोडक्ट। ग्राहकों का व्यवहार। कार्ट और प्रमोशन के व्यू। कोई अंदाज़ा नहीं — डैशबोर्ड खोलें और फ़ैसला करें।"
     }
   ]
 }

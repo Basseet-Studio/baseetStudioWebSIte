@@ -2,10 +2,10 @@
   {
     "slug": "matrix",
     "name": "Matrix",
-    "tagline": "ایک پلیٹ فارم۔ آپ کے کاروبار کا ہر حصہ۔ ٹول تھکاوٹ صفر۔",
+    "tagline": "ایک پلیٹ فارم۔ آپ کے کاروبار کا ہر حصہ۔ ٹولز بدلنے کی کوئی تھکن نہیں۔",
     "color": "#0891B2",
     "gradient": "linear-gradient(135deg, #0891B2 0%, #22D3EE 100%)",
-    "status": "جلد آرہا ہے",
+    "status": "Coming Soon",
     "iconClass": "fas fa-th-large",
     "icon": null,
     "platforms": [
@@ -22,10 +22,10 @@
   {
     "slug": "zyrn",
     "name": "Zyrn",
-    "tagline": "آپ کا اسٹور۔ آپ کا برانڈ۔ آپ کے گاہک — فوراً مطلع۔",
+    "tagline": "آپ کا اسٹور۔ آپ کا برانڈ۔ آپ کے گاہک — جنہیں فوراً اطلاع ملتی ہے۔",
     "color": "#EC4899",
     "gradient": "linear-gradient(135deg, #EC4899 0%, #F9A8D4 100%)",
-    "status": "ڈیلیور کے لیے تیار",
+    "status": "Ready to Deliver",
     "iconClass": "fas fa-th-large",
     "icon": null,
     "platforms": [
@@ -41,7 +41,7 @@
   {
     "slug": "ordelo",
     "name": "Ordelo",
-    "tagline": "آپ کا کاروبار۔ آن لائن۔ منظم۔ آپ کا۔",
+    "tagline": "آپ کا کاروبار۔ آن لائن۔ منظم۔ آپ کی ملکیت۔",
     "color": "#F97316",
     "gradient": "linear-gradient(135deg, #F97316 0%, #FB923C 100%)",
     "status": "Live",
@@ -53,15 +53,15 @@
         "icon": "fas fa-globe"
       },
       {
-        "name": "Admin",
+        "name": "ایڈمن",
         "icon": "fas fa-user-shield"
       },
       {
-        "name": "Kitchen",
+        "name": "کچن",
         "icon": "fas fa-hat-chef"
       },
       {
-        "name": "Delivery",
+        "name": "ڈیلیوری",
         "icon": "fas fa-truck"
       }
     ],
@@ -72,7 +72,7 @@
   {
     "slug": "moneybox",
     "name": "MoneyBox",
-    "tagline": "آپ کے پیسے، منظم۔",
+    "tagline": "آپ کا پیسہ، منظم۔",
     "color": "#16A34A",
     "gradient": "linear-gradient(135deg, #16A34A 0%, #4ADE80 100%)",
     "status": "Live",
@@ -96,10 +96,10 @@
   {
     "slug": "numu",
     "name": "Numu",
-    "tagline": "جو آپ کرتے ہیں track کریں۔ وہ شخص بنیں جو بننا چاہتے ہیں۔",
+    "tagline": "جو کرتے ہیں اس کا حساب رکھیں۔ وہ انسان بنیں جو آپ بننا چاہتے ہیں۔",
     "color": "#AF52DE",
     "gradient": "linear-gradient(135deg, #AF52DE 0%, #BF5AF2 100%)",
-    "status": "جلد آرہا ہے",
+    "status": "Coming Soon",
     "iconClass": null,
     "icon": "/images/projects/numu-icon.png",
     "platforms": [
@@ -139,10 +139,10 @@
   {
     "slug": "invexo",
     "name": "Invexo",
-    "tagline": "چھوٹے دکانوں کے لیے inventory management۔",
+    "tagline": "چھوٹی دکانوں کے لیے بنایا گیا انوینٹری مینجمنٹ۔",
     "color": "#10B981",
     "gradient": "linear-gradient(135deg, #059669 0%, #34D399 100%)",
-    "status": "ڈیلیور کے لیے تیار",
+    "status": "Ready to Deliver",
     "iconClass": "fas fa-cash-register",
     "icon": null,
     "platforms": [
@@ -159,10 +159,10 @@
   {
     "slug": "jemeti",
     "name": "Jemeti",
-    "tagline": "ورکشاپس اور maintenance shops، managed۔",
+    "tagline": "ورکشاپس اور مرمت کی دکانیں، پوری طرح منظم۔",
     "color": "#DC2626",
     "gradient": "linear-gradient(135deg, #DC2626 0%, #EF4444 100%)",
-    "status": "جلد آرہا ہے",
+    "status": "Coming Soon",
     "iconClass": null,
     "icon": "/images/projects/jemeti-icon.svg",
     "platforms": [
@@ -179,23 +179,23 @@
   {
     "slug": "geeb",
     "name": "Geeb",
-    "tagline": "قابل اعتماد home-service pros، demand پر۔",
+    "tagline": "بھروسے کے قابل گھریلو سروس ماہرین، جب چاہیں۔",
     "color": "#B45309",
     "gradient": "linear-gradient(135deg, #B45309 0%, #F59E0B 100%)",
-    "status": "جلد آرہا ہے",
+    "status": "Coming Soon",
     "iconClass": "fas fa-wrench",
     "icon": null,
     "platforms": [
       {
-        "name": "Customer",
+        "name": "گاہک",
         "icon": "fas fa-mobile-alt"
       },
       {
-        "name": "Vendor",
+        "name": "وینڈر",
         "icon": "fas fa-hard-hat"
       },
       {
-        "name": "Admin",
+        "name": "ایڈمن",
         "icon": "fas fa-user-shield"
       }
     ],
@@ -206,10 +206,10 @@
   {
     "slug": "medical-education-app",
     "name": "MAI",
-    "tagline": "AI-powered medical education platform۔",
+    "tagline": "AI پر مبنی طبی تعلیم کا پلیٹ فارم۔",
     "color": "#0F766E",
     "gradient": "linear-gradient(135deg, #0F766E 0%, #14B8A6 100%)",
-    "status": "جلد آرہا ہے",
+    "status": "Coming Soon",
     "iconClass": "fas fa-stethoscope",
     "icon": null,
     "platforms": [
@@ -226,7 +226,7 @@
         "icon": "fas fa-globe"
       },
       {
-        "name": "Desktop",
+        "name": "ڈیسک ٹاپ",
         "icon": "fas fa-desktop"
       }
     ],
@@ -240,7 +240,7 @@
     "tagline": "صحت کی دیکھ بھال۔ آسان۔",
     "color": "#0A6E74",
     "gradient": "linear-gradient(135deg, #0A6E74 0%, #14B8A6 100%)",
-    "status": "ڈیلیور کے لیے تیار",
+    "status": "Ready to Deliver",
     "iconClass": "fas fa-hospital",
     "icon": null,
     "platforms": [
@@ -258,10 +258,10 @@
   {
     "slug": "nss-virtual-education-fair",
     "name": "NSS Virtual Education Fair",
-    "tagline": "Virtual Education Fair Platform",
+    "tagline": "ورچوئل تعلیمی میلے کا پلیٹ فارم",
     "color": "#0EA5E9",
     "gradient": "linear-gradient(135deg, #0EA5E9 0%, #38BDF8 100%)",
-    "status": "مکمل",
+    "status": "Completed",
     "iconClass": "fas fa-graduation-cap",
     "icon": null,
     "platforms": [

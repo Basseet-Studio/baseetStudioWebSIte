@@ -1,57 +1,17 @@
 {
   "links": [
-    {
-      "label": "Home",
-      "url": "/",
-      "i18nKey": "nav_home"
-    },
-    {
-      "label": "Services",
-      "url": "/services/",
-      "i18nKey": "nav_services"
-    },
-    {
-      "label": "Projects",
-      "url": "/projects/",
-      "i18nKey": "nav_work"
-    },
-    {
-      "label": "Clients",
-      "url": "/clients/",
-      "i18nKey": "nav_clients"
-    },
-    {
-      "label": "Contact",
-      "url": "/contact/",
-      "i18nKey": "nav_contact"
-    }
+    { "label": "ہوم", "url": "/", "i18nKey": "nav_home" },
+    { "label": "خدمات", "url": "/services/", "i18nKey": "nav_services" },
+    { "label": "پروجیکٹس", "url": "/projects/", "i18nKey": "nav_work" },
+    { "label": "کلائنٹس", "url": "/clients/", "i18nKey": "nav_clients" },
+    { "label": "رابطہ", "url": "/contact/", "i18nKey": "nav_contact" }
   ],
-  "copyright": "2026 Baseet Studio. تمام حقوق محفوظ ہیں۔",
+  "copyright": "2026 Baseet Studio۔ جملہ حقوق محفوظ ہیں۔",
   "social": [
-    {
-      "platform": "instagram",
-      "icon": "fab fa-instagram",
-      "url": "https://instagram.com/baseet.studio"
-    },
-    {
-      "platform": "linkedin",
-      "icon": "fab fa-linkedin-in",
-      "url": "https://linkedin.com/company/baseetstudios"
-    },
-    {
-      "platform": "twitter",
-      "icon": "fab fa-x-twitter",
-      "url": "https://twitter.com/baseetstudios"
-    },
-    {
-      "platform": "github",
-      "icon": "fab fa-github",
-      "url": "https://github.com/baseetstudios"
-    },
-    {
-      "platform": "dribbble",
-      "icon": "fab fa-dribbble",
-      "url": "https://dribbble.com/baseet"
-    }
+    { "platform": "instagram", "icon": "fab fa-instagram", "url": "https://instagram.com/baseet.studio" },
+    { "platform": "linkedin", "icon": "fab fa-linkedin-in", "url": "https://linkedin.com/company/baseetstudios" },
+    { "platform": "twitter", "icon": "fab fa-x-twitter", "url": "https://twitter.com/baseetstudios" },
+    { "platform": "github", "icon": "fab fa-github", "url": "https://github.com/baseetstudios" },
+    { "platform": "dribbble", "icon": "fab fa-dribbble", "url": "https://dribbble.com/baseet" }
   ]
 }

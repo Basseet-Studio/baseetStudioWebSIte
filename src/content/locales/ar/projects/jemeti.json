@@ -2,13 +2,13 @@
   "name": "Jemeti",
   "slug": "jemeti",
   "type": "branded",
-  "tagline": "ورش الصيانة، مُدارة.",
-  "description": "## حول Jemeti\n\nJemeti يساعد أصحاب الورش على جدولة الأعمال وتتبع القطع وإدارة مركبات العملاء — من مكان واحد.\n",
+  "tagline": "ورش ومراكز صيانة تُدار بإحكام",
+  "description": "## عن Jemeti\n\nيساعد Jemeti أصحاب الورش ومراكز الصيانة على جدولة الأعمال، وتتبّع قطع الغيار، وإدارة مركبات العملاء — كل ذلك من مكان واحد.\n\n### مصمَّم لمراكز الخدمة\n\nمن تغيير الزيت حتى العَمرة الكاملة، يحافظ Jemeti على تنظيم أوامر العمل وتوزيع المهام على الفنيين ومخزون القطع.\n\n### قريباً\n\nنبني Jemeti مع أصحاب ورش حقيقيين. تواصل معنا إن أردت الوصول المبكر.\n",
   "icon": "/images/projects/jemeti-icon.svg",
   "iconClass": null,
   "color": "#DC2626",
   "gradient": "linear-gradient(135deg, #DC2626 0%, #EF4444 100%)",
-  "status": "قريباً",
+  "status": "Coming Soon",
   "layoutVariant": "default",
   "fontHeading": "Space Grotesk",
   "fontBody": "Inter",
@@ -18,8 +18,8 @@
   "clientIds": [],
   "hero": {
     "title": "ورشتك، منظّمة",
-    "subtitle": "جدولة الأعمال وتتبع القطع وإدارة العملاء لورش الصيانة.",
-    "cta_primary": "احصل على وصول مبكر",
+    "subtitle": "جدولة الأعمال، وتتبّع قطع الغيار، وإدارة العملاء لورش الصيانة والإصلاح.",
+    "cta_primary": "اطلب الوصول المبكر",
     "cta_primary_link": "/contact",
     "cta_secondary": null,
     "cta_secondary_link": null
@@ -27,17 +27,17 @@
   "features": [
     {
       "title": "أوامر العمل",
-      "description": "إنشاء وتعيين وتتبع الأعمال من الاستلام حتى الإنجاز.",
+      "description": "أنشئ الأعمال ووزّعها وتابعها من الاستلام حتى التسليم.",
       "icon": "fas fa-clipboard-list"
     },
     {
       "title": "مخزون القطع",
-      "description": "اعرف ما على الرف قبل أن تعد بموعد الإصلاح.",
+      "description": "اعرف ما على الرف قبل أن تعد العميل بموعد الإصلاح.",
       "icon": "fas fa-wrench"
     },
     {
       "title": "مركبات العملاء",
-      "description": "سجل الخدمة والتذكيرات والملاحظات لكل مركبة.",
+      "description": "سجل الصيانة والتذكيرات والملاحظات لكل مركبة.",
       "icon": "fas fa-car"
     }
   ],
@@ -45,25 +45,25 @@
     {
       "name": "Web",
       "icon": "fas fa-globe",
-      "version": "Web App",
+      "version": "تطبيق ويب",
       "link": "#"
     }
   ],
   "navItems": [
     {
-      "label": "Home",
+      "label": "الرئيسية",
       "url": "",
       "i18nKey": "project_nav_home"
     }
   ],
   "navMetaItems": [
     {
-      "label": "Work",
+      "label": "أعمالنا",
       "url": "/projects/",
       "i18nKey": "nav_work"
     },
     {
-      "label": "Contact",
+      "label": "تواصل",
       "url": "/contact/",
       "i18nKey": "nav_contact"
     }

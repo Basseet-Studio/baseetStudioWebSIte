@@ -1,10 +1,10 @@
 {
-  "title": "Meet Our Expert Team",
-  "subtitle": "The talented developers behind your digital success",
+  "title": "Meet our expert team",
+  "subtitle": "The small, senior team behind your digital success",
   "members": [
     {
       "name": "Mohamed Abdallah",
-      "role": "Founder / Product Lead / PM / Senior Engineer",
+      "role": "Founder / Product lead / PM / Senior engineer",
       "bio": "Founder and product lead combining deep engineering expertise with product strategy to shape high-quality software products.",
       "image": "/images/home/team/mohamed-abdallah.jpg",
       "social": {
@@ -16,7 +16,7 @@
     },
     {
       "name": "Asadur Rahman",
-      "role": "Tech Lead / System Architect",
+      "role": "Tech lead / System architect",
       "bio": "Tech lead and systems architect focused on designing scalable distributed systems and robust cloud infrastructure.",
       "image": "/images/home/team/asadur-rahman.png",
       "social": {
@@ -28,7 +28,7 @@
     },
     {
       "name": "Ariyan Rehman",
-      "role": "Product Experience & Docs Engineer",
+      "role": "Product experience & docs engineer",
       "bio": "Ensures product experience and documentation excellence by focusing on UX, developer docs, and content-driven workflows.",
       "image": "/images/home/team/ariyan-rehman.jpg",
       "social": {
@@ -40,7 +40,7 @@
     },
     {
       "name": "Dibakar Sutra Dhar",
-      "role": "Backend Engineer & Data Engineer",
+      "role": "Backend engineer & data engineer",
       "bio": "Backend engineer specializing in distributed systems and scalable server solutions for web & cloud applications.",
       "image": "/images/home/team/dibakar-sutradhar.JPG",
       "social": {

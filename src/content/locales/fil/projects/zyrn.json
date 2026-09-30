@@ -2,12 +2,12 @@
   "name": "Zyrn",
   "slug": "zyrn",
   "type": "branded",
-  "tagline": "Iyong store. Iyong brand. Iyong customers — notified agad.",
-  "description": "## About Zyrn\n\nZyrn is a complete digital commerce package for business owners and new entrepreneurs who want to sell online without drowning in spreadsheets, WhatsApp orders, and sticky notes. It runs a real store — products, payments, customers, marketing, returns, reports — and grows into subscriptions, digital goods, bookings, and automations that keep your business moving while you sleep.\n\n### No paper trail. No guessing.\n\nOrders stop living in Instagram DMs and chat threads. Stock stops living in notebooks. Customers get updates the moment something changes — order placed, payment confirmed, shipped, delivered, return opened.\n\n### Sell what you actually sell\n\nPhysical products, digital downloads, subscriptions and memberships, bookings and appointments, bundles and multi-currency storefronts — one branded system, not a brochure site.\n",
+  "tagline": "Ang inyong tindahan. Ang inyong brand. Ang inyong mga customer — naaabisuhan agad.",
+  "description": "## Tungkol sa Zyrn\n\nAng Zyrn ay isang kumpletong digital commerce package para sa mga may-ari ng negosyo at mga bagong negosyante na gustong magbenta online nang hindi nalulunod sa spreadsheet, order sa WhatsApp, at sticky note. Nagpapatakbo ito ng totoong tindahan — mga produkto, bayad, customer, marketing, return, report — at lumalawak sa subscription, digital na produkto, booking, at automation na nagpapatuloy sa takbo ng inyong negosyo habang tulog kayo.\n\n### Walang papel. Walang hula.\n\nHindi na nakatira ang mga order sa Instagram DM at chat thread. Hindi na nakatira ang stock sa mga notebook. Nakakatanggap ng update ang mga customer sa sandaling may magbago — na-place ang order, nakumpirma ang bayad, naipadala, naihatid, nabuksan ang return.\n\n### Ibenta ang talagang ibinebenta ninyo\n\nMga pisikal na produkto, digital download, subscription at membership, booking at appointment, bundle at storefront na maraming currency — iisang branded na sistema, hindi brochure site.\n",
   "iconClass": "fas fa-th-large",
   "color": "#EC4899",
   "gradient": "linear-gradient(135deg, #EC4899 0%, #F9A8D4 100%)",
-  "status": "Handa nang I-deliver",
+  "status": "Ready to Deliver",
   "layoutVariant": "zyrn",
   "fontHeading": "Space Grotesk",
   "fontBody": "Inter",
@@ -19,52 +19,52 @@
   "bgFallbackGradient": "linear-gradient(180deg, #FDF2F8 0%, #FCE7F3 40%, #FBCFE8 100%)",
   "clientIds": ["little-hands-lab"],
   "hero": {
-    "title": "Magbenta nang mas matalino. Manatiling malapit sa customers. Lumago nang walang kaguluhan.",
-    "subtitle": "Branded online store para sa physical, digital, at subscription products — may live updates, malinaw na numbers, at automations para hindi ka mag-guess sa negosyo.",
-    "cta_primary": "Humingi ng Demo",
+    "title": "Magbenta nang mas matalino. Manatiling malapit sa customer. Lumago nang walang gulo.",
+    "subtitle": "Isang branded na online store system para sa mga pisikal na produkto, digital na produkto, at subscription — na may live na update para sa customer, malinaw na mga numero, at automation para hindi na ninyo kailangang hulaan ang nangyayari sa inyong negosyo.",
+    "cta_primary": "Humingi ng demo",
     "cta_primary_link": "/contact",
-    "cta_secondary": "Tingnan ang Features",
+    "cta_secondary": "Tingnan ang mga feature",
     "cta_secondary_link": "#features"
   },
   "features": [
     {
-      "title": "Branded Storefront",
-      "description": "Your logo, colors, and content on a mobile-ready store — premium from day one, not a temporary link in bio.",
+      "title": "Sariling branded na storefront",
+      "description": "Ang inyong logo, kulay, at content sa isang tindahang handa sa mobile — premium mula sa unang araw, hindi pansamantalang link in bio.",
       "icon": "fas fa-store"
     },
     {
-      "title": "Sell Anything",
-      "description": "Physical products, digital downloads, subscriptions, bookings, bundles, and multi-currency or multi-language storefronts.",
+      "title": "Magbenta ng kahit ano",
+      "description": "Mga pisikal na produkto, digital download, subscription, booking, bundle, at storefront na maraming currency o maraming wika.",
       "icon": "fas fa-boxes-stacked"
     },
     {
-      "title": "Notified on the Spot",
-      "description": "Order placed → payment confirmed → shipped → delivered → return opened. Customers stay informed without chasing you.",
+      "title": "Abiso agad",
+      "description": "Na-place ang order → nakumpirma ang bayad → naipadala → naihatid → nabuksan ang return. Updated ang mga customer nang hindi na kayo hinahabol.",
       "icon": "fas fa-bell"
     },
     {
-      "title": "Checkout & Payments",
-      "description": "Smooth cart and checkout with cards, wallets, COD, bank transfer, and major gateways — take the money, confirm, move on.",
+      "title": "Checkout at bayad",
+      "description": "Maayos na cart at checkout na may card, e-wallet, COD, bank transfer, at mga pangunahing gateway — tanggapin ang bayad, kumpirmahin, tuloy sa susunod.",
       "icon": "fas fa-credit-card"
     },
     {
-      "title": "Marketing & Growth",
-      "description": "Coupons, catalog rules, email campaigns, SEO, social share, and newsletter tools — offers, timing, and follow-through.",
+      "title": "Marketing at paglago",
+      "description": "Coupon, catalog rules, email campaign, SEO, social share, at newsletter tools — alok, tamang timing, at tuloy-tuloy na follow-through.",
       "icon": "fas fa-bullhorn"
     },
     {
-      "title": "Live Statistics",
-      "description": "Sales, bestsellers, customers, carts, promotions, inventory — open the numbers and decide what to do next.",
+      "title": "Live na statistics",
+      "description": "Benta, bestseller, customer, cart, promo, inventory — buksan ang mga numero at magpasya kung ano ang susunod.",
       "icon": "fas fa-chart-line"
     },
     {
-      "title": "Automations",
-      "description": "Order emails, status alerts, promotion rules, stock signals, and extendable flows like cart recovery and WhatsApp updates.",
+      "title": "Mga automation",
+      "description": "Email para sa order, alerto sa status, promotion rules, signal sa stock, at mga flow na puwedeng palawakin tulad ng cart recovery at update sa WhatsApp.",
       "icon": "fas fa-robot"
     },
     {
-      "title": "Inventory & Team Control",
-      "description": "Stock that updates with sales, import/export, returns/RMA, and staff roles so your team works from one system.",
+      "title": "Kontrol sa inventory at team",
+      "description": "Stock na nag-a-update kasabay ng benta, import/export, return/RMA, at mga role ng staff para iisang sistema ang ginagamit ng inyong team.",
       "icon": "fas fa-sitemap"
     }
   ],
@@ -72,23 +72,23 @@
     {
       "name": "Web",
       "icon": "fas fa-globe",
-      "version": "Branded Storefront + Admin",
+      "version": "Branded na storefront + admin",
       "link": "#"
     }
   ],
   "tech": [
-    "Branded storefront",
-    "Catalog & inventory",
-    "Checkout & payments",
-    "Order notifications",
-    "Subscriptions",
-    "Digital products",
-    "Bookings",
-    "Marketing & coupons",
-    "Statistics & reports",
-    "Automations",
-    "Multi-language / multi-currency",
-    "Returns / RMA"
+    "Branded na storefront",
+    "Catalog at inventory",
+    "Checkout at bayad",
+    "Abiso sa order",
+    "Mga subscription",
+    "Mga digital na produkto",
+    "Mga booking",
+    "Marketing at coupon",
+    "Statistics at report",
+    "Mga automation",
+    "Maraming wika / maraming currency",
+    "Mga return / RMA"
   ],
   "navItems": [
     {
@@ -97,7 +97,7 @@
       "i18nKey": "project_nav_home"
     },
     {
-      "label": "Features",
+      "label": "Mga feature",
       "url": "features/",
       "i18nKey": "project_nav_features"
     },
@@ -107,47 +107,47 @@
       "i18nKey": "project_nav_demo"
     },
     {
-      "label": "Privacy Policy",
+      "label": "Patakaran sa privacy",
       "url": "terms/",
       "i18nKey": "project_nav_terms"
     }
   ],
   "navMetaItems": [
     {
-      "label": "Work",
+      "label": "Mga gawa",
       "url": "/projects/",
       "i18nKey": "nav_work"
     },
     {
-      "label": "Contact",
+      "label": "Makipag-ugnayan",
       "url": "/contact/",
       "i18nKey": "nav_contact"
     }
   ],
   "faq": [
     {
-      "question": "I already sell on Instagram. Why do I need Zyrn?",
-      "answer": "Instagram is discovery. Zyrn is checkout, stock, notifications, and ownership of the customer relationship — so orders stop living in DMs."
+      "question": "Nagbebenta na ako sa Instagram. Bakit ko pa kailangan ang Zyrn?",
+      "answer": "Para sa discovery ang Instagram. Ang Zyrn naman ang checkout, stock, abiso, at pagmamay-ari ng relasyon sa customer — para hindi na nakatira sa DM ang mga order."
     },
     {
-      "question": "Can’t I just use a form?",
-      "answer": "Forms take requests. Zyrn takes payment, tracks inventory, and updates the customer automatically when something changes."
+      "question": "Hindi ba puwedeng form na lang?",
+      "answer": "Tumatanggap ng request ang form. Ang Zyrn ay tumatanggap ng bayad, sumusubaybay ng inventory, at awtomatikong nag-a-update sa customer kapag may nagbago."
     },
     {
-      "question": "I’m too small for software. Is this for me?",
-      "answer": "That is exactly when chaos starts. Zyrn keeps a small business clean before the mess becomes expensive — launch lean, add subscriptions, digital, and automations later."
+      "question": "Masyado pa akong maliit para sa software. Para sa akin ba ito?",
+      "answer": "Diyan mismo nagsisimula ang gulo. Pinananatiling maayos ng Zyrn ang maliit na negosyo bago pa maging magastos ang kalat — magsimula nang simple, at idagdag ang subscription, digital na produkto, at automation sa ibang pagkakataon."
     },
     {
-      "question": "Can I sell digital products or subscriptions?",
-      "answer": "Yes. Instant delivery for downloads and licenses, plus subscription and membership flows for boxes, plans, and recurring revenue."
+      "question": "Puwede ba akong magbenta ng digital na produkto o subscription?",
+      "answer": "Oo. Instant na delivery para sa mga download at license, pati mga flow para sa subscription at membership para sa mga box, plan, at paulit-ulit na kita."
     },
     {
-      "question": "Will customers know what is happening with their order?",
-      "answer": "Yes. Notified on the spot — order, payment, shipping, and returns — so you are not typing the same update fifty times a day."
+      "question": "Malalaman ba ng mga customer ang nangyayari sa kanilang order?",
+      "answer": "Oo. Naaabisuhan sila agad — order, bayad, shipping, at return — kaya hindi na ninyo tina-type ang parehong update nang limampung beses sa isang araw."
     },
     {
-      "question": "How do I know what to sell next?",
-      "answer": "Statistics. Bestsellers. Customer behavior. Cart and promotion views. No guessing — open the dashboard and decide."
+      "question": "Paano ko malalaman kung ano ang susunod kong ibebenta?",
+      "answer": "Statistics. Mga bestseller. Gawi ng customer. View ng cart at promo. Walang hula — buksan ang dashboard at magpasya."
     }
   ]
 }

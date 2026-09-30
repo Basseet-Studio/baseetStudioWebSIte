@@ -2,13 +2,13 @@
   "name": "Ordelo",
   "slug": "ordelo",
   "type": "branded",
-  "tagline": "عملك. أونلاين. منظّم. ملكك.",
-  "description": "## About Ordelo\n\nOrdelo is a ready-to-sell digital commerce and ordering package for restaurants, cafés, cloud kitchens, retailers, creators, and new entrepreneurs who want to stop losing orders to WhatsApp chaos, napkin menus, and “wait, did they pay?” moments.\n\n### No paper trail. No guessing.\n\nCustomers browse → customize → pay → track. Staff see orders land in real time. You see numbers that actually mean something. Everyone gets notified on the spot.\n\n### More than a menu website\n\nSell Ordelo as a restaurant ordering system, multi-location brand hub, cloud kitchen command center, reservation + ordering combo, creator shop, subscription club, retail mini-store, or automation machine — one customer package with many futures.\n",
+  "tagline": "نشاطك التجاري. على الإنترنت. منظّم. ملكك.",
+  "description": "## عن Ordelo\n\nOrdelo باقة تجارة رقمية وطلبات جاهزة للبيع، مصمَّمة للمطاعم والمقاهي والمطابخ السحابية ومتاجر التجزئة وصنّاع المحتوى ورواد الأعمال الجدد الذين سئموا من ضياع الطلبات في فوضى WhatsApp، والقوائم المكتوبة على المناديل، ولحظات «لحظة، هل دفع أم لا؟».\n\n### لا أوراق. لا تخمين.\n\nيتصفّح العميل ← يخصّص ← يدفع ← يتابع. يرى الموظفون الطلبات لحظة وصولها. وترى أنت أرقاماً لها معنى فعلاً. والجميع يصلهم الإشعار في اللحظة نفسها.\n\n### أكثر من مجرد موقع لقائمة الطعام\n\nيمكن بيع Ordelo كنظام طلبات للمطاعم، أو مركز لعلامة تجارية متعددة الفروع، أو غرفة تحكم لمطبخ سحابي، أو حل يجمع الحجز والطلب، أو متجر لصانع محتوى، أو نادٍ للاشتراكات، أو متجر تجزئة صغير، أو آلة أتمتة — باقة واحدة للعميل وأمامها مستقبلات كثيرة.\n",
   "icon": "/images/projects/ordelo-icon.png",
   "iconClass": "fas fa-utensils",
   "color": "#F97316",
   "gradient": "linear-gradient(135deg, #F97316 0%, #FB923C 100%)",
-  "status": "مباشر",
+  "status": "Live",
   "layoutVariant": "ordelo",
   "fontHeading": "Playfair Display",
   "fontBody": "Source Sans 3",
@@ -20,94 +20,94 @@
   "bgFallbackGradient": "linear-gradient(180deg, #FFFBEB 0%, #FDE68A 40%, #FBBF24 100%)",
   "clientIds": [],
   "hero": {
-    "title": "اطلب. أبلِغ فوراً. امتلك عملاءك.",
-    "subtitle": "قوائم، دفع، تنبيهات المطبخ، وتحديثات العملاء وأدوات نمو — بلا ورق ولا تخمين ولا ذعر.",
-    "cta_primary": "اطلب عرضاً",
+    "title": "طلبات تصل. إشعارات فورية. عملاء لك وحدك.",
+    "subtitle": "قوائم الطعام، وإتمام الطلب، والمدفوعات، وتنبيهات المطبخ، وتحديثات العملاء، وأدوات النمو — بلا أوراق، ولا تخمين، ولا توتر.",
+    "cta_primary": "اطلب عرضاً تجريبياً",
     "cta_primary_link": "/contact",
-    "cta_secondary": "عرض الميزات",
+    "cta_secondary": "استعرض الميزات",
     "cta_secondary_link": "#features"
   },
   "features": [
     {
-      "title": "Branded Ordering Storefront",
-      "description": "Mobile-first menu and catalog with customization, cart, and checkout — your name on the order, not a marketplace’s.",
+      "title": "واجهة طلبات بعلامتك التجارية",
+      "description": "قائمة وكتالوج مصمَّمان للجوال أولاً مع التخصيص والسلة وإتمام الطلب — اسمك أنت على الطلب، لا اسم منصة وسيطة.",
       "icon": "fas fa-store"
     },
     {
-      "title": "Kitchen & Ops Calm",
-      "description": "Kitchen display, live status flow, busy mode, and assignment — orders land where work happens, not buried in a phone.",
+      "title": "هدوء في المطبخ والتشغيل",
+      "description": "شاشة للمطبخ، وتدفّق مباشر للحالات، ووضع الازدحام، وتوزيع المهام — تصل الطلبات حيث يجري العمل، لا تضيع في هاتف أحدهم.",
       "icon": "fas fa-hat-chef"
     },
     {
-      "title": "Notified on the Spot",
-      "description": "Confirmation and status updates the moment something changes — received → preparing → ready → completed.",
+      "title": "إشعار في اللحظة نفسها",
+      "description": "تأكيد وتحديثات للحالة لحظة حدوث أي تغيير — تم الاستلام ← قيد التحضير ← جاهز ← مكتمل.",
       "icon": "fas fa-bell"
     },
     {
-      "title": "Delivery, Pickup & Dine-In",
-      "description": "Fulfillment modes the business actually runs — plus reservations, multi-location hours, and delivery hooks when you need wheels.",
+      "title": "توصيل واستلام وتناول في المكان",
+      "description": "أنماط التسليم التي يعمل بها نشاطك فعلاً — إلى جانب الحجوزات، وساعات العمل لكل فرع، والربط مع خدمات التوصيل حين تحتاج إلى سائقين.",
       "icon": "fas fa-truck"
     },
     {
-      "title": "Payments & Coupons",
-      "description": "Clear checkout, configurable payment methods, campaign codes, and accounting-friendly exports — not cash-in-a-jar folklore.",
+      "title": "المدفوعات والقسائم",
+      "description": "إتمام طلب واضح، وطرق دفع قابلة للضبط، وأكواد للحملات، وتصدير يسهّل المحاسبة — بدلاً من حسابات «النقد في الدرج».",
       "icon": "fas fa-credit-card"
     },
     {
-      "title": "Reports That Don’t Lie",
-      "description": "Orders over time, top items, coupon performance, location comparisons, and visitor insights you can act on.",
+      "title": "تقارير لا تكذب",
+      "description": "الطلبات عبر الوقت، والأصناف الأكثر مبيعاً، وأداء القسائم، والمقارنة بين الفروع، ورؤى عن الزوار يمكنك البناء عليها.",
       "icon": "fas fa-chart-line"
     },
     {
-      "title": "Automations & Webhooks",
-      "description": "New order → kitchen + customer. Status change → SMS. Busy mode → pause checkout. Connect CRM, Slack, and partners.",
+      "title": "الأتمتة وWebhooks",
+      "description": "طلب جديد ← المطبخ + العميل. تغيّر الحالة ← رسالة SMS. وضع الازدحام ← إيقاف الطلبات مؤقتاً. اربط CRM وSlack والشركاء.",
       "icon": "fas fa-robot"
     },
     {
-      "title": "Grow Beyond Food",
-      "description": "Digital products, gift vouchers, subscriptions, memberships, and social campaign pages — same customers, more revenue lanes.",
+      "title": "توسّع أبعد من الطعام",
+      "description": "منتجات رقمية، وقسائم هدايا، واشتراكات، وعضويات، وصفحات لحملات التواصل الاجتماعي — العملاء أنفسهم، ومصادر دخل أكثر.",
       "icon": "fas fa-gift"
     }
   ],
   "platforms": [
     {
-      "name": "Customer",
+      "name": "العميل",
       "icon": "fas fa-globe",
-      "version": "Storefront + Tracking",
+      "version": "واجهة المتجر + التتبّع",
       "link": "#"
     },
     {
-      "name": "Admin",
+      "name": "الإدارة",
       "icon": "fas fa-user-shield",
-      "version": "Ops Console",
+      "version": "لوحة التشغيل",
       "link": "#"
     },
     {
-      "name": "Kitchen",
+      "name": "المطبخ",
       "icon": "fas fa-hat-chef",
-      "version": "Kitchen Display",
+      "version": "شاشة المطبخ",
       "link": "#"
     },
     {
-      "name": "Delivery",
+      "name": "التوصيل",
       "icon": "fas fa-truck",
-      "version": "Driver / Dispatch Hooks",
+      "version": "ربط السائقين / التوزيع",
       "link": "#"
     }
   ],
   "tech": [
-    "Branded storefront",
-    "Menu & customization",
-    "Cart & checkout",
-    "Kitchen display (KDS)",
-    "Order notifications",
-    "Coupons & campaigns",
-    "Reservations",
-    "Multi-location",
-    "Reports & insights",
-    "Automations & webhooks",
-    "Social login",
-    "Subscriptions & digital"
+    "واجهة متجر بعلامتك",
+    "القائمة والتخصيص",
+    "السلة وإتمام الطلب",
+    "شاشة المطبخ (KDS)",
+    "إشعارات الطلبات",
+    "القسائم والحملات",
+    "الحجوزات",
+    "تعدد الفروع",
+    "التقارير والرؤى",
+    "الأتمتة وWebhooks",
+    "تسجيل الدخول بحسابات التواصل",
+    "الاشتراكات والمنتجات الرقمية"
   ],
   "galleryType": "web",
   "screenshots": [
@@ -121,69 +121,69 @@
   ],
   "testimonials": [
     {
-      "quote": "You didn’t start a business to become a full-time message router. Ordelo turns chat chaos into clean orders.",
-      "author": "Ordelo promise",
-      "role": "For business owners"
+      "quote": "لم تبدأ نشاطك التجاري لتصبح موزّع رسائل بدوام كامل. Ordelo يحوّل فوضى المحادثات إلى طلبات منظّمة.",
+      "author": "وعد Ordelo",
+      "role": "لأصحاب الأعمال"
     }
   ],
   "navItems": [
     {
-      "label": "Home",
+      "label": "الرئيسية",
       "url": "",
       "i18nKey": "project_nav_home"
     },
     {
-      "label": "Features",
+      "label": "الميزات",
       "url": "features/",
       "i18nKey": "project_nav_features"
     },
     {
-      "label": "Demo",
+      "label": "عرض تجريبي",
       "url": "demo/",
       "i18nKey": "project_nav_demo"
     },
     {
-      "label": "Privacy Policy",
+      "label": "سياسة الخصوصية",
       "url": "terms/",
       "i18nKey": "project_nav_terms"
     }
   ],
   "navMetaItems": [
     {
-      "label": "Work",
+      "label": "أعمالنا",
       "url": "/projects/",
       "i18nKey": "nav_work"
     },
     {
-      "label": "Contact",
+      "label": "تواصل",
       "url": "/contact/",
       "i18nKey": "nav_contact"
     }
   ],
   "faq": [
     {
-      "question": "Isn’t this just another menu website?",
-      "answer": "No. Ordelo is ordering HQ: cart, payments, kitchen display, notifications, reports, and room to grow into subscriptions and digital products — not a brochure with a phone number."
+      "question": "أليس هذا مجرد موقع آخر لقائمة الطعام؟",
+      "answer": "لا. Ordelo مقر قيادة للطلبات: سلة، ومدفوعات، وشاشة للمطبخ، وإشعارات، وتقارير، ومساحة للتوسع نحو الاشتراكات والمنتجات الرقمية — لا مجرد كتيّب إلكتروني عليه رقم هاتف."
     },
     {
-      "question": "We already get orders on WhatsApp. Why switch?",
-      "answer": "WhatsApp is a chat. Ordelo is a record. Every order lands in one place, the kitchen sees it, the customer gets updates on the spot, and you keep the customer relationship."
+      "question": "نستقبل الطلبات على WhatsApp أصلاً. لماذا نغيّر؟",
+      "answer": "WhatsApp محادثة، أما Ordelo فسجلّ. كل طلب يصل إلى مكان واحد، ويراه المطبخ، ويتلقى العميل التحديثات فوراً، وتبقى علاقتك بالعميل ملكك."
     },
     {
-      "question": "Won’t customers just use food apps?",
-      "answer": "They might discover you there. Ordelo is how you stop renting every order — your storefront, your margins, your data."
+      "question": "ألن يكتفي العملاء بتطبيقات توصيل الطعام؟",
+      "answer": "ربما يكتشفونك هناك. لكن Ordelo هو طريقتك لتتوقف عن استئجار كل طلب — واجهة متجرك، وهامش ربحك، وبياناتك."
     },
     {
-      "question": "We’re a small café / new brand. Is this overkill?",
-      "answer": "Launch like a brand on day one. Start with menu, checkout, and notifications. Add kitchen display, multi-location, subscriptions, and automations when you’re ready."
+      "question": "نحن مقهى صغير / علامة جديدة. أليس هذا أكبر من حاجتنا؟",
+      "answer": "انطلق كعلامة تجارية حقيقية من اليوم الأول. ابدأ بالقائمة وإتمام الطلب والإشعارات، ثم أضف شاشة المطبخ وتعدد الفروع والاشتراكات والأتمتة حين تكون مستعداً."
     },
     {
-      "question": "Can it handle kitchen rush and multi-branch?",
-      "answer": "Yes. Busy mode pauses checkout gracefully, kitchen display keeps status clear, and Scale tiers add multi-location menus, hours, and branch reporting."
+      "question": "هل يتحمّل ذروة الطلبات في المطبخ وتعدد الفروع؟",
+      "answer": "نعم. وضع الازدحام يوقف استقبال الطلبات مؤقتاً بسلاسة، وشاشة المطبخ تُبقي الحالات واضحة، وباقات Scale تضيف قوائم وساعات عمل وتقارير خاصة بكل فرع."
     },
     {
-      "question": "Can we sell more than food?",
-      "answer": "Yes. Digital downloads, gift vouchers, meal plans, coffee clubs, VIP memberships, and campaign landing pages — same customer relationship, more revenue lanes."
+      "question": "هل يمكننا بيع أكثر من الطعام؟",
+      "answer": "نعم. تنزيلات رقمية، وقسائم هدايا، وخطط وجبات، ونوادي قهوة، وعضويات VIP، وصفحات هبوط للحملات — علاقة العميل نفسها، ومصادر دخل أكثر."
     }
   ]
 }

@@ -165,5 +165,22 @@ export function initSceneDebugControls(): void {
     const activeId = sky.getDebugPreviewPeriodId()
     const activeBtn = row.querySelector(`[data-period="${activeId}"]`)
     if (activeBtn) activeBtn.classList.add('is-active')
+
+    document.addEventListener(sky.SKY_HOUR_EVENT, ((event: Event) => {
+      const detail = (event as CustomEvent<{ periodId?: string; hour?: number | null }>).detail
+      const periodId = detail?.periodId
+      if (!periodId) return
+      row.querySelectorAll('.scene-debug__period-btn').forEach((el) => {
+        el.classList.toggle('is-active', el.getAttribute('data-period') === periodId)
+      })
+      const skyEl = document.querySelector('[data-scene-sky-period]')
+      if (skyEl) {
+        if (periodId === 'auto' || detail.hour == null) {
+          skyEl.textContent = `live (${new Date().getHours()}h)`
+        } else {
+          skyEl.textContent = `${periodId} (${Number(detail.hour).toFixed(1)}h)`
+        }
+      }
+    }) as EventListener)
   })
 }

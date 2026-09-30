@@ -1,137 +1,128 @@
 {
   "id": "seo",
   "slug": "seo",
-  "title": "SEO at Marketing",
-  "tagline": "Maging brand na talagang makikita ng searchers",
+  "title": "SEO at marketing",
+  "tagline": "Maging brand na talagang nahahanap ng mga naghahanap",
   "color": "#16A34A",
   "gradient": "linear-gradient(135deg, #16A34A 0%, #4ADE80 100%)",
   "icon": "fas fa-search",
-  "shortDescription": "Get found online and grow your audience",
+  "shortDescription": "Mahanap online at palakihin ang inyong audience",
   "hero": {
-    "title": "Maging Brand na Talagang Makikita ng Searchers",
-    "subtitle": "Search at content engine na nagdadala ng ideal customers — sinusukat sa pipeline.",
-    "cta_primary": "I-audit ang site mo",
+    "title": "Maging brand na talagang nahahanap ng mga naghahanap",
+    "subtitle": "Technical SEO, content, at local search — sinusukat sa pipeline, hindi sa screenshot ng ranking na hindi naman napagkakakitaan.",
+    "cta_primary": "I-audit ang aking site",
     "cta_primary_link": "/contact/",
     "cta_secondary": "Paano kami sumusukat",
     "cta_secondary_link": "#process"
   },
   "metrics": [
-    {
-      "value": "3x",
-      "label": "Median organic lift in 6mo"
-    },
-    {
-      "value": "30+",
-      "label": "Tracked KPIs per engagement"
-    },
-    {
-      "value": "Weekly",
-      "label": "Reporting cadence"
-    }
+    { "value": "3x", "label": "Median na organic na pagtaas sa loob ng 6 na buwan" },
+    { "value": "30+", "label": "Mga KPI na tina-track kada engagement" },
+    { "value": "Lingguhan", "label": "Dalas ng pag-uulat" }
   ],
   "subServices": [
     {
       "id": "technical-seo",
-      "name": "Technical SEO",
+      "name": "Teknikal na SEO",
       "icon": "fas fa-code",
-      "desc": "I-optimize ang istruktura para sa search",
-      "longDesc": "Ang pinakamagandang content ay hindi raranggo kung hindi ma-crawl. Inaayos namin ang pundasyon.",
+      "desc": "I-optimize ang istruktura ng site para sa mga search engine",
+      "longDesc": "Hindi magra-rank ang pinakamahusay na content sa mundo kung hindi ito ma-crawl at ma-render ng Google. Nagsasagawa kami ng buong technical audit, inaayos ang mga pundasyon (Core Web Vitals, schema, internal linking, hreflang, JS rendering), at nag-iiwan ng runbook na masusundan ng mga developer ninyo.",
       "bullets": [
-        "Crawl, render, index audit",
-        "Core Web Vitals",
-        "Schema, hreflang, canonical",
-        "Log-file at internal links"
+        "Mga audit sa crawl, render, at index",
+        "Mga ayos sa Core Web Vitals at JS rendering",
+        "Estratehiya sa Schema.org, hreflang, at canonical",
+        "Pagsusuri ng log file at pag-aayos ng internal link"
       ],
-      "imageLabel": "Technical SEO audit"
+      "imageLabel": "Dashboard ng technical SEO audit"
     },
     {
       "id": "content-strategy",
-      "name": "Content Strategy",
+      "name": "Estratehiya sa content",
       "icon": "fas fa-pen-fancy",
-      "desc": "Content na raranggo at binabasa",
-      "longDesc": "12-buwang roadmap mula sa totoong search demand.",
+      "desc": "Content na nagra-rank at kinahihiligan ng mga user",
+      "longDesc": "Bumubuo kami ng 12-buwang content roadmap na nakabatay sa totoong search demand at sa positioning ninyo. Mga brief, outline, at review cycle na lumilikha ng mga artikulong talagang gustong basahin ng audience ninyo — at nakakakuha ng mga link.",
       "bullets": [
-        "Keyword at topic clustering",
-        "SERP-aware briefs",
-        "Editorial calendar",
-        "Refresh ng lumang content"
+        "Keyword research at pag-cluster ng mga paksa",
+        "Mga brief at outline na batay sa SERP",
+        "Editorial calendar at workflow ng review",
+        "Programa sa pag-refresh ng lumang content"
       ],
-      "imageLabel": "Editorial calendar"
+      "imageLabel": "Editorial na kalendaryo ng content"
     },
     {
       "id": "local-seo",
-      "name": "Local SEO",
+      "name": "Lokal na SEO",
       "icon": "fas fa-map-marker-alt",
-      "desc": "Dominahin ang local search sa area ninyo",
-      "longDesc": "Kung driving distance ang customers, local SEO ang pinakamataas na ROI.",
+      "desc": "Tumaas ang ranggo sa mga lokal na search result sa inyong lugar",
+      "longDesc": "Kung abot-biyahe lang ang mga customer ninyo, ang local SEO ang channel na may pinakamataas na ROI para sa inyo. Ino-optimize namin ang inyong Google Business Profile, gumagawa ng mga location page, namamahala ng mga review, at bumubuo ng mga citation at link na nagpapaakyat sa inyo sa map pack.",
       "bullets": [
-        "Google Business Profile",
-        "Location pages",
-        "Review workflows",
-        "Citations at local links"
+        "Optimization ng Google Business Profile",
+        "Mga location page at content kada lungsod",
+        "Mga workflow sa pagkuha at pagsagot ng review",
+        "Paglilinis ng citation at local link building"
       ],
-      "imageLabel": "Map pack at GBP"
+      "imageLabel": "Local map pack at Google Business Profile"
     },
     {
       "id": "analytics",
-      "name": "Analytics Setup",
+      "name": "Pag-set up ng analytics",
       "icon": "fas fa-chart-bar",
-      "desc": "Sukatin ang performance sa tamang data tools",
-      "longDesc": "Hindi mo mapapabuti ang hindi nasusukat. GA4, Search Console, at dashboard na sumasagot sa tanong ng leadership.",
+      "desc": "Subaybayan ang performance gamit ang tamang data tool",
+      "longDesc": "Hindi ninyo mapapabuti ang hindi ninyo nasusukat. Sine-set up namin ang GA4, Search Console, server-side tagging, at isang dashboard na sumasagot sa mga tanong na talagang itinatanong ng pamunuan ninyo — malinis na data, malinis na attribution, walang pakikipagbuno sa spreadsheet.",
       "bullets": [
-        "GA4, Search Console, GTM",
-        "Server-side tagging",
-        "Looker Studio dashboards",
-        "Conversion at revenue"
+        "GA4, Search Console, at Tag Manager",
+        "Server-side tagging at consent mode",
+        "Mga Looker Studio dashboard para sa bawat team",
+        "Attribution ng conversion at kita"
       ],
-      "imageLabel": "KPI dashboard"
+      "imageLabel": "KPI dashboard sa Looker Studio"
     }
   ],
   "process": [
     {
       "number": "01",
-      "title": "Audit",
-      "desc": "Technical, content, and backlink audit with a 1-page findings doc",
+      "title": "Pag-audit",
+      "desc": "Audit ng technical, content, at backlink na may isang pahinang dokumento ng mga natuklasan",
       "icon": "fas fa-magnifying-glass"
     },
     {
       "number": "02",
-      "title": "Strategy",
-      "desc": "12-month plan tied to commercial KPIs, not vanity metrics",
+      "title": "Estratehiya",
+      "desc": "12-buwang plano na nakatali sa mga komersyal na KPI, hindi sa mga pampagandang sukatan",
       "icon": "fas fa-bullseye"
     },
     {
       "number": "03",
-      "title": "Execute",
-      "desc": "Monthly sprints across technical, content, and links",
+      "title": "Pagsasagawa",
+      "desc": "Buwanang sprint sa technical, content, at mga link",
       "icon": "fas fa-rocket"
     },
     {
       "number": "04",
-      "title": "Report",
-      "desc": "Weekly check-ins, monthly business reviews, and a quarterly reset",
+      "title": "Pag-uulat",
+      "desc": "Lingguhang check-in, buwanang business review, at pag-reset kada quarter",
       "icon": "fas fa-chart-line"
     }
   ],
   "deliverables": [
     {
-      "title": "Technical audit & runbook",
-      "description": "A prioritized list of fixes with effort and impact — handed to your dev team in a clean ticket format.",
+      "title": "Technical audit at runbook",
+      "description": "Isang naka-prayoridad na listahan ng mga aayusin kasama ang effort at epekto — ipinapasa sa dev team ninyo sa malinis na format ng ticket.",
       "icon": "fas fa-clipboard-list"
     },
     {
-      "title": "Content roadmap",
-      "description": "12 months of briefs and outlines, refreshed every quarter based on what is ranking.",
+      "title": "Roadmap ng content",
+      "description": "12 buwan ng mga brief at outline, nire-refresh kada quarter batay sa kung ano ang nagra-rank.",
       "icon": "fas fa-calendar"
     },
     {
-      "title": "Dashboard & alerts",
-      "description": "A live Looker Studio dashboard plus Slack or email alerts on the metrics that matter.",
+      "title": "Dashboard at mga alerto",
+      "description": "Isang live na Looker Studio dashboard kasama ang mga alerto sa Slack o email para sa mga metric na mahalaga.",
       "icon": "fas fa-chart-line"
     },
     {
-      "title": "Monthly report",
-      "description": "Plain-English review of what changed, what we shipped, and what is next.",
+      "title": "Buwanang report",
+      "description": "Simpleng pagsusuri ng kung ano ang nagbago, kung ano ang nailabas namin, at kung ano ang susunod.",
       "icon": "fas fa-file-lines"
     }
   ],
@@ -149,20 +140,20 @@
   ],
   "faq": [
     {
-      "question": "How long until I see results?",
-      "answer": "Technical improvements usually show in 4–8 weeks. Content and links take 3–6 months to compound, which is why we think in quarters, not weeks. We will give you a realistic timeline after the audit."
+      "question": "Gaano katagal bago ako makakita ng resulta?",
+      "answer": "Karaniwang lumalabas ang mga technical na pagbuti sa loob ng 4–8 linggo. Inaabot ng 3–6 na buwan bago lumago ang epekto ng content at mga link, kaya kada quarter kami nag-iisip, hindi kada linggo. Bibigyan namin kayo ng makatotohanang timeline pagkatapos ng audit."
     },
     {
-      "question": "Do you guarantee rankings?",
-      "answer": "No reputable agency can, and we will not pretend to. We can guarantee the work, the process, and the reporting. Rankings and traffic are an output of doing the work well over time — and we will show you the inputs that drive them."
+      "question": "Ginagarantiya ba ninyo ang ranking?",
+      "answer": "Walang kagalang-galang na agency ang makakagawa niyan, at hindi kami magpapanggap. Ang kaya naming garantiyahan ay ang trabaho, ang proseso, at ang pag-uulat. Ang ranking at traffic ay bunga ng mahusay na paggawa ng trabaho sa paglipas ng panahon — at ipapakita namin sa inyo ang mga salik na nagtutulak dito."
     },
     {
-      "question": "Do you do link building?",
-      "answer": "Yes, but only digital PR and outreach that earns real links. We do not buy links or run PBNs. Our link work is the kind that gets your brand into the publications your customers already read."
+      "question": "Gumagawa ba kayo ng link building?",
+      "answer": "Oo, pero digital PR at outreach lang na nakakakuha ng totoong link. Hindi kami bumibili ng link o nagpapatakbo ng mga PBN. Ang link work namin ay iyong naglalagay sa brand ninyo sa mga publikasyong binabasa na ng mga customer ninyo."
     },
     {
-      "question": "Can you work with our existing agency or in-house team?",
-      "answer": "Frequently. We are happy to slot in as a specialist, run a parallel strategy track, or take over the whole channel. We will propose the right shape after a short conversation."
+      "question": "Kaya ba ninyong makipagtulungan sa kasalukuyan naming agency o in-house na team?",
+      "answer": "Madalas naming gawin iyan. Masaya kaming pumasok bilang espesyalista, magpatakbo ng kahanay na strategy track, o hawakan ang buong channel. Imumungkahi namin ang tamang ayos pagkatapos ng maikling usapan."
     }
   ]
 }

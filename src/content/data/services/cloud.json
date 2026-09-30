@@ -9,7 +9,7 @@
   "shortDescription": "Scalable infrastructure and deployment",
   "hero": {
     "title": "Ship faster, sleep better",
-    "subtitle": "We design cloud platforms that scale on the good days and hold up on the bad ones. AWS, GCP, Cloudflare, or your own datacenter — IaC from day one, observability that catches issues before customers do, and a release process your team actually trusts.",
+    "subtitle": "Scalable infrastructure, CI/CD, and monitoring so a release stops being an event everyone's nervous about.",
     "cta_primary": "Review my infra",
     "cta_primary_link": "/contact/",
     "cta_secondary": "See the stack",
@@ -23,7 +23,7 @@
   "subServices": [
     {
       "id": "cloud-migration",
-      "name": "Cloud Migration",
+      "name": "Cloud migration",
       "icon": "fas fa-cloud-upload-alt",
       "desc": "Move your systems to the cloud securely",
       "longDesc": "Lift, refactor, or rebuild — depending on what your workload actually needs. We migrate production systems with a zero-downtime cutover plan, a parallel run, and a clean rollback path if anything goes sideways.",
@@ -37,7 +37,7 @@
     },
     {
       "id": "cicd",
-      "name": "CI/CD Pipelines",
+      "name": "CI/CD pipelines",
       "icon": "fas fa-code-branch",
       "desc": "Automated testing and deployment",
       "longDesc": "We build pipelines that catch the bug, not the developer. Type-check, lint, test, scan, sign, and deploy on every commit — with progressive rollouts, automatic rollback on regressions, and a one-click revert when things go wrong.",
@@ -51,7 +51,7 @@
     },
     {
       "id": "server-management",
-      "name": "Server Management",
+      "name": "Server management",
       "icon": "fas fa-server",
       "desc": "Keep your infrastructure running smoothly",
       "longDesc": "Managed Kubernetes, serverless on AWS Lambda, or a humble VPS — we run the boring but critical parts so you can focus on the product. Patching, scaling, backups, and a 24/7 on-call rotation when something goes wrong.",
@@ -65,10 +65,10 @@
     },
     {
       "id": "security-audits",
-      "name": "Security Audits",
+      "name": "Security audits",
       "icon": "fas fa-shield-alt",
       "desc": "Identify and fix vulnerabilities",
-      "longDesc": "We do not sell scary reports — we sell fixed CVEs. Our security audits end with a prioritized remediation plan, a tracked set of pull requests, and a re-test. We work with SOC 2, ISO 27001, and the UAE PDPL.",
+      "longDesc": "We don't sell scary reports — we sell fixed CVEs. Our security audits end with a prioritized remediation plan, a tracked set of pull requests, and a re-test. We work with SOC 2, ISO 27001, and the UAE PDPL.",
       "bullets": [
         "Web, API, and cloud config audits",
         "Pen testing with a real report",
@@ -143,11 +143,11 @@
   "faq": [
     {
       "question": "Which cloud do you recommend?",
-      "answer": "It depends on your existing commitments, regulatory requirements, and team. We are agnostic across AWS, GCP, Azure, and Cloudflare. We will recommend the right one for your workload after a short architecture review."
+      "answer": "It depends on your existing commitments, regulatory requirements, and team. We're agnostic across AWS, GCP, Azure, and Cloudflare. We'll recommend the right one for your workload after a short architecture review."
     },
     {
       "question": "Can you take over an existing cloud setup?",
-      "answer": "Yes. We start with a paid audit — architecture, cost, security, and reliability scorecard — then propose a phased plan. We have rescued accounts with surprise bills, manual deploys, and a single point of failure or two."
+      "answer": "Yes. We start with a paid audit — architecture, cost, security, and reliability scorecard — then propose a phased plan. We've rescued accounts with surprise bills, manual deploys, and a single point of failure or two."
     },
     {
       "question": "Do you offer 24/7 on-call?",
@@ -155,7 +155,7 @@
     },
     {
       "question": "How do you handle data residency in the UAE?",
-      "answer": "All major providers now have UAE regions, and we design for residency from the first diagram. We have shipped UAE-only deployments for healthcare, education, and government clients and can walk you through the trade-offs."
+      "answer": "All major providers now have UAE regions, and we design for residency from the first diagram. We've shipped UAE-only deployments for healthcare, education, and government clients and can walk you through the trade-offs."
     }
   ]
 }

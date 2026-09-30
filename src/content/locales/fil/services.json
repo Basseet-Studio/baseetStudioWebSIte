@@ -1,7 +1,7 @@
 {
-  "title": "Aming Mga Serbisyo",
-  "subtitle": "Komprehensibong Digital Solutions",
-  "description": "Hindi lang websites ang binubuo namin. Gumagawa kami ng kumpletong digital ecosystems na akma sa iyong negosyo — tuklasin bawat serbisyo upang makita kung paano kami magtrabaho.",
+  "title": "Ang aming mga serbisyo",
+  "subtitle": "Kumpletong digital na solusyon",
+  "description": "Hindi lang website ang binubuo namin. Bumubuo kami ng buong digital ecosystem na akma sa pangangailangan ng negosyo ninyo — alamin ang bawat serbisyo para makita kung paano kami magtrabaho.",
   "categories": [
     {
       "id": "web",
@@ -9,9 +9,9 @@
       "icon": "fas fa-globe",
       "color": "#496BC1",
       "gradient": "linear-gradient(135deg, #496BC1 0%, #6B8AD9 100%)",
-      "title": "Web Development",
-      "shortDescription": "Modern, responsive websites at web applications — built sa stacks na talagang mina-maintain namin.",
-      "tagline": "Websites na kasing sipag mo"
+      "title": "Pagbuo ng website",
+      "shortDescription": "Moderno at responsive na mga website at web application na binuo sa mga stack na talagang mina-maintain namin — hindi mga template na itatapon lang.",
+      "tagline": "Mga website na kasing sipag ninyo"
     },
     {
       "id": "mobile",
@@ -19,9 +19,9 @@
       "icon": "fas fa-mobile-alt",
       "color": "#FBCD37",
       "gradient": "linear-gradient(135deg, #F59E0B 0%, #FBCD37 100%)",
-      "title": "Mobile Development",
-      "shortDescription": "Native at cross-platform apps na idinisenyo para sa maliit na screen muna.",
-      "tagline": "Apps na pinapanatili sa home screen"
+      "title": "Pagbuo ng mobile app",
+      "shortDescription": "Mga native at cross-platform app na unang idinisenyo para sa maliit na screen, saka para sa lahat ng iba pa.",
+      "tagline": "Mga app na hindi binubura sa home screen"
     },
     {
       "id": "internal",
@@ -29,9 +29,9 @@
       "icon": "fas fa-tools",
       "color": "#0891B2",
       "gradient": "linear-gradient(135deg, #0891B2 0%, #22D3EE 100%)",
-      "title": "Internal Tools",
-      "shortDescription": "Dashboards, CRMs, at back-office tools na binubuksan ng team mo nang walang reklamo.",
-      "tagline": "Operations software na talagang ginagamit"
+      "title": "Mga internal tool",
+      "shortDescription": "Mga dashboard, CRM, at back-office tool na binubuksan ng team ninyo tuwing Lunes ng umaga nang walang reklamo.",
+      "tagline": "Software sa operations na talagang ginagamit"
     },
     {
       "id": "seo",
@@ -39,9 +39,9 @@
       "icon": "fas fa-search",
       "color": "#16A34A",
       "gradient": "linear-gradient(135deg, #16A34A 0%, #4ADE80 100%)",
-      "title": "SEO at Marketing",
-      "shortDescription": "Technical SEO, content, at local search — sinusukat sa pipeline.",
-      "tagline": "Maging brand na talagang makikita ng searchers"
+      "title": "SEO at marketing",
+      "shortDescription": "Technical SEO, content, at local search — sinusukat sa pipeline, hindi sa mga ranking na pampaganda lang.",
+      "tagline": "Maging brand na talagang nahahanap ng mga naghahanap"
     },
     {
       "id": "design",
@@ -49,9 +49,9 @@
       "icon": "fas fa-paint-brush",
       "color": "#AF52DE",
       "gradient": "linear-gradient(135deg, #AF52DE 0%, #D8A0F5 100%)",
-      "title": "UI/UX Design",
-      "shortDescription": "Interfaces na hubog ng tunay na user sessions — maganda dahil malinaw.",
-      "tagline": "Design na karapat-dapat sa second tap"
+      "title": "Disenyong UI/UX",
+      "shortDescription": "Mga interface na hinubog ng totoong user session, hindi ng moodboard. Maganda itong tingnan dahil malinaw ito.",
+      "tagline": "Disenyong sulit balikan sa ikalawang tap"
     },
     {
       "id": "cloud",
@@ -60,62 +60,62 @@
       "color": "#0EA5E9",
       "gradient": "linear-gradient(135deg, #0369A1 0%, #38BDF8 100%)",
       "title": "Cloud at DevOps",
-      "shortDescription": "Scalable infrastructure, CI/CD, at monitoring.",
-      "tagline": "Mag-ship nang mabilis, matulog nang payapa"
+      "shortDescription": "Scalable na infrastructure, CI/CD, at monitoring para hindi na nakakakaba ang bawat release.",
+      "tagline": "Mas mabilis maglunsad, mas mahimbing matulog"
     }
   ],
   "process": {
-    "title": "Anim na hakbang, hindi checklist.",
-    "subtitle": "Sundan ang parehong paglalakbay na ginagawa namin sa bawat partner — mula sa unang usapan hanggang live product at pag-aalaga nito.",
+    "title": "Anim na hakbang na pag-akyat, hindi checklist.",
+    "subtitle": "Iisang paglalakbay, sa bawat partner, sa bawat pagkakataon — mula sa unang usapang “paano kung” hanggang sa sandaling live na ang produkto ninyo at may talagang nagbabantay rito.",
     "steps": [
       {
         "number": "01",
-        "title": "Discovery",
-        "lead": "Nagsisimula kami sa pakikinig.",
-        "desc": "Workshops, stakeholder interviews, at numbers — lumalabas na may shared understanding.",
+        "title": "Pagtuklas",
+        "lead": "Negosyo muna ang tinatanong namin, hindi ang software.",
+        "desc": "Ano ba talaga ang kailangan nitong gawin, para kanino ito, at ano ang mangyayari kung mali ang pagkakagawa namin? Kalahati ng halaga rito ay ang pagsasabi namin sa inyo kung ano ang hindi pa ninyo kailangan.",
         "icon": "fas fa-lightbulb"
       },
       {
         "number": "02",
-        "title": "Planning",
-        "lead": "Roadmap na kayang ipaglaban mo.",
-        "desc": "Scope, milestones, at technical spec sa plain English.",
+        "title": "Pagpaplano",
+        "lead": "Plano ang makukuha ninyo, hindi hula.",
+        "desc": "Sina-scope namin ang totoong build — naka-mapa na ang bawat yugto mula sa unang araw, pati ang mga bahaging hindi pa namin babanggitin sa inyo hangga't hindi pa napapanahon.",
         "icon": "fas fa-map"
       },
       {
         "number": "03",
-        "title": "Design",
-        "lead": "Pixels na may pananaw.",
-        "desc": "Mula low-fi flows hanggang polished interface system.",
+        "title": "Disenyo",
+        "lead": "Hinubog ayon sa kung paano ito talagang gagamitin.",
+        "desc": "Mga interface na hinubog ayon sa kung paano talaga gagamitin ang produkto, hindi ayon sa moodboard. Kung para ito sa taong nakatayo sa counter habang may naghihintay na customer, ibang-iba ang hitsura nito sa dashboard para sa taong nakaupo sa mesa — at doon namin ibinabatay ang disenyo.",
         "icon": "fas fa-pencil-alt"
       },
       {
         "number": "04",
-        "title": "Development",
-        "lead": "Code na puwede mong i-hand off.",
-        "desc": "Typed, tested, reviewed.",
+        "title": "Pagbuo",
+        "lead": "Code na puwede ninyong ipasa sa iba.",
+        "desc": "May type, may test, at na-review — isinusulat namin ito para ang susunod na engineer, sa inyo man o sa amin, ay magpapasalamat sa halip na isulat itong muli mula sa simula.",
         "icon": "fas fa-code"
       },
       {
         "number": "05",
-        "title": "Testing",
-        "lead": "Sirain bago ang users.",
-        "desc": "Automated suites, real-device passes, accessibility audits.",
+        "title": "Pagsubok",
+        "lead": "Sinisira namin ito bago pa magawa ng mga customer ninyo.",
+        "desc": "Mga edge case, mahinang koneksyon, mga field na mali ang pagkakapuno ng mga tao — sinusubok ayon sa totoong kilos ng mga tao, hindi ayon sa sinasabi ng spec.",
         "icon": "fas fa-vial"
       },
       {
         "number": "06",
-        "title": "Launch",
-        "lead": "Live — at inaalagaan.",
-        "desc": "Zero-downtime deploys, monitoring dashboards.",
+        "title": "Paglulunsad",
+        "lead": "Nandito pa rin kami sa linya.",
+        "desc": "Deploy platform, CI/CD, paglipat ng content, unti-unting rollout — anuman ang hindi pa matatag sa araw ng launch, kami mismo ang humaharap dito, hindi isang pila ng support ticket.",
         "icon": "fas fa-rocket"
       }
     ]
   },
   "cta": {
-    "title": "Hindi sigurado kung ano ang kailangan mo?",
-    "subtitle": "Mag-usap tayo",
-    "description": "Bawat negosyo ay natatangi. Tutulungan ka naming tukuyin ang tamang solusyon para sa iyong pangangailangan at budget.",
-    "button": "Kumuha ng libreng consultation"
+    "title": "Hindi sigurado kung ano ang kailangan ninyo?",
+    "subtitle": "Iyan mismo ang layunin ng unang tawag.",
+    "description": "Natatangi ang bawat negosyo. Tutulungan namin kayong tukuyin ang tamang solusyon para sa inyong partikular na pangangailangan at budget.",
+    "button": "Humiling ng libreng konsultasyon"
   }
 }

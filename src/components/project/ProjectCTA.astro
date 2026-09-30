@@ -1,6 +1,8 @@
 ---
 import Icon from '../icons/Icon.astro'
 import type { Platform, Lang } from '../../types'
+import { t } from '../../lib/i18n'
+import { localizedPath } from '../../lib/locale'
 
 interface Props {
   status: string
@@ -28,41 +30,43 @@ const platformIcons: Record<string, string> = {
 const platformLabels: Record<string, string> = {
   iOS: 'App Store',
   Android: 'Google Play',
-  Web: 'Open Web App',
+  Web: t('project_cta_platform_web', lang),
 }
 
 const visiblePlatforms = platforms.filter(p => realLink(p.name))
+const contactHref = localizedPath(lang, '/contact/')
+const [inquiryBefore, inquiryAfter = ''] = t('project_cta_confidential_contact', lang).split('{link}')
 ---
 
 <section id="cta" class="project-cta" data-animate="fade-up">
   <div class="glass project-cta__card">
     {status === 'Coming Soon' && (
       <>
-        <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:12px;color:var(--heading-text);">Coming Soon</h2>
-        <p style="opacity:0.7;margin-bottom:24px;">Be the first to know when we launch. Join the waitlist for early access.</p>
+        <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:12px;color:var(--heading-text);">{t('project_cta_coming_title', lang)}</h2>
+        <p style="opacity:0.7;margin-bottom:24px;">{t('project_cta_coming_text', lang)}</p>
         {/* P1 audit #14 — uses the global .cta-btn--primary class. The
             background colour still comes from the per-project
             --project-color token so the waitlist button matches the page. */}
-        <a href="/contact/" class="cta-btn--primary" style="background:var(--project-color, var(--color-primary));">
-          Join the Waitlist
+        <a href={contactHref} class="cta-btn--primary" style="background:var(--project-color, var(--color-primary));">
+          {t('project_cta_coming_button', lang)}
         </a>
       </>
     )}
 
     {status === 'Ready to Deliver' && (
       <>
-        <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:12px;color:var(--heading-text);">Ready to Deliver</h2>
-        <p style="opacity:0.7;margin-bottom:24px;">This product is ready for deployment. Contact us for early access or a personalized demo.</p>
-        <a href="/contact/" class="cta-btn--primary" style="background:var(--project-color, var(--color-primary));">
-          Request Early Access
+        <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:12px;color:var(--heading-text);">{t('project_cta_ready_title', lang)}</h2>
+        <p style="opacity:0.7;margin-bottom:24px;">{t('project_cta_ready_text', lang)}</p>
+        <a href={contactHref} class="cta-btn--primary" style="background:var(--project-color, var(--color-primary));">
+          {t('project_cta_ready_button', lang)}
         </a>
       </>
     )}
 
     {status === 'Live' && visiblePlatforms.length > 0 && (
       <>
-        <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:12px;color:var(--heading-text);">{/* TODO: localise this later */ 'Get Started Today'}</h2>
-        <p style="opacity:0.7;margin-bottom:24px;">{/* TODO: localise this later */ 'Available now. Download or access the platform below.'}</p>
+        <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:12px;color:var(--heading-text);">{t('project_cta_live_title', lang)}</h2>
+        <p style="opacity:0.7;margin-bottom:24px;">{t('project_cta_live_text', lang)}</p>
         <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
           {visiblePlatforms.map(p => {
             const href = realLink(p.name)
@@ -84,16 +88,16 @@ const visiblePlatforms = platforms.filter(p => realLink(p.name))
 
     {status === 'Confidential' && (
       <>
-        <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:12px;color:var(--heading-text);">Confidential Project</h2>
-        <p style="opacity:0.7;margin-bottom:24px;">This project is confidential. Details are not publicly available.</p>
-        <p style="font-size:0.85rem;opacity:0.5;">For inquiries, please <a href="/contact/" style="color:var(--project-color, var(--color-primary));">contact us</a>.</p>
+        <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:12px;color:var(--heading-text);">{t('project_cta_confidential_title', lang)}</h2>
+        <p style="opacity:0.7;margin-bottom:24px;">{t('project_cta_confidential_text', lang)}</p>
+        <p style="font-size:0.85rem;opacity:0.5;">{inquiryBefore}<a href={contactHref} style="color:var(--project-color, var(--color-primary));">{t('project_cta_confidential_link', lang)}</a>{inquiryAfter}</p>
       </>
     )}
 
     {status === 'Completed' && (
       <>
-        <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:12px;color:var(--heading-text);">Project Completed</h2>
-        <p style="opacity:0.7;margin-bottom:24px;">This project has been successfully delivered. Check out our other work or get in touch for your next project.</p>
+        <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:12px;color:var(--heading-text);">{t('project_cta_completed_title', lang)}</h2>
+        <p style="opacity:0.7;margin-bottom:24px;">{t('project_cta_completed_text', lang)}</p>
       </>
     )}
   </div>

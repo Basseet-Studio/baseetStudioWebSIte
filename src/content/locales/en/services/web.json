@@ -1,7 +1,7 @@
 {
   "id": "web",
   "slug": "web",
-  "title": "Web Development",
+  "title": "Web development",
   "tagline": "Websites that work as hard as you do",
   "color": "#496BC1",
   "gradient": "linear-gradient(135deg, #496BC1 0%, #6B8AD9 100%)",
@@ -9,7 +9,7 @@
   "shortDescription": "Modern, responsive websites and web applications",
   "hero": {
     "title": "Websites that work as hard as you do",
-    "subtitle": "Websites that work as hard as you do. Modern, responsive sites and web applications built on stacks we actually maintain ourselves — not a theme we installed and won't touch again.",
+    "subtitle": "Modern, responsive sites and web applications built on stacks we actually maintain ourselves — not a theme we installed and won't touch again.",
     "cta_primary": "Start your project",
     "cta_primary_link": "/contact/",
     "cta_secondary": "See the process",
@@ -23,7 +23,7 @@
   "subServices": [
     {
       "id": "corporate-websites",
-      "name": "Corporate Websites",
+      "name": "Corporate websites",
       "icon": "fas fa-building",
       "desc": "Professional websites that represent your brand",
       "longDesc": "Your corporate site is often the first impression a prospect has of your business. We design and build fast, on-brand marketing sites that tell your story, answer the right questions, and make the next step obvious — on every device.",
@@ -37,7 +37,7 @@
     },
     {
       "id": "ecommerce",
-      "name": "E-commerce Platforms",
+      "name": "E-commerce platforms",
       "icon": "fas fa-shopping-cart",
       "desc": "Online stores with secure payment integration",
       "longDesc": "From boutique Shopify themes to headless commerce on Shopify Hydrogen, Medusa, or custom Stripe, we build stores that turn browsers into buyers. Performance, checkout flow, and merchandising are tuned in parallel — not as an afterthought.",
@@ -51,7 +51,7 @@
     },
     {
       "id": "web-apps",
-      "name": "Web Applications",
+      "name": "Web applications",
       "icon": "fas fa-window-restore",
       "desc": "Custom web apps for complex business needs",
       "longDesc": "When spreadsheets and SaaS tools stop scaling, we build the web app that fits your operation exactly. Internal tools, customer portals, dashboards — TypeScript end-to-end, real auth, real databases, and code your team can maintain.",
@@ -65,10 +65,10 @@
     },
     {
       "id": "landing-pages",
-      "name": "Landing Pages",
+      "name": "Landing pages",
       "icon": "fas fa-bullseye",
       "desc": "High-converting pages for marketing campaigns",
-      "longDesc": "One page, one goal, zero distractions. We design and ship campaign landing pages that load instantly, copy that matches the ad, and analytics that tell you what is actually working — A/B tested, instrumented, and ready to scale.",
+      "longDesc": "One page, one goal, zero distractions. We design and ship campaign landing pages that load instantly, copy that matches the ad, and analytics that tell you what's actually working — A/B tested, instrumented, and ready to scale.",
       "bullets": [
         "A/B testable variants out of the box",
         "Server-rendered for sub-second TTFB",
@@ -105,7 +105,7 @@
     },
     {
       "number": "05",
-      "title": "QA & Launch",
+      "title": "QA & launch",
       "desc": "Cross-browser, accessibility, performance, and a clean handoff",
       "icon": "fas fa-rocket"
     }
@@ -122,7 +122,7 @@
       "icon": "fas fa-pen"
     },
     {
-      "title": "Analytics & search console",
+      "title": "Analytics & Search Console",
       "description": "GA4, Search Console, and any paid pixels wired up and verified end-to-end.",
       "icon": "fas fa-chart-line"
     },
@@ -149,7 +149,7 @@
   "faq": [
     {
       "question": "How long does a typical marketing website take?",
-      "answer": "Most marketing sites ship in 4–6 weeks from kickoff to launch. Larger sites with custom CMS, multilingual, or heavy integrations usually run 8–12 weeks. We will give you a fixed plan with milestones after the discovery workshop."
+      "answer": "Most marketing sites ship in 4–6 weeks from kickoff to launch. Larger sites with custom CMS, multilingual, or heavy integrations usually run 8–12 weeks. We'll give you a fixed plan with milestones after the discovery workshop."
     },
     {
       "question": "Will I be able to update the site myself?",
@@ -157,7 +157,7 @@
     },
     {
       "question": "Do you only build with Astro and Next.js?",
-      "answer": "We specialize in modern TypeScript stacks — Astro, Next.js, SvelteKit, and React + Vite. If you have an existing site in a different stack that needs new features, we are happy to extend it instead of forcing a rewrite."
+      "answer": "We specialize in modern TypeScript stacks — Astro, Next.js, SvelteKit, and React + Vite. If you have an existing site in a different stack that needs new features, we're happy to extend it instead of forcing a rewrite."
     },
     {
       "question": "Can you take over an existing project?",

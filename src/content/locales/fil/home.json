@@ -1,7 +1,7 @@
 {
   "hero": {
     "title": "Simple lang ang **pinakamahusay**",
-    "text": "Gumagawa kami ng mga bagay na tumutugon sa iyong pangangailangan—walang palabok—ang pinakasimpleng solusyon sa problema.",
+    "text": "Binubuo namin ang talagang kailangan ninyo — walang palabok, walang sobra, walang anim na buwang “discovery phase” bago may mailunsad. Ang pinakasimpleng solusyon lang sa problemang nasa harap ninyo.",
     "image": "/images/home/hero/bill-sitting.png",
     "buttons": [
       {
@@ -10,7 +10,7 @@
         "type": "primary"
       },
       {
-        "text": "Tingnan ang aming trabaho",
+        "text": "Tingnan ang aming mga gawa",
         "link": "#featured-projects",
         "type": "secondary"
       }
@@ -19,26 +19,26 @@
       {
         "icon": "fas fa-laptop-code",
         "color": "#B45309",
-        "title": "Mga Web Platform",
-        "text": "Production-grade na websites at dashboards na ginawa sa modernong frameworks"
+        "title": "Mga web platform",
+        "text": "Mga website at dashboard na pang-production, binuo gamit ang mga modernong framework"
       },
       {
         "icon": "fas fa-mobile-alt",
         "color": "#F59E0B",
-        "title": "Mga Mobile App",
-        "text": "iOS at Android apps na native ang feel at mabilis mag-load"
+        "title": "Mga mobile app",
+        "text": "Mga iOS at Android app na native ang pakiramdam at mabilis mag-load"
       },
       {
         "icon": "fas fa-paint-brush",
         "color": "#EA580C",
-        "title": "UI / UX na Disenyo",
-        "text": "Mga interface na ginagawang long-term user ang first-time visitor"
+        "title": "Disenyong UI / UX",
+        "text": "Mga interface na ginagawang pangmatagalang user ang mga unang beses na bisita"
       },
       {
         "icon": "fas fa-rocket",
         "color": "#D97706",
-        "title": "Go-to-Market na Plano",
-        "text": "Mula launch plan hanggang growth experiments, simula hanggang dulo"
+        "title": "Paglulunsad sa merkado",
+        "text": "Mula sa plano ng paglulunsad hanggang sa mga eksperimento sa paglago, mula umpisa hanggang dulo"
       }
     ]
   },
@@ -46,37 +46,37 @@
     {
       "icon": "fas fa-tools",
       "color": "#B45309",
-      "pretitle": "Build",
+      "pretitle": "Bumuo",
       "pretext": "Engineering",
-      "title": "**Full-stack** product development",
-      "text": "Web, mobile, backend, infrastructure. Kami ang may-ari ng buong pipeline para mas mabilis kang mag-ship at makatulog nang payapa — malinis na architecture, automated tests, at observability mula day one.",
+      "title": "**Full-stack** na pagbuo ng produkto",
+      "text": "Web, mobile, backend, infrastructure. Hawak namin ang buong pipeline para mas mabilis kayong makapaglunsad at mas mahimbing ang tulog ninyo — malinis na architecture, automated tests, at observability mula sa unang araw.",
       "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=600&fit=crop"
     },
     {
       "icon": "fas fa-mobile-screen",
       "color": "#F59E0B",
-      "pretitle": "Ship",
-      "pretext": "Product launches",
-      "title": "**Mobile apps** na karapat-dapat sa home screen",
-      "text": "Native iOS, native Android, at React Native — piliin ang tamang tool, i-ship sa parehong stores, at panatilihin ang release train gamit ang CI/CD at crash monitoring.",
+      "pretitle": "Ilunsad",
+      "pretext": "Paglulunsad ng produkto",
+      "title": "**Mga mobile app** na karapat-dapat sa puwesto nila",
+      "text": "Native iOS, native Android, at React Native — pinipili namin ang tamang tool, inilulunsad sa parehong store, at pinananatiling tuloy-tuloy ang mga release gamit ang CI/CD at crash monitoring.",
       "image": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=600&fit=crop"
     },
     {
       "icon": "fas fa-compass",
       "color": "#EA580C",
-      "pretitle": "Scale",
-      "pretext": "Strategy at growth",
-      "title": "**Product strategy** at ongoing partnership",
-      "text": "Roadmaps, user research, pricing experiments, analytics setup. Hindi kami bumubuo at umaalis — tinutulungan ka naming sukatin ang mahalaga at mag-iterate.",
+      "pretitle": "Palakihin",
+      "pretext": "Estratehiya at paglago",
+      "title": "**Product strategy** at tuloy-tuloy na partnership",
+      "text": "Roadmap, user research, mga eksperimento sa presyo, at pag-set up ng analytics. Hindi lang kami bumubuo at umaalis — tinutulungan namin kayong sukatin ang mahalaga at paulit-ulit itong pagbutihin.",
       "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop"
     },
     {
       "icon": "fas fa-paint-brush",
       "color": "#FBCD37",
-      "pretitle": "User-Centered Design",
-      "pretext": "Design First",
-      "title": "**UI/UX** Design",
-      "text": "Gumagawa kami ng magaganda at intuitive na interface na gustong-gusto ng users. Mula wireframes hanggang pixel-perfect visual design, natural at kasiya-siya ang bawat interaction sa lahat ng device.",
+      "pretitle": "Disenyong nakasentro sa user",
+      "pretext": "Disenyo muna",
+      "title": "Disenyong **UI/UX**",
+      "text": "Nagdidisenyo kami ng malinaw at madaling gamiting interface na binabalik-balikan ng mga tao. Mula sa wireframe at prototype hanggang sa tumpak at pare-parehong visual design, sinisiguro naming natural at inaasahan ang bawat interaction sa lahat ng device.",
       "image": "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop"
     }
   ],
@@ -85,8 +85,8 @@
       "name": "Numu",
       "slug": "numu",
       "type": "branded",
-      "tagline": "Build better habits, one day at a time",
-      "description": "A beautiful habit-tracking app for iOS and Android. Streaks, check-ins, analytics, and smart reminders that keep you consistent.",
+      "tagline": "Mas mabubuting gawi, paisa-isang araw",
+      "description": "Isang malinis at nakatutok na habit-tracking app para sa iOS at Android. Streaks, check-in, analytics, at matatalinong paalala na tumutulong sa inyong manatiling consistent.",
       "iconClass": "fas fa-chart-line",
       "platforms": [
         {
@@ -99,10 +99,10 @@
         }
       ],
       "features": [
-        "Habit streaks",
-        "Daily check-ins",
-        "Progress analytics",
-        "Smart reminders"
+        "Mga habit streak",
+        "Araw-araw na check-in",
+        "Analytics ng progreso",
+        "Matatalinong paalala"
       ],
       "color": "#9333EA",
       "gradient": "linear-gradient(135deg, #9333EA 0%, #C084FC 100%)",
@@ -112,8 +112,8 @@
       "name": "Matrix",
       "slug": "matrix",
       "type": "branded",
-      "tagline": "Intelligent data, on tap",
-      "description": "A unified data intelligence platform offering real-time analytics, automated workflows, and predictive insights for modern teams.",
+      "tagline": "Matalinong data, abot-kamay",
+      "description": "Isang pinag-isang data intelligence platform na may real-time analytics, automated workflows, at predictive insights para sa mga modernong team.",
       "iconClass": "fas fa-database",
       "platforms": [
         {
@@ -122,10 +122,10 @@
         }
       ],
       "features": [
-        "Real-time analytics",
-        "Automated ETL pipelines",
-        "Custom dashboards",
-        "Predictive insights"
+        "Real-time na analytics",
+        "Automated na ETL pipeline",
+        "Custom na dashboard",
+        "Predictive na insight"
       ],
       "color": "#0891B2",
       "gradient": "linear-gradient(135deg, #0891B2 0%, #22D3EE 100%)",
@@ -135,8 +135,8 @@
       "name": "Invexo",
       "slug": "invexo",
       "type": "branded",
-      "tagline": "Inventory management for small shops",
-      "description": "Multi-shop inventory, POS, flexiload commissions, and daily sales — built for small retail businesses.",
+      "tagline": "Pamamahala ng inventory para sa maliliit na tindahan",
+      "description": "Inventory para sa maraming tindahan, POS, komisyon sa flexiload, at araw-araw na benta — binuo para sa maliliit na retail na negosyo.",
       "iconClass": "fas fa-cash-register",
       "platforms": [
         {
@@ -145,10 +145,10 @@
         }
       ],
       "features": [
-        "Multi-shop dashboard",
-        "Inventory & POS",
-        "Flexiload & MFS",
-        "Sales trends"
+        "Dashboard para sa maraming tindahan",
+        "Inventory at POS",
+        "Flexiload at MFS",
+        "Takbo ng benta"
       ],
       "color": "#10B981",
       "gradient": "linear-gradient(135deg, #059669 0%, #34D399 100%)",
@@ -158,8 +158,8 @@
       "name": "Ordelo",
       "slug": "ordelo",
       "type": "branded",
-      "tagline": "Iyong business. Online. Ordered. Owned.",
-      "description": "Branded ordering at commerce — menus, checkout, kitchen alerts, customer notifications, at growth tools. Walang paper trail. Walang guessing.",
+      "tagline": "Ang negosyo ninyo. Online. Nasa ayos. Sa inyo.",
+      "description": "Branded na ordering at commerce — menu, checkout, alerto sa kusina, notification sa customer, at mga tool para lumago. Walang papeles. Walang hula-hula.",
       "iconClass": "fas fa-utensils",
       "platforms": [
         {
@@ -168,10 +168,10 @@
         }
       ],
       "features": [
-        "3D hero with R3F",
-        "Real-time order tracking",
-        "Live social proof",
-        "Stripe payments"
+        "3D hero gamit ang R3F",
+        "Real-time na pag-track ng order",
+        "Live na social proof",
+        "Bayad gamit ang Stripe"
       ],
       "color": "#F97316",
       "gradient": "linear-gradient(135deg, #F97316 0%, #FB923C 100%)",
@@ -181,8 +181,8 @@
       "name": "MoneyBox",
       "slug": "moneybox",
       "type": "branded",
-      "tagline": "Your money, organised.",
-      "description": "A personal finance tracker with budgets, goals, and clean reporting.",
+      "tagline": "Ang pera ninyo, nasa ayos.",
+      "description": "Isang personal finance tracker na may budget, mga layunin, at malinaw na reporting.",
       "iconClass": "fas fa-piggy-bank",
       "platforms": [
         {
@@ -202,8 +202,8 @@
       "name": "Geeb",
       "slug": "geeb",
       "type": "branded",
-      "tagline": "Trusted home-service pros, on demand",
-      "description": "A B2C platform connecting customers with verified vendors and service pros for plumbing, electrical, handyman, cleaning, and more.",
+      "tagline": "Mapagkakatiwalaang pro sa serbisyong pambahay, kapag kailangan ninyo",
+      "description": "Isang B2C platform na nag-uugnay sa mga customer sa mga beripikadong vendor at service pro para sa pagtutubero, elektrikal, handyman, paglilinis, at iba pa.",
       "iconClass": "fas fa-wrench",
       "platforms": [
         {
@@ -220,10 +220,10 @@
         }
       ],
       "features": [
-        "Verified pros",
-        "Instant booking",
-        "Real-time tracking",
-        "In-app payments"
+        "Mga beripikadong pro",
+        "Agarang booking",
+        "Real-time na tracking",
+        "Bayad sa loob ng app"
       ],
       "color": "#B45309",
       "gradient": "linear-gradient(135deg, #B45309 0%, #F59E0B 100%)",
@@ -233,8 +233,8 @@
       "name": "PhotoRestore AI",
       "slug": "photorestore-ai",
       "type": "branded",
-      "tagline": "Restore old photos with AI",
-      "description": "Bring faded, damaged, and black-and-white photos back to life with on-device AI restoration, colorization, and enhancement.",
+      "tagline": "Ibalik ang mga lumang larawan gamit ang AI",
+      "description": "Buhaying muli ang mga kupas, sira, at black-and-white na larawan gamit ang AI na tumatakbo mismo sa device — restoration, pagkukulay, at pagpapalinaw.",
       "iconClass": "fas fa-wand-magic-sparkles",
       "platforms": [
         {
@@ -243,10 +243,10 @@
         }
       ],
       "features": [
-        "AI restoration",
-        "Auto colorization",
-        "Scratch & damage repair",
-        "Before / after slider"
+        "Restoration gamit ang AI",
+        "Awtomatikong pagkukulay",
+        "Pag-aayos ng gasgas at sira",
+        "Slider ng bago at pagkatapos"
       ],
       "color": "#6366F1",
       "gradient": "linear-gradient(135deg, #6366F1 0%, #818CF8 100%)",
@@ -256,8 +256,8 @@
       "name": "Medev",
       "slug": "medev",
       "type": "branded",
-      "tagline": "Healthcare. Simplified.",
-      "description": "A clinic + patient platform that unifies appointments, records, and follow-ups into a single, doctor-friendly workflow.",
+      "tagline": "Kalusugan. Pinasimple.",
+      "description": "Isang platform para sa clinic at pasyente na pinag-iisa ang mga appointment, record, at follow-up sa iisang workflow na madali para sa mga doktor.",
       "iconClass": "fas fa-hospital",
       "platforms": [
         {
@@ -270,10 +270,10 @@
         }
       ],
       "features": [
-        "Patient records",
-        "Smart scheduling",
-        "e-Prescriptions",
-        "Doctor dashboard"
+        "Mga record ng pasyente",
+        "Matalinong scheduling",
+        "E-reseta",
+        "Dashboard ng doktor"
       ],
       "color": "#0A6E74",
       "gradient": "linear-gradient(135deg, #0A6E74 0%, #14B8A6 100%)",
@@ -283,8 +283,8 @@
   "team": [
     {
       "name": "Mohamed Abdallah",
-      "role": "Founder / Product Lead / PM / Senior Engineer",
-      "bio": "Founder and product lead combining deep engineering expertise with product strategy to shape high-quality software products.",
+      "role": "Tagapagtatag / Product lead / PM / Senior engineer",
+      "bio": "Tagapagtatag at product lead na pinagsasama ang malalim na kaalaman sa engineering at product strategy para hubugin ang mga de-kalidad na software product.",
       "image": "/images/home/team/mohamed-abdallah.jpg",
       "social": {
         "github": "https://github.com/mohamed-a-elobaid",
@@ -295,8 +295,8 @@
     },
     {
       "name": "Asadur Rahman",
-      "role": "Tech Lead / System Architect",
-      "bio": "Tech lead and systems architect focused on designing scalable distributed systems and robust cloud infrastructure.",
+      "role": "Tech lead / Arkitekto ng sistema",
+      "bio": "Tech lead at systems architect na nakatutok sa pagdidisenyo ng mga scalable na distributed system at matibay na cloud infrastructure.",
       "image": "/images/home/team/asadur-rahman.png",
       "social": {
         "github": "https://github.com/ViX3L",
@@ -307,8 +307,8 @@
     },
     {
       "name": "Ariyan Rehman",
-      "role": "Product Experience & Docs Engineer",
-      "bio": "Ensures product experience and documentation excellence by focusing on UX, developer docs, and content-driven workflows.",
+      "role": "Engineer ng product experience at dokumentasyon",
+      "bio": "Tinitiyak ang husay ng product experience at dokumentasyon sa pamamagitan ng pagtutok sa UX, developer docs, at mga workflow na nakabatay sa content.",
       "image": "/images/home/team/ariyan-rehman.jpg",
       "social": {
         "github": "https://github.com/ariyangd",
@@ -319,8 +319,8 @@
     },
     {
       "name": "Dibakar Sutra Dhar",
-      "role": "Backend Engineer & Data Engineer",
-      "bio": "Backend engineer specializing in distributed systems and scalable server solutions for web & cloud applications.",
+      "role": "Backend engineer at data engineer",
+      "bio": "Backend engineer na espesyalista sa mga distributed system at scalable na server solution para sa mga web at cloud application.",
       "image": "/images/home/team/dibakar-sutradhar.JPG",
       "social": {
         "github": "https://github.com/dibakarsutradhar",
@@ -332,7 +332,7 @@
     {
       "name": "Burhan Ayub",
       "role": "CFO",
-      "bio": "Chief Financial Officer.",
+      "bio": "Punong opisyal sa pananalapi ng studio.",
       "image": "/images/home/team/burhan-ayub-placeholder.svg",
       "iconPattern": "money",
       "social": {}
@@ -351,12 +351,12 @@
   "highlights": [
     {
       "metric": "12+",
-      "label": "mga produktong na-ship o nasa market",
+      "label": "Mga produktong nailunsad o nasa merkado",
       "icon": "fas fa-rocket"
     },
     {
       "metric": "5",
-      "label": "Aktibong flagship platforms",
+      "label": "Mga aktibong flagship platform",
       "icon": "fas fa-layer-group"
     },
     {
@@ -366,7 +366,7 @@
     },
     {
       "metric": "100%",
-      "label": "In-house engineering team",
+      "label": "In-house na engineering team",
       "icon": "fas fa-users"
     }
   ],

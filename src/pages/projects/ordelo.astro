@@ -1,4 +1,5 @@
 ---
+import { statusLabel } from '../../lib/i18n'
 import '../../styles/projects/ordelo.css'
 import ProjectLayout from '../../layouts/Project.astro'
 import ProjectGallery from '../../components/project/ProjectGallery.astro'
@@ -108,7 +109,7 @@ const packages = [
       <div style="margin-bottom:28px;" data-animate="fade-up">
         <span style={`display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);`}>
           <Icon name="check-circle" size={16} color={project.color} />
-          {project.status}
+          {statusLabel(project.status, lang)}
         </span>
       </div>
 

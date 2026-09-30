@@ -51,6 +51,20 @@ uniform float uLowClumpScale;
 uniform float uHighClumpScale;
 uniform float uApart;
 
+uniform sampler2D tSkyALo;
+uniform sampler2D tSkyAHi;
+uniform sampler2D tSkyBLo;
+uniform sampler2D tSkyBHi;
+uniform float uSkyFullMixA;
+uniform float uSkyFullMixB;
+uniform float uSkyBlend;
+uniform float uSkyYaw;
+uniform float uSkyMix;
+uniform vec3 uSkyHorizon;
+uniform vec3 uSkyZenith;
+uniform float uSkyFloor;
+uniform float uFocal;
+
 float hash(float p) {
   p = fract(p * 0.011);
   p *= (p + 7.5);
@@ -162,16 +176,18 @@ float cloudDensity(in vec3 p, in int octaves, in float t) {
 }
 
 vec4 integrate(in vec4 sum, in float dif, in float den, in vec3 bgcol, in float t, in float highBand) {
+  float skyMix = clamp(uSkyMix, 0.0, 1.0);
   vec3 cloudShadowColor = uCloudColor * 0.5;
   vec3 baseSunlight = mix(vec3(1.0, 0.95, 0.85), vec3(1.0, 0.78, 0.55), mix(0.55, 0.28, highBand));
   vec3 sunlightColor = baseSunlight * uLightColor * uLightIntensity;
-  vec3 lin = uCloudColor * 1.4 + sunlightColor * dif;
+  vec3 cloudAmbient = mix(uCloudColor, uSkyZenith, 0.35 * skyMix);
+  vec3 lin = cloudAmbient * 1.4 + sunlightColor * dif;
   vec4 col = vec4(mix(vec3(1.0, 0.95, 0.8), cloudShadowColor, den), den);
   col.rgb *= lin;
   float fogAmount = 1.0 - exp(-mix(0.0006, 0.02, uFogDensity) * t * t);
   fogAmount = mix(fogAmount, 1.0, 0.32 * smoothstep(8.0, 42.0, t));
   col.rgb = mix(col.rgb, bgcol, fogAmount);
-  col.rgb = mix(col.rgb, uSkyColor, highBand * 0.4);
+  col.rgb = mix(col.rgb, bgcol, highBand * 0.4 * skyMix);
   col.a *= 0.4;
   col.rgb *= col.a;
   return sum + col * (1.0 - sum.a);
@@ -269,18 +285,57 @@ mat3 setCamera(in vec3 ro, in vec3 ta, in float cr) {
   return mat3(cu, cv, cw);
 }
 
+vec2 equirectUv(in vec3 d) {
+  return vec2(
+    atan(d.z, d.x) * 0.15915494309 + 0.5,
+    asin(clamp(d.y, -1.0, 1.0)) * 0.31830988618 + 0.5
+  );
+}
+
+vec3 sampleEquirect(in sampler2D tex, in vec3 rd, in float yaw) {
+  float cy = cos(yaw);
+  float sy = sin(yaw);
+  vec3 d = vec3(rd.x * cy - rd.z * sy, rd.y, rd.x * sy + rd.z * cy);
+  float floorAmount = clamp(uSkyFloor, 0.0, 1.0);
+  if (d.y < 0.0 && floorAmount > 0.0) {
+    // Below the horizon the puresky photos are a mirrored reflection of the
+    // sky. Replace it with an atmospheric fade: the photo's own horizon row
+    // right at the line, sinking into a darker cloud-sea so the volumetric
+    // cloud deck reads against it and the panorama wraps the whole sphere.
+    vec2 uv = equirectUv(d);
+    vec3 horizonCol = texture2D(tex, vec2(uv.x, 0.492)).rgb;
+    vec3 sea = mix(uSkyHorizon, uCloudColor, 0.35) * 0.55;
+    float t = smoothstep(0.0, 0.06, -d.y) * floorAmount;
+    return mix(horizonCol, sea, t);
+  }
+  return texture2D(tex, equirectUv(d)).rgb;
+}
+
+vec3 sampleSkySlot(in sampler2D lo, in sampler2D hi, in float fullMix, in vec3 rd, in float yaw) {
+  vec3 a = sampleEquirect(lo, rd, yaw);
+  vec3 b = sampleEquirect(hi, rd, yaw);
+  return mix(a, b, clamp(fullMix, 0.0, 1.0));
+}
+
 vec4 renderSkyClouds(in vec3 ro, in vec3 rd, in float sceneViewZ, in bool useSceneDepth) {
   float sun = clamp(dot(uSunDir, rd), 0.0, 1.0);
   vec3 sunColor = vec3(1.0, 0.6, 0.2) * uLightColor * uLightIntensity;
   vec3 sunGlareColor = vec3(1.0, 0.4, 0.2) * uLightColor * uLightIntensity;
 
-  vec3 col = uSkyColor - rd.y * 0.2 * vec3(1.0, 0.5, 1.0) + 0.15 * 0.5;
-  col += 0.2 * sunColor * pow(sun, 8.0);
+  vec3 procedural = uSkyColor - rd.y * 0.2 * vec3(1.0, 0.5, 1.0) + 0.15 * 0.5;
+  procedural += 0.2 * sunColor * pow(sun, 8.0);
+
+  float skyMix = clamp(uSkyMix, 0.0, 1.0);
+  vec3 texA = sampleSkySlot(tSkyALo, tSkyAHi, uSkyFullMixA, rd, uSkyYaw);
+  vec3 texB = sampleSkySlot(tSkyBLo, tSkyBHi, uSkyFullMixB, rd, uSkyYaw);
+  vec3 texCol = mix(texA, texB, clamp(uSkyBlend, 0.0, 1.0));
+
+  vec3 col = mix(procedural, texCol, skyMix);
 
   vec4 res = raymarch(ro, rd, col, sceneViewZ, useSceneDepth);
   col = col * (1.0 - res.w) + res.xyz;
 
-  col += 0.2 * sunGlareColor * pow(sun, 3.0);
+  col += 0.2 * sunGlareColor * pow(sun, 3.0) * mix(1.0, 0.55, skyMix);
 
   return vec4(col, clamp(res.w, 0.0, 1.0));
 }
@@ -290,9 +345,17 @@ void main() {
   vec2 p = (-iResolution.xy + 2.0 * fragCoord) / iResolution.y;
 
   vec3 ro = uCameraPos * uWorldScale;
-  vec3 ta = uCameraTarget * uWorldScale + vec3(0.0, -1.0, 0.0);
+  // The background camera tracks the main camera (position, yaw, pitch) so
+  // the panorama rotates with the view like a real skydome. A small constant
+  // upward bias keeps actual sky (not just the photo's near-horizon haze) in
+  // frame, since the site cameras all look slightly down at the content.
+  vec3 ta = uCameraTarget * uWorldScale + vec3(0.0, 2.5, 0.0);
   mat3 ca = setCamera(ro, ta, 0.0);
-  vec3 rd = ca * normalize(vec3(p.xy, 1.5));
+  // uFocal mirrors the main camera's FOV so the background panorama is
+  // sampled through the same lens the scene is rendered with — otherwise
+  // the sky reads as a flat backdrop pasted behind a narrower view.
+  float focal = max(0.05, uFocal);
+  vec3 rd = ca * normalize(vec3(p.xy, focal));
 
   bool useSceneDepth = uHasSceneDepth > 0.5;
   float sceneViewZ = useSceneDepth ? sceneViewZAt(vUv) : -uCameraFar;

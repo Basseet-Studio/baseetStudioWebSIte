@@ -80,6 +80,24 @@ const { lang: _lang = 'en' } = Astro.props
       </details>
 
       <details class="cp__section" open>
+        <summary>Skydome</summary>
+        <div class="cp__grid">
+          <label class="cp__check"><input type="checkbox" data-cp="skyEnabled" checked /> Texture sky</label>
+          <label>Hour <input type="range" data-cp="skyHour" min="0" max="24" step="0.05" value="14" /><span data-cp-val="skyHour">14</span></label>
+          <label>Yaw <input type="range" data-cp="skyYaw" min="0" max="360" step="1" value="0" /><span data-cp-val="skyYaw">0</span></label>
+          <label>Mix <input type="range" data-cp="skyMix" min="0" max="1" step="0.01" value="1" /><span data-cp-val="skyMix">1</span></label>
+          <label>Floor <input type="range" data-cp="skyFloor" min="0" max="1" step="0.01" value="1" /><span data-cp-val="skyFloor">1</span></label>
+          <label class="cp__check"><input type="checkbox" data-cp="skySun" checked /> Sun from sky</label>
+          <label>Pin
+            <select data-cp="skyPin">
+              <option value="">Blend (time of day)</option>
+            </select>
+          </label>
+        </div>
+        <div class="cp__grid" id="cp-sky-slots"></div>
+      </details>
+
+      <details class="cp__section" open>
         <summary>Camera</summary>
         <div class="cp__grid">
           <label>Pos X <input type="range" data-cp="posX" min="-30" max="30" step="0.1" value="12.1" /><span data-cp-val="posX">12.1</span></label>
@@ -271,6 +289,7 @@ const { lang: _lang = 'en' } = Astro.props
   }
 
   .cp__grid input[type='range'],
+  .cp__grid select,
   .cp__save input[type='text'],
   .cp__save select {
     width: 100%;
@@ -378,6 +397,7 @@ const { lang: _lang = 'en' } = Astro.props
 <script>
   import type { CameraPose, CloudSettings, LightingSettings, PlaygroundPoint } from '../../lib/scene/types'
   import { playgroundCloudDefaults as cpDefaults } from '../../content/data/scenes/editor-default'
+  import type { SkyDomeManifest, SkyDomeSettings } from '../../lib/scene/sky-dome'
 
   type ListFile = {
     id: string
@@ -391,9 +411,12 @@ const { lang: _lang = 'en' } = Astro.props
     applyCamera: (cam: CameraPose) => void
     applyClouds: (clouds: CloudSettings) => void
     applyLighting: (lighting: LightingSettings) => void
+    applySkydome: (settings: Partial<SkyDomeSettings>) => void
     getCurrentCamera: () => CameraPose
     getCurrentClouds: () => CloudSettings
     getCurrentLighting: () => LightingSettings
+    getSkydome: () => SkyDomeSettings
+    getSkyDomeManifest: () => SkyDomeManifest | null
     setPlaygroundLock: (locked: boolean) => void
   }
 
@@ -486,11 +509,85 @@ const { lang: _lang = 'en' } = Astro.props
         if (el.type === 'checkbox') el.checked = Boolean(value)
         else el.value = String(value)
       }
+      if (el instanceof HTMLSelectElement) el.value = String(value)
       if (label && typeof value === 'number') {
         const text = Number.isInteger(value)
           ? String(value)
           : value.toFixed(2).replace(/\.?0+$/, '') || '0'
         label.textContent = text
+      }
+    }
+
+    function readSlotSources(): Record<string, string> {
+      const slots: Record<string, string> = {}
+      root!.querySelectorAll('[data-sky-slot]').forEach((el) => {
+        if (!(el instanceof HTMLSelectElement)) return
+        const id = el.getAttribute('data-sky-slot')
+        if (id && el.value) slots[id] = el.value
+      })
+      return slots
+    }
+
+    function readSkydome(): Partial<SkyDomeSettings> {
+      return {
+        enabled: bool($('skyEnabled')),
+        yawDeg: num($('skyYaw')),
+        mix: num($('skyMix')),
+        floor: num($('skyFloor')),
+        sunFromSky: bool($('skySun')),
+        pinId: str($('skyPin')),
+        slotSources: readSlotSources(),
+      }
+    }
+
+    function fillSkydomeSelects(manifest: SkyDomeManifest) {
+      const pin = $('skyPin')
+      if (pin instanceof HTMLSelectElement && pin.options.length <= 1) {
+        for (const variant of manifest.variants) {
+          const opt = document.createElement('option')
+          opt.value = variant.id
+          opt.textContent = variant.id.replace(/^sky-/, '')
+          pin.appendChild(opt)
+        }
+      }
+      const slotRoot = document.getElementById('cp-sky-slots')
+      if (!slotRoot || slotRoot.childElementCount > 0) return
+      const library = manifest.library ?? []
+      for (const variant of manifest.variants) {
+        const label = document.createElement('label')
+        const title = document.createElement('span')
+        title.textContent = variant.id.replace(/^sky-/, '')
+        const select = document.createElement('select')
+        select.dataset.cp = `skySlot-${variant.id}`
+        select.setAttribute('data-sky-slot', variant.id)
+        const inherit = document.createElement('option')
+        inherit.value = ''
+        inherit.textContent = '(default)'
+        select.appendChild(inherit)
+        for (const item of library) {
+          const opt = document.createElement('option')
+          opt.value = item.id
+          opt.textContent = item.label.replace(/_puresky$/, '')
+          if (item.source && variant.source && item.source === variant.source) {
+            opt.selected = true
+          }
+          select.appendChild(opt)
+        }
+        label.append(title, select)
+        slotRoot.appendChild(label)
+      }
+    }
+
+    async function loadSkydomeManifest(): Promise<SkyDomeManifest | null> {
+      const rt = await getRuntime()
+      const fromRt = rt?.getSkyDomeManifest?.() ?? null
+      if (fromRt) return fromRt
+      try {
+        const res = await fetch('/images/skyscapes/manifest.json')
+        if (!res.ok) return null
+        return (await res.json()) as SkyDomeManifest
+      } catch {
+        return null
       }
     }
 
@@ -540,6 +637,7 @@ const { lang: _lang = 'en' } = Astro.props
       if (!clouds.syncTheme) clouds.syncTheme = false
       rt.applyClouds(clouds)
       rt.applyLighting(readLighting())
+      rt.applySkydome(readSkydome())
       const cam = readCamera()
       rt.applyCamera(cam)
       // Clouds live in a fixed slab; above ~4.8 they vanish, below 1.8 the
@@ -583,6 +681,21 @@ const { lang: _lang = 'en' } = Astro.props
       setVal('tgtY', cam.target[1])
       setVal('tgtZ', cam.target[2])
       setVal('fov', cam.fov)
+      const sky = rt.getSkydome?.()
+      if (sky) {
+        setVal('skyEnabled', sky.enabled)
+        setVal('skyYaw', sky.yawDeg)
+        setVal('skyMix', sky.mix)
+        setVal('skyFloor', sky.floor ?? 1)
+        setVal('skySun', sky.sunFromSky !== false)
+        setVal('skyPin', sky.pinId)
+        for (const [id, libId] of Object.entries(sky.slotSources)) {
+          const el = root!.querySelector(`[data-sky-slot="${id}"]`)
+          if (el instanceof HTMLSelectElement) el.value = libId
+        }
+      }
+      const { getSkyHour } = await import('../../lib/scene/sky-theme')
+      setVal('skyHour', getSkyHour())
     }
 
     function slugify(name: string): string {
@@ -604,6 +717,11 @@ const { lang: _lang = 'en' } = Astro.props
       panel!.hidden = false
       panel!.classList.add('is-open')
       toggle!.setAttribute('aria-expanded', 'true')
+      const manifest = await loadSkydomeManifest()
+      if (manifest) {
+        fillSkydomeSelects(manifest)
+        root.querySelectorAll('[data-cp]').forEach(bindCpControl)
+      }
       await syncFromRuntime()
       const rt = await getRuntime()
       log('runtime', { hasRuntime: Boolean(rt) })
@@ -635,24 +753,58 @@ const { lang: _lang = 'en' } = Astro.props
     closeBtn?.addEventListener('click', () => void closePanel())
     document.getElementById('cp-randomize')?.addEventListener('click', () => randomizeShape())
 
-    root.querySelectorAll('[data-cp]').forEach((el) => {
-      el.addEventListener('input', () => {
-        const key = (el as HTMLElement).dataset.cp
-        if (key && el instanceof HTMLInputElement && el.type === 'range') {
-          const label = root!.querySelector(`[data-cp-val="${key}"]`)
-          if (label) {
-            const v = Number(el.value)
-            label.textContent = Number.isInteger(v) ? String(v) : v.toFixed(2)
-          }
+    async function handleCpInput(el: HTMLElement) {
+      const key = el.dataset.cp
+      if (key && el instanceof HTMLInputElement && el.type === 'range') {
+        const label = root!.querySelector(`[data-cp-val="${key}"]`)
+        if (label) {
+          const v = Number(el.value)
+          label.textContent = Number.isInteger(v) ? String(v) : v.toFixed(2)
         }
-        if (el instanceof HTMLInputElement && el.type === 'color') {
-          const sync = $('syncTheme')
-          if (sync instanceof HTMLInputElement) sync.checked = false
+      }
+      if (el instanceof HTMLInputElement && el.type === 'color') {
+        const sync = $('syncTheme')
+        if (sync instanceof HTMLInputElement) sync.checked = false
+      }
+      if (key === 'skyHour') {
+        const hour = num(el)
+        const skyMod = await import('../../lib/scene/sky-theme')
+        skyMod.setDebugPreviewHour(hour)
+        if (bool($('syncTheme'))) {
+          const { getSkyColorsForHour } = await import('../../lib/theme')
+          const { sky, cloud } = getSkyColorsForHour(hour)
+          const colors = skyMod.skyColorsToCloudSettings(sky, cloud)
+          setVal('skyColor', colors.skyColor ?? '#6fa8dc')
+          setVal('cloudColor', colors.cloudColor ?? '#ffffff')
+          setVal('cloudShadowColor', colors.cloudShadowColor ?? '#496bc1')
         }
-        void applyLive()
-      })
-      el.addEventListener('change', () => void applyLive())
+      }
+      void applyLive()
+    }
+
+    function bindCpControl(el: Element) {
+      if (!(el instanceof HTMLElement) || el.dataset.cpBound === '1') return
+      el.dataset.cpBound = '1'
+      el.addEventListener('input', () => void handleCpInput(el))
+      el.addEventListener('change', () => void handleCpInput(el))
+    }
+
+    root.querySelectorAll('[data-cp]').forEach(bindCpControl)
+
+    void loadSkydomeManifest().then((manifest) => {
+      if (!manifest) return
+      fillSkydomeSelects(manifest)
+      root!.querySelectorAll('[data-cp]').forEach(bindCpControl)
     })
+
+    document.addEventListener('baseet:sky-hour', ((event: Event) => {
+      const detail = (event as CustomEvent<{ hour?: number | null }>).detail
+      if (typeof detail?.hour === 'number') {
+        setVal('skyHour', detail.hour)
+        return
+      }
+      void import('../../lib/theme').then((m) => setVal('skyHour', m.getEffectiveSkyHour()))
+    }) as EventListener)
 
     const nameInput = document.getElementById('cp-name') as HTMLInputElement | null
     const idInput = document.getElementById('cp-id') as HTMLInputElement | null

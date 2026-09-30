@@ -2,13 +2,13 @@
   "name": "Ordelo",
   "slug": "ordelo",
   "type": "branded",
-  "tagline": "آپ کا کاروبار۔ آن لائن۔ منظم۔ آپ کا۔",
-  "description": "## About Ordelo\n\nOrdelo is a ready-to-sell digital commerce and ordering package for restaurants, cafés, cloud kitchens, retailers, creators, and new entrepreneurs who want to stop losing orders to WhatsApp chaos, napkin menus, and “wait, did they pay?” moments.\n\n### No paper trail. No guessing.\n\nCustomers browse → customize → pay → track. Staff see orders land in real time. You see numbers that actually mean something. Everyone gets notified on the spot.\n\n### More than a menu website\n\nSell Ordelo as a restaurant ordering system, multi-location brand hub, cloud kitchen command center, reservation + ordering combo, creator shop, subscription club, retail mini-store, or automation machine — one customer package with many futures.\n",
+  "tagline": "آپ کا کاروبار۔ آن لائن۔ منظم۔ آپ کی ملکیت۔",
+  "description": "## Ordelo کا تعارف\n\nOrdelo ڈیجیٹل کامرس اور آرڈرنگ کا ایک تیار پیکج ہے — ریسٹورنٹس، کیفے، کلاؤڈ کچنز، ریٹیلرز، کری ایٹرز اور نئے کاروباری افراد کے لیے، جو WhatsApp کی افراتفری، کاغذ پر لکھے مینیو اور “رکو، کیا انہوں نے پیسے دیے تھے؟” جیسے لمحوں کی وجہ سے آرڈرز کھونا بند کرنا چاہتے ہیں۔\n\n### نہ کاغذی کارروائی۔ نہ اندازے۔\n\nکسٹمرز دیکھتے ہیں ← اپنی پسند کے مطابق بدلتے ہیں ← ادائیگی کرتے ہیں ← آرڈر ٹریک کرتے ہیں۔ عملہ آرڈرز کو آتے ہی دیکھ لیتا ہے۔ آپ کو وہ اعداد و شمار ملتے ہیں جن کا واقعی کوئی مطلب ہے۔ اور ہر کسی کو فوراً اطلاع مل جاتی ہے۔\n\n### صرف مینیو ویب سائٹ سے کہیں بڑھ کر\n\nOrdelo کو ریسٹورنٹ آرڈرنگ سسٹم، کئی برانچوں والے برانڈ کا مرکز، کلاؤڈ کچن کا کنٹرول روم، ریزرویشن + آرڈرنگ کا امتزاج، کری ایٹر شاپ، سبسکرپشن کلب، چھوٹا ریٹیل اسٹور یا آٹومیشن مشین کے طور پر بیچیں — ایک ہی کسٹمر پیکج، کئی راستے۔\n",
   "icon": "/images/projects/ordelo-icon.png",
   "iconClass": "fas fa-utensils",
   "color": "#F97316",
   "gradient": "linear-gradient(135deg, #F97316 0%, #FB923C 100%)",
-  "status": "لائیو",
+  "status": "Live",
   "layoutVariant": "ordelo",
   "fontHeading": "Playfair Display",
   "fontBody": "Source Sans 3",
@@ -20,8 +20,8 @@
   "bgFallbackGradient": "linear-gradient(180deg, #FFFBEB 0%, #FDE68A 40%, #FBBF24 100%)",
   "clientIds": [],
   "hero": {
-    "title": "آرڈر لیں۔ فوراً مطلع کریں۔ گاہک اپنے رکھیں۔",
-    "subtitle": "مینو، چیک آؤٹ، ادائیگی، کچن الرٹس، گاہک اپڈیٹس اور گروتھ ٹولز — بغیر کاغذ، بغیر اندازہ، بغیر گھبراہٹ۔",
+    "title": "آرڈر آئیں۔ فوراً اطلاع ملے۔ کسٹمرز آپ کے رہیں۔",
+    "subtitle": "مینیو، چیک آؤٹ، ادائیگیاں، کچن الرٹس، کسٹمرز کو اپ ڈیٹس اور کاروبار بڑھانے کے ٹولز — نہ کاغذ، نہ اندازے، نہ افراتفری۔",
     "cta_primary": "ڈیمو کی درخواست کریں",
     "cta_primary_link": "/contact",
     "cta_secondary": "فیچرز دیکھیں",
@@ -29,85 +29,85 @@
   },
   "features": [
     {
-      "title": "Branded Ordering Storefront",
-      "description": "Mobile-first menu and catalog with customization, cart, and checkout — your name on the order, not a marketplace’s.",
+      "title": "آپ کے برانڈ والا آرڈرنگ اسٹور فرنٹ",
+      "description": "موبائل کو اولین رکھ کر بنایا گیا مینیو اور کیٹلاگ، پسند کے مطابق تبدیلی، کارٹ اور چیک آؤٹ کے ساتھ — آرڈر پر آپ کا نام ہوتا ہے، کسی مارکیٹ پلیس کا نہیں۔",
       "icon": "fas fa-store"
     },
     {
-      "title": "Kitchen & Ops Calm",
-      "description": "Kitchen display, live status flow, busy mode, and assignment — orders land where work happens, not buried in a phone.",
+      "title": "کچن اور آپریشنز میں سکون",
+      "description": "کچن ڈسپلے، لائیو اسٹیٹس فلو، بزی موڈ اور کام کی تقسیم — آرڈرز وہاں پہنچتے ہیں جہاں کام ہوتا ہے، کسی فون میں دبے نہیں رہتے۔",
       "icon": "fas fa-hat-chef"
     },
     {
-      "title": "Notified on the Spot",
-      "description": "Confirmation and status updates the moment something changes — received → preparing → ready → completed.",
+      "title": "فوراً اطلاع",
+      "description": "جیسے ہی کچھ بدلے، تصدیق اور اسٹیٹس کی اپ ڈیٹ — موصول ← تیاری میں ← تیار ← مکمل۔",
       "icon": "fas fa-bell"
     },
     {
-      "title": "Delivery, Pickup & Dine-In",
-      "description": "Fulfillment modes the business actually runs — plus reservations, multi-location hours, and delivery hooks when you need wheels.",
+      "title": "ڈیلیوری، پِک اپ اور ڈائن اِن",
+      "description": "وہ طریقے جن سے کاروبار واقعی آرڈر پورے کرتا ہے — ساتھ میں ریزرویشنز، ہر برانچ کے الگ اوقات، اور ضرورت پڑنے پر ڈیلیوری سسٹمز سے رابطہ۔",
       "icon": "fas fa-truck"
     },
     {
-      "title": "Payments & Coupons",
-      "description": "Clear checkout, configurable payment methods, campaign codes, and accounting-friendly exports — not cash-in-a-jar folklore.",
+      "title": "ادائیگیاں اور کوپنز",
+      "description": "واضح چیک آؤٹ، اپنی مرضی کے ادائیگی کے طریقے، کیمپین کوڈز، اور اکاؤنٹنگ کے لیے آسان ایکسپورٹس — گلّے میں رکھی نقدی والا پرانا حساب نہیں۔",
       "icon": "fas fa-credit-card"
     },
     {
-      "title": "Reports That Don’t Lie",
-      "description": "Orders over time, top items, coupon performance, location comparisons, and visitor insights you can act on.",
+      "title": "ایسی رپورٹس جو سچ بتائیں",
+      "description": "وقت کے ساتھ آرڈرز، سب سے زیادہ بکنے والی چیزیں، کوپنز کی کارکردگی، برانچوں کا موازنہ، اور وزیٹرز کے بارے میں ایسی معلومات جن پر آپ عمل کر سکیں۔",
       "icon": "fas fa-chart-line"
     },
     {
-      "title": "Automations & Webhooks",
-      "description": "New order → kitchen + customer. Status change → SMS. Busy mode → pause checkout. Connect CRM, Slack, and partners.",
+      "title": "آٹومیشنز اور ویب ہُکس",
+      "description": "نیا آرڈر ← کچن + کسٹمر۔ اسٹیٹس میں تبدیلی ← SMS۔ بزی موڈ ← چیک آؤٹ رک جائے۔ CRM، Slack اور پارٹنرز کو جوڑیں۔",
       "icon": "fas fa-robot"
     },
     {
-      "title": "Grow Beyond Food",
-      "description": "Digital products, gift vouchers, subscriptions, memberships, and social campaign pages — same customers, more revenue lanes.",
+      "title": "کھانے سے آگے بڑھیں",
+      "description": "ڈیجیٹل پروڈکٹس، گفٹ واؤچرز، سبسکرپشنز، ممبرشپس اور سوشل کیمپین پیجز — وہی کسٹمرز، آمدنی کے زیادہ ذرائع۔",
       "icon": "fas fa-gift"
     }
   ],
   "platforms": [
     {
-      "name": "Customer",
+      "name": "کسٹمر",
       "icon": "fas fa-globe",
-      "version": "Storefront + Tracking",
+      "version": "اسٹور فرنٹ + ٹریکنگ",
       "link": "#"
     },
     {
-      "name": "Admin",
+      "name": "ایڈمن",
       "icon": "fas fa-user-shield",
-      "version": "Ops Console",
+      "version": "آپریشنز کنسول",
       "link": "#"
     },
     {
-      "name": "Kitchen",
+      "name": "کچن",
       "icon": "fas fa-hat-chef",
-      "version": "Kitchen Display",
+      "version": "کچن ڈسپلے",
       "link": "#"
     },
     {
-      "name": "Delivery",
+      "name": "ڈیلیوری",
       "icon": "fas fa-truck",
-      "version": "Driver / Dispatch Hooks",
+      "version": "ڈرائیور / ڈسپیچ سے رابطہ",
       "link": "#"
     }
   ],
   "tech": [
-    "Branded storefront",
-    "Menu & customization",
-    "Cart & checkout",
-    "Kitchen display (KDS)",
-    "Order notifications",
-    "Coupons & campaigns",
-    "Reservations",
-    "Multi-location",
-    "Reports & insights",
-    "Automations & webhooks",
-    "Social login",
-    "Subscriptions & digital"
+    "آپ کے برانڈ والا اسٹور فرنٹ",
+    "مینیو اور تخصیص",
+    "کارٹ اور چیک آؤٹ",
+    "کچن ڈسپلے (KDS)",
+    "آرڈر نوٹیفکیشنز",
+    "کوپنز اور کیمپینز",
+    "ریزرویشنز",
+    "کئی برانچیں",
+    "رپورٹس اور بصیرت",
+    "آٹومیشنز اور ویب ہُکس",
+    "سوشل لاگ اِن",
+    "سبسکرپشنز اور ڈیجیٹل پروڈکٹس"
   ],
   "galleryType": "web",
   "screenshots": [
@@ -121,69 +121,69 @@
   ],
   "testimonials": [
     {
-      "quote": "You didn’t start a business to become a full-time message router. Ordelo turns chat chaos into clean orders.",
-      "author": "Ordelo promise",
-      "role": "For business owners"
+      "quote": "آپ نے کاروبار اس لیے شروع نہیں کیا تھا کہ سارا دن پیغامات آگے پیچھے کرتے رہیں۔ Ordelo چیٹ کی افراتفری کو صاف ستھرے آرڈرز میں بدل دیتا ہے۔",
+      "author": "Ordelo کا وعدہ",
+      "role": "کاروباری مالکان کے لیے"
     }
   ],
   "navItems": [
     {
-      "label": "Home",
+      "label": "ہوم",
       "url": "",
       "i18nKey": "project_nav_home"
     },
     {
-      "label": "Features",
+      "label": "خصوصیات",
       "url": "features/",
       "i18nKey": "project_nav_features"
     },
     {
-      "label": "Demo",
+      "label": "ڈیمو",
       "url": "demo/",
       "i18nKey": "project_nav_demo"
     },
     {
-      "label": "Privacy Policy",
+      "label": "رازداری کی پالیسی",
       "url": "terms/",
       "i18nKey": "project_nav_terms"
     }
   ],
   "navMetaItems": [
     {
-      "label": "Work",
+      "label": "کام",
       "url": "/projects/",
       "i18nKey": "nav_work"
     },
     {
-      "label": "Contact",
+      "label": "رابطہ",
       "url": "/contact/",
       "i18nKey": "nav_contact"
     }
   ],
   "faq": [
     {
-      "question": "Isn’t this just another menu website?",
-      "answer": "No. Ordelo is ordering HQ: cart, payments, kitchen display, notifications, reports, and room to grow into subscriptions and digital products — not a brochure with a phone number."
+      "question": "کیا یہ بس ایک اور مینیو ویب سائٹ نہیں؟",
+      "answer": "نہیں۔ Ordelo آرڈرنگ کا ہیڈ کوارٹر ہے: کارٹ، ادائیگیاں، کچن ڈسپلے، نوٹیفکیشنز، رپورٹس، اور سبسکرپشنز اور ڈیجیٹل پروڈکٹس تک بڑھنے کی گنجائش — فون نمبر والا کوئی بروشر نہیں۔"
     },
     {
-      "question": "We already get orders on WhatsApp. Why switch?",
-      "answer": "WhatsApp is a chat. Ordelo is a record. Every order lands in one place, the kitchen sees it, the customer gets updates on the spot, and you keep the customer relationship."
+      "question": "ہمیں پہلے ہی WhatsApp پر آرڈرز ملتے ہیں۔ تبدیلی کیوں کریں؟",
+      "answer": "WhatsApp ایک چیٹ ہے۔ Ordelo ایک ریکارڈ ہے۔ ہر آرڈر ایک جگہ آتا ہے، کچن اسے دیکھتا ہے، کسٹمر کو فوراً اپ ڈیٹس ملتی ہیں، اور کسٹمر سے تعلق آپ کے پاس رہتا ہے۔"
     },
     {
-      "question": "Won’t customers just use food apps?",
-      "answer": "They might discover you there. Ordelo is how you stop renting every order — your storefront, your margins, your data."
+      "question": "کیا کسٹمرز فوڈ ایپس ہی استعمال نہیں کریں گے؟",
+      "answer": "ہو سکتا ہے وہ آپ کو وہاں پہلی بار دیکھیں۔ Ordelo کے ذریعے آپ ہر آرڈر کا کرایہ دینا بند کرتے ہیں — اپنا اسٹور فرنٹ، اپنا منافع، اپنا ڈیٹا۔"
     },
     {
-      "question": "We’re a small café / new brand. Is this overkill?",
-      "answer": "Launch like a brand on day one. Start with menu, checkout, and notifications. Add kitchen display, multi-location, subscriptions, and automations when you’re ready."
+      "question": "ہم ایک چھوٹا کیفے / نیا برانڈ ہیں۔ کیا یہ ضرورت سے زیادہ نہیں؟",
+      "answer": "پہلے دن سے ایک برانڈ کی طرح لانچ کریں۔ مینیو، چیک آؤٹ اور نوٹیفکیشنز سے شروع کریں۔ جب تیار ہوں تو کچن ڈسپلے، کئی برانچیں، سبسکرپشنز اور آٹومیشنز شامل کریں۔"
     },
     {
-      "question": "Can it handle kitchen rush and multi-branch?",
-      "answer": "Yes. Busy mode pauses checkout gracefully, kitchen display keeps status clear, and Scale tiers add multi-location menus, hours, and branch reporting."
+      "question": "کیا یہ کچن کے رش اور کئی برانچوں کو سنبھال سکتا ہے؟",
+      "answer": "جی ہاں۔ بزی موڈ چیک آؤٹ کو سلیقے سے روک دیتا ہے، کچن ڈسپلے اسٹیٹس کو واضح رکھتا ہے، اور اسکیل پلانز میں ہر برانچ کے الگ مینیو، اوقات اور رپورٹس شامل ہو جاتی ہیں۔"
     },
     {
-      "question": "Can we sell more than food?",
-      "answer": "Yes. Digital downloads, gift vouchers, meal plans, coffee clubs, VIP memberships, and campaign landing pages — same customer relationship, more revenue lanes."
+      "question": "کیا ہم کھانے کے علاوہ بھی کچھ بیچ سکتے ہیں؟",
+      "answer": "جی ہاں۔ ڈیجیٹل ڈاؤن لوڈز، گفٹ واؤچرز، میل پلانز، کافی کلبز، VIP ممبرشپس اور کیمپین لینڈنگ پیجز — وہی کسٹمر تعلق، آمدنی کے زیادہ ذرائع۔"
     }
   ]
 }

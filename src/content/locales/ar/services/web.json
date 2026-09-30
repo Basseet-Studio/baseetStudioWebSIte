@@ -2,142 +2,133 @@
   "id": "web",
   "slug": "web",
   "title": "تطوير الويب",
-  "tagline": "مواقع تعمل بجد مثلما تعمل أنت",
+  "tagline": "مواقع تجتهد بقدر ما تجتهد أنت",
   "color": "#496BC1",
   "gradient": "linear-gradient(135deg, #496BC1 0%, #6B8AD9 100%)",
   "icon": "fas fa-globe",
   "shortDescription": "مواقع وتطبيقات ويب حديثة ومتجاوبة",
   "hero": {
-    "title": "مواقع تعمل بجد مثلما تعمل أنت",
-    "subtitle": "مواقع تعمل بجد مثلما تعمل أنت. مواقع وتطبيقات ويب حديثة ومتجاوبة مبنية على تقنيات نصونها بأنفسنا فعلاً — لا قالب ثمناه ولن نلمه بعد ذلك.",
+    "title": "مواقع تجتهد بقدر ما تجتهد أنت",
+    "subtitle": "مواقع وتطبيقات ويب حديثة ومتجاوبة، مبنية على تقنيات نتولى صيانتها بأنفسنا فعلاً — لا على قالب جاهز ثبّتناه ولن نعود إليه أبداً.",
     "cta_primary": "ابدأ مشروعك",
     "cta_primary_link": "/contact/",
-    "cta_secondary": "شاهد العملية",
+    "cta_secondary": "تعرّف على طريقة عملنا",
     "cta_secondary_link": "#process"
   },
   "metrics": [
-    {
-      "value": "<1s",
-      "label": "متوسط وقت التحميل"
-    },
-    {
-      "value": "100",
-      "label": "هدف Lighthouse"
-    },
-    {
-      "value": "12+",
-      "label": "تقنيات أُطلقت"
-    }
+    { "value": "<1s", "label": "متوسط زمن التحميل" },
+    { "value": "100", "label": "هدفنا في Lighthouse" },
+    { "value": "12+", "label": "تقنيات أطلقنا بها مشاريع" }
   ],
   "subServices": [
     {
       "id": "corporate-websites",
       "name": "مواقع الشركات",
       "icon": "fas fa-building",
-      "desc": "مواقع تمثّل علامتك بوضوح وسرعة",
-      "longDesc": "موقعك غالباً أول انطباع. نبني مواقع تسويقية سريعة وعلى هوية علامتك — تحكي قصتك، تجيب الأسئلة الصحيحة، وتجعل الخطوة التالية واضحة على كل جهاز.",
+      "desc": "مواقع احترافية تمثّل علامتك التجارية",
+      "longDesc": "كثيراً ما يكون موقع شركتك أول انطباع يتكوّن لدى العميل المحتمل عن عملك. نصمم ونبني مواقع تسويقية سريعة ومنسجمة مع هويتك، تروي قصتك، وتجيب عن الأسئلة الصحيحة، وتجعل الخطوة التالية واضحة — على كل جهاز.",
       "bullets": [
-        "هيكل صفحات يناسب رحلة المشتري",
-        "نظام محتوى يدير فريقك النصوص دقائق لا أياماً",
-        "جاهز للغات (عربي وإنجليزي والمزيد)",
-        "أساس تحسين ظهورك في البحث من اليوم الأول"
+        "هيكلة صفحات متعددة مفصّلة على رحلة المشتري لديك",
+        "نظام CMS منفصل (Headless) يتيح لفريقك نشر النصوص في دقائق لا في أيام",
+        "جاهز لتعدد اللغات (الإنجليزية، والعربية، وغيرهما)",
+        "أساس متين لتحسين محركات البحث داخل الصفحات منذ اليوم الأول"
       ],
-      "imageLabel": "نموذج موقع شركة"
+      "imageLabel": "نموذج للواجهة الرئيسية لموقع شركة"
     },
     {
       "id": "ecommerce",
-      "name": "متاجر إلكترونية",
+      "name": "منصات التجارة الإلكترونية",
       "icon": "fas fa-shopping-cart",
-      "desc": "متاجر أونلاين مع دفع آمن",
-      "longDesc": "من متاجر بوتيك إلى تجارة بلا رأس على شوبيفاي أو ميدوسا أو سترايب، نبني متاجر تحوّل الزائر إلى مشترٍ. الأداء وسلة الشراء والعرض يُضبطون معاً لا كلاحق.",
+      "desc": "متاجر إلكترونية بمدفوعات آمنة ومدمجة",
+      "longDesc": "من قوالب Shopify للمتاجر الصغيرة إلى التجارة المنفصلة (Headless) على Shopify Hydrogen أو Medusa أو حلول مخصصة مع Stripe، نبني متاجر تحوّل المتصفحين إلى مشترين. نضبط الأداء وخطوات الدفع وعرض المنتجات بالتوازي — لا كأمر ثانوي في النهاية.",
       "bullets": [
-        "شوبيفاي وميدوسا وسترايب وتجارة بلا رأس",
-        "اشتراكات ومحافظ ودفع لاحق",
-        "صفحات منتج وسلة مضبوطة للتحويل",
-        "مخزون وضريبة وشحن متصلة من طرف لطرف"
+        "Shopify وMedusa وStripe والتجارة المنفصلة (Headless)",
+        "جاهز للاشتراكات والمحافظ الرقمية وخدمات اشترِ الآن وادفع لاحقاً",
+        "صفحات منتجات وسلة شراء مضبوطة لرفع معدل التحويل",
+        "المخزون والضرائب والشحن مترابطة من البداية إلى النهاية"
       ],
-      "imageLabel": "نموذج صفحة منتج"
+      "imageLabel": "نموذج لصفحة منتج في متجر إلكتروني"
     },
     {
       "id": "web-apps",
       "name": "تطبيقات الويب",
       "icon": "fas fa-window-restore",
-      "desc": "تطبيقات ويب مخصصة لاحتياج العمل",
-      "longDesc": "حين تتوقف الجداول وأدوات SaaS عن المواكبة، نبني التطبيق الذي يناسب عملك بالضبط. أدوات داخلية وبوابات ولوحات — تايب سكربت من الطرفين، وصلاحيات حقيقية، وكود يستطيع فريقك صيانته.",
+      "desc": "تطبيقات ويب مخصصة لاحتياجات العمل المعقدة",
+      "longDesc": "حين تعجز جداول البيانات وأدوات SaaS عن مواكبة نموك، نبني تطبيق الويب الذي يناسب طريقة عملك تماماً. أدوات داخلية، وبوابات للعملاء، ولوحات تحكم — TypeScript في كل الطبقات، ونظام دخول حقيقي، وقواعد بيانات حقيقية، وكود يستطيع فريقك صيانته.",
       "bullets": [
-        "ريأكت وNext وAstro في الواجهة",
-        "بوستغرس وبريزما للبيانات",
-        "صلاحيات وأدوار وسجل تدقيق من اليوم الأول",
-        "مراقبة وأعلام ميزات مدمجة"
+        "React وNext.js وAstro للواجهة الأمامية",
+        "Postgres وPrisma وtRPC لبيانات آمنة الأنواع",
+        "تسجيل الدخول والأدوار وسجلات التدقيق منذ اليوم الأول",
+        "مراقبة الأداء ومفاتيح تفعيل الميزات مدمجة من الأساس"
       ],
-      "imageLabel": "لوحة تطبيق ويب"
+      "imageLabel": "نموذج للوحة تحكم تطبيق ويب"
     },
     {
       "id": "landing-pages",
-      "name": "صفحات هبوط",
+      "name": "صفحات الهبوط",
       "icon": "fas fa-bullseye",
-      "desc": "صفحات حملة بهدف واحد واضح",
-      "longDesc": "صفحة واحدة، هدف واحد، بلا تشتيت. نبني صفحات هبوط سريعة، بنص يطابق الإعلان، وتحليل يقول لك ما يعمل فعلاً.",
+      "desc": "صفحات عالية التحويل للحملات التسويقية",
+      "longDesc": "صفحة واحدة، وهدف واحد، ولا شيء يشتت الانتباه. نصمم ونطلق صفحات هبوط للحملات تفتح فوراً، بنصوص تطابق الإعلان، وتحليلات تخبرك بما ينجح فعلاً — مع اختبارات A/B، وتتبع كامل، وجاهزية للتوسع.",
       "bullets": [
-        "نسخ قابلة لاختبار أ/ب من البداية",
-        "تصيير من الخادم لسرعة فتح",
-        "نماذج وتقويم وربط CRM",
-        "خرائط حرارة وتتبع أحداث جاهز"
+        "نسخ متعددة جاهزة لاختبارات A/B من البداية",
+        "عرض من جهة الخادم لزمن استجابة أول أقل من ثانية",
+        "ربط مع النماذج والتقويم وأنظمة CRM",
+        "خرائط حرارية وتتبع للأحداث مفعّلة وجاهزة"
       ],
-      "imageLabel": "نموذج صفحة هبوط مع دعوة"
+      "imageLabel": "نموذج لصفحة هبوط مع زر دعوة لاتخاذ إجراء"
     }
   ],
   "process": [
     {
       "number": "01",
-      "title": "Discover",
-      "desc": "Workshops to define goals, audiences, KPIs, and constraints",
+      "title": "الاستكشاف",
+      "desc": "ورش عمل لتحديد الأهداف والجمهور ومؤشرات KPI والقيود",
       "icon": "fas fa-lightbulb"
     },
     {
       "number": "02",
-      "title": "Architect",
-      "desc": "Information architecture, stack pick, and a milestone plan",
+      "title": "الهيكلة",
+      "desc": "هيكلة المعلومات، واختيار التقنيات، وخطة بمراحل واضحة",
       "icon": "fas fa-sitemap"
     },
     {
       "number": "03",
-      "title": "Design",
-      "desc": "Wireframes, then a high-fidelity visual system in Figma",
+      "title": "التصميم",
+      "desc": "مخططات أولية، ثم نظام بصري عالي الدقة على Figma",
       "icon": "fas fa-pencil-ruler"
     },
     {
       "number": "04",
-      "title": "Build",
-      "desc": "Component-by-component in a public preview environment",
+      "title": "البناء",
+      "desc": "مكوّناً بعد مكوّن، في بيئة معاينة مفتوحة لك",
       "icon": "fas fa-code"
     },
     {
       "number": "05",
-      "title": "QA & Launch",
-      "desc": "Cross-browser, accessibility, performance, and a clean handoff",
+      "title": "الاختبار والإطلاق",
+      "desc": "توافق مع المتصفحات، وإتاحة لذوي الاحتياجات، وأداء، وتسليم منظّم",
       "icon": "fas fa-rocket"
     }
   ],
   "deliverables": [
     {
-      "title": "Production-ready site",
-      "description": "Deployed on Vercel, Netlify, Cloudflare, or your own infrastructure — with a clear runbook.",
+      "title": "موقع جاهز للتشغيل الفعلي",
+      "description": "منشور على Vercel أو Netlify أو Cloudflare أو بنيتك التحتية الخاصة — مع دليل تشغيل واضح.",
       "icon": "fas fa-server"
     },
     {
-      "title": "CMS access",
-      "description": "Your team can edit pages, posts, and products without a developer in the loop.",
+      "title": "صلاحية الوصول إلى CMS",
+      "description": "يستطيع فريقك تعديل الصفحات والمقالات والمنتجات دون الحاجة إلى مطوّر.",
       "icon": "fas fa-pen"
     },
     {
-      "title": "Analytics & search console",
-      "description": "GA4, Search Console, and any paid pixels wired up and verified end-to-end.",
+      "title": "التحليلات وSearch Console",
+      "description": "GA4 وSearch Console وأي بكسلات إعلانية مدفوعة، مربوطة ومُتحقَّق منها بالكامل.",
       "icon": "fas fa-chart-line"
     },
     {
-      "title": "Source code & documentation",
-      "description": "Clean repo, a real README, and Loom walkthroughs so future-you knows where everything is.",
+      "title": "الكود المصدري والتوثيق",
+      "description": "مستودع كود نظيف، وملف README حقيقي، وشروحات مصوّرة على Loom، لتعرف لاحقاً أين يوجد كل شيء.",
       "icon": "fas fa-book"
     }
   ],
@@ -157,20 +148,20 @@
   ],
   "faq": [
     {
-      "question": "How long does a typical marketing website take?",
-      "answer": "Most marketing sites ship in 4–6 weeks from kickoff to launch. Larger sites with custom CMS, multilingual, or heavy integrations usually run 8–12 weeks. We will give you a fixed plan with milestones after the discovery workshop."
+      "question": "كم يستغرق بناء موقع تسويقي عادةً؟",
+      "answer": "تُطلق معظم المواقع التسويقية خلال 4–6 أسابيع من بدء العمل حتى الإطلاق. أما المواقع الأكبر التي تتضمن CMS مخصصاً أو تعدد لغات أو تكاملات كثيرة فتستغرق عادةً 8–12 أسبوعاً. بعد ورشة الاستكشاف، نسلّمك خطة ثابتة بمراحل واضحة."
     },
     {
-      "question": "Will I be able to update the site myself?",
-      "answer": "Yes. Every site we ship is wired to a headless CMS (Sanity, Contentful, or your preferred tool). Your team gets a short Loom walkthrough and a written guide, and we stay on call for the first month."
+      "question": "هل سأتمكن من تحديث الموقع بنفسي؟",
+      "answer": "نعم. كل موقع نطلقه مربوط بنظام CMS منفصل (Sanity أو Contentful أو الأداة التي تفضّلها). يحصل فريقك على شرح مصوّر قصير على Loom ودليل مكتوب، ونبقى متاحين لأي استفسار خلال الشهر الأول."
     },
     {
-      "question": "Do you only build with Astro and Next.js?",
-      "answer": "We specialize in modern TypeScript stacks — Astro, Next.js, SvelteKit, and React + Vite. If you have an existing site in a different stack that needs new features, we are happy to extend it instead of forcing a rewrite."
+      "question": "هل تعملون بـ Astro وNext.js فقط؟",
+      "answer": "نتخصص في تقنيات TypeScript الحديثة — Astro وNext.js وSvelteKit وReact مع Vite. وإن كان لديك موقع قائم بتقنية أخرى ويحتاج إلى ميزات جديدة، فيسعدنا أن نطوّره بدلاً من فرض إعادة بنائه من الصفر."
     },
     {
-      "question": "Can you take over an existing project?",
-      "answer": "Absolutely. We do technical audits before we touch anything, then propose a phased plan. Many of our best engagements start as a rescue from another agency."
+      "question": "هل يمكنكم استلام مشروع قائم؟",
+      "answer": "بالتأكيد. نجري تدقيقاً تقنياً قبل أن نلمس أي شيء، ثم نقترح خطة على مراحل. كثير من أفضل مشاريعنا بدأت كعملية إنقاذ لمشروع تعثّر مع وكالة أخرى."
     }
   ]
 }

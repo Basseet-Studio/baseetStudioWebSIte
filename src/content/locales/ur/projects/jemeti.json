@@ -2,13 +2,13 @@
   "name": "Jemeti",
   "slug": "jemeti",
   "type": "branded",
-  "tagline": "ورکشاپس اور maintenance shops، managed.",
-  "description": "## Jemeti کے بارے میں\n\nJemeti workshop اور maintenance shop owners کو jobs schedule، parts track، اور customer vehicles manage کرنے میں مدد کرتا ہے — سب ایک جگہ سے۔\n",
+  "tagline": "ورکشاپس اور مرمت کی دکانیں، منظم انداز میں",
+  "description": "## Jemeti کا تعارف\n\nJemeti ورکشاپ اور مرمت کی دکانوں کے مالکان کو کاموں کا شیڈول بنانے، پرزوں کا حساب رکھنے اور کسٹمرز کی گاڑیوں کا ریکارڈ سنبھالنے میں مدد دیتا ہے — سب کچھ ایک ہی جگہ سے۔\n\n### سروس دکانوں کے لیے بنایا گیا\n\nآئل چینج سے لے کر مکمل اوور ہالنگ تک، Jemeti ورک آرڈرز، ٹیکنیشنز کو دیے گئے کام اور پرزوں کی انوینٹری کو منظم رکھتا ہے۔\n\n### جلد آ رہا ہے\n\nہم Jemeti کو اصل دکان مالکان کے ساتھ مل کر بنا رہے ہیں۔ اگر آپ اسے سب سے پہلے آزمانا چاہتے ہیں تو ہم سے رابطہ کریں۔\n",
   "icon": "/images/projects/jemeti-icon.svg",
   "iconClass": null,
   "color": "#DC2626",
   "gradient": "linear-gradient(135deg, #DC2626 0%, #EF4444 100%)",
-  "status": "جلد آرہا ہے",
+  "status": "Coming Soon",
   "layoutVariant": "default",
   "fontHeading": "Space Grotesk",
   "fontBody": "Inter",
@@ -17,27 +17,27 @@
   "bgEffect": "none",
   "clientIds": [],
   "hero": {
-    "title": "آپ کی Workshop، منظم",
-    "subtitle": "Maintenance اور repair shops کے لیے job scheduling، parts tracking، customer management۔",
-    "cta_primary": "Early Access حاصل کریں",
+    "title": "آپ کی ورکشاپ، منظم",
+    "subtitle": "مرمت اور مینٹیننس کی دکانوں کے لیے کاموں کا شیڈول، پرزوں کی ٹریکنگ اور کسٹمر مینجمنٹ۔",
+    "cta_primary": "ابتدائی رسائی حاصل کریں",
     "cta_primary_link": "/contact",
     "cta_secondary": null,
     "cta_secondary_link": null
   },
   "features": [
     {
-      "title": "Work Orders",
-      "description": "Intake سے completion تک jobs create، assign، track کریں۔",
+      "title": "ورک آرڈرز",
+      "description": "گاڑی آنے سے لے کر کام مکمل ہونے تک ہر کام بنائیں، سونپیں اور اس پر نظر رکھیں۔",
       "icon": "fas fa-clipboard-list"
     },
     {
-      "title": "Parts Inventory",
-      "description": "Repair date promise سے پہلے shelf پر کیا ہے جانیں۔",
+      "title": "پرزوں کی انوینٹری",
+      "description": "مرمت کی تاریخ کا وعدہ کرنے سے پہلے جانیں کہ شیلف پر کیا موجود ہے۔",
       "icon": "fas fa-wrench"
     },
     {
-      "title": "Customer Vehicles",
-      "description": "ہر vehicle کے لیے service history، reminders، notes۔",
+      "title": "کسٹمرز کی گاڑیاں",
+      "description": "ہر گاڑی کی سروس ہسٹری، یاد دہانیاں اور نوٹس۔",
       "icon": "fas fa-car"
     }
   ],
@@ -45,25 +45,25 @@
     {
       "name": "Web",
       "icon": "fas fa-globe",
-      "version": "Web App",
+      "version": "ویب ایپ",
       "link": "#"
     }
   ],
   "navItems": [
     {
-      "label": "Home",
+      "label": "ہوم",
       "url": "",
       "i18nKey": "project_nav_home"
     }
   ],
   "navMetaItems": [
     {
-      "label": "Work",
+      "label": "کام",
       "url": "/projects/",
       "i18nKey": "nav_work"
     },
     {
-      "label": "Contact",
+      "label": "رابطہ",
       "url": "/contact/",
       "i18nKey": "nav_contact"
     }

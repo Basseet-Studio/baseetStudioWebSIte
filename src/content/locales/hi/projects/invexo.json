@@ -2,12 +2,12 @@
   "name": "Invexo",
   "slug": "invexo",
   "type": "branded",
-  "tagline": "छोटी दुकानों के लिए inventory management।",
-  "description": "## About Invexo\n\nInvexo is an inventory management system designed for small shops — telecom counters, corner stores, and multi-location retailers who need real-time stock, sales, and cash flow in one place.\n\n### Built for Small Shops\n\nTrack products, barcodes, and customers across every location. Run POS from the same dashboard, monitor flexiload and MFS commissions, and see what's due outstanding at a glance.\n\n### One Dashboard, Every Shop\n\nSwitch between shops instantly. Revenue, cash collected, gross profit, and commission numbers update as you move — so owners always know where they stand.\n\n## Ready to Streamline Your Shop?\n\nContact us for a demo tailored to your business.\n",
+  "tagline": "छोटी दुकानों के लिए बना इन्वेंटरी मैनेजमेंट",
+  "description": "## Invexo के बारे में\n\nInvexo छोटी दुकानों के लिए बना इन्वेंटरी मैनेजमेंट सिस्टम है — टेलीकॉम काउंटर, मोहल्ले की दुकानें और कई जगहों पर फैले रिटेलर, जिन्हें स्टॉक, बिक्री और कैश फ़्लो की रियल-टाइम जानकारी एक ही जगह चाहिए।\n\n### छोटी दुकानों के लिए बना\n\nहर लोकेशन पर प्रोडक्ट, बारकोड और ग्राहकों को ट्रैक करें। उसी डैशबोर्ड से POS चलाएँ, Flexiload और MFS कमीशन पर नज़र रखें, और एक नज़र में देखें कि कितना बकाया बाक़ी है।\n\n### एक डैशबोर्ड, हर दुकान\n\nपल भर में एक दुकान से दूसरी दुकान पर जाएँ। जैसे ही आप दुकान बदलते हैं, आमदनी, जमा हुई नकदी, सकल मुनाफ़ा और कमीशन के आँकड़े अपडेट हो जाते हैं — ताकि मालिक हमेशा जानें कि वे कहाँ खड़े हैं।\n\n## अपनी दुकान का काम आसान बनाना चाहते हैं?\n\nअपने कारोबार के हिसाब से बने डेमो के लिए हमसे संपर्क करें।\n",
   "iconClass": "fas fa-cash-register",
   "color": "#10B981",
   "gradient": "linear-gradient(135deg, #059669 0%, #34D399 100%)",
-  "status": "डिलीवरी के लिए तैयार",
+  "status": "Ready to Deliver",
   "layoutVariant": "invexo",
   "fontHeading": "Space Grotesk",
   "fontBody": "Inter",
@@ -17,46 +17,44 @@
   "brandName": "Invexo",
   "bgEffect": "none",
   "bgFallbackGradient": "linear-gradient(180deg, #ECFDF5 0%, #D1FAE5 40%, #A7F3D0 100%)",
-  "clientIds": [
-    "faruk-technology-store"
-  ],
+  "clientIds": ["faruk-technology-store"],
   "hero": {
-    "title": "हर Shop एक Dashboard से चलाएँ",
-    "subtitle": "Inventory, POS, flexiload commissions, daily sales — छोटे shops के लिए।",
-    "cta_primary": "Demo Request करें",
+    "title": "हर दुकान एक ही डैशबोर्ड से चलाएँ",
+    "subtitle": "इन्वेंटरी, POS, Flexiload कमीशन और रोज़ की बिक्री — उन छोटी दुकानों के लिए बना, जिन्हें बड़े एंटरप्राइज़ सिस्टम की उलझन के बिना साफ़ तस्वीर चाहिए।",
+    "cta_primary": "डेमो का अनुरोध करें",
     "cta_primary_link": "/contact",
-    "cta_secondary": "View Features",
+    "cta_secondary": "फ़ीचर्स देखें",
     "cta_secondary_link": "#features"
   },
   "features": [
     {
-      "title": "Multi-Shop Dashboard",
-      "description": "Switch between locations and watch revenue, cash collected, gross profit, and due outstanding update in real time.",
+      "title": "मल्टी-शॉप डैशबोर्ड",
+      "description": "एक लोकेशन से दूसरी पर जाएँ और आमदनी, जमा हुई नकदी, सकल मुनाफ़ा और बकाया रक़म को रियल टाइम में अपडेट होते देखें।",
       "icon": "fas fa-store"
     },
     {
-      "title": "Inventory & POS",
-      "description": "Barcode scanning, stock alerts, low-stock warnings, and a full POS terminal — all connected to the same ledger.",
+      "title": "इन्वेंटरी और POS",
+      "description": "बारकोड स्कैनिंग, स्टॉक अलर्ट, कम स्टॉक की चेतावनी और पूरा POS टर्मिनल — सब एक ही खाता-बही से जुड़ा हुआ।",
       "icon": "fas fa-boxes-stacked"
     },
     {
-      "title": "Flexiload & MFS",
-      "description": "Track flexiload and mobile financial service commissions alongside product sales in one daily summary.",
+      "title": "Flexiload और MFS",
+      "description": "Flexiload और मोबाइल फ़ाइनेंशियल सर्विस के कमीशन को प्रोडक्ट की बिक्री के साथ एक ही रोज़ाना सारांश में ट्रैक करें।",
       "icon": "fas fa-mobile-alt"
     },
     {
-      "title": "Sales Trends",
-      "description": "Seven-day line charts, overdue case tracking, and backup status — see patterns before they become problems.",
+      "title": "बिक्री के रुझान",
+      "description": "सात दिनों के लाइन चार्ट, बकाया मामलों की ट्रैकिंग और बैकअप की स्थिति — पैटर्न को समस्या बनने से पहले पहचानें।",
       "icon": "fas fa-chart-line"
     },
     {
-      "title": "Customer Ledger",
-      "description": "Due outstanding, overdue cases, and payment history per shop — know who owes what at a glance.",
+      "title": "ग्राहक खाता-बही",
+      "description": "हर दुकान के लिए बकाया रक़म, देर से चल रहे भुगतान और भुगतान का इतिहास — एक नज़र में जानें कि किस पर कितना बाक़ी है।",
       "icon": "fas fa-receipt"
     },
     {
-      "title": "Reports & Alerts",
-      "description": "Stock transfers, audit logs, user permissions, and configurable alerts for low stock and overdue payments.",
+      "title": "रिपोर्ट और अलर्ट",
+      "description": "स्टॉक ट्रांसफ़र, ऑडिट लॉग, यूज़र अनुमतियाँ, और कम स्टॉक व बकाया भुगतान के लिए अपनी ज़रूरत के हिसाब से अलर्ट।",
       "icon": "fas fa-bell"
     }
   ],
@@ -64,7 +62,7 @@
     {
       "name": "Web",
       "icon": "fas fa-globe",
-      "version": "Web App",
+      "version": "वेब ऐप",
       "link": "#"
     }
   ],
@@ -77,54 +75,54 @@
   ],
   "navItems": [
     {
-      "label": "Home",
+      "label": "होम",
       "url": "",
       "i18nKey": "project_nav_home"
     },
     {
-      "label": "Features",
+      "label": "फ़ीचर्स",
       "url": "features/",
       "i18nKey": "project_nav_features"
     },
     {
-      "label": "Demo",
+      "label": "डेमो",
       "url": "demo/",
       "i18nKey": "project_nav_demo"
     },
     {
-      "label": "Terms",
+      "label": "नियम",
       "url": "terms/",
       "i18nKey": "project_nav_terms"
     }
   ],
   "navMetaItems": [
     {
-      "label": "Work",
+      "label": "काम",
       "url": "/projects/",
       "i18nKey": "nav_work"
     },
     {
-      "label": "Contact",
+      "label": "संपर्क",
       "url": "/contact/",
       "i18nKey": "nav_contact"
     }
   ],
   "faq": [
     {
-      "question": "What types of shops is Invexo built for?",
-      "answer": "Invexo is designed for small retail shops — telecom counters, libraries, convenience stores, and multi-location businesses that need inventory, POS, and commission tracking in one place."
+      "question": "Invexo किस तरह की दुकानों के लिए बना है?",
+      "answer": "Invexo छोटी रिटेल दुकानों के लिए बना है — टेलीकॉम काउंटर, लाइब्रेरी, सुविधा स्टोर और कई जगहों पर चलने वाले कारोबार, जिन्हें इन्वेंटरी, POS और कमीशन ट्रैकिंग एक ही जगह चाहिए।"
     },
     {
-      "question": "Can I manage multiple shop locations?",
-      "answer": "Yes. Switch between shops from the dashboard sidebar. Revenue, cash collected, profit, and due outstanding update per location."
+      "question": "क्या मैं कई दुकानें एक साथ मैनेज कर सकता हूँ?",
+      "answer": "हाँ। डैशबोर्ड के साइडबार से एक दुकान से दूसरी पर जाएँ। आमदनी, जमा हुई नकदी, मुनाफ़ा और बकाया रक़म हर लोकेशन के लिए अलग से अपडेट होते हैं।"
     },
     {
-      "question": "Does it support flexiload and MFS commissions?",
-      "answer": "Absolutely. Flexiload and mobile financial service commissions are tracked alongside product sales in your daily summary."
+      "question": "क्या यह Flexiload और MFS कमीशन सपोर्ट करता है?",
+      "answer": "हाँ। Flexiload और मोबाइल फ़ाइनेंशियल सर्विस के कमीशन आपके रोज़ाना सारांश में प्रोडक्ट की बिक्री के साथ ट्रैक होते हैं।"
     },
     {
-      "question": "Is there a demo available?",
-      "answer": "Contact us for a personalized walkthrough. We tailor onboarding to your shop's workflow."
+      "question": "क्या डेमो उपलब्ध है?",
+      "answer": "अपने लिए ख़ास वॉकथ्रू के लिए हमसे संपर्क करें। हम ऑनबोर्डिंग को आपकी दुकान के काम करने के तरीक़े के हिसाब से ढालते हैं।"
     }
   ]
 }

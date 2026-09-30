@@ -262,8 +262,8 @@ const audiences = (t('clients_who_audiences', lang) || '')
     font-style: italic;
   }
 
-  [lang="ar"] .clients-hero__title-accent,
-  [dir="rtl"] .clients-hero__title-accent {
+  :global([lang="ar"]) .clients-hero__title-accent,
+  :global([dir="rtl"]) .clients-hero__title-accent {
     font-style: normal;
   }
 
@@ -835,7 +835,7 @@ const audiences = (t('clients_who_audiences', lang) || '')
     }
   }
 
-  [dir="rtl"] .icon-chevron :global(svg) {
+  :global([dir="rtl"]) .icon-chevron :global(svg) {
     transform: scaleX(-1);
   }
 </style>

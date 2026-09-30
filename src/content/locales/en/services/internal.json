@@ -1,7 +1,7 @@
 {
   "id": "internal",
   "slug": "internal",
-  "title": "Internal Tools",
+  "title": "Internal tools",
   "tagline": "Operations software that actually gets used",
   "color": "#0891B2",
   "gradient": "linear-gradient(135deg, #0891B2 0%, #22D3EE 100%)",
@@ -9,7 +9,7 @@
   "shortDescription": "Streamline operations with custom internal solutions",
   "hero": {
     "title": "Operations software that actually gets used",
-    "subtitle": "Operations software that actually gets used. Dashboards, CRMs, and back-office tools your team opens on Monday morning without complaining about it.",
+    "subtitle": "Dashboards, CRMs, and back-office tools your team opens on Monday morning without complaining about it.",
     "cta_primary": "Map my workflow",
     "cta_primary_link": "/contact/",
     "cta_secondary": "See deliverables",
@@ -23,9 +23,9 @@
   "subServices": [
     {
       "id": "admin-dashboards",
-      "name": "Admin Dashboards",
+      "name": "Admin dashboards",
       "icon": "fas fa-tachometer-alt",
-      "desc": "Powerful dashboards to manage your business",
+      "desc": "Live dashboards to manage your business",
       "longDesc": "A real command center for your team — not a static report. We build internal dashboards that pull live data from your stack, surface exceptions, and let your operators take action without leaving the page.",
       "bullets": [
         "Live data from your DB, warehouse, or SaaS APIs",
@@ -37,10 +37,10 @@
     },
     {
       "id": "crm",
-      "name": "CRM Systems",
+      "name": "CRM systems",
       "icon": "fas fa-users-cog",
       "desc": "Customer relationship management tailored to you",
-      "longDesc": "When Salesforce or HubSpot is overkill, we build a CRM that matches your sales motion. Pipeline stages, follow-ups, contracts, and customer health — exactly what your team needs, and nothing they do not.",
+      "longDesc": "When Salesforce or HubSpot is overkill, we build a CRM that matches your sales motion. Pipeline stages, follow-ups, contracts, and customer health — exactly what your team needs, and nothing they don't.",
       "bullets": [
         "Pipeline, deal stages, and forecasting",
         "Email, call, and meeting integrations",
@@ -51,7 +51,7 @@
     },
     {
       "id": "inventory",
-      "name": "Inventory Management",
+      "name": "Inventory management",
       "icon": "fas fa-boxes",
       "desc": "Track stock, orders, and logistics efficiently",
       "longDesc": "Inventory is one mistake away from a stockout or a write-off. We build inventory systems that track SKUs across locations, integrate with your POS and marketplace channels, and surface the reorder decisions before they become a problem.",
@@ -65,10 +65,10 @@
     },
     {
       "id": "automation",
-      "name": "Workflow Automation",
+      "name": "Workflow automation",
       "icon": "fas fa-robot",
       "desc": "Automate repetitive tasks and save time",
-      "longDesc": "We turn the manual steps that eat your week into reliable automations. Lead routing, invoice generation, customer onboarding sequences, and the glue between tools that does not have a Zapier template.",
+      "longDesc": "We turn the manual steps that eat your week into reliable automations. Lead routing, invoice generation, customer onboarding sequences, and the glue between tools that doesn't have a Zapier template.",
       "bullets": [
         "Visual workflow designer with version history",
         "Retry, idempotency, and error handling",
@@ -143,7 +143,7 @@
   "faq": [
     {
       "question": "How is this different from off-the-shelf SaaS?",
-      "answer": "Off-the-shelf SaaS optimizes for the average customer. A custom internal tool optimizes for your exact workflow — and you stop paying per seat as you grow. We recommend SaaS when it is the right answer, and a custom build when it is not."
+      "answer": "Off-the-shelf SaaS optimizes for the average customer. A custom internal tool optimizes for your exact workflow — and you stop paying per seat as you grow. We recommend SaaS when it's the right answer, and a custom build when it isn't."
     },
     {
       "question": "How long until my team can use it?",

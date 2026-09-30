@@ -2,142 +2,133 @@
   "id": "mobile",
   "slug": "mobile",
   "title": "موبائل ڈیولپمنٹ",
-  "tagline": "وہ apps جو لوگ home screen پر رکھتے ہیں",
+  "tagline": "ایپس جنہیں لوگ ہوم اسکرین پر رکھے رہتے ہیں",
   "color": "#FBCD37",
   "gradient": "linear-gradient(135deg, #F59E0B 0%, #FBCD37 100%)",
   "icon": "fas fa-mobile-alt",
-  "shortDescription": "Native and cross-platform mobile applications",
+  "shortDescription": "نیٹو اور کراس پلیٹ فارم موبائل ایپلیکیشنز",
   "hero": {
-    "title": "وہ Apps جو لوگ Home Screen پر رکھتے ہیں",
-    "subtitle": "iOS، Android، cross-platform — تیز، polished، battery-friendly۔",
-    "cta_primary": "اپنی app plan کریں",
+    "title": "ایپس جنہیں لوگ ہوم اسکرین پر رکھے رہتے ہیں",
+    "subtitle": "نیٹو iOS، نیٹو Android یا React Native — وہ جو آپ کے پروجیکٹ کے لیے اصل میں صحیح ہو، وہ نہیں جو ہمیں اتفاق سے زیادہ پسند ہو۔",
+    "cta_primary": "میری ایپ کی منصوبہ بندی کریں",
     "cta_primary_link": "/contact/",
-    "cta_secondary": "Stack دیکھیں",
+    "cta_secondary": "ٹیکنالوجی دیکھیں",
     "cta_secondary_link": "#tech"
   },
   "metrics": [
-    {
-      "value": "60fps",
-      "label": "Animation target"
-    },
-    {
-      "value": "10+",
-      "label": "Apps shipped"
-    },
-    {
-      "value": "4.8★",
-      "label": "Avg. store rating"
-    }
+    { "value": "60fps", "label": "اینیمیشن کا ہدف" },
+    { "value": "10+", "label": "لانچ شدہ ایپس" },
+    { "value": "4.8★", "label": "اسٹور پر اوسط ریٹنگ" }
   ],
   "subServices": [
     {
       "id": "ios",
       "name": "iOS ایپس",
       "icon": "fab fa-apple",
-      "desc": "آئی فون اور آئی پیڈ کے لیے نیٹو سوئفٹ",
-      "longDesc": "SwiftUI اور UIKit، App Store جمع کرانا، TestFlight، پرائیویسی مینیفیسٹ — چھوٹی چیزیں جو ایپ کو بہتر بناتی ہیں۔",
+      "desc": "iPhone اور iPad کے لیے نیٹو Swift ایپلیکیشنز",
+      "longDesc": "خالص SwiftUI اور UIKit، جو Swift 5.10+ میں لکھی جاتی ہیں اور جن میں ہر جگہ async/await استعمال ہوتا ہے۔ App Store پر جمع کرانا، TestFlight بیٹا، پرائیویسی مینی فیسٹس، اور وہ چھوٹی چھوٹی باتیں جن سے ایپ Apple silicon پر اپنی جگہ پر محسوس ہو — یہ سب ہم سنبھالتے ہیں۔",
       "bullets": [
-        "Swift، SwiftUI، UIKit",
-        "iPhone، iPad، Watch",
-        "StoreKit اور Sign in with Apple",
-        "TestFlight اور App Store Connect"
+        "Swift، SwiftUI، UIKit، Combine",
+        "iPhone، iPad، Apple Watch، Apple TV",
+        "StoreKit، Sign in with Apple، Wallet",
+        "TestFlight، App Store Connect اور پرائیویسی مینی فیسٹس"
       ],
-      "imageLabel": "iOS ایپ اسکرین"
+      "imageLabel": "iOS ایپ اسکرین کا ماک اپ"
     },
     {
       "id": "android",
-      "name": "اینڈرائیڈ ایپس",
+      "name": "Android ایپس",
       "icon": "fab fa-android",
-      "desc": "تمام اینڈرائیڈ ڈیوائسز کے لیے کوٹلن",
-      "longDesc": "Kotlin-first Android، Jetpack Compose اور Material 3۔ ان ڈیوائسز کے لیے جنہیں صارفین واقعی رکھتے ہیں۔",
+      "desc": "ہر Android ڈیوائس کے لیے نیٹو Kotlin ایپس",
+      "longDesc": "Kotlin پر مبنی Android، Jetpack Compose، Material 3 اور جدید AndroidX کے ساتھ۔ ہم ان تمام طرح کی ڈیوائسز کے لیے بناتے ہیں جو آپ کے صارفین کے پاس اصل میں ہوتی ہیں — بدلتی اسکرینوں کے مطابق لے آؤٹ، پریڈکٹیو بیک، اور پہلی بار کھولنے پر ہموار تجربہ۔",
       "bullets": [
-        "Kotlin، Compose، Material 3",
-        "فون، فولڈ ایبل، ٹیبلیٹ",
-        "Play Billing اور Data Safety",
-        "اندرونی ٹریکس اور سٹیجڈ رول آؤٹ"
+        "Kotlin، Jetpack Compose، Material 3",
+        "فونز، فولڈ ایبلز اور ٹیبلیٹس کے لیے بدلنے والے لے آؤٹ",
+        "Play Billing، Play Integrity اور Data Safety",
+        "اندرونی ٹریکس، مرحلہ وار رول آؤٹ اور لانچ سے پہلے کی رپورٹس"
       ],
-      "imageLabel": "اینڈرائیڈ ایپ اسکرین"
+      "imageLabel": "Android ایپ اسکرین کا ماک اپ"
     },
     {
       "id": "cross-platform",
       "name": "کراس پلیٹ فارم",
       "icon": "fas fa-layer-group",
-      "desc": "فلٹر اور ری ایکٹ نیٹو پہنچ کے لیے",
-      "longDesc": "ایک کوڈ بیس، دو اسٹورز۔ Flutter تفصیلی UI کے لیے، React Native جب ٹیم جاوا اسکرپٹ میں ہو۔",
+      "desc": "کئی پلیٹ فارمز تک پہنچ کے لیے Flutter اور React Native",
+      "longDesc": "ایک کوڈ بیس، دو اسٹورز، اور اتنا نیٹو احساس جتنا پلیٹ فارم اجازت دے۔ تفصیلی UI اور اینیمیشنز کے لیے ہم Flutter چنتے ہیں، اور React Native تب جب ٹیم پہلے سے JavaScript میں گہرائی تک کام کر رہی ہو اور اس کا ایکو سسٹم اہم ہو۔",
       "bullets": [
-        "Flutter 3 اور Dart 3",
-        "React Native، Expo، Hermes",
-        "بلوٹوتھ، NFC، کیمرہ",
-        "مشترکہ ڈیزائن سسٹم"
+        "Flutter 3، Dart 3، Material You اور Cupertino کے ساتھ",
+        "React Native، Expo، EAS اور Hermes کے ساتھ",
+        "بلوٹوتھ، NFC اور کیمرے کے لیے نیٹو ماڈیولز",
+        "iOS اور Android پر ایک ہی ڈیزائن سسٹم"
       ],
-      "imageLabel": "کراس پلیٹ فارم ماک اپ"
+      "imageLabel": "کراس پلیٹ فارم ایپ کا ماک اپ"
     },
     {
       "id": "aso",
       "name": "ایپ اسٹور آپٹیمائزیشن",
       "icon": "fas fa-chart-line",
-      "desc": "درست ASO سے دریافت ہوں",
-      "longDesc": "زیادہ تر ایپس کبھی نہیں ملتیں۔ اسٹور لسٹنگ کو پروڈکٹ کی سطح سمجھتے ہیں — کی ورڈز، اسکرین شاٹس، لوکلائزیشن۔",
+      "desc": "درست ASO حکمتِ عملی سے لوگوں کی نظر میں آئیں",
+      "longDesc": "زیادہ تر ایپس کبھی کسی کو ملتی ہی نہیں۔ ہم اسٹور لسٹنگ کو پروڈکٹ کا حصہ سمجھتے ہیں — کی ورڈ ریسرچ، اسکرین شاٹس کی جانچ، مقامی زبانوں میں ترجمہ، اور مسلسل تجربات، تاکہ آپ کی انسٹالز کا گراف اوپر جاتا رہے۔",
       "bullets": [
-        "کی ورڈ ریسرچ اور میٹا ڈیٹا",
-        "اسکرین شاٹ اور ویڈیو ٹیسٹ",
-        "اہم مارکیٹوں کی لوکلائزیشن",
-        "ریویوز اور جواب"
+        "کی ورڈ ریسرچ اور میٹا ڈیٹا کی تازہ کاری",
+        "اسکرین شاٹس اور ویڈیوز کی A/B جانچ",
+        "اہم مارکیٹوں کے لیے مقامی زبانوں میں ترجمہ",
+        "ریویوز، ریٹنگز اور جواب دینے کا نظام"
       ],
-      "imageLabel": "اسٹور اینالٹکس"
+      "imageLabel": "ایپ اسٹور اینالیٹکس ڈیش بورڈ"
     }
   ],
   "process": [
     {
       "number": "01",
-      "title": "Validate",
-      "desc": "Prototype the core loop, prove the value, and size the build",
+      "title": "تصدیق",
+      "desc": "بنیادی استعمال کا پروٹوٹائپ، اس کی افادیت ثابت کرنا، اور کام کا حجم طے کرنا",
       "icon": "fas fa-compass"
     },
     {
       "number": "02",
-      "title": "Architect",
-      "desc": "Pick the stack, sketch the navigation, and design the data flow",
+      "title": "ڈھانچہ",
+      "desc": "ٹیکنالوجی کا انتخاب، نیویگیشن کا خاکہ، اور ڈیٹا کے بہاؤ کا ڈیزائن",
       "icon": "fas fa-sitemap"
     },
     {
       "number": "03",
-      "title": "Design",
-      "desc": "Mobile-first flows, motion studies, and an icon and color system",
+      "title": "ڈیزائن",
+      "desc": "موبائل کو پہلے رکھ کر بنے فلوز، حرکت کے تجربات، اور آئیکنز و رنگوں کا نظام",
       "icon": "fas fa-pencil-ruler"
     },
     {
       "number": "04",
-      "title": "Build",
-      "desc": "Sprint-by-sprint with TestFlight and Play Internal Track demos",
+      "title": "تعمیر",
+      "desc": "ایک ایک اسپرنٹ کر کے، TestFlight اور Play Internal Track پر ڈیمو کے ساتھ",
       "icon": "fas fa-code"
     },
     {
       "number": "05",
-      "title": "Ship & Grow",
-      "desc": "Store submission, then a roadmap of releases, not a one-and-done",
+      "title": "لانچ اور ترقی",
+      "desc": "اسٹور پر جمع کرانا، پھر ریلیزز کا روڈ میپ — ایک بار کر کے چھوڑ دینا نہیں",
       "icon": "fas fa-rocket"
     }
   ],
   "deliverables": [
     {
-      "title": "Production app binaries",
-      "description": "Signed builds for App Store and Play Store, with internal and external tracks set up.",
+      "title": "لانچ کے لیے تیار ایپ بلڈز",
+      "description": "App Store اور Play Store کے لیے سائن شدہ بلڈز، اندرونی اور بیرونی ٹریکس کے ساتھ۔",
       "icon": "fas fa-mobile"
     },
     {
-      "title": "Source & CI",
-      "description": "Clean repo, GitHub Actions or Bitrise, and signed release pipelines for both stores.",
+      "title": "سورس کوڈ اور CI",
+      "description": "صاف ستھری ریپوزٹری، GitHub Actions یا Bitrise، اور دونوں اسٹورز کے لیے سائن شدہ ریلیز پائپ لائنز۔",
       "icon": "fas fa-code-branch"
     },
     {
-      "title": "Store listings",
-      "description": "Screenshots, videos, descriptions, and keywords in every locale you operate in.",
+      "title": "اسٹور لسٹنگز",
+      "description": "جن جن زبانوں اور ملکوں میں آپ کام کرتے ہیں، سب کے لیے اسکرین شاٹس، ویڈیوز، تفصیلات اور کی ورڈز۔",
       "icon": "fas fa-store"
     },
     {
-      "title": "Analytics & crash reporting",
-      "description": "Firebase, Sentry, or your stack of choice wired up and dashboard-ready.",
+      "title": "اینالیٹکس اور کریش رپورٹنگ",
+      "description": "Firebase، Sentry یا آپ کی پسند کے ٹولز، جڑے ہوئے اور ڈیش بورڈ کے لیے تیار۔",
       "icon": "fas fa-chart-bar"
     }
   ],
@@ -157,20 +148,20 @@
   ],
   "faq": [
     {
-      "question": "Should I pick Flutter, React Native, or fully native?",
-      "answer": "It depends on your team, timeline, and platform ambition. We recommend fully native for apps that lean on platform features (Apple Watch, Material You, NFC). Flutter and React Native are great for cross-platform MVPs and most consumer apps. We will recommend the right choice after a short architecture workshop."
+      "question": "مجھے Flutter، React Native یا مکمل نیٹو میں سے کیا چننا چاہیے؟",
+      "answer": "یہ آپ کی ٹیم، وقت اور پلیٹ فارم کے عزائم پر منحصر ہے۔ جو ایپس پلیٹ فارم کے فیچرز (Apple Watch، Material You، NFC) پر زیادہ انحصار کرتی ہیں، ان کے لیے ہم مکمل نیٹو کا مشورہ دیتے ہیں۔ کراس پلیٹ فارم MVP اور زیادہ تر عام صارفین کی ایپس کے لیے Flutter اور React Native بہترین ہیں۔ ایک مختصر آرکیٹیکچر ورکشاپ کے بعد ہم آپ کو صحیح انتخاب بتائیں گے۔"
     },
     {
-      "question": "Do you handle App Store and Play Store submission?",
-      "answer": "Yes. We manage the whole submission process, including review notes, privacy nutrition labels, Data Safety, signing certificates, and store listing copy. We also set up staged rollouts so you can watch crash-free sessions and roll back if needed."
+      "question": "کیا App Store اور Play Store پر جمع کرانے کا کام آپ کرتے ہیں؟",
+      "answer": "جی ہاں۔ ہم جمع کرانے کا پورا عمل سنبھالتے ہیں، جس میں ریویو نوٹس، پرائیویسی لیبلز، Data Safety، سائننگ سرٹیفکیٹس اور اسٹور لسٹنگ کا متن شامل ہے۔ ہم مرحلہ وار رول آؤٹ بھی ترتیب دیتے ہیں تاکہ آپ کریش کے بغیر سیشنز پر نظر رکھ سکیں اور ضرورت ہو تو پچھلے ورژن پر واپس جا سکیں۔"
     },
     {
-      "question": "Can you take over an existing app?",
-      "answer": "Frequently. We do a paid audit first — architecture review, dependency analysis, crash reports, and a one-page plan — then propose a phased engagement. Most rescue projects start with a 2-week stabilization sprint before we touch features."
+      "question": "کیا آپ کسی موجودہ ایپ کو سنبھال سکتے ہیں؟",
+      "answer": "اکثر یہی کرتے ہیں۔ ہم پہلے ایک معاوضے والا جائزہ لیتے ہیں — آرکیٹیکچر کا جائزہ، ڈیپینڈنسیز کا تجزیہ، کریش رپورٹس، اور ایک صفحے کا منصوبہ — پھر مرحلہ وار کام کی تجویز دیتے ہیں۔ ایسے زیادہ تر پروجیکٹس فیچرز کو ہاتھ لگانے سے پہلے 2 ہفتوں کے استحکام اسپرنٹ سے شروع ہوتے ہیں۔"
     },
     {
-      "question": "How do you handle ongoing maintenance?",
-      "answer": "We offer monthly retainer plans that include store updates, dependency upgrades, crash triage, and a small number of feature hours. Most clients keep us on for 6–12 months after launch to keep the app fresh."
+      "question": "بعد میں دیکھ بھال کا کام کیسے ہوتا ہے؟",
+      "answer": "ہم ماہانہ پلانز پیش کرتے ہیں جن میں اسٹور اپ ڈیٹس، ڈیپینڈنسیز کی اپ گریڈ، کریشز کی جانچ، اور نئے فیچرز کے لیے کچھ گھنٹے شامل ہوتے ہیں۔ زیادہ تر کلائنٹس لانچ کے بعد 6–12 مہینے ہمیں ساتھ رکھتے ہیں تاکہ ایپ تازہ رہے۔"
     }
   ]
 }

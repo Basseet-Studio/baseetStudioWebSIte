@@ -2,12 +2,12 @@
   "name": "Zyrn",
   "slug": "zyrn",
   "type": "branded",
-  "tagline": "متجرك. علامتك. عملاؤك — يُبلَّغون فوراً.",
-  "description": "## حول Zyrn\n\nZyrn is a complete digital commerce package for business owners and new entrepreneurs who want to sell online without drowning in spreadsheets, WhatsApp orders, and sticky notes. It runs a real store — products, payments, customers, marketing, returns, reports — and grows into subscriptions, digital goods, bookings, and automations that keep your business moving while you sleep.\n\n### No paper trail. No guessing.\n\nOrders stop living in Instagram DMs and chat threads. Stock stops living in notebooks. Customers get updates the moment something changes — order placed, payment confirmed, shipped, delivered, return opened.\n\n### Sell what you actually sell\n\nPhysical products, digital downloads, subscriptions and memberships, bookings and appointments, bundles and multi-currency storefronts — one branded system, not a brochure site.\n",
+  "tagline": "متجرك. علامتك. عملاؤك — يصلهم الإشعار فوراً.",
+  "description": "## عن Zyrn\n\nZyrn باقة تجارة رقمية متكاملة لأصحاب الأعمال ورواد الأعمال الجدد الذين يريدون البيع عبر الإنترنت دون أن يغرقوا في جداول البيانات وطلبات WhatsApp والأوراق اللاصقة. يشغّل متجراً حقيقياً — المنتجات، والمدفوعات، والعملاء، والتسويق، والمرتجعات، والتقارير — ويتوسع نحو الاشتراكات والمنتجات الرقمية والحجوزات والأتمتة التي تُبقي نشاطك يعمل وأنت نائم.\n\n### لا أوراق. لا تخمين.\n\nلم تعد الطلبات حبيسة رسائل Instagram الخاصة وسلاسل المحادثات، ولم يعد المخزون حبيس الدفاتر. يتلقى العملاء التحديثات لحظة حدوث أي تغيير — تم الطلب، تأكّد الدفع، تم الشحن، تم التسليم، فُتح طلب إرجاع.\n\n### بِع ما تبيعه فعلاً\n\nمنتجات مادية، وتنزيلات رقمية، واشتراكات وعضويات، وحجوزات ومواعيد، وحزم منتجات، وواجهات متاجر متعددة العملات — نظام واحد بعلامتك التجارية، لا مجرد موقع تعريفي.\n",
   "iconClass": "fas fa-th-large",
   "color": "#EC4899",
   "gradient": "linear-gradient(135deg, #EC4899 0%, #F9A8D4 100%)",
-  "status": "جاهز للتسليم",
+  "status": "Ready to Deliver",
   "layoutVariant": "zyrn",
   "fontHeading": "Space Grotesk",
   "fontBody": "Inter",
@@ -19,52 +19,52 @@
   "bgFallbackGradient": "linear-gradient(180deg, #FDF2F8 0%, #FCE7F3 40%, #FBCFE8 100%)",
   "clientIds": ["little-hands-lab"],
   "hero": {
-    "title": "بِع بذكاء. ابقَ قريباً من عملائك. انمُ بلا فوضى.",
-    "subtitle": "نظام متجر إلكتروني بعلامتك لبيع المنتجات المادية والرقمية والاشتراكات — مع تحديثات فورية وأرقام واضحة وأتمتة حتى لا تخمّن ما يحدث في عملك.",
-    "cta_primary": "اطلب عرضاً",
+    "title": "بِع بذكاء. ابقَ قريباً من عملائك. انمُ دون فوضى.",
+    "subtitle": "نظام متجر إلكتروني بعلامتك التجارية للمنتجات المادية والرقمية والاشتراكات — مع تحديثات مباشرة للعملاء، وأرقام واضحة، وأتمتة تُغنيك عن تخمين ما يجري في نشاطك.",
+    "cta_primary": "اطلب عرضاً تجريبياً",
     "cta_primary_link": "/contact",
-    "cta_secondary": "عرض الميزات",
+    "cta_secondary": "استعرض الميزات",
     "cta_secondary_link": "#features"
   },
   "features": [
     {
-      "title": "Branded Storefront",
-      "description": "Your logo, colors, and content on a mobile-ready store — premium from day one, not a temporary link in bio.",
+      "title": "واجهة متجر بعلامتك",
+      "description": "شعارك وألوانك ومحتواك على متجر جاهز للجوال — احترافي من اليوم الأول، لا مجرد رابط مؤقت في النبذة التعريفية.",
       "icon": "fas fa-store"
     },
     {
-      "title": "Sell Anything",
-      "description": "Physical products, digital downloads, subscriptions, bookings, bundles, and multi-currency or multi-language storefronts.",
+      "title": "بِع أي شيء",
+      "description": "منتجات مادية، وتنزيلات رقمية، واشتراكات، وحجوزات، وحزم، وواجهات متاجر متعددة العملات أو اللغات.",
       "icon": "fas fa-boxes-stacked"
     },
     {
-      "title": "Notified on the Spot",
-      "description": "Order placed → payment confirmed → shipped → delivered → return opened. Customers stay informed without chasing you.",
+      "title": "إشعار في اللحظة نفسها",
+      "description": "تم الطلب ← تأكّد الدفع ← تم الشحن ← تم التسليم ← فُتح طلب إرجاع. يبقى العملاء على اطلاع دون أن يلاحقوك بالأسئلة.",
       "icon": "fas fa-bell"
     },
     {
-      "title": "Checkout & Payments",
-      "description": "Smooth cart and checkout with cards, wallets, COD, bank transfer, and major gateways — take the money, confirm, move on.",
+      "title": "إتمام الطلب والمدفوعات",
+      "description": "سلة وإتمام طلب بلا تعقيد عبر البطاقات والمحافظ الإلكترونية والدفع عند الاستلام والتحويل البنكي وأشهر بوابات الدفع — استلم المال، وأكّد، وانتقل إلى التالي.",
       "icon": "fas fa-credit-card"
     },
     {
-      "title": "Marketing & Growth",
-      "description": "Coupons, catalog rules, email campaigns, SEO, social share, and newsletter tools — offers, timing, and follow-through.",
+      "title": "التسويق والنمو",
+      "description": "القسائم، وقواعد الكتالوج، وحملات البريد الإلكتروني، وSEO، والمشاركة على الشبكات الاجتماعية، وأدوات النشرة البريدية — العروض، والتوقيت، والمتابعة.",
       "icon": "fas fa-bullhorn"
     },
     {
-      "title": "Live Statistics",
-      "description": "Sales, bestsellers, customers, carts, promotions, inventory — open the numbers and decide what to do next.",
+      "title": "إحصاءات مباشرة",
+      "description": "المبيعات، والأكثر مبيعاً، والعملاء، والسلال، والعروض الترويجية، والمخزون — افتح الأرقام وقرّر خطوتك التالية.",
       "icon": "fas fa-chart-line"
     },
     {
-      "title": "Automations",
-      "description": "Order emails, status alerts, promotion rules, stock signals, and extendable flows like cart recovery and WhatsApp updates.",
+      "title": "الأتمتة",
+      "description": "رسائل بريد للطلبات، وتنبيهات للحالة، وقواعد للعروض، وإشارات للمخزون، ومسارات قابلة للتوسعة مثل استرجاع السلال المتروكة وتحديثات WhatsApp.",
       "icon": "fas fa-robot"
     },
     {
-      "title": "Inventory & Team Control",
-      "description": "Stock that updates with sales, import/export, returns/RMA, and staff roles so your team works from one system.",
+      "title": "التحكم في المخزون والفريق",
+      "description": "مخزون يتحدّث مع كل عملية بيع، واستيراد وتصدير، وإدارة المرتجعات (RMA)، وأدوار للموظفين ليعمل فريقك من نظام واحد.",
       "icon": "fas fa-sitemap"
     }
   ],
@@ -72,82 +72,82 @@
     {
       "name": "Web",
       "icon": "fas fa-globe",
-      "version": "Branded Storefront + Admin",
+      "version": "واجهة متجر بعلامتك + لوحة إدارة",
       "link": "#"
     }
   ],
   "tech": [
-    "Branded storefront",
-    "Catalog & inventory",
-    "Checkout & payments",
-    "Order notifications",
-    "Subscriptions",
-    "Digital products",
-    "Bookings",
-    "Marketing & coupons",
-    "Statistics & reports",
-    "Automations",
-    "Multi-language / multi-currency",
-    "Returns / RMA"
+    "واجهة متجر بعلامتك",
+    "الكتالوج والمخزون",
+    "إتمام الطلب والمدفوعات",
+    "إشعارات الطلبات",
+    "الاشتراكات",
+    "المنتجات الرقمية",
+    "الحجوزات",
+    "التسويق والقسائم",
+    "الإحصاءات والتقارير",
+    "الأتمتة",
+    "تعدد اللغات / تعدد العملات",
+    "المرتجعات / RMA"
   ],
   "navItems": [
     {
-      "label": "Home",
+      "label": "الرئيسية",
       "url": "",
       "i18nKey": "project_nav_home"
     },
     {
-      "label": "Features",
+      "label": "الميزات",
       "url": "features/",
       "i18nKey": "project_nav_features"
     },
     {
-      "label": "Demo",
+      "label": "عرض تجريبي",
       "url": "demo/",
       "i18nKey": "project_nav_demo"
     },
     {
-      "label": "Privacy Policy",
+      "label": "سياسة الخصوصية",
       "url": "terms/",
       "i18nKey": "project_nav_terms"
     }
   ],
   "navMetaItems": [
     {
-      "label": "Work",
+      "label": "أعمالنا",
       "url": "/projects/",
       "i18nKey": "nav_work"
     },
     {
-      "label": "Contact",
+      "label": "تواصل",
       "url": "/contact/",
       "i18nKey": "nav_contact"
     }
   ],
   "faq": [
     {
-      "question": "I already sell on Instagram. Why do I need Zyrn?",
-      "answer": "Instagram is discovery. Zyrn is checkout, stock, notifications, and ownership of the customer relationship — so orders stop living in DMs."
+      "question": "أبيع على Instagram أصلاً. لماذا أحتاج إلى Zyrn؟",
+      "answer": "Instagram للاكتشاف. أما Zyrn فلإتمام الطلب، والمخزون، والإشعارات، وامتلاك علاقتك بالعميل — لتتوقف الطلبات عن العيش في الرسائل الخاصة."
     },
     {
-      "question": "Can’t I just use a form?",
-      "answer": "Forms take requests. Zyrn takes payment, tracks inventory, and updates the customer automatically when something changes."
+      "question": "ألا يكفيني نموذج طلب؟",
+      "answer": "النماذج تستقبل الطلبات فقط. أما Zyrn فيستلم الدفع، ويتتبّع المخزون، ويُحدّث العميل تلقائياً عند أي تغيير."
     },
     {
-      "question": "I’m too small for software. Is this for me?",
-      "answer": "That is exactly when chaos starts. Zyrn keeps a small business clean before the mess becomes expensive — launch lean, add subscriptions, digital, and automations later."
+      "question": "نشاطي أصغر من أن يحتاج إلى برنامج. هل هذا مناسب لي؟",
+      "answer": "هذا بالضبط هو الوقت الذي تبدأ فيه الفوضى. يُبقي Zyrn النشاط الصغير منظّماً قبل أن تصبح الفوضى مكلفة — ابدأ بالأساسيات، وأضف الاشتراكات والمنتجات الرقمية والأتمتة لاحقاً."
     },
     {
-      "question": "Can I sell digital products or subscriptions?",
-      "answer": "Yes. Instant delivery for downloads and licenses, plus subscription and membership flows for boxes, plans, and recurring revenue."
+      "question": "هل يمكنني بيع منتجات رقمية أو اشتراكات؟",
+      "answer": "نعم. تسليم فوري للتنزيلات والتراخيص، إلى جانب مسارات للاشتراكات والعضويات للصناديق الدورية والخطط والإيرادات المتكررة."
     },
     {
-      "question": "Will customers know what is happening with their order?",
-      "answer": "Yes. Notified on the spot — order, payment, shipping, and returns — so you are not typing the same update fifty times a day."
+      "question": "هل سيعرف العملاء ما يحدث لطلباتهم؟",
+      "answer": "نعم. إشعار في اللحظة نفسها — الطلب، والدفع، والشحن، والمرتجعات — فلا تكتب التحديث نفسه خمسين مرة في اليوم."
     },
     {
-      "question": "How do I know what to sell next?",
-      "answer": "Statistics. Bestsellers. Customer behavior. Cart and promotion views. No guessing — open the dashboard and decide."
+      "question": "كيف أعرف ماذا أبيع بعد ذلك؟",
+      "answer": "الإحصاءات. الأكثر مبيعاً. سلوك العملاء. تقارير السلال والعروض الترويجية. لا تخمين — افتح لوحة التحكم وقرّر."
     }
   ]
 }

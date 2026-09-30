@@ -72,7 +72,7 @@
   {
     "slug": "moneybox",
     "name": "MoneyBox",
-    "tagline": "Your money, organised.",
+    "tagline": "Your money, organized.",
     "color": "#16A34A",
     "gradient": "linear-gradient(135deg, #16A34A 0%, #4ADE80 100%)",
     "status": "Live",
@@ -258,7 +258,7 @@
   {
     "slug": "nss-virtual-education-fair",
     "name": "NSS Virtual Education Fair",
-    "tagline": "Virtual Education Fair Platform",
+    "tagline": "Virtual education fair platform",
     "color": "#0EA5E9",
     "gradient": "linear-gradient(135deg, #0EA5E9 0%, #38BDF8 100%)",
     "status": "Completed",
