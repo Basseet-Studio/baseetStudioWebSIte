@@ -3,53 +3,85 @@
     {
       "id": "sky-night",
       "hour": 0,
-      "source": "qwantani_night_puresky.jpg",
+      "source": "qwantani_night_puresky_4k.exr",
       "placeholder": "/images/skyscapes/sky-night-placeholder.jpg",
       "medium": "/images/skyscapes/sky-night-medium.jpg",
       "full": "/images/skyscapes/sky-night.jpg"
     },
     {
       "id": "sky-dawn",
-      "hour": 4.5,
-      "source": "qwantani_dawn_puresky.jpg",
+      "hour": 6,
+      "source": "kloppenheim_06_puresky_4k.exr",
       "placeholder": "/images/skyscapes/sky-dawn-placeholder.jpg",
       "medium": "/images/skyscapes/sky-dawn-medium.jpg",
       "full": "/images/skyscapes/sky-dawn.jpg"
     },
     {
-      "id": "sky-morning",
-      "hour": 8,
-      "source": "autumn_field_puresky.jpg",
-      "placeholder": "/images/skyscapes/sky-morning-placeholder.jpg",
-      "medium": "/images/skyscapes/sky-morning-medium.jpg",
-      "full": "/images/skyscapes/sky-morning.jpg"
-    },
-    {
       "id": "sky-day",
-      "hour": 14,
-      "source": "kloofendal_48d_partly_cloudy_puresky.jpg",
+      "hour": 13,
+      "source": "kloofendal_48d_partly_cloudy_puresky_4k.exr",
       "placeholder": "/images/skyscapes/sky-day-placeholder.jpg",
       "medium": "/images/skyscapes/sky-day-medium.jpg",
       "full": "/images/skyscapes/sky-day.jpg"
     },
     {
       "id": "sky-evening",
-      "hour": 19,
-      "source": "qwantani_sunset_puresky.jpg",
+      "hour": 18.5,
+      "source": "qwantani_sunset_puresky_4k.exr",
       "placeholder": "/images/skyscapes/sky-evening-placeholder.jpg",
       "medium": "/images/skyscapes/sky-evening-medium.jpg",
       "full": "/images/skyscapes/sky-evening.jpg"
     },
     {
       "id": "sky-dusk",
-      "hour": 21,
-      "source": "qwantani_dusk_2_puresky.jpg",
+      "hour": 20.5,
+      "source": "qwantani_dusk_2_puresky_4k.exr",
       "placeholder": "/images/skyscapes/sky-dusk-placeholder.jpg",
       "medium": "/images/skyscapes/sky-dusk-medium.jpg",
       "full": "/images/skyscapes/sky-dusk.jpg"
     }
   ],
   "library": [
+    {
+      "id": "qwantani_night_puresky",
+      "label": "Night · qwantani_night (4K)",
+      "source": "qwantani_night_puresky_4k.exr",
+      "placeholder": "/images/skyscapes/sky-night-placeholder.jpg",
+      "medium": "/images/skyscapes/sky-night-medium.jpg",
+      "full": "/images/skyscapes/sky-night.jpg"
+    },
+    {
+      "id": "kloppenheim_06_puresky",
+      "label": "Dawn · kloppenheim_06 (4K)",
+      "source": "kloppenheim_06_puresky_4k.exr",
+      "placeholder": "/images/skyscapes/sky-dawn-placeholder.jpg",
+      "medium": "/images/skyscapes/sky-dawn-medium.jpg",
+      "full": "/images/skyscapes/sky-dawn.jpg"
+    },
+    {
+      "id": "kloofendal_48d_partly_cloudy_puresky",
+      "label": "Day · kloofendal_48d_partly_cloudy (4K)",
+      "source": "kloofendal_48d_partly_cloudy_puresky_4k.exr",
+      "placeholder": "/images/skyscapes/sky-day-placeholder.jpg",
+      "medium": "/images/skyscapes/sky-day-medium.jpg",
+      "full": "/images/skyscapes/sky-day.jpg"
+    },
+    {
+      "id": "qwantani_sunset_puresky",
+      "label": "Evening · qwantani_sunset (4K)",
+      "source": "qwantani_sunset_puresky_4k.exr",
+      "placeholder": "/images/skyscapes/sky-evening-placeholder.jpg",
+      "medium": "/images/skyscapes/sky-evening-medium.jpg",
+      "full": "/images/skyscapes/sky-evening.jpg"
+    },
+    {
+      "id": "qwantani_dusk_2_puresky",
+      "label": "Dusk · qwantani_dusk_2 (4K)",
+      "source": "qwantani_dusk_2_puresky_4k.exr",
+      "placeholder": "/images/skyscapes/sky-dusk-placeholder.jpg",
+      "medium": "/images/skyscapes/sky-dusk-medium.jpg",
+      "full": "/images/skyscapes/sky-dusk.jpg"
+    },
     {
       "id": "autumn_field_puresky",
       "label": "autumn_field_puresky",
@@ -100,13 +132,6 @@
       "full": "/images/skyscapes/library/kloofendal_43d_clear_puresky.jpg"
     },
     {
-      "id": "kloofendal_48d_partly_cloudy_puresky",
-      "label": "kloofendal_48d_partly_cloudy_puresky",
-      "source": "kloofendal_48d_partly_cloudy_puresky.jpg",
-      "placeholder": "/images/skyscapes/library/kloofendal_48d_partly_cloudy_puresky-placeholder.jpg",
-      "full": "/images/skyscapes/library/kloofendal_48d_partly_cloudy_puresky.jpg"
-    },
-    {
       "id": "lonely_road_afternoon_puresky",
       "label": "lonely_road_afternoon_puresky",
       "source": "lonely_road_afternoon_puresky.jpg",
@@ -142,13 +167,6 @@
       "full": "/images/skyscapes/library/qwantani_dusk_1_puresky.jpg"
     },
     {
-      "id": "qwantani_dusk_2_puresky",
-      "label": "qwantani_dusk_2_puresky",
-      "source": "qwantani_dusk_2_puresky.jpg",
-      "placeholder": "/images/skyscapes/library/qwantani_dusk_2_puresky-placeholder.jpg",
-      "full": "/images/skyscapes/library/qwantani_dusk_2_puresky.jpg"
-    },
-    {
       "id": "qwantani_moon_noon_puresky",
       "label": "qwantani_moon_noon_puresky",
       "source": "qwantani_moon_noon_puresky.jpg",
@@ -161,20 +179,6 @@
       "source": "qwantani_moonrise_puresky.jpg",
       "placeholder": "/images/skyscapes/library/qwantani_moonrise_puresky-placeholder.jpg",
       "full": "/images/skyscapes/library/qwantani_moonrise_puresky.jpg"
-    },
-    {
-      "id": "qwantani_night_puresky",
-      "label": "qwantani_night_puresky",
-      "source": "qwantani_night_puresky.jpg",
-      "placeholder": "/images/skyscapes/library/qwantani_night_puresky-placeholder.jpg",
-      "full": "/images/skyscapes/library/qwantani_night_puresky.jpg"
-    },
-    {
-      "id": "qwantani_sunset_puresky",
-      "label": "qwantani_sunset_puresky",
-      "source": "qwantani_sunset_puresky.jpg",
-      "placeholder": "/images/skyscapes/library/qwantani_sunset_puresky-placeholder.jpg",
-      "full": "/images/skyscapes/library/qwantani_sunset_puresky.jpg"
     },
     {
       "id": "snow_field_puresky",

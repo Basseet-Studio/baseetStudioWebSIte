@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 import { cloudFragmentShader, cloudVertexShader } from './cloud-shader'
+import { skyCompositeFragmentShader, skyCompositeVertexShader } from './sky-composite-shader'
 import { createCameraController } from './camera-controller'
 import { createObjectRegistry, WORLD_SCALE } from './object-registry'
 import { createPageTransitionBridge } from './page-transition-bridge'
@@ -60,6 +61,9 @@ let listenersAttached = false
 let paused = false
 let rafId: number | null = null
 
+/** Max device-pixel-ratio for the full-res sky / model pass, per tier. */
+const SKY_DPR_CAP: Record<string, number> = { high: 2, medium: 1.5, low: 1 }
+
 function readNumber(value: unknown, fallback: number): number {
   return typeof value === 'number' && Number.isFinite(value) ? value : fallback
 }
@@ -86,40 +90,12 @@ function copyHexToThreeColor(hex: string | undefined, fallback: string, target: 
   }
 }
 
-function ensureCloudRenderTargets(
-  width: number,
-  height: number,
-  behindTarget: THREE.WebGLRenderTarget | null,
-  middleTarget: THREE.WebGLRenderTarget | null,
-): { behind: THREE.WebGLRenderTarget; middle: THREE.WebGLRenderTarget } {
-  const pixelWidth = Math.max(1, Math.round(width))
-  const pixelHeight = Math.max(1, Math.round(height))
-
-  let behind = behindTarget
-  let middle = middleTarget
-
-  if (!behind) {
-    behind = new THREE.WebGLRenderTarget(pixelWidth, pixelHeight)
-    behind.texture.minFilter = THREE.LinearFilter
-    behind.texture.magFilter = THREE.LinearFilter
-    behind.texture.generateMipmaps = false
-  } else {
-    behind.setSize(pixelWidth, pixelHeight)
-  }
-
-  if (!middle) {
-    middle = new THREE.WebGLRenderTarget(pixelWidth, pixelHeight)
-    middle.texture.minFilter = THREE.LinearFilter
-    middle.texture.magFilter = THREE.LinearFilter
-    middle.texture.generateMipmaps = false
-    middle.depthTexture = new THREE.DepthTexture(pixelWidth, pixelHeight)
-    middle.depthTexture.format = THREE.DepthFormat
-    middle.depthTexture.type = THREE.FloatType
-  } else {
-    middle.setSize(pixelWidth, pixelHeight)
-  }
-
-  return { behind, middle }
+function makeColorTarget(w: number, h: number): THREE.WebGLRenderTarget {
+  const rt = new THREE.WebGLRenderTarget(w, h)
+  rt.texture.minFilter = THREE.LinearFilter
+  rt.texture.magFilter = THREE.LinearFilter
+  rt.texture.generateMipmaps = false
+  return rt
 }
 
 function pushDebugSnapshot(
@@ -193,7 +169,7 @@ export function initCloudscape(opts: {
 
   sceneLog(
     'boot',
-    `init page=${config.pageId} mode=toolcraft-clouds+glb tier=${quality.tier} scale=${quality.renderScale} fps=${quality.targetFps}`,
+    `init page=${config.pageId} mode=split-sky+clouds tier=${quality.tier} scale=${quality.renderScale} fps=${quality.targetFps}`,
   )
 
   const renderer = new THREE.WebGLRenderer({
@@ -202,6 +178,7 @@ export function initCloudscape(opts: {
     alpha: true,
     powerPreference: quality.tier === 'high' ? 'high-performance' : 'low-power',
   })
+  // Canvas buffer size is managed explicitly in resize() (display px x sky DPR).
   renderer.setPixelRatio(1)
   renderer.setClearColor(0x0b1b2b, 1)
   renderer.autoClear = false
@@ -211,12 +188,7 @@ export function initCloudscape(opts: {
     : quality.renderScale
   let currentRenderScale = baseRenderScale
 
-  const mainCamera = new THREE.PerspectiveCamera(
-    config.entryCamera.fov,
-    1,
-    0.1,
-    200,
-  )
+  const mainCamera = new THREE.PerspectiveCamera(config.entryCamera.fov, 1, 0.1, 200)
 
   const mainScene = new THREE.Scene()
   mainScene.background = null
@@ -232,6 +204,7 @@ export function initCloudscape(opts: {
   objectRoot.scale.setScalar(WORLD_SCALE)
   mainScene.add(objectRoot)
 
+  // ---- Pass 1: clouds (low-res, adaptive) -> cloudTarget (premultiplied rgba)
   const backgroundScene = new THREE.Scene()
   const backgroundMaterial = new THREE.ShaderMaterial({
     depthTest: false,
@@ -279,6 +252,7 @@ export function initCloudscape(opts: {
       uSkyZenith: { value: new THREE.Color('#5f9be0') },
       uSkyFloor: { value: 1 },
       uFocal: { value: 1.5 },
+      uCloudsOnly: { value: 1 },
     },
     vertexShader: cloudVertexShader,
   })
@@ -286,26 +260,66 @@ export function initCloudscape(opts: {
   backgroundScene.add(backgroundQuad)
   const backgroundCamera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1)
 
-  const emptyColorTexture = new THREE.DataTexture(new Uint8Array([0, 0, 0, 255]), 1, 1)
+  const emptyColorTexture = new THREE.DataTexture(new Uint8Array([0, 0, 0, 0]), 1, 1)
   emptyColorTexture.needsUpdate = true
   backgroundMaterial.uniforms.tBackground.value = emptyColorTexture
 
+  // ---- Pass 2: full-res sky photo + composite. Shares uniform objects with
+  // the cloud material so the skydome controller / composeFrame drive both.
+  const bu = backgroundMaterial.uniforms
+  const compositeScene = new THREE.Scene()
+  const compositeMaterial = new THREE.ShaderMaterial({
+    depthTest: false,
+    depthWrite: false,
+    vertexShader: skyCompositeVertexShader,
+    fragmentShader: skyCompositeFragmentShader,
+    uniforms: {
+      uResolution: { value: new THREE.Vector2(1, 1) },
+      tClouds: { value: emptyColorTexture as THREE.Texture },
+      tBackground: { value: emptyColorTexture as THREE.Texture },
+      uHasBackgroundColor: { value: 0 },
+      uCameraPos: bu.uCameraPos,
+      uCameraTarget: bu.uCameraTarget,
+      uWorldScale: bu.uWorldScale,
+      uFocal: bu.uFocal,
+      uSkyColor: bu.uSkyColor,
+      uCloudColor: bu.uCloudColor,
+      uSunDir: bu.uSunDir,
+      uLightColor: bu.uLightColor,
+      uLightIntensity: bu.uLightIntensity,
+      tSkyALo: bu.tSkyALo,
+      tSkyAHi: bu.tSkyAHi,
+      tSkyBLo: bu.tSkyBLo,
+      tSkyBHi: bu.tSkyBHi,
+      uSkyFullMixA: bu.uSkyFullMixA,
+      uSkyFullMixB: bu.uSkyFullMixB,
+      uSkyBlend: bu.uSkyBlend,
+      uSkyYaw: bu.uSkyYaw,
+      uSkyMix: bu.uSkyMix,
+      uSkyHorizon: bu.uSkyHorizon,
+      uSkyFloor: bu.uSkyFloor,
+    },
+  })
+  const compositeQuad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), compositeMaterial)
+  compositeScene.add(compositeQuad)
+
   const skyDome = createSkyDomeController(
     {
-      tSkyALo: backgroundMaterial.uniforms.tSkyALo,
-      tSkyAHi: backgroundMaterial.uniforms.tSkyAHi,
-      tSkyBLo: backgroundMaterial.uniforms.tSkyBLo,
-      tSkyBHi: backgroundMaterial.uniforms.tSkyBHi,
-      uSkyFullMixA: backgroundMaterial.uniforms.uSkyFullMixA,
-      uSkyFullMixB: backgroundMaterial.uniforms.uSkyFullMixB,
-      uSkyBlend: backgroundMaterial.uniforms.uSkyBlend,
-      uSkyYaw: backgroundMaterial.uniforms.uSkyYaw,
-      uSkyMix: backgroundMaterial.uniforms.uSkyMix,
-      uSkyFloor: backgroundMaterial.uniforms.uSkyFloor,
+      tSkyALo: bu.tSkyALo,
+      tSkyAHi: bu.tSkyAHi,
+      tSkyBLo: bu.tSkyBLo,
+      tSkyBHi: bu.tSkyBHi,
+      uSkyFullMixA: bu.uSkyFullMixA,
+      uSkyFullMixB: bu.uSkyFullMixB,
+      uSkyBlend: bu.uSkyBlend,
+      uSkyYaw: bu.uSkyYaw,
+      uSkyMix: bu.uSkyMix,
+      uSkyFloor: bu.uSkyFloor,
     },
     { tier: quality.tier },
   )
 
+  let cloudTarget: THREE.WebGLRenderTarget | null = null
   let behindTarget: THREE.WebGLRenderTarget | null = null
   let middleTarget: THREE.WebGLRenderTarget | null = null
 
@@ -359,7 +373,7 @@ export function initCloudscape(opts: {
     targetFps = next.targetFps
     frameInterval = 1000 / next.targetFps
     skipObjects = next.skipObjects
-    backgroundMaterial.uniforms.uQuality.value = next.shaderQuality
+    bu.uQuality.value = next.shaderQuality
     if (next.tier === 'high') {
       baseRenderScale = Math.min(1, Math.max(0.75, readNumber(state.config.renderScale, 1)))
     } else {
@@ -394,7 +408,7 @@ export function initCloudscape(opts: {
     if (idx > 0) {
       currentRenderScale = renderScaleSteps[idx - 1]
       resize()
-      sceneLog('perf', `renderScale stepped down to ${currentRenderScale}`)
+      sceneLog('perf', `cloud renderScale stepped down to ${currentRenderScale}`)
     }
   }
 
@@ -405,7 +419,7 @@ export function initCloudscape(opts: {
       if (next > currentRenderScale + 0.001) {
         currentRenderScale = next
         resize()
-        sceneLog('perf', `renderScale stepped up to ${currentRenderScale}`)
+        sceneLog('perf', `cloud renderScale stepped up to ${currentRenderScale}`)
       }
     }
   }
@@ -447,17 +461,38 @@ export function initCloudscape(opts: {
     }
     const displayW = opts.canvas.clientWidth || window.innerWidth
     const displayH = opts.canvas.clientHeight || window.innerHeight
-    const pixelW = Math.max(1, Math.round(displayW * currentRenderScale))
-    const pixelH = Math.max(1, Math.round(displayH * currentRenderScale))
+
+    // Full-res: sky photo, behind/in-front models. Cheap per pixel.
+    const dpr = Math.min(window.devicePixelRatio || 1, SKY_DPR_CAP[quality.tier] ?? 1)
+    const fullW = Math.max(1, Math.round(displayW * dpr))
+    const fullH = Math.max(1, Math.round(displayH * dpr))
+    // Low-res: raymarched clouds + their depth pre-pass. Adaptive.
+    const cloudW = Math.max(1, Math.round(displayW * currentRenderScale))
+    const cloudH = Math.max(1, Math.round(displayH * currentRenderScale))
+
     renderer.setPixelRatio(1)
-    renderer.setSize(pixelW, pixelH, false)
+    renderer.setSize(fullW, fullH, false)
     mainCamera.aspect = displayW / Math.max(1, displayH)
     mainCamera.updateProjectionMatrix()
-    backgroundMaterial.uniforms.iResolution.value.set(pixelW, pixelH)
+
+    bu.iResolution.value.set(cloudW, cloudH)
+    compositeMaterial.uniforms.uResolution.value.set(fullW, fullH)
+
+    if (!cloudTarget) cloudTarget = makeColorTarget(cloudW, cloudH)
+    else cloudTarget.setSize(cloudW, cloudH)
+
     if (!skipObjects) {
-      const targets = ensureCloudRenderTargets(pixelW, pixelH, behindTarget, middleTarget)
-      behindTarget = targets.behind
-      middleTarget = targets.middle
+      if (!behindTarget) behindTarget = makeColorTarget(fullW, fullH)
+      else behindTarget.setSize(fullW, fullH)
+
+      if (!middleTarget) {
+        middleTarget = makeColorTarget(cloudW, cloudH)
+        middleTarget.depthTexture = new THREE.DepthTexture(cloudW, cloudH)
+        middleTarget.depthTexture.format = THREE.DepthFormat
+        middleTarget.depthTexture.type = THREE.FloatType
+      } else {
+        middleTarget.setSize(cloudW, cloudH)
+      }
     }
   }
 
@@ -472,7 +507,6 @@ export function initCloudscape(opts: {
 
   function applyClouds(clouds: CloudSettings): void {
     state.clouds = { ...state.clouds, ...clouds }
-    // Keep pageClouds in sync when playground locks/unlocks theme override
     if (typeof clouds.syncTheme === 'boolean') {
       state.pageClouds = { ...state.pageClouds, ...clouds, syncTheme: clouds.syncTheme }
     }
@@ -532,13 +566,12 @@ export function initCloudscape(opts: {
     copyHexToThreeColor(clouds.cloudColor, '#FFFFFF', scratch.cloudColor)
     copyHexToThreeColor(lighting.color, '#FFFFFF', scratch.lightColor)
 
-    // Skydome lighting: blend the page lighting toward the sky photo's sun
-    // and horizon so clouds, GLB models and fog share one light source.
+    // Skydome lighting: blend page lighting toward the sky photo's sun/horizon.
     const domeSettings = skyDome.getSettings()
     const domeMix = domeSettings.enabled ? Math.max(0, Math.min(1, domeSettings.mix)) : 0
     const domeLight = domeMix > 0 && domeSettings.sunFromSky ? skyDome.getLighting() : null
-    const uSkyHorizon = backgroundMaterial.uniforms.uSkyHorizon.value as THREE.Color
-    const uSkyZenith = backgroundMaterial.uniforms.uSkyZenith.value as THREE.Color
+    const uSkyHorizon = bu.uSkyHorizon.value as THREE.Color
+    const uSkyZenith = bu.uSkyZenith.value as THREE.Color
     if (domeLight) {
       scratch.domeSunDir.set(domeLight.sunDir[0], domeLight.sunDir[1], domeLight.sunDir[2])
       scratch.sunDir.lerp(scratch.domeSunDir, 0.85 * domeMix).normalize()
@@ -550,8 +583,10 @@ export function initCloudscape(opts: {
       uSkyHorizon.setRGB(domeLight.horizon[0], domeLight.horizon[1], domeLight.horizon[2])
       uSkyZenith.setRGB(domeLight.zenith[0], domeLight.zenith[1], domeLight.zenith[2])
     } else {
+      // Before photo analysis: a sky-blue gradient — NOT white (cloud colour),
+      // which used to bleach the cloud haze toward white.
       uSkyHorizon.copy(scratch.skyColor)
-      uSkyZenith.copy(scratch.cloudColor)
+      uSkyZenith.copy(scratch.skyColor).multiplyScalar(0.82)
     }
 
     const sceneFog = mainScene.fog
@@ -571,71 +606,80 @@ export function initCloudscape(opts: {
     const middleCount = depthGroups.middle.length
     const inFrontCount = depthGroups.in_front.length
 
-    renderer.setClearColor(scratch.skyColor, 1)
-    renderer.setRenderTarget(null)
-    renderer.clear(true, true, true)
-
     const elapsed = clock.getElapsedTime()
-    backgroundMaterial.uniforms.iTime.value = elapsed
+    bu.iTime.value = elapsed
     const skyDt = lastSkyElapsed === 0 ? 1 / 60 : Math.max(0, elapsed - lastSkyElapsed)
     lastSkyElapsed = elapsed
     const skyHour = getDebugPreviewHour() ?? getEffectiveSkyHour()
     skyDome.tick(skyHour, skyDt)
-    backgroundMaterial.uniforms.uSpeed.value = readNumber(clouds.speed, 1)
-    backgroundMaterial.uniforms.uDensity.value = readNumber(clouds.density, 1)
-    backgroundMaterial.uniforms.uNoise.value = readNumber(clouds.noise, 0.5)
-    backgroundMaterial.uniforms.uVerticalSpread.value = readNumber(clouds.verticalSpread, 0.78)
-    backgroundMaterial.uniforms.uSeed.value = readNumber(clouds.seed, 0)
-    backgroundMaterial.uniforms.uLowClumpScale.value = readNumber(clouds.lowClumpScale, 0.55)
-    backgroundMaterial.uniforms.uHighClumpScale.value = readNumber(clouds.highClumpScale, 1.15)
-    backgroundMaterial.uniforms.uApart.value = readNumber(clouds.apart, 1)
-    backgroundMaterial.uniforms.uFogDensity.value = fogDensity
-    backgroundMaterial.uniforms.uSkyColor.value.copy(scratch.skyColor)
-    backgroundMaterial.uniforms.uCloudColor.value.copy(scratch.cloudColor)
-    backgroundMaterial.uniforms.uSunDir.value.copy(scratch.sunDir)
-    backgroundMaterial.uniforms.uLightIntensity.value = lightIntensity
-    backgroundMaterial.uniforms.uLightColor.value.copy(scratch.lightColor)
-    backgroundMaterial.uniforms.uCameraPos.value.copy(scratch.cameraPos)
-    backgroundMaterial.uniforms.uCameraTarget.value.copy(scratch.cameraTarget)
-    backgroundMaterial.uniforms.uCameraNear.value = mainCamera.near
-    backgroundMaterial.uniforms.uCameraFar.value = mainCamera.far
-    // Match the background ray lens to the live camera FOV. The background
-    // is intentionally wider than the content camera (1.5x, clamped) so the
-    // dome reads as a vast sky around the scene, while yaw/pitch stay locked
-    // to the camera so it rotates with the view like a real skydome.
+    bu.uSpeed.value = readNumber(clouds.speed, 1)
+    bu.uDensity.value = readNumber(clouds.density, 1)
+    bu.uNoise.value = readNumber(clouds.noise, 0.5)
+    bu.uVerticalSpread.value = readNumber(clouds.verticalSpread, 0.78)
+    bu.uSeed.value = readNumber(clouds.seed, 0)
+    bu.uLowClumpScale.value = readNumber(clouds.lowClumpScale, 0.55)
+    bu.uHighClumpScale.value = readNumber(clouds.highClumpScale, 1.15)
+    bu.uApart.value = readNumber(clouds.apart, 1)
+    bu.uFogDensity.value = fogDensity
+    bu.uSkyColor.value.copy(scratch.skyColor)
+    bu.uCloudColor.value.copy(scratch.cloudColor)
+    bu.uSunDir.value.copy(scratch.sunDir)
+    bu.uLightIntensity.value = lightIntensity
+    bu.uLightColor.value.copy(scratch.lightColor)
+    bu.uCameraPos.value.copy(scratch.cameraPos)
+    bu.uCameraTarget.value.copy(scratch.cameraTarget)
+    bu.uCameraNear.value = mainCamera.near
+    bu.uCameraFar.value = mainCamera.far
+    // One lens for everything: sky, clouds and GLB depth share the real FOV.
+    // (The old 1.5x / 55-100 clamp desynced cloud depth tests from the models.)
+    // Frame a wider sky by raising the anchor FOV in the scene config instead.
     const camFov = Math.max(1, Math.min(179, readNumber(cam.fov, 50)))
-    const bgFov = Math.min(100, Math.max(55, camFov * 1.5))
-    backgroundMaterial.uniforms.uFocal.value = 1 / Math.tan((bgFov * Math.PI) / 360)
-    backgroundMaterial.uniforms.uViewMatrix.value.copy(mainCamera.matrixWorldInverse)
-    backgroundMaterial.uniforms.uWorldScale.value = WORLD_SCALE
+    bu.uFocal.value = 1 / Math.tan((camFov * Math.PI) / 360)
+    bu.uViewMatrix.value.copy(mainCamera.matrixWorldInverse)
+    bu.uWorldScale.value = WORLD_SCALE
 
+    // Behind models: clear to transparent so their alpha masks the sky.
     if (behindCount > 0 && behindTarget) {
       objectRegistry.setModelsVisibleForDepthPass('behind')
       renderer.setRenderTarget(behindTarget)
+      renderer.setClearColor(scratch.skyColor, 0)
       renderer.clear(true, true, true)
       renderer.render(mainScene, mainCamera)
-      backgroundMaterial.uniforms.tBackground.value = behindTarget.texture
-      backgroundMaterial.uniforms.uHasBackgroundColor.value = 1
+      compositeMaterial.uniforms.tBackground.value = behindTarget.texture
+      compositeMaterial.uniforms.uHasBackgroundColor.value = 1
     } else {
-      backgroundMaterial.uniforms.tBackground.value = emptyColorTexture
-      backgroundMaterial.uniforms.uHasBackgroundColor.value = 0
+      compositeMaterial.uniforms.tBackground.value = emptyColorTexture
+      compositeMaterial.uniforms.uHasBackgroundColor.value = 0
     }
 
     if (middleCount > 0 && middleTarget) {
       objectRegistry.setModelsVisibleForDepthPass('middle')
       renderer.setRenderTarget(middleTarget)
+      renderer.setClearColor(scratch.skyColor, 1)
       renderer.clear(true, true, true)
       renderer.render(mainScene, mainCamera)
-      backgroundMaterial.uniforms.tDepth.value = middleTarget.depthTexture
-      backgroundMaterial.uniforms.uHasSceneDepth.value = 1
+      bu.tDepth.value = middleTarget.depthTexture
+      bu.uHasSceneDepth.value = 1
     } else if (middleTarget?.depthTexture) {
-      backgroundMaterial.uniforms.tDepth.value = middleTarget.depthTexture
-      backgroundMaterial.uniforms.uHasSceneDepth.value = 0
+      bu.tDepth.value = middleTarget.depthTexture
+      bu.uHasSceneDepth.value = 0
     }
 
+    // Pass 1: clouds only, low res.
+    if (cloudTarget) {
+      bu.uCloudsOnly.value = 1
+      renderer.setRenderTarget(cloudTarget)
+      renderer.setClearColor(0x000000, 0)
+      renderer.clear(true, true, true)
+      renderer.render(backgroundScene, backgroundCamera)
+      compositeMaterial.uniforms.tClouds.value = cloudTarget.texture
+    }
+
+    // Pass 2: full-res sky photo + cloud composite to the canvas.
     renderer.setRenderTarget(null)
+    renderer.setClearColor(scratch.skyColor, 1)
     renderer.clear(true, true, true)
-    renderer.render(backgroundScene, backgroundCamera)
+    renderer.render(compositeScene, backgroundCamera)
 
     if (inFrontCount > 0) {
       renderer.clearDepth()
@@ -772,10 +816,7 @@ export function initCloudscape(opts: {
 
     document.addEventListener('astro:page-load', () => {
       bridge.onPageLoad()
-      // Backstop for a genuinely stuck transition. Must exceed the entry
-      // lerp duration (~1200ms) so we never cut a legitimate handoff — the
-      // old 100ms timeout snapped the camera to the new page's start pose
-      // mid-lerp, which read as "rendering from the beginning".
+      // Backstop for a genuinely stuck transition (must exceed ~1200ms entry lerp).
       window.setTimeout(() => {
         if (bridge.getIsTransitioning()) {
           sceneWarn('nav', 'stuck isTransitioning after page-load — force clearing')
@@ -845,12 +886,15 @@ export function initCloudscape(opts: {
     }
     registerCloudscapeThemeCallback(() => {})
     listenersAttached = false
+    cloudTarget?.dispose()
     behindTarget?.dispose()
     middleTarget?.dispose()
     emptyColorTexture.dispose()
     skyDome.dispose()
     backgroundMaterial.dispose()
     backgroundQuad.geometry.dispose()
+    compositeMaterial.dispose()
+    compositeQuad.geometry.dispose()
     renderer.dispose()
     globalRuntime = null
   }
