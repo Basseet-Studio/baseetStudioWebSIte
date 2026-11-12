@@ -3,6 +3,7 @@ import type { CameraController } from './camera-controller'
 import type { CameraPose, SceneConfig } from './types'
 import type { ObjectRegistry } from './object-registry'
 import type { ScrollDriver } from './scroll-driver'
+import { ORBIT_CENTER } from '../../content/data/scenes/world'
 
 const EXIT_KEY = 'baseet:scene:exit'
 
@@ -92,7 +93,7 @@ export function createPageTransitionBridge(deps: {
             ? exitState.camera
             : exitState?.camera || deps.cameraController.getEntryCamera()
         const toCam = transition.camera || deps.cameraController.getEntryCamera()
-        const duration = Math.max(transition.durationMs || 1000, 2200)
+        const duration = flightDuration(fromCam, toCam, transition.durationMs || 1000)
         const easing = EASING[transition.easing || 'easeInOutCubic'] || EASING.easeInOutCubic
         const lerp = runCameraLerp(
           deps.sceneRuntime,
@@ -151,23 +152,51 @@ export function createPageTransitionBridge(deps: {
   }
 }
 
-/** Page-to-page flight: arc up over the clouds, pitch toward the sky, widen fov. */
-const FLIGHT_ARC_MIN = 4
-const FLIGHT_ARC_MAX = 18
+/** Page-to-page flight: orbit AROUND the landmark (polar interpolation), lifting over the clouds. */
+const FLIGHT_ARC_MIN = 3
+const FLIGHT_ARC_MAX = 14
+
+function polarOf(p: [number, number, number]): { a: number; r: number } {
+  const dx = p[0] - ORBIT_CENTER[0]
+  const dz = p[2] - ORBIT_CENTER[2]
+  return { a: Math.atan2(dx, dz), r: Math.hypot(dx, dz) }
+}
+
+function angleDelta(a: CameraPose, b: CameraPose): number {
+  let d = polarOf(b.position).a - polarOf(a.position).a
+  while (d > Math.PI) d -= Math.PI * 2
+  while (d < -Math.PI) d += Math.PI * 2
+  return d
+}
+
+/** Longer trips around the circle take longer (2.2s – 4.2s). */
+function flightDuration(a: CameraPose, b: CameraPose, base: number): number {
+  const deg = Math.abs(angleDelta(a, b)) * (180 / Math.PI)
+  return Math.min(4200, Math.max(2200, base, 1800 + deg * 12))
+}
+
 function flightCamera(a: CameraPose, b: CameraPose, t: number): CameraPose {
-  const base = lerpCamera(a, b, t)
-  const d = Math.hypot(
-    b.position[0] - a.position[0],
-    b.position[1] - a.position[1],
-    b.position[2] - a.position[2],
-  )
+  const pa = polarOf(a.position)
+  const pb = polarOf(b.position)
+  const da = angleDelta(a, b)
+  const ang = pa.a + da * t
+  const r = pa.r + (pb.r - pa.r) * t
   const bump = Math.sin(Math.PI * t)
-  const arc = Math.min(FLIGHT_ARC_MAX, Math.max(FLIGHT_ARC_MIN, d * 0.35)) * bump
+  const arcLen = Math.abs(da) * ((pa.r + pb.r) / 2)
+  const lift = Math.min(FLIGHT_ARC_MAX, Math.max(FLIGHT_ARC_MIN, arcLen * 0.12)) * bump
+  const lerp = (x: number, y: number) => x + (y - x) * t
   return {
-    ...base,
-    position: [base.position[0], base.position[1] + arc, base.position[2]],
-    target: [base.target[0], base.target[1] + arc * 1.4, base.target[2]],
-    fov: base.fov + 10 * bump,
+    position: [
+      ORBIT_CENTER[0] + Math.sin(ang) * r,
+      lerp(a.position[1], b.position[1]) + lift,
+      ORBIT_CENTER[2] + Math.cos(ang) * r,
+    ],
+    target: [
+      lerp(a.target[0], b.target[0]),
+      lerp(a.target[1], b.target[1]) + lift * 0.6,
+      lerp(a.target[2], b.target[2]),
+    ],
+    fov: lerp(a.fov, b.fov) + 8 * bump,
   }
 }
 

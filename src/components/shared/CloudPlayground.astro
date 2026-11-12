@@ -43,6 +43,23 @@ const { lang: _lang = 'en' } = Astro.props
 
     <div class="cp__body">
       <details class="cp__section" open>
+        <summary>Live</summary>
+        <div class="cp__grid">
+          <p class="cp__status" id="cp-mode">● LIVE — scroll &amp; navigation drive everything</p>
+          <label>Country
+            <select id="cp-country">
+              <option value="">Auto (detected)</option>
+              <option value="AE">UAE — Dubai</option>
+              <option value="MY">Malaysia — Petronas</option>
+            </select>
+          </label>
+          <label class="cp__check"><input type="checkbox" id="cp-debug-panel" /> Debug panel (reloads)</label>
+        </div>
+        <div class="cp__shape-actions">
+          <button type="button" class="cp__btn" id="cp-reset-live">Reset to live</button>
+        </div>
+      </details>
+      <details class="cp__section" open>
         <summary>Shape</summary>
         <div class="cp__grid">
           <label>Seed <input type="range" data-cp="seed" min="0" max="9999" step="1" value={playgroundCloudDefaults.seed ?? 0} /><span data-cp-val="seed">{playgroundCloudDefaults.seed ?? 0}</span></label>
@@ -100,12 +117,12 @@ const { lang: _lang = 'en' } = Astro.props
       <details class="cp__section" open>
         <summary>Camera</summary>
         <div class="cp__grid">
-          <label>Pos X <input type="range" data-cp="posX" min="-30" max="30" step="0.1" value="12.1" /><span data-cp-val="posX">12.1</span></label>
-          <label>Pos Y <input type="range" data-cp="posY" min="-10" max="20" step="0.1" value="2.1" /><span data-cp-val="posY">2.1</span></label>
-          <label>Pos Z <input type="range" data-cp="posZ" min="-30" max="30" step="0.1" value="4.7" /><span data-cp-val="posZ">4.7</span></label>
-          <label>Tgt X <input type="range" data-cp="tgtX" min="-30" max="30" step="0.1" value="-10.8" /><span data-cp-val="tgtX">-10.8</span></label>
-          <label>Tgt Y <input type="range" data-cp="tgtY" min="-10" max="20" step="0.1" value="-0.1" /><span data-cp-val="tgtY">-0.1</span></label>
-          <label>Tgt Z <input type="range" data-cp="tgtZ" min="-30" max="30" step="0.1" value="0" /><span data-cp-val="tgtZ">0</span></label>
+          <label>Pos X <input type="range" data-cp="posX" min="-150" max="150" step="0.1" value="12.1" /><span data-cp-val="posX">12.1</span></label>
+          <label>Pos Y <input type="range" data-cp="posY" min="-10" max="60" step="0.1" value="2.1" /><span data-cp-val="posY">2.1</span></label>
+          <label>Pos Z <input type="range" data-cp="posZ" min="-150" max="150" step="0.1" value="4.7" /><span data-cp-val="posZ">4.7</span></label>
+          <label>Tgt X <input type="range" data-cp="tgtX" min="-150" max="150" step="0.1" value="-10.8" /><span data-cp-val="tgtX">-10.8</span></label>
+          <label>Tgt Y <input type="range" data-cp="tgtY" min="-10" max="60" step="0.1" value="-0.1" /><span data-cp-val="tgtY">-0.1</span></label>
+          <label>Tgt Z <input type="range" data-cp="tgtZ" min="-150" max="150" step="0.1" value="0" /><span data-cp-val="tgtZ">0</span></label>
           <label>FOV <input type="range" data-cp="fov" min="20" max="90" step="1" value="50" /><span data-cp-val="fov">50</span></label>
         </div>
       </details>
@@ -436,6 +453,7 @@ const { lang: _lang = 'en' } = Astro.props
     getSkydome: () => SkyDomeSettings
     getSkyDomeManifest: () => SkyDomeManifest | null
     setPlaygroundLock: (locked: boolean) => void
+    setCameraLock: (locked: boolean) => void
   }
 
   async function getRuntime(): Promise<SceneRt | null> {
@@ -493,7 +511,7 @@ const { lang: _lang = 'en' } = Astro.props
     log('binding listeners')
 
     const params = new URLSearchParams(window.location.search)
-    const forceOpen = params.get('playground') !== '0'
+    const forceOpen = params.get('playground') === '1'
     const closeBtn = document.getElementById('cp-close')
     const statusEl = document.getElementById('cp-status')
     const listEl = document.getElementById('cp-list')
@@ -644,33 +662,42 @@ const { lang: _lang = 'en' } = Astro.props
       }
     }
 
-    async function applyLive() {
-      const rt = await getRuntime()
-      if (!rt) {
-        setStatus('Cloudscape not running (desktop only)')
-        return
+    let lookOverride = false
+      let camOverride = false
+      function setMode() {
+        const el = document.getElementById('cp-mode')
+        if (!el) return
+        const parts: string[] = []
+        if (camOverride) parts.push('camera')
+        if (lookOverride) parts.push('clouds/lighting')
+        el.textContent = parts.length
+          ? `○ OVERRIDE — ${parts.join(' + ')} frozen (Reset to live)`
+          : '● LIVE — scroll & navigation drive everything'
       }
-      rt.setPlaygroundLock(true)
-      const clouds = readClouds()
-      if (!clouds.syncTheme) clouds.syncTheme = false
-      rt.applyClouds(clouds)
-      rt.applyLighting(readLighting())
-      rt.applySkydome(readSkydome())
-      const cam = readCamera()
-      rt.applyCamera(cam)
-      // Clouds live in a fixed slab; above ~4.8 they vanish, below 1.8 the
-      // camera dips under the cloud floor. Warn, don't clamp.
-      const y = cam.position[1]
-      if (y < 1.8) {
-        setStatus(`⚠ Pos Y ${y.toFixed(2)} is below the cloud floor (keep ≥ 1.8)`)
-      } else if (y > 4.8) {
-        setStatus(`⚠ Pos Y ${y.toFixed(2)} is above the cloud ceiling (keep ≤ 4.8)`)
-      } else if (statusEl && statusEl.textContent.startsWith('⚠')) {
-        statusEl.textContent = ''
+      async function applyLive(changedKey?: string) {
+        const rt = await getRuntime()
+        if (!rt) {
+          setStatus('Cloudscape not running (desktop only)')
+          return
+        }
+        const camKeys = ['posX', 'posY', 'posZ', 'tgtX', 'tgtY', 'tgtZ', 'fov']
+        if (changedKey && camKeys.includes(changedKey)) {
+          rt.setCameraLock(true)
+          camOverride = true
+          rt.applyCamera(readCamera())
+          setMode()
+          return
+        }
+        rt.setPlaygroundLock(true)
+        lookOverride = true
+        const clouds = readClouds()
+        if (!clouds.syncTheme) clouds.syncTheme = false
+        rt.applyClouds(clouds)
+        rt.applyLighting(readLighting())
+        rt.applySkydome(readSkydome())
+        setMode()
       }
-    }
-
-    async function syncFromRuntime() {
+      async function syncFromRuntime() {
       const rt = await getRuntime()
       if (!rt) return
       const cam = rt.getCurrentCamera()
@@ -754,6 +781,10 @@ const { lang: _lang = 'en' } = Astro.props
       toggle!.setAttribute('aria-expanded', 'false')
       const rt = await getRuntime()
       rt?.setPlaygroundLock(false)
+        rt?.setCameraLock(false)
+        lookOverride = false
+        camOverride = false
+        setMode()
     }
 
     function walk(current: number, min: number, max: number, delta: number): number {
@@ -797,7 +828,7 @@ const { lang: _lang = 'en' } = Astro.props
           setVal('cloudShadowColor', colors.cloudShadowColor ?? '#496bc1')
         }
       }
-      void applyLive()
+      void applyLive(key)
     }
 
     function bindCpControl(el: Element) {
@@ -877,8 +908,11 @@ const { lang: _lang = 'en' } = Astro.props
       }
       const rt = await getRuntime()
       if (!rt) return
-      rt.setPlaygroundLock(true)
+      rt.setPlaygroundLock(true) // cp:point-lock
+      lookOverride = true
       if (point.includeCamera && point.camera) {
+        rt.setCameraLock(true)
+        camOverride = true
         const c = point.camera
         setVal('posX', c.position[0])
         setVal('posY', c.position[1])
@@ -915,7 +949,8 @@ const { lang: _lang = 'en' } = Astro.props
           rt.applyLighting(L)
         }
       }
-      setStatus(`Applied ${point.name}`)
+      setMode()
+        setStatus(`Applied ${point.name}`)
     }
 
     listEl?.addEventListener('click', async (ev) => {
@@ -1105,6 +1140,59 @@ const { lang: _lang = 'en' } = Astro.props
       })
       toggle!.addEventListener('click', () => window.setTimeout(() => void refreshObjects(), 300))
       window.setTimeout(() => void refreshObjects(), 1500)
+
+      // ---- Live: country + debug + reset ------------------------------------
+      const countrySel = document.getElementById('cp-country') as HTMLSelectElement | null
+      try {
+        if (countrySel) countrySel.value = localStorage.getItem('baseet:landmark-country') || ''
+      } catch {
+        /* ignore */
+      }
+      countrySel?.addEventListener('change', () => {
+        try {
+          if (countrySel.value) localStorage.setItem('baseet:landmark-country', countrySel.value)
+          else localStorage.removeItem('baseet:landmark-country')
+        } catch {
+          /* ignore */
+        }
+        document.dispatchEvent(new CustomEvent('baseet:landmark-country', { detail: countrySel.value || null }))
+        setStatus(countrySel.value ? `Landmark: ${countrySel.value}` : 'Landmark: auto (detected)')
+      })
+      const debugBox = document.getElementById('cp-debug-panel') as HTMLInputElement | null
+      try {
+        if (debugBox) debugBox.checked = localStorage.getItem('baseet:scene:debug') !== '0'
+      } catch {
+        /* ignore */
+      }
+      debugBox?.addEventListener('change', () => {
+        try {
+          localStorage.setItem('baseet:scene:debug', debugBox.checked ? '1' : '0')
+        } catch {
+          /* ignore */
+        }
+        location.reload()
+      })
+      document.getElementById('cp-reset-live')?.addEventListener('click', async () => {
+        const boot = await import('../../lib/scene/cloudscape-boot')
+        const full = boot.getCloudscapeRuntime()
+        if (!full) return
+        full.sceneRuntime.setPlaygroundLock(false)
+        ;(full.sceneRuntime as unknown as SceneRt).setCameraLock(false)
+        try {
+          const skyMod = await import('../../lib/scene/sky-theme')
+          ;(skyMod as unknown as { setDebugPreviewPeriod?: (id: string) => void }).setDebugPreviewPeriod?.('auto')
+        } catch {
+          /* ignore */
+        }
+        const cfg = (window as Window & { __BASEET_SCENE_CONFIG__?: unknown }).__BASEET_SCENE_CONFIG__
+        if (cfg) full.sceneRuntime.setPageConfig(cfg as Parameters<typeof full.sceneRuntime.setPageConfig>[0])
+        full.scrollDriver.tick({ force: true, source: 'playground-reset' })
+        lookOverride = false
+        camOverride = false
+        setMode()
+        setStatus('Back to live')
+        window.setTimeout(() => void syncFromRuntime(), 150)
+      })
 
     if (forceOpen) void openPanel()
   }

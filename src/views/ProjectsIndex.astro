@@ -1,6 +1,12 @@
 ---
+// Work index — one calm list. Rows expand to play the project's built-in
+// preview: hover on desktop, centred-row autoplay + tap on touch screens.
 import Page from '../layouts/Page.astro'
-import WorkGalleryTile from '../components/projects/WorkGalleryTile.astro'
+import Icon from '../components/icons/Icon.astro'
+import MatrixPreview from '../components/projects/previews/MatrixPreview.astro'
+import MoneyBoxPreview from '../components/projects/previews/MoneyBoxPreview.astro'
+import NumuPreview from '../components/projects/previews/NumuPreview.astro'
+import BaseetIMSPreview from '../components/projects/previews/BaseetIMSPreview.astro'
 import { getProjectsForIndex } from '../lib/projects'
 import { t } from '../lib/i18n'
 import { localizeHref } from '../lib/localize-href'
@@ -8,439 +14,262 @@ import type { Lang } from '../types'
 
 interface Props { lang: Lang }
 const { lang } = Astro.props
+const tt = (key: string, fallback: string): string => {
+  const v = t(key, lang)
+  return v && v !== key ? v : fallback
+}
 const description = t('projects_description', lang)
 const projects = getProjectsForIndex(lang)
 
-const anchor = projects.find((p) => p.indexTier === 'anchor')
-const flagship = projects.filter((p) => p.indexTier === 'flagship')
-const more = projects.filter((p) => p.indexTier === 'more')
+const order = { anchor: 0, flagship: 1, more: 2 } as Record<string, number>
+const core = projects
+  .filter((p) => p.indexTier !== 'more')
+  .sort((a, b) => (order[a.indexTier ?? 'flagship'] ?? 1) - (order[b.indexTier ?? 'flagship'] ?? 1))
+const lab = projects.filter((p) => p.indexTier === 'more')
 
+const previewBg: Record<string, [string, string]> = {
+  matrix: ['#f3f4f6', '#151820'],
+  moneybox: ['#faf8f5', '#1a2420'],
+  numu: ['#f5f5fa', '#1e1a28'],
+  invexo: ['#f4f6f8', '#080c10'],
+}
 const mobileSlugs = new Set(['moneybox', 'numu'])
 
-function mosaicClass(slug: string): string {
-  const aspect = mobileSlugs.has(slug) ? 'wg--mobile' : 'wg--desktop'
-  const placement: Record<string, string> = {
-    ordelo: 'wg--ordelo',
-    moneybox: 'wg--moneybox',
-    numu: 'wg--numu',
-    zyrn: 'wg--zyrn',
-    'photorestore-ai': 'wg--photorestore',
-    invexo: 'wg--invexo',
-  }
-  return [placement[slug] ?? 'wg--default', aspect].join(' ')
+function statusKey(status: string): string {
+  return 'status_' + status.toLowerCase().replace(/\s+/g, '_')
 }
 
-const labClass: Record<string, string> = {
-  geeb: 'wg--geeb',
-  'medical-education-app': 'wg--mai',
-}
-
+const groups = [
+  { label: '', items: core },
+  { label: tt('projects_lab_label', 'Also in the lab'), items: lab },
+].filter((g) => g.items.length)
+let rowIndex = 0
 ---
 
-<Page title={t("projects_title", lang)} description={description} section="projects" lang={lang}>
-  <div class="work-wall" data-work-wall>
-    <header class="work-wall__intro">
-     
+<Page title={t('projects_title', lang)} description={description} section="projects" lang={lang}>
+  <div class="work" data-work-list>
+    <header class="work__hero" data-animate="fade-up">
+      <p class="work__kicker">{tt('projects_hero_kicker', 'Selected work')}</p>
+      <h1 class="work__title">
+        {tt('projects_hero_line1', 'Built, shipped,')}<br />
+        <span class="type-accent work__accent">{tt('projects_hero_line2', 'still running.')}</span>
+      </h1>
+      <p class="work__lead">{tt('projects_hero_lead', 'Products we design, build and keep running.')}</p>
     </header>
 
-    <div class="work-wall__canvas" aria-label="Project gallery">
-      {(anchor || flagship.length > 0) && (
-        <div class="work-wall__mosaic" aria-label="Core products">
-          {anchor && (
-            <WorkGalleryTile
-              lang={lang}
-              project={anchor}
-              layoutClass="wg--matrix wg--desktop"
-            />
-          )}
-          {flagship.map((project) => (
-            <WorkGalleryTile
-              lang={lang}
-              project={project}
-              layoutClass={mosaicClass(project.slug)}
-            />
-          ))}
-        </div>
-      )}
+    {groups.map((group) => (
+      <section class="work__group">
+        {group.label && <p class="work__group-label">{group.label}</p>}
+        <ol class="work__list" role="list">
+          {group.items.map((p) => {
+            rowIndex += 1
+            const href = localizeHref(lang, `/projects/${p.slug}/`)
+            const bg = p.previewInteractive ? previewBg[p.previewInteractive] : undefined
+            const style = `--row-accent:${p.color};` + (bg ? `--row-preview-day:${bg[0]};--row-preview-night:${bg[1]};` : '')
+            const status = p.status ? tt(statusKey(p.status), p.status) : ''
+            return (
+              <li class="row" data-row style={style}>
+                <button class="row__head" type="button" aria-expanded="false" data-row-toggle>
+                  <span class="row__num">{String(rowIndex).padStart(2, '0')}</span>
+                  <span class="row__name">{p.name}</span>
+                  <span class="row__tagline">{p.tagline}</span>
+                  {status && <span class="row__status">{status}</span>}
+                  <span class="row__plus" aria-hidden="true"></span>
+                </button>
+                <div class="row__body">
+                  <div class="row__inner">
+                    <div class:list={['row__media', { 'row__media--phone': mobileSlugs.has(p.slug), 'row__media--live': Boolean(p.previewInteractive) }]}>
+                      {p.previewInteractive === 'matrix' && <MatrixPreview />}
+                      {p.previewInteractive === 'moneybox' && <MoneyBoxPreview />}
+                      {p.previewInteractive === 'numu' && <NumuPreview />}
+                      {p.previewInteractive === 'invexo' && <BaseetIMSPreview />}
+                      {!p.previewInteractive && p.previewVideo && (
+                        <video class="row__visual" src={p.previewVideo} poster={p.previewImage} muted loop playsinline preload="none" aria-hidden="true" data-row-video />
+                      )}
+                      {!p.previewInteractive && !p.previewVideo && (
+                        <img class="row__visual" src={p.previewImage} alt="" loading="lazy" decoding="async" />
+                      )}
+                    </div>
+                    <div class="row__side">
+                      <p class="row__side-tagline">{p.tagline}</p>
+                      {p.platforms?.length > 0 && (
+                        <ul class="row__chips" role="list">
+                          {p.platforms.map((pl) => <li>{pl.name}</li>)}
+                        </ul>
+                      )}
+                      <a class="row__cta" href={href}>
+                        {tt('projects_view', 'View project')}
+                        <Icon name="arrow-right" size={16} color="currentColor" class="icon-chevron" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            )
+          })}
+        </ol>
+      </section>
+    ))}
 
-      {more.length > 0 && (
-        <div class="work-wall__lab" aria-label="More in development">
-          <p class="work-wall__lab-label" data-wall-intro>{t("projects_lab_label", lang)}</p>
-          <div class="work-wall__lab-grid">
-            {more.map((project) => (
-              <WorkGalleryTile
-                lang={lang}
-                project={project}
-                layoutClass={`${labClass[project.slug] ?? 'wg--lab'} wg--desktop`}
-              />
-            ))}
-          </div>
-        </div>
-      )}
-    </div>
-
-    <footer class="work-wall__foot">
-      <a href={localizeHref(lang, "/contact/")} class="work-wall__foot-link">{t("projects_foot_cta", lang)}</a>
-    </footer>
+    <section class="cta-band" data-animate="fade-up">
+      <h2 class="cta-band__title">{tt('projects_foot_cta', 'You have an app idea. We can build it.')}</h2>
+      <a href={localizeHref(lang, '/contact/')} class="cta-band__btn">
+        {tt('home_cta_button', 'Talk to us')}
+        <Icon name="arrow-right" size={16} color="currentColor" class="icon-chevron" />
+      </a>
+    </section>
   </div>
 </Page>
 
 <style>
-  .work-wall {
-    --wg-radius: var(--r-small, 12px);
-    --r-small: 12px;
-    --wall-gap: clamp(12px, 1.6vw, 18px);
+  .work { width: min(1100px, 100%); margin: 0 auto; padding-bottom: clamp(64px, 10vw, 120px); }
+  .work__hero { padding: 2vh 0 clamp(32px, 6vw, 64px); max-width: 760px; }
+  .work__kicker { font-size: var(--type-eyebrow); letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted-text); margin: 0 0 14px; }
+  .work__title { margin: 0 0 18px; }
+  .work__accent { color: var(--color-primary); }
+  .work__lead { font-size: var(--type-lead); color: var(--muted-text); margin: 0; max-width: 34ch; line-height: 1.45; }
 
-    width: min(96vw, 1360px);
-    margin: 0 auto;
-    padding: 0 0 clamp(80px, 12vw, 120px);
+  .work__group + .work__group { margin-top: 56px; }
+  .work__group-label { font-size: var(--type-eyebrow); letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted-text); margin: 0 0 12px; }
+  .work__list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--divider-color); }
+
+  .row { border-bottom: 1px solid var(--divider-color); transition: background 0.35s ease; }
+  .row.is-open { background: var(--card-window-bg); border-radius: var(--card-window-radius-tight); border-bottom-color: transparent; box-shadow: var(--card-window-shadow); }
+  .row__head {
+    width: 100%; display: grid; grid-template-columns: 56px minmax(0, 1.2fr) minmax(0, 1fr) auto 28px;
+    align-items: center; gap: 16px; padding: 24px 12px; background: none; border: 0; cursor: pointer;
+    text-align: start; color: inherit; font: inherit; transition: padding 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   }
+  .row__num { font-size: 13px; font-weight: 600; color: var(--muted-text); font-variant-numeric: tabular-nums; }
+  .row__name { font-family: var(--font-display); font-size: clamp(22px, 2.6vw, 30px); font-weight: 700; letter-spacing: -0.02em; color: var(--heading-text); transition: color 0.3s ease; }
+  .row__tagline { font-size: 15px; color: var(--muted-text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .row__status { font-size: 12px; font-weight: 600; padding: 5px 11px; border-radius: 999px; white-space: nowrap; color: var(--row-accent); background: color-mix(in srgb, var(--row-accent) 12%, transparent); }
+  .row__plus { position: relative; width: 18px; height: 18px; justify-self: end; }
+  .row__plus::before, .row__plus::after { content: ''; position: absolute; inset: 8px 0 auto; height: 2px; border-radius: 2px; background: var(--muted-text); transition: transform 0.35s ease, background 0.3s ease; }
+  .row__plus::after { transform: rotate(90deg); }
+  .row.is-open .row__plus::after { transform: rotate(0); }
+  .row:hover .row__name, .row.is-open .row__name { color: var(--row-accent); }
+  .row.is-open .row__plus::before, .row.is-open .row__plus::after { background: var(--row-accent); }
+  @media (hover: hover) { .row:hover .row__head { padding-inline-start: 22px; } }
 
-  .work-wall__intro {
-    padding: 4px 0 clamp(24px, 4vw, 40px);
+  .row__body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
+  .row.is-open .row__body { grid-template-rows: 1fr; }
+  .row__inner { overflow: hidden; min-height: 0; display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 24px; padding: 0 12px; opacity: 0; transition: opacity 0.35s ease, padding 0.5s ease; }
+  .row.is-open .row__inner { opacity: 1; padding: 0 12px 24px; }
+
+  .row__media { position: relative; aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden; background: color-mix(in srgb, var(--row-accent) 10%, var(--card-window-bg)); }
+  .row__media--live { background: var(--row-preview-day); }
+  :global([data-theme='night']) .row__media--live { background: var(--row-preview-night); }
+  .row__media--phone { aspect-ratio: auto; height: min(420px, 60vh); max-width: 240px; justify-self: center; width: 100%; border-radius: 28px; }
+  .row__media :global(.preview-stage) { position: absolute; inset: 0; }
+  .row__visual { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .row__side { display: flex; flex-direction: column; gap: 14px; justify-content: flex-end; }
+  .row__side-tagline { margin: 0; font-size: 17px; color: var(--heading-text); line-height: 1.45; }
+  .row__chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+  .row__chips li { font-size: 12px; padding: 4px 10px; border-radius: 999px; background: color-mix(in srgb, var(--row-accent) 12%, transparent); color: var(--row-accent); }
+  .row__cta { align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 999px; background: var(--row-accent); color: #fff; font-weight: 600; font-size: 14px; text-decoration: none; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+  .row__cta:hover { transform: translateY(-2px); box-shadow: 0 10px 26px color-mix(in srgb, var(--row-accent) 40%, transparent); }
+
+  .cta-band { margin-top: 72px; border-radius: var(--card-window-radius); padding: clamp(28px, 5vw, 44px); background: linear-gradient(120deg, #203566, var(--color-primary)); color: #fff; display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .cta-band__title { color: #fff; margin: 0; font-size: clamp(24px, 3vw, 34px); max-width: 22ch; }
+  .cta-band__btn { display: inline-flex; align-items: center; gap: 8px; background: #fff; color: #203566; padding: 14px 26px; border-radius: 999px; font-weight: 600; text-decoration: none; }
+
+  @media (max-width: 760px) {
+    .row__head { grid-template-columns: 34px minmax(0, 1fr) 22px; gap: 10px; padding: 20px 6px; }
+    .row__tagline, .row__status { display: none; }
+    .row__inner { grid-template-columns: 1fr; gap: 16px; padding: 0 6px; }
+    .row.is-open .row__inner { padding: 0 6px 18px; }
   }
-
-  .work-wall__kicker {
-    margin: 0 0 8px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--color-primary);
-  }
-
-  .work-wall__canvas {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(16px, 2.2vw, 28px);
-    align-items: stretch;
-    overflow: visible;
-  }
-
-  /*
-   * Mosaic — mirrored 9-col bento:
-   * TOP:    wide left (Matrix + Deshi)  |  narrow right (Numu)
-   * BOTTOM: narrow left (MoneyBox)      |  wide right (Jemeti → IMS → PhotoRestore)
-   */
-  .work-wall__mosaic {
-    display: grid;
-    grid-template-columns: repeat(9, minmax(0, 1fr));
-    grid-template-rows: repeat(17, minmax(0, 1fr));
-    gap: var(--wall-gap);
-    width: 100%;
-    max-width: 1080px;
-    margin-inline: auto;
-    aspect-ratio: 9 / 17;
-    overflow: visible;
-  }
-
-  .work-wall__mosaic :global(.wg) {
-    width: 100%;
-    min-height: 0;
-    height: 100%;
-    display: block;
-  }
-
-  .work-wall__mosaic :global(.wg__frame) {
-    height: 100%;
-    min-height: 0;
-  }
-
-  /* Matrix — left top, same 3-row height as Ordelo */
-  .work-wall__mosaic :global(.wg--matrix) {
-    grid-column: 1 / 7;
-    grid-row: 1 / 4;
-  }
-
-  .work-wall__mosaic :global(.wg--matrix .wg__name) {
-    font-size: clamp(1.5rem, 3.2vw, 2.3rem);
-  }
-
-  .work-wall__mosaic :global(.wg--matrix .wg__tagline) {
-    font-size: clamp(0.75rem, 1.4vw, 0.9rem);
-  }
-
-  /* Numu — top-right beside Matrix, tall (6 rows) */
-  .work-wall__mosaic :global(.wg--numu) {
-    grid-column: 7 / 10;
-    grid-row: 1 / 7;
-  }
-
-  /* Ordelo — under Matrix, same height as Matrix */
-  .work-wall__mosaic :global(.wg--ordelo) {
-    grid-column: 1 / 7;
-    grid-row: 4 / 7;
-  }
-
-  .work-wall__mosaic :global(.wg--ordelo .wg__name) {
-    font-size: clamp(1.6rem, 3vw, 2.4rem);
-  }
-
-  /* MoneyBox — narrow left (mirror of Numu), same height as Numu */
-  .work-wall__mosaic :global(.wg--moneybox) {
-    grid-column: 1 / 4;
-    grid-row: 7 / 13;
-  }
-
-  /* Zyrn — wide right, same height as MoneyBox */
-  .work-wall__mosaic :global(.wg--zyrn) {
-    grid-column: 4 / 10;
-    grid-row: 7 / 13;
-  }
-
-  .work-wall__mosaic :global(.wg--zyrn .wg__name) {
-    font-size: clamp(1.6rem, 3vw, 2.4rem);
-  }
-
-  /* PhotoRestore — under MoneyBox, tall and narrow */
-  .work-wall__mosaic :global(.wg--photorestore) {
-    grid-column: 1 / 4;
-    grid-row: 13 / 18;
-  }
-
-  /* Invexo — wide right, spills below */
-  .work-wall__mosaic :global(.wg--invexo) {
-    grid-column: 4 / 10;
-    grid-row: 13 / 18;
-    align-self: stretch;
-  }
-
-  .work-wall__mosaic :global(.wg--moneybox .wg__frame),
-  .work-wall__mosaic :global(.wg--numu .wg__frame) {
-    background: color-mix(in srgb, var(--wg-accent) 6%, rgba(8, 12, 20, 0.2));
-  }
-
-  .work-wall__mosaic :global(.wg--jemeti .wg__visual) {
-    object-fit: contain;
-    object-position: center;
-    padding: clamp(12px, 3vw, 24px);
-    background: #1a1214;
-  }
-
-  :global([data-theme='night']) .work-wall__mosaic :global(.wg--jemeti .wg__visual) {
-    background: #1f1416;
-  }
-
-  .work-wall__mosaic :global(.wg--moneybox .wg__name) {
-    font-size: clamp(1.1rem, 1.8vw, 1.45rem);
-  }
-
-  .work-wall__mosaic :global(.wg--numu .wg__name) {
-    font-size: clamp(1.1rem, 1.8vw, 1.45rem);
-  }
-
-  .work-wall__mosaic :global(.wg--jemeti .wg__name) {
-    font-size: clamp(1.35rem, 2.4vw, 1.85rem);
-  }
-
-  .work-wall__mosaic :global(.wg--photorestore .wg__name),
-  .work-wall__mosaic :global(.wg--invexo .wg__name) {
-    font-size: clamp(1.1rem, 1.8vw, 1.45rem);
-  }
-
-  /* Lab — equal three-column grid, aligned heights */
-  .work-wall__lab {
-    margin-top: clamp(16px, 3vw, 28px);
-  }
-
-  .work-wall__lab-label {
-    margin: 0 0 12px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--muted-text);
-  }
-
-  .work-wall__lab-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--wall-gap);
-    align-items: start;
-  }
-
-  .work-wall__lab-grid :global(.wg) {
-    width: 100%;
-    min-height: 0;
-    height: auto;
-    display: block;
-  }
-
-  .work-wall__lab-grid :global(.wg__frame) {
-    aspect-ratio: 16 / 9;
-    height: auto;
-  }
-
-  .work-wall__lab-grid :global(.wg__name) {
-    font-size: clamp(1.25rem, 2.2vw, 1.55rem);
-  }
-
-  .work-wall__foot {
-    margin-top: clamp(40px, 6vw, 64px);
-    text-align: center;
-  }
-
-  .work-wall__foot-link {
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: var(--color-primary);
-    text-decoration: none;
-    border-bottom: 1px solid color-mix(in srgb, var(--color-primary) 35%, transparent);
-    padding-bottom: 2px;
-    transition: border-color 0.25s ease, color 0.25s ease;
-  }
-
-  .work-wall__foot-link:hover,
-  .work-wall__foot-link:focus-visible {
-    border-color: var(--color-primary);
-    color: var(--heading-text);
-  }
-
-  @media (max-width: 900px) {
-    .work-wall__mosaic {
-      grid-template-columns: 1fr;
-      grid-template-rows: auto;
-      aspect-ratio: auto;
-      max-width: none;
-    }
-
-    .work-wall__mosaic :global(.wg) {
-      grid-column: 1 !important;
-      grid-row: auto !important;
-      height: clamp(220px, 54vw, 340px);
-    }
-
-    .work-wall__mosaic :global(.wg--matrix) {
-      height: clamp(200px, 50vw, 300px);
-    }
-
-    .work-wall__mosaic :global(.wg--moneybox),
-    .work-wall__mosaic :global(.wg--numu),
-    .work-wall__mosaic :global(.wg--photorestore) {
-      height: clamp(320px, 88vw, 480px);
-      max-width: min(300px, 72vw);
-      margin-inline: auto;
-    }
-
-    .work-wall__mosaic :global(.wg--zyrn),
-    .work-wall__mosaic :global(.wg--invexo) {
-      height: clamp(320px, 88vw, 480px);
-    }
-
-    .work-wall__lab-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-
+  :global([dir='rtl']) .icon-chevron :global(svg) { transform: scaleX(-1); }
   @media (prefers-reduced-motion: reduce) {
-    .work-wall__foot-link {
-      transition: none;
-    }
+    .row__body, .row__inner, .row__head, .row__plus::before, .row__plus::after { transition: none; }
   }
 </style>
 
 <script>
-  import gsap from 'gsap'
-  import { ScrollTrigger } from 'gsap/ScrollTrigger'
   import { initPreviewLoader } from '../scripts/previews/preview-loader'
 
-  gsap.registerPlugin(ScrollTrigger)
+  let cleanup: (() => void) | undefined
 
-  let triggers: ScrollTrigger[] = []
-  let teardownPreviews: (() => void) | undefined
-
-  function killWallMotion(): void {
-    triggers.forEach((t) => t.kill())
-    triggers = []
-    teardownPreviews?.()
-    teardownPreviews = undefined
-  }
-
-  function initZipBorders(root: HTMLElement): void {
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const radius = getComputedStyle(root).getPropertyValue('--wg-radius').trim() || '12px'
-    const closed = `inset(calc(100% - 2px) 0 0 0 round ${radius})`
-    const open = `inset(0 round ${radius})`
-
-    root.querySelectorAll<HTMLElement>('[data-wg-tile]').forEach((tile) => {
-      if (tile.classList.contains('wg--interactive')) return
-
-      const frame = tile.querySelector<HTMLElement>('[data-zip-frame]')
-      if (!frame) return
-
-      gsap.set(frame, { clipPath: closed })
-
-      if (reduced) {
-        const toggle = (on: boolean) => tile.classList.toggle('is-zipped', on)
-        tile.addEventListener('mouseenter', () => toggle(true))
-        tile.addEventListener('mouseleave', () => toggle(false))
-        tile.addEventListener('focusin', () => toggle(true))
-        tile.addEventListener('focusout', () => toggle(false))
-        return
-      }
-
-      const tl = gsap.timeline({ paused: true, defaults: { ease: 'power2.inOut', duration: 0.5 } })
-      tl.to(frame, { clipPath: open })
-
-      tile.addEventListener('mouseenter', () => tl.play())
-      tile.addEventListener('mouseleave', () => tl.reverse())
-      tile.addEventListener('focusin', () => tl.play())
-      tile.addEventListener('focusout', (e) => {
-        if (!tile.contains(e.relatedTarget as Node)) tl.reverse()
-      })
-    })
-  }
-
-  function initWorkWall(): void {
-    killWallMotion()
-
-    const root = document.querySelector<HTMLElement>('[data-work-wall]')
+  function initWorkList(): void {
+    cleanup?.()
+    const root = document.querySelector<HTMLElement>('[data-work-list]')
     if (!root) return
+    const rows = Array.from(root.querySelectorAll<HTMLElement>('[data-row]'))
+    const teardownPreviews = initPreviewLoader(root)
+    const offs: Array<() => void> = []
+    const on = (el: EventTarget, ev: string, fn: EventListener, opts?: AddEventListenerOptions) => {
+      el.addEventListener(ev, fn, opts)
+      offs.push(() => el.removeEventListener(ev, fn, opts))
+    }
 
-    initZipBorders(root)
-    teardownPreviews = initPreviewLoader(root)
-
-    root.querySelectorAll<HTMLVideoElement>('video.wg__visual').forEach((video) => {
-      const tile = video.closest('.wg')
-      if (!tile) return
-
-      const play = () => video.play().catch(() => {})
-      const pause = () => {
-        video.pause()
-        video.currentTime = 0
+    function setOpen(row: HTMLElement, open: boolean): void {
+      if (row.classList.contains('is-open') === open) return
+      row.classList.toggle('is-open', open)
+      row.querySelector('[data-row-toggle]')?.setAttribute('aria-expanded', String(open))
+      const video = row.querySelector<HTMLVideoElement>('[data-row-video]')
+      if (video) {
+        if (open) {
+          video.preload = 'auto'
+          video.play().catch(() => {})
+        } else {
+          video.pause()
+        }
       }
+    }
+    function openOnly(target: HTMLElement | null): void {
+      rows.forEach((r) => setOpen(r, r === target))
+    }
 
-      tile.addEventListener('mouseenter', play)
-      tile.addEventListener('mouseleave', pause)
-      tile.addEventListener('focusin', play)
-      tile.addEventListener('focusout', pause)
-    })
+    const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches
+    let tapLocked: HTMLElement | null = null
 
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-
-    gsap.from(root.querySelectorAll('[data-wall-intro]'), {
-      y: 14,
-      opacity: 0,
-      duration: 0.55,
-      stagger: 0.06,
-      ease: 'power2.out',
-    })
-
-    const matrixTile = root.querySelector<HTMLElement>('.wg--matrix')
-    const matrixVisual = matrixTile?.querySelector<HTMLElement>('.wg__visual:not(.wg__fallback)')
-    if (matrixVisual && !matrixTile?.classList.contains('wg--interactive')) {
-      const st = ScrollTrigger.create({
-        trigger: matrixTile,
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: 0.5,
-        onUpdate: (self) => {
-          gsap.set(matrixVisual, { y: (self.progress - 0.5) * 16 })
-        },
+    rows.forEach((row) => {
+      const head = row.querySelector<HTMLElement>('[data-row-toggle]')!
+      on(head, 'click', () => {
+        const next = !row.classList.contains('is-open')
+        tapLocked = next ? row : null
+        openOnly(next ? row : null)
       })
-      triggers.push(st)
+      if (canHover) {
+        on(row, 'mouseenter', () => { if (!tapLocked) openOnly(row) })
+        on(row, 'mouseleave', () => { if (!tapLocked) setOpen(row, false) })
+      }
+    })
+
+    // Touch: the row crossing the middle of the screen opens itself.
+    let io: IntersectionObserver | undefined
+    if (!canHover && 'IntersectionObserver' in window) {
+      io = new IntersectionObserver(
+        (entries) => {
+          if (tapLocked) return
+          const hit = entries.filter((e) => e.isIntersecting).map((e) => e.target as HTMLElement)
+          if (hit.length) openOnly(hit[0])
+        },
+        { rootMargin: '-45% 0px -45% 0px', threshold: 0 },
+      )
+      rows.forEach((r) => io!.observe(r))
+      on(window, 'scroll', () => {
+        if (tapLocked && !isNearCentre(tapLocked)) tapLocked = null
+      }, { passive: true })
+    }
+
+    cleanup = () => {
+      offs.forEach((f) => f())
+      io?.disconnect()
+      teardownPreviews?.()
+      cleanup = undefined
     }
   }
 
-  initWorkWall()
-  document.addEventListener('astro:page-load', initWorkWall)
-  document.addEventListener('astro:before-swap', killWallMotion)
+  function isNearCentre(el: HTMLElement): boolean {
+    const r = el.getBoundingClientRect()
+    const mid = window.innerHeight / 2
+    return r.top < mid + window.innerHeight * 0.4 && r.bottom > mid - window.innerHeight * 0.4
+  }
+
+  initWorkList()
+  document.addEventListener('astro:page-load', initWorkList)
+  document.addEventListener('astro:before-swap', () => cleanup?.())
 </script>

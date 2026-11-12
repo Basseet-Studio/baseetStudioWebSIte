@@ -252,5 +252,13 @@
   "contact_form_studio_location_aria": "Studio location (coming soon)",
   "contact_form_submit": "Post inquiry",
   "contact_form_signed": "Signed, sealed, delivered.",
-  "contact_form_priority": "Baseet · Airmail · Priority"
+  "contact_form_priority": "Baseet · Airmail · Priority",
+  "projects_hero_kicker": "Selected work",
+  "projects_hero_line1": "Built, shipped,",
+  "projects_hero_line2": "still running.",
+  "projects_hero_lead": "Products we design, build and keep running.",
+  "projects_view": "View project",
+  "clients_hero_lead_short": "Here is what we built, and what changed for the teams using it.",
+  "clients_meta_engagements": "Engagements",
+  "clients_view_case": "View case"
 }

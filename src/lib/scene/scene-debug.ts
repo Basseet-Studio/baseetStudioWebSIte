@@ -18,6 +18,11 @@ const PANEL_THROTTLE_MS = 100
 
 export function isSceneDebugEnabled(): boolean {
   if (typeof window === 'undefined') return false
+  try {
+    if (localStorage.getItem('baseet:scene:debug') === '0') return false
+  } catch {
+    /* ignore */
+  }
   if (import.meta.env.DEV) return true
   if (new URLSearchParams(location.search).has('sceneDebug')) return true
   try {

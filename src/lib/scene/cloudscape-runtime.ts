@@ -8,6 +8,7 @@ import { createObjectRegistry, WORLD_SCALE } from './object-registry'
 import { createPageTransitionBridge } from './page-transition-bridge'
 import { createScrollDriver } from './scroll-driver'
 import { applyCameraMotion } from './camera-motion'
+import { initLandmark } from './landmark'
 import {
   isSceneDebugEnabled,
   sceneLog,
@@ -54,6 +55,8 @@ export interface SceneRuntime {
   /** When locked, scroll evaluation does not overwrite camera/clouds/lighting (playground). */
   setPlaygroundLock: (locked: boolean) => void
   isPlaygroundLocked: () => boolean
+  /** Playground: freeze only the camera (scroll still drives clouds/lighting unless look-locked). */
+  setCameraLock: (locked: boolean) => void
   setPageConfig: (config: SceneConfig) => void
   renderFrame: () => void
 }
@@ -347,6 +350,7 @@ export function initCloudscape(opts: {
   if (!skipObjects) {
     objectRegistry.queuePreload(config.objects)
   }
+  if (!skipObjects) initLandmark(objectRegistry)
 
   const state = {
     config,
@@ -536,6 +540,7 @@ export function initCloudscape(opts: {
   }
 
   let playgroundLocked = false
+  let cameraLocked = false
 
   function applySkyThemeUpdate(update: SkyThemeUpdate): void {
     if (playgroundLocked) return
@@ -753,8 +758,12 @@ export function initCloudscape(opts: {
       playgroundLocked = locked
     },
     isPlaygroundLocked: () => playgroundLocked,
+    setCameraLock: (locked: boolean) => {
+      cameraLocked = locked
+    },
     setPageConfig(next) {
       state.config = next
+      cameraLocked = false
       state.pageClouds = { ...(next.clouds || {}) }
       state.pageLighting = { ...(next.lighting || {}) }
       state.clouds = { ...state.pageClouds }
@@ -776,8 +785,8 @@ export function initCloudscape(opts: {
   function onScrollProgress(progress: number): void {
     if (bridge.getIsTransitioning()) return
     const evaluated = cameraController.evaluateAtProgress(progress)
+    if (!cameraLocked) sceneRuntime.applyCamera(applyCameraMotion(evaluated.camera))
     if (!playgroundLocked) {
-      sceneRuntime.applyCamera(applyCameraMotion(evaluated.camera))
       sceneRuntime.applyClouds(evaluated.clouds)
       sceneRuntime.applyLighting(evaluated.lighting)
     }
@@ -795,7 +804,7 @@ export function initCloudscape(opts: {
     pushDebugSnapshot(
       progress,
       evaluated.activeAnchorId,
-      playgroundLocked ? state.currentCamera : evaluated.camera,
+      cameraLocked ? state.currentCamera : evaluated.camera,
       playgroundLocked ? state.clouds : evaluated.clouds,
       objectRegistry,
       state.frame,
