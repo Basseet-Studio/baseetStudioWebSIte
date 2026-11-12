@@ -1,0 +1,104 @@
+{
+  "name": "Aplikasi Pendidikan Perubatan (MAI)",
+  "slug": "medical-education-app",
+  "type": "standalone",
+  "tagline": "Platform pendidikan perubatan berkuasa AI",
+  "description": "## Perihal MAI\n\nAplikasi Pendidikan Perubatan (MAI) ialah platform pembelajaran dan sokongan keputusan klinikal berkuasa AI yang dibina untuk doktor pelatih. Ia gabungkan simulasi kes yang realistik, aliran kerja diagnostik yang berstruktur, dan alat pembelajaran peribadi dalam satu pengalaman bersepadu.\n\n### Modul teras\n\nSokongan keputusan klinikal (diagnosis pembezaan dua peringkat), pengurusan dan dokumentasi kes pesakit, aliran kerja pengimejan perubatan dengan anotasi AI, semakan keselamatan farmakologi dan alat dos, ringkasan rondaan klinikal serta penjanaan dokumen, dan pembelajaran peribadi dengan kuiz, kad imbas, serta peta minda.\n\n### Seni bina\n\nMAI ikut seni bina yang bersih dan utamakan ciri, dengan lapisan teras yang dikongsi dan perkhidmatan penjanaan data olok-olok. Pengurusan keadaan guna corak Provider, dan penghalaan dikendalikan dengan Go Router.\n\n### Sistem data olok-olok\n\nMVP menggunakan perkhidmatan data olok-olok yang kukuh untuk mensimulasikan diagnosis ICD-10, demografi pesakit, keputusan makmal, dan kemajuan pembelajaran bagi aliran kerja yang realistik.\n",
+  "iconClass": "fas fa-stethoscope",
+  "color": "#0F766E",
+  "gradient": "linear-gradient(135deg, #0F766E 0%, #14B8A6 100%)",
+  "status": "Coming Soon",
+  "hero": {
+    "title": "Pembelajaran klinikal, dicipta semula",
+    "subtitle": "Platform pendidikan berkuasa AI yang menggabungkan sokongan keputusan klinikal, pengurusan kes pesakit, dan pembelajaran peribadi untuk doktor pelatih.",
+    "cta_primary": "Minta demo",
+    "cta_primary_link": "/contact",
+    "cta_secondary": "Terokai ciri",
+    "cta_secondary_link": "#features"
+  },
+  "features": [
+    {
+      "title": "Sokongan keputusan klinikal",
+      "description": "Aliran kerja diagnosis pembezaan dua peringkat dengan pengambilan sejarah, pemeriksaan fizikal, ujian, dan perancangan pengurusan.",
+      "icon": "fas fa-user-doctor"
+    },
+    {
+      "title": "Pengurusan kes",
+      "description": "Papan pemuka pesakit dengan penapisan, aliran kerja kes baharu, tetapan privasi, dan paparan kes bertab.",
+      "icon": "fas fa-folder-open"
+    },
+    {
+      "title": "Pengimejan perubatan",
+      "description": "Simulasi muat naik DICOM, analisis imbasan AI, pemapar beranotasi, perbandingan, dan penjanaan laporan.",
+      "icon": "fas fa-x-ray"
+    },
+    {
+      "title": "Farmakologi & keselamatan ubat",
+      "description": "Pelan rawatan, amaran interaksi, kalkulator dos, dan cadangan ubat alternatif.",
+      "icon": "fas fa-pills"
+    },
+    {
+      "title": "Rondaan klinikal",
+      "description": "Papan pemuka rondaan, simulasi rakaman suara, semakan transkrip AI, dan ringkasan automatik.",
+      "icon": "fas fa-notes-medical"
+    },
+    {
+      "title": "Pembelajaran peribadi",
+      "description": "Hab pembelajaran dengan peta minda, kad imbas, kuiz, ringkasan audio, video, dan senario garis panduan.",
+      "icon": "fas fa-graduation-cap"
+    },
+    {
+      "title": "Analitik & kemajuan",
+      "description": "Papan pemuka prestasi, peta haba penguasaan, dan penjejakan penyiapan kes.",
+      "icon": "fas fa-chart-line"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "iOS",
+      "icon": "fab fa-apple",
+      "version": "iOS 15+",
+      "link": "#"
+    },
+    {
+      "name": "Android",
+      "icon": "fab fa-android",
+      "version": "Android 8+",
+      "link": "#"
+    },
+    {
+      "name": "Web",
+      "icon": "fas fa-globe",
+      "version": "Aplikasi web",
+      "link": "#"
+    },
+    {
+      "name": "Desktop",
+      "icon": "fas fa-desktop",
+      "version": "macOS | Windows",
+      "link": "#"
+    }
+  ],
+  "tech": [
+    "Flutter 3.9+",
+    "Dart 3.9+",
+    "Provider",
+    "Go Router",
+    "Faker",
+    "fl_chart"
+  ],
+  "faq": [
+    {
+      "question": "Adakah ini bersambung ke data pesakit sebenar?",
+      "answer": "Tidak. MVP ini guna data olok-olok sahaja. Ia direka sebagai bukti konsep untuk aliran kerja pendidikan."
+    },
+    {
+      "question": "Adakah ia menyokong pelbagai platform?",
+      "answer": "Ya. Aplikasi ini menyasar iOS, Android, Web, dan Desktop menggunakan keupayaan pelbagai platform Flutter."
+    },
+    {
+      "question": "Bolehkah ini disepadukan dengan bahagian belakang?",
+      "answer": "Dirancang untuk fasa akan datang. Peta hala tuju merangkumi API REST, pengesahan, dan penyimpanan awan."
+    }
+  ]
+}

@@ -1,0 +1,161 @@
+{
+  "id": "cloud",
+  "slug": "cloud",
+  "title": "Awan & DevOps",
+  "tagline": "Hantar lebih laju, tidur lebih lena",
+  "color": "#0EA5E9",
+  "gradient": "linear-gradient(135deg, #0369A1 0%, #38BDF8 100%)",
+  "icon": "fas fa-cloud",
+  "shortDescription": "Infrastruktur dan pelancaran yang boleh diskala",
+  "hero": {
+    "title": "Hantar lebih laju, tidur lebih lena",
+    "subtitle": "Infrastruktur yang boleh diskala, CI/CD, dan pemantauan supaya keluaran berhenti jadi peristiwa yang semua orang gementar.",
+    "cta_primary": "Semak infrastruktur saya",
+    "cta_primary_link": "/contact/",
+    "cta_secondary": "Lihat timbunan",
+    "cta_secondary_link": "#tech"
+  },
+  "metrics": [
+    { "value": "99.9%", "label": "Sasaran SLA masa operasi" },
+    { "value": "<5 minit", "label": "Masa purata untuk undur" },
+    { "value": "0", "label": "Pelancaran manual" }
+  ],
+  "subServices": [
+    {
+      "id": "cloud-migration",
+      "name": "Pemindahan awan",
+      "icon": "fas fa-cloud-upload-alt",
+      "desc": "Pindahkan sistem anda ke awan dengan selamat",
+      "longDesc": "Angkat, susun semula, atau bina semula — bergantung pada apa yang beban kerja anda benar-benar perlukan. Kami pindahkan sistem produksi dengan pelan pemotongan tanpa masa henti, larian selari, dan laluan undur yang bersih kalau ada yang tersasar.",
+      "bullets": [
+        "AWS, GCP, Azure, dan Cloudflare",
+        "Pemotongan tanpa masa henti dengan larian selari",
+        "Penilaian kos dan saiz yang betul",
+        "Pemindahan rangkaian, IAM, dan rahsia"
+      ],
+      "imageLabel": "Gambar rajah seni bina pemindahan awan"
+    },
+    {
+      "id": "cicd",
+      "name": "Paip CI/CD",
+      "icon": "fas fa-code-branch",
+      "desc": "Pengujian dan pelancaran automatik",
+      "longDesc": "Kami bina paip yang tangkap pepijat, bukan pembangun. Semak jenis, lint, uji, imbas, tandatangan, dan laksanakan pada setiap komit — dengan pelancaran progresif, undur automatik bila ada regresi, dan undur satu klik bila ada yang salah.",
+      "bullets": [
+        "GitHub Actions, GitLab CI, dan Buildkite",
+        "Pelancaran progresif dan bendera ciri",
+        "Undur automatik bila ada regresi",
+        "Keluaran yang ditandatangani, disahkan, dan ditanda SBOM"
+      ],
+      "imageLabel": "Visualisasi paip CI/CD"
+    },
+    {
+      "id": "server-management",
+      "name": "Pengurusan pelayan",
+      "icon": "fas fa-server",
+      "desc": "Pastikan infrastruktur anda berjalan lancar",
+      "longDesc": "Kubernetes terurus, tanpa pelayan di AWS Lambda, atau VPS yang sederhana — kami jalankan bahagian yang membosankan tapi kritikal supaya anda boleh tumpu pada produk. Tampalan, penskalaan, sandaran, dan giliran panggilan 24/7 bila ada yang salah.",
+      "bullets": [
+        "Kubernetes, ECS, dan Lambda",
+        "Pengurusan tampalan, sandaran, dan kapasiti",
+        "Panggilan 24/7 dengan jurutera sebenar",
+        "Postmortem yang benar-benar ubah sesuatu"
+      ],
+      "imageLabel": "Papan pemuka pemantauan pelayan"
+    },
+    {
+      "id": "security-audits",
+      "name": "Audit keselamatan",
+      "icon": "fas fa-shield-alt",
+      "desc": "Kenal pasti dan baiki kelemahan",
+      "longDesc": "Kami tak jual laporan yang menakutkan — kami jual CVE yang sudah dibaiki. Audit keselamatan kami berakhir dengan pelan pemulihan yang diutamakan, set permintaan tarik yang dijejak, dan ujian semula. Kami bekerja dengan SOC 2, ISO 27001, dan PDPL UAE.",
+      "bullets": [
+        "Audit web, API, dan konfigurasi awan",
+        "Ujian penembusan dengan laporan sebenar",
+        "Kesediaan SOC 2 dan ISO 27001",
+        "Semakan PDPL UAE dan residensi data"
+      ],
+      "imageLabel": "Papan pemuka penemuan audit keselamatan"
+    }
+  ],
+  "process": [
+    {
+      "number": "01",
+      "title": "Nilai",
+      "desc": "Semakan seni bina, audit kos, dan kad skor kebolehpercayaan",
+      "icon": "fas fa-magnifying-glass"
+    },
+    {
+      "number": "02",
+      "title": "Rancang",
+      "desc": "Pelan pemindahan atau pengukuhan, diukur dalam minggu dan kos",
+      "icon": "fas fa-map"
+    },
+    {
+      "number": "03",
+      "title": "Bina",
+      "desc": "Infrastruktur sebagai kod, paip, dan kebolehcerapan — dikomit dan disemak",
+      "icon": "fas fa-code"
+    },
+    {
+      "number": "04",
+      "title": "Kendali",
+      "desc": "Serahan dengan buku panduan, papan pemuka, dan giliran panggilan",
+      "icon": "fas fa-headset"
+    }
+  ],
+  "deliverables": [
+    {
+      "title": "Repositori infrastruktur sebagai kod",
+      "description": "Terraform atau Pulumi, dikomit dalam repositori anda, disemak rakan, dan digunakan dari CI.",
+      "icon": "fas fa-code"
+    },
+    {
+      "title": "Paip",
+      "description": "Bina, uji, tandatangan, dan laksanakan pada setiap komit — dengan pelancaran progresif.",
+      "icon": "fas fa-code-branch"
+    },
+    {
+      "title": "Kebolehcerapan",
+      "description": "Metrik, log, jejak, dan amaran disambung ke Slack atau PagerDuty — tanpa menyelam konsol.",
+      "icon": "fas fa-chart-line"
+    },
+    {
+      "title": "Buku panduan & serahan",
+      "description": "Buku panduan sebenar untuk orang yang bertugas, serta tetingkap 30 hari selepas serahan untuk ubah suai.",
+      "icon": "fas fa-book"
+    }
+  ],
+  "tech": [
+    "AWS",
+    "GCP",
+    "Cloudflare",
+    "Kubernetes",
+    "Docker",
+    "Terraform",
+    "Pulumi",
+    "GitHub Actions",
+    "Datadog",
+    "Grafana",
+    "Sentry",
+    "PagerDuty"
+  ],
+  "faq": [
+    {
+      "question": "Awan mana yang anda syorkan?",
+      "answer": "Ia bergantung pada komitmen sedia ada, keperluan kawal selia, dan pasukan anda. Kami tak terikat pada AWS, GCP, Azure, atau Cloudflare. Kami akan syorkan yang tepat untuk beban kerja anda selepas semakan seni bina yang ringkas."
+    },
+    {
+      "question": "Bolehkah anda ambil alih persediaan awan sedia ada?",
+      "answer": "Boleh. Kami mulakan dengan audit berbayar — kad skor seni bina, kos, keselamatan, dan kebolehpercayaan — kemudian cadangkan pelan berperingkat. Kami pernah selamatkan akaun dengan bil mengejut, pelancaran manual, dan satu atau dua titik kegagalan tunggal."
+    },
+    {
+      "question": "Adakah anda tawarkan panggilan 24/7?",
+      "answer": "Ya. Kami berpasangan dengan pasukan anda pada waktu bekerja dan pegang giliran panggilan sebenar di luar itu. Masa respons didokumentasi dari awal, dan kami jalankan ujian huru-hara suku tahunan supaya buku panduan kekal jujur."
+    },
+    {
+      "question": "Bagaimana anda urus residensi data di UAE?",
+      "answer": "Semua pembekal utama kini ada wilayah UAE, dan kami reka untuk residensi dari gambar rajah pertama. Kami sudah hantar pelancaran UAE sahaja untuk pelanggan penjagaan kesihatan, pendidikan, dan kerajaan, dan kami boleh bawa anda melalui timbang taranya."
+    }
+  ]
+}

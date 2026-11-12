@@ -1,0 +1,157 @@
+{
+  "name": "Numu",
+  "slug": "numu",
+  "type": "branded",
+  "tagline": "Jejak apa yang anda buat. Bina orang yang anda mahu jadi.",
+  "description": "## Perihal Numu\n\nnumu ialah aplikasi mudah alih penjejak tabiat dan kehidupan yang dibina dengan Flutter. Ia direka di sekitar satu idea: **pertumbuhan ialah amalan harian**, dan alat yang betul patut jadikan amalan itu mudah, peribadi, dan milik anda selama-lamanya.\n\n### Mengapa Numu wujud\n\nKebanyakan aplikasi tabiat mahu data anda, akaun anda, dan yuran bulanan anda. Numu dibina di atas prinsip yang bertentangan:\n\n- **Utamakan tempatan** — Data anda hidup pada peranti anda.\n- **Luar talian secara lalai** — Tiada akaun diperlukan, tiada internet diperlukan.\n- **Tiada langganan, tiada iklan, tiada penjejakan.**\n- **Sandaran & pemulihan penuh** — Anda miliki data anda, sentiasa.\n\n### Apa yang anda boleh jejak\n\n- **🌱 Modul pertumbuhan teras**\n  - **Tabiat** — Tabiat harian, mingguan, atau kekerapan tersuai dengan rentetan, pemarkahan, dan sejarah yang kaya.\n  - **Matlamat** — Matlamat jangka panjang yang dipautkan pada tabiat yang mendorongnya.\n  - **Tugas** — Tugasan sekali dan berulang dengan peringatan.\n  - **Peringatan** — Pemberitahuan pintar yang sentuh anda pada masa yang tepat.\n  - **Hari Saya** — Paparan harian yang menyatukan tabiat, tugas, dan matlamat dalam satu skrin.\n- **💪 Kesihatan** — Catatan air, tidur, berat, dan makanan. Modul kesihatan direka untuk berkembang ke penjejakan senaman (peta hala tuju).\n- **🕌 Islam** — Penjejakan solat dengan pemarkahan. Penjejakan puasa dan nafila (sunat).\n- **💾 Sandaran & pemulihan** — Sandaran dan pemulihan tempatan penuh untuk semua data anda.\n- **🧭 Pengalaman sokongan** — Penerimaan, Utama (papan pemuka harian sepintas lalu), Profil (statistik peribadi dan sejarah), Tetapan (kawalan penuh, termasuk pilihan \"set semula semua data\"), dan Bantuan terbina.\n\n### Apa yang bezakan Numu\n\n| | Numu | Aplikasi tabiat biasa |\n|---|---|---|\n| Akaun diperlukan | ❌ Tidak | ✅ Ya |\n| Berfungsi luar talian | ✅ Sepenuhnya | ⚠️ Terhad |\n| Data anda hidup pada peranti anda | ✅ Ya | ❌ Di pelayan mereka |\n| Langganan | ❌ Tiada | 💲 Yuran bulanan |\n| Iklan & penjejak | ❌ Tiada | ✅ Biasanya ada |\n| Sandaran & pemulihan | ✅ Terbina | ⚠️ Berbeza-beza |\n| Pengelokalan | ✅ Arab + Inggeris (sedar RTL) | ⚠️ Inggeris dahulu |\n\n### Dibina dengan betul\n\n- **Flutter + Dart** — Prestasi asli pada iOS dan Android dari satu pangkalan kod.\n- **Riverpod** untuk pengurusan keadaan.\n- **sqflite** untuk simpanan data tempatan.\n- **go_router** untuk navigasi.\n- **Seni bina yang utamakan ciri** — Setiap ciri (tabiat, matlamat, kesihatan, islam…) berdiri sendiri, menjadikan aplikasi mudah dikembangkan dan diselenggara.\n\n### Sorotan peta hala tuju\n\n- **Fasa 1 (2026)** — Penggilap & kestabilan: keadaan kosong yang lebih baik, suntingan tabiat yang kekalkan rentetan, penunjuk trend kesihatan, dan pembetulan RTL.\n- **Fasa 2 (2026)** — Penjejakan senaman & aktiviti fizikal, disepadukan dengan modul kesihatan sedia ada dan sistem tabiat.\n- **Fasa 3 (2026–2027)** — Kesejahteraan & kesihatan mental: menjejak bagaimana anda *rasa*, bukan sekadar apa yang anda *buat*.\n- **Fasa 4+** — Integrasi peranti boleh pakai, HealthKit, dan seterusnya.\n\n*Dibina sebagai projek sampingan yang fokus, dengan falsafah yang jelas: pertumbuhan anda, data anda, rentak anda.*\n\n### Untuk orang yang peduli tentang privasi\n\nnumu direka untuk orang yang tak mahu akaun awan yang lain, risiko kebocoran data yang lain, atau langganan lain yang hilang. Kalau itu kedengaran seperti anda, Numu dibina untuk anda.\n",
+  "icon": "/images/projects/numu-icon.png",
+  "color": "#AF52DE",
+  "gradient": "linear-gradient(135deg, #AF52DE 0%, #BF5AF2 100%)",
+  "status": "Coming Soon",
+  "layoutVariant": "numu",
+  "fontHeading": "Quicksand",
+  "fontBody": "Nunito",
+  "fontWeights": "400,500,600,700",
+  "gsapAnimation": "elastic-bounce",
+  "appType": "mobile",
+  "brandName": "Numu",
+  "bgEffect": "leaves",
+  "bgFallbackGradient": "linear-gradient(180deg, #F0FFF4 0%, #C6F6D5 40%, #9AE6B4 100%)",
+  "hero": {
+    "title": "Bina orang yang anda mahu jadi.",
+    "subtitle": "Numu ialah penjejak tabiat dan kehidupan yang utamakan tempatan, luar talian, dan bebas langganan. Data anda hidup pada peranti anda — dan hanya milik anda.",
+    "cta_primary": "Dapatkan akses awal",
+    "cta_secondary": "Ketahui lebih lanjut"
+  },
+  "features": [
+    {
+      "title": "Modul pertumbuhan teras",
+      "description": "Tabiat (harian, mingguan, atau tersuai) dengan rentetan, Matlamat yang dipautkan pada tabiat yang mendorongnya, Tugas dengan peringatan, Peringatan pintar, dan paparan Hari Saya yang bersatu.",
+      "icon": "fas fa-seedling"
+    },
+    {
+      "title": "Penjejakan kesihatan",
+      "description": "Catatan air, tidur, berat, dan makanan — dengan modul kesihatan yang direka untuk berkembang ke penjejakan senaman pada peta hala tuju.",
+      "icon": "fas fa-heartbeat"
+    },
+    {
+      "title": "Amalan Islam",
+      "description": "Penjejakan solat dengan pemarkahan, serta penjejakan puasa dan nafila (sunat) — dibina sebagai modul kelas pertama.",
+      "icon": "fas fa-mosque"
+    },
+    {
+      "title": "Utamakan tempatan & luar talian",
+      "description": "Data anda hidup pada peranti anda. Tiada akaun, tiada internet, tiada awan — dan aliran sandaran serta pemulihan penuh supaya anda sentiasa memilikinya.",
+      "icon": "fas fa-lock"
+    },
+    {
+      "title": "Tiada langganan, tiada iklan, tiada penjejak",
+      "description": "Numu dibina bertentangan dengan model perniagaan aplikasi tabiat yang biasa. Tiada yuran bulanan, tiada rangkaian iklan, tiada penjejak pihak ketiga.",
+      "icon": "fas fa-shield-alt"
+    },
+    {
+      "title": "Jelas, sedar RTL, pelbagai bahasa",
+      "description": "Arab + Inggeris dari awal, dengan susun atur yang sedar RTL. Antara muka yang digilap dan mesra, direka supaya daftar masuk harian terasa berbaloi.",
+      "icon": "fas fa-palette"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "iOS",
+      "icon": "fab fa-apple",
+      "version": "iOS 15+",
+      "link": "https://testflight.apple.com/join/wgRQGpw8"
+    },
+    {
+      "name": "Android",
+      "icon": "fab fa-android",
+      "version": "Android 8+",
+      "link": "https://drive.google.com/drive/folders/1_8MswXC-JxPEFU_0-fmeXal_hK7yKs9C?usp=sharing"
+    }
+  ],
+  "galleryType": "mobile",
+  "screenshots": [
+    "/images/projects/numu/1.png",
+    "/images/projects/numu/2.png",
+    "/images/projects/numu/3.png",
+    "/images/projects/numu/4.png",
+    "/images/projects/numu/5.png",
+    "/images/projects/numu/6.png"
+  ],
+  "testimonials": [
+    {
+      "quote": "Ciri rentetan Numu menyebabkan ketagihan dengan cara yang terbaik. Saya sudah bertafakur setiap hari selama 90 hari!",
+      "author": "Alex T.",
+      "role": "Penguji beta awal"
+    }
+  ],
+  "navItems": [
+    {
+      "label": "Utama",
+      "url": "",
+      "i18nKey": "project_nav_home"
+    },
+    {
+      "label": "Ciri",
+      "url": "features/",
+      "i18nKey": "project_nav_features"
+    },
+    {
+      "label": "Muat turun",
+      "url": "download/",
+      "i18nKey": "project_nav_download"
+    },
+    {
+      "label": "Terma",
+      "url": "terms/",
+      "i18nKey": "project_nav_terms"
+    },
+    {
+      "label": "Privasi",
+      "url": "privacy/",
+      "i18nKey": "project_nav_privacy"
+    }
+  ],
+  "navMetaItems": [
+    {
+      "label": "Kerja",
+      "url": "/projects/",
+      "i18nKey": "nav_work"
+    },
+    {
+      "label": "Hubungi",
+      "url": "/contact/",
+      "i18nKey": "nav_contact"
+    }
+  ],
+  "links": {
+    "ios": "https://testflight.apple.com/join/wgRQGpw8",
+    "android": "https://drive.google.com/drive/folders/1_8MswXC-JxPEFU_0-fmeXal_hK7yKs9C?usp=sharing"
+  },
+  "faq": [
+    {
+      "question": "Adakah Numu percuma digunakan?",
+      "answer": "Ya — Numu tiada langganan, tiada iklan, dan tiada pembelian dalam aplikasi. Ia dibina sebagai projek sampingan yang fokus, dengan falsafah yang jelas: pertumbuhan anda, data anda, rentak anda."
+    },
+    {
+      "question": "Bagaimana Numu berbeza daripada penjejak tabiat lain?",
+      "answer": "Kebanyakan aplikasi tabiat perlukan akaun, simpan data anda di awan mereka, dan kenakan yuran bulanan. Numu utamakan tempatan dan luar talian secara lalai — data anda hidup pada peranti anda, anda tak perlukan akaun, dan tiada iklan atau penjejak."
+    },
+    {
+      "question": "Bila Numu akan tersedia?",
+      "answer": "Kami sedang menggilap sentuhan akhir Numu. Daftar untuk akses awal supaya anda antara yang pertama mencubanya."
+    },
+    {
+      "question": "Bolehkah saya jejak apa-apa jenis tabiat?",
+      "answer": "Boleh — tabiat harian seperti senaman dan membaca, matlamat mingguan seperti persediaan hidangan, tabiat kekerapan tersuai, matlamat jangka panjang yang dipautkan pada tabiat yang mendorongnya, tugas, malah penjejakan solat / puasa."
+    },
+    {
+      "question": "Bagaimana dengan modul Kesihatan dan Islam?",
+      "answer": "Kedua-duanya modul kelas pertama. Kesihatan merangkumi catatan air, tidur, berat, dan makanan (penjejakan senaman ada pada peta hala tuju). Islam merangkumi penjejakan solat dengan pemarkahan, puasa, dan penjejakan nafila (sunat)."
+    },
+    {
+      "question": "Bahasa apa yang disokong?",
+      "answer": "Arab dan Inggeris disokong dari awal, dengan susun atur yang sedar RTL. Seni bina yang utamakan ciri menjadikan penambahan bahasa lain mudah."
+    }
+  ]
+}

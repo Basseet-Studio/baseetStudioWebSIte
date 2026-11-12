@@ -1,0 +1,169 @@
+{
+  "name": "Geeb",
+  "slug": "geeb",
+  "type": "branded",
+  "tagline": "靠谱的上门服务师傅，随叫随到",
+  "description": "## 关于 Geeb（CNG）\n\nGeeb——我们 CNG 服务集市平台的品牌——把需要服务的顾客和提供服务的人接上。这是一套完整的多应用生态：面向顾客的应用、面向商家的应用，以及面向管理的应用，共用一套架构清楚的后端。\n\n### 愿景\n\n找一位靠得住的服务者不该是一场赌。无论是上门服务、一位专业人士，还是一家本地生意，顾客都该有信心去**发现、比较、预约和评价**。Geeb 让这个体验对环里的每个人都简单、可预期。\n\n### 三个应用，一个平台\n\n- **📱 顾客应用** — 发现附近和正在热门的商家，按类别和区域浏览，预约、追踪并评价服务，并管理资料、头像和账户安全。\n- **🛠️ 商家应用** — 管理服务项目和配送区域，接收并回应顾客请求，通过评价和评分追踪表现。包含基于一次性密码的邮箱验证、基于 Hive 的离线缓存、后台同步，以及聪明的错误处理。\n- **🛡️ 管理应用** — 监控整个生态，管理用户、商家和内容，并审阅系统健康与安全事件。\n- **📦 共享包** — 三个应用共用的组件、工具、服务和业务逻辑，保证一致，也保证速度。\n\n### 功能亮点\n\n- **🏆 热门商家** — 经过挑选的发现，把最相关、评分最高的服务者摊到前面。\n- **🏠 顾客主屏** — 个性化的落地页，带聪明推荐和类别的快速入口。\n- **🗺️ 分层区域系统** — 多层地理组织（城市 → 区 → 街区），让本地发现更准。\n- **🧑 头像管理** — 头像上传、存储和在所有应用中渲染的完整规格。\n- **🔐 登录与安全** — Google OAuth、双因素认证（TOTP），以及商家的一次性密码邮箱验证——带专业的引导注册，和待验证状态的恢复流程。\n- **⭐ 评价与评分 v2.1** — 在服务和商家两级自动计算评分，界面实时刷新，通过聪明轮询做跨应用更新，并用 PostgreSQL 行级安全保护访问。\n- **💾 离线优先同步** — 基于 Hive 的本地缓存、后台数据同步，以及五分钟刷新间隔，让事情保持快。\n- **🧰 开发者优先的地基** — 严格锁定 Android NDK（`29.0.13113456`），iOS 部署目标 14.0，`.vscode/launch.json` 打开就能用。\n\n### Geeb 交付什么\n\n| 给顾客 | 给商家 | 给管理员 |\n|---|---|---|\n| 轻松发现 | 上手被理顺 | 整个生态可见 |\n| 可信的评价 | 实时请求 | 用户与内容管理 |\n| 本地区域搜索 | 可离线的应用 | 安全事件监控 |\n| 安全的账户 | 表现追踪 | 可扩展的审核工具 |\n\n### 工程原则\n\n- **按模块来设计** — 容易扩展到新的服务类别或地理区域。\n- **本地化优先** — 从第一天就支持多语言。\n- **安全优先** — 行级安全策略、双因素、一次性密码验证，以及便于审计的流程。\n- **顾及无障碍** — 语义化标记，对屏幕阅读器友好的界面。\n- **现代 Flutter** — 顾客、商家和管理端共用的干净架构。\n\n*为无障碍、本地化和规模而做。用同一套经过验证的架构，长进新的行业和地区。*",
+  "iconClass": "fas fa-wrench",
+  "color": "#B45309",
+  "gradient": "linear-gradient(135deg, #B45309 0%, #F59E0B 100%)",
+  "status": "Coming Soon",
+  "layoutVariant": "geeb",
+  "fontHeading": "Manrope",
+  "fontBody": "Inter",
+  "fontWeights": "400,500,600,700,800",
+  "gsapAnimation": "stagger-rise",
+  "appType": "web",
+  "brandName": "Geeb",
+  "bgEffect": "none",
+  "bgFallbackGradient": "linear-gradient(180deg, #FFFBEB 0%, #FEF3C7 40%, #FDE68A 100%)",
+  "hero": {
+    "title": "几分钟约到一位靠谱的师傅",
+    "subtitle": "Geeb 把你和经过核验的管道工、电工、杂修、保洁和上门服务师傅连在一起。价格透明、实时追踪，每一单都有质量保证——由一套为规模而做的多应用服务集市驱动。",
+    "cta_primary": "获取应用",
+    "cta_primary_link": "/contact",
+    "cta_secondary": "成为师傅",
+    "cta_secondary_link": "/contact"
+  },
+  "features": [
+    {
+      "title": "三个应用，一个平台",
+      "description": "顾客、商家和管理应用共用一套 Flutter 代码、单体仓库和共享包——体验一致、迭代更快，每个服务类别都更容易放大。",
+      "icon": "fas fa-layer-group"
+    },
+    {
+      "title": "热门商家与聪明发现",
+      "description": "经过挑选的发现，把最相关、评分最高的服务者摊出来，加上个性化主屏和类别快速入口——顾客不用猜该雇谁。",
+      "icon": "fas fa-fire"
+    },
+    {
+      "title": "分层区域系统",
+      "description": "多层地理组织（城市 → 区 → 街区），让本地发现更准、派单更聪明，商家正好覆盖该覆盖的服务区域。",
+      "icon": "fas fa-map-marked-alt"
+    },
+    {
+      "title": "核验过的师傅、安全登录与双因素",
+      "description": "背景调查、身份核验过的师傅。顾客可以选择 Google OAuth 和双因素（TOTP）；商家有被理顺的一次性密码邮箱验证，带引导注册和待验证恢复。",
+      "icon": "fas fa-shield-alt"
+    },
+    {
+      "title": "评价与评分 v2.1",
+      "description": "在服务和商家两级自动计算评分，顾客端和商家端界面实时刷新，并通过聪明轮询做跨应用更新——全部由 PostgreSQL 行级安全保护。",
+      "icon": "fas fa-star"
+    },
+    {
+      "title": "离线优先的商家应用",
+      "description": "基于 Hive 的本地缓存，资料、服务、区域和通知的后台同步，再加上五分钟刷新——网络不稳时，商家也能继续干活。",
+      "icon": "fas fa-sync-alt"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "顾客应用",
+      "icon": "fas fa-mobile-alt",
+      "version": "iOS · Android · 网页",
+      "link": "#"
+    },
+    {
+      "name": "商家应用",
+      "icon": "fas fa-hard-hat",
+      "version": "iOS · Android · 网页",
+      "link": "#"
+    },
+    {
+      "name": "管理控制台",
+      "icon": "fas fa-user-shield",
+      "version": "网页",
+      "link": "#"
+    }
+  ],
+  "tech": [
+    "Flutter 3.x",
+    "Dart 3.x",
+    "Supabase",
+    "Hive",
+    "Riverpod",
+    "PostgreSQL",
+    "行级安全",
+    "Google OAuth",
+    "TOTP / 双因素",
+    "一次性密码邮箱验证",
+    "Stripe Connect",
+    "Google Maps Platform"
+  ],
+  "navItems": [
+    {
+      "label": "首页",
+      "url": "",
+      "i18nKey": "project_nav_home"
+    },
+    {
+      "label": "功能",
+      "url": "features/",
+      "i18nKey": "project_nav_features"
+    },
+    {
+      "label": "下载",
+      "url": "download/",
+      "i18nKey": "project_nav_download"
+    },
+    {
+      "label": "师傅注册",
+      "url": "pro/",
+      "i18nKey": "project_nav_pro"
+    },
+    {
+      "label": "常见问题",
+      "url": "faq/",
+      "i18nKey": "project_nav_faq"
+    },
+    {
+      "label": "条款",
+      "url": "terms/",
+      "i18nKey": "project_nav_terms"
+    },
+    {
+      "label": "隐私",
+      "url": "privacy/",
+      "i18nKey": "project_nav_privacy"
+    }
+  ],
+  "navMetaItems": [
+    {
+      "label": "作品",
+      "url": "/projects/",
+      "i18nKey": "nav_work"
+    },
+    {
+      "label": "联系",
+      "url": "/contact/",
+      "i18nKey": "nav_contact"
+    }
+  ],
+  "faq": [
+    {
+      "question": "在 Geeb 上可以约哪些服务？",
+      "answer": "管道、电工、木工、油漆、家电维修、空调保养、保洁、虫害防治、杂修，以及更多。随着师傅加入，每个月都会增加新类别。"
+    },
+    {
+      "question": "服务师傅怎样核验？",
+      "answer": "每位师傅都要提交政府身份证件、行业证书（如适用），并通过背景调查。每完成一单我们也会收集评价，让质量保持在高处。"
+    },
+    {
+      "question": "我什么时候付款？",
+      "answer": "活干完、你确认之前，不用付。款项由 Geeb 托管，在你确认后才放给师傅——未完成的活，不会让你先掏钱。"
+    },
+    {
+      "question": "怎样成为 Geeb 上的服务师傅？",
+      "answer": "在首页点“成为师傅”，完成申请（身份、工种、服务区域），我们的团队会在 48 小时内审核。通过之后，你就可以设定档期，开始接收工单。"
+    },
+    {
+      "question": "Geeb 能离线用吗？",
+      "answer": "能——商家应用是离线优先的，用基于 Hive 的本地缓存。没有网络时，商家仍能管理服务项目、区域和通知，重新联网后变更会自动同步。"
+    },
+    {
+      "question": "我的数据怎样被保护？",
+      "answer": "敏感数据都由 Supabase 的行级安全策略保护。顾客和商家可以选择双因素认证（TOTP），整个平台从第一天就按安全优先来建。"
+    }
+  ]
+}

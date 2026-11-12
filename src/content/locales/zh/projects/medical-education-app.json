@@ -1,0 +1,104 @@
+{
+  "name": "医学教育应用（MAI）",
+  "slug": "medical-education-app",
+  "type": "standalone",
+  "tagline": "由 AI 驱动的医学教育平台",
+  "description": "## 关于 MAI\n\n医学教育应用（MAI）是为住院医师做的、由 AI 驱动的学习与临床决策支持平台。它把逼真的病例模拟、结构化的诊断流程和个性化学习工具，收成一次完整的体验。\n\n### 核心模块\n\n临床决策支持（两阶段鉴别诊断）、患者病例管理与文书、带 AI 标注的医学影像流程、药理安全检查与剂量工具、查房摘要与文书生成，以及带测验、抽认卡和思维导图的个性化学习。\n\n### 架构\n\nMAI 采用干净的、功能优先的架构，带共享核心层和模拟数据生成服务。状态管理用 Provider 模式，路由用 Go Router。\n\n### 模拟数据系统\n\n这个最小可行版本用一套扎实的模拟数据服务，来模拟 ICD-10 诊断、患者人口统计、化验结果和学习进度，让流程看起来真实。\n",
+  "iconClass": "fas fa-stethoscope",
+  "color": "#0F766E",
+  "gradient": "linear-gradient(135deg, #0F766E 0%, #14B8A6 100%)",
+  "status": "Coming Soon",
+  "hero": {
+    "title": "临床学习，重新来过",
+    "subtitle": "一个由 AI 驱动的教育平台，把临床决策支持、患者病例管理和个性化学习，为住院医师揉在一起。",
+    "cta_primary": "预约演示",
+    "cta_primary_link": "/contact",
+    "cta_secondary": "探索功能",
+    "cta_secondary_link": "#features"
+  },
+  "features": [
+    {
+      "title": "临床决策支持",
+      "description": "两阶段鉴别诊断流程，覆盖病史采集、体格检查、检查和管理计划。",
+      "icon": "fas fa-user-doctor"
+    },
+    {
+      "title": "病例管理",
+      "description": "患者仪表盘，带筛选、新建病例流程、隐私设置，以及分栏的病例视图。",
+      "icon": "fas fa-folder-open"
+    },
+    {
+      "title": "医学影像",
+      "description": "DICOM 上传模拟、AI 扫描分析、带标注的查看器、对比，以及报告生成。",
+      "icon": "fas fa-x-ray"
+    },
+    {
+      "title": "药理与用药安全",
+      "description": "治疗方案、相互作用提醒、剂量计算，以及替代用药建议。",
+      "icon": "fas fa-pills"
+    },
+    {
+      "title": "临床查房",
+      "description": "查房仪表盘、录音模拟、AI 转录审阅，以及自动摘要。",
+      "icon": "fas fa-notes-medical"
+    },
+    {
+      "title": "个性化学习",
+      "description": "学习中心，带思维导图、抽认卡、测验、音频摘要、视频和指南情景。",
+      "icon": "fas fa-graduation-cap"
+    },
+    {
+      "title": "分析与进度",
+      "description": "表现仪表盘、掌握度热力图，以及病例完成追踪。",
+      "icon": "fas fa-chart-line"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "iOS",
+      "icon": "fab fa-apple",
+      "version": "iOS 15+",
+      "link": "#"
+    },
+    {
+      "name": "Android",
+      "icon": "fab fa-android",
+      "version": "Android 8+",
+      "link": "#"
+    },
+    {
+      "name": "网页",
+      "icon": "fas fa-globe",
+      "version": "网页应用",
+      "link": "#"
+    },
+    {
+      "name": "桌面",
+      "icon": "fas fa-desktop",
+      "version": "macOS | Windows",
+      "link": "#"
+    }
+  ],
+  "tech": [
+    "Flutter 3.9+",
+    "Dart 3.9+",
+    "Provider",
+    "Go Router",
+    "Faker",
+    "fl_chart"
+  ],
+  "faq": [
+    {
+      "question": "这会连接到真实的患者数据吗？",
+      "answer": "不会。这个最小可行版本只用模拟数据。它是为教育流程做的概念验证。"
+    },
+    {
+      "question": "支持多个平台吗？",
+      "answer": "支持。应用借助 Flutter 的多平台能力，面向 iOS、Android、网页和桌面。"
+    },
+    {
+      "question": "以后能接后端吗？",
+      "answer": "计划在后续阶段做。路线图包括接口、登录，以及云端持久化。"
+    }
+  ]
+}

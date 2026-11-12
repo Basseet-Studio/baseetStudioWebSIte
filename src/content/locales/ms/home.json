@@ -1,0 +1,377 @@
+{
+  "hero": {
+    "title": "Sememangnya yang **terbaik**",
+    "text": "Kami bina apa yang anda benar-benar perlukan — tiada hiasan kosong, tiada beban berlebihan, tiada “fasa penerokaan” enam bulan sebelum apa-apa dihantar. Hanya penyelesaian paling ringkas untuk masalah di hadapan anda.",
+    "image": "/images/home/hero/bill-sitting.png",
+    "buttons": [
+      {
+        "text": "Mulakan projek",
+        "link": "#subscribe",
+        "type": "primary"
+      },
+      {
+        "text": "Lihat hasil kerja kami",
+        "link": "#featured-projects",
+        "type": "secondary"
+      }
+    ],
+    "items": [
+      {
+        "icon": "fas fa-laptop-code",
+        "color": "#B45309",
+        "title": "Platform web",
+        "text": "Laman web dan papan pemuka gred produksi, dibina dengan rangka kerja moden"
+      },
+      {
+        "icon": "fas fa-mobile-alt",
+        "color": "#F59E0B",
+        "title": "Aplikasi mudah alih",
+        "text": "Aplikasi iOS dan Android yang terasa asli dan dimuat dengan laju"
+      },
+      {
+        "icon": "fas fa-paint-brush",
+        "color": "#EA580C",
+        "title": "Reka bentuk UI / UX",
+        "text": "Antara muka yang tukarkan pelawat kali pertama menjadi pengguna jangka panjang"
+      },
+      {
+        "icon": "fas fa-rocket",
+        "color": "#D97706",
+        "title": "Ke pasaran",
+        "text": "Dari pelan pelancaran hingga uji kaji pertumbuhan, dari hujung ke hujung"
+      }
+    ]
+  },
+  "features": [
+    {
+      "icon": "fas fa-tools",
+      "color": "#B45309",
+      "pretitle": "Bina",
+      "pretext": "Kejuruteraan",
+      "title": "Pembangunan produk **hujung ke hujung**",
+      "text": "Web, mudah alih, bahagian belakang, infrastruktur. Kami pegang seluruh saluran supaya anda hantar lebih laju dan tidur lebih lena — seni bina yang bersih, ujian automatik, dan kebolehcerapan dari hari pertama.",
+      "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=600&fit=crop"
+    },
+    {
+      "icon": "fas fa-mobile-screen",
+      "color": "#F59E0B",
+      "pretitle": "Hantar",
+      "pretext": "Pelancaran produk",
+      "title": "**Aplikasi mudah alih** yang berbaloi tempatnya",
+      "text": "iOS asli, Android asli, dan React Native — pilih alat yang tepat, hantar ke kedua-dua kedai, dan kekalkan rentetan keluaran dengan CI/CD serta pemantauan ranap.",
+      "image": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=600&fit=crop"
+    },
+    {
+      "icon": "fas fa-compass",
+      "color": "#EA580C",
+      "pretitle": "Kembangkan",
+      "pretext": "Strategi & pertumbuhan",
+      "title": "**Strategi produk** dan kerjasama berterusan",
+      "text": "Peta hala tuju, kajian pengguna, uji kaji harga, dan persediaan analitik. Kami bukan sekadar bina lalu pergi — kami bantu anda ukur apa yang penting dan ulanginya.",
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop"
+    },
+    {
+      "icon": "fas fa-paint-brush",
+      "color": "#FBCD37",
+      "pretitle": "Reka bentuk berpusatkan pengguna",
+      "pretext": "Reka bentuk dahulu",
+      "title": "Reka bentuk **UI/UX**",
+      "text": "Kami reka antara muka yang jelas dan intuitif, yang orang terus kembali. Dari rangka dawai dan prototaip hingga reka bentuk visual yang tepat dan konsisten, kami pastikan setiap interaksi terasa semula jadi dan boleh dijangka pada semua peranti.",
+      "image": "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Numu",
+      "slug": "numu",
+      "type": "branded",
+      "tagline": "Bina tabiat yang lebih baik, sehari pada satu masa",
+      "description": "Aplikasi penjejak tabiat yang bersih dan fokus untuk iOS serta Android. Rentetan, daftar masuk, analitik, dan peringatan pintar yang kekalkan anda konsisten.",
+      "iconClass": "fas fa-chart-line",
+      "platforms": [
+        {
+          "name": "iOS",
+          "icon": "fab fa-apple"
+        },
+        {
+          "name": "Android",
+          "icon": "fab fa-android"
+        }
+      ],
+      "features": [
+        "Rentetan tabiat",
+        "Daftar masuk harian",
+        "Analitik kemajuan",
+        "Peringatan pintar"
+      ],
+      "color": "#9333EA",
+      "gradient": "linear-gradient(135deg, #9333EA 0%, #C084FC 100%)",
+      "status": "Coming Soon"
+    },
+    {
+      "name": "Matrix",
+      "slug": "matrix",
+      "type": "branded",
+      "tagline": "Data pintar, sedia digunakan",
+      "description": "Platform kecerdasan data yang menyatukan analitik masa nyata, aliran kerja automatik, dan pandangan ramalan untuk pasukan moden.",
+      "iconClass": "fas fa-database",
+      "platforms": [
+        {
+          "name": "Web",
+          "icon": "fas fa-globe"
+        }
+      ],
+      "features": [
+        "Analitik masa nyata",
+        "Paip ETL automatik",
+        "Papan pemuka tersuai",
+        "Pandangan ramalan"
+      ],
+      "color": "#0891B2",
+      "gradient": "linear-gradient(135deg, #0891B2 0%, #22D3EE 100%)",
+      "status": "Coming Soon"
+    },
+    {
+      "name": "Invexo",
+      "slug": "invexo",
+      "type": "branded",
+      "tagline": "Pengurusan inventori untuk kedai kecil",
+      "description": "Inventori pelbagai kedai, POS, komisen flexiload, dan jualan harian — dibina untuk perniagaan runcit kecil.",
+      "iconClass": "fas fa-cash-register",
+      "platforms": [
+        {
+          "name": "Web",
+          "icon": "fas fa-globe"
+        }
+      ],
+      "features": [
+        "Papan pemuka pelbagai kedai",
+        "Inventori & POS",
+        "Flexiload & MFS",
+        "Trend jualan"
+      ],
+      "color": "#10B981",
+      "gradient": "linear-gradient(135deg, #059669 0%, #34D399 100%)",
+      "status": "Ready to Deliver"
+    },
+    {
+      "name": "Ordelo",
+      "slug": "ordelo",
+      "type": "branded",
+      "tagline": "Perniagaan anda. Dalam talian. Tersusun. Milik anda.",
+      "description": "Pesanan & dagangan berjenama — menu, pembayaran, amaran dapur, pemberitahuan pelanggan, dan alat pertumbuhan. Tiada jejak kertas. Tiada tekaan.",
+      "iconClass": "fas fa-utensils",
+      "platforms": [
+        {
+          "name": "Web",
+          "icon": "fas fa-globe"
+        }
+      ],
+      "features": [
+        "Hero 3D dengan R3F",
+        "Penjejakan pesanan masa nyata",
+        "Bukti sosial langsung",
+        "Bayaran Stripe"
+      ],
+      "color": "#F97316",
+      "gradient": "linear-gradient(135deg, #F97316 0%, #FB923C 100%)",
+      "status": "Live"
+    },
+    {
+      "name": "MoneyBox",
+      "slug": "moneybox",
+      "type": "branded",
+      "tagline": "Wang anda, tersusun.",
+      "description": "Penjejak kewangan peribadi dengan bajet, matlamat, dan laporan yang bersih.",
+      "iconClass": "fas fa-piggy-bank",
+      "platforms": [
+        {
+          "name": "iOS",
+          "icon": "fab fa-apple"
+        },
+        {
+          "name": "Android",
+          "icon": "fab fa-android"
+        }
+      ],
+      "color": "#16A34A",
+      "gradient": "linear-gradient(135deg, #16A34A 0%, #4ADE80 100%)",
+      "status": "Live"
+    },
+    {
+      "name": "Geeb",
+      "slug": "geeb",
+      "type": "branded",
+      "tagline": "Pakar perkhidmatan rumah yang dipercayai, bila-bila masa",
+      "description": "Platform B2C yang menghubungkan pelanggan dengan vendor disahkan dan pakar perkhidmatan untuk paip, elektrik, tukang, pembersihan, dan banyak lagi.",
+      "iconClass": "fas fa-wrench",
+      "platforms": [
+        {
+          "name": "iOS",
+          "icon": "fab fa-apple"
+        },
+        {
+          "name": "Android",
+          "icon": "fab fa-android"
+        },
+        {
+          "name": "Web",
+          "icon": "fas fa-globe"
+        }
+      ],
+      "features": [
+        "Pakar disahkan",
+        "Tempahan serta-merta",
+        "Penjejakan masa nyata",
+        "Bayaran dalam aplikasi"
+      ],
+      "color": "#B45309",
+      "gradient": "linear-gradient(135deg, #B45309 0%, #F59E0B 100%)",
+      "status": "Coming Soon"
+    },
+    {
+      "name": "PhotoRestore AI",
+      "slug": "photorestore-ai",
+      "type": "branded",
+      "tagline": "Pulihkan foto lama dengan AI",
+      "description": "Hidupkan semula foto yang pudar, rosak, dan hitam putih dengan pemulihan, pewarnaan, serta penambahbaikan AI pada peranti.",
+      "iconClass": "fas fa-wand-magic-sparkles",
+      "platforms": [
+        {
+          "name": "Web",
+          "icon": "fas fa-globe"
+        }
+      ],
+      "features": [
+        "Pemulihan AI",
+        "Pewarnaan automatik",
+        "Baiki calar & kerosakan",
+        "Gelangsar sebelum / selepas"
+      ],
+      "color": "#6366F1",
+      "gradient": "linear-gradient(135deg, #6366F1 0%, #818CF8 100%)",
+      "status": "Live"
+    },
+    {
+      "name": "Medev",
+      "slug": "medev",
+      "type": "branded",
+      "tagline": "Penjagaan kesihatan. Dipermudah.",
+      "description": "Platform klinik + pesakit yang menyatukan temu janji, rekod, dan susulan dalam satu aliran kerja yang mesra doktor.",
+      "iconClass": "fas fa-hospital",
+      "platforms": [
+        {
+          "name": "Web",
+          "icon": "fas fa-globe"
+        },
+        {
+          "name": "Docker",
+          "icon": "fab fa-docker"
+        }
+      ],
+      "features": [
+        "Rekod pesakit",
+        "Penjadualan pintar",
+        "e-Preskripsi",
+        "Papan pemuka doktor"
+      ],
+      "color": "#0A6E74",
+      "gradient": "linear-gradient(135deg, #0A6E74 0%, #14B8A6 100%)",
+      "status": "Ready to Deliver"
+    }
+  ],
+  "team": [
+    {
+      "name": "Mohamed Abdallah",
+      "role": "Pengasas / Ketua produk / PM / Jurutera kanan",
+      "bio": "Pengasas dan ketua produk yang menggabungkan kepakaran kejuruteraan yang mendalam dengan strategi produk untuk membentuk perisian yang berkualiti tinggi.",
+      "image": "/images/home/team/mohamed-abdallah.jpg",
+      "social": {
+        "github": "https://github.com/mohamed-a-elobaid",
+        "linkedin": "https://www.linkedin.com/in/mohamed-abdalla-elobaid-29937b227/",
+        "twitter": "#"
+      },
+      "iconPattern": "code"
+    },
+    {
+      "name": "Asadur Rahman",
+      "role": "Ketua teknologi / Arkitek sistem",
+      "bio": "Ketua teknologi dan arkitek sistem yang menumpukan reka bentuk sistem teragih yang boleh diskala serta infrastruktur awan yang kukuh.",
+      "image": "/images/home/team/asadur-rahman.png",
+      "social": {
+        "github": "https://github.com/ViX3L",
+        "linkedin": "https://www.linkedin.com/in/vix3l/",
+        "twitter": "#"
+      },
+      "iconPattern": "code"
+    },
+    {
+      "name": "Ariyan Rehman",
+      "role": "Jurutera pengalaman produk & dokumentasi",
+      "bio": "Memastikan pengalaman produk dan dokumentasi benar-benar kemas, dengan tumpuan pada UX, dokumen pembangun, dan aliran kerja yang didorong kandungan.",
+      "image": "/images/home/team/ariyan-rehman.jpg",
+      "social": {
+        "github": "https://github.com/ariyangd",
+        "linkedin": "https://www.linkedin.com/in/ariyangd/",
+        "twitter": "https://x.com/ariyangd"
+      },
+      "iconPattern": "code"
+    },
+    {
+      "name": "Dibakar Sutra Dhar",
+      "role": "Jurutera backend & jurutera data",
+      "bio": "Jurutera backend yang pakar dalam sistem teragih dan penyelesaian pelayan yang boleh diskala untuk aplikasi web serta awan.",
+      "image": "/images/home/team/dibakar-sutradhar.JPG",
+      "social": {
+        "github": "https://github.com/dibakarsutradhar",
+        "linkedin": "https://www.linkedin.com/in/dibakarsutradhar/",
+        "twitter": "https://x.com/iamdibakardipu"
+      },
+      "iconPattern": "code"
+    },
+    {
+      "name": "Burhan Ayub",
+      "role": "CFO",
+      "bio": "Ketua Pegawai Kewangan.",
+      "image": "/images/home/team/burhan-ayub-placeholder.svg",
+      "iconPattern": "money",
+      "social": {}
+    }
+  ],
+  "clients": [
+    {
+      "name": "Portia Grid",
+      "image": ""
+    },
+    {
+      "name": "Iyat",
+      "image": ""
+    }
+  ],
+  "highlights": [
+    {
+      "metric": "12+",
+      "label": "Produk yang dihantar atau sudah di pasaran",
+      "icon": "fas fa-rocket"
+    },
+    {
+      "metric": "5",
+      "label": "Platform unggulan yang aktif",
+      "icon": "fas fa-layer-group"
+    },
+    {
+      "metric": "1 thn",
+      "label": "Sokongan minimum",
+      "icon": "fas fa-handshake"
+    },
+    {
+      "metric": "100%",
+      "label": "Pasukan kejuruteraan dalaman",
+      "icon": "fas fa-users"
+    }
+  ],
+  "clouds": {
+    "enable": true,
+    "enableOnMobile": false
+  }
+}

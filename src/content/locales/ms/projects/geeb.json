@@ -1,0 +1,169 @@
+{
+  "name": "Geeb",
+  "slug": "geeb",
+  "type": "branded",
+  "tagline": "Pakar perkhidmatan rumah yang dipercayai, bila-bila masa",
+  "description": "## Perihal Geeb (CNG)\n\nGeeb — jenama untuk platform pasaran perkhidmatan CNG kami — merapatkan jurang antara pelanggan yang perlukan perkhidmatan dan pembekal yang menyampaikannya. Ini ekosistem pelbagai aplikasi yang lengkap: aplikasi untuk pelanggan, aplikasi untuk vendor, dan aplikasi untuk pentadbir, semuanya berkongsi satu bahagian belakang yang direka dengan baik.\n\n### Visi\n\nMencari pembekal perkhidmatan yang dipercayai tak patut jadi pertaruhan. Sama ada perkhidmatan rumah, profesional, atau perniagaan tempatan, pelanggan patut **menemui, membanding, menempah dan mengulas** dengan yakin. Geeb jadikan pengalaman itu ringkas dan boleh dijangka untuk semua orang dalam gelung.\n\n### Tiga aplikasi, satu platform\n\n- **📱 Aplikasi pelanggan** — Temui vendor berhampiran dan yang sedang tren, layari ikut kategori dan kawasan, tempah, jejak dan ulas perkhidmatan, serta urus profil, avatar dan keselamatan akaun.\n- **🛠️ Aplikasi vendor** — Urus tawaran perkhidmatan dan kawasan penghantaran, terima dan balas permintaan pelanggan, serta jejak prestasi melalui ulasan dan penilaian. Termasuk pengesahan e-mel berasaskan OTP, cache luar talian berasaskan Hive, penyegerakan latar, dan pengendalian ralat yang pintar.\n- **🛡️ Aplikasi pentadbir** — Pantau seluruh ekosistem, urus pengguna, vendor dan kandungan, serta semak kesihatan sistem dan peristiwa keselamatan.\n- **📦 Pakej dikongsi** — Widget, utiliti, perkhidmatan dan logik perniagaan yang sama, diguna semula merentas ketiga-tiga aplikasi supaya konsisten dan laju.\n\n### Sorotan ciri\n\n- **🏆 Vendor tren** — Penemuan terpilih yang menampilkan pembekal paling relevan dan paling tinggi penilaian.\n- **🏠 Skrin utama pelanggan** — Pendaratan peribadi dengan cadangan pintar dan akses pantas ke kategori.\n- **🗺️ Sistem kawasan berhierarki** — Susunan geografi berlapis (bandar → daerah → kejiranan) untuk penemuan tempatan yang tepat.\n- **🧑 Pengurusan avatar** — Spesifikasi penuh untuk muat naik, simpanan dan paparan avatar merentas semua aplikasi.\n- **🔐 Pengesahan & keselamatan** — Google OAuth, Pengesahan Dua Faktor (TOTP), dan pengesahan e-mel berasaskan OTP untuk vendor — dengan pendaftaran berpandu yang profesional dan aliran pemulihan pengesahan tertunda.\n- **⭐ Ulasan & penilaian v2.1** — Pengiraan penilaian automatik pada peringkat perkhidmatan dan vendor, segar semula antara muka masa nyata, kemas kini merentas aplikasi melalui tinjauan pintar, dan PostgreSQL RLS untuk akses yang selamat.\n- **💾 Penyegerakan luar talian dahulu** — Cache tempatan berasaskan Hive, penyegerakan data di latar, dan selang segar semula 5 minit supaya semuanya kekal laju.\n- **🧰 Asas untuk pembangun** — Pengepinan Android NDK yang ketat (`29.0.13113456`), sasaran penggunaan iOS 14.0, `.vscode/launch.json` sedia digunakan.\n\n### Apa yang Geeb serahkan\n\n| Untuk pelanggan | Untuk vendor | Untuk pentadbir |\n|---|---|---|\n| Penemuan mudah | Pendaftaran yang lancar | Keterlihatan seluruh ekosistem |\n| Ulasan dipercayai | Permintaan masa nyata | Pengurusan pengguna & kandungan |\n| Carian kawasan tempatan | Aplikasi mampu luar talian | Pemantauan peristiwa keselamatan |\n| Akaun selamat | Penjejakan prestasi | Alat moderasi yang boleh diskala |\n\n### Prinsip kejuruteraan\n\n- **Modular dari reka bentuk** — Mudah dikembangkan ke kategori perkhidmatan atau geografi baharu.\n- **Pengelokalan dahulu** — Sokongan pelbagai bahasa dari hari pertama.\n- **Keselamatan dahulu** — Dasar RLS, 2FA, pengesahan OTP, dan aliran yang mesra audit.\n- **Prihatin kebolehcapaian** — Penanda semantik, antara muka mesra pembaca skrin.\n- **Flutter moden** — Seni bina bersih yang dikongsi merentas pelanggan, vendor dan pentadbir.\n\n*Dibina untuk kebolehcapaian, pengelokalan dan skala. Direka untuk berkembang ke industri dan wilayah baharu dengan seni bina yang sama, yang sudah terbukti.*",
+  "iconClass": "fas fa-wrench",
+  "color": "#B45309",
+  "gradient": "linear-gradient(135deg, #B45309 0%, #F59E0B 100%)",
+  "status": "Coming Soon",
+  "layoutVariant": "geeb",
+  "fontHeading": "Manrope",
+  "fontBody": "Inter",
+  "fontWeights": "400,500,600,700,800",
+  "gsapAnimation": "stagger-rise",
+  "appType": "web",
+  "brandName": "Geeb",
+  "bgEffect": "none",
+  "bgFallbackGradient": "linear-gradient(180deg, #FFFBEB 0%, #FEF3C7 40%, #FDE68A 100%)",
+  "hero": {
+    "title": "Tempah pakar yang dipercayai dalam beberapa minit",
+    "subtitle": "Geeb hubungkan anda dengan tukang paip, juruelektrik, tukang, pembersih, dan pakar perkhidmatan rumah yang disahkan. Harga yang telus, penjejakan masa nyata, dan jaminan kualiti pada setiap kerja — dikuasakan oleh pasaran perkhidmatan pelbagai aplikasi yang dibina untuk skala.",
+    "cta_primary": "Dapatkan aplikasinya",
+    "cta_primary_link": "/contact",
+    "cta_secondary": "Jadi pakar",
+    "cta_secondary_link": "/contact"
+  },
+  "features": [
+    {
+      "title": "Tiga aplikasi, satu platform",
+      "description": "Aplikasi pelanggan, vendor, dan pentadbir berkongsi satu pangkalan kod Flutter, monorepo, dan pakej dikongsi — UX yang konsisten, lelaran yang lebih laju, dan penskalaan yang lebih mudah merentas setiap kategori perkhidmatan.",
+      "icon": "fas fa-layer-group"
+    },
+    {
+      "title": "Vendor tren & penemuan pintar",
+      "description": "Penemuan terpilih menampilkan pembekal paling relevan dan paling tinggi penilaian, dengan skrin utama peribadi dan akses pantas ke kategori — supaya pelanggan tak perlu teka siapa yang patut diupah.",
+      "icon": "fas fa-fire"
+    },
+    {
+      "title": "Sistem kawasan berhierarki",
+      "description": "Susunan geografi berlapis (bandar → daerah → kejiranan) untuk penemuan tempatan yang tepat, penghalaan kerja yang pintar, dan vendor yang berkhidmat tepat di kawasan yang betul.",
+      "icon": "fas fa-map-marked-alt"
+    },
+    {
+      "title": "Pakar disahkan, pengesahan selamat & 2FA",
+      "description": "Pakar yang disemak latar belakang dan identiti disahkan. Pelanggan boleh pilih Google OAuth dan Dua Faktor (TOTP); vendor dapat aliran pengesahan e-mel OTP yang kemas, dengan pendaftaran berpandu dan pemulihan pengesahan tertunda.",
+      "icon": "fas fa-shield-alt"
+    },
+    {
+      "title": "Ulasan & penilaian v2.1",
+      "description": "Pengiraan penilaian automatik pada peringkat perkhidmatan dan vendor, segar semula antara muka masa nyata dalam aplikasi pelanggan dan vendor, serta kemas kini merentas aplikasi melalui tinjauan pintar — semuanya dilindungi Keselamatan Peringkat Baris PostgreSQL.",
+      "icon": "fas fa-star"
+    },
+    {
+      "title": "Aplikasi vendor yang utamakan luar talian",
+      "description": "Cache tempatan berasaskan Hive, penyegerakan data latar untuk profil, perkhidmatan, kawasan, dan pemberitahuan, serta selang segar semula 5 minit — supaya vendor terus bekerja walaupun sambungan goyah.",
+      "icon": "fas fa-sync-alt"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "Aplikasi pelanggan",
+      "icon": "fas fa-mobile-alt",
+      "version": "iOS · Android · Web",
+      "link": "#"
+    },
+    {
+      "name": "Aplikasi vendor",
+      "icon": "fas fa-hard-hat",
+      "version": "iOS · Android · Web",
+      "link": "#"
+    },
+    {
+      "name": "Konsol pentadbir",
+      "icon": "fas fa-user-shield",
+      "version": "Web",
+      "link": "#"
+    }
+  ],
+  "tech": [
+    "Flutter 3.x",
+    "Dart 3.x",
+    "Supabase",
+    "Hive",
+    "Riverpod",
+    "PostgreSQL",
+    "Keselamatan peringkat baris",
+    "Google OAuth",
+    "TOTP / 2FA",
+    "Pengesahan e-mel OTP",
+    "Stripe Connect",
+    "Google Maps Platform"
+  ],
+  "navItems": [
+    {
+      "label": "Utama",
+      "url": "",
+      "i18nKey": "project_nav_home"
+    },
+    {
+      "label": "Ciri",
+      "url": "features/",
+      "i18nKey": "project_nav_features"
+    },
+    {
+      "label": "Muat turun",
+      "url": "download/",
+      "i18nKey": "project_nav_download"
+    },
+    {
+      "label": "Daftar pakar",
+      "url": "pro/",
+      "i18nKey": "project_nav_pro"
+    },
+    {
+      "label": "Soalan",
+      "url": "faq/",
+      "i18nKey": "project_nav_faq"
+    },
+    {
+      "label": "Terma",
+      "url": "terms/",
+      "i18nKey": "project_nav_terms"
+    },
+    {
+      "label": "Privasi",
+      "url": "privacy/",
+      "i18nKey": "project_nav_privacy"
+    }
+  ],
+  "navMetaItems": [
+    {
+      "label": "Kerja",
+      "url": "/projects/",
+      "i18nKey": "nav_work"
+    },
+    {
+      "label": "Hubungi",
+      "url": "/contact/",
+      "i18nKey": "nav_contact"
+    }
+  ],
+  "faq": [
+    {
+      "question": "Perkhidmatan apa yang boleh saya tempah di Geeb?",
+      "answer": "Paip, elektrik, pertukangan, cat, pembaikan peralatan, servis penghawa dingin, pembersihan, kawalan serangga, kerja tukang, dan banyak lagi. Kategori baharu ditambah setiap bulan apabila pakar menyertai platform."
+    },
+    {
+      "question": "Bagaimana pakar perkhidmatan disahkan?",
+      "answer": "Setiap pakar serahkan kad pengenalan kerajaan, sijil kemahiran (jika berkenaan), dan lulus semakan latar belakang. Kami juga kumpul ulasan selepas setiap kerja supaya kualiti kekal tinggi."
+    },
+    {
+      "question": "Bila saya bayar?",
+      "answer": "Anda tak bayar sampai kerja siap dan anda luluskan kerja itu. Dana dipegang sebagai amanah oleh Geeb dan dilepaskan kepada pakar bila anda sahkan — jadi anda tak pernah keluar duit untuk kerja yang belum siap."
+    },
+    {
+      "question": "Bagaimana saya jadi pakar perkhidmatan di Geeb?",
+      "answer": "Ketik 'Jadi pakar' di halaman utama, lengkapkan permohonan (kad pengenalan, butiran kemahiran, kawasan perkhidmatan), dan pasukan kami menyemaknya dalam 48 jam. Selepas diluluskan, anda boleh tetapkan jadual dan mula terima permintaan kerja."
+    },
+    {
+      "question": "Adakah Geeb berfungsi luar talian?",
+      "answer": "Ya — aplikasi vendor utamakan luar talian, menggunakan cache tempatan berasaskan Hive. Vendor boleh urus tawaran, kawasan, dan pemberitahuan walaupun tanpa sambungan aktif, dan perubahan disegerakkan secara automatik bila mereka kembali dalam talian."
+    },
+    {
+      "question": "Bagaimana data saya dilindungi?",
+      "answer": "Semua data sensitif dilindungi oleh dasar Keselamatan Peringkat Baris Supabase. Pelanggan dan vendor boleh pilih Pengesahan Dua Faktor (TOTP), dan seluruh platform dibina dengan prinsip keselamatan dahulu dari hari pertama."
+    }
+  ]
+}

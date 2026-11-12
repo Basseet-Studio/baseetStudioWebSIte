@@ -10,7 +10,7 @@ import { t } from '../../lib/i18n'
 import { getFooterData } from '../../lib/home'
 import links from '../../content/data/links.json'
 import type { Lang, NavItem } from '../../types'
-import { isRtl, langPrefix as localePrefix, localizedPath } from '../../lib/locale'
+import { isRtl, langPrefix as localePrefix, localizedPath, stripLocalePrefix } from '../../lib/locale'
 
 interface Props {
   lang?: Lang
@@ -72,7 +72,7 @@ const standardNav: StandardNavEntry[] = appBarNavKeys.map((key) => {
   const bare = (link?.url ?? '/').replace(/\/$/, '') || '/'
   const url = localizedPath(lang, bare === '/' ? '/' : `${bare}/`).replace(/\/$/, '') || '/'
   const bareNorm = bare
-  const pathBare = normalizedPath.replace(/^\/(ar|ur|hi|fil)(?=\/|$)/, '') || '/'
+  const pathBare = stripLocalePrefix(normalizedPath)
   const pathBareNorm = pathBare.replace(/\/$/, '') || '/'
   return {
     label: t(key, lang),

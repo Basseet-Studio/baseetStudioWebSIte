@@ -2,6 +2,8 @@
 // Language switcher — custom in-site menu (not a native <select>).
 import Icon from '../icons/Icon.astro'
 import { t } from '../../lib/i18n'
+import linksData from '../../content/data/links.json'
+import { resolveRegion } from '../../lib/region'
 import {
   LOCALES,
   htmlLang,
@@ -22,6 +24,7 @@ const pathname = Astro.url.pathname
 const lang = langProp ?? langFromPathname(pathname)
 const barePath = stripLocalePrefix(pathname)
 const label = t('lang_switcher_label', lang)
+const defaultLanguages = new Set(resolveRegion(null, linksData).languages)
 ---
 
 <div class="lang-switcher" data-lang-switcher>
@@ -54,11 +57,13 @@ const label = t('lang_switcher_label', lang)
         href={localizedPath(code, barePath)}
         class:list={['lang-switcher__option', { 'is-active': code === lang }]}
         data-lang-option
+        data-locale={code}
         role="option"
         aria-selected={code === lang}
         hreflang={htmlLang(code)}
         lang={htmlLang(code)}
         dir={isRtl(code) ? 'rtl' : 'ltr'}
+        hidden={!defaultLanguages.has(code) && code !== lang}
       >
         {localeLabel(code)}
       </a>
@@ -132,6 +137,10 @@ const label = t('lang_switcher_label', lang)
   .lang-switcher__menu:popover-open,
   .lang-switcher__menu.is-open {
     display: flex;
+  }
+
+  .lang-switcher__option[hidden] {
+    display: none !important;
   }
 
   .lang-switcher__option {

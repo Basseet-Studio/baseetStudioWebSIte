@@ -1,0 +1,167 @@
+{
+  "id": "web",
+  "slug": "web",
+  "title": "Pembangunan web",
+  "tagline": "Laman web yang bekerja sekeras anda",
+  "color": "#496BC1",
+  "gradient": "linear-gradient(135deg, #496BC1 0%, #6B8AD9 100%)",
+  "icon": "fas fa-globe",
+  "shortDescription": "Laman web dan aplikasi web yang moden serta responsif",
+  "hero": {
+    "title": "Laman web yang bekerja sekeras anda",
+    "subtitle": "Laman dan aplikasi web moden serta responsif, dibina di atas timbunan yang kami sendiri selenggara — bukan tema yang kami pasang lalu tak sentuh lagi.",
+    "cta_primary": "Mulakan projek anda",
+    "cta_primary_link": "/contact/",
+    "cta_secondary": "Lihat prosesnya",
+    "cta_secondary_link": "#process"
+  },
+  "metrics": [
+    { "value": "<1s", "label": "Masa muat median" },
+    { "value": "100", "label": "Sasaran Lighthouse" },
+    { "value": "12+", "label": "Timbunan yang dihantar" }
+  ],
+  "subServices": [
+    {
+      "id": "corporate-websites",
+      "name": "Laman web korporat",
+      "icon": "fas fa-building",
+      "desc": "Laman web profesional yang mewakili jenama anda",
+      "longDesc": "Laman korporat anda sering jadi tanggapan pertama prospek terhadap perniagaan anda. Kami reka dan bina laman pemasaran yang laju dan setia pada jenama, yang ceritakan kisah anda, jawab soalan yang betul, dan jadikan langkah seterusnya jelas — pada setiap peranti.",
+      "bullets": [
+        "Seni bina maklumat berbilang halaman, disesuaikan dengan perjalanan pembeli",
+        "CMS tanpa kepala supaya pasukan anda boleh hantar salinan dalam minit, bukan hari",
+        "Sedia pelbagai bahasa (Inggeris, Arab, dan banyak lagi)",
+        "Asas SEO pada halaman disemat dari hari pertama"
+      ],
+      "imageLabel": "Contoh paparan utama laman korporat"
+    },
+    {
+      "id": "ecommerce",
+      "name": "Platform e-dagang",
+      "icon": "fas fa-shopping-cart",
+      "desc": "Kedai dalam talian dengan integrasi bayaran yang selamat",
+      "longDesc": "Dari tema Shopify butik hingga dagangan tanpa kepala di Shopify Hydrogen, Medusa, atau Stripe tersuai, kami bina kedai yang tukarkan pelayar menjadi pembeli. Prestasi, aliran pembayaran, dan pameran produk ditala serentak — bukan sebagai fikiran kemudian.",
+      "bullets": [
+        "Shopify, Medusa, Stripe, dan dagangan tanpa kepala",
+        "Langganan, dompet digital, dan BNPL sedia digunakan",
+        "Halaman produk dan troli yang ditala untuk kadar penukaran",
+        "Inventori, cukai, dan penghantaran disepadukan dari hujung ke hujung"
+      ],
+      "imageLabel": "Contoh halaman produk e-dagang"
+    },
+    {
+      "id": "web-apps",
+      "name": "Aplikasi web",
+      "icon": "fas fa-window-restore",
+      "desc": "Aplikasi web tersuai untuk keperluan perniagaan yang rumit",
+      "longDesc": "Bila hamparan dan alat SaaS tak lagi memadai, kami bina aplikasi web yang padan tepat dengan operasi anda. Alat dalaman, portal pelanggan, papan pemuka — TypeScript dari hujung ke hujung, pengesahan sebenar, pangkalan data sebenar, dan kod yang pasukan anda boleh selenggara.",
+      "bullets": [
+        "React, Next.js, dan Astro di bahagian hadapan",
+        "Postgres, Prisma, dan tRPC untuk data yang selamat jenis",
+        "Pengesahan, peranan, dan log audit dari hari pertama",
+        "Kebolehcerapan dan bendera ciri dibina sekali"
+      ],
+      "imageLabel": "Contoh papan pemuka aplikasi web"
+    },
+    {
+      "id": "landing-pages",
+      "name": "Halaman pendaratan",
+      "icon": "fas fa-bullseye",
+      "desc": "Halaman penukaran tinggi untuk kempen pemasaran",
+      "longDesc": "Satu halaman, satu matlamat, tiada gangguan. Kami reka dan hantar halaman pendaratan kempen yang dimuat serta-merta, salinan yang sepadan dengan iklan, dan analitik yang beritahu apa yang benar-benar berkesan — diuji A/B, diinstrumentasi, dan sedia diskala.",
+      "bullets": [
+        "Varian yang boleh diuji A/B dari awal",
+        "Dipapar di pelayan untuk TTFB di bawah satu saat",
+        "Integrasi borang, kalendar, dan CRM",
+        "Peta haba dan penjejakan peristiwa sudah disambung"
+      ],
+      "imageLabel": "Contoh halaman pendaratan dengan seruan tindakan"
+    }
+  ],
+  "process": [
+    {
+      "number": "01",
+      "title": "Teroka",
+      "desc": "Bengkel untuk tetapkan matlamat, audiens, KPI, dan kekangan",
+      "icon": "fas fa-lightbulb"
+    },
+    {
+      "number": "02",
+      "title": "Reka seni bina",
+      "desc": "Seni bina maklumat, pilihan timbunan, dan pelan mercu tanda",
+      "icon": "fas fa-sitemap"
+    },
+    {
+      "number": "03",
+      "title": "Reka bentuk",
+      "desc": "Rangka dawai, kemudian sistem visual berfideliti tinggi dalam Figma",
+      "icon": "fas fa-pencil-ruler"
+    },
+    {
+      "number": "04",
+      "title": "Bina",
+      "desc": "Komponen demi komponen dalam persekitaran pratonton awam",
+      "icon": "fas fa-code"
+    },
+    {
+      "number": "05",
+      "title": "Jaminan mutu & pelancaran",
+      "desc": "Merentas pelayar, kebolehcapaian, prestasi, dan serahan yang bersih",
+      "icon": "fas fa-rocket"
+    }
+  ],
+  "deliverables": [
+    {
+      "title": "Laman sedia produksi",
+      "description": "Dipasang di Vercel, Netlify, Cloudflare, atau infrastruktur anda sendiri — dengan buku panduan yang jelas.",
+      "icon": "fas fa-server"
+    },
+    {
+      "title": "Akses CMS",
+      "description": "Pasukan anda boleh sunting halaman, siaran, dan produk tanpa pembangun dalam gelung.",
+      "icon": "fas fa-pen"
+    },
+    {
+      "title": "Analitik & Search Console",
+      "description": "GA4, Search Console, dan sebarang piksel berbayar disambung serta disahkan dari hujung ke hujung.",
+      "icon": "fas fa-chart-line"
+    },
+    {
+      "title": "Kod sumber & dokumentasi",
+      "description": "Repositori yang bersih, README yang sebenar, dan panduan Loom supaya anda pada masa depan tahu di mana semuanya berada.",
+      "icon": "fas fa-book"
+    }
+  ],
+  "tech": [
+    "Astro",
+    "Next.js",
+    "TypeScript",
+    "Tailwind CSS",
+    "React",
+    "Node.js",
+    "Postgres",
+    "Shopify",
+    "Stripe",
+    "Cloudflare",
+    "Vercel",
+    "Sanity"
+  ],
+  "faq": [
+    {
+      "question": "Berapa lama laman pemasaran biasa mengambil masa?",
+      "answer": "Kebanyakan laman pemasaran dihantar dalam 4–6 minggu dari mula hingga pelancaran. Laman yang lebih besar dengan CMS tersuai, pelbagai bahasa, atau integrasi berat biasanya ambil 8–12 minggu. Kami beri pelan tetap dengan mercu tanda selepas bengkel penerokaan."
+    },
+    {
+      "question": "Bolehkah saya kemas kini laman sendiri?",
+      "answer": "Boleh. Setiap laman yang kami hantar disambung ke CMS tanpa kepala (Sanity, Contentful, atau alat pilihan anda). Pasukan anda dapat panduan Loom yang ringkas dan panduan bertulis, dan kami kekal sedia dihubungi pada bulan pertama."
+    },
+    {
+      "question": "Adakah anda hanya bina dengan Astro dan Next.js?",
+      "answer": "Kami pakar dalam timbunan TypeScript moden — Astro, Next.js, SvelteKit, dan React + Vite. Kalau anda ada laman sedia ada pada timbunan lain yang perlukan ciri baharu, kami gembira mengembangkannya dan bukannya memaksa tulis semula."
+    },
+    {
+      "question": "Bolehkah anda ambil alih projek sedia ada?",
+      "answer": "Sudah tentu. Kami buat audit teknikal sebelum menyentuh apa-apa, kemudian cadangkan pelan berperingkat. Banyak kerjasama terbaik kami bermula sebagai penyelamatan daripada agensi lain."
+    }
+  ]
+}

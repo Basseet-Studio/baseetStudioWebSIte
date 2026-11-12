@@ -21,20 +21,47 @@ export function getScrollProgress(): number {
   return Math.min(Math.max(window.scrollY / scrollMax, 0), 1)
 }
 
+function prefersReducedMotion(): boolean {
+  if (typeof window === 'undefined') return false
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches
+}
+
 export function createScrollDriver(options: {
   onProgress: (progress: number, meta: ScrollDriverMeta) => void
   /** When true, scroll events are ignored — caller drives tick() from the render loop. */
   externalTick?: boolean
   throttle?: 'raf' | 'none'
+  /**
+   * Exponential smoothing rate (per second). The camera glides toward the
+   * scroll position instead of snapping (higher = snappier, 0 = off).
+   */
+  smoothing?: number
+  /** Emit every tick even when progress is unchanged (idle camera motion). */
+  continuous?: boolean
 }): ScrollDriver {
   const onProgress = options.onProgress
   let ticking = false
   let attached = false
   let lastProgress = -1
+  let smoothed = -1
+  let lastTime = 0
 
   function tick(meta: ScrollDriverMeta = {}): void {
-    const progress = getScrollProgress()
-    if (progress === lastProgress && !meta.force) return
+    const raw = getScrollProgress()
+    const now = performance.now()
+    const dt = lastTime ? Math.min(0.1, (now - lastTime) / 1000) : 0
+    lastTime = now
+
+    const rate = prefersReducedMotion() ? 0 : options.smoothing ?? 0
+    if (smoothed < 0 || rate <= 0 || meta.force) {
+      smoothed = raw
+    } else {
+      smoothed += (raw - smoothed) * (1 - Math.exp(-rate * dt))
+      if (Math.abs(raw - smoothed) < 1e-4) smoothed = raw
+    }
+
+    const progress = smoothed
+    if (progress === lastProgress && !meta.force && !options.continuous) return
     lastProgress = progress
     onProgress(progress, {
       scrollY: window.scrollY,
@@ -68,6 +95,7 @@ export function createScrollDriver(options: {
     if (Array.isArray(range) && range.length === 2) {
       const globalP = range[0] + detail.progress * (range[1] - range[0])
       lastProgress = globalP
+      smoothed = globalP
       onProgress(globalP, { source: 'section', ...detail })
     }
   }
@@ -89,9 +117,10 @@ export function createScrollDriver(options: {
       document.removeEventListener('baseet:section-progress', onSectionProgress)
     },
     tick,
-    getProgress: getScrollProgress,
+    getProgress: () => (smoothed < 0 ? getScrollProgress() : smoothed),
     reset() {
       lastProgress = -1
+      smoothed = -1
     },
   }
 }

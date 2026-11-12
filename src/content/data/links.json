@@ -15,10 +15,31 @@
     "email": "baseet.socials@gmail.com",
     "email_link": "mailto:baseet.socials@gmail.com",
     "phone": "+971507566474",
+    "phone_display": "+971 50 756 6474",
     "phone_link": "tel:+971507566474",
     "whatsapp": "+971507566474",
     "whatsapp_link": "https://wa.me/971507566474",
     "address": "Abu Dhabi - UAE"
+  },
+  "regions": {
+    "default": "AE",
+    "countries": {
+      "AE": {
+        "languages": ["en", "ar", "ur", "hi", "fil"],
+        "defaultLanguage": "en"
+      },
+      "MY": {
+        "languages": ["en", "ms", "ta", "zh"],
+        "defaultLanguage": "en",
+        "contact": {
+          "phone": "",
+          "phone_display": "",
+          "phone_link": "",
+          "whatsapp": "",
+          "whatsapp_link": ""
+        }
+      }
+    }
   },
   "forms": {
     "contact_form_url": "https://baseet-form-handler.baseetstudio.workers.dev",

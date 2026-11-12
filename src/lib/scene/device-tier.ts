@@ -82,8 +82,8 @@ export function cloudQualityForTier(tier: DeviceTier = resolveDeviceTier()): Clo
   return {
     tier,
     antialias: true,
-    renderScale: 1,
-    renderScaleSteps: [0.75, 0.85, 1],
+    renderScale: 0.85,
+    renderScaleSteps: [0.6, 0.72, 0.85],
     targetFps: 60,
     skipObjects: false,
     shaderQuality: 1,

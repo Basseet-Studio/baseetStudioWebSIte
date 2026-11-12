@@ -88,10 +88,10 @@ const contactHref = localizedPath(lang, '/contact/')
                 <a href={contactHref} class="footer__contact-link">{t('footer_write_us', lang)}</a>
               </li>
               <li>
-                <a href={linksData.contact.email_link} class="footer__contact-link">Email</a>
+                <a href={linksData.contact.email_link} data-region-contact="email" class="footer__contact-link">Email</a>
               </li>
               <li>
-                <a href={linksData.contact.whatsapp_link} target="_blank" rel="noopener noreferrer" class="footer__contact-link">WhatsApp</a>
+                <a href={linksData.contact.whatsapp_link} data-region-contact="whatsapp" target="_blank" rel="noopener noreferrer" class="footer__contact-link">WhatsApp</a>
               </li>
             </ul>
           </div>

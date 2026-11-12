@@ -21,7 +21,7 @@ function switcherEl(from?: Element | null): HTMLElement | null {
 }
 
 function optionLinks(menu: HTMLElement): HTMLAnchorElement[] {
-  return [...menu.querySelectorAll<HTMLAnchorElement>("[data-lang-option]")]
+  return [...menu.querySelectorAll<HTMLAnchorElement>("[data-lang-option]")].filter((link) => !link.hidden)
 }
 
 function isMenuOpen(menu: HTMLElement): boolean {

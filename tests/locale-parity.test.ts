@@ -5,7 +5,7 @@ import { join, relative } from 'node:path';
 
 const LOCALES_DIR = join(import.meta.dirname, '../src/content/locales');
 const SOURCE = 'en';
-const TARGETS = ['ar', 'ur', 'hi', 'fil'];
+const TARGETS = ['ar', 'ur', 'hi', 'fil', 'ms', 'ta', 'zh'];
 
 const NON_COPY_KEYS = new Set([
   'id', 'slug', 'link', 'href', 'url', 'icon', 'iconClass', 'image', 'images', 'color', 'gradient',

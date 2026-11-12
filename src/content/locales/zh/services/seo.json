@@ -1,0 +1,159 @@
+{
+  "id": "seo",
+  "slug": "seo",
+  "title": "搜索优化与营销",
+  "tagline": "成为搜索者真正找得到的品牌",
+  "color": "#16A34A",
+  "gradient": "linear-gradient(135deg, #16A34A 0%, #4ADE80 100%)",
+  "icon": "fas fa-search",
+  "shortDescription": "被找到，并让受众长大",
+  "hero": {
+    "title": "成为搜索者真正找得到的品牌",
+    "subtitle": "技术搜索优化、内容和本地搜索——用成交管道衡量，不用一张谁也花不出去的排名截图。",
+    "cta_primary": "审计我的网站",
+    "cta_primary_link": "/contact/",
+    "cta_secondary": "我们怎么衡量",
+    "cta_secondary_link": "#process"
+  },
+  "metrics": [
+    { "value": "3x", "label": "六个月内自然流量提升的中位数" },
+    { "value": "30+", "label": "每次合作追踪的指标" },
+    { "value": "每周", "label": "汇报节奏" }
+  ],
+  "subServices": [
+    {
+      "id": "technical-seo",
+      "name": "技术搜索优化",
+      "icon": "fas fa-code",
+      "desc": "为搜索引擎优化站点结构",
+      "longDesc": "世界上最好的内容，如果搜索引擎爬不到、渲染不了，也排不上去。我们做一次完整的技术审计，修好地基（核心网页指标、结构化数据、内链、语言标记、脚本渲染），并留下一份你的开发能照着做的手册。",
+      "bullets": [
+        "抓取、渲染和索引审计",
+        "核心网页指标和脚本渲染修复",
+        "Schema.org、语言标记和规范网址策略",
+        "日志分析和内链重接"
+      ],
+      "imageLabel": "技术搜索优化审计仪表盘"
+    },
+    {
+      "id": "content-strategy",
+      "name": "内容策略",
+      "icon": "fas fa-pen-fancy",
+      "desc": "能排上去、也能留住人的内容",
+      "longDesc": "我们按真实搜索需求和你的定位，做一份 12 个月的内容路线图。简报、大纲和审阅节奏，产出读者真想读、也能赢得链接的文章。",
+      "bullets": [
+        "关键词研究与主题聚类",
+        "对着搜索结果页写的简报和大纲",
+        "编辑日历和审阅流程",
+        "给老化内容的更新计划"
+      ],
+      "imageLabel": "编辑内容日历"
+    },
+    {
+      "id": "local-seo",
+      "name": "本地搜索优化",
+      "icon": "fas fa-map-marker-alt",
+      "desc": "在你所在区域的本地搜索里排得更高",
+      "longDesc": "如果顾客就在开车能到的距离里，本地搜索是你回报最高的渠道。我们优化你的 Google 商家资料，做地点页，管评价，并建起能把你抬进地图结果的引用和链接。",
+      "bullets": [
+        "Google 商家资料优化",
+        "地点页和按城市写的内容",
+        "评价获取和回复流程",
+        "引用清理和本地链接建设"
+      ],
+      "imageLabel": "本地地图结果与 Google 商家资料"
+    },
+    {
+      "id": "analytics",
+      "name": "分析搭建",
+      "icon": "fas fa-chart-bar",
+      "desc": "用合适的数据工具追踪表现",
+      "longDesc": "量不到的东西，你改不了。我们搭建 GA4、搜索控制台、服务端标记，以及一块能回答管理层真正会问的问题的仪表盘——数据干净、归因干净，不用在表格里做体操。",
+      "bullets": [
+        "GA4、搜索控制台和代码管理器",
+        "服务端标记和同意模式",
+        "给每个团队的 Looker Studio 仪表盘",
+        "转化和收入归因"
+      ],
+      "imageLabel": "Looker Studio 指标仪表盘"
+    }
+  ],
+  "process": [
+    {
+      "number": "01",
+      "title": "审计",
+      "desc": "技术、内容和外链审计，附一页发现说明",
+      "icon": "fas fa-magnifying-glass"
+    },
+    {
+      "number": "02",
+      "title": "策略",
+      "desc": "绑在商业指标上的 12 个月计划，不绑虚荣数字",
+      "icon": "fas fa-bullseye"
+    },
+    {
+      "number": "03",
+      "title": "执行",
+      "desc": "按月冲刺，覆盖技术、内容和链接",
+      "icon": "fas fa-rocket"
+    },
+    {
+      "number": "04",
+      "title": "汇报",
+      "desc": "每周对齐、每月业务回顾，以及每季一次重置",
+      "icon": "fas fa-chart-line"
+    }
+  ],
+  "deliverables": [
+    {
+      "title": "技术审计与手册",
+      "description": "按优先级排列的修复清单，标出工作量和影响——以干净的工单形式交给你的开发团队。",
+      "icon": "fas fa-clipboard-list"
+    },
+    {
+      "title": "内容路线图",
+      "description": "12 个月的简报和大纲，每季按实际排名刷新。",
+      "icon": "fas fa-calendar"
+    },
+    {
+      "title": "仪表盘与提醒",
+      "description": "一块实时的 Looker Studio 仪表盘，再加上要紧指标的 Slack 或邮件提醒。",
+      "icon": "fas fa-chart-line"
+    },
+    {
+      "title": "月报",
+      "description": "用白话回顾变了什么、我们交付了什么、下一步是什么。",
+      "icon": "fas fa-file-lines"
+    }
+  ],
+  "tech": [
+    "GA4",
+    "Search Console",
+    "Looker Studio",
+    "Ahrefs",
+    "Semrush",
+    "Screaming Frog",
+    "Tag Manager",
+    "Schema.org",
+    "Notion",
+    "Slack"
+  ],
+  "faq": [
+    {
+      "question": "多久能看到结果？",
+      "answer": "技术上的改进通常 4 到 8 周能看见。内容和链接要 3 到 6 个月才会叠起来，所以我们按季度想，不按周想。审计之后，我们会给你一条现实的时间线。"
+    },
+    {
+      "question": "你们保证排名吗？",
+      "answer": "靠谱的机构都不能保证，我们也不会装。我们能保证的是工作、流程和汇报。排名和流量是把事情长期做好之后的产出——我们会把推动它们的输入摊给你看。"
+    },
+    {
+      "question": "你们做链接建设吗？",
+      "answer": "做，但只做能赢得真实链接的数字公关和外联。我们不买链接，也不经营链接网络。我们的链接工作，是让你的品牌出现在顾客已经在读的刊物上。"
+    },
+    {
+      "question": "能和我们现有的机构或内部团队一起干吗？",
+      "answer": "经常这样。我们乐意作为专项补进来，并行跑一条策略线，或把整个渠道接过去。短短一谈之后，我们会提出合适的形态。"
+    }
+  ]
+}

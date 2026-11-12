@@ -1,0 +1,103 @@
+{
+  "name": "MoneyBox",
+  "slug": "moneybox",
+  "type": "branded",
+  "tagline": "Wang anda, tersusun.",
+  "description": "## Perihal MoneyBox\n\nMoneyBox ialah penjejak kewangan peribadi yang bantu anda nampak ke mana wang pergi, tetapkan matlamat simpanan, dan kekal dalam bajet — tanpa kesesakan aplikasi perbankan penuh.\n\n### Matlamat simpanan yang pintar\n\nTetapkan sasaran untuk perjalanan, kecemasan, atau pembelian besar dan lihat kemajuan anda dengan carta visual yang jelas.\n\n### Penjejakan perbelanjaan\n\nCatat perbelanjaan ikut kategori, kesan corak lebih awal, dan kekalkan tabiat harian yang jujur.\n\n### Laporan yang bersih\n\nRingkasan bulanan dan paparan trend yang masuk akal sepintas lalu — tiada hamparan diperlukan.\n",
+  "iconClass": "fas fa-piggy-bank",
+  "color": "#16A34A",
+  "gradient": "linear-gradient(135deg, #16A34A 0%, #4ADE80 100%)",
+  "status": "Live",
+  "layoutVariant": "moneybox",
+  "fontHeading": "Outfit",
+  "fontBody": "DM Sans",
+  "fontWeights": "400,500,600,700",
+  "gsapAnimation": "grow-leaves",
+  "appType": "mobile",
+  "brandName": "MoneyBox",
+  "bgEffect": "leaves",
+  "bgFallbackGradient": "linear-gradient(180deg, #F0FDF4 0%, #DCFCE7 40%, #BBF7D0 100%)",
+  "hero": {
+    "title": "Wang anda, akhirnya tersusun.",
+    "subtitle": "Penjejak kewangan peribadi dengan bajet, matlamat, dan laporan yang bersih — dibina supaya menyimpan kekal ringkas dan kelihatan setiap hari.",
+    "cta_primary": "Dapatkan aplikasinya",
+    "cta_primary_link": "https://drive.google.com/drive/folders/1_8MswXC-JxPEFU_0-fmeXal_hK7yKs9C?usp=sharing",
+    "cta_secondary": "Lihat ciri",
+    "cta_secondary_link": "#features"
+  },
+  "features": [
+    {
+      "title": "Matlamat simpanan yang pintar",
+      "description": "Tetapkan sasaran untuk apa sahaja — kecemasan, perjalanan, atau pembelian besar — dan jejak kemajuan dengan carta visual yang memotivasikan.",
+      "icon": "fas fa-bullseye"
+    },
+    {
+      "title": "Penjejakan perbelanjaan",
+      "description": "Catat perbelanjaan ikut kategori, kesan corak lebih awal, dan kekalkan tabiat harian yang jujur tanpa lemas dalam hamparan.",
+      "icon": "fas fa-receipt"
+    },
+    {
+      "title": "Gambaran bajet",
+      "description": "Lihat pendapatan berbanding perbelanjaan sepintas lalu dengan ringkasan bulanan yang kekal mudah dibaca di telefon.",
+      "icon": "fas fa-chart-pie"
+    },
+    {
+      "title": "Laporan yang bersih",
+      "description": "Paparan trend dan pecahan kategori yang direka untuk semakan pantas — bukan arkeologi hujung bulan.",
+      "icon": "fas fa-chart-line"
+    },
+    {
+      "title": "Peringatan harian",
+      "description": "Sentuhan lembut untuk catat perbelanjaan dan semak matlamat, supaya aplikasi bekerja dengan rutin anda, bukan menentangnya.",
+      "icon": "fas fa-bell"
+    },
+    {
+      "title": "Peribadi dari reka bentuk",
+      "description": "Kewangan anda kekal pada peranti anda. Tiada iklan, tiada jualan semula data — hanya alat yang hormati angka anda.",
+      "icon": "fas fa-lock"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "iOS",
+      "icon": "fab fa-apple",
+      "version": "iOS 15+",
+      "link": "#"
+    },
+    {
+      "name": "Android",
+      "icon": "fab fa-android",
+      "version": "Android 8+",
+      "link": "https://drive.google.com/drive/folders/1_8MswXC-JxPEFU_0-fmeXal_hK7yKs9C?usp=sharing"
+    }
+  ],
+  "tech": ["Flutter", "Dart", "SQLite", "Riverpod"],
+  "navItems": [
+    { "label": "Utama", "url": "", "i18nKey": "project_nav_home" },
+    { "label": "Ciri", "url": "features/", "i18nKey": "project_nav_features" },
+    { "label": "Muat turun", "url": "download/", "i18nKey": "project_nav_download" },
+    { "label": "Terma", "url": "terms/", "i18nKey": "project_nav_terms" },
+    { "label": "Privasi", "url": "privacy/", "i18nKey": "project_nav_privacy" }
+  ],
+  "navMetaItems": [
+    { "label": "Kerja", "url": "/projects/", "i18nKey": "nav_work" },
+    { "label": "Hubungi", "url": "/contact/", "i18nKey": "nav_contact" }
+  ],
+  "faq": [
+    {
+      "question": "Adakah MoneyBox percuma?",
+      "answer": "MoneyBox ialah produk yang sudah aktif dari Baseet Studio. Pautan muat turun dan harga tersedia pada binaan Android; ketersediaan iOS akan datang."
+    },
+    {
+      "question": "Adakah ia bersambung ke bank saya?",
+      "answer": "MoneyBox menumpukan penjejakan manual dan penetapan matlamat — ringkas, peribadi, dan sepenuhnya di bawah kawalan anda."
+    },
+    {
+      "question": "Di mana data saya disimpan?",
+      "answer": "Data anda kekal pada peranti anda. Kami tak jual atau kongsi maklumat kewangan anda."
+    }
+  ],
+  "links": {
+    "android": "https://drive.google.com/drive/folders/1_8MswXC-JxPEFU_0-fmeXal_hK7yKs9C?usp=sharing"
+  }
+}

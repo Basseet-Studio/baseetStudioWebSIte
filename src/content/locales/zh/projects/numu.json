@@ -1,0 +1,157 @@
+{
+  "name": "Numu",
+  "slug": "numu",
+  "type": "branded",
+  "tagline": "记下你做的事。长成你想成为的人。",
+  "description": "## 关于 Numu\n\nNumu 是一款用 Flutter 做的移动习惯与生活追踪应用。它围着一个想法：**成长是每天的练习**，而合适的工具该让这场练习毫不费力、保持私密，并且永远属于你。\n\n### Numu 为什么存在\n\n多数习惯应用要你的数据、你的账户和你的月费。Numu 建在相反的原则上：\n\n- **本地优先** — 你的数据住在你的设备上。\n- **默认离线** — 不需要账户，不需要网络。\n- **没有订阅，没有广告，没有追踪。**\n- **完整备份与恢复** — 数据永远是你的。\n\n### 你可以追踪什么\n\n- **🌱 核心成长模块**\n  - **习惯** — 每日、每周或自定义频率的习惯，带连续记录、评分和丰富的历史。\n  - **目标** — 长期目标，连到推动它们的那些习惯上。\n  - **任务** — 一次性的和重复的待办，带提醒。\n  - **提醒** — 在对的时间轻轻推你的聪明通知。\n  - **我的一天** — 把习惯、任务和目标收进同一屏的每日总览。\n- **💪 健康** — 饮水、睡眠、体重和饮食记录。健康模块设计成可以延伸到锻炼追踪（在路线图上）。\n- **🕌 伊斯兰功修** — 带评分的礼拜追踪。封斋和自愿功修（nafila）追踪。\n- **💾 备份与恢复** — 全部数据的本地备份和恢复。\n- **🧭 配套体验** — 上手引导、首页（一眼看完的每日仪表盘）、个人资料（个人统计和历史）、设置（完全掌控，包括“重置全部数据”），以及内建帮助。\n\n### Numu 有什么不同\n\n| | Numu | 常见习惯应用 |\n|---|---|---|\n| 需要账户 | ❌ 不需要 | ✅ 需要 |\n| 离线可用 | ✅ 完全可以 | ⚠️ 有限 |\n| 数据住在你的设备上 | ✅ 是 | ❌ 在他们的服务器上 |\n| 订阅 | ❌ 没有 | 💲 月费 |\n| 广告与追踪器 | ❌ 没有 | ✅ 通常有 |\n| 备份与恢复 | ✅ 内建 | ⚠️ 看情况 |\n| 本地化 | ✅ 阿拉伯语 + 英语（照顾从右到左） | ⚠️ 英语优先 |\n\n### 做对了\n\n- **Flutter + Dart** — 一套代码，在 iOS 和 Android 上达到原生性能。\n- **Riverpod** 负责状态管理。\n- **sqflite** 负责本地数据存储。\n- **go_router** 负责导航。\n- **功能优先的架构** — 每个功能（习惯、目标、健康、伊斯兰功修……）自成一体，应用容易扩展，也容易维护。\n\n### 路线图亮点\n\n- **第一阶段（2026）** — 打磨与稳定：更好的空状态、改习惯时保住连续记录、健康趋势指示，以及从右到左的修复。\n- **第二阶段（2026）** — 锻炼与身体活动追踪，接上已有的健康模块和习惯系统。\n- **第三阶段（2026–2027）** — 身心健康：追踪你当时的感受，而不只是你做了什么。\n- **第四阶段及以后** — 可穿戴设备接入、HealthKit，以及更远的地方。\n\n*作为一个专注的侧边项目来做，哲学很清楚：你的成长，你的数据，你的节奏。*\n\n### 给在意隐私的人\n\nNumu 是为这样的人设计的：不想再要一个云账户、再担一次数据泄露，或再订一个会消失的订阅。如果这说的就是你，Numu 就是为你做的。\n",
+  "icon": "/images/projects/numu-icon.png",
+  "color": "#AF52DE",
+  "gradient": "linear-gradient(135deg, #AF52DE 0%, #BF5AF2 100%)",
+  "status": "Coming Soon",
+  "layoutVariant": "numu",
+  "fontHeading": "Quicksand",
+  "fontBody": "Nunito",
+  "fontWeights": "400,500,600,700",
+  "gsapAnimation": "elastic-bounce",
+  "appType": "mobile",
+  "brandName": "Numu",
+  "bgEffect": "leaves",
+  "bgFallbackGradient": "linear-gradient(180deg, #F0FFF4 0%, #C6F6D5 40%, #9AE6B4 100%)",
+  "hero": {
+    "title": "长成你想成为的人。",
+    "subtitle": "Numu 是本地优先、可离线、没有订阅的习惯与生活追踪。你的数据住在你的设备上——而且只在你这里。",
+    "cta_primary": "获取抢先体验",
+    "cta_secondary": "了解更多"
+  },
+  "features": [
+    {
+      "title": "核心成长模块",
+      "description": "习惯（每日、每周或自定义）带连续记录，目标连到推动它们的习惯上，任务带提醒，聪明的提醒，以及统一的“我的一天”视图。",
+      "icon": "fas fa-seedling"
+    },
+    {
+      "title": "健康追踪",
+      "description": "饮水、睡眠、体重和饮食记录——健康模块设计成可以在路线图上延伸到锻炼追踪。",
+      "icon": "fas fa-heartbeat"
+    },
+    {
+      "title": "伊斯兰功修",
+      "description": "带评分的礼拜追踪，加上封斋和自愿功修（nafila）追踪——作为一等模块内建。",
+      "icon": "fas fa-mosque"
+    },
+    {
+      "title": "本地优先且离线",
+      "description": "你的数据住在你的设备上。没有账户，没有网络，没有云——再加上完整的备份与恢复，所以它始终是你的。",
+      "icon": "fas fa-lock"
+    },
+    {
+      "title": "没有订阅，没有广告，没有追踪器",
+      "description": "Numu 建在和典型习惯应用相反的商业模式上。没有月费，没有广告网络，没有第三方追踪器。",
+      "icon": "fas fa-shield-alt"
+    },
+    {
+      "title": "清楚、照顾从右到左、多语言",
+      "description": "阿拉伯语和英语开箱即用，布局照顾从右到左。打磨过的、亲切的界面，让每日打卡有回报感。",
+      "icon": "fas fa-palette"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "iOS",
+      "icon": "fab fa-apple",
+      "version": "iOS 15+",
+      "link": "https://testflight.apple.com/join/wgRQGpw8"
+    },
+    {
+      "name": "Android",
+      "icon": "fab fa-android",
+      "version": "Android 8+",
+      "link": "https://drive.google.com/drive/folders/1_8MswXC-JxPEFU_0-fmeXal_hK7yKs9C?usp=sharing"
+    }
+  ],
+  "galleryType": "mobile",
+  "screenshots": [
+    "/images/projects/numu/1.png",
+    "/images/projects/numu/2.png",
+    "/images/projects/numu/3.png",
+    "/images/projects/numu/4.png",
+    "/images/projects/numu/5.png",
+    "/images/projects/numu/6.png"
+  ],
+  "testimonials": [
+    {
+      "quote": "Numu 的连续记录会上瘾，而且是好的那种。我已经连续冥想 90 天！",
+      "author": "Alex T.",
+      "role": "早期测试者"
+    }
+  ],
+  "navItems": [
+    {
+      "label": "首页",
+      "url": "",
+      "i18nKey": "project_nav_home"
+    },
+    {
+      "label": "功能",
+      "url": "features/",
+      "i18nKey": "project_nav_features"
+    },
+    {
+      "label": "下载",
+      "url": "download/",
+      "i18nKey": "project_nav_download"
+    },
+    {
+      "label": "条款",
+      "url": "terms/",
+      "i18nKey": "project_nav_terms"
+    },
+    {
+      "label": "隐私",
+      "url": "privacy/",
+      "i18nKey": "project_nav_privacy"
+    }
+  ],
+  "navMetaItems": [
+    {
+      "label": "作品",
+      "url": "/projects/",
+      "i18nKey": "nav_work"
+    },
+    {
+      "label": "联系",
+      "url": "/contact/",
+      "i18nKey": "nav_contact"
+    }
+  ],
+  "links": {
+    "ios": "https://testflight.apple.com/join/wgRQGpw8",
+    "android": "https://drive.google.com/drive/folders/1_8MswXC-JxPEFU_0-fmeXal_hK7yKs9C?usp=sharing"
+  },
+  "faq": [
+    {
+      "question": "Numu 免费使用吗？",
+      "answer": "是的——Numu 没有订阅，没有广告，也没有应用内购买。它是一个专注的侧边项目，哲学很清楚：你的成长，你的数据，你的节奏。"
+    },
+    {
+      "question": "Numu 和其他习惯追踪有什么不同？",
+      "answer": "多数习惯应用要求账户，把数据存在他们的云上，并收月费。Numu 本地优先、默认离线——数据住在你的设备上，你不需要账户，也没有广告或追踪器。"
+    },
+    {
+      "question": "Numu 什么时候可用？",
+      "answer": "我们正在给 Numu 做最后的打磨。报名抢先体验，成为第一批试用的人。"
+    },
+    {
+      "question": "任何类型的习惯都能追踪吗？",
+      "answer": "能——像锻炼和阅读这样的每日习惯，像备餐这样的每周目标，自定义频率的习惯，连到推动它们的习惯上的长期目标，任务，甚至礼拜和封斋追踪。"
+    },
+    {
+      "question": "健康和伊斯兰模块呢？",
+      "answer": "两者都是一等模块。健康覆盖饮水、睡眠、体重和饮食记录（锻炼追踪在路线图上）。伊斯兰功修覆盖带评分的礼拜追踪、封斋，以及自愿功修（nafila）追踪。"
+    },
+    {
+      "question": "支持哪些语言？",
+      "answer": "阿拉伯语和英语开箱即用，布局照顾从右到左。功能优先的架构让增加更多语言变得直接。"
+    }
+  ]
+}

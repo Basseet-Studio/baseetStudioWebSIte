@@ -1,0 +1,165 @@
+{
+  "id": "design",
+  "slug": "design",
+  "title": "Reka bentuk UI/UX",
+  "tagline": "Reka bentuk yang berbaloi untuk ketukan kedua",
+  "color": "#AF52DE",
+  "gradient": "linear-gradient(135deg, #AF52DE 0%, #D8A0F5 100%)",
+  "icon": "fas fa-paint-brush",
+  "shortDescription": "Antara muka yang jelas dan intuitif, yang orang kembali kepadanya",
+  "hero": {
+    "title": "Reka bentuk yang berbaloi untuk ketukan kedua",
+    "subtitle": "Antara muka yang dibentuk oleh cara orang benar-benar menggunakan benda itu, bukan oleh apa yang kelihatan baik di papan mood.",
+    "cta_primary": "Berikan taklimat projek",
+    "cta_primary_link": "/contact/",
+    "cta_secondary": "Lihat hasil serahan",
+    "cta_secondary_link": "#deliverables"
+  },
+  "metrics": [
+    { "value": "12+", "label": "Sistem reka bentuk yang dihantar" },
+    { "value": "WCAG AA", "label": "Sasaran kebolehcapaian lalai" },
+    { "value": "1 sumber", "label": "Sumber kebenaran Figma" }
+  ],
+  "subServices": [
+    {
+      "id": "user-research",
+      "name": "Kajian pengguna",
+      "icon": "fas fa-user-friends",
+      "desc": "Fahami keperluan dan tingkah laku pengguna anda",
+      "longDesc": "Kami mulakan setiap projek dengan bercakap kepada pengguna sebenar — temu bual berpandu, ujian tanpa pemandu, dan selaman analitik. Hasilnya bukan poster persona; ia senarai kerja-yang-perlu-disiapkan yang jelas dan diutamakan, yang reka bentuk anda mesti buat dengan baik.",
+      "bullets": [
+        "Temu bual pengguna dan siasatan konteks",
+        "Kerja-yang-perlu-disiapkan dan pemetaan peluang",
+        "Ujian kebolehgunaan pada Figma atau prototaip langsung",
+        "Taklimat serahan daripada wawasan ke reka bentuk"
+      ],
+      "imageLabel": "Papan wawasan kajian"
+    },
+    {
+      "id": "wireframing",
+      "name": "Rangka dawai",
+      "icon": "fas fa-pencil-ruler",
+      "desc": "Rangka struktur dan aliran aplikasi anda",
+      "longDesc": "Sebelum piksel, kami lukis rangka. Rangka dawai berfideliti rendah untuk setiap aliran utama, disahkan terhadap seni bina maklumat anda, dan diulang dengan laju. Rangka dawai tempat paling murah untuk buat kesilapan paling mahal — jadi kami tak langkauinya.",
+      "bullets": [
+        "Rangka dawai berfideliti rendah untuk setiap aliran",
+        "Seni bina maklumat dan navigasi",
+        "Gambar rajah aliran pengguna dan kes pinggir",
+        "Semakan kejuruteraan sebelum reka bentuk visual"
+      ],
+      "imageLabel": "Set rangka dawai dengan aliran utama"
+    },
+    {
+      "id": "visual-design",
+      "name": "Reka bentuk visual",
+      "icon": "fas fa-palette",
+      "desc": "Antara muka yang konsisten dan mencerminkan jenama anda",
+      "longDesc": "Fail Figma berfideliti tinggi, sistem taip dan warna yang sebenar, serta prinsip gerakan yang padan dengan personaliti jenama anda. Hasilnya pustaka Figma yang pasukan anda boleh terus guna lama selepas kami selesai — bukan serahan statik.",
+      "bullets": [
+        "Skrin dan komponen Figma berfideliti tinggi",
+        "Sistem taip, warna, dan gerakan",
+        "Ikonografi dan ilustrasi yang sejajar dengan jenama",
+        "Varian cerah, gelap, dan jenama"
+      ],
+      "imageLabel": "Skrin mudah alih berfideliti tinggi"
+    },
+    {
+      "id": "prototyping",
+      "name": "Prototaip",
+      "icon": "fas fa-laptop-code",
+      "desc": "Prototaip interaktif untuk menguji idea",
+      "longDesc": "Prototaip boleh diklik untuk semakan pihak berkepentingan, ujian pengguna, dan pendanaan awam. Kami bina dalam Figma atau dengan kod, bergantung pada keperluan fideliti — dan kami gunakannya untuk uji andaian paling berisiko sebelum anda belanja satu dirham untuk kejuruteraan.",
+      "bullets": [
+        "Prototaip berasaskan Figma dan kod",
+        "Interaksi mikro dan spesifikasi gerakan",
+        "Aliran yang boleh diuji untuk kajian pengguna",
+        "Binaan demo untuk pihak berkepentingan"
+      ],
+      "imageLabel": "Prototaip interaktif dalam kod"
+    }
+  ],
+  "process": [
+    {
+      "number": "01",
+      "title": "Teroka",
+      "desc": "Kajian, semakan analitik, dan pernyataan masalah satu halaman",
+      "icon": "fas fa-lightbulb"
+    },
+    {
+      "number": "02",
+      "title": "Takrif",
+      "desc": "Kerja yang perlu disiapkan, metrik kejayaan, dan skop v1",
+      "icon": "fas fa-bullseye"
+    },
+    {
+      "number": "03",
+      "title": "Reka bentuk",
+      "desc": "Rangka dawai, kemudian reka bentuk visual dalam Figma, dengan semakan mingguan",
+      "icon": "fas fa-pencil-ruler"
+    },
+    {
+      "number": "04",
+      "title": "Sahkan",
+      "desc": "Ujian pengguna pada prototaip, ulang, dan kunci sistem",
+      "icon": "fas fa-vial"
+    },
+    {
+      "number": "05",
+      "title": "Serahan",
+      "desc": "Figma beranotasi, pustaka komponen sedia Storybook, dan sesi kerja dengan pembangun anda",
+      "icon": "fas fa-handshake"
+    }
+  ],
+  "deliverables": [
+    {
+      "title": "Sumber kebenaran Figma",
+      "description": "Fail Figma yang bersih dan tersusun, dengan komponen, pemboleh ubah, dan bingkai yang sedia diserahkan.",
+      "icon": "fas fa-pen-ruler"
+    },
+    {
+      "title": "Sistem reka bentuk",
+      "description": "Taip, warna, jarak, gerakan, dan ikonografi — didokumentasi dan sedia diskala.",
+      "icon": "fas fa-shapes"
+    },
+    {
+      "title": "Prototaip",
+      "description": "Prototaip boleh diklik dalam Figma atau kod, untuk semakan pihak berkepentingan dan ujian pengguna.",
+      "icon": "fas fa-laptop"
+    },
+    {
+      "title": "Pakej serahan",
+      "description": "Spesifikasi, garis merah, aset, dan sesi kerja dengan pasukan kejuruteraan anda.",
+      "icon": "fas fa-box"
+    }
+  ],
+  "tech": [
+    "Figma",
+    "FigJam",
+    "Framer",
+    "Storybook",
+    "Maze",
+    "Notion",
+    "Lottie",
+    "Rive",
+    "After Effects",
+    "Webflow"
+  ],
+  "faq": [
+    {
+      "question": "Adakah anda juga bina reka bentuk itu dalam kod?",
+      "answer": "Ya. Kebanyakan kerjasama kami berakhir dengan bahagian hadapan yang berfungsi. Kami boleh hantar Astro, Next.js, SvelteKit, atau React Native — apa sahaja yang timbunan anda sukai. Tiada yang hilang dalam serahan kerana kami pasukan yang sama buat kedua-duanya."
+    },
+    {
+      "question": "Bolehkah anda ambil alih sistem reka bentuk sedia ada?",
+      "answer": "Kerap. Kami mulakan dengan audit sistem reka bentuk, cadangkan jalan untuk membersihkannya, dan hantar dalam Storybook yang jurutera anda benar-benar guna. Kami pernah selamatkan fail Figma dengan 2,000+ komponen dan jadikannya sesuatu yang boleh diselenggara."
+    },
+    {
+      "question": "Bagaimana anda urus kebolehcapaian?",
+      "answer": "Kebolehcapaian bukan senarai semak yang kami jalankan di hujung. Kami reka untuk papan kekunci, pembaca skrin, dan kontras warna dari rangka dawai pertama, dan kami uji dengan teknologi bantuan sebenar sebelum serahan. WCAG AA ialah lalai kami; AAA di mana ia penting."
+    },
+    {
+      "question": "Bagaimana kalau saya hanya ada jenama, bukan idea produk?",
+      "answer": "Itu tempat yang bagus untuk mula. Kami jalankan pecutan penerokaan 2 minggu yang berakhir dengan taklimat produk, senarai ciri, dan prototaip yang anda boleh guna untuk mengumpul dana, merekrut, atau menjual. Dari situ, kami boleh reka dan bina versi pertama."
+    }
+  ]
+}

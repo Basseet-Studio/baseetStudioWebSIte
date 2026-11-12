@@ -6,6 +6,7 @@ import { createCameraController } from './camera-controller'
 import { createObjectRegistry, WORLD_SCALE } from './object-registry'
 import { createPageTransitionBridge } from './page-transition-bridge'
 import { createScrollDriver } from './scroll-driver'
+import { applyCameraMotion } from './camera-motion'
 import {
   isSceneDebugEnabled,
   sceneLog,
@@ -186,7 +187,7 @@ export function initCloudscape(opts: {
   let baseRenderScale = quality.tier === 'high'
     ? Math.min(1, Math.max(0.75, readNumber(config.renderScale, 1)))
     : quality.renderScale
-  let currentRenderScale = baseRenderScale
+  let currentRenderScale = Math.min(baseRenderScale, renderScaleSteps[renderScaleSteps.length - 1])
 
   const mainCamera = new THREE.PerspectiveCamera(config.entryCamera.fov, 1, 0.1, 200)
 
@@ -574,12 +575,12 @@ export function initCloudscape(opts: {
     const uSkyZenith = bu.uSkyZenith.value as THREE.Color
     if (domeLight) {
       scratch.domeSunDir.set(domeLight.sunDir[0], domeLight.sunDir[1], domeLight.sunDir[2])
-      scratch.sunDir.lerp(scratch.domeSunDir, 0.85 * domeMix).normalize()
+      scratch.sunDir.lerp(scratch.domeSunDir, 0.6).normalize()
       scratch.domeColor.setRGB(domeLight.sunColor[0], domeLight.sunColor[1], domeLight.sunColor[2])
-      scratch.lightColor.lerp(scratch.domeColor, 0.6 * domeMix)
+      scratch.lightColor.lerp(scratch.domeColor, 0.5)
       scratch.domeColor.setRGB(domeLight.horizon[0], domeLight.horizon[1], domeLight.horizon[2])
-      scratch.skyColor.lerp(scratch.domeColor, 0.75 * domeMix)
-      lightIntensity = Math.max(lightIntensity, domeLight.sunStrength * domeMix * 1.4)
+      scratch.skyColor.lerp(scratch.domeColor, 0.3 * domeMix)
+      lightIntensity = Math.max(lightIntensity, 0.6 + domeLight.sunStrength * 0.8)
       uSkyHorizon.setRGB(domeLight.horizon[0], domeLight.horizon[1], domeLight.horizon[2])
       uSkyZenith.setRGB(domeLight.zenith[0], domeLight.zenith[1], domeLight.zenith[2])
     } else {
@@ -740,7 +741,7 @@ export function initCloudscape(opts: {
     if (bridge.getIsTransitioning()) return
     const evaluated = cameraController.evaluateAtProgress(progress)
     if (!playgroundLocked) {
-      sceneRuntime.applyCamera(evaluated.camera)
+      sceneRuntime.applyCamera(applyCameraMotion(evaluated.camera))
       sceneRuntime.applyClouds(evaluated.clouds)
       sceneRuntime.applyLighting(evaluated.lighting)
     }
@@ -769,6 +770,8 @@ export function initCloudscape(opts: {
   const scrollDriver = createScrollDriver({
     onProgress: onScrollProgress,
     externalTick: true,
+    smoothing: 5,
+    continuous: true,
   })
 
   bridge = createPageTransitionBridge({

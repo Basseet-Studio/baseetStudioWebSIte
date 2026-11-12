@@ -1,0 +1,161 @@
+{
+  "id": "cloud",
+  "slug": "cloud",
+  "title": "云与运维",
+  "tagline": "发得更快，睡得更安",
+  "color": "#0EA5E9",
+  "gradient": "linear-gradient(135deg, #0369A1 0%, #38BDF8 100%)",
+  "icon": "fas fa-cloud",
+  "shortDescription": "可扩展的基础设施和部署",
+  "hero": {
+    "title": "发得更快，睡得更安",
+    "subtitle": "可扩展的基础设施、持续集成与部署，以及监控，让一次发布不再是人人紧张的事件。",
+    "cta_primary": "看看我的基础设施",
+    "cta_primary_link": "/contact/",
+    "cta_secondary": "看看技术栈",
+    "cta_secondary_link": "#tech"
+  },
+  "metrics": [
+    { "value": "99.9%", "label": "目标可用时间" },
+    { "value": "<5min", "label": "回滚平均用时" },
+    { "value": "0", "label": "手工部署" }
+  ],
+  "subServices": [
+    {
+      "id": "cloud-migration",
+      "name": "云迁移",
+      "icon": "fas fa-cloud-upload-alt",
+      "desc": "把系统安全地迁到云上",
+      "longDesc": "搬迁、重构，或重建——看你的工作负载真正需要什么。我们迁移生产系统时，带零停机切换计划、并行运行，以及一旦偏了就能干净回退的路径。",
+      "bullets": [
+        "AWS、GCP、Azure 和 Cloudflare",
+        "带并行运行的零停机切换",
+        "成本和规格评估",
+        "网络、身份权限和密钥迁移"
+      ],
+      "imageLabel": "云迁移架构图"
+    },
+    {
+      "id": "cicd",
+      "name": "持续集成与部署流水线",
+      "icon": "fas fa-code-branch",
+      "desc": "自动化测试和部署",
+      "longDesc": "我们做的流水线抓住的是缺陷，不是开发者。每一次提交都做类型检查、规范检查、测试、扫描、签名和部署——渐进发布、回归时自动回滚，出事时一键撤回。",
+      "bullets": [
+        "GitHub Actions、GitLab CI 和 Buildkite",
+        "渐进发布和功能开关",
+        "回归时自动回滚",
+        "签名、可证明，并带软件物料清单的发布"
+      ],
+      "imageLabel": "持续集成流水线示意"
+    },
+    {
+      "id": "server-management",
+      "name": "服务器管理",
+      "icon": "fas fa-server",
+      "desc": "让基础设施平稳地跑",
+      "longDesc": "托管的 Kubernetes、AWS Lambda 上的无服务器，或一台朴素的虚拟专用服务器——无聊但关键的部分我们来跑，你专心做产品。补丁、扩容、备份，以及出事时真有工程师的全天候值班。",
+      "bullets": [
+        "Kubernetes、ECS 和 Lambda",
+        "补丁、备份和容量管理",
+        "全天候值班，接的是真工程师",
+        "真能改变事情的事后复盘"
+      ],
+      "imageLabel": "服务器监控仪表盘"
+    },
+    {
+      "id": "security-audits",
+      "name": "安全审计",
+      "icon": "fas fa-shield-alt",
+      "desc": "找出并修好漏洞",
+      "longDesc": "我们不卖吓人的报告——我们卖修掉的漏洞。安全审计的结尾是一份排好优先级的修复计划、一组被跟踪的拉取请求，以及一次复测。我们按 SOC 2、ISO 27001 和阿联酋个人数据保护法来做。",
+      "bullets": [
+        "网页、接口和云配置审计",
+        "带正式报告的渗透测试",
+        "SOC 2 和 ISO 27001 准备度",
+        "阿联酋个人数据保护法与数据驻留审查"
+      ],
+      "imageLabel": "安全审计发现仪表盘"
+    }
+  ],
+  "process": [
+    {
+      "number": "01",
+      "title": "评估",
+      "desc": "架构评审、成本审计，以及可靠性记分卡",
+      "icon": "fas fa-magnifying-glass"
+    },
+    {
+      "number": "02",
+      "title": "计划",
+      "desc": "迁移或加固计划，按周和成本估好",
+      "icon": "fas fa-map"
+    },
+    {
+      "number": "03",
+      "title": "构建",
+      "desc": "基础设施即代码、流水线和可观测性——提交并评审",
+      "icon": "fas fa-code"
+    },
+    {
+      "number": "04",
+      "title": "运营",
+      "desc": "交接时带运行手册、仪表盘和值班轮换",
+      "icon": "fas fa-headset"
+    }
+  ],
+  "deliverables": [
+    {
+      "title": "基础设施代码仓库",
+      "description": "Terraform 或 Pulumi，提交在你的仓库里，经过同行评审，并从持续集成应用。",
+      "icon": "fas fa-code"
+    },
+    {
+      "title": "流水线",
+      "description": "每一次提交都构建、测试、签名并部署——带渐进发布。",
+      "icon": "fas fa-code-branch"
+    },
+    {
+      "title": "可观测性",
+      "description": "指标、日志、追踪和提醒接到 Slack 或 PagerDuty——不用再钻控制台。",
+      "icon": "fas fa-chart-line"
+    },
+    {
+      "title": "运行手册与交接",
+      "description": "给值班的一份真手册，再加上交接后三十天的调整窗口。",
+      "icon": "fas fa-book"
+    }
+  ],
+  "tech": [
+    "AWS",
+    "GCP",
+    "Cloudflare",
+    "Kubernetes",
+    "Docker",
+    "Terraform",
+    "Pulumi",
+    "GitHub Actions",
+    "Datadog",
+    "Grafana",
+    "Sentry",
+    "PagerDuty"
+  ],
+  "faq": [
+    {
+      "question": "你们推荐哪一家云？",
+      "answer": "取决于你已有的承诺、合规要求，以及团队。我们对 AWS、GCP、Azure 和 Cloudflare 不站队。一次短的架构评审之后，我们会按你的工作负载推荐合适的那一家。"
+    },
+    {
+      "question": "能接手一套已有的云环境吗？",
+      "answer": "能。我们从一次付费审计开始——架构、成本、安全和可靠性记分卡——再提出分阶段计划。我们救过账单突然爆掉、还在手工部署、以及有一两处单点故障的账户。"
+    },
+    {
+      "question": "你们提供全天候值班吗？",
+      "answer": "提供。工作时间和你们的团队结对，工作时间之外我们自己扛一轮真的值班。响应时间事先写明，我们每季做一次混沌测试，让运行手册保持诚实。"
+    },
+    {
+      "question": "阿联酋的数据驻留你们怎么处理？",
+      "answer": "主要云厂商现在都有阿联酋区域，我们从第一张图就把驻留设计进去。我们为医疗、教育和政府客户交付过只在阿联酋的部署，也可以把取舍讲给你听。"
+    }
+  ]
+}

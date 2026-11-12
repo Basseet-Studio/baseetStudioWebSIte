@@ -1,0 +1,214 @@
+{
+  "title": "Pelanggan kami",
+  "subtitle": "Kisah kejayaan",
+  "description": "Lihat bagaimana perniagaan seperti anda mencapai hasil dengan penyelesaian kami.",
+  "clients": [
+    {
+      "id": "portia-grid",
+      "name": "Portia Grid",
+      "layoutTemplate": "timeline",
+      "logo": "",
+      "industry": "Logistik & kecerdasan data",
+      "serviceType": "Alat dalaman",
+      "color": "#2563EB",
+      "tagline": "Pengurusan armada & data yang pintar",
+      "shortDescription": "Platform web yang lengkap untuk mengurus armada trak penghantaran dan jadual penyelenggaraannya.",
+      "fullDescription": "Portia Grid ialah alat dalaman yang kami bina khas untuk membantu syarikat logistik mengurus seluruh armada trak penghantaran. Daripada menjejaki lokasi kenderaan hingga menjadualkan penyelenggaraan, semuanya diurus dalam satu papan pemuka berpusat.",
+      "challenge": "Pelanggan mengurus lebih 50 trak penghantaran dengan hamparan dan panggilan telefon. Penyelenggaraan sering terlepas, lalu membawa kepada kerosakan dan kelewatan. Mereka tidak nampak status armada secara masa nyata.",
+      "solution": "Kami bina platform web tersuai dengan penjejakan GPS masa nyata, penjadualan penyelenggaraan automatik berdasarkan perbatuan dan masa, pengurusan tugasan pemandu, serta laporan yang lengkap.",
+      "results": [
+        {
+          "metric": "30%",
+          "label": "Pengurangan kerosakan"
+        },
+        {
+          "metric": "2 jam",
+          "label": "Dijimatkan setiap hari untuk urusan"
+        },
+        {
+          "metric": "100%",
+          "label": "Keterlihatan armada"
+        }
+      ],
+      "features": [
+        "Penjejakan armada GPS masa nyata",
+        "Amaran penyelenggaraan automatik",
+        "Tugasan & jadual pemandu",
+        "Penjejakan penggunaan bahan api",
+        "Log sejarah penyelenggaraan",
+        "Papan pemuka laporan tersuai"
+      ],
+      "technologies": [
+        "React",
+        "Node.js",
+        "PostgreSQL",
+        "Google Maps API"
+      ],
+      "testimonial": {
+        "quote": "Kebanyakan pembangun hanya bina apa yang disuruh; pasukan ini betul-betul fikirkan logik bersama anda. Membina Portia Grid menuntut banyak kecerdasan taktikal dan pengendalian data yang rumit, dan Mohamed, Asad serta Ariyan betul-betul menepatinya. Tenaga mereka hebat, mereka faham teknologi sampai ke akar, dan mereka pegang tangan saya sepanjang proses. Kalau anda mahu pasukan yang bertanggungjawab atas hasilnya, inilah pasukannya.",
+        "author": "Hassan",
+        "role": "Ketua Pegawai Eksekutif & Pengasas Portia Grid"
+      },
+      "steps": [],
+      "screenshots": []
+    },
+    {
+      "id": "iyat",
+      "name": "Iyat",
+      "layoutTemplate": "showcase",
+      "logo": "",
+      "industry": "Pemasaran digital & kreatif",
+      "serviceType": "Laman web",
+      "color": "#8B5CF6",
+      "tagline": "Portfolio agensi digital",
+      "shortDescription": "Laman web moden dan kaya visual untuk Iyat, agensi digital yang mempamerkan portfolio kreatif dan perkhidmatan mereka.",
+      "fullDescription": "Kami mereka bentuk dan membina laman portfolio premium untuk Iyat, agensi digital yang pakar dalam penyelesaian pemasaran kreatif.",
+      "challenge": "Iyat perlukan kehadiran dalam talian yang profesional untuk mempamerkan kerja kreatif mereka dan menarik pelanggan baharu.",
+      "solution": "Kami bina laman portfolio yang laju dan moden, dengan animasi yang lancar, reka bentuk responsif, dan pengalaman pengguna yang mudah diikuti.",
+      "results": [
+        {
+          "metric": "100%",
+          "label": "Reka bentuk tersuai"
+        },
+        {
+          "metric": "< 2s",
+          "label": "Masa muat"
+        }
+      ],
+      "features": [
+        "Reka bentuk portfolio tersuai",
+        "Susun atur responsif",
+        "Animasi yang lancar",
+        "Antara muka moden"
+      ],
+      "technologies": [
+        "HTML/CSS",
+        "JavaScript"
+      ],
+      "link": "https://iyat-site.mohameda-elobaid.workers.dev/portfolio",
+      "steps": [],
+      "screenshots": []
+    },
+    {
+      "id": "veeramangalam-juma-masjid",
+      "name": "Veeramangalam Juma Masjid Finance",
+      "layoutTemplate": "stack",
+      "logo": "",
+      "industry": "Kewangan komuniti",
+      "serviceType": "Jamia System",
+      "color": "#059669",
+      "tagline": "Kewangan masjid — awan dan luar talian dalam satu",
+      "shortDescription": "Jamia System menggantikan helaian Excel dan jejak kertas untuk perbelanjaan masjid serta sumbangan tempatan.",
+      "fullDescription": "Kami bina Jamia System untuk Veeramangalam Juma Masjid Finance — platform dua dalam satu di atas Firebase dengan sokongan luar talian penuh. Ia menggantikan helaian Excel dan lejar tulisan tangan yang komuniti guna untuk menjejak perbelanjaan dan sumbangan tempatan.",
+      "challenge": "Pasukan kewangan masjid menjejak sumbangan ahli dan perbelanjaan operasi merentas hamparan dan rekod kertas. Penyesuaian lambat, kesilapan mudah masuk, dan tiada apa yang berfungsi bila internet terputus.",
+      "solution": "Kami bina Jamia System — platform kewangan berasaskan Firebase dengan penyegerakan yang utamakan luar talian. Sumbangan, perbelanjaan, dan lejar jamia duduk di satu tempat, sama ada bersambung atau tidak.",
+      "results": [
+        {
+          "metric": "100%",
+          "label": "Penjejakan tanpa kertas"
+        },
+        {
+          "metric": "2-dalam-1",
+          "label": "Awan + luar talian"
+        }
+      ],
+      "features": [
+        "Penjejakan perbelanjaan",
+        "Lejar sumbangan tempatan",
+        "Penyegerakan luar talian dahulu",
+        "Bahagian belakang Firebase"
+      ],
+      "technologies": [
+        "Flutter",
+        "Firebase",
+        "Firestore"
+      ],
+      "steps": [],
+      "screenshots": []
+    },
+    {
+      "id": "malaysian-business-websites",
+      "name": "Malaysian Business Websites",
+      "layoutTemplate": "showcase",
+      "industry": "Web korporat",
+      "serviceType": "Laman web",
+      "color": "#F59E0B",
+      "tagline": "Penyelesaian web korporat",
+      "shortDescription": "",
+      "technologies": [
+        "WordPress",
+        "Laravel",
+        "Vue.js",
+        "Tailwind CSS",
+        "MySQL",
+        "AWS Malaysia"
+      ],
+      "steps": [],
+      "screenshots": [],
+      "galleryType": "web"
+    },
+    {
+      "id": "bd-railway-automated-timetable",
+      "name": "BD Railway Automated Timetable",
+      "layoutTemplate": "timeline",
+      "industry": "Operasi kereta api",
+      "serviceType": "Alat dalaman",
+      "color": "#16A34A",
+      "tagline": "Sistem penjadualan kereta api",
+      "shortDescription": "",
+      "technologies": [
+        "Python",
+        "Pengaturcaraan kekangan",
+        "OR-Tools",
+        "PostgreSQL",
+        "FastAPI",
+        "React Admin"
+      ],
+      "steps": [],
+      "screenshots": [],
+      "galleryType": "web"
+    },
+    {
+      "id": "little-hands-lab",
+      "name": "Kudooda",
+      "layoutTemplate": "showcase",
+      "industry": "Mainan & runcit",
+      "serviceType": "Kedai e-dagang",
+      "color": "#7C3AED",
+      "tagline": "Kedai mainan dalam talian, dikuasakan oleh Zyrn",
+      "shortDescription": "Kedai mainan dalam talian di atas Zyrn — katalog berjenama, pembayaran, dan kemas kini pelanggan untuk Kudooda.",
+      "fullDescription": "Kudooda menjalankan kedai mainannya di atas Zyrn: produk, bayaran, inventori, dan pemberitahuan pesanan dalam satu sistem dagangan berjenama — tiada lagi jejak kertas mesej dan buku nota.",
+      "challenge": "Perlu kedai mainan dalam talian yang sebenar, tanpa lemas dalam pesanan sembang dan alat yang terputus-putus.",
+      "solution": "Dilancarkan di atas Zyrn dengan kedai berjenama, katalog, pembayaran, dan kemas kini pesanan pelanggan secara langsung.",
+      "technologies": [
+        "Zyrn",
+        "Katalog",
+        "Pembayaran",
+        "Pemberitahuan"
+      ],
+      "steps": [],
+      "screenshots": [],
+      "galleryType": "web"
+    },
+    {
+      "id": "faruk-technology-store",
+      "name": "Faruk Technology Store",
+      "layoutTemplate": "showcase",
+      "industry": "Runcit & telekomunikasi",
+      "serviceType": "Pengurusan inventori",
+      "color": "#10B981",
+      "tagline": "Operasi kedai di atas Invexo",
+      "shortDescription": "Faruk Technology Store menggunakan Invexo untuk inventori, POS, dan operasi kedai harian.",
+      "fullDescription": "Faruk Technology Store mengurus stok, jualan, dan kejelasan pelbagai lokasi melalui Invexo — pengurusan inventori yang dibina untuk kedai kecil.",
+      "challenge": "Perlu penjejakan inventori dan jualan yang jelas, tanpa kerumitan perisian perusahaan.",
+      "solution": "Invexo dipasang untuk stok, POS, dan papan pemuka kedai harian.",
+      "technologies": [
+        "Invexo",
+        "Papan pemuka web"
+      ],
+      "steps": [],
+      "screenshots": [],
+      "galleryType": "web"
+    }
+  ]
+}

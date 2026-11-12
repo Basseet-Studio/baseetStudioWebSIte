@@ -1,0 +1,72 @@
+{
+  "name": "Jemeti",
+  "slug": "jemeti",
+  "type": "branded",
+  "tagline": "பட்டறைகளும் பராமரிப்புக் கடைகளும், ஒழுங்காக",
+  "description": "## Jemeti பற்றி\n\nபட்டறை மற்றும் பராமரிப்புக் கடை உரிமையாளர்கள் பணிகளை அட்டவணைப்படுத்த, உதிரிபாகங்களைக் கண்காணிக்க, வாடிக்கையாளர் வாகனங்களை நிர்வகிக்க Jemeti உதவுகிறது — எல்லாம் ஒரே இடத்திலிருந்து.\n\n### சேவைக் கடைகளுக்காகக் கட்டப்பட்டது\n\nஎண்ணெய் மாற்றம் முதல் முழு மறுகட்டுமானம் வரை, பணி ஆணைகள், தொழில்நுட்பவியலாளர் ஒதுக்கீடு, உதிரிபாகச் சரக்கு ஆகியவற்றை Jemeti ஒழுங்காக வைக்கிறது.\n\n### விரைவில்\n\nஉண்மையான கடை உரிமையாளர்களுடன் Jemeti-ஐக் கட்டுகிறோம். முன்கூட்டிய அணுகல் வேண்டுமென்றால் தொடர்பு கொள்ளுங்கள்.\n",
+  "icon": "/images/projects/jemeti-icon.svg",
+  "iconClass": null,
+  "color": "#DC2626",
+  "gradient": "linear-gradient(135deg, #DC2626 0%, #EF4444 100%)",
+  "status": "Coming Soon",
+  "layoutVariant": "default",
+  "fontHeading": "Space Grotesk",
+  "fontBody": "Inter",
+  "appType": "web",
+  "brandName": "Jemeti",
+  "bgEffect": "none",
+  "clientIds": [],
+  "hero": {
+    "title": "உங்கள் பட்டறை, ஒழுங்காக",
+    "subtitle": "பராமரிப்பு மற்றும் பழுதுபார்க்கும் கடைகளுக்கான பணி அட்டவணை, உதிரிபாகக் கண்காணிப்பு, வாடிக்கையாளர் மேலாண்மை.",
+    "cta_primary": "முன்கூட்டிய அணுகல் பெறுங்கள்",
+    "cta_primary_link": "/contact",
+    "cta_secondary": null,
+    "cta_secondary_link": null
+  },
+  "features": [
+    {
+      "title": "பணி ஆணைகள்",
+      "description": "வரவேற்பு முதல் முடிவு வரை பணிகளை உருவாக்கி, ஒதுக்கி, கண்காணியுங்கள்.",
+      "icon": "fas fa-clipboard-list"
+    },
+    {
+      "title": "உதிரிபாகச் சரக்கு",
+      "description": "பழுதுபார்க்கும் தேதியை வாக்குறுதி அளிப்பதற்கு முன் அலமாரியில் என்ன இருக்கிறது என்று தெரிந்து கொள்ளுங்கள்.",
+      "icon": "fas fa-wrench"
+    },
+    {
+      "title": "வாடிக்கையாளர் வாகனங்கள்",
+      "description": "ஒவ்வொரு வாகனத்துக்கும் சேவை வரலாறு, நினைவூட்டல்கள், குறிப்புகள்.",
+      "icon": "fas fa-car"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "Web",
+      "icon": "fas fa-globe",
+      "version": "வலைச் செயலி",
+      "link": "#"
+    }
+  ],
+  "navItems": [
+    {
+      "label": "முகப்பு",
+      "url": "",
+      "i18nKey": "project_nav_home"
+    }
+  ],
+  "navMetaItems": [
+    {
+      "label": "பணிகள்",
+      "url": "/projects/",
+      "i18nKey": "nav_work"
+    },
+    {
+      "label": "தொடர்பு",
+      "url": "/contact/",
+      "i18nKey": "nav_contact"
+    }
+  ],
+  "faq": []
+}

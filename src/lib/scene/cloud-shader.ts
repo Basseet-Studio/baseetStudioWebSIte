@@ -254,7 +254,8 @@ bool marchStep(
   if (useSceneDepth && isSampleBehindScene(pos, sceneViewZ)) return false;
   float den = cloudDensity(pos, oct, t);
   if (den > 0.01) {
-    float dif = clamp((den - cloudDensity(pos + 0.3 * lightDir, oct, t)) / 0.6, 0.0, 1.0);
+    int lightOct = oct > 3 ? 3 : oct;
+    float dif = clamp((den - cloudDensity(pos + 0.3 * lightDir, lightOct, t)) / 0.45, 0.0, 1.0);
     sum = integrate(sum, dif, den, fogCol, t, highBandWeight(pos.y));
   }
   t += max(0.075, 0.02 * t) * stepMul;

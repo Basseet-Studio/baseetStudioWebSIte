@@ -1,0 +1,101 @@
+{
+  "name": "PhotoRestore AI",
+  "slug": "photorestore-ai",
+  "type": "standalone",
+  "tagline": "用 AI 修复老照片",
+  "description": "## 关于 PhotoRestore AI\n\nPhotoRestore AI 把训练好的修复模型和保存记忆的心意放在一起。我们相信每张照片都在讲一个故事，破损不该挡住那些珍贵时刻被分享。\n\n### 我们的技术\n\n基于深度学习的图像修复模型，PhotoRestore AI 能发现并修补划痕、撕裂和折痕；恢复褪色或变色的区域；提升清晰度和锐度；为黑白照片上色；并去掉污渍和水渍。\n\n### 隐私优先\n\n我们认真对待你的隐私。所有照片都在隔离的安全环境里处理，并在处理后 24 小时内自动删除。你的记忆仍然是你的。\n\n## 今天就试试\n\n看看 AI 照片修复能为你做什么。上传破损的照片，几秒内看见变化。\n",
+  "iconClass": "fas fa-wand-magic-sparkles",
+  "color": "#6366F1",
+  "gradient": "linear-gradient(135deg, #6366F1 0%, #818CF8 100%)",
+  "status": "Live",
+  "hero": {
+    "title": "把珍贵的记忆修回来",
+    "subtitle": "用训练好的 AI 模型，在几秒内让老旧、破损或褪色的照片重新活过来。",
+    "cta_primary": "现在试试",
+    "cta_primary_link": "#",
+    "cta_secondary": "看例子",
+    "cta_secondary_link": "#features"
+  },
+  "features": [
+    {
+      "title": "由 AI 驱动的修复",
+      "description": "我们的 AI 算法分析并修复你的照片，达到专业水准。划痕、撕裂和褪色，自动处理。",
+      "icon": "fas fa-wand-magic-sparkles"
+    },
+    {
+      "title": "快得像闪电的处理",
+      "description": "修复后的照片几秒就到，不用等几小时。优化过的基础设施保证周转快。",
+      "icon": "fas fa-bolt"
+    },
+    {
+      "title": "专业水准的结果",
+      "description": "效果比得上专业照片修复服务，费用只是其中一小部分。",
+      "icon": "fas fa-award"
+    },
+    {
+      "title": "安全且私密",
+      "description": "照片在处理后自动删除。我们从不存储或分享你的个人图像。",
+      "icon": "fas fa-shield-alt"
+    },
+    {
+      "title": "多种支付方式",
+      "description": "用 Stripe 或 SSLCommerz 安全支付。单张或批量，价格都灵活。",
+      "icon": "fas fa-credit-card"
+    },
+    {
+      "title": "自适应的现代界面",
+      "description": "清楚、好跟着走的界面，适配电脑、平板和手机屏幕。",
+      "icon": "fas fa-mobile-alt"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "网页",
+      "icon": "fas fa-globe",
+      "version": "网页应用",
+      "link": "#"
+    }
+  ],
+  "tech": [
+    "AI/ML 模型",
+    "React.js",
+    "Node.js",
+    "Stripe API",
+    "SSLCommerz",
+    "云端处理"
+  ],
+  "galleryType": "mobile",
+  "screenshots": [
+    "/images/projects/photorestore-ai/1.png",
+    "/images/projects/photorestore-ai/2.png",
+    "/images/projects/photorestore-ai/3.png",
+    "/images/projects/photorestore-ai/4.png",
+    "/images/projects/photorestore-ai/5.png",
+    "/images/projects/photorestore-ai/6.png"
+  ],
+  "testimonials": [
+    {
+      "quote": "PhotoRestore AI 让我祖母的婚纱照重新活了过来。效果好得难以置信！",
+      "author": "Ahmed R.",
+      "role": "顾客"
+    }
+  ],
+  "faq": [
+    {
+      "question": "AI 修复是怎么工作的？",
+      "answer": "我们的 AI 分析你的照片，找出破损、褪色和瑕疵，再用训练好的神经网络把图像智能地修回来。"
+    },
+    {
+      "question": "我的照片数据安全吗？",
+      "answer": "安全。所有上传的照片都在安全环境中处理，并在 24 小时后自动删除。我们从不存储或分享你的图像。"
+    },
+    {
+      "question": "哪些破损可以修？",
+      "answer": "我们的 AI 可以恢复褪色、修补划痕和撕裂、去掉污渍、提升清晰度，甚至为黑白照片上色。"
+    },
+    {
+      "question": "要多少钱？",
+      "answer": "价格灵活，从每张 2 美元起。更大的修复项目可以买批量套餐。"
+    }
+  ]
+}

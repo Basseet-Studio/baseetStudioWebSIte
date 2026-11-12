@@ -1,13 +1,10 @@
-// visitor-detect.ts
-// Detect the visitor's device (Mobile / Tablet / Desktop) and country (via
-// public IP geolocation APIs), then write a discreet one-line indicator into
-// the footer's <p id="visitor-info"> element. Ported from the old Hugo site's
-// assets/js/visitor-detect.js with TypeScript types.
+// Footer visitor line. Country comes from visitor-country; this file only paints the sentence.
 
-const CACHE_KEY = 'baseet_visitor_country_code'
-const TIMEOUT_MS = 3000
+import { getVisitorCountry, onVisitorCountry, type VisitorCountry } from './visitor-country'
 
 type Device = 'mobile' | 'tablet' | 'desktop'
+
+let subscribed = false
 
 function detectDevice(): Device {
   const ua = (typeof navigator !== 'undefined' && navigator.userAgent) || ''
@@ -20,46 +17,6 @@ function detectDevice(): Device {
   return 'desktop'
 }
 
-function fetchWithTimeout(url: string, ms: number): Promise<any> {
-  return Promise.race<any>([
-    fetch(url).then(r => {
-      if (!r.ok) throw new Error(`HTTP ${r.status}`)
-      return r.json()
-    }),
-    new Promise<never>((_, reject) => {
-      setTimeout(() => reject(new Error('timeout')), ms)
-    }),
-  ])
-}
-
-function detectCountryCode(): Promise<string> {
-  let cached: string | null = null
-  try {
-    cached = sessionStorage.getItem(CACHE_KEY)
-  } catch {
-    /* sessionStorage unavailable (private mode) — ignore */
-  }
-  if (cached) return Promise.resolve(cached)
-
-  return fetchWithTimeout('https://ipapi.co/json/', TIMEOUT_MS)
-    .then(data => (data && data.country_code ? String(data.country_code) : ''))
-    .catch(() =>
-      fetchWithTimeout('https://ip-api.com/json/?fields=countryCode', TIMEOUT_MS)
-        .then(data => (data && data.countryCode ? String(data.countryCode) : ''))
-        .catch(() => ''),
-    )
-    .then(code => {
-      if (code) {
-        try {
-          sessionStorage.setItem(CACHE_KEY, code)
-        } catch {
-          /* ignore */
-        }
-      }
-      return code
-    })
-}
-
 function countryName(code: string, lang: string): string {
   try {
     return new Intl.DisplayNames([lang], { type: 'region' }).of(code.toUpperCase()) || code
@@ -68,8 +25,7 @@ function countryName(code: string, lang: string): string {
   }
 }
 
-export function init(): void {
-  if (typeof document === 'undefined') return
+function paint(country: VisitorCountry): void {
   const el = document.getElementById('visitor-info')
   if (!el) return
 
@@ -78,10 +34,18 @@ export function init(): void {
   const unknownLabel = el.dataset.unknown || 'somewhere'
   const device = detectDevice()
   const deviceLabel = el.getAttribute(`data-device-${device}`) || device
+  const countryText = country.code ? countryName(country.code, lang) : unknownLabel
+  // textContent only — never innerHTML — to prevent XSS from a malicious geo response.
+  el.textContent = template.replace('{country}', countryText).replace('{device}', deviceLabel)
+}
 
-  detectCountryCode().then(code => {
-    const countryText = code ? countryName(code, lang) : unknownLabel
-    // textContent only — never innerHTML — to prevent XSS from a malicious geo response.
-    el.textContent = template.replace('{country}', countryText).replace('{device}', deviceLabel)
-  })
+export function init(): void {
+  if (typeof document === 'undefined') return
+  if (!subscribed) {
+    subscribed = true
+    onVisitorCountry(paint)
+    return
+  }
+  const country = getVisitorCountry()
+  if (country) paint(country)
 }

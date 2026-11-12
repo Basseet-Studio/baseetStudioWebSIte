@@ -1,0 +1,189 @@
+{
+  "name": "Ordelo",
+  "slug": "ordelo",
+  "type": "branded",
+  "tagline": "Perniagaan anda. Dalam talian. Tersusun. Milik anda.",
+  "description": "## Perihal Ordelo\n\nOrdelo ialah pakej dagangan dan pesanan digital yang sedia dijual untuk restoran, kafe, dapur awan, peruncit, pencipta, dan usahawan baharu yang mahu berhenti kehilangan pesanan kepada huru-hara WhatsApp, menu di atas kertas, dan saat “tunggu, adakah mereka bayar?”.\n\n### Tiada jejak kertas. Tiada tekaan.\n\nPelanggan layari → sesuaikan → bayar → jejak. Kakitangan nampak pesanan masuk secara masa nyata. Anda nampak angka yang benar-benar bermakna. Semua orang dimaklumkan serta-merta.\n\n### Lebih daripada laman menu\n\nJual Ordelo sebagai sistem pesanan restoran, hab jenama pelbagai lokasi, pusat arahan dapur awan, gabungan tempahan + pesanan, kedai pencipta, kelab langganan, kedai mini runcit, atau mesin automasi — satu pakej pelanggan dengan banyak masa depan.\n",
+  "icon": "/images/projects/ordelo-icon.png",
+  "iconClass": "fas fa-utensils",
+  "color": "#F97316",
+  "gradient": "linear-gradient(135deg, #F97316 0%, #FB923C 100%)",
+  "status": "Live",
+  "layoutVariant": "ordelo",
+  "fontHeading": "Playfair Display",
+  "fontBody": "Source Sans 3",
+  "fontWeights": "400,500,700",
+  "gsapAnimation": "parallax-masonry",
+  "appType": "web",
+  "brandName": "Ordelo",
+  "bgEffect": "kitchen",
+  "bgFallbackGradient": "linear-gradient(180deg, #FFFBEB 0%, #FDE68A 40%, #FBBF24 100%)",
+  "clientIds": [],
+  "hero": {
+    "title": "Pesanan masuk. Maklumkan serta-merta. Miliki pelanggan anda.",
+    "subtitle": "Menu, pembayaran, bayaran, amaran dapur, kemas kini pelanggan, dan alat pertumbuhan — tanpa kertas, tekaan, atau panik.",
+    "cta_primary": "Minta demo",
+    "cta_primary_link": "/contact",
+    "cta_secondary": "Lihat ciri",
+    "cta_secondary_link": "#features"
+  },
+  "features": [
+    {
+      "title": "Kedai pesanan berjenama",
+      "description": "Menu dan katalog yang utamakan telefon, dengan penyesuaian, troli, dan pembayaran — nama anda pada pesanan, bukan nama pasaran.",
+      "icon": "fas fa-store"
+    },
+    {
+      "title": "Dapur & operasi yang tenang",
+      "description": "Paparan dapur, aliran status langsung, mod sibuk, dan tugasan — pesanan mendarat di tempat kerja berlaku, bukan tertimbus dalam telefon.",
+      "icon": "fas fa-hat-chef"
+    },
+    {
+      "title": "Dimaklumkan serta-merta",
+      "description": "Pengesahan dan kemas kini status saat sesuatu berubah — diterima → disediakan → sedia → selesai.",
+      "icon": "fas fa-bell"
+    },
+    {
+      "title": "Penghantaran, ambil sendiri & makan di premis",
+      "description": "Mod pemenuhan yang perniagaan benar-benar jalankan — serta tempahan, waktu pelbagai lokasi, dan cangkuk penghantaran bila anda perlukan roda.",
+      "icon": "fas fa-truck"
+    },
+    {
+      "title": "Bayaran & kupon",
+      "description": "Pembayaran yang jelas, kaedah bayaran boleh dikonfigurasi, kod kempen, dan eksport mesra perakaunan — bukan cerita tunai dalam balang.",
+      "icon": "fas fa-credit-card"
+    },
+    {
+      "title": "Laporan yang tak menipu",
+      "description": "Pesanan mengikut masa, item terlaris, prestasi kupon, perbandingan lokasi, dan wawasan pelawat yang anda boleh bertindak atasnya.",
+      "icon": "fas fa-chart-line"
+    },
+    {
+      "title": "Automasi & webhook",
+      "description": "Pesanan baharu → dapur + pelanggan. Perubahan status → SMS. Mod sibuk → jeda pembayaran. Sambung CRM, Slack, dan rakan kongsi.",
+      "icon": "fas fa-robot"
+    },
+    {
+      "title": "Berkembang melangkaui makanan",
+      "description": "Produk digital, baucar hadiah, langganan, keahlian, dan halaman kempen sosial — pelanggan yang sama, lebih banyak lorong hasil.",
+      "icon": "fas fa-gift"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "Pelanggan",
+      "icon": "fas fa-globe",
+      "version": "Kedai + penjejakan",
+      "link": "#"
+    },
+    {
+      "name": "Pentadbir",
+      "icon": "fas fa-user-shield",
+      "version": "Konsol operasi",
+      "link": "#"
+    },
+    {
+      "name": "Dapur",
+      "icon": "fas fa-hat-chef",
+      "version": "Paparan dapur",
+      "link": "#"
+    },
+    {
+      "name": "Penghantaran",
+      "icon": "fas fa-truck",
+      "version": "Cangkuk pemandu / penghantaran",
+      "link": "#"
+    }
+  ],
+  "tech": [
+    "Kedai berjenama",
+    "Menu & penyesuaian",
+    "Troli & pembayaran",
+    "Paparan dapur (KDS)",
+    "Pemberitahuan pesanan",
+    "Kupon & kempen",
+    "Tempahan",
+    "Pelbagai lokasi",
+    "Laporan & wawasan",
+    "Automasi & webhook",
+    "Log masuk sosial",
+    "Langganan & digital"
+  ],
+  "galleryType": "web",
+  "screenshots": [
+    "/images/projects/ordelo/1.png",
+    "/images/projects/ordelo/2.png",
+    "/images/projects/ordelo/3.png",
+    "/images/projects/ordelo/4.png",
+    "/images/projects/ordelo/5.png",
+    "/images/projects/ordelo/6.png",
+    "/images/projects/ordelo/7.png"
+  ],
+  "testimonials": [
+    {
+      "quote": "Anda tak mulakan perniagaan untuk jadi penghala mesej sepenuh masa. Ordelo tukarkan huru-hara sembang menjadi pesanan yang bersih.",
+      "author": "Janji Ordelo",
+      "role": "Untuk pemilik perniagaan"
+    }
+  ],
+  "navItems": [
+    {
+      "label": "Utama",
+      "url": "",
+      "i18nKey": "project_nav_home"
+    },
+    {
+      "label": "Ciri",
+      "url": "features/",
+      "i18nKey": "project_nav_features"
+    },
+    {
+      "label": "Demo",
+      "url": "demo/",
+      "i18nKey": "project_nav_demo"
+    },
+    {
+      "label": "Dasar privasi",
+      "url": "terms/",
+      "i18nKey": "project_nav_terms"
+    }
+  ],
+  "navMetaItems": [
+    {
+      "label": "Kerja",
+      "url": "/projects/",
+      "i18nKey": "nav_work"
+    },
+    {
+      "label": "Hubungi",
+      "url": "/contact/",
+      "i18nKey": "nav_contact"
+    }
+  ],
+  "faq": [
+    {
+      "question": "Bukankah ini sekadar laman menu yang lain?",
+      "answer": "Bukan. Ordelo ialah ibu pejabat pesanan: troli, bayaran, paparan dapur, pemberitahuan, laporan, dan ruang untuk berkembang ke langganan serta produk digital — bukan brosur dengan nombor telefon."
+    },
+    {
+      "question": "Kami sudah terima pesanan di WhatsApp. Mengapa tukar?",
+      "answer": "WhatsApp ialah sembang. Ordelo ialah rekod. Setiap pesanan mendarat di satu tempat, dapur nampaknya, pelanggan dapat kemas kini serta-merta, dan anda kekalkan hubungan pelanggan."
+    },
+    {
+      "question": "Bukankah pelanggan akan guna aplikasi makanan sahaja?",
+      "answer": "Mereka mungkin temui anda di sana. Ordelo ialah cara anda berhenti menyewa setiap pesanan — kedai anda, margin anda, data anda."
+    },
+    {
+      "question": "Kami kafe kecil / jenama baharu. Adakah ini terlebih?",
+      "answer": "Lancar seperti jenama pada hari pertama. Mulakan dengan menu, pembayaran, dan pemberitahuan. Tambah paparan dapur, pelbagai lokasi, langganan, dan automasi bila anda sedia."
+    },
+    {
+      "question": "Bolehkah ia tangani waktu sibuk dapur dan pelbagai cawangan?",
+      "answer": "Boleh. Mod sibuk menjeda pembayaran dengan sopan, paparan dapur kekalkan status jelas, dan peringkat Skala menambah menu pelbagai lokasi, waktu, serta laporan cawangan."
+    },
+    {
+      "question": "Bolehkah kami jual lebih daripada makanan?",
+      "answer": "Boleh. Muat turun digital, baucar hadiah, pelan hidangan, kelab kopi, keahlian VIP, dan halaman pendaratan kempen — hubungan pelanggan yang sama, lebih banyak lorong hasil."
+    }
+  ]
+}

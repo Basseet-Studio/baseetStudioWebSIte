@@ -1,0 +1,99 @@
+{
+  "name": "Pameran Pendidikan Maya NSS",
+  "slug": "nss-virtual-education-fair",
+  "type": "standalone",
+  "tagline": "Platform pameran pendidikan maya",
+  "description": "## Perihal Pameran Pendidikan Maya NSS\n\nPameran Pendidikan Maya NSS mengubah cara pelajar berhubung dengan universiti di seluruh dunia. Lahir daripada keperluan untuk jadikan pendidikan berkualiti boleh dicapai tanpa mengira halangan geografi, platform kami merapatkan jurang antara pelajar yang bercita-cita tinggi dan institusi yang berprestij.\n\n### Mengapa maya?\n\nPameran pendidikan tradisional hadkan pelajar kepada acara berdekatan dan interaksi yang singkat. Platform maya kami tawarkan akses 24/7, capaian global, penglibatan yang mendalam, dan tiada kos perjalanan.\n\n### Untuk universiti\n\nPamerkan program melalui gerai interaktif, anjur sesi langsung dan webinar, kumpul serta urus prospek pelajar, dan analisis penglibatan untuk optimumkan jangkauan.\n\n### Untuk pelajar\n\nMaklumat universiti yang menyeluruh di satu tempat, cadangan pintar berdasarkan profil, komunikasi terus dengan pasukan kemasukan, serta pengurusan dokumen dengan penjejakan permohonan.\n\n## Kisah kejayaan\n\nLebih 50,000 pelajar telah menggunakan platform kami untuk mencari universiti yang sesuai.\n",
+  "iconClass": "fas fa-graduation-cap",
+  "color": "#0EA5E9",
+  "gradient": "linear-gradient(135deg, #0EA5E9 0%, #38BDF8 100%)",
+  "status": "Completed",
+  "hero": {
+    "title": "Berhubung dengan universiti di seluruh dunia",
+    "subtitle": "Hadiri pameran pendidikan tanpa perjalanan atau barisan. Terokai universiti, hadiri sesi langsung, dan rancang masa depan anda — semuanya dari keselesaan rumah.",
+    "cta_primary": "Terokai universiti",
+    "cta_primary_link": "https://nssedufair.com",
+    "cta_secondary": "Daftar sekarang",
+    "cta_secondary_link": "#features"
+  },
+  "features": [
+    {
+      "title": "Gerai universiti maya",
+      "description": "Terokai gerai maya interaktif dari universiti terkemuka. Akses risalah, video, dan berhubung dengan wakil kemasukan.",
+      "icon": "fas fa-building"
+    },
+    {
+      "title": "Sesi langsung & webinar",
+      "description": "Hadiri pembentangan langsung, sesi soal jawab, dan webinar yang dianjurkan wakil universiti serta pakar pendidikan.",
+      "icon": "fas fa-video"
+    },
+    {
+      "title": "Algoritma padanan pintar",
+      "description": "Sistem berkuasa AI kami mengesyorkan universiti berdasarkan profil akademik, minat, dan matlamat kerjaya anda.",
+      "icon": "fas fa-brain"
+    },
+    {
+      "title": "Muat naik & pengurusan dokumen",
+      "description": "Muat naik dokumen akademik sekali dan kongsi dengan beberapa universiti. Jejak status permohonan anda secara masa nyata.",
+      "icon": "fas fa-folder-open"
+    },
+    {
+      "title": "Sokongan pelbagai bahasa",
+      "description": "Akses platform dalam pelbagai bahasa termasuk Inggeris, Arab, dan Benggali.",
+      "icon": "fas fa-language"
+    },
+    {
+      "title": "Papan pemuka analitik",
+      "description": "Universiti dapat analitik terperinci tentang lawatan gerai, penglibatan, dan kualiti prospek.",
+      "icon": "fas fa-chart-line"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "Web",
+      "icon": "fas fa-globe",
+      "version": "Platform web",
+      "link": "#"
+    }
+  ],
+  "tech": [
+    "React.js",
+    "Node.js",
+    "WebRTC",
+    "Three.js",
+    "MongoDB",
+    "Socket.io"
+  ],
+  "galleryType": "web",
+  "screenshots": [],
+  "testimonials": [
+    {
+      "quote": "Pameran maya ini memudahkan saya meneroka universiti dari negara saya. Saya jumpa universiti idaman tanpa keluar rumah!",
+      "author": "Fatima K.",
+      "role": "Pelajar"
+    },
+    {
+      "quote": "Kami capai 10 kali ganda lebih ramai pelajar berbanding pameran fizikal. Analitik bantu kami faham apa yang pelajar benar-benar mahu.",
+      "author": "Dr. James Wilson",
+      "role": "Perekrut universiti"
+    }
+  ],
+  "faq": [
+    {
+      "question": "Bagaimana saya daftar untuk pameran maya?",
+      "answer": "Cuma cipta akaun di platform kami dan daftar untuk pameran yang akan datang. Anda akan terima kelayakan akses dan jadual pameran melalui e-mel."
+    },
+    {
+      "question": "Adakah ia percuma untuk pelajar?",
+      "answer": "Ya. Pendaftaran dan penyertaan pelajar sepenuhnya percuma."
+    },
+    {
+      "question": "Bagaimana universiti menyertai?",
+      "answer": "Universiti boleh daftar pakej gerai yang merangkumi penyesuaian gerai maya, slot sesi langsung, dan akses analitik."
+    },
+    {
+      "question": "Bolehkah saya berinteraksi dengan wakil universiti secara masa nyata?",
+      "answer": "Boleh. Setiap gerai ada sembang langsung dan pilihan panggilan video untuk berhubung terus dengan kaunselor kemasukan semasa waktu pameran."
+    }
+  ]
+}

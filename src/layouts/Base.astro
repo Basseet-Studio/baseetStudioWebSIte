@@ -163,7 +163,7 @@ const jsonLdWebSite = {
 
     {/* hreflang alternates for all locales */}
     {alternates.map((alt) => (
-      <link rel="alternate" hreflang={alt.lang} href={alt.href} />
+      <link rel="alternate" hreflang={alt.lang === 'x-default' ? 'x-default' : htmlLang(alt.lang)} href={alt.href} />
     ))}
 
     <!-- Open Graph -->
@@ -205,6 +205,12 @@ const jsonLdWebSite = {
     <link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+    {lang === 'ta' && (
+      <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    )}
+    {lang === 'zh' && (
+      <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    )}
 
     <ClientRouter />
 
@@ -269,10 +275,20 @@ const jsonLdWebSite = {
     </script>
 
     <script>
-      // Round 3 — visitor auto-detect (device + country) in the footer.
-      // Re-runs on astro:page-load so the line updates on view-transition navigations.
-      import('../scripts/visitor-detect').then(m => {
-        const run = () => m.init()
+      // Country lookup is independent. The footer line and the region UI
+      // (language menu, contact number) subscribe to it.
+      // Re-runs on astro:page-load because ClientRouter swaps the page
+      // and bundled scripts do not run again.
+      Promise.all([
+        import('../scripts/visitor-country'),
+        import('../scripts/visitor-detect'),
+        import('../scripts/region-ui'),
+      ]).then(([country, detect, region]) => {
+        const run = () => {
+          country.initVisitorCountry()
+          detect.init()
+          region.initRegionUi()
+        }
         if (document.readyState === 'loading') {
           document.addEventListener('DOMContentLoaded', run)
         } else {

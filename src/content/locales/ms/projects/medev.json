@@ -1,0 +1,134 @@
+{
+  "name": "Medev",
+  "slug": "medev",
+  "type": "branded",
+  "tagline": "Penjagaan kesihatan. Dipermudah.",
+  "description": "## Perihal Medev\n\nMedev ialah sistem pengurusan penjagaan kesihatan yang dibina untuk klinik dan hospital yang mahu kawalan penuh tanpa kerumitan. Sama ada anda hos sendiri atau kami hos untuk anda, anda dapat penyelesaian lengkap dengan bahagian hadapan yang boleh disesuaikan supaya mencerminkan jenama anda.\n\n### Dibina untuk penjagaan kesihatan moden\n\nMedev gabungkan keteguhan sistem penjagaan kesihatan perusahaan dengan kelenturan teknologi sumber terbuka. Ia direka untuk berkembang bersama amalan anda — dari klinik kecil hingga rangkaian hospital besar.\n\n### Jenama anda, cara anda\n\nLaman web bahagian hadapan yang disertakan boleh disesuaikan sepenuhnya supaya sepadan dengan penjenamaan dan keperluan reka bentuk klinik anda. Anda tentukan rupa; kami bina dengan bahagian belakang Medev yang standard menggerakkan segala-galanya di bawah.\n\n## Sedia ubah amalan anda?\n\nHubungi kami untuk tahu bagaimana Medev boleh kemaskan operasi penjagaan kesihatan anda.\n",
+  "iconClass": "fas fa-hospital",
+  "color": "#0A6E74",
+  "gradient": "linear-gradient(135deg, #0A6E74 0%, #14B8A6 100%)",
+  "status": "Ready to Deliver",
+  "layoutVariant": "medev",
+  "fontHeading": "IBM Plex Sans",
+  "fontBody": "IBM Plex Sans",
+  "fontWeights": "400,500,600,700",
+  "gsapAnimation": "typewriter-glitch",
+  "appType": "web",
+  "brandName": "Medev",
+  "bgEffect": "grid",
+  "bgFallbackGradient": "linear-gradient(180deg, #F0FDFA 0%, #CCFBF1 40%, #99F6E4 100%)",
+  "hero": {
+    "title": "Penjagaan kesihatan yang berfungsi untuk semua orang",
+    "subtitle": "Rekod kesihatan elektronik yang lengkap, pengurusan amalan, portal pesakit, dan API patuh FHIR — semuanya dalam satu platform yang selamat dan dihos sendiri.",
+    "cta_primary": "Minta demo",
+    "cta_primary_link": "/contact",
+    "cta_secondary": "Lihat ciri",
+    "cta_secondary_link": "#features"
+  },
+  "features": [
+    {
+      "title": "Sistem EHR penuh",
+      "description": "Rekod pesakit yang menyeluruh termasuk pertemuan, tanda vital, nota SOAP, diagnosis, dan preskripsi elektronik.",
+      "icon": "fas fa-file-medical"
+    },
+    {
+      "title": "Pengurusan amalan",
+      "description": "Penjadualan, temu janji, senarai menunggu, dan pengebilan yang kemas untuk amalan penjagaan kesihatan apa sahaja saiz.",
+      "icon": "fas fa-calendar-check"
+    },
+    {
+      "title": "Portal pesakit",
+      "description": "Portal layan diri untuk pesakit melihat rekod, menjadualkan temu janji, dan berkomunikasi dengan pasukan penjagaan mereka.",
+      "icon": "fas fa-users"
+    },
+    {
+      "title": "FHIR R4 + API REST",
+      "description": "Integrasi aplikasi SMART on FHIR v2.2.0 dengan API REST yang dilindungi OAuth2 untuk integrasi pihak ketiga berasaskan piawaian.",
+      "icon": "fas fa-plug"
+    },
+    {
+      "title": "Pelancaran Docker",
+      "description": "Dihos sendiri atau di awan melalui Docker. Kawalan penuh atas data anda dengan keselamatan gred perusahaan.",
+      "icon": "fas fa-docker"
+    },
+    {
+      "title": "Penjenamaan tersuai",
+      "description": "Sedia label putih dengan laman bahagian hadapan yang boleh disesuaikan sepenuhnya. Klinik anda, jenama anda, pengalaman pesakit anda.",
+      "icon": "fas fa-palette"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "Web",
+      "icon": "fas fa-globe",
+      "version": "Aplikasi web",
+      "link": "#"
+    },
+    {
+      "name": "Docker",
+      "icon": "fab fa-docker",
+      "version": "Dihos sendiri",
+      "link": "#"
+    }
+  ],
+  "tech": [
+    "PHP 8.2+",
+    "MariaDB 10.6",
+    "Doctrine ORM 3.6",
+    "Bootstrap 4",
+    "Angular 1.8",
+    "Docker Compose"
+  ],
+  "navItems": [
+    {
+      "label": "Utama",
+      "url": "",
+      "i18nKey": "project_nav_home"
+    },
+    {
+      "label": "Ciri",
+      "url": "features/",
+      "i18nKey": "project_nav_features"
+    },
+    {
+      "label": "Demo",
+      "url": "demo/",
+      "i18nKey": "project_nav_demo"
+    },
+    {
+      "label": "Dasar privasi",
+      "url": "terms/",
+      "i18nKey": "project_nav_terms"
+    }
+  ],
+  "navMetaItems": [
+    {
+      "label": "Kerja",
+      "url": "/projects/",
+      "i18nKey": "nav_work"
+    },
+    {
+      "label": "Hubungi",
+      "url": "/contact/",
+      "i18nKey": "nav_contact"
+    }
+  ],
+  "faq": [
+    {
+      "question": "Apa itu Medev?",
+      "answer": "Medev ialah pemasangan berjenama semula Medev v7.0.3+ — sistem rekod kesihatan elektronik dan pengurusan amalan perubatan sumber terbuka yang terkemuka di dunia. Ia berjalan pada VPS melalui Docker."
+    },
+    {
+      "question": "Ciri apa yang Medev sertakan?",
+      "answer": "Medev merangkumi EHR penuh (rekod pesakit, pertemuan, tanda vital, nota SOAP, preskripsi), pengurusan amalan (penjadualan, temu janji, pengebilan), portal pesakit, FHIR R4 + API REST dengan OAuth2, dan integrasi aplikasi SMART on FHIR v2.2.0."
+    },
+    {
+      "question": "Bolehkah saya sesuaikan bahagian hadapan yang menghadap pesakit?",
+      "answer": "Boleh. Medev sertakan laman web bahagian hadapan yang boleh disesuaikan, yang klinik atau hospital anda boleh jenamakan dan reka. Anda kawal pengalaman pesakit sementara bahagian belakang kekal standard dengan banyak ciri dan tambahan yang tersedia."
+    },
+    {
+      "question": "Adakah Medev dihos sendiri?",
+      "answer": "Ya, Medev dihos sendiri sepenuhnya melalui Docker. Anda ada kawalan penuh atas data anda. Kami juga tawarkan pilihan pengehosan kalau anda mahu kami uruskannya untuk anda."
+    }
+  ]
+}

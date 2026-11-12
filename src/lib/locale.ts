@@ -1,12 +1,14 @@
-// Locale helpers for multi-locale SEO routing (en unprefixed; ar/ur/hi/fil prefixed).
+// Locale helpers for multi-locale SEO routing (en unprefixed; other locales prefixed).
 import type { Lang } from '../types'
 
-export const LOCALES: readonly Lang[] = ['en', 'ar', 'ur', 'hi', 'fil'] as const
+export const LOCALES: readonly Lang[] = ['en', 'ar', 'ur', 'hi', 'fil', 'ms', 'ta', 'zh'] as const
 
 /** Locales that get a URL prefix (everything except default EN). */
-export const PREFIXED_LOCALES: readonly Lang[] = ['ar', 'ur', 'hi', 'fil'] as const
+export const PREFIXED_LOCALES: readonly Lang[] = ['ar', 'ur', 'hi', 'fil', 'ms', 'ta', 'zh'] as const
 
 export const DEFAULT_LOCALE: Lang = 'en'
+
+const LOCALE_PREFIX = new RegExp(`^\\/(${PREFIXED_LOCALES.join('|')})(?=\\/|$)`)
 
 const OG_LOCALE: Record<Lang, string> = {
   en: 'en_AE',
@@ -14,6 +16,9 @@ const OG_LOCALE: Record<Lang, string> = {
   ur: 'ur_PK',
   hi: 'hi_IN',
   fil: 'fil_PH',
+  ms: 'ms_MY',
+  ta: 'ta_MY',
+  zh: 'zh_CN',
 }
 
 const HTML_LANG: Record<Lang, string> = {
@@ -22,6 +27,9 @@ const HTML_LANG: Record<Lang, string> = {
   ur: 'ur',
   hi: 'hi',
   fil: 'fil',
+  ms: 'ms',
+  ta: 'ta',
+  zh: 'zh-Hans',
 }
 
 const IN_LANGUAGE: Record<Lang, string> = {
@@ -30,6 +38,9 @@ const IN_LANGUAGE: Record<Lang, string> = {
   ur: 'ur-PK',
   hi: 'hi-IN',
   fil: 'fil-PH',
+  ms: 'ms-MY',
+  ta: 'ta-MY',
+  zh: 'zh-Hans',
 }
 
 const LOCALE_LABEL: Record<Lang, string> = {
@@ -38,6 +49,9 @@ const LOCALE_LABEL: Record<Lang, string> = {
   ur: 'اردو',
   hi: 'हिन्दी',
   fil: 'Filipino',
+  ms: 'Bahasa Melayu',
+  ta: 'தமிழ்',
+  zh: '中文',
 }
 
 export function isLang(value: string): value is Lang {
@@ -71,6 +85,9 @@ const STUDIO_NAME: Record<Lang, string> = {
   ur: 'بسيط',
   hi: 'बेसीट',
   fil: 'Baseet',
+  ms: 'Baseet',
+  ta: 'பேசீட்',
+  zh: '巴西特',
 }
 
 const STUDIO_FULL_NAME: Record<Lang, string> = {
@@ -79,6 +96,9 @@ const STUDIO_FULL_NAME: Record<Lang, string> = {
   ur: 'استوڈیو بسيط',
   hi: 'बेसीट स्टूडियो',
   fil: 'Baseet Studio',
+  ms: 'Baseet Studio',
+  ta: 'பேசீட் ஸ்டுடியோ',
+  zh: '巴西特工作室',
 }
 
 export function studioName(lang: Lang): string {
@@ -100,7 +120,7 @@ export function langPrefix(lang: Lang): string {
  */
 export function stripLocalePrefix(pathname: string): string {
   let path = pathname.replace(/\/$/, '') || '/'
-  const match = path.match(/^\/(ar|ur|hi|fil)(?=\/|$)/)
+  const match = path.match(LOCALE_PREFIX)
   if (match) {
     path = path.slice(match[0].length) || '/'
   }
@@ -111,7 +131,7 @@ export function stripLocalePrefix(pathname: string): string {
 /** Detect lang from pathname (`/ur/services/` → `ur`). */
 export function langFromPathname(pathname: string): Lang {
   const stripped = pathname.replace(/\/$/, '') || '/'
-  const match = stripped.match(/^\/(ar|ur|hi|fil)(\/|$)/)
+  const match = stripped.match(LOCALE_PREFIX)
   if (match && isLang(match[1])) return match[1]
   return DEFAULT_LOCALE
 }

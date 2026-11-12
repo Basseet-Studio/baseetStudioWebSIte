@@ -1,0 +1,153 @@
+{
+  "name": "Zyrn",
+  "slug": "zyrn",
+  "type": "branded",
+  "tagline": "Kedai anda. Jenama anda. Pelanggan anda — dimaklumkan serta-merta.",
+  "description": "## Perihal Zyrn\n\nZyrn ialah pakej dagangan digital yang lengkap untuk pemilik perniagaan dan usahawan baharu yang mahu jual dalam talian tanpa lemas dalam hamparan, pesanan WhatsApp, dan nota lekit. Ia jalankan kedai sebenar — produk, bayaran, pelanggan, pemasaran, pemulangan, laporan — dan berkembang ke langganan, barangan digital, tempahan, serta automasi yang kekalkan perniagaan anda bergerak semasa anda tidur.\n\n### Tiada jejak kertas. Tiada tekaan.\n\nPesanan berhenti hidup dalam mesej langsung Instagram dan utas sembang. Stok berhenti hidup dalam buku nota. Pelanggan dapat kemas kini saat sesuatu berubah — pesanan dibuat, bayaran disahkan, dihantar, sampai, pemulangan dibuka.\n\n### Jual apa yang anda benar-benar jual\n\nProduk fizikal, muat turun digital, langganan dan keahlian, tempahan dan temu janji, himpunan serta kedai pelbagai mata wang — satu sistem berjenama, bukan laman brosur.\n",
+  "iconClass": "fas fa-th-large",
+  "color": "#EC4899",
+  "gradient": "linear-gradient(135deg, #EC4899 0%, #F9A8D4 100%)",
+  "status": "Ready to Deliver",
+  "layoutVariant": "zyrn",
+  "fontHeading": "Space Grotesk",
+  "fontBody": "Inter",
+  "fontWeights": "400,500,700",
+  "gsapAnimation": "stagger-fade",
+  "appType": "web",
+  "brandName": "Zyrn",
+  "bgEffect": "none",
+  "bgFallbackGradient": "linear-gradient(180deg, #FDF2F8 0%, #FCE7F3 40%, #FBCFE8 100%)",
+  "clientIds": ["little-hands-lab"],
+  "hero": {
+    "title": "Jual dengan lebih bijak. Kekal rapat dengan pelanggan. Berkembang tanpa huru-hara.",
+    "subtitle": "Sistem kedai dalam talian berjenama untuk produk fizikal, produk digital, dan langganan — dengan kemas kini pelanggan secara langsung, angka yang jelas, dan automasi supaya anda tak perlu teka apa yang berlaku dalam perniagaan anda.",
+    "cta_primary": "Minta demo",
+    "cta_primary_link": "/contact",
+    "cta_secondary": "Lihat ciri",
+    "cta_secondary_link": "#features"
+  },
+  "features": [
+    {
+      "title": "Kedai berjenama",
+      "description": "Logo, warna, dan kandungan anda pada kedai yang sedia untuk telefon — premium dari hari pertama, bukan pautan sementara di bio.",
+      "icon": "fas fa-store"
+    },
+    {
+      "title": "Jual apa sahaja",
+      "description": "Produk fizikal, muat turun digital, langganan, tempahan, himpunan, serta kedai pelbagai mata wang atau pelbagai bahasa.",
+      "icon": "fas fa-boxes-stacked"
+    },
+    {
+      "title": "Dimaklumkan serta-merta",
+      "description": "Pesanan dibuat → bayaran disahkan → dihantar → sampai → pemulangan dibuka. Pelanggan kekal maklum tanpa mengejar anda.",
+      "icon": "fas fa-bell"
+    },
+    {
+      "title": "Troli & kaedah bayaran",
+      "description": "Troli dan pembayaran yang lancar dengan kad, dompet, bayar semasa terima, pindahan bank, dan gerbang utama — terima wang, sahkan, teruskan.",
+      "icon": "fas fa-credit-card"
+    },
+    {
+      "title": "Pemasaran & pertumbuhan",
+      "description": "Kupon, peraturan katalog, kempen e-mel, SEO, kongsi sosial, dan alat surat berita — tawaran, masa, dan susulan.",
+      "icon": "fas fa-bullhorn"
+    },
+    {
+      "title": "Statistik langsung",
+      "description": "Jualan, produk terlaris, pelanggan, troli, promosi, inventori — buka angka dan putuskan apa yang perlu dibuat seterusnya.",
+      "icon": "fas fa-chart-line"
+    },
+    {
+      "title": "Automasi",
+      "description": "E-mel pesanan, amaran status, peraturan promosi, isyarat stok, dan aliran yang boleh dilanjutkan seperti pemulihan troli serta kemas kini WhatsApp.",
+      "icon": "fas fa-robot"
+    },
+    {
+      "title": "Kawalan inventori & pasukan",
+      "description": "Stok yang dikemas kini bersama jualan, import/eksport, pemulangan/RMA, dan peranan kakitangan supaya pasukan anda bekerja dari satu sistem.",
+      "icon": "fas fa-sitemap"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "Web",
+      "icon": "fas fa-globe",
+      "version": "Kedai berjenama + pentadbir",
+      "link": "#"
+    }
+  ],
+  "tech": [
+    "Kedai berjenama",
+    "Katalog & inventori",
+    "Troli & kaedah bayaran",
+    "Pemberitahuan pesanan",
+    "Langganan",
+    "Produk digital",
+    "Tempahan",
+    "Pemasaran & kupon",
+    "Statistik & laporan",
+    "Automasi",
+    "Pelbagai bahasa / pelbagai mata wang",
+    "Pemulangan / RMA"
+  ],
+  "navItems": [
+    {
+      "label": "Utama",
+      "url": "",
+      "i18nKey": "project_nav_home"
+    },
+    {
+      "label": "Ciri",
+      "url": "features/",
+      "i18nKey": "project_nav_features"
+    },
+    {
+      "label": "Demo",
+      "url": "demo/",
+      "i18nKey": "project_nav_demo"
+    },
+    {
+      "label": "Dasar privasi",
+      "url": "terms/",
+      "i18nKey": "project_nav_terms"
+    }
+  ],
+  "navMetaItems": [
+    {
+      "label": "Kerja",
+      "url": "/projects/",
+      "i18nKey": "nav_work"
+    },
+    {
+      "label": "Hubungi",
+      "url": "/contact/",
+      "i18nKey": "nav_contact"
+    }
+  ],
+  "faq": [
+    {
+      "question": "Saya sudah jual di Instagram. Mengapa saya perlukan Zyrn?",
+      "answer": "Instagram ialah tempat ditemui. Zyrn ialah pembayaran, stok, pemberitahuan, dan pemilikan hubungan pelanggan — supaya pesanan berhenti hidup dalam mesej langsung."
+    },
+    {
+      "question": "Tak bolehkah saya guna borang sahaja?",
+      "answer": "Borang terima permintaan. Zyrn terima bayaran, jejak inventori, dan kemas kini pelanggan secara automatik bila sesuatu berubah."
+    },
+    {
+      "question": "Saya terlalu kecil untuk perisian. Adakah ini untuk saya?",
+      "answer": "Itulah tepat masanya huru-hara bermula. Zyrn kekalkan perniagaan kecil kemas sebelum kekacauan jadi mahal — lancar secara ringkas, tambah langganan, digital, dan automasi kemudian."
+    },
+    {
+      "question": "Bolehkah saya jual produk digital atau langganan?",
+      "answer": "Boleh. Penghantaran serta-merta untuk muat turun dan lesen, serta aliran langganan dan keahlian untuk kotak, pelan, dan hasil berulang."
+    },
+    {
+      "question": "Adakah pelanggan tahu apa yang berlaku dengan pesanan mereka?",
+      "answer": "Ya. Dimaklumkan serta-merta — pesanan, bayaran, penghantaran, dan pemulangan — supaya anda tak menaip kemas kini yang sama lima puluh kali sehari."
+    },
+    {
+      "question": "Bagaimana saya tahu apa yang patut dijual seterusnya?",
+      "answer": "Statistik. Produk terlaris. Tingkah laku pelanggan. Paparan troli dan promosi. Tiada tekaan — buka papan pemuka dan putuskan."
+    }
+  ]
+}

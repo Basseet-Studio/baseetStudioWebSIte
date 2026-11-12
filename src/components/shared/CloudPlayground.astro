@@ -74,8 +74,8 @@ const { lang: _lang = 'en' } = Astro.props
         <div class="cp__grid">
           <label>Azimuth <input type="range" data-cp="azimuth" min="0" max="360" step="1" value="62" /><span data-cp-val="azimuth">62</span></label>
           <label>Elevation <input type="range" data-cp="elevation" min="0" max="90" step="1" value="59" /><span data-cp-val="elevation">59</span></label>
-          <label>Intensity <input type="range" data-cp="intensity" min="0" max="3" step="0.05" value="0" /><span data-cp-val="intensity">0</span></label>
-          <label>Fog <input type="range" data-cp="fogDensity" min="0" max="2" step="0.01" value="0.76" /><span data-cp-val="fogDensity">0.76</span></label>
+          <label>Intensity <input type="range" data-cp="intensity" min="0" max="3" step="0.05" value="1" /><span data-cp-val="intensity">1</span></label>
+          <label>Fog <input type="range" data-cp="fogDensity" min="0" max="2" step="0.01" value="0.4" /><span data-cp-val="fogDensity">0.4</span></label>
         </div>
       </details>
 
@@ -85,7 +85,7 @@ const { lang: _lang = 'en' } = Astro.props
           <label class="cp__check"><input type="checkbox" data-cp="skyEnabled" checked /> Texture sky</label>
           <label>Hour <input type="range" data-cp="skyHour" min="0" max="24" step="0.05" value="14" /><span data-cp-val="skyHour">14</span></label>
           <label>Yaw <input type="range" data-cp="skyYaw" min="0" max="360" step="1" value="0" /><span data-cp-val="skyYaw">0</span></label>
-          <label>Mix <input type="range" data-cp="skyMix" min="0" max="1" step="0.01" value="1" /><span data-cp-val="skyMix">1</span></label>
+          <label>Mix <input type="range" data-cp="skyMix" min="0" max="1" step="0.01" value="0.55" /><span data-cp-val="skyMix">0.55</span></label>
           <label>Floor <input type="range" data-cp="skyFloor" min="0" max="1" step="0.01" value="1" /><span data-cp-val="skyFloor">1</span></label>
           <label class="cp__check"><input type="checkbox" data-cp="skySun" checked /> Sun from sky</label>
           <label>Pin
@@ -110,6 +110,24 @@ const { lang: _lang = 'en' } = Astro.props
         </div>
       </details>
 
+      <details class="cp__section" open>
+        <summary>Objects</summary>
+        <div class="cp__grid">
+          <label>Model
+            <select id="cp-obj-select"><option value="">(none)</option></select>
+          </label>
+          <label class="cp__check"><input type="checkbox" id="cp-obj-force" /> Force visible</label>
+          <label>X <input type="range" data-obj="x" min="-80" max="80" step="0.1" value="0" /><span data-obj-val="x">0</span></label>
+          <label>Y <input type="range" data-obj="y" min="-40" max="40" step="0.1" value="0" /><span data-obj-val="y">0</span></label>
+          <label>Z <input type="range" data-obj="z" min="-80" max="80" step="0.1" value="0" /><span data-obj-val="z">0</span></label>
+          <label>Rot Y <input type="range" data-obj="rotationY" min="0" max="360" step="1" value="0" /><span data-obj-val="rotationY">0</span></label>
+          <label>Scale <input type="range" data-obj="scale" min="0.1" max="40" step="0.1" value="1" /><span data-obj-val="scale">1</span></label>
+        </div>
+        <div class="cp__shape-actions">
+          <button type="button" class="cp__btn" id="cp-obj-refresh">Refresh list</button>
+          <button type="button" class="cp__btn" id="cp-obj-copy">Copy transform</button>
+        </div>
+      </details>
       <details class="cp__section" open>
         <summary>Save snapshot</summary>
         <div class="cp__save">
@@ -985,6 +1003,108 @@ const { lang: _lang = 'en' } = Astro.props
         setStatus('Copy failed — clipboard unavailable')
       }
     })
+
+
+      // ---- Objects: live GLB placement --------------------------------------
+      type ObjTransform = { position: [number, number, number]; rotationY: number; scale: number }
+      type ObjRegistry = {
+        all: () => Array<{ id: string }>
+        getTransform: (id: string) => ObjTransform | null
+        setTransform: (id: string, t: Partial<ObjTransform>) => void
+        setForceVisible: (id: string, force: boolean) => void
+      }
+      async function getObjRegistry(): Promise<ObjRegistry | null> {
+        try {
+          const mod = await import('../../lib/scene/cloudscape-boot')
+          return (mod.getCloudscapeRuntime()?.objectRegistry as unknown as ObjRegistry) ?? null
+        } catch {
+          return null
+        }
+      }
+      const objSelect = document.getElementById('cp-obj-select') as HTMLSelectElement | null
+      const objForce = document.getElementById('cp-obj-force') as HTMLInputElement | null
+      const forced = new Set<string>()
+      function objInput(key: string): HTMLInputElement | null {
+        return root!.querySelector(`[data-obj="${key}"]`)
+      }
+      function setObjVal(key: string, v: number) {
+        const el = objInput(key)
+        if (el) el.value = String(v)
+        const label = root!.querySelector(`[data-obj-val="${key}"]`)
+        if (label) label.textContent = Number.isInteger(v) ? String(v) : v.toFixed(1)
+      }
+      function readObjTransform(): ObjTransform {
+        const n = (k: string) => Number(objInput(k)?.value ?? 0)
+        return { position: [n('x'), n('y'), n('z')], rotationY: n('rotationY'), scale: n('scale') }
+      }
+      async function refreshObjects() {
+        const reg = await getObjRegistry()
+        if (!reg || !objSelect) {
+          setStatus('Object registry not available')
+          return
+        }
+        const current = objSelect.value
+        objSelect.innerHTML = '<option value="">(none)</option>'
+        for (const o of reg.all()) {
+          const opt = document.createElement('option')
+          opt.value = o.id
+          opt.textContent = o.id
+          objSelect.appendChild(opt)
+        }
+        if (current) objSelect.value = current
+      }
+      async function loadSelectedObject() {
+        const reg = await getObjRegistry()
+        const id = objSelect?.value
+        if (!reg || !id) return
+        const t = reg.getTransform(id)
+        if (!t) return
+        setObjVal('x', t.position[0])
+        setObjVal('y', t.position[1])
+        setObjVal('z', t.position[2])
+        setObjVal('rotationY', t.rotationY)
+        setObjVal('scale', t.scale)
+        if (objForce) objForce.checked = forced.has(id)
+      }
+      objSelect?.addEventListener('change', () => void loadSelectedObject())
+      objForce?.addEventListener('change', async () => {
+        const reg = await getObjRegistry()
+        const id = objSelect?.value
+        if (!reg || !id || !objForce) return
+        reg.setForceVisible(id, objForce.checked)
+        if (objForce.checked) forced.add(id)
+        else forced.delete(id)
+      })
+      root.querySelectorAll('[data-obj]').forEach((el) => {
+        el.addEventListener('input', async () => {
+          const input = el as HTMLInputElement
+          const key = input.dataset.obj!
+          setObjVal(key, Number(input.value))
+          const reg = await getObjRegistry()
+          const id = objSelect?.value
+          if (!reg || !id) return
+          reg.setTransform(id, readObjTransform())
+        })
+      })
+      document.getElementById('cp-obj-refresh')?.addEventListener('click', () => void refreshObjects())
+      document.getElementById('cp-obj-copy')?.addEventListener('click', async () => {
+        const id = objSelect?.value
+        if (!id) {
+          setStatus('Pick a model first')
+          return
+        }
+        const t = readObjTransform()
+        const r = (v: number) => Math.round(v * 10) / 10
+        const text = `transform: { position: [${t.position.map(r).join(', ')}], rotationY: ${r(t.rotationY)}, scale: ${r(t.scale)} },`
+        try {
+          await navigator.clipboard.writeText(text)
+          setStatus(`Copied ${id} transform`)
+        } catch {
+          setStatus(text)
+        }
+      })
+      toggle!.addEventListener('click', () => window.setTimeout(() => void refreshObjects(), 300))
+      window.setTimeout(() => void refreshObjects(), 1500)
 
     if (forceOpen) void openPanel()
   }

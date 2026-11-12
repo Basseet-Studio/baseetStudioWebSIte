@@ -1,0 +1,167 @@
+{
+  "id": "mobile",
+  "slug": "mobile",
+  "title": "Pembangunan mudah alih",
+  "tagline": "Aplikasi yang orang kekalkan di skrin utama",
+  "color": "#FBCD37",
+  "gradient": "linear-gradient(135deg, #F59E0B 0%, #FBCD37 100%)",
+  "icon": "fas fa-mobile-alt",
+  "shortDescription": "Aplikasi mudah alih asli dan merentas platform",
+  "hero": {
+    "title": "Aplikasi yang orang kekalkan di skrin utama",
+    "subtitle": "iOS asli, Android asli, atau React Native — yang mana benar-benar sesuai untuk apa yang anda bina, bukan yang kebetulan kami suka.",
+    "cta_primary": "Rancang aplikasi saya",
+    "cta_primary_link": "/contact/",
+    "cta_secondary": "Lihat timbunan",
+    "cta_secondary_link": "#tech"
+  },
+  "metrics": [
+    { "value": "60 kad/s", "label": "Sasaran animasi" },
+    { "value": "10+", "label": "Aplikasi dihantar" },
+    { "value": "4.8★", "label": "Purata penilaian kedai" }
+  ],
+  "subServices": [
+    {
+      "id": "ios",
+      "name": "Aplikasi iOS",
+      "icon": "fab fa-apple",
+      "desc": "Aplikasi Swift asli untuk iPhone dan iPad",
+      "longDesc": "SwiftUI dan UIKit tulen, ditulis dalam Swift 5.10+ dengan async/await sepanjang jalan. Kami urus penyerahan App Store, beta TestFlight, manifes privasi, dan perkara kecil yang buat aplikasi terasa di rumah pada silikon Apple.",
+      "bullets": [
+        "Swift, SwiftUI, UIKit, Combine",
+        "iPhone, iPad, Apple Watch, Apple TV",
+        "StoreKit, Daftar masuk dengan Apple, Wallet",
+        "TestFlight, App Store Connect, dan manifes privasi"
+      ],
+      "imageLabel": "Contoh skrin aplikasi iOS"
+    },
+    {
+      "id": "android",
+      "name": "Aplikasi Android",
+      "icon": "fab fa-android",
+      "desc": "Aplikasi Kotlin asli untuk semua peranti Android",
+      "longDesc": "Android yang utamakan Kotlin, dengan Jetpack Compose, Material 3, dan timbunan AndroidX moden. Kami bina untuk ekor panjang peranti yang pengguna anda benar-benar ada, dengan susun atur suai, kembali ramalan, dan pengalaman mula yang lancar.",
+      "bullets": [
+        "Kotlin, Jetpack Compose, Material 3",
+        "Susun atur suai untuk telefon, peranti lipat, dan tablet",
+        "Play Billing, Play Integrity, dan Data Safety",
+        "Trek dalaman, pelancaran berperingkat, dan laporan pra-pelancaran"
+      ],
+      "imageLabel": "Contoh skrin aplikasi Android"
+    },
+    {
+      "id": "cross-platform",
+      "name": "Merentas platform",
+      "icon": "fas fa-layer-group",
+      "desc": "Flutter & React Native untuk capaian pelbagai platform",
+      "longDesc": "Satu pangkalan kod, dua kedai, dan rasa asli sebanyak yang platform benarkan. Kami pilih Flutter untuk antara muka dan animasi berfideliti tinggi, dan React Native bila pasukan sudah mendalam dalam JavaScript dan ekosistem itu penting.",
+      "bullets": [
+        "Flutter 3 dengan Dart 3, Material You, dan Cupertino",
+        "React Native dengan Expo, EAS, dan Hermes",
+        "Modul asli untuk Bluetooth, NFC, dan kamera",
+        "Sistem reka bentuk yang dikongsi merentas iOS dan Android"
+      ],
+      "imageLabel": "Contoh aplikasi merentas platform"
+    },
+    {
+      "id": "aso",
+      "name": "Pengoptimuman kedai aplikasi",
+      "icon": "fas fa-chart-line",
+      "desc": "Ditemui dengan strategi ASO yang betul",
+      "longDesc": "Kebanyakan aplikasi tak pernah dijumpai. Kami layan senarai kedai seperti permukaan produk — kajian kata kunci, ujian tangkapan skrin, pengelokalan, dan rentak uji kaji yang tetap supaya graf pemasangan anda terus naik.",
+      "bullets": [
+        "Kajian kata kunci dan segar semula metadata",
+        "Ujian A/B tangkapan skrin dan video",
+        "Pengelokalan untuk pasaran keutamaan",
+        "Ulasan, penilaian, dan aliran balasan"
+      ],
+      "imageLabel": "Papan pemuka analitik kedai aplikasi"
+    }
+  ],
+  "process": [
+    {
+      "number": "01",
+      "title": "Sahkan",
+      "desc": "Prototaip gelung teras, buktikan nilai, dan ukur saiz binaan",
+      "icon": "fas fa-compass"
+    },
+    {
+      "number": "02",
+      "title": "Reka seni bina",
+      "desc": "Pilih timbunan, lakar navigasi, dan reka aliran data",
+      "icon": "fas fa-sitemap"
+    },
+    {
+      "number": "03",
+      "title": "Reka bentuk",
+      "desc": "Aliran yang utamakan mudah alih, kajian gerakan, serta sistem ikon dan warna",
+      "icon": "fas fa-pencil-ruler"
+    },
+    {
+      "number": "04",
+      "title": "Bina",
+      "desc": "Pecutan demi pecutan dengan demo TestFlight dan Trek Dalaman Play",
+      "icon": "fas fa-code"
+    },
+    {
+      "number": "05",
+      "title": "Hantar & kembangkan",
+      "desc": "Penyerahan kedai, kemudian peta hala tuju keluaran, bukan sekali lalu selesai",
+      "icon": "fas fa-rocket"
+    }
+  ],
+  "deliverables": [
+    {
+      "title": "Binari aplikasi produksi",
+      "description": "Binaan bertandatangan untuk App Store dan Play Store, dengan trek dalaman dan luaran sudah disediakan.",
+      "icon": "fas fa-mobile"
+    },
+    {
+      "title": "Sumber & CI",
+      "description": "Repositori yang bersih, GitHub Actions atau Bitrise, dan paip keluaran bertandatangan untuk kedua-dua kedai.",
+      "icon": "fas fa-code-branch"
+    },
+    {
+      "title": "Senarai kedai",
+      "description": "Tangkapan skrin, video, penerangan, dan kata kunci dalam setiap tempat anda beroperasi.",
+      "icon": "fas fa-store"
+    },
+    {
+      "title": "Analitik & laporan ranap",
+      "description": "Firebase, Sentry, atau timbunan pilihan anda disambung dan sedia dipaparkan.",
+      "icon": "fas fa-chart-bar"
+    }
+  ],
+  "tech": [
+    "Swift",
+    "Kotlin",
+    "SwiftUI",
+    "Jetpack Compose",
+    "Flutter",
+    "React Native",
+    "Expo",
+    "Firebase",
+    "Supabase",
+    "Fastlane",
+    "Sentry",
+    "RevenueCat"
+  ],
+  "faq": [
+    {
+      "question": "Patutkah saya pilih Flutter, React Native, atau asli sepenuhnya?",
+      "answer": "Ia bergantung pada pasukan, garis masa, dan cita-cita platform anda. Kami syorkan asli sepenuhnya untuk aplikasi yang bersandar pada ciri platform (Apple Watch, Material You, NFC). Flutter dan React Native bagus untuk MVP merentas platform dan kebanyakan aplikasi pengguna. Kami akan syorkan pilihan yang tepat selepas bengkel seni bina yang ringkas."
+    },
+    {
+      "question": "Adakah anda urus penyerahan App Store dan Play Store?",
+      "answer": "Ya. Kami urus seluruh proses penyerahan, termasuk nota semakan, label nutrisi privasi, Data Safety, sijil tandatangan, dan salinan senarai kedai. Kami juga sediakan pelancaran berperingkat supaya anda boleh pantau sesi tanpa ranap dan undur jika perlu."
+    },
+    {
+      "question": "Bolehkah anda ambil alih aplikasi sedia ada?",
+      "answer": "Kerap. Kami buat audit berbayar dahulu — semakan seni bina, analisis kebergantungan, laporan ranap, dan pelan satu halaman — kemudian cadangkan kerjasama berperingkat. Kebanyakan projek penyelamatan bermula dengan pecutan penstabilan 2 minggu sebelum kami sentuh ciri."
+    },
+    {
+      "question": "Bagaimana anda urus penyelenggaraan berterusan?",
+      "answer": "Kami tawarkan pelan penahan bulanan yang merangkumi kemas kini kedai, naik taraf kebergantungan, triaj ranap, dan sebilangan kecil jam ciri. Kebanyakan pelanggan kekalkan kami 6–12 bulan selepas pelancaran supaya aplikasi kekal segar."
+    }
+  ]
+}

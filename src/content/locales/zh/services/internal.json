@@ -1,0 +1,161 @@
+{
+  "id": "internal",
+  "slug": "internal",
+  "title": "内部工具",
+  "tagline": "真正会被用起来的运营软件",
+  "color": "#0891B2",
+  "gradient": "linear-gradient(135deg, #0891B2 0%, #22D3EE 100%)",
+  "icon": "fas fa-tools",
+  "shortDescription": "用定制的内部方案把运营理顺",
+  "hero": {
+    "title": "真正会被用起来的运营软件",
+    "subtitle": "仪表盘、客户管理系统和后台工具，让团队周一早上打开时不会抱怨。",
+    "cta_primary": "把我的流程画出来",
+    "cta_primary_link": "/contact/",
+    "cta_secondary": "看看交付物",
+    "cta_secondary_link": "#deliverables"
+  },
+  "metrics": [
+    { "value": "−40%", "label": "日常运营耗时" },
+    { "value": "1 周", "label": "第一版能用的构建" },
+    { "value": "100%", "label": "可审计的操作" }
+  ],
+  "subServices": [
+    {
+      "id": "admin-dashboards",
+      "name": "管理仪表盘",
+      "icon": "fas fa-tachometer-alt",
+      "desc": "用来管生意的实时仪表盘",
+      "longDesc": "给团队的真指挥中心——不是一张静止的报表。我们做的内部仪表盘从你的技术栈拉实时数据，把异常摊开，让操作的人不用离开页面就能动手。",
+      "bullets": [
+        "来自数据库、数仓或软件接口的实时数据",
+        "给运营、财务和管理层的按角色视图",
+        "下钻、筛选和保存的视图",
+        "要紧指标的 Slack 和邮件提醒"
+      ],
+      "imageLabel": "带实时指标的管理仪表盘"
+    },
+    {
+      "id": "crm",
+      "name": "客户管理系统",
+      "icon": "fas fa-users-cog",
+      "desc": "按你的方式做的客户关系管理",
+      "longDesc": "当 Salesforce 或 HubSpot 过重，我们就做一套贴合你销售动作的客户管理系统。管道阶段、跟进、合同和客户健康——团队需要的正好这些，不需要的一个不加。",
+      "bullets": [
+        "管道、成交阶段和预测",
+        "邮件、通话和会议接入",
+        "客户健康与续约流程",
+        "不用打销售电话就能加的自定义字段和对象"
+      ],
+      "imageLabel": "定制客户管道视图"
+    },
+    {
+      "id": "inventory",
+      "name": "库存管理",
+      "icon": "fas fa-boxes",
+      "desc": "高效追踪库存、订单和物流",
+      "longDesc": "库存离一次失误，就是断货或报废。我们做的库存系统跨地点追踪货号，接上收银和市场渠道，并在补货决定变成问题之前把它摊出来。",
+      "bullets": [
+        "多地点库存与调拨",
+        "收银、Shopify 和市场渠道同步",
+        "批次、序列号和有效期追踪",
+        "采购单和供应商流程"
+      ],
+      "imageLabel": "库存水位与补货视图"
+    },
+    {
+      "id": "automation",
+      "name": "流程自动化",
+      "icon": "fas fa-robot",
+      "desc": "把重复的事自动化，把时间省下来",
+      "longDesc": "我们把吃掉你一周的手工步骤，变成可靠的自动化。线索分配、发票生成、客户上手序列，以及那些没有现成模板的工具之间的胶水。",
+      "bullets": [
+        "带版本历史的可视化流程设计器",
+        "重试、幂等和错误处理",
+        "每一次操作和决定的审计日志",
+        "开箱即用、接通 200 多家软件的连接器"
+      ],
+      "imageLabel": "流程自动化画布"
+    }
+  ],
+  "process": [
+    {
+      "number": "01",
+      "title": "把流程画出来",
+      "desc": "坐在团队旁边，画出步骤，找出杠杆最大的瓶颈",
+      "icon": "fas fa-lightbulb"
+    },
+    {
+      "number": "02",
+      "title": "圈定最小版本",
+      "desc": "一周能发出去的紧第一刀——团队每天会用的那八成",
+      "icon": "fas fa-bullseye"
+    },
+    {
+      "number": "03",
+      "title": "构建并埋点",
+      "desc": "类型安全、真数据库，以及功能开关，让我们可以在线上迭代",
+      "icon": "fas fa-code"
+    },
+    {
+      "number": "04",
+      "title": "培训并交接",
+      "desc": "录屏讲解、一份短指南，以及三十天的小调整窗口",
+      "icon": "fas fa-graduation-cap"
+    }
+  ],
+  "deliverables": [
+    {
+      "title": "能用的内部应用",
+      "description": "已部署的应用，带登录、角色，以及你们信息技术团队能接手的管理区。",
+      "icon": "fas fa-server"
+    },
+    {
+      "title": "数据接入",
+      "description": "接到你的数据库、软件工具和表格的实时连接器。",
+      "icon": "fas fa-plug"
+    },
+    {
+      "title": "操作培训",
+      "description": "录好的讲解，以及一份写下来的日常操作手册。",
+      "icon": "fas fa-book-open"
+    },
+    {
+      "title": "交接与支持",
+      "description": "源代码、基础设施即代码，以及上线后三十天支持。",
+      "icon": "fas fa-handshake"
+    }
+  ],
+  "tech": [
+    "Next.js",
+    "TypeScript",
+    "Postgres",
+    "Prisma",
+    "tRPC",
+    "Tailwind CSS",
+    "Trigger.dev",
+    "Temporal",
+    "Supabase",
+    "Auth.js",
+    "Resend",
+    "Slack API"
+  ],
+  "faq": [
+    {
+      "question": "这和现成的软件有什么不同？",
+      "answer": "现成软件为平均客户优化。定制内部工具为你精确的流程优化——而且人变多时，你不用按席位一直付钱。该用现成软件时我们会说，不该用时我们做定制。"
+    },
+    {
+      "question": "团队多久能用上？",
+      "answer": "我们的目标是一到两周内给出能用的第一版，完整的第一版按集成复杂度在 6 到 10 周。我们按周增量交付，每个周五演示。"
+    },
+    {
+      "question": "我的团队以后能自己维护吗？",
+      "answer": "能。我们选无聊、文档齐全的技术栈，写未来团队真会读的说明，并做一次交接冲刺，和每天负责这套工具的人结对。"
+    },
+    {
+      "question": "做到一半需求变了怎么办？",
+      "answer": "这是预期之内。我们的流程围着短反馈来：每周演示、共享路线图，以及功能开关，让你不用重新部署就能打开或关掉变化。"
+    }
+  ]
+}

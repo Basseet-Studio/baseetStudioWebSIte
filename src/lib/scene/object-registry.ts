@@ -1,9 +1,16 @@
 import type { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 import type * as THREE from 'three'
-import type { CloudDepth, ObjectCommands, SceneObject, ScrollAnchor } from './types'
+import type {
+  CloudDepth,
+  ObjectCommands,
+  ObjectTransform,
+  SceneObject,
+  ScrollAnchor,
+} from './types'
 import { sceneLog, sceneWarn } from './scene-debug'
 
 export const WORLD_SCALE = 0.4
+
 const MAX_CONCURRENT_LOADS = 2
 
 interface RegistryEntry {
@@ -11,6 +18,8 @@ interface RegistryEntry {
   loaded: boolean
   loading: boolean
   group: THREE.Group | null
+  /** Dev/playground override: render regardless of scroll anchor commands. */
+  forceVisible: boolean
 }
 
 export interface ObjectRegistry {
@@ -26,6 +35,11 @@ export interface ObjectRegistry {
   getDebugEntries: () => Array<{ id: string; loaded: boolean; visible: boolean }>
   getGroupsByDepth: () => { behind: THREE.Group[]; middle: THREE.Group[]; in_front: THREE.Group[] }
   setModelsVisibleForDepthPass: (pass: CloudDepth | 'all') => void
+  /** Playground: read / live-edit an object's transform. */
+  getTransform: (id: string) => ObjectTransform | null
+  setTransform: (id: string, transform: Partial<ObjectTransform>) => void
+  /** Playground: force an object visible (and loaded) regardless of scroll. */
+  setForceVisible: (id: string, force: boolean) => void
 }
 
 export function createObjectRegistry(deps: {
@@ -37,6 +51,9 @@ export function createObjectRegistry(deps: {
   let loadQueue: string[] = []
   let activeLoads = 0
   let anchorsById = new Map<string, number>()
+  // Ids shown by the most recent applyVisibility() — so models that finish
+  // loading after the scroll command still appear without needing a scroll.
+  let lastShown = new Set<string>()
 
   function setAnchorIndex(anchors?: ScrollAnchor[]): void {
     anchorsById = new Map()
@@ -53,6 +70,7 @@ export function createObjectRegistry(deps: {
           loaded: false,
           loading: false,
           group: null,
+          forceVisible: false,
         })
       } else {
         entries.get(obj.id)!.config = obj
@@ -87,6 +105,7 @@ export function createObjectRegistry(deps: {
   function queueLoad(id: string): void {
     const entry = entries.get(id)
     if (!entry || entry.loaded || entry.loading) return
+    if (loadQueue.includes(id)) return
     loadQueue.push(id)
     drainQueue()
   }
@@ -101,7 +120,6 @@ export function createObjectRegistry(deps: {
   function loadOne(id: string): void {
     const entry = entries.get(id)
     if (!entry || entry.loaded || entry.loading) return
-
     entry.loading = true
     activeLoads += 1
 
@@ -109,7 +127,7 @@ export function createObjectRegistry(deps: {
     wrapper.name = id
     wrapper.visible = false
     wrapper.userData.cloudDepth = entry.config.cloudDepth
-    wrapper.userData._scrollVisible = false
+    wrapper.userData._scrollVisible = lastShown.has(id)
     deps.parentGroup.add(wrapper)
     entry.group = wrapper
 
@@ -135,7 +153,6 @@ export function createObjectRegistry(deps: {
         } else {
           wrapper.add(scene)
         }
-
         applyTransform(wrapper, cfg.transform)
         entry.loaded = true
         entry.loading = false
@@ -153,10 +170,7 @@ export function createObjectRegistry(deps: {
     )
   }
 
-  function applyTransform(
-    group: THREE.Group,
-    transform: SceneObject['transform'],
-  ): void {
+  function applyTransform(group: THREE.Group, transform: SceneObject['transform']): void {
     if (!transform) return
     const p = transform.position || [0, 0, 0]
     group.position.set(p[0], p[1], p[2])
@@ -167,13 +181,11 @@ export function createObjectRegistry(deps: {
   function maybeTriggerLoad(entry: RegistryEntry, progress: number): void {
     const loadAt = entry.config.loadAt
     if (!loadAt || entry.loaded || entry.loading) return
-
     if (loadAt.type === 'progress' && typeof loadAt.at === 'number') {
       if (progress >= loadAt.at - (loadAt.preloadMargin || 0)) {
         queueLoad(entry.config.id)
       }
     }
-
     if (loadAt.type === 'anchor' && loadAt.anchorId) {
       const anchorP = anchorsById.get(loadAt.anchorId)
       if (anchorP === undefined) return
@@ -197,37 +209,64 @@ export function createObjectRegistry(deps: {
     const behind: THREE.Group[] = []
     const middle: THREE.Group[] = []
     const in_front: THREE.Group[] = []
-
     for (const entry of entries.values()) {
       if (!entry.group || !entry.loaded) continue
+      const shown = entry.forceVisible || entry.group.userData._scrollVisible !== false
+      if (!shown) continue
       const depth = readCloudDepth(entry.group.userData.cloudDepth)
       if (depth === 'behind') behind.push(entry.group)
       else if (depth === 'middle') middle.push(entry.group)
       else in_front.push(entry.group)
     }
-
     return { behind, middle, in_front }
   }
 
   function setModelsVisibleForDepthPass(pass: CloudDepth | 'all'): void {
     for (const entry of entries.values()) {
       if (!entry.group) continue
-
-      const scrollVisible = entry.group.userData._scrollVisible !== false
+      const scrollVisible = entry.forceVisible || entry.group.userData._scrollVisible !== false
       const depth = readCloudDepth(entry.group.userData.cloudDepth)
-
       if (!scrollVisible) {
         entry.group.visible = false
         continue
       }
-
       if (pass === 'all') {
         entry.group.visible = true
         continue
       }
-
       entry.group.visible = depth === pass
     }
+  }
+
+  function getTransform(id: string): ObjectTransform | null {
+    const entry = entries.get(id)
+    if (!entry) return null
+    const t = entry.config.transform
+    return {
+      position: [...(t?.position || [0, 0, 0])] as [number, number, number],
+      rotationY: t?.rotationY ?? 0,
+      scale: t?.scale ?? 1,
+    }
+  }
+
+  function setTransform(id: string, partial: Partial<ObjectTransform>): void {
+    const entry = entries.get(id)
+    if (!entry) return
+    const current = getTransform(id)!
+    const next: ObjectTransform = {
+      position: (partial.position ?? current.position) as [number, number, number],
+      rotationY: partial.rotationY ?? current.rotationY,
+      scale: partial.scale ?? current.scale,
+    }
+    entry.config = { ...entry.config, transform: next }
+    if (entry.group) applyTransform(entry.group, next)
+  }
+
+  function setForceVisible(id: string, force: boolean): void {
+    const entry = entries.get(id)
+    if (!entry) return
+    entry.forceVisible = force
+    if (force) queueLoad(id)
   }
 
   return {
@@ -248,7 +287,7 @@ export function createObjectRegistry(deps: {
     applyVisibility(commands?: ObjectCommands) {
       const show = new Set(commands?.show || [])
       const hide = new Set(commands?.hide || [])
-
+      lastShown = new Set([...show].filter((id) => !hide.has(id)))
       for (const [id, entry] of entries) {
         if (hide.has(id)) {
           if (entry.group) {
@@ -283,5 +322,8 @@ export function createObjectRegistry(deps: {
       })),
     getGroupsByDepth,
     setModelsVisibleForDepthPass,
+    getTransform,
+    setTransform,
+    setForceVisible,
   }
 }

@@ -30,6 +30,15 @@ export const homeEndCamera: CameraPose = {
 export const homeEntryCamera: CameraPose = homeStartCamera
 export const homeExitCamera: CameraPose = homeEndCamera
 
+/**
+ * City skylines rising out of the cloud sea (hero → services).
+ * Positions are in object-root units (x WORLD_SCALE 0.4 = world units).
+ * normalize: true fits each model to a 2-unit box, then `scale` multiplies.
+ * Starting values sit on the hero camera's line of sight — fine-tune with the
+ * Cloud Playground "Objects" panel and paste the copied transform here.
+ */
+const SKYLINE_IDS = ['dubai-skyline', 'petronas-skyline']
+
 export const homeSceneConfig: SceneConfig = {
   schemaVersion: 1,
   pageId: 'home',
@@ -58,7 +67,10 @@ export const homeSceneConfig: SceneConfig = {
       label: 'Hero — start shot',
       atScrollProgress: 0,
       camera: homeStartCamera,
-      objects: { hide: ['team-skyline'] },
+      objects: {
+        show: [...SKYLINE_IDS],
+        hide: ['team-skyline'],
+      },
     },
     {
       id: 'home-features',
@@ -66,6 +78,10 @@ export const homeSceneConfig: SceneConfig = {
       atScrollProgress: 0.5,
       easing: 'easeInOutCubic',
       camera: homeMidCamera,
+      objects: {
+        show: [...SKYLINE_IDS],
+        hide: ['team-skyline'],
+      },
     },
     {
       id: 'home-end',
@@ -76,11 +92,30 @@ export const homeSceneConfig: SceneConfig = {
       lighting: { fogDensity: 0.45 },
       objects: {
         show: ['team-skyline'],
+        hide: [...SKYLINE_IDS],
         animateIn: ['team-skyline'],
       },
     },
   ],
   objects: [
+    {
+      id: 'dubai-skyline',
+      url: '/models/home/dubai-skyline.glb',
+      scope: 'page',
+      cloudDepth: 'middle',
+      transform: { position: [-24.8, 0, -16.2], rotationY: 0, scale: 14 },
+      normalize: true,
+      preload: true,
+    },
+    {
+      id: 'petronas-skyline',
+      url: '/models/home/petronas-skyline.glb',
+      scope: 'page',
+      cloudDepth: 'middle',
+      transform: { position: [-8.9, -2, -18.7], rotationY: 0, scale: 9 },
+      normalize: true,
+      preload: true,
+    },
     {
       id: 'team-skyline',
       url: '/models/home/team-skyline.glb',

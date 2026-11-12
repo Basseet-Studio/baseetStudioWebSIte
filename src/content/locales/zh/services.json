@@ -1,0 +1,121 @@
+{
+  "title": "我们的服务",
+  "subtitle": "完整的数字方案",
+  "description": "我们不只是做网站。我们按你的业务需要搭一整套数字系统——点进每一项服务，看看我们怎么干活。",
+  "categories": [
+    {
+      "id": "web",
+      "slug": "web",
+      "icon": "fas fa-globe",
+      "color": "#496BC1",
+      "gradient": "linear-gradient(135deg, #496BC1 0%, #6B8AD9 100%)",
+      "title": "网站开发",
+      "shortDescription": "现代、自适应的网站和网页应用，建在我们自己长期维护的技术栈上——不是用完就扔的模板。",
+      "tagline": "和你一样拼命干活的网站"
+    },
+    {
+      "id": "mobile",
+      "slug": "mobile",
+      "icon": "fas fa-mobile-alt",
+      "color": "#FBCD37",
+      "gradient": "linear-gradient(135deg, #F59E0B 0%, #FBCD37 100%)",
+      "title": "移动开发",
+      "shortDescription": "原生和跨平台应用，先为小屏幕设计，再照顾其他一切。",
+      "tagline": "人们愿意留在主屏幕上的应用"
+    },
+    {
+      "id": "internal",
+      "slug": "internal",
+      "icon": "fas fa-tools",
+      "color": "#0891B2",
+      "gradient": "linear-gradient(135deg, #0891B2 0%, #22D3EE 100%)",
+      "title": "内部工具",
+      "shortDescription": "仪表盘、客户管理系统和后台工具，让团队周一早上打开时不会抱怨。",
+      "tagline": "真正会被用起来的运营软件"
+    },
+    {
+      "id": "seo",
+      "slug": "seo",
+      "icon": "fas fa-search",
+      "color": "#16A34A",
+      "gradient": "linear-gradient(135deg, #16A34A 0%, #4ADE80 100%)",
+      "title": "搜索优化与营销",
+      "shortDescription": "技术搜索优化、内容和本地搜索——用成交管道衡量，不用虚荣排名。",
+      "tagline": "成为搜索者真正找得到的品牌"
+    },
+    {
+      "id": "design",
+      "slug": "design",
+      "icon": "fas fa-paint-brush",
+      "color": "#AF52DE",
+      "gradient": "linear-gradient(135deg, #AF52DE 0%, #D8A0F5 100%)",
+      "title": "界面与体验设计",
+      "shortDescription": "界面来自真实的用户会话，不来自情绪板。它好看，是因为它清楚。",
+      "tagline": "值得再点一次的设计"
+    },
+    {
+      "id": "cloud",
+      "slug": "cloud",
+      "icon": "fas fa-cloud",
+      "color": "#0EA5E9",
+      "gradient": "linear-gradient(135deg, #0369A1 0%, #38BDF8 100%)",
+      "title": "云与运维",
+      "shortDescription": "可扩展的基础设施、持续集成与部署，以及监控，让发布不再是一件吓人的事。",
+      "tagline": "发得更快，睡得更安"
+    }
+  ],
+  "process": {
+    "title": "六步往上走，不是一张清单。",
+    "subtitle": "每一位合作伙伴，每一次，都是同一段旅程——从第一句“如果这样做呢”，到产品上线、真的有人盯着它。",
+    "steps": [
+      {
+        "number": "01",
+        "title": "摸清",
+        "lead": "我们先问生意，不问软件。",
+        "desc": "这件事到底要做成什么、给谁用、做错了会怎样？这一步一半的价值，是我们告诉你哪些东西现在还不需要。",
+        "icon": "fas fa-lightbulb"
+      },
+      {
+        "number": "02",
+        "title": "规划",
+        "lead": "你拿到的是计划，不是猜测。",
+        "desc": "我们把真正要做的范围定下来——每个阶段从第一天就画好，包括那些要等到相关时才跟你提的部分。",
+        "icon": "fas fa-map"
+      },
+      {
+        "number": "03",
+        "title": "设计",
+        "lead": "围着真实用法来长。",
+        "desc": "界面围着东西真正会被怎么用来长，不是围着一张情绪板。如果是给站在柜台前、顾客在等的人用，它就不该长得像给坐在办公桌前的人做的仪表盘——我们按这个来设计。",
+        "icon": "fas fa-pencil-alt"
+      },
+      {
+        "number": "04",
+        "title": "开发",
+        "lead": "能交出去的代码。",
+        "desc": "有类型、有测试、有评审——我们写代码的方式，是让下一位工程师，无论是你们的还是我们的，会感谢我们，而不是从头重写。",
+        "icon": "fas fa-code"
+      },
+      {
+        "number": "05",
+        "title": "测试",
+        "lead": "在你的顾客之前，我们先把它弄坏。",
+        "desc": "边界情况、糟糕的网络、人们填错的字段——按人真实的行为来测，不按规格书写他们“应该”怎样。",
+        "icon": "fas fa-vial"
+      },
+      {
+        "number": "06",
+        "title": "上线",
+        "lead": "我们留在通话里。",
+        "desc": "部署平台、持续集成、内容迁移、逐步放量——上线当天还有哪里不稳，盯着的是我们，不是一张排队的工单。",
+        "icon": "fas fa-rocket"
+      }
+    ]
+  },
+  "cta": {
+    "title": "还不确定你需要什么？",
+    "subtitle": "第一次通话，就是为了这件事。",
+    "description": "每门生意都不一样。我们会帮你找出适合你的需求和预算的方案。",
+    "button": "预约一次免费咨询"
+  }
+}

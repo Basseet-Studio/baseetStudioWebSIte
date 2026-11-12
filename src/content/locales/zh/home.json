@@ -1,0 +1,377 @@
+{
+  "hero": {
+    "title": "简单，就是**最好**",
+    "text": "我们做你真正需要的东西——不灌水、不堆功能、不先耗掉六个月的“发现阶段”才肯交付。眼前这个问题，用最简单的办法解决。",
+    "image": "/images/home/hero/bill-sitting.png",
+    "buttons": [
+      {
+        "text": "开始一个项目",
+        "link": "#subscribe",
+        "type": "primary"
+      },
+      {
+        "text": "看看我们的作品",
+        "link": "#featured-projects",
+        "type": "secondary"
+      }
+    ],
+    "items": [
+      {
+        "icon": "fas fa-laptop-code",
+        "color": "#B45309",
+        "title": "网页平台",
+        "text": "用现代框架做的、能上生产的网站和仪表盘"
+      },
+      {
+        "icon": "fas fa-mobile-alt",
+        "color": "#F59E0B",
+        "title": "移动应用",
+        "text": "手感像原生、打开就快的 iOS 与 Android 应用"
+      },
+      {
+        "icon": "fas fa-paint-brush",
+        "color": "#EA580C",
+        "title": "界面 / 体验设计",
+        "text": "把第一次来的访客变成长期用户的界面"
+      },
+      {
+        "icon": "fas fa-rocket",
+        "color": "#D97706",
+        "title": "走向市场",
+        "text": "从发布计划到增长实验，一头管到尾"
+      }
+    ]
+  },
+  "features": [
+    {
+      "icon": "fas fa-tools",
+      "color": "#B45309",
+      "pretitle": "构建",
+      "pretext": "工程",
+      "title": "**全栈**产品开发",
+      "text": "网页、移动、后端、基础设施。整条链路我们自己扛，所以你发得更快、睡得更稳——干净的架构、自动化测试，以及从第一天就在的可观测性。",
+      "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=600&fit=crop"
+    },
+    {
+      "icon": "fas fa-mobile-screen",
+      "color": "#F59E0B",
+      "pretitle": "交付",
+      "pretext": "产品发布",
+      "title": "配得上这个位置的**移动应用**",
+      "text": "原生 iOS、原生 Android，以及 React Native——选对工具，两边商店都上，再用持续集成和崩溃监控把发布列车开下去。",
+      "image": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=600&fit=crop"
+    },
+    {
+      "icon": "fas fa-compass",
+      "color": "#EA580C",
+      "pretitle": "放大",
+      "pretext": "策略与增长",
+      "title": "**产品策略**与持续合伙",
+      "text": "路线图、用户研究、定价实验和数据分析搭建。我们不是做完就走——我们帮你量真正要紧的东西，再围着它改。",
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop"
+    },
+    {
+      "icon": "fas fa-paint-brush",
+      "color": "#FBCD37",
+      "pretitle": "以用户为中心的设计",
+      "pretext": "设计先行",
+      "title": "**界面与体验**设计",
+      "text": "我们设计清楚、直觉的界面，让人愿意再回来。从线框和原型到精确、一致的视觉，我们确保每一次交互在所有设备上都自然、可预期。",
+      "image": "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Numu",
+      "slug": "numu",
+      "type": "branded",
+      "tagline": "一天一天，把习惯养好",
+      "description": "一款干净、专注的习惯追踪应用，覆盖 iOS 与 Android。连续记录、每日打卡、分析和聪明的提醒，帮你稳住节奏。",
+      "iconClass": "fas fa-chart-line",
+      "platforms": [
+        {
+          "name": "iOS",
+          "icon": "fab fa-apple"
+        },
+        {
+          "name": "Android",
+          "icon": "fab fa-android"
+        }
+      ],
+      "features": [
+        "习惯连续记录",
+        "每日打卡",
+        "进度分析",
+        "聪明提醒"
+      ],
+      "color": "#9333EA",
+      "gradient": "linear-gradient(135deg, #9333EA 0%, #C084FC 100%)",
+      "status": "Coming Soon"
+    },
+    {
+      "name": "Matrix",
+      "slug": "matrix",
+      "type": "branded",
+      "tagline": "聪明的数据，随取随用",
+      "description": "统一的数据智能平台，为现代团队提供实时分析、自动化工作流和预测洞察。",
+      "iconClass": "fas fa-database",
+      "platforms": [
+        {
+          "name": "网页",
+          "icon": "fas fa-globe"
+        }
+      ],
+      "features": [
+        "实时分析",
+        "自动化数据管道",
+        "定制仪表盘",
+        "预测洞察"
+      ],
+      "color": "#0891B2",
+      "gradient": "linear-gradient(135deg, #0891B2 0%, #22D3EE 100%)",
+      "status": "Coming Soon"
+    },
+    {
+      "name": "Invexo",
+      "slug": "invexo",
+      "type": "branded",
+      "tagline": "给小店的库存管理",
+      "description": "多店库存、收银、Flexiload 佣金和每日销售——为小型零售生意而做。",
+      "iconClass": "fas fa-cash-register",
+      "platforms": [
+        {
+          "name": "网页",
+          "icon": "fas fa-globe"
+        }
+      ],
+      "features": [
+        "多店仪表盘",
+        "库存与收银",
+        "Flexiload 与移动金融",
+        "销售趋势"
+      ],
+      "color": "#10B981",
+      "gradient": "linear-gradient(135deg, #059669 0%, #34D399 100%)",
+      "status": "Ready to Deliver"
+    },
+    {
+      "name": "Ordelo",
+      "slug": "ordelo",
+      "type": "branded",
+      "tagline": "你的生意。在线上。有秩序。归你所有。",
+      "description": "带品牌的点单与商业系统——菜单、结账、后厨提醒、顾客通知和增长工具。没有纸痕。不用猜。",
+      "iconClass": "fas fa-utensils",
+      "platforms": [
+        {
+          "name": "网页",
+          "icon": "fas fa-globe"
+        }
+      ],
+      "features": [
+        "用 R3F 做的三维主视觉",
+        "实时订单追踪",
+        "实时社会证明",
+        "Stripe 支付"
+      ],
+      "color": "#F97316",
+      "gradient": "linear-gradient(135deg, #F97316 0%, #FB923C 100%)",
+      "status": "Live"
+    },
+    {
+      "name": "MoneyBox",
+      "slug": "moneybox",
+      "type": "branded",
+      "tagline": "你的钱，清清楚楚。",
+      "description": "一款个人财务追踪应用，带预算、目标和干净的报表。",
+      "iconClass": "fas fa-piggy-bank",
+      "platforms": [
+        {
+          "name": "iOS",
+          "icon": "fab fa-apple"
+        },
+        {
+          "name": "Android",
+          "icon": "fab fa-android"
+        }
+      ],
+      "color": "#16A34A",
+      "gradient": "linear-gradient(135deg, #16A34A 0%, #4ADE80 100%)",
+      "status": "Live"
+    },
+    {
+      "name": "Geeb",
+      "slug": "geeb",
+      "type": "branded",
+      "tagline": "靠谱的上门服务师傅，随叫随到",
+      "description": "面向消费者的平台，把顾客和经过核验的商家、服务师傅连在一起，覆盖管道、电工、杂修、保洁等。",
+      "iconClass": "fas fa-wrench",
+      "platforms": [
+        {
+          "name": "iOS",
+          "icon": "fab fa-apple"
+        },
+        {
+          "name": "Android",
+          "icon": "fab fa-android"
+        },
+        {
+          "name": "网页",
+          "icon": "fas fa-globe"
+        }
+      ],
+      "features": [
+        "核验过的师傅",
+        "即时预约",
+        "实时追踪",
+        "应用内支付"
+      ],
+      "color": "#B45309",
+      "gradient": "linear-gradient(135deg, #B45309 0%, #F59E0B 100%)",
+      "status": "Coming Soon"
+    },
+    {
+      "name": "PhotoRestore AI",
+      "slug": "photorestore-ai",
+      "type": "branded",
+      "tagline": "用 AI 修复老照片",
+      "description": "用设备端的 AI 修复、上色和增强，让褪色、破损和黑白照片重新活过来。",
+      "iconClass": "fas fa-wand-magic-sparkles",
+      "platforms": [
+        {
+          "name": "网页",
+          "icon": "fas fa-globe"
+        }
+      ],
+      "features": [
+        "AI 修复",
+        "自动上色",
+        "划痕与破损修补",
+        "前后对比滑块"
+      ],
+      "color": "#6366F1",
+      "gradient": "linear-gradient(135deg, #6366F1 0%, #818CF8 100%)",
+      "status": "Live"
+    },
+    {
+      "name": "Medev",
+      "slug": "medev",
+      "type": "branded",
+      "tagline": "医疗。变简单。",
+      "description": "诊所与患者共用的平台，把预约、档案和随访收成一条医生用着顺手的流程。",
+      "iconClass": "fas fa-hospital",
+      "platforms": [
+        {
+          "name": "网页",
+          "icon": "fas fa-globe"
+        },
+        {
+          "name": "Docker",
+          "icon": "fab fa-docker"
+        }
+      ],
+      "features": [
+        "患者档案",
+        "聪明排班",
+        "电子处方",
+        "医生仪表盘"
+      ],
+      "color": "#0A6E74",
+      "gradient": "linear-gradient(135deg, #0A6E74 0%, #14B8A6 100%)",
+      "status": "Ready to Deliver"
+    }
+  ],
+  "team": [
+    {
+      "name": "Mohamed Abdallah",
+      "role": "创始人 / 产品负责人 / 项目经理 / 资深工程师",
+      "bio": "创始人兼产品负责人，把扎实的工程功底和产品策略放在一起，打磨高质量的软件产品。",
+      "image": "/images/home/team/mohamed-abdallah.jpg",
+      "social": {
+        "github": "https://github.com/mohamed-a-elobaid",
+        "linkedin": "https://www.linkedin.com/in/mohamed-abdalla-elobaid-29937b227/",
+        "twitter": "#"
+      },
+      "iconPattern": "code"
+    },
+    {
+      "name": "Asadur Rahman",
+      "role": "技术负责人 / 系统架构师",
+      "bio": "技术负责人与系统架构师，专注可扩展的分布式系统，以及稳得住的云基础设施。",
+      "image": "/images/home/team/asadur-rahman.png",
+      "social": {
+        "github": "https://github.com/ViX3L",
+        "linkedin": "https://www.linkedin.com/in/vix3l/",
+        "twitter": "#"
+      },
+      "iconPattern": "code"
+    },
+    {
+      "name": "Ariyan Rehman",
+      "role": "产品体验与文档工程师",
+      "bio": "把产品体验和文档做到位：关注用户体验、开发者文档，以及由内容推动的工作方式。",
+      "image": "/images/home/team/ariyan-rehman.jpg",
+      "social": {
+        "github": "https://github.com/ariyangd",
+        "linkedin": "https://www.linkedin.com/in/ariyangd/",
+        "twitter": "https://x.com/ariyangd"
+      },
+      "iconPattern": "code"
+    },
+    {
+      "name": "Dibakar Sutra Dhar",
+      "role": "后端工程师与数据工程师",
+      "bio": "后端工程师，专攻分布式系统，以及面向网页与云应用的可扩展服务端方案。",
+      "image": "/images/home/team/dibakar-sutradhar.JPG",
+      "social": {
+        "github": "https://github.com/dibakarsutradhar",
+        "linkedin": "https://www.linkedin.com/in/dibakarsutradhar/",
+        "twitter": "https://x.com/iamdibakardipu"
+      },
+      "iconPattern": "code"
+    },
+    {
+      "name": "Burhan Ayub",
+      "role": "首席财务官",
+      "bio": "首席财务官。",
+      "image": "/images/home/team/burhan-ayub-placeholder.svg",
+      "iconPattern": "money",
+      "social": {}
+    }
+  ],
+  "clients": [
+    {
+      "name": "Portia Grid",
+      "image": ""
+    },
+    {
+      "name": "Iyat",
+      "image": ""
+    }
+  ],
+  "highlights": [
+    {
+      "metric": "12+",
+      "label": "已交付或已在市场上的产品",
+      "icon": "fas fa-rocket"
+    },
+    {
+      "metric": "5",
+      "label": "正在运转的旗舰平台",
+      "icon": "fas fa-layer-group"
+    },
+    {
+      "metric": "1 yr",
+      "label": "最低支持期",
+      "icon": "fas fa-handshake"
+    },
+    {
+      "metric": "100%",
+      "label": "内部工程团队",
+      "icon": "fas fa-users"
+    }
+  ],
+  "clouds": {
+    "enable": true,
+    "enableOnMobile": false
+  }
+}

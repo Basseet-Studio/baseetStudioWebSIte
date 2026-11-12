@@ -1,0 +1,72 @@
+{
+  "name": "Jemeti",
+  "slug": "jemeti",
+  "type": "branded",
+  "tagline": "维修车间和保养店，管得清楚",
+  "description": "## 关于 Jemeti\n\nJemeti 帮助维修车间和保养店的老板排工单、追配件、管顾客的车——全部在一处。\n\n### 为服务店而做\n\n从换机油到整车翻新，Jemeti 把工单、技师派工和配件库存理清楚。\n\n### 即将推出\n\n我们正和真正的店主一起做 Jemeti。想抢先用，跟我们联系。\n",
+  "icon": "/images/projects/jemeti-icon.svg",
+  "iconClass": null,
+  "color": "#DC2626",
+  "gradient": "linear-gradient(135deg, #DC2626 0%, #EF4444 100%)",
+  "status": "Coming Soon",
+  "layoutVariant": "default",
+  "fontHeading": "Space Grotesk",
+  "fontBody": "Inter",
+  "appType": "web",
+  "brandName": "Jemeti",
+  "bgEffect": "none",
+  "clientIds": [],
+  "hero": {
+    "title": "你的车间，理清楚",
+    "subtitle": "给维修和保养店的工单排程、配件追踪和顾客管理。",
+    "cta_primary": "获取抢先体验",
+    "cta_primary_link": "/contact",
+    "cta_secondary": null,
+    "cta_secondary_link": null
+  },
+  "features": [
+    {
+      "title": "工单",
+      "description": "从进店到完工，创建、派发并追踪每一单活。",
+      "icon": "fas fa-clipboard-list"
+    },
+    {
+      "title": "配件库存",
+      "description": "答应维修日期之前，先知道架子上有什么。",
+      "icon": "fas fa-wrench"
+    },
+    {
+      "title": "顾客的车",
+      "description": "每辆车的保养历史、提醒和备注。",
+      "icon": "fas fa-car"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "网页",
+      "icon": "fas fa-globe",
+      "version": "网页应用",
+      "link": "#"
+    }
+  ],
+  "navItems": [
+    {
+      "label": "首页",
+      "url": "",
+      "i18nKey": "project_nav_home"
+    }
+  ],
+  "navMetaItems": [
+    {
+      "label": "作品",
+      "url": "/projects/",
+      "i18nKey": "nav_work"
+    },
+    {
+      "label": "联系",
+      "url": "/contact/",
+      "i18nKey": "nav_contact"
+    }
+  ],
+  "faq": []
+}

@@ -1,0 +1,72 @@
+{
+  "name": "Jemeti",
+  "slug": "jemeti",
+  "type": "branded",
+  "tagline": "Bengkel dan kedai penyelenggaraan, terurus",
+  "description": "## Perihal Jemeti\n\nJemeti membantu pemilik bengkel dan kedai penyelenggaraan menjadualkan kerja, menjejak alat ganti, dan mengurus kenderaan pelanggan — semuanya dari satu tempat.\n\n### Dibina untuk kedai servis\n\nDari tukar minyak hingga binaan semula penuh, Jemeti kekalkan pesanan kerja, tugasan juruteknik, dan inventori alat ganti dalam susunan.\n\n### Akan datang\n\nKami bina Jemeti bersama pemilik kedai sebenar. Hubungi kami kalau anda mahu akses awal.\n",
+  "icon": "/images/projects/jemeti-icon.svg",
+  "iconClass": null,
+  "color": "#DC2626",
+  "gradient": "linear-gradient(135deg, #DC2626 0%, #EF4444 100%)",
+  "status": "Coming Soon",
+  "layoutVariant": "default",
+  "fontHeading": "Space Grotesk",
+  "fontBody": "Inter",
+  "appType": "web",
+  "brandName": "Jemeti",
+  "bgEffect": "none",
+  "clientIds": [],
+  "hero": {
+    "title": "Bengkel anda, tersusun",
+    "subtitle": "Penjadualan kerja, penjejakan alat ganti, dan pengurusan pelanggan untuk kedai penyelenggaraan dan pembaikan.",
+    "cta_primary": "Dapatkan akses awal",
+    "cta_primary_link": "/contact",
+    "cta_secondary": null,
+    "cta_secondary_link": null
+  },
+  "features": [
+    {
+      "title": "Pesanan kerja",
+      "description": "Cipta, tugaskan, dan jejak kerja dari penerimaan hingga siap.",
+      "icon": "fas fa-clipboard-list"
+    },
+    {
+      "title": "Inventori alat ganti",
+      "description": "Tahu apa yang ada di rak sebelum anda janji tarikh pembaikan.",
+      "icon": "fas fa-wrench"
+    },
+    {
+      "title": "Kenderaan pelanggan",
+      "description": "Sejarah servis, peringatan, dan nota bagi setiap kenderaan.",
+      "icon": "fas fa-car"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "Web",
+      "icon": "fas fa-globe",
+      "version": "Aplikasi web",
+      "link": "#"
+    }
+  ],
+  "navItems": [
+    {
+      "label": "Utama",
+      "url": "",
+      "i18nKey": "project_nav_home"
+    }
+  ],
+  "navMetaItems": [
+    {
+      "label": "Kerja",
+      "url": "/projects/",
+      "i18nKey": "nav_work"
+    },
+    {
+      "label": "Hubungi",
+      "url": "/contact/",
+      "i18nKey": "nav_contact"
+    }
+  ],
+  "faq": []
+}

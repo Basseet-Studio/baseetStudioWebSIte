@@ -1,0 +1,167 @@
+{
+  "id": "mobile",
+  "slug": "mobile",
+  "title": "移动开发",
+  "tagline": "人们愿意留在主屏幕上的应用",
+  "color": "#FBCD37",
+  "gradient": "linear-gradient(135deg, #F59E0B 0%, #FBCD37 100%)",
+  "icon": "fas fa-mobile-alt",
+  "shortDescription": "原生和跨平台移动应用",
+  "hero": {
+    "title": "人们愿意留在主屏幕上的应用",
+    "subtitle": "原生 iOS、原生 Android，或 React Native——选真正适合你要做的东西的那种，不是我们碰巧更喜欢的那种。",
+    "cta_primary": "规划我的应用",
+    "cta_primary_link": "/contact/",
+    "cta_secondary": "看看技术栈",
+    "cta_secondary_link": "#tech"
+  },
+  "metrics": [
+    { "value": "60fps", "label": "动画目标" },
+    { "value": "10+", "label": "已交付的应用" },
+    { "value": "4.8★", "label": "商店平均评分" }
+  ],
+  "subServices": [
+    {
+      "id": "ios",
+      "name": "iOS 应用",
+      "icon": "fab fa-apple",
+      "desc": "为 iPhone 和 iPad 做的原生 Swift 应用",
+      "longDesc": "纯 SwiftUI 和 UIKit，用 Swift 5.10 及以上从头写异步。我们处理应用商店提交、TestFlight 测试、隐私清单，以及那些让应用在 Apple 芯片上像在家里一样的小事。",
+      "bullets": [
+        "Swift、SwiftUI、UIKit、Combine",
+        "iPhone、iPad、Apple Watch、Apple TV",
+        "StoreKit、通过 Apple 登录、钱包",
+        "TestFlight、App Store Connect，以及隐私清单"
+      ],
+      "imageLabel": "iOS 应用界面样稿"
+    },
+    {
+      "id": "android",
+      "name": "Android 应用",
+      "icon": "fab fa-android",
+      "desc": "覆盖全部 Android 设备的原生 Kotlin 应用",
+      "longDesc": "以 Kotlin 为先的 Android，用 Jetpack Compose、Material 3 和现代 AndroidX 技术栈。我们按用户真正拿着的那一长串设备来做：自适应布局、预测式返回，以及顺的首次打开体验。",
+      "bullets": [
+        "Kotlin、Jetpack Compose、Material 3",
+        "为手机、折叠屏和平板做的自适应布局",
+        "Play 结算、Play Integrity 和数据安全",
+        "内部轨道、分阶段发布，以及发布前报告"
+      ],
+      "imageLabel": "Android 应用界面样稿"
+    },
+    {
+      "id": "cross-platform",
+      "name": "跨平台",
+      "icon": "fas fa-layer-group",
+      "desc": "用 Flutter 和 React Native 覆盖多个平台",
+      "longDesc": "一套代码，两家商店，以及平台允许范围内尽量原生的手感。界面和动画要高保真时我们选 Flutter；团队已经深在 JavaScript 里、生态更要紧时，我们选 React Native。",
+      "bullets": [
+        "Flutter 3 配 Dart 3、Material You 和 Cupertino",
+        "React Native 配 Expo、EAS 和 Hermes",
+        "蓝牙、近场通信和相机的原生模块",
+        "iOS 与 Android 共用的设计系统"
+      ],
+      "imageLabel": "跨平台应用样稿"
+    },
+    {
+      "id": "aso",
+      "name": "应用商店优化",
+      "icon": "fas fa-chart-line",
+      "desc": "用正经的商店优化策略被找到",
+      "longDesc": "多数应用从未被找到。我们把商店页面当成一个产品表面——关键词研究、截图测试、本地化，以及稳定节奏的实验，让安装曲线继续往上走。",
+      "bullets": [
+        "关键词研究与元数据更新",
+        "截图和视频的对照测试",
+        "为优先市场做本地化",
+        "评价、评分和回复流程"
+      ],
+      "imageLabel": "应用商店分析仪表盘"
+    }
+  ],
+  "process": [
+    {
+      "number": "01",
+      "title": "验证",
+      "desc": "把核心循环做成原型，证明价值，并估出工作量",
+      "icon": "fas fa-compass"
+    },
+    {
+      "number": "02",
+      "title": "架构",
+      "desc": "选定技术栈，画出导航，设计数据流",
+      "icon": "fas fa-sitemap"
+    },
+    {
+      "number": "03",
+      "title": "设计",
+      "desc": "移动优先的流程、动效研究，以及图标和色彩系统",
+      "icon": "fas fa-pencil-ruler"
+    },
+    {
+      "number": "04",
+      "title": "构建",
+      "desc": "一个冲刺一个冲刺，用 TestFlight 和 Play 内部轨道演示",
+      "icon": "fas fa-code"
+    },
+    {
+      "number": "05",
+      "title": "发布并增长",
+      "desc": "提交商店，然后是一串发布的路线图，不是做完一次就结束",
+      "icon": "fas fa-rocket"
+    }
+  ],
+  "deliverables": [
+    {
+      "title": "可上生产的应用包",
+      "description": "为应用商店和 Play 商店签好的构建，内部和外部轨道都配好。",
+      "icon": "fas fa-mobile"
+    },
+    {
+      "title": "源码与持续集成",
+      "description": "干净的仓库、GitHub Actions 或 Bitrise，以及两家商店的签名发布流水线。",
+      "icon": "fas fa-code-branch"
+    },
+    {
+      "title": "商店页面",
+      "description": "你经营的每个地区的截图、视频、描述和关键词。",
+      "icon": "fas fa-store"
+    },
+    {
+      "title": "分析与崩溃报告",
+      "description": "Firebase、Sentry，或你选定的栈，接好并可以看仪表盘。",
+      "icon": "fas fa-chart-bar"
+    }
+  ],
+  "tech": [
+    "Swift",
+    "Kotlin",
+    "SwiftUI",
+    "Jetpack Compose",
+    "Flutter",
+    "React Native",
+    "Expo",
+    "Firebase",
+    "Supabase",
+    "Fastlane",
+    "Sentry",
+    "RevenueCat"
+  ],
+  "faq": [
+    {
+      "question": "我该选 Flutter、React Native，还是完全原生？",
+      "answer": "取决于你的团队、时间和平台野心。重度依赖平台能力的应用（Apple Watch、Material You、近场通信），我们建议完全原生。Flutter 和 React Native 适合跨平台的最小可行产品和多数消费应用。一次短的架构工作坊之后，我们会给出合适的选择。"
+    },
+    {
+      "question": "你们负责提交应用商店和 Play 商店吗？",
+      "answer": "负责。整个提交流程我们来管，包括审核说明、隐私营养标签、数据安全、签名证书和商店文案。我们也会配分阶段发布，方便你看无崩溃会话，需要时可以回滚。"
+    },
+    {
+      "question": "能接手一个已有应用吗？",
+      "answer": "经常接。我们先做一次付费审计——架构评审、依赖分析、崩溃报告，以及一页纸计划——再提出分阶段合作。多数抢救项目，会先用两周稳定冲刺，再动功能。"
+    },
+    {
+      "question": "上线之后的维护怎么做？",
+      "answer": "我们提供按月的常驻计划，包括商店更新、依赖升级、崩溃分诊，以及一小段功能工时。多数客户在上线后会把我们留下 6 到 12 个月，让应用保持新鲜。"
+    }
+  ]
+}

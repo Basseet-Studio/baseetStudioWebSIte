@@ -1,0 +1,121 @@
+{
+  "title": "Perkhidmatan kami",
+  "subtitle": "Penyelesaian digital yang menyeluruh",
+  "description": "Kami bukan sekadar bina laman web. Kami cipta ekosistem digital yang lengkap, disesuaikan dengan keperluan perniagaan anda — terokai setiap perkhidmatan untuk lihat cara kami bekerja.",
+  "categories": [
+    {
+      "id": "web",
+      "slug": "web",
+      "icon": "fas fa-globe",
+      "color": "#496BC1",
+      "gradient": "linear-gradient(135deg, #496BC1 0%, #6B8AD9 100%)",
+      "title": "Pembangunan web",
+      "shortDescription": "Laman web dan aplikasi web moden serta responsif, dibina di atas timbunan yang kami sendiri selenggara — bukan templat pakai buang.",
+      "tagline": "Laman web yang bekerja sekeras anda"
+    },
+    {
+      "id": "mobile",
+      "slug": "mobile",
+      "icon": "fas fa-mobile-alt",
+      "color": "#FBCD37",
+      "gradient": "linear-gradient(135deg, #F59E0B 0%, #FBCD37 100%)",
+      "title": "Pembangunan mudah alih",
+      "shortDescription": "Aplikasi asli dan merentas platform, direka untuk skrin kecil dahulu, kemudian yang lain.",
+      "tagline": "Aplikasi yang orang kekalkan di skrin utama"
+    },
+    {
+      "id": "internal",
+      "slug": "internal",
+      "icon": "fas fa-tools",
+      "color": "#0891B2",
+      "gradient": "linear-gradient(135deg, #0891B2 0%, #22D3EE 100%)",
+      "title": "Alat dalaman",
+      "shortDescription": "Papan pemuka, CRM, dan alat pejabat belakang yang pasukan anda buka pada pagi Isnin tanpa mengeluh.",
+      "tagline": "Perisian operasi yang benar-benar digunakan"
+    },
+    {
+      "id": "seo",
+      "slug": "seo",
+      "icon": "fas fa-search",
+      "color": "#16A34A",
+      "gradient": "linear-gradient(135deg, #16A34A 0%, #4ADE80 100%)",
+      "title": "SEO & pemasaran",
+      "shortDescription": "SEO teknikal, kandungan, dan carian tempatan — diukur dengan saluran jualan, bukan kedudukan untuk gaya.",
+      "tagline": "Jadilah jenama yang orang cari benar-benar jumpa"
+    },
+    {
+      "id": "design",
+      "slug": "design",
+      "icon": "fas fa-paint-brush",
+      "color": "#AF52DE",
+      "gradient": "linear-gradient(135deg, #AF52DE 0%, #D8A0F5 100%)",
+      "title": "Reka bentuk UI/UX",
+      "shortDescription": "Antara muka yang dibentuk oleh sesi pengguna sebenar, bukan papan mood. Ia kelihatan baik kerana ia jelas.",
+      "tagline": "Reka bentuk yang berbaloi untuk ketukan kedua"
+    },
+    {
+      "id": "cloud",
+      "slug": "cloud",
+      "icon": "fas fa-cloud",
+      "color": "#0EA5E9",
+      "gradient": "linear-gradient(135deg, #0369A1 0%, #38BDF8 100%)",
+      "title": "Awan & DevOps",
+      "shortDescription": "Infrastruktur yang boleh diskala, CI/CD, dan pemantauan supaya keluaran berhenti jadi peristiwa yang menakutkan.",
+      "tagline": "Hantar lebih laju, tidur lebih lena"
+    }
+  ],
+  "process": {
+    "title": "Pendakian enam langkah, bukan senarai semak.",
+    "subtitle": "Perjalanan yang sama, setiap rakan, setiap kali — dari perbualan “bagaimana kalau” yang pertama hingga saat produk anda hidup dan ada orang yang benar-benar memantaunya.",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Penerokaan",
+        "lead": "Kami tanya tentang perniagaan dahulu, bukan perisian.",
+        "desc": "Apa yang ini benar-benar perlu buat, untuk siapa, dan apa jadi kalau kami silap? Separuh nilai di sini ialah kami beritahu apa yang anda belum perlukan.",
+        "icon": "fas fa-lightbulb"
+      },
+      {
+        "number": "02",
+        "title": "Perancangan",
+        "lead": "Anda dapat pelan, bukan tekaan.",
+        "desc": "Kami skop binaan sebenar — setiap fasa dipetakan dari hari pertama, termasuk bahagian yang kami tak sebut kepada anda sampai ia relevan.",
+        "icon": "fas fa-map"
+      },
+      {
+        "number": "03",
+        "title": "Reka bentuk",
+        "lead": "Dibentuk mengikut cara ia benar-benar digunakan.",
+        "desc": "Antara muka dibentuk mengikut cara benda itu akan digunakan, bukan papan mood. Kalau ia untuk orang yang berdiri di kaunter dengan pelanggan menunggu, ia tak kelihatan seperti papan pemuka untuk orang di meja — dan kami reka sewajarnya.",
+        "icon": "fas fa-pencil-alt"
+      },
+      {
+        "number": "04",
+        "title": "Pembangunan",
+        "lead": "Kod yang boleh diserahkan.",
+        "desc": "Bertaip, diuji, dan disemak — kami tulis supaya jurutera seterusnya, milik anda atau kami, berterima kasih dan bukannya menulis semula dari kosong.",
+        "icon": "fas fa-code"
+      },
+      {
+        "number": "05",
+        "title": "Pengujian",
+        "lead": "Kami pecahkan sebelum pelanggan anda pecahkan.",
+        "desc": "Kes pinggir, sambungan lemah, medan yang orang isi salah — diuji mengikut cara orang benar-benar berkelakuan, bukan mengikut apa kata spesifikasi.",
+        "icon": "fas fa-vial"
+      },
+      {
+        "number": "06",
+        "title": "Pelancaran",
+        "lead": "Kami kekal dalam panggilan.",
+        "desc": "Platform pelancaran, CI/CD, pemindahan kandungan, pelancaran beransur — apa sahaja yang masih goyah pada hari pelancaran, kamilah yang uruskan, bukan barisan tiket sokongan.",
+        "icon": "fas fa-rocket"
+      }
+    ]
+  },
+  "cta": {
+    "title": "Tak pasti apa yang anda perlukan?",
+    "subtitle": "Itulah gunanya panggilan pertama.",
+    "description": "Setiap perniagaan unik. Kami bantu anda kenal pasti penyelesaian yang tepat untuk keperluan dan bajet anda.",
+    "button": "Dapatkan perundingan percuma"
+  }
+}

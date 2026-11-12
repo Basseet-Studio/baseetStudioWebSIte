@@ -1,0 +1,159 @@
+{
+  "id": "seo",
+  "slug": "seo",
+  "title": "SEO & pemasaran",
+  "tagline": "Jadilah jenama yang orang cari benar-benar jumpa",
+  "color": "#16A34A",
+  "gradient": "linear-gradient(135deg, #16A34A 0%, #4ADE80 100%)",
+  "icon": "fas fa-search",
+  "shortDescription": "Ditemui dalam talian dan kembangkan audiens anda",
+  "hero": {
+    "title": "Jadilah jenama yang orang cari benar-benar jumpa",
+    "subtitle": "SEO teknikal, kandungan, dan carian tempatan — diukur dengan saluran jualan, bukan tangkapan skrin kedudukan yang tak boleh dibelanjakan.",
+    "cta_primary": "Audit laman saya",
+    "cta_primary_link": "/contact/",
+    "cta_secondary": "Cara kami mengukur",
+    "cta_secondary_link": "#process"
+  },
+  "metrics": [
+    { "value": "3x", "label": "Angkatan organik median dalam 6 bulan" },
+    { "value": "30+", "label": "KPI dijejak bagi setiap kerjasama" },
+    { "value": "Mingguan", "label": "Rentak laporan" }
+  ],
+  "subServices": [
+    {
+      "id": "technical-seo",
+      "name": "SEO teknikal",
+      "icon": "fas fa-code",
+      "desc": "Optimumkan struktur laman untuk enjin carian",
+      "longDesc": "Kandungan terbaik di dunia tak akan naik kedudukan kalau Google tak boleh merangkak dan memaparkannya. Kami jalankan audit teknikal penuh, baiki asas (Core Web Vitals, skema, pautan dalaman, hreflang, paparan JS), dan tinggalkan buku panduan yang pembangun anda boleh ikut.",
+      "bullets": [
+        "Audit rangkak, paparan, dan indeks",
+        "Pembetulan Core Web Vitals dan paparan JS",
+        "Schema.org, hreflang, dan strategi kanonikal",
+        "Analisis fail log dan pendawaian semula pautan dalaman"
+      ],
+      "imageLabel": "Papan pemuka audit SEO teknikal"
+    },
+    {
+      "id": "content-strategy",
+      "name": "Strategi kandungan",
+      "icon": "fas fa-pen-fancy",
+      "desc": "Kandungan yang naik kedudukan dan libatkan pengguna",
+      "longDesc": "Kami bina peta hala tuju kandungan 12 bulan yang berpijak pada permintaan carian sebenar dan kedudukan anda. Taklimat, rangka, dan kitaran semakan yang hasilkan artikel yang audiens anda benar-benar mahu baca — dan yang memperoleh pautan.",
+      "bullets": [
+        "Kajian kata kunci dan pengelompokan topik",
+        "Taklimat dan rangka yang sedar SERP",
+        "Kalendar editorial dan aliran semakan",
+        "Program segar semula untuk kandungan yang semakin tua"
+      ],
+      "imageLabel": "Kalendar kandungan editorial"
+    },
+    {
+      "id": "local-seo",
+      "name": "SEO tempatan",
+      "icon": "fas fa-map-marker-alt",
+      "desc": "Naik lebih tinggi dalam hasil carian tempatan di kawasan anda",
+      "longDesc": "Kalau pelanggan anda dalam jarak memandu, SEO tempatan ialah saluran pulangan tertinggi yang anda ada. Kami optimumkan Profil Perniagaan Google, bina halaman lokasi, urus ulasan, dan bina sitasi serta pautan yang naikkan anda dalam pek peta.",
+      "bullets": [
+        "Pengoptimuman Profil Perniagaan Google",
+        "Halaman lokasi dan kandungan bandar demi bandar",
+        "Penjanaan ulasan dan aliran respons",
+        "Pembersihan sitasi dan pembinaan pautan tempatan"
+      ],
+      "imageLabel": "Pek peta tempatan dan Profil Perniagaan Google"
+    },
+    {
+      "id": "analytics",
+      "name": "Persediaan analitik",
+      "icon": "fas fa-chart-bar",
+      "desc": "Jejak prestasi dengan alat data yang betul",
+      "longDesc": "Anda tak boleh perbaiki apa yang tak boleh diukur. Kami sediakan GA4, Search Console, penandaan sisi pelayan, dan papan pemuka yang jawab soalan yang kepimpinan anda benar-benar tanya — data bersih, atribusi bersih, tiada gimnastik hamparan.",
+      "bullets": [
+        "GA4, Search Console, dan Tag Manager",
+        "Penandaan sisi pelayan dan mod persetujuan",
+        "Papan pemuka Looker Studio untuk setiap pasukan",
+        "Atribusi penukaran dan hasil"
+      ],
+      "imageLabel": "Papan pemuka KPI Looker Studio"
+    }
+  ],
+  "process": [
+    {
+      "number": "01",
+      "title": "Audit",
+      "desc": "Audit teknikal, kandungan, dan pautan balik dengan dokumen penemuan satu halaman",
+      "icon": "fas fa-magnifying-glass"
+    },
+    {
+      "number": "02",
+      "title": "Strategi",
+      "desc": "Pelan 12 bulan yang diikat pada KPI komersial, bukan metrik gaya",
+      "icon": "fas fa-bullseye"
+    },
+    {
+      "number": "03",
+      "title": "Laksana",
+      "desc": "Pecutan bulanan merentas teknikal, kandungan, dan pautan",
+      "icon": "fas fa-rocket"
+    },
+    {
+      "number": "04",
+      "title": "Lapor",
+      "desc": "Semakan mingguan, semakan perniagaan bulanan, dan set semula suku tahun",
+      "icon": "fas fa-chart-line"
+    }
+  ],
+  "deliverables": [
+    {
+      "title": "Audit teknikal & buku panduan",
+      "description": "Senarai pembetulan yang diutamakan dengan usaha dan impak — diserahkan kepada pasukan pembangun anda dalam format tiket yang bersih.",
+      "icon": "fas fa-clipboard-list"
+    },
+    {
+      "title": "Peta hala tuju kandungan",
+      "description": "12 bulan taklimat dan rangka, disegarkan setiap suku tahun berdasarkan apa yang naik kedudukan.",
+      "icon": "fas fa-calendar"
+    },
+    {
+      "title": "Papan pemuka & amaran",
+      "description": "Papan pemuka Looker Studio yang hidup, serta amaran Slack atau e-mel pada metrik yang penting.",
+      "icon": "fas fa-chart-line"
+    },
+    {
+      "title": "Laporan bulanan",
+      "description": "Semakan dalam bahasa yang jelas tentang apa yang berubah, apa yang kami hantar, dan apa seterusnya.",
+      "icon": "fas fa-file-lines"
+    }
+  ],
+  "tech": [
+    "GA4",
+    "Search Console",
+    "Looker Studio",
+    "Ahrefs",
+    "Semrush",
+    "Screaming Frog",
+    "Tag Manager",
+    "Schema.org",
+    "Notion",
+    "Slack"
+  ],
+  "faq": [
+    {
+      "question": "Berapa lama sebelum saya nampak hasil?",
+      "answer": "Penambahbaikan teknikal biasanya kelihatan dalam 4–8 minggu. Kandungan dan pautan ambil 3–6 bulan untuk berganda, sebab itu kami fikir dalam suku tahun, bukan minggu. Kami akan beri garis masa yang realistik selepas audit."
+    },
+    {
+      "question": "Adakah anda jamin kedudukan?",
+      "answer": "Tiada agensi yang bereputasi boleh, dan kami tak akan berpura-pura. Kami boleh jamin kerja, proses, dan laporan. Kedudukan dan trafik ialah hasil kerja yang dibuat dengan baik dari semasa ke semasa — dan kami akan tunjukkan input yang mendorongnya."
+    },
+    {
+      "question": "Adakah anda buat pembinaan pautan?",
+      "answer": "Ya, tapi hanya PR digital dan jangkauan yang memperoleh pautan sebenar. Kami tak beli pautan atau jalankan rangkaian blog peribadi. Kerja pautan kami ialah jenis yang masukkan jenama anda ke penerbitan yang pelanggan anda sudah baca."
+    },
+    {
+      "question": "Bolehkah anda bekerja dengan agensi sedia ada atau pasukan dalaman kami?",
+      "answer": "Kerap. Kami gembira masuk sebagai pakar, jalankan landasan strategi selari, atau ambil alih seluruh saluran. Kami akan cadangkan bentuk yang tepat selepas perbualan yang ringkas."
+    }
+  ]
+}

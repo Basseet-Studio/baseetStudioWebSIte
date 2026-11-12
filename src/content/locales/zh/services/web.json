@@ -1,0 +1,167 @@
+{
+  "id": "web",
+  "slug": "web",
+  "title": "网站开发",
+  "tagline": "和你一样拼命干活的网站",
+  "color": "#496BC1",
+  "gradient": "linear-gradient(135deg, #496BC1 0%, #6B8AD9 100%)",
+  "icon": "fas fa-globe",
+  "shortDescription": "现代、自适应的网站和网页应用",
+  "hero": {
+    "title": "和你一样拼命干活的网站",
+    "subtitle": "现代、自适应的网站和网页应用，建在我们自己长期维护的技术栈上——不是装完就再也不碰的主题。",
+    "cta_primary": "开始你的项目",
+    "cta_primary_link": "/contact/",
+    "cta_secondary": "看看流程",
+    "cta_secondary_link": "#process"
+  },
+  "metrics": [
+    { "value": "<1s", "label": "加载时间中位数" },
+    { "value": "100", "label": "Lighthouse 目标" },
+    { "value": "12+", "label": "交付过的技术栈" }
+  ],
+  "subServices": [
+    {
+      "id": "corporate-websites",
+      "name": "企业网站",
+      "icon": "fas fa-building",
+      "desc": "代表你品牌的专业网站",
+      "longDesc": "企业网站常常是潜在客户对你的第一印象。我们设计并搭建快、贴品牌的营销站点，讲清你的故事，答对问题，让下一步在每台设备上都显而易见。",
+      "bullets": [
+        "按买家旅程定制的多页信息架构",
+        "无头内容系统，让团队几分钟就能改文案，不用等几天",
+        "多语言就绪（英语、阿拉伯语等）",
+        "从第一天就埋好的页内搜索优化基础"
+      ],
+      "imageLabel": "企业网站主视觉样稿"
+    },
+    {
+      "id": "ecommerce",
+      "name": "电商平台",
+      "icon": "fas fa-shopping-cart",
+      "desc": "带安全支付接入的线上商店",
+      "longDesc": "从精品 Shopify 主题，到 Shopify Hydrogen、Medusa 或定制 Stripe 的无头商业，我们做的店把浏览的人变成下单的人。性能、结账流程和商品陈列同时调好——不是事后补。",
+      "bullets": [
+        "Shopify、Medusa、Stripe，以及无头商业",
+        "订阅、数字钱包和先买后付都就绪",
+        "按转化率调过的商品页和购物车页",
+        "库存、税费和配送从头到尾接好"
+      ],
+      "imageLabel": "电商商品页样稿"
+    },
+    {
+      "id": "web-apps",
+      "name": "网页应用",
+      "icon": "fas fa-window-restore",
+      "desc": "为复杂业务需求做的定制网页应用",
+      "longDesc": "当表格和现成软件撑不住规模，我们就做一套正好贴合你运营的网页应用。内部工具、客户门户、仪表盘——TypeScript 从头到尾，真的登录、真的数据库，以及你的团队能维护的代码。",
+      "bullets": [
+        "前端用 React、Next.js 和 Astro",
+        "用 Postgres、Prisma 和 tRPC 做类型安全的数据",
+        "从第一天就有登录、角色和审计日志",
+        "可观测性和功能开关内建"
+      ],
+      "imageLabel": "网页应用仪表盘样稿"
+    },
+    {
+      "id": "landing-pages",
+      "name": "落地页",
+      "icon": "fas fa-bullseye",
+      "desc": "为营销活动做的高转化页面",
+      "longDesc": "一页，一个目标，零干扰。我们设计和交付活动落地页：打开即到、文案和广告对得上、数据告诉你什么真的有效——可做对照测试、埋好埋点、随时可以放大。",
+      "bullets": [
+        "开箱即可做对照测试的变体",
+        "服务端渲染，首字节时间压到一秒内",
+        "表单、日历和客户管理系统接入",
+        "热力图和事件追踪接好"
+      ],
+      "imageLabel": "带行动按钮的落地页样稿"
+    }
+  ],
+  "process": [
+    {
+      "number": "01",
+      "title": "摸清",
+      "desc": "工作坊里定目标、受众、关键指标和约束",
+      "icon": "fas fa-lightbulb"
+    },
+    {
+      "number": "02",
+      "title": "架构",
+      "desc": "信息架构、技术栈选择，以及里程碑计划",
+      "icon": "fas fa-sitemap"
+    },
+    {
+      "number": "03",
+      "title": "设计",
+      "desc": "先线框，再在 Figma 里做成高保真视觉系统",
+      "icon": "fas fa-pencil-ruler"
+    },
+    {
+      "number": "04",
+      "title": "构建",
+      "desc": "在公开预览环境里，一个组件一个组件地做",
+      "icon": "fas fa-code"
+    },
+    {
+      "number": "05",
+      "title": "质检与上线",
+      "desc": "跨浏览器、无障碍、性能，以及干净的交接",
+      "icon": "fas fa-rocket"
+    }
+  ],
+  "deliverables": [
+    {
+      "title": "可上生产的站点",
+      "description": "部署在 Vercel、Netlify、Cloudflare，或你自己的基础设施上——附一份清楚的运行手册。",
+      "icon": "fas fa-server"
+    },
+    {
+      "title": "内容系统权限",
+      "description": "你的团队可以改页面、文章和商品，中间不必再找开发。",
+      "icon": "fas fa-pen"
+    },
+    {
+      "title": "分析与搜索控制台",
+      "description": "GA4、搜索控制台，以及需要的付费像素，全部接好并端到端核验。",
+      "icon": "fas fa-chart-line"
+    },
+    {
+      "title": "源代码与文档",
+      "description": "干净的仓库、一份真能看的说明，以及录屏讲解，让未来的你知道每样东西在哪。",
+      "icon": "fas fa-book"
+    }
+  ],
+  "tech": [
+    "Astro",
+    "Next.js",
+    "TypeScript",
+    "Tailwind CSS",
+    "React",
+    "Node.js",
+    "Postgres",
+    "Shopify",
+    "Stripe",
+    "Cloudflare",
+    "Vercel",
+    "Sanity"
+  ],
+  "faq": [
+    {
+      "question": "一个典型的营销网站要多久？",
+      "answer": "多数营销站点从启动到上线是 4 到 6 周。带定制内容系统、多语言或较重集成的大站点，通常是 8 到 12 周。发现工作坊之后，我们会给你一份带里程碑的固定计划。"
+    },
+    {
+      "question": "我自己能更新网站吗？",
+      "answer": "能。我们交付的每个站点都接到无头内容系统（Sanity、Contentful，或你指定的工具）。团队会拿到一段短录屏和一份书面指南，第一个月我们随时在。"
+    },
+    {
+      "question": "你们是不是只用 Astro 和 Next.js？",
+      "answer": "我们专长是现代 TypeScript 技术栈——Astro、Next.js、SvelteKit，以及 React 加 Vite。如果你已有站点用的是别的栈、只需要新功能，我们乐意在上面延伸，而不是逼你重写。"
+    },
+    {
+      "question": "能接手一个已有项目吗？",
+      "answer": "当然。动手之前我们先做技术审计，再给出分阶段计划。我们不少最好的合作，都是从接过另一家机构留下的项目开始的。"
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "name": "MoneyBox",
+  "slug": "moneybox",
+  "type": "branded",
+  "tagline": "உங்கள் பணம், ஒழுங்காக.",
+  "description": "## MoneyBox பற்றி\n\nMoneyBox ஒரு தனிப்பட்ட நிதிக் கண்காணிப்பு. உங்கள் பணம் எங்கே போகிறது என்று பார்க்க, சேமிப்பு இலக்குகளை வைக்க, பட்ஜெட்டில் இருக்க உதவுகிறது — முழு வங்கிச் செயலியின் குழப்பம் இல்லாமல்.\n\n### புத்திசாலி சேமிப்பு இலக்குகள்\n\nபயணம், அவசரம், அல்லது பெரிய வாங்குதல்களுக்கு இலக்குகளை வைத்து, தெளிவான காட்சி வரைபடங்களுடன் முன்னேற்றத்தைப் பாருங்கள்.\n\n### செலவுக் கண்காணிப்பு\n\nவகை வாரியாகச் செலவைப் பதிவு செய்யுங்கள், வடிவங்களை முன்கூட்டியே கண்டுபிடியுங்கள், தினசரிப் பழக்கங்களை நேர்மையாக வையுங்கள்.\n\n### தெளிவான அறிக்கை\n\nஒரு பார்வையில் புரியும் மாதச் சுருக்கங்களும் போக்குக் காட்சிகளும் — விரிதாள் தேவையில்லை.\n",
+  "iconClass": "fas fa-piggy-bank",
+  "color": "#16A34A",
+  "gradient": "linear-gradient(135deg, #16A34A 0%, #4ADE80 100%)",
+  "status": "Live",
+  "layoutVariant": "moneybox",
+  "fontHeading": "Outfit",
+  "fontBody": "DM Sans",
+  "fontWeights": "400,500,600,700",
+  "gsapAnimation": "grow-leaves",
+  "appType": "mobile",
+  "brandName": "MoneyBox",
+  "bgEffect": "leaves",
+  "bgFallbackGradient": "linear-gradient(180deg, #F0FDF4 0%, #DCFCE7 40%, #BBF7D0 100%)",
+  "hero": {
+    "title": "உங்கள் பணம், இறுதியாக ஒழுங்காக.",
+    "subtitle": "பட்ஜெட்டுகள், இலக்குகள், தெளிவான அறிக்கையுடன் ஒரு தனிப்பட்ட நிதிக் கண்காணிப்பு — சேமிப்பை ஒவ்வொரு நாளும் எளிமையாகவும் தெளிவாகவும் வைக்கக் கட்டப்பட்டது.",
+    "cta_primary": "செயலியைப் பெறுங்கள்",
+    "cta_primary_link": "https://drive.google.com/drive/folders/1_8MswXC-JxPEFU_0-fmeXal_hK7yKs9C?usp=sharing",
+    "cta_secondary": "அம்சங்களைப் பாருங்கள்",
+    "cta_secondary_link": "#features"
+  },
+  "features": [
+    {
+      "title": "புத்திசாலி சேமிப்பு இலக்குகள்",
+      "description": "எதற்கும் இலக்கு வையுங்கள் — அவசரம், பயணம், அல்லது பெரிய வாங்குதல் — ஊக்கமளிக்கும் காட்சி வரைபடங்களுடன் முன்னேற்றத்தைக் கண்காணியுங்கள்.",
+      "icon": "fas fa-bullseye"
+    },
+    {
+      "title": "செலவுக் கண்காணிப்பு",
+      "description": "வகை வாரியாகச் செலவைப் பதிவு செய்யுங்கள், வடிவங்களை முன்கூட்டியே கண்டுபிடியுங்கள், விரிதாள்களில் மூழ்காமல் தினசரிப் பழக்கங்களை நேர்மையாக வையுங்கள்.",
+      "icon": "fas fa-receipt"
+    },
+    {
+      "title": "பட்ஜெட் பார்வை",
+      "description": "கைபேசியில் படிக்கும்படி இருக்கும் மாதச் சுருக்கங்களுடன் வருமானம் மற்றும் வெளியேற்றத்தை ஒரு பார்வையில் பாருங்கள்.",
+      "icon": "fas fa-chart-pie"
+    },
+    {
+      "title": "தெளிவான அறிக்கை",
+      "description": "விரைவுச் சரிபார்ப்புகளுக்காக வடிவமைக்கப்பட்ட போக்குக் காட்சிகளும் வகைப் பிரிவுகளும் — மாத இறுதி அகழ்வாராய்ச்சி அல்ல.",
+      "icon": "fas fa-chart-line"
+    },
+    {
+      "title": "தினசரி நினைவூட்டல்கள்",
+      "description": "செலவைப் பதிவு செய்யவும் இலக்குகளை மதிப்பாய்வு செய்யவும் மென்மையான தூண்டுதல்கள் — செயலி உங்கள் வழக்கத்துக்கு எதிராக அல்ல, உடன் வேலை செய்யும்.",
+      "icon": "fas fa-bell"
+    },
+    {
+      "title": "வடிவமைப்பிலேயே தனியுரிமை",
+      "description": "உங்கள் நிதி உங்கள் சாதனத்திலேயே இருக்கும். விளம்பரம் இல்லை, தரவு மறுவிற்பனை இல்லை — உங்கள் எண்களை மதிக்கும் ஒரு கருவி மட்டும்.",
+      "icon": "fas fa-lock"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "iOS",
+      "icon": "fab fa-apple",
+      "version": "iOS 15+",
+      "link": "#"
+    },
+    {
+      "name": "Android",
+      "icon": "fab fa-android",
+      "version": "Android 8+",
+      "link": "https://drive.google.com/drive/folders/1_8MswXC-JxPEFU_0-fmeXal_hK7yKs9C?usp=sharing"
+    }
+  ],
+  "tech": [
+    "Flutter",
+    "Dart",
+    "SQLite",
+    "Riverpod"
+  ],
+  "navItems": [
+    {
+      "label": "முகப்பு",
+      "url": "",
+      "i18nKey": "project_nav_home"
+    },
+    {
+      "label": "அம்சங்கள்",
+      "url": "features/",
+      "i18nKey": "project_nav_features"
+    },
+    {
+      "label": "பதிவிறக்கம்",
+      "url": "download/",
+      "i18nKey": "project_nav_download"
+    },
+    {
+      "label": "விதிமுறைகள்",
+      "url": "terms/",
+      "i18nKey": "project_nav_terms"
+    },
+    {
+      "label": "தனியுரிமை",
+      "url": "privacy/",
+      "i18nKey": "project_nav_privacy"
+    }
+  ],
+  "navMetaItems": [
+    {
+      "label": "பணிகள்",
+      "url": "/projects/",
+      "i18nKey": "nav_work"
+    },
+    {
+      "label": "தொடர்பு",
+      "url": "/contact/",
+      "i18nKey": "nav_contact"
+    }
+  ],
+  "faq": [
+    {
+      "question": "MoneyBox இலவசமா?",
+      "answer": "MoneyBox பேசீட் ஸ்டுடியோவின் நேரடித் தயாரிப்பு. பதிவிறக்க இணைப்புகளும் விலையும் Android கட்டுமானத்தில் உள்ளன; iOS கிடைப்பு விரைவில்."
+    },
+    {
+      "question": "இது என் வங்கியுடன் இணைகிறதா?",
+      "answer": "MoneyBox கைமுறைக் கண்காணிப்பிலும் இலக்கு வைப்பிலும் கவனம் — எளிமை, தனியுரிமை, முழுவதும் உங்கள் கட்டுப்பாட்டில்."
+    },
+    {
+      "question": "என் தரவு எங்கே சேமிக்கப்படுகிறது?",
+      "answer": "உங்கள் தரவு உங்கள் சாதனத்திலேயே இருக்கும். உங்கள் நிதித் தகவலை நாங்கள் விற்பதில்லை, பகிர்வதில்லை."
+    }
+  ],
+  "links": {
+    "android": "https://drive.google.com/drive/folders/1_8MswXC-JxPEFU_0-fmeXal_hK7yKs9C?usp=sharing"
+  }
+}

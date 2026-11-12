@@ -1,0 +1,189 @@
+{
+  "name": "Ordelo",
+  "slug": "ordelo",
+  "type": "branded",
+  "tagline": "你的生意。在线上。有秩序。归你所有。",
+  "description": "## 关于 Ordelo\n\nOrdelo 是一套可以拿去卖的数字商业与点单方案，给餐厅、咖啡馆、云厨房、零售商、创作者，以及新创业者——他们不想再把订单丢给聊天软件的混乱、纸巾菜单，和“等等，他们付了吗？”的时刻。\n\n### 没有纸痕。不用猜。\n\n顾客浏览 → 定制 → 付款 → 追踪。员工看见订单实时落下。你看见真正有意义的数字。每个人都在当下收到通知。\n\n### 不只是一个菜单网站\n\n把 Ordelo 当成餐厅点单系统、多门店品牌中枢、云厨房指挥中心、预约加下单的组合、创作者小店、订阅俱乐部、零售小店，或一台自动化机器来卖——一个客户方案，很多种未来。\n",
+  "icon": "/images/projects/ordelo-icon.png",
+  "iconClass": "fas fa-utensils",
+  "color": "#F97316",
+  "gradient": "linear-gradient(135deg, #F97316 0%, #FB923C 100%)",
+  "status": "Live",
+  "layoutVariant": "ordelo",
+  "fontHeading": "Playfair Display",
+  "fontBody": "Source Sans 3",
+  "fontWeights": "400,500,700",
+  "gsapAnimation": "parallax-masonry",
+  "appType": "web",
+  "brandName": "Ordelo",
+  "bgEffect": "kitchen",
+  "bgFallbackGradient": "linear-gradient(180deg, #FFFBEB 0%, #FDE68A 40%, #FBBF24 100%)",
+  "clientIds": [],
+  "hero": {
+    "title": "订单进来。当下通知。顾客归你。",
+    "subtitle": "菜单、结账、支付、后厨提醒、顾客更新和增长工具——没有纸、不用猜，也不用慌。",
+    "cta_primary": "预约演示",
+    "cta_primary_link": "/contact",
+    "cta_secondary": "查看功能",
+    "cta_secondary_link": "#features"
+  },
+  "features": [
+    {
+      "title": "带品牌的点单店面",
+      "description": "移动优先的菜单和目录，带定制、购物车和结账——订单上是你的名字，不是某个集市的。",
+      "icon": "fas fa-store"
+    },
+    {
+      "title": "后厨和运营保持冷静",
+      "description": "后厨显示、实时状态流、忙碌模式和派单——订单落在干活的地方，而不是埋在一部手机里。",
+      "icon": "fas fa-hat-chef"
+    },
+    {
+      "title": "当下就通知",
+      "description": "一有变化就发出确认和状态更新——已接收 → 制作中 → 已就绪 → 已完成。",
+      "icon": "fas fa-bell"
+    },
+    {
+      "title": "配送、自取与堂食",
+      "description": "按生意真正在跑的履约方式——再加上预约、多门店营业时间，以及需要轮子时的配送接口。",
+      "icon": "fas fa-truck"
+    },
+    {
+      "title": "支付与优惠券",
+      "description": "清楚的结账、可配置的支付方式、活动码，以及方便做账的导出——不是罐子里收现金的传说。",
+      "icon": "fas fa-credit-card"
+    },
+    {
+      "title": "不说谎的报表",
+      "description": "随时间变化的订单、热销单品、优惠券表现、门店对比，以及你可以据此行动的访客洞察。",
+      "icon": "fas fa-chart-line"
+    },
+    {
+      "title": "自动化与网络钩子",
+      "description": "新订单 → 后厨 + 顾客。状态变化 → 短信。忙碌模式 → 暂停结账。接上客户系统、Slack 和合作方。",
+      "icon": "fas fa-robot"
+    },
+    {
+      "title": "长到餐饮之外",
+      "description": "数字商品、礼品券、订阅、会员，以及社交活动页——同一批顾客，更多收入车道。",
+      "icon": "fas fa-gift"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "顾客",
+      "icon": "fas fa-globe",
+      "version": "店面 + 追踪",
+      "link": "#"
+    },
+    {
+      "name": "管理",
+      "icon": "fas fa-user-shield",
+      "version": "运营控制台",
+      "link": "#"
+    },
+    {
+      "name": "后厨",
+      "icon": "fas fa-hat-chef",
+      "version": "后厨显示",
+      "link": "#"
+    },
+    {
+      "name": "配送",
+      "icon": "fas fa-truck",
+      "version": "司机 / 调度接口",
+      "link": "#"
+    }
+  ],
+  "tech": [
+    "品牌店面",
+    "菜单与定制",
+    "购物车与结账",
+    "后厨显示（KDS）",
+    "订单通知",
+    "优惠券与活动",
+    "预约",
+    "多门店",
+    "报表与洞察",
+    "自动化与网络钩子",
+    "社交登录",
+    "订阅与数字商品"
+  ],
+  "galleryType": "web",
+  "screenshots": [
+    "/images/projects/ordelo/1.png",
+    "/images/projects/ordelo/2.png",
+    "/images/projects/ordelo/3.png",
+    "/images/projects/ordelo/4.png",
+    "/images/projects/ordelo/5.png",
+    "/images/projects/ordelo/6.png",
+    "/images/projects/ordelo/7.png"
+  ],
+  "testimonials": [
+    {
+      "quote": "你开店不是为了全职当消息路由器。Ordelo 把聊天的混乱变成干净的订单。",
+      "author": "Ordelo 的承诺",
+      "role": "给生意老板"
+    }
+  ],
+  "navItems": [
+    {
+      "label": "首页",
+      "url": "",
+      "i18nKey": "project_nav_home"
+    },
+    {
+      "label": "功能",
+      "url": "features/",
+      "i18nKey": "project_nav_features"
+    },
+    {
+      "label": "演示",
+      "url": "demo/",
+      "i18nKey": "project_nav_demo"
+    },
+    {
+      "label": "隐私政策",
+      "url": "terms/",
+      "i18nKey": "project_nav_terms"
+    }
+  ],
+  "navMetaItems": [
+    {
+      "label": "作品",
+      "url": "/projects/",
+      "i18nKey": "nav_work"
+    },
+    {
+      "label": "联系",
+      "url": "/contact/",
+      "i18nKey": "nav_contact"
+    }
+  ],
+  "faq": [
+    {
+      "question": "这不就是又一个菜单网站吗？",
+      "answer": "不是。Ordelo 是点单总部：购物车、支付、后厨显示、通知、报表，以及长成订阅和数字商品的空间——不是一张带电话号码的宣传册。"
+    },
+    {
+      "question": "我们已经在聊天软件上接单了。为什么要换？",
+      "answer": "聊天软件是对话。Ordelo 是记录。每一单都落在一处，后厨看得见，顾客当下收到更新，顾客关系留在你手里。"
+    },
+    {
+      "question": "顾客不就会去用外卖应用吗？",
+      "answer": "他们也许会在那里发现你。Ordelo 是你停止租用每一单的方式——你的店面，你的利润，你的数据。"
+    },
+    {
+      "question": "我们是小咖啡馆 / 新品牌。这会不会太重？",
+      "answer": "从第一天就像一个品牌那样上线。先做菜单、结账和通知。准备好了，再加后厨显示、多门店、订阅和自动化。"
+    },
+    {
+      "question": "后厨高峰和多家分店应付得了吗？",
+      "answer": "应付得了。忙碌模式会得体地暂停结账，后厨显示把状态保持清楚，扩展档加上多门店菜单、营业时间和分店报表。"
+    },
+    {
+      "question": "我们能卖餐饮以外的东西吗？",
+      "answer": "能。数字下载、礼品券、套餐计划、咖啡俱乐部、贵宾会员，以及活动落地页——同一段顾客关系，更多收入车道。"
+    }
+  ]
+}

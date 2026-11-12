@@ -1,0 +1,101 @@
+{
+  "name": "PhotoRestore AI",
+  "slug": "photorestore-ai",
+  "type": "standalone",
+  "tagline": "Pulihkan foto lama dengan AI",
+  "description": "## Perihal PhotoRestore AI\n\nPhotoRestore AI menggabungkan model pemulihan terlatih dengan minat untuk memelihara kenangan. Kami percaya setiap foto ada cerita, dan tiada kerosakan patut menghalang perkongsian detik berharga itu.\n\n### Teknologi kami\n\nDibina di atas model pemulihan imej pembelajaran mendalam, PhotoRestore AI boleh kesan dan baiki calar, koyak, dan kedutan; pulihkan kawasan yang pudar atau berubah warna; tingkatkan kejelasan dan ketajaman imej; warnakan foto hitam putih; serta buang kotoran dan kerosakan air.\n\n### Privasi dahulu\n\nKami ambil privasi anda serius. Semua foto diproses dalam persekitaran selamat yang terasing dan dipadam secara automatik dalam 24 jam selepas pemprosesan. Kenangan anda kekal milik anda.\n\n## Cuba hari ini\n\nLihat apa yang pemulihan foto AI boleh buat untuk foto anda. Muat naik foto yang rosak dan lihat transformasi dalam beberapa saat.\n",
+  "iconClass": "fas fa-wand-magic-sparkles",
+  "color": "#6366F1",
+  "gradient": "linear-gradient(135deg, #6366F1 0%, #818CF8 100%)",
+  "status": "Live",
+  "hero": {
+    "title": "Pulihkan kenangan berharga anda",
+    "subtitle": "Guna model AI terlatih untuk hidupkan semula foto lama, rosak, atau pudar dalam beberapa saat.",
+    "cta_primary": "Cuba sekarang",
+    "cta_primary_link": "#",
+    "cta_secondary": "Lihat contoh",
+    "cta_secondary_link": "#features"
+  },
+  "features": [
+    {
+      "title": "Pemulihan berkuasa AI",
+      "description": "Algoritma AI kami yang maju menganalisis dan memulihkan foto anda dengan hasil berkualiti profesional. Baiki calar, koyak, dan kepudaran secara automatik.",
+      "icon": "fas fa-wand-magic-sparkles"
+    },
+    {
+      "title": "Pemprosesan yang pantas",
+      "description": "Dapatkan foto yang dipulihkan dalam beberapa saat, bukan jam. Infrastruktur kami yang dioptimumkan pastikan masa siap yang singkat.",
+      "icon": "fas fa-bolt"
+    },
+    {
+      "title": "Hasil berkualiti profesional",
+      "description": "Capai hasil yang setanding perkhidmatan pemulihan foto profesional, pada sebahagian kecil daripada kos.",
+      "icon": "fas fa-award"
+    },
+    {
+      "title": "Selamat & peribadi",
+      "description": "Foto anda dipadam secara automatik selepas pemprosesan. Kami tak simpan atau kongsi imej peribadi anda.",
+      "icon": "fas fa-shield-alt"
+    },
+    {
+      "title": "Pelbagai pilihan bayaran",
+      "description": "Bayar dengan selamat melalui Stripe atau SSLCommerz. Harga fleksibel untuk foto individu atau pemprosesan pukal.",
+      "icon": "fas fa-credit-card"
+    },
+    {
+      "title": "Antara muka moden yang responsif",
+      "description": "Antara muka yang jelas dan mudah diikuti, yang menyesuaikan diri dengan skrin komputer, tablet, dan telefon.",
+      "icon": "fas fa-mobile-alt"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "Web",
+      "icon": "fas fa-globe",
+      "version": "Aplikasi web",
+      "link": "#"
+    }
+  ],
+  "tech": [
+    "Model AI/ML",
+    "React.js",
+    "Node.js",
+    "Stripe API",
+    "SSLCommerz",
+    "Pemprosesan awan"
+  ],
+  "galleryType": "mobile",
+  "screenshots": [
+    "/images/projects/photorestore-ai/1.png",
+    "/images/projects/photorestore-ai/2.png",
+    "/images/projects/photorestore-ai/3.png",
+    "/images/projects/photorestore-ai/4.png",
+    "/images/projects/photorestore-ai/5.png",
+    "/images/projects/photorestore-ai/6.png"
+  ],
+  "testimonials": [
+    {
+      "quote": "PhotoRestore AI hidupkan semula foto perkahwinan nenek saya. Hasilnya luar biasa!",
+      "author": "Ahmed R.",
+      "role": "Pelanggan"
+    }
+  ],
+  "faq": [
+    {
+      "question": "Bagaimana pemulihan AI berfungsi?",
+      "answer": "AI kami menganalisis foto anda untuk mengesan kerosakan, kepudaran, dan ketidaksempurnaan, kemudian memulihkan imej secara pintar menggunakan rangkaian neural terlatih."
+    },
+    {
+      "question": "Adakah data foto saya selamat?",
+      "answer": "Ya. Semua foto yang dimuat naik diproses dengan selamat dan dipadam secara automatik selepas 24 jam. Kami tak simpan atau kongsi imej anda."
+    },
+    {
+      "question": "Kerosakan jenis apa yang boleh dibaiki?",
+      "answer": "AI kami boleh pulihkan warna yang pudar, baiki calar dan koyak, buang kotoran, tingkatkan kejelasan, malah warnakan foto hitam putih."
+    },
+    {
+      "question": "Berapa harganya?",
+      "answer": "Kami tawarkan harga fleksibel bermula dari $2 setiap foto. Pakej pukal tersedia untuk projek pemulihan yang lebih besar."
+    }
+  ]
+}

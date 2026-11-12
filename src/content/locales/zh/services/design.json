@@ -1,0 +1,165 @@
+{
+  "id": "design",
+  "slug": "design",
+  "title": "界面与体验设计",
+  "tagline": "值得再点一次的设计",
+  "color": "#AF52DE",
+  "gradient": "linear-gradient(135deg, #AF52DE 0%, #D8A0F5 100%)",
+  "icon": "fas fa-paint-brush",
+  "shortDescription": "清楚、直觉、让人愿意再回来的界面",
+  "hero": {
+    "title": "值得再点一次的设计",
+    "subtitle": "界面按人们真正怎么用这个东西来长，不按情绪板上好不好看来长。",
+    "cta_primary": "把项目简报给我们",
+    "cta_primary_link": "/contact/",
+    "cta_secondary": "看看交付物",
+    "cta_secondary_link": "#deliverables"
+  },
+  "metrics": [
+    { "value": "12+", "label": "交付过的设计系统" },
+    { "value": "WCAG AA", "label": "默认的无障碍目标" },
+    { "value": "单一来源", "label": "以 Figma 为唯一真相" }
+  ],
+  "subServices": [
+    {
+      "id": "user-research",
+      "name": "用户研究",
+      "icon": "fas fa-user-friends",
+      "desc": "弄清用户的需要和行为",
+      "longDesc": "每个项目我们都从和真实用户谈话开始——有主持的访谈、无主持的测试，以及把分析挖深。产出不是一张人物海报，而是一份清楚、排好优先级的待完成工作清单，设计必须把它们做好。",
+      "bullets": [
+        "用户访谈和情境探询",
+        "待完成工作与机会地图",
+        "在 Figma 或线上原型上做可用性测试",
+        "从洞察交到设计的简报"
+      ],
+      "imageLabel": "研究洞察板"
+    },
+    {
+      "id": "wireframing",
+      "name": "线框",
+      "icon": "fas fa-pencil-ruler",
+      "desc": "把应用的结构和流程画成蓝图",
+      "longDesc": "上像素之前，我们先画骨架。每条关键流程的低保真线框，对着信息架构验证，并且改得快。最贵的错误，在线框上改最便宜——所以我们不跳过。",
+      "bullets": [
+        "每条流程的低保真线框",
+        "信息架构和导航",
+        "用户流程图和边界情况",
+        "视觉设计之前先过工程评审"
+      ],
+      "imageLabel": "带关键流程的线框组"
+    },
+    {
+      "id": "visual-design",
+      "name": "视觉设计",
+      "icon": "fas fa-palette",
+      "desc": "反映你品牌的一致界面",
+      "longDesc": "高保真的 Figma 文件、一套真的字体和色彩系统，以及贴合品牌性格的动效原则。产出是你们在我们离开之后还能继续用的 Figma 组件库——不是一份静止的交付件。",
+      "bullets": [
+        "高保真的 Figma 画面和组件",
+        "字体、色彩和动效系统",
+        "贴合品牌的图标和插画",
+        "浅色、深色和品牌变体"
+      ],
+      "imageLabel": "高保真移动画面"
+    },
+    {
+      "id": "prototyping",
+      "name": "原型",
+      "icon": "fas fa-laptop-code",
+      "desc": "用来检验想法的可交互原型",
+      "longDesc": "给干系人评审、用户测试和众筹用的可点击原型。按保真需要，我们在 Figma 里做，或用代码做——并在你花一迪拉姆到工程上之前，用它们去试最冒险的假设。",
+      "bullets": [
+        "基于 Figma 和基于代码的原型",
+        "微交互和动效规格",
+        "可供用户研究的可测流程",
+        "给干系人演示的构建"
+      ],
+      "imageLabel": "用代码做的可交互原型"
+    }
+  ],
+  "process": [
+    {
+      "number": "01",
+      "title": "摸清",
+      "desc": "研究、分析回顾，以及一页问题陈述",
+      "icon": "fas fa-lightbulb"
+    },
+    {
+      "number": "02",
+      "title": "定义",
+      "desc": "待完成的工作、成功指标，以及第一版范围",
+      "icon": "fas fa-bullseye"
+    },
+    {
+      "number": "03",
+      "title": "设计",
+      "desc": "先线框，再在 Figma 里做视觉，每周评审",
+      "icon": "fas fa-pencil-ruler"
+    },
+    {
+      "number": "04",
+      "title": "验证",
+      "desc": "在原型上做用户测试，迭代，并把系统锁定",
+      "icon": "fas fa-vial"
+    },
+    {
+      "number": "05",
+      "title": "交接",
+      "desc": "带标注的 Figma、一套可进 Storybook 的组件库，以及和你们开发的一次实作会",
+      "icon": "fas fa-handshake"
+    }
+  ],
+  "deliverables": [
+    {
+      "title": "以 Figma 为唯一真相",
+      "description": "一份干净、整理好的 Figma 文件，带组件、变量，以及可以直接交接的画框。",
+      "icon": "fas fa-pen-ruler"
+    },
+    {
+      "title": "设计系统",
+      "description": "字体、色彩、间距、动效和图标——写清楚，并且可以放大。",
+      "icon": "fas fa-shapes"
+    },
+    {
+      "title": "原型",
+      "description": "在 Figma 或代码里的可点击原型，供干系人评审和用户测试。",
+      "icon": "fas fa-laptop"
+    },
+    {
+      "title": "交接包",
+      "description": "规格、标注、素材，以及和工程团队的一次实作会。",
+      "icon": "fas fa-box"
+    }
+  ],
+  "tech": [
+    "Figma",
+    "FigJam",
+    "Framer",
+    "Storybook",
+    "Maze",
+    "Notion",
+    "Lottie",
+    "Rive",
+    "After Effects",
+    "Webflow"
+  ],
+  "faq": [
+    {
+      "question": "设计你们也会做成代码吗？",
+      "answer": "会。我们多数合作最后都会交到一个能跑的前端。我们可以交付 Astro、Next.js、SvelteKit 或 React Native——按你的技术栈来。交接里不会丢东西，因为设计和开发是同一支团队。"
+    },
+    {
+      "question": "能接手一套已有的设计系统吗？",
+      "answer": "经常接。我们先做设计系统审计，提出清理路径，再把它放进你们工程师真会用的 Storybook。我们救过两千多个组件的 Figma 文件，把它们变成可以维护的东西。"
+    },
+    {
+      "question": "无障碍你们怎么处理？",
+      "answer": "无障碍不是结尾才跑的一张清单。从第一张线框起，我们就为键盘、屏幕阅读器和色彩对比来设计，交接前用真实的辅助技术测过。默认是 WCAG AA；要紧的地方做到 AAA。"
+    },
+    {
+      "question": "如果我只有品牌，还没有产品想法呢？",
+      "answer": "这是很好的起点。我们跑一次两周的发现冲刺，结束时给你产品简报、功能清单，以及一份可以用来融资、招人或销售的原型。从那里，我们可以设计和做出第一版。"
+    }
+  ]
+}

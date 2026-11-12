@@ -8,7 +8,7 @@ export type ProjectStatus =
 export type AppType = "mobile" | "web";
 export type GalleryType = "mobile" | "web";
 export type Section = "home" | "projects" | "services" | "clients" | "contact";
-export type Lang = "en" | "ar" | "ur" | "hi" | "fil";
+export type Lang = "en" | "ar" | "ur" | "hi" | "fil" | "ms" | "ta" | "zh";
 
 export interface NavItem {
   label: string;
@@ -296,10 +296,25 @@ export interface LinksData {
   social: Record<string, string>;
   contact: {
     email: string;
+    email_link?: string;
     phone: string;
+    phone_display?: string;
+    phone_link?: string;
     whatsapp: string;
     whatsapp_link: string;
     address: string;
+  };
+  regions?: {
+    default?: string;
+    countries?: Record<
+      string,
+      {
+        languages?: string[];
+        defaultLanguage?: string;
+        contact?: Partial<LinksData["contact"]>;
+        [key: string]: unknown;
+      }
+    >;
   };
   forms: { contact_form_url: string; booking_api_url: string };
   projects: Record<string, ProjectLinks>;

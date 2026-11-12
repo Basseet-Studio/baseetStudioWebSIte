@@ -1,0 +1,103 @@
+{
+  "name": "MoneyBox",
+  "slug": "moneybox",
+  "type": "branded",
+  "tagline": "你的钱，清清楚楚。",
+  "description": "## 关于 MoneyBox\n\nMoneyBox 是一款个人财务追踪应用，帮你看清钱去了哪里、设下储蓄目标、守住预算——没有一整套银行应用的杂乱。\n\n### 聪明的储蓄目标\n\n为旅行、应急或大额消费设目标，用清楚的图表看着进度往前走。\n\n### 支出追踪\n\n按类别记下花费，早点看见规律，让每天的习惯保持诚实。\n\n### 干净的报表\n\n月度汇总和趋势视图，一眼就懂——不必再开表格。\n",
+  "iconClass": "fas fa-piggy-bank",
+  "color": "#16A34A",
+  "gradient": "linear-gradient(135deg, #16A34A 0%, #4ADE80 100%)",
+  "status": "Live",
+  "layoutVariant": "moneybox",
+  "fontHeading": "Outfit",
+  "fontBody": "DM Sans",
+  "fontWeights": "400,500,600,700",
+  "gsapAnimation": "grow-leaves",
+  "appType": "mobile",
+  "brandName": "MoneyBox",
+  "bgEffect": "leaves",
+  "bgFallbackGradient": "linear-gradient(180deg, #F0FDF4 0%, #DCFCE7 40%, #BBF7D0 100%)",
+  "hero": {
+    "title": "你的钱，终于清楚了。",
+    "subtitle": "一款带预算、目标和干净报表的个人财务追踪应用——让储蓄每天都简单、看得见。",
+    "cta_primary": "获取应用",
+    "cta_primary_link": "https://drive.google.com/drive/folders/1_8MswXC-JxPEFU_0-fmeXal_hK7yKs9C?usp=sharing",
+    "cta_secondary": "查看功能",
+    "cta_secondary_link": "#features"
+  },
+  "features": [
+    {
+      "title": "聪明的储蓄目标",
+      "description": "为任何事设目标——应急、旅行或大额消费——并用让人有劲的图表追踪进度。",
+      "icon": "fas fa-bullseye"
+    },
+    {
+      "title": "支出追踪",
+      "description": "按类别记下花费，早点看见规律，让每天的习惯保持诚实，不必淹死在表格里。",
+      "icon": "fas fa-receipt"
+    },
+    {
+      "title": "预算总览",
+      "description": "用在手机上仍然好读的月度汇总，一眼看清进账和出账。",
+      "icon": "fas fa-chart-pie"
+    },
+    {
+      "title": "干净的报表",
+      "description": "趋势视图和类别拆分，为快速看一眼而设计——不是月末的考古。",
+      "icon": "fas fa-chart-line"
+    },
+    {
+      "title": "每日提醒",
+      "description": "轻轻推你记下支出、回顾目标，让应用顺着你的日常，而不是对着干。",
+      "icon": "fas fa-bell"
+    },
+    {
+      "title": "天生私密",
+      "description": "你的财务留在你的设备上。没有广告，不转卖数据——只是一个尊重你数字的工具。",
+      "icon": "fas fa-lock"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "iOS",
+      "icon": "fab fa-apple",
+      "version": "iOS 15+",
+      "link": "#"
+    },
+    {
+      "name": "Android",
+      "icon": "fab fa-android",
+      "version": "Android 8+",
+      "link": "https://drive.google.com/drive/folders/1_8MswXC-JxPEFU_0-fmeXal_hK7yKs9C?usp=sharing"
+    }
+  ],
+  "tech": ["Flutter", "Dart", "SQLite", "Riverpod"],
+  "navItems": [
+    { "label": "首页", "url": "", "i18nKey": "project_nav_home" },
+    { "label": "功能", "url": "features/", "i18nKey": "project_nav_features" },
+    { "label": "下载", "url": "download/", "i18nKey": "project_nav_download" },
+    { "label": "条款", "url": "terms/", "i18nKey": "project_nav_terms" },
+    { "label": "隐私", "url": "privacy/", "i18nKey": "project_nav_privacy" }
+  ],
+  "navMetaItems": [
+    { "label": "作品", "url": "/projects/", "i18nKey": "nav_work" },
+    { "label": "联系", "url": "/contact/", "i18nKey": "nav_contact" }
+  ],
+  "faq": [
+    {
+      "question": "MoneyBox 免费吗？",
+      "answer": "MoneyBox 是巴西特工作室已经上线的产品。下载链接和价格在 Android 版本上；iOS 即将推出。"
+    },
+    {
+      "question": "它会连接我的银行吗？",
+      "answer": "MoneyBox 专注手动记账和目标设定——简单、私密，完全由你掌控。"
+    },
+    {
+      "question": "我的数据存在哪里？",
+      "answer": "你的数据留在你的设备上。我们不出售、不分享你的财务信息。"
+    }
+  ],
+  "links": {
+    "android": "https://drive.google.com/drive/folders/1_8MswXC-JxPEFU_0-fmeXal_hK7yKs9C?usp=sharing"
+  }
+}

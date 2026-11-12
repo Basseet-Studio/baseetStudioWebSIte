@@ -1,0 +1,17 @@
+{
+  "links": [
+    { "label": "首页", "url": "/", "i18nKey": "nav_home" },
+    { "label": "服务", "url": "/services/", "i18nKey": "nav_services" },
+    { "label": "项目", "url": "/projects/", "i18nKey": "nav_work" },
+    { "label": "客户", "url": "/clients/", "i18nKey": "nav_clients" },
+    { "label": "联系", "url": "/contact/", "i18nKey": "nav_contact" }
+  ],
+  "copyright": "2026 巴西特工作室。保留所有权利。",
+  "social": [
+    { "platform": "instagram", "icon": "fab fa-instagram", "url": "https://instagram.com/baseet.studio" },
+    { "platform": "linkedin", "icon": "fab fa-linkedin-in", "url": "https://linkedin.com/company/baseetstudios" },
+    { "platform": "twitter", "icon": "fab fa-x-twitter", "url": "https://twitter.com/baseetstudios" },
+    { "platform": "github", "icon": "fab fa-github", "url": "https://github.com/baseetstudios" },
+    { "platform": "dribbble", "icon": "fab fa-dribbble", "url": "https://dribbble.com/baseet" }
+  ]
+}

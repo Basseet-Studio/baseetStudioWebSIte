@@ -1,0 +1,153 @@
+{
+  "name": "Zyrn",
+  "slug": "zyrn",
+  "type": "branded",
+  "tagline": "你的店。你的品牌。你的顾客——变化发生的当下就收到通知。",
+  "description": "## 关于 Zyrn\n\nZyrn 是一套完整的数字商业方案，给想在线上卖东西、又不想淹死在表格、聊天订单和便签里的生意老板和新创业者。它跑的是一家真店——商品、支付、顾客、营销、退货、报表——并能长成订阅、数字商品、预约，以及让生意在你睡觉时继续动的自动化。\n\n### 没有纸痕。不用猜。\n\n订单不再住在社交私信和聊天线程里。库存不再住在笔记本里。一有变化，顾客就收到更新——下单、付款确认、已发货、已送达、退货已开启。\n\n### 卖你真正在卖的东西\n\n实物商品、数字下载、订阅和会员、预约和档期、套装，以及多货币店面——一套带品牌的系统，不是一个宣传站点。\n",
+  "iconClass": "fas fa-th-large",
+  "color": "#EC4899",
+  "gradient": "linear-gradient(135deg, #EC4899 0%, #F9A8D4 100%)",
+  "status": "Ready to Deliver",
+  "layoutVariant": "zyrn",
+  "fontHeading": "Space Grotesk",
+  "fontBody": "Inter",
+  "fontWeights": "400,500,700",
+  "gsapAnimation": "stagger-fade",
+  "appType": "web",
+  "brandName": "Zyrn",
+  "bgEffect": "none",
+  "bgFallbackGradient": "linear-gradient(180deg, #FDF2F8 0%, #FCE7F3 40%, #FBCFE8 100%)",
+  "clientIds": ["little-hands-lab"],
+  "hero": {
+    "title": "卖得更聪明。离顾客更近。长大，但不混乱。",
+    "subtitle": "一套带品牌的线上商店系统，覆盖实物、数字商品和订阅——带实时的顾客更新、清楚的数字，以及自动化，让你不用猜生意里正在发生什么。",
+    "cta_primary": "预约演示",
+    "cta_primary_link": "/contact",
+    "cta_secondary": "查看功能",
+    "cta_secondary_link": "#features"
+  },
+  "features": [
+    {
+      "title": "带品牌的店面",
+      "description": "你的标志、色彩和内容，放在一家手机上就能用的店里——从第一天就有质感，不是简介里的一条临时链接。",
+      "icon": "fas fa-store"
+    },
+    {
+      "title": "什么都能卖",
+      "description": "实物、数字下载、订阅、预约、套装，以及多货币或多语言的店面。",
+      "icon": "fas fa-boxes-stacked"
+    },
+    {
+      "title": "当下就通知",
+      "description": "已下单 → 付款已确认 → 已发货 → 已送达 → 退货已开启。顾客心里有数，不用追着你问。",
+      "icon": "fas fa-bell"
+    },
+    {
+      "title": "结账与支付",
+      "description": "顺的购物车和结账，支持卡、钱包、货到付款、银行转账和主要支付网关——收到钱，确认，继续往下。",
+      "icon": "fas fa-credit-card"
+    },
+    {
+      "title": "营销与增长",
+      "description": "优惠券、目录规则、邮件活动、搜索优化、社交分享和通讯工具——优惠、时机和跟进都在。",
+      "icon": "fas fa-bullhorn"
+    },
+    {
+      "title": "实时统计",
+      "description": "销售、畅销、顾客、购物车、促销、库存——打开数字，决定下一步做什么。",
+      "icon": "fas fa-chart-line"
+    },
+    {
+      "title": "自动化",
+      "description": "订单邮件、状态提醒、促销规则、库存信号，以及可延伸的流程，比如购物车挽回和聊天软件更新。",
+      "icon": "fas fa-robot"
+    },
+    {
+      "title": "库存与团队控制",
+      "description": "库存随销售更新，导入导出，退货与退货授权，以及员工角色，让团队在一个系统里干活。",
+      "icon": "fas fa-sitemap"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "网页",
+      "icon": "fas fa-globe",
+      "version": "品牌店面 + 管理后台",
+      "link": "#"
+    }
+  ],
+  "tech": [
+    "品牌店面",
+    "目录与库存",
+    "结账与支付",
+    "订单通知",
+    "订阅",
+    "数字商品",
+    "预约",
+    "营销与优惠券",
+    "统计与报表",
+    "自动化",
+    "多语言 / 多货币",
+    "退货 / 退货授权"
+  ],
+  "navItems": [
+    {
+      "label": "首页",
+      "url": "",
+      "i18nKey": "project_nav_home"
+    },
+    {
+      "label": "功能",
+      "url": "features/",
+      "i18nKey": "project_nav_features"
+    },
+    {
+      "label": "演示",
+      "url": "demo/",
+      "i18nKey": "project_nav_demo"
+    },
+    {
+      "label": "隐私政策",
+      "url": "terms/",
+      "i18nKey": "project_nav_terms"
+    }
+  ],
+  "navMetaItems": [
+    {
+      "label": "作品",
+      "url": "/projects/",
+      "i18nKey": "nav_work"
+    },
+    {
+      "label": "联系",
+      "url": "/contact/",
+      "i18nKey": "nav_contact"
+    }
+  ],
+  "faq": [
+    {
+      "question": "我已经在社交平台上卖了。为什么还需要 Zyrn？",
+      "answer": "社交平台是被发现的地方。Zyrn 是结账、库存、通知，以及对顾客关系的所有权——订单不再住在私信里。"
+    },
+    {
+      "question": "我用一张表不就行了？",
+      "answer": "表单接收请求。Zyrn 收款、追踪库存，并在有变化时自动更新顾客。"
+    },
+    {
+      "question": "我太小了，用不上软件。这是给我的吗？",
+      "answer": "混乱恰恰从这时候开始。Zyrn 让小生意在乱变得昂贵之前保持干净——先轻装上线，以后再加订阅、数字商品和自动化。"
+    },
+    {
+      "question": "我能卖数字商品或订阅吗？",
+      "answer": "能。下载和许可证即时交付，再加上订阅和会员流程，适合盒子、方案和经常性收入。"
+    },
+    {
+      "question": "顾客会知道订单怎么样了吗？",
+      "answer": "会。当下就通知——订单、付款、发货和退货——所以你不用一天把同一句更新打五十遍。"
+    },
+    {
+      "question": "我怎么知道下一步该卖什么？",
+      "answer": "统计。畅销品。顾客行为。购物车和促销视图。不用猜——打开仪表盘，做决定。"
+    }
+  ]
+}

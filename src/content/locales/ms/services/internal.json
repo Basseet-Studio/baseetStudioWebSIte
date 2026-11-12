@@ -1,0 +1,161 @@
+{
+  "id": "internal",
+  "slug": "internal",
+  "title": "Alat dalaman",
+  "tagline": "Perisian operasi yang benar-benar digunakan",
+  "color": "#0891B2",
+  "gradient": "linear-gradient(135deg, #0891B2 0%, #22D3EE 100%)",
+  "icon": "fas fa-tools",
+  "shortDescription": "Lancarkan operasi dengan penyelesaian dalaman tersuai",
+  "hero": {
+    "title": "Perisian operasi yang benar-benar digunakan",
+    "subtitle": "Papan pemuka, CRM, dan alat pejabat belakang yang pasukan anda buka pada pagi Isnin tanpa mengeluh mengenainya.",
+    "cta_primary": "Petakan aliran kerja saya",
+    "cta_primary_link": "/contact/",
+    "cta_secondary": "Lihat hasil serahan",
+    "cta_secondary_link": "#deliverables"
+  },
+  "metrics": [
+    { "value": "−40%", "label": "Masa pada operasi rutin" },
+    { "value": "1 minggu", "label": "Binaan pertama yang boleh digunakan" },
+    { "value": "100%", "label": "Tindakan yang boleh diaudit" }
+  ],
+  "subServices": [
+    {
+      "id": "admin-dashboards",
+      "name": "Papan pemuka pentadbir",
+      "icon": "fas fa-tachometer-alt",
+      "desc": "Papan pemuka langsung untuk mengurus perniagaan anda",
+      "longDesc": "Pusat arahan sebenar untuk pasukan anda — bukan laporan statik. Kami bina papan pemuka dalaman yang tarik data langsung dari timbunan anda, tonjolkan pengecualian, dan benarkan pengendali bertindak tanpa meninggalkan halaman.",
+      "bullets": [
+        "Data langsung dari pangkalan data, gudang, atau API SaaS anda",
+        "Paparan berasaskan peranan untuk operasi, kewangan, dan kepimpinan",
+        "Gerudi masuk, penapis, dan paparan tersimpan",
+        "Amaran Slack dan e-mel pada metrik yang penting"
+      ],
+      "imageLabel": "Papan pemuka pentadbir dengan KPI langsung"
+    },
+    {
+      "id": "crm",
+      "name": "Sistem CRM",
+      "icon": "fas fa-users-cog",
+      "desc": "Pengurusan hubungan pelanggan yang disesuaikan untuk anda",
+      "longDesc": "Bila Salesforce atau HubSpot terlebih, kami bina CRM yang padan dengan gerak jualan anda. Peringkat saluran, susulan, kontrak, dan kesihatan pelanggan — tepat apa yang pasukan anda perlukan, dan tiada yang mereka tak perlukan.",
+      "bullets": [
+        "Saluran, peringkat urusan, dan ramalan",
+        "Integrasi e-mel, panggilan, dan mesyuarat",
+        "Kesihatan pelanggan dan aliran pembaharuan",
+        "Medan dan objek tersuai tanpa panggilan jualan"
+      ],
+      "imageLabel": "Paparan saluran CRM tersuai"
+    },
+    {
+      "id": "inventory",
+      "name": "Pengurusan inventori",
+      "icon": "fas fa-boxes",
+      "desc": "Jejak stok, pesanan, dan logistik dengan cekap",
+      "longDesc": "Inventori hanya satu kesilapan dari kehabisan stok atau hapus kira. Kami bina sistem inventori yang jejak SKU merentas lokasi, berintegrasi dengan POS dan saluran pasaran anda, dan tonjolkan keputusan pesanan semula sebelum ia jadi masalah.",
+      "bullets": [
+        "Stok dan pemindahan pelbagai lokasi",
+        "Penyegerakan POS, Shopify, dan pasaran",
+        "Penjejakan lot, nombor siri, dan tarikh luput",
+        "Pesanan belian dan aliran kerja pembekal"
+      ],
+      "imageLabel": "Paparan paras inventori dan pesanan semula"
+    },
+    {
+      "id": "automation",
+      "name": "Automasi aliran kerja",
+      "icon": "fas fa-robot",
+      "desc": "Automatikkan tugas berulang dan jimatkan masa",
+      "longDesc": "Kami tukarkan langkah manual yang makan minggu anda menjadi automasi yang boleh dipercayai. Penghalaan prospek, penjanaan invois, urutan penerimaan pelanggan, dan gam antara alat yang tiada templat Zapier.",
+      "bullets": [
+        "Pereka aliran kerja visual dengan sejarah versi",
+        "Cuba semula, idempotensi, dan pengendalian ralat",
+        "Log audit setiap tindakan dan keputusan",
+        "Penyambung untuk 200+ alat SaaS dari awal"
+      ],
+      "imageLabel": "Kanvas automasi aliran kerja"
+    }
+  ],
+  "process": [
+    {
+      "number": "01",
+      "title": "Petakan aliran kerja",
+      "desc": "Duduk dengan pasukan, lakar langkah, dan cari kesesakan yang paling berbaloi",
+      "icon": "fas fa-lightbulb"
+    },
+    {
+      "number": "02",
+      "title": "Skop MVP",
+      "desc": "Potongan pertama yang ketat, dihantar dalam seminggu — 80% yang pasukan anda akan guna setiap hari",
+      "icon": "fas fa-bullseye"
+    },
+    {
+      "number": "03",
+      "title": "Bina & instrumentasi",
+      "desc": "Selamat jenis, pangkalan data sebenar, dan sistem bendera ciri supaya kami boleh ulang secara langsung",
+      "icon": "fas fa-code"
+    },
+    {
+      "number": "04",
+      "title": "Latih & serah",
+      "desc": "Panduan Loom, panduan ringkas, dan tetingkap 30 hari untuk ubah suai kecil",
+      "icon": "fas fa-graduation-cap"
+    }
+  ],
+  "deliverables": [
+    {
+      "title": "Aplikasi dalaman yang berfungsi",
+      "description": "Aplikasi yang dipasang dengan pengesahan, peranan, dan kawasan pentadbir yang pasukan IT anda boleh miliki.",
+      "icon": "fas fa-server"
+    },
+    {
+      "title": "Integrasi data",
+      "description": "Penyambung langsung ke pangkalan data, alat SaaS, dan hamparan anda.",
+      "icon": "fas fa-plug"
+    },
+    {
+      "title": "Latihan pengendali",
+      "description": "Panduan rakaman dan buku panduan bertulis untuk hari ke hari.",
+      "icon": "fas fa-book-open"
+    },
+    {
+      "title": "Serahan & sokongan",
+      "description": "Kod sumber, infrastruktur sebagai kod, dan 30 hari sokongan selepas pelancaran.",
+      "icon": "fas fa-handshake"
+    }
+  ],
+  "tech": [
+    "Next.js",
+    "TypeScript",
+    "Postgres",
+    "Prisma",
+    "tRPC",
+    "Tailwind CSS",
+    "Trigger.dev",
+    "Temporal",
+    "Supabase",
+    "Auth.js",
+    "Resend",
+    "Slack API"
+  ],
+  "faq": [
+    {
+      "question": "Bagaimana ini berbeza daripada SaaS siap pakai?",
+      "answer": "SaaS siap pakai dioptimumkan untuk pelanggan purata. Alat dalaman tersuai dioptimumkan untuk aliran kerja anda yang tepat — dan anda berhenti bayar ikut tempat duduk bila anda berkembang. Kami syorkan SaaS bila itu jawapan yang betul, dan binaan tersuai bila ia bukan."
+    },
+    {
+      "question": "Berapa lama sebelum pasukan saya boleh gunakannya?",
+      "answer": "Sasaran kami ialah binaan pertama yang boleh digunakan dalam satu hingga dua minggu, dengan v1 yang lengkap cirinya dalam 6–10 minggu bergantung pada integrasi. Kami hantar secara kenaikan mingguan dan buat demo setiap Jumaat."
+    },
+    {
+      "question": "Bolehkah pasukan saya menyelenggaranya?",
+      "answer": "Boleh. Kami pilih timbunan yang biasa dan berdokumentasi baik, tulis README yang pasukan masa depan anda akan baca, dan jalankan pecutan serahan di mana kami berpasangan dengan sesiapa yang miliki alat itu setiap hari."
+    },
+    {
+      "question": "Bagaimana kalau keperluan berubah di tengah binaan?",
+      "answer": "Dijangka. Proses kami dibina di sekitar gelung maklum balas yang pendek — demo mingguan, peta hala tuju berkongsi, dan sistem bendera ciri yang benarkan anda hidupkan atau matikan perubahan tanpa pasang semula."
+    }
+  ]
+}

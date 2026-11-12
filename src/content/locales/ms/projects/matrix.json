@@ -1,0 +1,142 @@
+{
+  "name": "Matrix",
+  "slug": "matrix",
+  "type": "branded",
+  "tagline": "Satu platform. Setiap bahagian perniagaan anda. Tiada lagi penat bertukar alat.",
+  "description": "## Perihal Matrix\n\nMatrix ialah ruang kerja SaaS semua-dalam-satu yang berprestasi tinggi, dibina untuk menggantikan tampalan alat berasingan yang kebanyakan pasukan terpaksa guna serentak. Projek, orang, pelanggan, dan kewangan semuanya hidup dalam satu ekosistem yang padu — dan data mengalir antara mereka.\n\n### Masalah yang kami selesaikan\n\nKebanyakan pasukan yang sedang berkembang cantumkan 5–10 langganan berbeza: CRM di sini, pengurus tugas di sana, invois di tempat lain, dokumen di tab yang lain lagi. Hasilnya ialah **keletihan alat**, integrasi yang putus, dan data terperangkap dalam silo. Matrix wujud untuk hapuskan itu — satu log masuk, satu antara muka, satu sumber kebenaran.\n\n### Lima modul dalam satu ruang kerja\n\n- **📊 Pengurusan projek & tugas** — Aliran kerja Kanban dengan papan seret dan lepas, lajur dan keutamaan yang boleh disesuaikan, hierarki tugas dengan subtugas dan hubungan ibu bapa–anak yang penuh, kerjasama masa nyata dengan kemas kini serta-merta merentas pasukan.\n- **🤝 Pengurusan hubungan pelanggan (CRM)** — Pangkalan data kenalan berpusat untuk pelanggan, prospek, dan pihak berkepentingan, saluran jualan yang jejak setiap pelanggan dari prospek pertama hingga urusan ditutup, dan penjejakan penglibatan penuh dengan sejarah interaksi serta pemantauan status.\n- **👥 Pengurusan sumber manusia (HRM)** — Direktori pekerja dengan rekod terperinci, pengurusan kitaran hayat penuh dari penerimaan hingga penjejakan prestasi, dan peranan ruang kerja yang terperinci untuk kawalan kebenaran yang tepat.\n- **🧾 Invois profesional** — Jana invois profesional dengan integrasi **Stripe** terbina, penjejakan status automatik (Draf, Dibayar, Tertunggak) yang dikemas kini secara masa nyata, dan pengebilan beritem dengan butiran baris, cukai, serta pengiraan kuantiti.\n- **📄 Pengurusan dokumen & pengetahuan** — Dokumen kolaboratif dengan perkongsian dalaman dan luaran pada dokumen yang sama, kawalan versi penuh yang jejak setiap perubahan dan kembali ke mana-mana versi terdahulu, serta kawalan akses awam/peribadi yang terperinci.\n\n### Gred perusahaan dari hari pertama\n\n- **🔀 Sokongan pelbagai ruang kerja** — Tukar antara organisasi atau jabatan dari satu log masuk.\n- **📜 Log audit** — Kebolehkesanan penuh tindakan untuk keselamatan dan pematuhan.\n- **🔒 Penyewaan berbilang yang selamat** — Pengasingan data yang keras antara ruang kerja.\n- **📈 Seni bina yang boleh diskala** — Dibina untuk penskalaan mendatar dari asas.\n\n### Dibina di atas timbunan moden yang berprestasi tinggi\n\nTimbunan yang dipilih untuk **kelajuan, keselamatan, dan pengalaman pembangun** — dan yang diterjemahkan menjadi produk yang ketara lebih laju untuk pengguna akhir.\n\n- **Bahagian hadapan** — Next.js 15 (App Router) + TypeScript\n- **Bahagian belakang** — Bun + Elysia.js (kependaman ultra rendah)\n- **Pangkalan data** — PostgreSQL melalui Prisma ORM\n- **Cache** — Redis (sesi + prestasi)\n- **Pengesahan** — Better Auth (RBAC + penyewaan berbilang)\n- **UI/UX** — Tailwind CSS + shadcn/ui\n\n### Mengapa Matrix\n\n- **Ganti 5+ alat** dengan satu langganan.\n- **Berhenti kehilangan konteks** antara modul — data mengalir, bukan berpecah.\n- **Dibina untuk skala** dengan seni bina pelbagai ruang kerja dan pelbagai penyewa dari hari pertama.\n- **UX moden** — bersih, boleh dicapai, laju.\n\n*Dibangunkan dengan tumpuan pada reka bentuk visual yang teliti, prestasi, dan pengalaman pembangun.*\n",
+  "iconClass": "fas fa-th-large",
+  "color": "#0891B2",
+  "gradient": "linear-gradient(135deg, #0891B2 0%, #22D3EE 100%)",
+  "status": "Coming Soon",
+  "layoutVariant": "matrix",
+  "fontHeading": "JetBrains Mono",
+  "fontBody": "IBM Plex Sans",
+  "fontWeights": "400,500,700",
+  "gsapAnimation": "typewriter-glitch",
+  "appType": "web",
+  "brandName": "Matrix",
+  "bgEffect": "grid",
+  "bgFallbackGradient": "linear-gradient(180deg, #ECFEFF 0%, #CFFAFE 40%, #A5F3FC 100%)",
+  "clientIds": [],
+  "hero": {
+    "title": "Satu ruang kerja untuk projek, orang, pelanggan & kewangan",
+    "subtitle": "Matrix gantikan tampalan 5+ alat yang kebanyakan pasukan terpaksa guna serentak. Projek, CRM, HRM, invois, dan dokumen — dalam satu ruang kerja SaaS pelbagai penyewa yang padu, dibina untuk kelajuan.",
+    "cta_primary": "Dapatkan akses awal",
+    "cta_primary_link": "/contact",
+    "cta_secondary": "Lihat ciri",
+    "cta_secondary_link": "#features"
+  },
+  "features": [
+    {
+      "title": "Pengurusan projek & tugas",
+      "description": "Papan Kanban seret dan lepas dengan lajur yang boleh disesuaikan, hierarki tugas dengan subtugas dan hubungan ibu bapa–anak, serta kerjasama masa nyata untuk kemas kini pasukan serta-merta.",
+      "icon": "fas fa-tasks"
+    },
+    {
+      "title": "CRM terbina",
+      "description": "Pangkalan data kenalan berpusat untuk pelanggan, prospek, dan pihak berkepentingan, saluran jualan dari prospek pertama hingga urusan ditutup, dan penjejakan penglibatan dengan sejarah interaksi penuh.",
+      "icon": "fas fa-handshake"
+    },
+    {
+      "title": "HRM & peranan terperinci",
+      "description": "Direktori pekerja dengan rekod terperinci, pengurusan kitaran hayat penuh dari penerimaan hingga penjejakan prestasi, dan kawalan kebenaran peringkat ruang kerja yang tepat.",
+      "icon": "fas fa-users"
+    },
+    {
+      "title": "Invois dengan Stripe",
+      "description": "Jana invois profesional dengan integrasi Stripe terbina, penjejakan status automatik (Draf, Dibayar, Tertunggak) secara masa nyata, dan pengebilan beritem dengan pengiraan cukai serta kuantiti.",
+      "icon": "fas fa-file-invoice-dollar"
+    },
+    {
+      "title": "Dokumen kolaboratif & kawalan versi",
+      "description": "Perkongsian dalaman dan luaran pada dokumen yang sama, kawalan versi penuh yang jejak setiap perubahan, dan kawalan akses awam/peribadi yang terperinci.",
+      "icon": "fas fa-file-alt"
+    },
+    {
+      "title": "Pelbagai ruang kerja & pelbagai penyewa",
+      "description": "Tukar antara organisasi dari satu log masuk, dengan pengasingan data yang keras antara ruang kerja, log audit yang lengkap, dan seni bina penskalaan mendatar dari hari pertama.",
+      "icon": "fas fa-layer-group"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "Web",
+      "icon": "fas fa-globe",
+      "version": "Aplikasi web (Next.js 15 + Bun)",
+      "link": "#"
+    }
+  ],
+  "tech": [
+    "Next.js 15 (App Router)",
+    "TypeScript",
+    "Bun",
+    "Elysia.js (bahagian belakang kependaman ultra rendah)",
+    "PostgreSQL",
+    "Prisma ORM",
+    "Redis (sesi + prestasi)",
+    "Better Auth (RBAC + penyewaan berbilang)",
+    "Tailwind CSS",
+    "shadcn/ui",
+    "Stripe (invois & bayaran)"
+  ],
+  "navItems": [
+    {
+      "label": "Utama",
+      "url": "",
+      "i18nKey": "project_nav_home"
+    },
+    {
+      "label": "Ciri",
+      "url": "features/",
+      "i18nKey": "project_nav_features"
+    },
+    {
+      "label": "Demo",
+      "url": "demo/",
+      "i18nKey": "project_nav_demo"
+    },
+    {
+      "label": "Dasar privasi",
+      "url": "terms/",
+      "i18nKey": "project_nav_terms"
+    }
+  ],
+  "navMetaItems": [
+    {
+      "label": "Kerja",
+      "url": "/projects/",
+      "i18nKey": "nav_work"
+    },
+    {
+      "label": "Hubungi",
+      "url": "/contact/",
+      "i18nKey": "nav_contact"
+    }
+  ],
+  "faq": [
+    {
+      "question": "Bila Matrix akan tersedia?",
+      "answer": "Matrix sedang dalam pembangunan. Daftar untuk akses awal supaya anda antara yang pertama mencubanya bila kami lancarkan."
+    },
+    {
+      "question": "Bagaimana Matrix berbeza daripada alat pengurusan projek lain?",
+      "answer": "Matrix bukan sekadar pengurus tugas — ia satukan pengurusan projek, CRM, HRM, invois (dengan Stripe), dan kerjasama dokumen dalam satu ruang kerja, dengan data yang mengalir antara modul dan bukannya terperangkap dalam silo."
+    },
+    {
+      "question": "Adakah akan ada pelan percuma?",
+      "answer": "Ya. Matrix akan tawarkan peringkat percuma yang disaizkan untuk pasukan kecil, dengan ciri premium untuk organisasi yang lebih besar."
+    },
+    {
+      "question": "Bolehkah saya import dari alat lain?",
+      "answer": "Kami bercadang menyokong import dari alat popular seperti Notion, Trello, Asana, dan Jira semasa pelancaran."
+    },
+    {
+      "question": "Bagaimana sokongan pelbagai ruang kerja berfungsi?",
+      "answer": "Anda boleh tukar terus antara organisasi atau jabatan dari satu log masuk. Setiap ruang kerja ada pengasingan data yang keras (penyewaan berbilang) dan peranan terperincinya sendiri, jadi akses merentas pasukan dikawal, bukan tidak sengaja."
+    },
+    {
+      "question": "Adakah data saya selamat dan boleh diaudit?",
+      "answer": "Ya — Matrix dihantar dengan log audit lengkap untuk kebolehkesanan dan pematuhan, penyewaan berbilang yang selamat untuk pengasingan data, dan seni bina penskalaan mendatar yang direka untuk kebolehpercayaan semasa anda berkembang."
+    }
+  ]
+}

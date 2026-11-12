@@ -1,0 +1,214 @@
+{
+  "title": "我们的客户",
+  "subtitle": "做成的故事",
+  "description": "看看和你类似的生意，怎样用我们的方案拿到结果。",
+  "clients": [
+    {
+      "id": "portia-grid",
+      "name": "Portia Grid",
+      "layoutTemplate": "timeline",
+      "logo": "",
+      "industry": "物流与数据智能",
+      "serviceType": "内部工具",
+      "color": "#2563EB",
+      "tagline": "聪明的车队与数据管理",
+      "shortDescription": "一套完整的网页平台，用来管理配送卡车车队和它们的保养计划。",
+      "fullDescription": "Portia Grid 是我们专门做的内部工具，帮助物流公司管理整支配送卡车车队。从追踪车辆位置到安排保养，全部收在一块集中的仪表盘里。",
+      "challenge": "客户用表格和电话管理 50 多辆配送卡车。保养经常被漏掉，导致抛锚和延误。他们对车队的实时状态完全看不见。",
+      "solution": "我们做了一套定制网页平台：实时定位、按里程和时间自动排保养、司机派班，以及完整的报表。",
+      "results": [
+        {
+          "metric": "30%",
+          "label": "故障减少"
+        },
+        {
+          "metric": "2hrs",
+          "label": "每天省下的行政时间"
+        },
+        {
+          "metric": "100%",
+          "label": "车队可见"
+        }
+      ],
+      "features": [
+        "实时定位车队",
+        "自动保养提醒",
+        "司机派班与排程",
+        "油耗追踪",
+        "保养历史记录",
+        "定制报表仪表盘"
+      ],
+      "technologies": [
+        "React",
+        "Node.js",
+        "PostgreSQL",
+        "Google Maps API"
+      ],
+      "testimonial": {
+        "quote": "多数开发者只按你说的做；这支团队会和你一起把逻辑想透。做 Portia Grid 需要大量临场判断和复杂的数据处理，Mohamed、Asad 和 Ariyan 完全拿下了。他们劲头足，技术吃得很透，整个过程都带着我走。如果你想要一支对结果负责的团队，就是他们。",
+        "author": "Hassan",
+        "role": "Portia Grid 首席执行官兼创始人"
+      },
+      "steps": [],
+      "screenshots": []
+    },
+    {
+      "id": "iyat",
+      "name": "Iyat",
+      "layoutTemplate": "showcase",
+      "logo": "",
+      "industry": "数字营销与创意",
+      "serviceType": "网站",
+      "color": "#8B5CF6",
+      "tagline": "数字机构作品集",
+      "shortDescription": "为数字机构 Iyat 做的现代、视觉丰富的网站，用来展示他们的创意作品和服务。",
+      "fullDescription": "我们为专注创意营销方案的数字机构 Iyat 设计并搭建了一座高品质的作品集网站。",
+      "challenge": "Iyat 需要一个专业的线上门面，既能展示创意作品，也能吸引新客户。",
+      "solution": "我们做了一个快、现代的作品集网站：动画顺、各端适配，使用路径清楚好跟。",
+      "results": [
+        {
+          "metric": "100%",
+          "label": "定制设计"
+        },
+        {
+          "metric": "< 2s",
+          "label": "加载时间"
+        }
+      ],
+      "features": [
+        "定制作品集设计",
+        "自适应布局",
+        "流畅动画",
+        "现代界面与体验"
+      ],
+      "technologies": [
+        "HTML/CSS",
+        "JavaScript"
+      ],
+      "link": "https://iyat-site.mohameda-elobaid.workers.dev/portfolio",
+      "steps": [],
+      "screenshots": []
+    },
+    {
+      "id": "veeramangalam-juma-masjid",
+      "name": "Veeramangalam Juma Masjid Finance",
+      "layoutTemplate": "stack",
+      "logo": "",
+      "industry": "社区财务",
+      "serviceType": "Jamia 系统",
+      "color": "#059669",
+      "tagline": "清真寺财务——云端和离线合在一处",
+      "shortDescription": "Jamia 系统取代表格和纸质流水，用来记清真寺开支和本地捐献。",
+      "fullDescription": "我们为 Veeramangalam Juma Masjid Finance 做了 Jamia 系统——一套基于 Firebase、完整支持离线的二合一平台。它取代了社区过去用来记开支和本地捐献的表格和手写账本。",
+      "challenge": "清真寺财务团队用表格和纸质记录追踪成员捐献和运营开支。对账慢，错误会溜进来，断网时什么都用不了。",
+      "solution": "我们做了 Jamia 系统——一套以 Firebase 为后端、离线优先同步的财务平台。捐献、开支和 Jamia 账本放在一处，连不联网都能用。",
+      "results": [
+        {
+          "metric": "100%",
+          "label": "无纸化记账"
+        },
+        {
+          "metric": "2-in-1",
+          "label": "云端 + 离线"
+        }
+      ],
+      "features": [
+        "开支追踪",
+        "本地捐献账本",
+        "离线优先同步",
+        "Firebase 后端"
+      ],
+      "technologies": [
+        "Flutter",
+        "Firebase",
+        "Firestore"
+      ],
+      "steps": [],
+      "screenshots": []
+    },
+    {
+      "id": "malaysian-business-websites",
+      "name": "Malaysian Business Websites",
+      "layoutTemplate": "showcase",
+      "industry": "企业网站",
+      "serviceType": "网站",
+      "color": "#F59E0B",
+      "tagline": "企业网站方案",
+      "shortDescription": "",
+      "technologies": [
+        "WordPress",
+        "Laravel",
+        "Vue.js",
+        "Tailwind CSS",
+        "MySQL",
+        "AWS 马来西亚"
+      ],
+      "steps": [],
+      "screenshots": [],
+      "galleryType": "web"
+    },
+    {
+      "id": "bd-railway-automated-timetable",
+      "name": "BD Railway Automated Timetable",
+      "layoutTemplate": "timeline",
+      "industry": "铁路运营",
+      "serviceType": "内部工具",
+      "color": "#16A34A",
+      "tagline": "铁路排班系统",
+      "shortDescription": "",
+      "technologies": [
+        "Python",
+        "约束规划",
+        "OR-Tools",
+        "PostgreSQL",
+        "FastAPI",
+        "React Admin"
+      ],
+      "steps": [],
+      "screenshots": [],
+      "galleryType": "web"
+    },
+    {
+      "id": "little-hands-lab",
+      "name": "Kudooda",
+      "layoutTemplate": "showcase",
+      "industry": "玩具与零售",
+      "serviceType": "电商商店",
+      "color": "#7C3AED",
+      "tagline": "由 Zyrn 驱动的线上玩具店",
+      "shortDescription": "Kudooda 在 Zyrn 上的线上玩具店——品牌目录、结账，以及给顾客的进度更新。",
+      "fullDescription": "Kudooda 的玩具店面跑在 Zyrn 上：商品、支付、库存和订单通知，收在一套带品牌的商业系统里——不再靠私信和笔记本留纸痕。",
+      "challenge": "需要一家真正的线上玩具店，而不是淹没在聊天订单和各不相干的工具里。",
+      "solution": "在 Zyrn 上线：带品牌的店面、目录、结账，以及实时的顾客订单更新。",
+      "technologies": [
+        "Zyrn",
+        "商品目录",
+        "结账",
+        "通知"
+      ],
+      "steps": [],
+      "screenshots": [],
+      "galleryType": "web"
+    },
+    {
+      "id": "faruk-technology-store",
+      "name": "Faruk Technology Store",
+      "layoutTemplate": "showcase",
+      "industry": "零售与通信",
+      "serviceType": "库存管理",
+      "color": "#10B981",
+      "tagline": "用 Invexo 管店铺运营",
+      "shortDescription": "Faruk Technology Store 用 Invexo 管库存、收银和日常店铺运营。",
+      "fullDescription": "Faruk Technology Store 通过 Invexo 管库存、销售和多门店的清晰度——这是为小店做的库存管理。",
+      "challenge": "需要清楚的库存和销售追踪，又不要企业级的复杂。",
+      "solution": "部署 Invexo，用来管库存、收银和每日店铺仪表盘。",
+      "technologies": [
+        "Invexo",
+        "网页仪表盘"
+      ],
+      "steps": [],
+      "screenshots": [],
+      "galleryType": "web"
+    }
+  ]
+}

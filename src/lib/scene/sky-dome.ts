@@ -24,6 +24,9 @@ export const SKY_DOME_MANIFEST_URL = '/images/skyscapes/manifest.json'
 const FULL_FADE_SECONDS = 0.4
 const SUN_PIXEL_RATIO = 0.82
 
+/** Default photo-vs-colour balance: 0 = your Sky colour only, 1 = photo only. */
+export const DEFAULT_SKY_MIX = 0.55
+
 export interface SkyDomeLibraryItem {
   id: string
   label: string
@@ -89,6 +92,10 @@ export interface SkyDomeController {
  * Analyse a loaded placeholder (128x64 equirect JPG) on a canvas:
  * sun direction from the brightest sky region, zenith / horizon /
  * sun colors, and a 0–1 sun contrast strength.
+ *
+ * Canvas row 0 is the TOP of the image, while the shader's equirect v = 1 is
+ * the top (textures are flipY'd). Sun v is converted with `1 - row / h` so a
+ * sun high in the photo maps to a direction ABOVE the horizon.
  */
 function analyzeSkyImage(image: unknown): SkyLightingSample | null {
   if (typeof document === 'undefined') return null
@@ -154,10 +161,10 @@ function analyzeSkyImage(image: unknown): SkyLightingSample | null {
   let sunV: number
   if (sw > 0) {
     sunU = sx / sw / w
-    sunV = sy / sw / h
+    sunV = 1 - sy / sw / h
   } else {
     sunU = 0.5
-    sunV = 0.25
+    sunV = 0.75
   }
 
   // Sun color: average of the bright region.
@@ -175,9 +182,7 @@ function analyzeSkyImage(image: unknown): SkyLightingSample | null {
       sc++
     }
   }
-  const sunColor: [number, number, number] = sc
-    ? [sr / sc, sg / sc, sb / sc]
-    : [1, 1, 1]
+  const sunColor: [number, number, number] = sc ? [sr / sc, sg / sc, sb / sc] : [1, 1, 1]
 
   // Zenith: top fifth of the image.
   let zr = 0
@@ -262,7 +267,7 @@ export function createSkyDomeController(
   const settings: SkyDomeSettings = {
     enabled: true,
     yawDeg: 0,
-    mix: 1,
+    mix: DEFAULT_SKY_MIX,
     pinId: '',
     slotSources: {},
     floor: 1,
@@ -319,7 +324,7 @@ export function createSkyDomeController(
       return {
         ...variant,
         placeholder: lib.placeholder,
-        // Library items ship one 2048px asset — use it for both resolutions.
+        // Library items may ship one asset — use it for both resolutions.
         medium: lib.medium ?? lib.full,
         full: lib.full,
         source: lib.source,
@@ -362,9 +367,7 @@ export function createSkyDomeController(
     const pinned = settings.pinId
       ? variants.find((v) => v.id === settings.pinId)
       : undefined
-    const blend = pinned
-      ? { a: pinned, b: pinned, t: 0 }
-      : blendForHour(variants, hour)
+    const blend = pinned ? { a: pinned, b: pinned, t: 0 } : blendForHour(variants, hour)
     if (!blend) return
     lastBlend = blend
 

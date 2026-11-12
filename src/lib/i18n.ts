@@ -3,6 +3,9 @@ import uiAr from '../content/locales/ar/ui.json'
 import uiUr from '../content/locales/ur/ui.json'
 import uiHi from '../content/locales/hi/ui.json'
 import uiFil from '../content/locales/fil/ui.json'
+import uiMs from '../content/locales/ms/ui.json'
+import uiTa from '../content/locales/ta/ui.json'
+import uiZh from '../content/locales/zh/ui.json'
 import type { Lang } from '../types'
 
 type UiDict = Record<string, string>
@@ -14,6 +17,9 @@ const dictionaries: Record<Lang, UiDict> = {
   ur: uiUr as UiDict,
   hi: uiHi as UiDict,
   fil: uiFil as UiDict,
+  ms: uiMs as UiDict,
+  ta: uiTa as UiDict,
+  zh: uiZh as UiDict,
 }
 
 export function t(key: UiKey | string, lang: Lang = 'en', vars?: Record<string, string>): string {

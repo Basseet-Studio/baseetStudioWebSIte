@@ -1,0 +1,62 @@
+{
+  "title": "认识我们的核心团队",
+  "subtitle": "一支精干的资深团队，托住你的数字业务",
+  "members": [
+    {
+      "name": "Mohamed Abdallah",
+      "role": "创始人 / 产品负责人 / 项目经理 / 资深工程师",
+      "bio": "创始人兼产品负责人，把扎实的工程功底和产品策略放在一起，打磨高质量的软件产品。",
+      "image": "/images/home/team/mohamed-abdallah.jpg",
+      "social": {
+        "github": "https://github.com/mohamed-a-elobaid",
+        "linkedin": "https://www.linkedin.com/in/mohamed-abdalla-elobaid-29937b227/",
+        "twitter": "#"
+      },
+      "iconPattern": "code"
+    },
+    {
+      "name": "Asadur Rahman",
+      "role": "技术负责人 / 系统架构师",
+      "bio": "技术负责人与系统架构师，专注可扩展的分布式系统，以及稳得住的云基础设施。",
+      "image": "/images/home/team/asadur-rahman.png",
+      "social": {
+        "github": "https://github.com/ViX3L",
+        "linkedin": "https://www.linkedin.com/in/vix3l/",
+        "twitter": "#"
+      },
+      "iconPattern": "code"
+    },
+    {
+      "name": "Ariyan Rehman",
+      "role": "产品体验与文档工程师",
+      "bio": "把产品体验和文档做到位：关注用户体验、开发者文档，以及由内容推动的工作方式。",
+      "image": "/images/home/team/ariyan-rehman.jpg",
+      "social": {
+        "github": "https://github.com/ariyangd",
+        "linkedin": "https://www.linkedin.com/in/ariyangd/",
+        "twitter": "https://x.com/ariyangd"
+      },
+      "iconPattern": "code"
+    },
+    {
+      "name": "Dibakar Sutra Dhar",
+      "role": "后端工程师与数据工程师",
+      "bio": "后端工程师，专攻分布式系统，以及面向网页与云应用的可扩展服务端方案。",
+      "image": "/images/home/team/dibakar-sutradhar.JPG",
+      "social": {
+        "github": "https://github.com/dibakarsutradhar",
+        "linkedin": "https://www.linkedin.com/in/dibakarsutradhar/",
+        "twitter": "https://x.com/iamdibakardipu"
+      },
+      "iconPattern": "code"
+    },
+    {
+      "name": "Burhan Ayub",
+      "role": "首席财务官",
+      "bio": "首席财务官。",
+      "image": "/images/home/team/burhan-ayub-placeholder.svg",
+      "iconPattern": "money",
+      "social": {}
+    }
+  ]
+}

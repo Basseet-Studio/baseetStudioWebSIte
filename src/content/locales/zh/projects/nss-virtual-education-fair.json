@@ -1,0 +1,99 @@
+{
+  "name": "NSS Virtual Education Fair",
+  "slug": "nss-virtual-education-fair",
+  "type": "standalone",
+  "tagline": "虚拟教育展平台",
+  "description": "## 关于 NSS Virtual Education Fair\n\nNSS 虚拟教育展改变了学生与世界各地大学连接的方式。它源于一个需要：让优质教育不受地理障碍限制。我们的平台把有野心的学生和知名院校接在一起。\n\n### 为什么是虚拟的？\n\n传统教育展把学生限制在附近的活动和短暂的交流里。我们的虚拟平台提供全天候访问、全球触达、深入互动，并且不用出行费用。\n\n### 给大学\n\n通过互动展位展示项目，举办直播和网络研讨会，收集并管理学生线索，并分析参与情况来优化招生。\n\n### 给学生\n\n大学信息集中在一处，按个人资料给出聪明推荐，与招生团队直接沟通，以及文书管理和申请追踪。\n\n## 做成的故事\n\n已有超过 50,000 名学生用我们的平台找到理想的大学。\n",
+  "iconClass": "fas fa-graduation-cap",
+  "color": "#0EA5E9",
+  "gradient": "linear-gradient(135deg, #0EA5E9 0%, #38BDF8 100%)",
+  "status": "Completed",
+  "hero": {
+    "title": "与世界各地的大学连接",
+    "subtitle": "不用赶路，也不用排队，就能参加教育展。探索大学、参加直播，规划你的未来——都在家里完成。",
+    "cta_primary": "探索大学",
+    "cta_primary_link": "https://nssedufair.com",
+    "cta_secondary": "立即注册",
+    "cta_secondary_link": "#features"
+  },
+  "features": [
+    {
+      "title": "虚拟大学展位",
+      "description": "探索顶尖大学的互动虚拟展位。获取手册、视频，并与招生代表联系。",
+      "icon": "fas fa-building"
+    },
+    {
+      "title": "直播与网络研讨会",
+      "description": "参加大学代表和教育专家主持的直播演示、问答和网络研讨会。",
+      "icon": "fas fa-video"
+    },
+    {
+      "title": "聪明的匹配算法",
+      "description": "我们由 AI 驱动的系统，按你的学业背景、兴趣和职业目标推荐大学。",
+      "icon": "fas fa-brain"
+    },
+    {
+      "title": "文书上传与管理",
+      "description": "学业文书上传一次，就能分享给多所大学。实时追踪申请状态。",
+      "icon": "fas fa-folder-open"
+    },
+    {
+      "title": "多语言支持",
+      "description": "平台支持多种语言，包括英语、阿拉伯语和孟加拉语。",
+      "icon": "fas fa-language"
+    },
+    {
+      "title": "分析仪表盘",
+      "description": "大学可以获得展位访问、参与度和线索质量的详细分析。",
+      "icon": "fas fa-chart-line"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "网页",
+      "icon": "fas fa-globe",
+      "version": "网页平台",
+      "link": "#"
+    }
+  ],
+  "tech": [
+    "React.js",
+    "Node.js",
+    "WebRTC",
+    "Three.js",
+    "MongoDB",
+    "Socket.io"
+  ],
+  "galleryType": "web",
+  "screenshots": [],
+  "testimonials": [
+    {
+      "quote": "虚拟展让我在自己的国家就能轻松探索大学。我没出门，就找到了梦想中的学校！",
+      "author": "Fatima K.",
+      "role": "学生"
+    },
+    {
+      "quote": "和线下展相比，我们触达的学生多了十倍。分析帮我们看清学生真正想要什么。",
+      "author": "Dr. James Wilson",
+      "role": "大学招生官"
+    }
+  ],
+  "faq": [
+    {
+      "question": "怎样注册虚拟展？",
+      "answer": "在平台上创建账户，并报名即将举行的展会。访问凭证和展会日程会通过邮件发给你。"
+    },
+    {
+      "question": "学生免费吗？",
+      "answer": "免费。学生注册和参与完全免费。"
+    },
+    {
+      "question": "大学怎样参与？",
+      "answer": "大学可以报名展位套餐，包括虚拟展位定制、直播时段和分析权限。"
+    },
+    {
+      "question": "我能和大学代表实时交流吗？",
+      "answer": "能。每个展位都有实时聊天和视频通话，展会期间可以直接连上招生顾问。"
+    }
+  ]
+}

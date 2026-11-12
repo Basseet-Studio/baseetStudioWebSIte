@@ -3,7 +3,7 @@ import tailwind from '@astrojs/tailwind'
 import sitemap from '@astrojs/sitemap'
 import cloudPlaygroundDev from './src/integrations/cloud-playground-dev'
 
-const LOCALES = ['en', 'ar', 'ur', 'hi', 'fil']
+const LOCALES = ['en', 'ar', 'ur', 'hi', 'fil', 'ms', 'ta', 'zh']
 
 export default defineConfig({
   site: 'https://baseetstudio.com',
@@ -18,6 +18,9 @@ export default defineConfig({
           ur: 'ur-PK',
           hi: 'hi-IN',
           fil: 'fil-PH',
+          ms: 'ms-MY',
+          ta: 'ta-MY',
+          zh: 'zh-Hans',
         },
       },
     }),

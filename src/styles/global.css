@@ -75,7 +75,7 @@
 
     /* Type system — Space Grotesk (display/headings/labels), Fraunces
      (single-word accents), Inter (body). Locale script faces override
-     --font-body / --font-display / --font-title under [lang=ar|ur|hi]. */
+     --font-body / --font-display / --font-title under [lang=ar|ur|hi|ta|zh]. */
     --font-display: "Space Grotesk", system-ui, -apple-system, sans-serif;
     --font-accent: "Fraunces", "Times New Roman", serif;
     --font-body: "Inter", system-ui, -apple-system, sans-serif;
@@ -85,6 +85,8 @@
     --font-arabic: "Amiri Quran", "Amiri", "Noto Naskh Arabic", serif;
     --font-urdu: "Noto Nastaliq Urdu", "Amiri Quran", "Noto Naskh Arabic", serif;
     --font-hindi: "Noto Sans Devanagari", "Inter", system-ui, sans-serif;
+    --font-tamil: "Noto Sans Tamil", "Inter", system-ui, sans-serif;
+    --font-chinese: "Noto Sans SC", "Inter", system-ui, sans-serif;
 
     /* Type scale */
     --type-eyebrow: 12px;
@@ -322,13 +324,31 @@ h4,
     --font-accent: var(--font-hindi);
 }
 
+[lang="ta"] {
+    --font-body: var(--font-tamil);
+    --font-display: var(--font-tamil);
+    --font-title: var(--font-tamil);
+    --font-mono: var(--font-tamil);
+    --font-accent: var(--font-tamil);
+}
+
+[lang|="zh"] {
+    --font-body: var(--font-chinese);
+    --font-display: var(--font-chinese);
+    --font-title: var(--font-chinese);
+    --font-mono: var(--font-chinese);
+    --font-accent: var(--font-chinese);
+}
+
 [lang="ar"] body,
 [lang="ur"] body,
 [dir="rtl"] body {
     line-height: 1.8;
 }
 
-[lang="hi"] body {
+[lang="hi"] body,
+[lang="ta"] body,
+[lang|="zh"] body {
     line-height: 1.7;
 }
 
@@ -358,7 +378,19 @@ h4,
 [lang="hi"] h3,
 [lang="hi"] h4,
 [lang="hi"] h5,
-[lang="hi"] h6 {
+[lang="hi"] h6,
+[lang="ta"] h1,
+[lang="ta"] h2,
+[lang="ta"] h3,
+[lang="ta"] h4,
+[lang="ta"] h5,
+[lang="ta"] h6,
+[lang|="zh"] h1,
+[lang|="zh"] h2,
+[lang|="zh"] h3,
+[lang|="zh"] h4,
+[lang|="zh"] h5,
+[lang|="zh"] h6 {
     font-weight: 600;
     letter-spacing: 0;
 }

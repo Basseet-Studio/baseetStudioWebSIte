@@ -1,0 +1,377 @@
+{
+  "hero": {
+    "title": "வெறுமனே **சிறந்தது**",
+    "text": "உங்களுக்கு உண்மையில் தேவையானதைக் கட்டுகிறோம் — வீண் இல்லை, வீக்கம் இல்லை, ஏதாவது வெளியாகும் முன் ஆறு மாத “கண்டுபிடிப்புக் கட்டம்” இல்லை. உங்களுக்கு முன் உள்ள பிரச்சினைக்கு எளிய தீர்வு மட்டும்.",
+    "image": "/images/home/hero/bill-sitting.png",
+    "buttons": [
+      {
+        "text": "ஒரு திட்டத்தைத் தொடங்குங்கள்",
+        "link": "#subscribe",
+        "type": "primary"
+      },
+      {
+        "text": "எங்கள் பணியைப் பாருங்கள்",
+        "link": "#featured-projects",
+        "type": "secondary"
+      }
+    ],
+    "items": [
+      {
+        "icon": "fas fa-laptop-code",
+        "color": "#B45309",
+        "title": "வலைத் தளங்கள்",
+        "text": "நவீன கட்டமைப்புகளால் கட்டப்பட்ட உற்பத்தித் தர வலைத்தளங்களும் கட்டுப்பாட்டுப் பலகைகளும்"
+      },
+      {
+        "icon": "fas fa-mobile-alt",
+        "color": "#F59E0B",
+        "title": "கைபேசிச் செயலிகள்",
+        "text": "சொந்த உணர்வுடன், வேகமாக ஏறும் iOS மற்றும் Android செயலிகள்"
+      },
+      {
+        "icon": "fas fa-paint-brush",
+        "color": "#EA580C",
+        "title": "UI / UX வடிவமைப்பு",
+        "text": "முதல்முறை வருபவரை நீண்டகாலப் பயனராக மாற்றும் இடைமுகங்கள்"
+      },
+      {
+        "icon": "fas fa-rocket",
+        "color": "#D97706",
+        "title": "சந்தைக்குச் செல்லல்",
+        "text": "வெளியீட்டுத் திட்டம் முதல் வளர்ச்சிச் சோதனைகள் வரை, தொடக்கம் முதல் இறுதி வரை"
+      }
+    ]
+  },
+  "features": [
+    {
+      "icon": "fas fa-tools",
+      "color": "#B45309",
+      "pretitle": "கட்டுதல்",
+      "pretext": "பொறியியல்",
+      "title": "**முழு அடுக்கு** தயாரிப்பு மேம்பாடு",
+      "text": "வலை, கைபேசி, பின்தளம், கட்டமைப்பு. முழுப் பாதையையும் நாங்களே வைத்திருப்பதால் நீங்கள் வேகமாக வெளியிட்டு நிம்மதியாகத் தூங்கலாம் — சுத்தமான கட்டமைப்பு, தானியக்கச் சோதனைகள், முதல் நாளிலிருந்தே கண்காணிப்பு.",
+      "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=600&fit=crop"
+    },
+    {
+      "icon": "fas fa-mobile-screen",
+      "color": "#F59E0B",
+      "pretitle": "வெளியீடு",
+      "pretext": "தயாரிப்பு வெளியீடுகள்",
+      "title": "தன் இடத்தை ஈட்டும் **கைபேசிச் செயலிகள்**",
+      "text": "சொந்த iOS, சொந்த Android, React Native — சரியான கருவியைத் தேர்ந்தெடுங்கள், இரு கடைகளுக்கும் வெளியிடுங்கள், CI/CD மற்றும் செயலிழப்புக் கண்காணிப்புடன் வெளியீட்டு வரிசையைத் தொடர்ந்து ஓட்டுங்கள்.",
+      "image": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=600&fit=crop"
+    },
+    {
+      "icon": "fas fa-compass",
+      "color": "#EA580C",
+      "pretitle": "அளவு",
+      "pretext": "உத்தி & வளர்ச்சி",
+      "title": "**தயாரிப்பு உத்தி** மற்றும் தொடர் கூட்டாண்மை",
+      "text": "பாதை வரைபடங்கள், பயனர் ஆய்வு, விலைச் சோதனைகள், பகுப்பாய்வு அமைப்பு. நாங்கள் கட்டிவிட்டு நடந்து போவதில்லை — எது முக்கியம் என்று அளந்து அதில் மீண்டும் மீண்டும் செம்மைப்படுத்துகிறோம்.",
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop"
+    },
+    {
+      "icon": "fas fa-paint-brush",
+      "color": "#FBCD37",
+      "pretitle": "பயனர் மைய வடிவமைப்பு",
+      "pretext": "முதலில் வடிவமைப்பு",
+      "title": "**UI/UX** வடிவமைப்பு",
+      "text": "மக்கள் திரும்பி வரும் தெளிவான, உள்ளுணர்வு இடைமுகங்களை வடிவமைக்கிறோம். கம்பிச் சட்டங்கள் மற்றும் முன்மாதிரிகள் முதல் துல்லியமான, ஒரே மாதிரியான காட்சி வடிவமைப்பு வரை, ஒவ்வொரு தொடர்பும் எல்லா சாதனங்களிலும் இயல்பாகவும் எதிர்பார்க்கக்கூடியதாகவும் இருக்கச் செய்கிறோம்.",
+      "image": "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Numu",
+      "slug": "numu",
+      "type": "branded",
+      "tagline": "சிறந்த பழக்கங்களை, ஒரு நாள் ஒரு படியாக",
+      "description": "iOS மற்றும் Android-க்கான தெளிவான, குவியப்பட்ட பழக்கக் கண்காணிப்புச் செயலி. தொடர்ச்சிகள், தினசரி பதிவுகள், பகுப்பாய்வு, உங்களை நிலையாக வைக்கும் புத்திசாலி நினைவூட்டல்கள்.",
+      "iconClass": "fas fa-chart-line",
+      "platforms": [
+        {
+          "name": "iOS",
+          "icon": "fab fa-apple"
+        },
+        {
+          "name": "Android",
+          "icon": "fab fa-android"
+        }
+      ],
+      "features": [
+        "பழக்கத் தொடர்ச்சிகள்",
+        "தினசரி பதிவுகள்",
+        "முன்னேற்றப் பகுப்பாய்வு",
+        "புத்திசாலி நினைவூட்டல்கள்"
+      ],
+      "color": "#9333EA",
+      "gradient": "linear-gradient(135deg, #9333EA 0%, #C084FC 100%)",
+      "status": "Coming Soon"
+    },
+    {
+      "name": "Matrix",
+      "slug": "matrix",
+      "type": "branded",
+      "tagline": "புத்திசாலித் தரவு, கையெட்டில்",
+      "description": "நேரடிப் பகுப்பாய்வு, தானியக்கப் பணிப்பாய்வுகள், முன்கணிப்பு நுண்ணறிவுகளை நவீன குழுக்களுக்கு வழங்கும் ஒரே தரவு நுண்ணறிவுத் தளம்.",
+      "iconClass": "fas fa-database",
+      "platforms": [
+        {
+          "name": "Web",
+          "icon": "fas fa-globe"
+        }
+      ],
+      "features": [
+        "நேரடிப் பகுப்பாய்வு",
+        "தானியக்க ETL குழாய்கள்",
+        "தனிப்பயன் கட்டுப்பாட்டுப் பலகைகள்",
+        "முன்கணிப்பு நுண்ணறிவுகள்"
+      ],
+      "color": "#0891B2",
+      "gradient": "linear-gradient(135deg, #0891B2 0%, #22D3EE 100%)",
+      "status": "Coming Soon"
+    },
+    {
+      "name": "Invexo",
+      "slug": "invexo",
+      "type": "branded",
+      "tagline": "சிறு கடைகளுக்கான சரக்கு மேலாண்மை",
+      "description": "பல கடை சரக்கு, விற்பனை முனை, ஃப்ளெக்ஸிலோட் கமிஷன், தினசரி விற்பனை — சிறு சில்லறை வணிகங்களுக்காகக் கட்டப்பட்டது.",
+      "iconClass": "fas fa-cash-register",
+      "platforms": [
+        {
+          "name": "Web",
+          "icon": "fas fa-globe"
+        }
+      ],
+      "features": [
+        "பல கடை கட்டுப்பாட்டுப் பலகை",
+        "சரக்கு & விற்பனை முனை",
+        "ஃப்ளெக்ஸிலோட் & MFS",
+        "விற்பனைப் போக்குகள்"
+      ],
+      "color": "#10B981",
+      "gradient": "linear-gradient(135deg, #059669 0%, #34D399 100%)",
+      "status": "Ready to Deliver"
+    },
+    {
+      "name": "Ordelo",
+      "slug": "ordelo",
+      "type": "branded",
+      "tagline": "உங்கள் வணிகம். இணையத்தில். ஒழுங்காக. உங்களுடையது.",
+      "description": "வணிகக்குறி ஆர்டர் & வணிகம் — உணவுப்பட்டியல், செலுத்துகை, சமையலறை எச்சரிக்கைகள், வாடிக்கையாளர் அறிவிப்புகள், வளர்ச்சிக் கருவிகள். காகிதச் சுவடு இல்லை. ஊகம் இல்லை.",
+      "iconClass": "fas fa-utensils",
+      "platforms": [
+        {
+          "name": "Web",
+          "icon": "fas fa-globe"
+        }
+      ],
+      "features": [
+        "R3F உடன் 3D முகப்பு",
+        "நேரடி ஆர்டர் கண்காணிப்பு",
+        "நேரடி சமூகச் சான்று",
+        "Stripe கட்டணங்கள்"
+      ],
+      "color": "#F97316",
+      "gradient": "linear-gradient(135deg, #F97316 0%, #FB923C 100%)",
+      "status": "Live"
+    },
+    {
+      "name": "MoneyBox",
+      "slug": "moneybox",
+      "type": "branded",
+      "tagline": "உங்கள் பணம், ஒழுங்காக.",
+      "description": "பட்ஜெட்டுகள், இலக்குகள், தெளிவான அறிக்கைகளுடன் ஒரு தனிப்பட்ட நிதிக் கண்காணிப்பு.",
+      "iconClass": "fas fa-piggy-bank",
+      "platforms": [
+        {
+          "name": "iOS",
+          "icon": "fab fa-apple"
+        },
+        {
+          "name": "Android",
+          "icon": "fab fa-android"
+        }
+      ],
+      "color": "#16A34A",
+      "gradient": "linear-gradient(135deg, #16A34A 0%, #4ADE80 100%)",
+      "status": "Live"
+    },
+    {
+      "name": "Geeb",
+      "slug": "geeb",
+      "type": "branded",
+      "tagline": "நம்பகமான வீட்டுச் சேவை நிபுணர்கள், தேவைப்படும்போது",
+      "description": "குழாய், மின்சாரம், கைவினை, சுத்தம் உள்ளிட்ட பணிகளுக்குச் சரிபார்க்கப்பட்ட விற்பனையாளர்களுடனும் சேவை நிபுணர்களுடனும் வாடிக்கையாளரை இணைக்கும் B2C தளம்.",
+      "iconClass": "fas fa-wrench",
+      "platforms": [
+        {
+          "name": "iOS",
+          "icon": "fab fa-apple"
+        },
+        {
+          "name": "Android",
+          "icon": "fab fa-android"
+        },
+        {
+          "name": "Web",
+          "icon": "fas fa-globe"
+        }
+      ],
+      "features": [
+        "சரிபார்க்கப்பட்ட நிபுணர்கள்",
+        "உடனடி முன்பதிவு",
+        "நேரடிக் கண்காணிப்பு",
+        "செயலிக்குள் கட்டணம்"
+      ],
+      "color": "#B45309",
+      "gradient": "linear-gradient(135deg, #B45309 0%, #F59E0B 100%)",
+      "status": "Coming Soon"
+    },
+    {
+      "name": "PhotoRestore AI",
+      "slug": "photorestore-ai",
+      "type": "branded",
+      "tagline": "பழைய புகைப்படங்களை AI-யால் மீட்டெடுங்கள்",
+      "description": "மங்கிய, சேதமான, கருப்பு-வெள்ளைப் புகைப்படங்களைச் சாதனத்திலேயே AI மீட்டெடுப்பு, வண்ணமாக்கல், மேம்பாடு மூலம் மீண்டும் உயிர்ப்பியுங்கள்.",
+      "iconClass": "fas fa-wand-magic-sparkles",
+      "platforms": [
+        {
+          "name": "Web",
+          "icon": "fas fa-globe"
+        }
+      ],
+      "features": [
+        "AI மீட்டெடுப்பு",
+        "தானியக்க வண்ணமாக்கல்",
+        "கீறல் & சேதச் சீரமைப்பு",
+        "முன் / பின் நகர்வு"
+      ],
+      "color": "#6366F1",
+      "gradient": "linear-gradient(135deg, #6366F1 0%, #818CF8 100%)",
+      "status": "Live"
+    },
+    {
+      "name": "Medev",
+      "slug": "medev",
+      "type": "branded",
+      "tagline": "சுகாதாரம். எளிமையாக.",
+      "description": "சந்திப்புகள், பதிவுகள், தொடர் பராமரிப்பை ஒரே, மருத்துவர் நட்புப் பணிப்பாய்வாக இணைக்கும் மருத்துவமனை + நோயாளித் தளம்.",
+      "iconClass": "fas fa-hospital",
+      "platforms": [
+        {
+          "name": "Web",
+          "icon": "fas fa-globe"
+        },
+        {
+          "name": "Docker",
+          "icon": "fab fa-docker"
+        }
+      ],
+      "features": [
+        "நோயாளிப் பதிவுகள்",
+        "புத்திசாலி அட்டவணை",
+        "மின் மருந்துச்சீட்டுகள்",
+        "மருத்துவர் கட்டுப்பாட்டுப் பலகை"
+      ],
+      "color": "#0A6E74",
+      "gradient": "linear-gradient(135deg, #0A6E74 0%, #14B8A6 100%)",
+      "status": "Ready to Deliver"
+    }
+  ],
+  "team": [
+    {
+      "name": "Mohamed Abdallah",
+      "role": "நிறுவனர் / தயாரிப்புத் தலைவர் / PM / மூத்த பொறியாளர்",
+      "bio": "நிறுவனரும் தயாரிப்புத் தலைவரும். ஆழமான பொறியியல் அறிவையும் தயாரிப்பு உத்தியையும் இணைத்து உயர்தர மென்பொருள் தயாரிப்புகளை வடிவமைக்கிறார்.",
+      "image": "/images/home/team/mohamed-abdallah.jpg",
+      "social": {
+        "github": "https://github.com/mohamed-a-elobaid",
+        "linkedin": "https://www.linkedin.com/in/mohamed-abdalla-elobaid-29937b227/",
+        "twitter": "#"
+      },
+      "iconPattern": "code"
+    },
+    {
+      "name": "Asadur Rahman",
+      "role": "தொழில்நுட்பத் தலைவர் / அமைப்பு வடிவமைப்பாளர்",
+      "bio": "தொழில்நுட்பத் தலைவரும் அமைப்பு வடிவமைப்பாளரும். அளவிடக்கூடிய பகிர்ந்த அமைப்புகளையும் உறுதியான மேகக் கட்டமைப்பையும் வடிவமைப்பதில் கவனம்.",
+      "image": "/images/home/team/asadur-rahman.png",
+      "social": {
+        "github": "https://github.com/ViX3L",
+        "linkedin": "https://www.linkedin.com/in/vix3l/",
+        "twitter": "#"
+      },
+      "iconPattern": "code"
+    },
+    {
+      "name": "Ariyan Rehman",
+      "role": "தயாரிப்பு அனுபவம் & ஆவணப் பொறியாளர்",
+      "bio": "பயனர் அனுபவம், உருவாக்குநர் ஆவணங்கள், உள்ளடக்கச் சார்ந்த பணிப்பாய்வுகள் மூலம் தயாரிப்பு அனுபவத்தையும் ஆவணச் சிறப்பையும் உறுதி செய்கிறார்.",
+      "image": "/images/home/team/ariyan-rehman.jpg",
+      "social": {
+        "github": "https://github.com/ariyangd",
+        "linkedin": "https://www.linkedin.com/in/ariyangd/",
+        "twitter": "https://x.com/ariyangd"
+      },
+      "iconPattern": "code"
+    },
+    {
+      "name": "Dibakar Sutra Dhar",
+      "role": "பின்தளப் பொறியாளர் & தரவுப் பொறியாளர்",
+      "bio": "வலை & மேகப் பயன்பாடுகளுக்குப் பகிர்ந்த அமைப்புகளிலும் அளவிடக்கூடிய சேவையகத் தீர்வுகளிலும் நிபுணத்துவம் கொண்ட பின்தளப் பொறியாளர்.",
+      "image": "/images/home/team/dibakar-sutradhar.JPG",
+      "social": {
+        "github": "https://github.com/dibakarsutradhar",
+        "linkedin": "https://www.linkedin.com/in/dibakarsutradhar/",
+        "twitter": "https://x.com/iamdibakardipu"
+      },
+      "iconPattern": "code"
+    },
+    {
+      "name": "Burhan Ayub",
+      "role": "CFO",
+      "bio": "தலைமை நிதி அலுவலர்.",
+      "image": "/images/home/team/burhan-ayub-placeholder.svg",
+      "iconPattern": "money",
+      "social": {}
+    }
+  ],
+  "clients": [
+    {
+      "name": "Portia Grid",
+      "image": ""
+    },
+    {
+      "name": "Iyat",
+      "image": ""
+    }
+  ],
+  "highlights": [
+    {
+      "metric": "12+",
+      "label": "வெளியிடப்பட்ட அல்லது சந்தையில் உள்ள தயாரிப்புகள்",
+      "icon": "fas fa-rocket"
+    },
+    {
+      "metric": "5",
+      "label": "செயலில் உள்ள முதன்மைத் தளங்கள்",
+      "icon": "fas fa-layer-group"
+    },
+    {
+      "metric": "1 yr",
+      "label": "குறைந்தபட்ச ஆதரவு",
+      "icon": "fas fa-handshake"
+    },
+    {
+      "metric": "100%",
+      "label": "உள் பொறியியல் குழு",
+      "icon": "fas fa-users"
+    }
+  ],
+  "clouds": {
+    "enable": true,
+    "enableOnMobile": false
+  }
+}

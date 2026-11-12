@@ -1,0 +1,128 @@
+{
+  "name": "Invexo",
+  "slug": "invexo",
+  "type": "branded",
+  "tagline": "Pengurusan inventori yang dibina untuk kedai kecil",
+  "description": "## Perihal Invexo\n\nInvexo ialah sistem pengurusan inventori yang direka untuk kedai kecil — kaunter telekomunikasi, kedai sudut, dan peruncit pelbagai lokasi yang perlukan stok, jualan, dan aliran tunai masa nyata di satu tempat.\n\n### Dibina untuk kedai kecil\n\nJejak produk, kod bar, dan pelanggan merentas setiap lokasi. Jalankan POS dari papan pemuka yang sama, pantau komisen flexiload dan MFS, dan lihat hutang tertunggak sepintas lalu.\n\n### Satu papan pemuka, setiap kedai\n\nTukar antara kedai serta-merta. Hasil, tunai dikutip, untung kasar, dan angka komisen dikemas kini semasa anda bergerak — supaya pemilik sentiasa tahu di mana mereka berdiri.\n\n## Sedia kemaskan kedai anda?\n\nHubungi kami untuk demo yang disesuaikan dengan perniagaan anda.\n",
+  "iconClass": "fas fa-cash-register",
+  "color": "#10B981",
+  "gradient": "linear-gradient(135deg, #059669 0%, #34D399 100%)",
+  "status": "Ready to Deliver",
+  "layoutVariant": "invexo",
+  "fontHeading": "Space Grotesk",
+  "fontBody": "Inter",
+  "fontWeights": "400,500,700",
+  "gsapAnimation": "stagger-flip",
+  "appType": "web",
+  "brandName": "Invexo",
+  "bgEffect": "none",
+  "bgFallbackGradient": "linear-gradient(180deg, #ECFDF5 0%, #D1FAE5 40%, #A7F3D0 100%)",
+  "clientIds": ["faruk-technology-store"],
+  "hero": {
+    "title": "Jalankan setiap kedai dari satu papan pemuka",
+    "subtitle": "Inventori, POS, komisen flexiload, dan jualan harian — dibina untuk kedai kecil yang perlukan kejelasan tanpa kerumitan perusahaan.",
+    "cta_primary": "Minta demo",
+    "cta_primary_link": "/contact",
+    "cta_secondary": "Lihat ciri",
+    "cta_secondary_link": "#features"
+  },
+  "features": [
+    {
+      "title": "Papan pemuka pelbagai kedai",
+      "description": "Tukar antara lokasi dan lihat hasil, tunai dikutip, untung kasar, serta hutang tertunggak dikemas kini secara masa nyata.",
+      "icon": "fas fa-store"
+    },
+    {
+      "title": "Inventori & POS",
+      "description": "Imbasan kod bar, amaran stok, amaran stok rendah, dan terminal POS penuh — semuanya bersambung ke lejar yang sama.",
+      "icon": "fas fa-boxes-stacked"
+    },
+    {
+      "title": "Flexiload & MFS",
+      "description": "Jejak komisen flexiload dan perkhidmatan kewangan mudah alih bersama jualan produk dalam satu ringkasan harian.",
+      "icon": "fas fa-mobile-alt"
+    },
+    {
+      "title": "Trend jualan",
+      "description": "Carta garis tujuh hari, penjejakan kes tertunggak, dan status sandaran — nampak corak sebelum ia jadi masalah.",
+      "icon": "fas fa-chart-line"
+    },
+    {
+      "title": "Lejar pelanggan",
+      "description": "Hutang tertunggak, kes lewat, dan sejarah bayaran bagi setiap kedai — tahu siapa berhutang apa sepintas lalu.",
+      "icon": "fas fa-receipt"
+    },
+    {
+      "title": "Laporan & amaran",
+      "description": "Pemindahan stok, log audit, kebenaran pengguna, dan amaran boleh dikonfigurasi untuk stok rendah serta bayaran lewat.",
+      "icon": "fas fa-bell"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "Web",
+      "icon": "fas fa-globe",
+      "version": "Aplikasi web",
+      "link": "#"
+    }
+  ],
+  "tech": [
+    "Next.js",
+    "TypeScript",
+    "PostgreSQL",
+    "Tailwind CSS",
+    "Docker"
+  ],
+  "navItems": [
+    {
+      "label": "Utama",
+      "url": "",
+      "i18nKey": "project_nav_home"
+    },
+    {
+      "label": "Ciri",
+      "url": "features/",
+      "i18nKey": "project_nav_features"
+    },
+    {
+      "label": "Demo",
+      "url": "demo/",
+      "i18nKey": "project_nav_demo"
+    },
+    {
+      "label": "Terma",
+      "url": "terms/",
+      "i18nKey": "project_nav_terms"
+    }
+  ],
+  "navMetaItems": [
+    {
+      "label": "Kerja",
+      "url": "/projects/",
+      "i18nKey": "nav_work"
+    },
+    {
+      "label": "Hubungi",
+      "url": "/contact/",
+      "i18nKey": "nav_contact"
+    }
+  ],
+  "faq": [
+    {
+      "question": "Kedai jenis apa yang Invexo dibina untuknya?",
+      "answer": "Invexo direka untuk kedai runcit kecil — kaunter telekomunikasi, perpustakaan, kedai serbaneka, dan perniagaan pelbagai lokasi yang perlukan inventori, POS, dan penjejakan komisen di satu tempat."
+    },
+    {
+      "question": "Bolehkah saya urus beberapa lokasi kedai?",
+      "answer": "Boleh. Tukar antara kedai dari menu sisi papan pemuka. Hasil, tunai dikutip, untung, dan hutang tertunggak dikemas kini mengikut lokasi."
+    },
+    {
+      "question": "Adakah ia menyokong komisen flexiload dan MFS?",
+      "answer": "Ya. Komisen flexiload dan perkhidmatan kewangan mudah alih dijejak bersama jualan produk dalam ringkasan harian anda."
+    },
+    {
+      "question": "Adakah demo tersedia?",
+      "answer": "Hubungi kami untuk penerangan yang disesuaikan. Kami sesuaikan penerimaan mengikut aliran kerja kedai anda."
+    }
+  ]
+}

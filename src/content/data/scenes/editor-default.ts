@@ -49,11 +49,16 @@ export const playgroundCloudDefaults: CloudSettings = CUSTOMER_MODE
       apart: 1,
     }
 
+/**
+ * intensity 1: clouds get a real sun term (lit tops / shaded bases = chunky).
+ * At 0 they only got the sky photo's sun, scaled down by the sky Mix.
+ * fogDensity 0.4: 0.76 washed distant clouds into flat haze.
+ */
 export const editorDefaultLighting: LightingSettings = {
   azimuth: 62,
   elevation: 59,
-  intensity: 0,
-  fogDensity: 0.76,
+  intensity: 1,
+  fogDensity: 0.4,
 }
 
 /** Editor object transform — team-skyline at home-team anchor (tune scale in debug) */

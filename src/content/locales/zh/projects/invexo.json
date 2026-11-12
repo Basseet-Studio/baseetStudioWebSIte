@@ -1,0 +1,128 @@
+{
+  "name": "Invexo",
+  "slug": "invexo",
+  "type": "branded",
+  "tagline": "为小店做的库存管理",
+  "description": "## 关于 Invexo\n\nInvexo 是为小店设计的库存管理系统——通信柜台、街角小店，以及需要在一处看到实时库存、销售和现金流的多门店零售商。\n\n### 为小店而做\n\n在每个门店追踪商品、条码和顾客。同一块仪表盘上跑收银，盯着 Flexiload 和移动金融的佣金，欠款一眼就能看见。\n\n### 一块仪表盘，每一家店\n\n门店之间即时切换。收入、已收现金、毛利和佣金数字会跟着你走——老板始终知道自己站在哪里。\n\n## 准备把店铺理顺？\n\n联系我们，约一次按你的生意定制的演示。\n",
+  "iconClass": "fas fa-cash-register",
+  "color": "#10B981",
+  "gradient": "linear-gradient(135deg, #059669 0%, #34D399 100%)",
+  "status": "Ready to Deliver",
+  "layoutVariant": "invexo",
+  "fontHeading": "Space Grotesk",
+  "fontBody": "Inter",
+  "fontWeights": "400,500,700",
+  "gsapAnimation": "stagger-flip",
+  "appType": "web",
+  "brandName": "Invexo",
+  "bgEffect": "none",
+  "bgFallbackGradient": "linear-gradient(180deg, #ECFDF5 0%, #D1FAE5 40%, #A7F3D0 100%)",
+  "clientIds": ["faruk-technology-store"],
+  "hero": {
+    "title": "用一块仪表盘管每一家店",
+    "subtitle": "库存、收银、Flexiload 佣金和每日销售——为需要清楚、又不想要企业级复杂的小店而做。",
+    "cta_primary": "预约演示",
+    "cta_primary_link": "/contact",
+    "cta_secondary": "查看功能",
+    "cta_secondary_link": "#features"
+  },
+  "features": [
+    {
+      "title": "多店仪表盘",
+      "description": "在门店之间切换，看收入、已收现金、毛利和未结欠款实时更新。",
+      "icon": "fas fa-store"
+    },
+    {
+      "title": "库存与收银",
+      "description": "扫条码、库存提醒、低库存警告，以及完整的收银终端——全部连到同一本账。",
+      "icon": "fas fa-boxes-stacked"
+    },
+    {
+      "title": "Flexiload 与移动金融",
+      "description": "把 Flexiload 和移动金融服务的佣金，和商品销售放在同一份每日汇总里。",
+      "icon": "fas fa-mobile-alt"
+    },
+    {
+      "title": "销售趋势",
+      "description": "七日折线、逾期案件追踪和备份状态——在苗头变成问题之前看见规律。",
+      "icon": "fas fa-chart-line"
+    },
+    {
+      "title": "顾客账本",
+      "description": "每家店的未结欠款、逾期案件和付款历史——谁欠什么，一眼就知道。",
+      "icon": "fas fa-receipt"
+    },
+    {
+      "title": "报表与提醒",
+      "description": "库存调拨、审计日志、用户权限，以及低库存和逾期付款的可配置提醒。",
+      "icon": "fas fa-bell"
+    }
+  ],
+  "platforms": [
+    {
+      "name": "网页",
+      "icon": "fas fa-globe",
+      "version": "网页应用",
+      "link": "#"
+    }
+  ],
+  "tech": [
+    "Next.js",
+    "TypeScript",
+    "PostgreSQL",
+    "Tailwind CSS",
+    "Docker"
+  ],
+  "navItems": [
+    {
+      "label": "首页",
+      "url": "",
+      "i18nKey": "project_nav_home"
+    },
+    {
+      "label": "功能",
+      "url": "features/",
+      "i18nKey": "project_nav_features"
+    },
+    {
+      "label": "演示",
+      "url": "demo/",
+      "i18nKey": "project_nav_demo"
+    },
+    {
+      "label": "条款",
+      "url": "terms/",
+      "i18nKey": "project_nav_terms"
+    }
+  ],
+  "navMetaItems": [
+    {
+      "label": "作品",
+      "url": "/projects/",
+      "i18nKey": "nav_work"
+    },
+    {
+      "label": "联系",
+      "url": "/contact/",
+      "i18nKey": "nav_contact"
+    }
+  ],
+  "faq": [
+    {
+      "question": "Invexo 是给哪类店铺的？",
+      "answer": "Invexo 为小型零售店设计——通信柜台、书店、便利店，以及需要把库存、收银和佣金追踪放在一处的多门店生意。"
+    },
+    {
+      "question": "我能管多个门店吗？",
+      "answer": "能。从仪表盘侧栏在店铺之间切换。收入、已收现金、利润和未结欠款按门店更新。"
+    },
+    {
+      "question": "支持 Flexiload 和移动金融佣金吗？",
+      "answer": "支持。Flexiload 和移动金融服务的佣金，会和商品销售一起记进每日汇总。"
+    },
+    {
+      "question": "有演示吗？",
+      "answer": "联系我们，约一次单独的走查。我们按你店铺的流程来做上手。"
+    }
+  ]
+}
