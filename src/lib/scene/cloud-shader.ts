@@ -207,11 +207,11 @@ vec4 integrate(in vec4 sum, in float dif, in float den, in vec3 fogCol, in float
   vec4 col = vec4(mix(vec3(1.0, 0.95, 0.8), cloudShadowColor, den), den);
   col.rgb *= lin;
 
-  float fogAmount = 1.0 - exp(-mix(0.0006, 0.02, uFogDensity) * t * t);
-  fogAmount = mix(fogAmount, 1.0, 0.32 * smoothstep(8.0, 42.0, t));
+  // Linear distance fog, capped: distant clouds soften but never vanish.
+  float fogAmount = 0.85 * (1.0 - exp(-mix(0.008, 0.05, uFogDensity) * t));
 
   col.rgb = mix(col.rgb, fogCol, fogAmount);
-  col.a *= mix(1.0, 0.35, fogAmount * skyMix);
+  col.a *= mix(1.0, 0.6, fogAmount * skyMix);
   col.rgb = mix(col.rgb, fogCol, highBand * 0.25 * skyMix);
 
   col.a *= 0.4;

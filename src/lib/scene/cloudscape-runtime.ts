@@ -64,6 +64,8 @@ let rafId: number | null = null
 
 /** Max device-pixel-ratio for the full-res sky / model pass, per tier. */
 const SKY_DPR_CAP: Record<string, number> = { high: 2, medium: 1.5, low: 1 }
+/** How far the cloud field streams past over a full page scroll. */
+const SCROLL_WIND = 30
 
 function readNumber(value: unknown, fallback: number): number {
   return typeof value === 'number' && Number.isFinite(value) ? value : fallback
@@ -277,6 +279,8 @@ export function initCloudscape(opts: {
     uniforms: {
       uResolution: { value: new THREE.Vector2(1, 1) },
       tClouds: { value: emptyColorTexture as THREE.Texture },
+      tMiddle: { value: emptyColorTexture as THREE.Texture },
+      uHasMiddle: { value: 0 },
       tBackground: { value: emptyColorTexture as THREE.Texture },
       uHasBackgroundColor: { value: 0 },
       uCameraPos: bu.uCameraPos,
@@ -487,12 +491,12 @@ export function initCloudscape(opts: {
       else behindTarget.setSize(fullW, fullH)
 
       if (!middleTarget) {
-        middleTarget = makeColorTarget(cloudW, cloudH)
-        middleTarget.depthTexture = new THREE.DepthTexture(cloudW, cloudH)
+        middleTarget = makeColorTarget(fullW, fullH)
+        middleTarget.depthTexture = new THREE.DepthTexture(fullW, fullH)
         middleTarget.depthTexture.format = THREE.DepthFormat
         middleTarget.depthTexture.type = THREE.FloatType
       } else {
-        middleTarget.setSize(cloudW, cloudH)
+        middleTarget.setSize(fullW, fullH)
       }
     }
   }
@@ -574,13 +578,33 @@ export function initCloudscape(opts: {
     const uSkyHorizon = bu.uSkyHorizon.value as THREE.Color
     const uSkyZenith = bu.uSkyZenith.value as THREE.Color
     if (domeLight) {
+      // Light everything from the sky photo on screen (per frame, follows the hour).
+      const lumOf = (c: [number, number, number]) => 0.299 * c[0] + 0.587 * c[1] + 0.114 * c[2]
+      const skyLum = (lumOf(domeLight.zenith) + lumOf(domeLight.horizon)) * 0.5
+      const x = Math.min(1, Math.max(0, (skyLum - 0.06) / (0.42 - 0.06)))
+      const dayness = x * x * (3 - 2 * x)
+
       scratch.domeSunDir.set(domeLight.sunDir[0], domeLight.sunDir[1], domeLight.sunDir[2])
       scratch.sunDir.lerp(scratch.domeSunDir, 0.6).normalize()
+
       scratch.domeColor.setRGB(domeLight.sunColor[0], domeLight.sunColor[1], domeLight.sunColor[2])
-      scratch.lightColor.lerp(scratch.domeColor, 0.5)
+      scratch.lightColor.lerp(scratch.domeColor, 0.65)
+
+      // Cloud body colour: white-ish by day, takes the sky's tones at dawn/dusk/night.
+      scratch.domeColor.setRGB(
+        Math.min(1, (domeLight.zenith[0] + domeLight.horizon[0]) * 0.9),
+        Math.min(1, (domeLight.zenith[1] + domeLight.horizon[1]) * 0.9),
+        Math.min(1, (domeLight.zenith[2] + domeLight.horizon[2]) * 0.9),
+      )
+      scratch.cloudColor.lerp(scratch.domeColor, 0.2 + 0.6 * (1 - dayness))
+
       scratch.domeColor.setRGB(domeLight.horizon[0], domeLight.horizon[1], domeLight.horizon[2])
       scratch.skyColor.lerp(scratch.domeColor, 0.3 * domeMix)
-      lightIntensity = Math.max(lightIntensity, 0.6 + domeLight.sunStrength * 0.8)
+
+      // Page intensity is the daytime maximum; night drops to ~20%.
+      lightIntensity =
+        lightIntensity * (0.2 + 0.85 * dayness) + domeLight.sunStrength * 0.4 * dayness
+
       uSkyHorizon.setRGB(domeLight.horizon[0], domeLight.horizon[1], domeLight.horizon[2])
       uSkyZenith.setRGB(domeLight.zenith[0], domeLight.zenith[1], domeLight.zenith[2])
     } else {
@@ -593,7 +617,7 @@ export function initCloudscape(opts: {
     const sceneFog = mainScene.fog
     if (sceneFog instanceof THREE.FogExp2) {
       sceneFog.color.copy(scratch.skyColor)
-      sceneFog.density = fogDensity * 0.06
+      sceneFog.density = fogDensity * 0.015
     }
 
     directionalLight.position.copy(scratch.sunDir).multiplyScalar(20)
@@ -608,7 +632,7 @@ export function initCloudscape(opts: {
     const inFrontCount = depthGroups.in_front.length
 
     const elapsed = clock.getElapsedTime()
-    bu.iTime.value = elapsed
+    bu.iTime.value = elapsed + scrollDriver.getProgress() * SCROLL_WIND
     const skyDt = lastSkyElapsed === 0 ? 1 / 60 : Math.max(0, elapsed - lastSkyElapsed)
     lastSkyElapsed = elapsed
     const skyHour = getDebugPreviewHour() ?? getEffectiveSkyHour()
@@ -653,14 +677,17 @@ export function initCloudscape(opts: {
       compositeMaterial.uniforms.uHasBackgroundColor.value = 0
     }
 
+    compositeMaterial.uniforms.uHasMiddle.value = 0
     if (middleCount > 0 && middleTarget) {
       objectRegistry.setModelsVisibleForDepthPass('middle')
       renderer.setRenderTarget(middleTarget)
-      renderer.setClearColor(scratch.skyColor, 1)
+      renderer.setClearColor(0x000000, 0)
       renderer.clear(true, true, true)
       renderer.render(mainScene, mainCamera)
       bu.tDepth.value = middleTarget.depthTexture
       bu.uHasSceneDepth.value = 1
+      compositeMaterial.uniforms.tMiddle.value = middleTarget.texture
+      compositeMaterial.uniforms.uHasMiddle.value = 1
     } else if (middleTarget?.depthTexture) {
       bu.tDepth.value = middleTarget.depthTexture
       bu.uHasSceneDepth.value = 0

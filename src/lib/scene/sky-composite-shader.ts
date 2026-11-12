@@ -20,6 +20,8 @@ uniform vec2 uResolution;
 uniform sampler2D tClouds;
 uniform sampler2D tBackground;
 uniform float uHasBackgroundColor;
+uniform sampler2D tMiddle;
+uniform float uHasMiddle;
 
 uniform vec3 uCameraPos;
 uniform vec3 uCameraTarget;
@@ -98,6 +100,12 @@ void main() {
   vec3 texB = sampleSkySlot(tSkyBLo, tSkyBHi, uSkyFullMixB, rd, uSkyYaw);
   vec3 sky = mix(procedural, mix(texA, texB, clamp(uSkyBlend, 0.0, 1.0)), skyMix);
 
+  // Middle models sit between sky and clouds: the cloud raymarch already
+  // stopped at their depth, so cloud alpha here = clouds IN FRONT of them.
+  if (uHasMiddle > 0.5) {
+    vec4 mid = texture2D(tMiddle, vUv);
+    sky = mix(sky, mid.rgb, mid.a);
+  }
   vec4 clouds = texture2D(tClouds, vUv);
   vec3 col = sky * (1.0 - clouds.a) + clouds.rgb;
 
