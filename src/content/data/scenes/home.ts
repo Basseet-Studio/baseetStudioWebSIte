@@ -6,59 +6,44 @@ import {
 } from './editor-default'
 
 /**
- * Home flight: start far away with the cities small on the horizon, then
- * arc around them at a distance while altitude and pitch change, then hand
- * off to the team-skyline end shot.
+ * HOME FLY-THROUGH (world units)
  *
- * Every orbit pose is generated from FLIGHT below, so you tune the whole
- * path with a few numbers instead of raw coordinates:
- *   angle  — degrees around the city (0 = south / +Z side)
- *   radius — distance from the city centre (world units)
- *   height — camera altitude (cloud tops are around y = 5)
- *   lookY  — height the camera looks at (higher = pitched up, more sky)
- *   fov    — lens
- * Interior anchors use 'linear' easing so the Catmull-Rom spline flows
- * without stopping at each anchor; scroll smoothing provides the easing.
+ *   cloud deck   y ≈ -2.4 … 3.4   (camera skims 2–9, dips INTO it mid-flight)
+ *   Dubai        centre (-40, -30), base y -35, height 70 → top y 35
+ *   Petronas     centre ( 35, -20), base y -25, height 50 → top y 25
+ *
+ * The camera flies a real path past the towers (they sweep across the
+ * screen = you feel the speed) instead of orbiting a fixed point:
+ *   approach → skim the cloud tops → thread BETWEEN the towers inside the
+ *   cloud layer → turn back to look up at Dubai → swing round the west side
+ *   → end shot over the team skyline.
+ * Every pose stays ≥ ~37 units from each tower centre so we never clip
+ * inside a model. 'linear' easing + Catmull-Rom = constant-speed flight.
+ *
+ * Tune: edit a row below (position, target, fov). Skyline sizes are logged in
+ * the debug panel on load: "[object] dubai-skyline world h=70 w=… d=…".
  */
-
-/** World-space centre between the two skylines (object pos x WORLD_SCALE 0.4). */
-export const CITY_CENTER: Vec3 = [-7, 3, -6]
-
-interface OrbitShot {
+interface Shot {
   at: number
-  angle: number
-  radius: number
-  height: number
-  lookY: number
+  pos: Vec3
+  look: Vec3
   fov: number
+  label: string
 }
 
-export const FLIGHT: OrbitShot[] = [
-  // Opening: cities clearly in view across the cloud sea, sky in the upper half.
-  { at: 0.0, angle: -30, radius: 48, height: 9, lookY: 12, fov: 45 },
-  // Approach while banking around.
-  { at: 0.25, angle: -5, radius: 38, height: 7.5, lookY: 9, fov: 46 },
-  // Close pass skimming the cloud tops, looking up at the towers.
-  { at: 0.5, angle: 30, radius: 30, height: 6, lookY: 8, fov: 50 },
-  // Climb away and look down over the cloud sea.
-  { at: 0.72, angle: 70, radius: 36, height: 12, lookY: 2, fov: 46 },
+export const FLIGHT: Shot[] = [
+  { at: 0.0, pos: [0, 6, 45], look: [-3, 14, -25], fov: 50, label: 'Approach — both towers ahead' },
+  { at: 0.2, pos: [-2, 3.8, 15], look: [-40, 18, -30], fov: 55, label: 'Skim the cloud tops, eye on Dubai' },
+  { at: 0.4, pos: [-2.5, 2.2, -24], look: [-2, 9, -70], fov: 58, label: 'Through the clouds, between the towers' },
+  { at: 0.6, pos: [-10, 5.5, -65], look: [-40, 18, -30], fov: 55, label: 'Turn back, look up at Dubai' },
+  { at: 0.8, pos: [-75, 8, -5], look: [-5, 6, -22], fov: 50, label: 'Swing round the west side' },
 ]
 
-export function orbitPose(shot: OrbitShot, source: string): CameraPose {
-  const a = (shot.angle * Math.PI) / 180
-  return {
-    position: [
-      CITY_CENTER[0] + Math.sin(a) * shot.radius,
-      shot.height,
-      CITY_CENTER[2] + Math.cos(a) * shot.radius,
-    ],
-    target: [CITY_CENTER[0], shot.lookY, CITY_CENTER[2]],
-    fov: shot.fov,
-    source,
-  }
+function pose(shot: Shot): CameraPose {
+  return { position: shot.pos, target: shot.look, fov: shot.fov, source: `flight:${shot.label}` }
 }
 
-export const homeStartCamera: CameraPose = orbitPose(FLIGHT[0], 'flight:far')
+export const homeStartCamera: CameraPose = pose(FLIGHT[0])
 
 export const homeEndCamera: CameraPose = {
   position: [30, 2.8, 18.5],
@@ -71,8 +56,6 @@ export const homeEntryCamera: CameraPose = homeStartCamera
 export const homeExitCamera: CameraPose = homeEndCamera
 
 const SKYLINE_IDS = ['dubai-skyline', 'petronas-skyline']
-const SHOW_SKYLINES = { show: [...SKYLINE_IDS], hide: ['team-skyline'] }
-const FLIGHT_IDS = ['home-hero', 'home-approach', 'home-features', 'home-climb']
 
 export const homeSceneConfig: SceneConfig = {
   schemaVersion: 1,
@@ -86,7 +69,7 @@ export const homeSceneConfig: SceneConfig = {
   lighting: { ...editorDefaultLighting },
   transition: {
     entry: {
-      durationMs: 1200,
+      durationMs: 2400,
       easing: 'easeInOutCubic',
       from: 'exit-camera',
     },
@@ -98,23 +81,22 @@ export const homeSceneConfig: SceneConfig = {
   },
   scrollAnchors: [
     ...FLIGHT.map((shot, i) => ({
-      id: FLIGHT_IDS[i],
-      label: `Flight ${i + 1}`,
+      id: i === 0 ? 'home-hero' : `home-flight-${i}`,
+      label: shot.label,
       atScrollProgress: shot.at,
       easing: 'linear' as const,
-      camera: orbitPose(shot, `flight:${FLIGHT_IDS[i]}`),
-      objects: SHOW_SKYLINES,
+      camera: pose(shot),
+      objects: { show: [...SKYLINE_IDS], hide: ['team-skyline'] },
     })),
     {
       id: 'home-end',
-      label: 'End — team skyline',
+      label: 'End — team skyline (skylines stay in view)',
       atScrollProgress: 1,
-      easing: 'easeInOutCubic',
+      easing: 'linear',
       camera: homeEndCamera,
       lighting: { fogDensity: 0.45 },
       objects: {
-        show: ['team-skyline'],
-        hide: [...SKYLINE_IDS],
+        show: [...SKYLINE_IDS, 'team-skyline'],
         animateIn: ['team-skyline'],
       },
     },
@@ -125,8 +107,9 @@ export const homeSceneConfig: SceneConfig = {
       url: '/models/home/dubai-skyline.glb',
       scope: 'page',
       cloudDepth: 'middle',
-      transform: { position: [-45, 10, -20], rotationY: 0, scale: 30 },
-      normalize: true,
+      // world: centre (-40, -30), base y -35, height 70
+      transform: { position: [-100, -87.5, -75], rotationY: 0, scale: 87.5 },
+      fitHeight: true,
       preload: true,
     },
     {
@@ -134,8 +117,9 @@ export const homeSceneConfig: SceneConfig = {
       url: '/models/home/petronas-skyline.glb',
       scope: 'page',
       cloudDepth: 'middle',
-      transform: { position: [10, 8, -10], rotationY: 0, scale: 22 },
-      normalize: true,
+      // world: centre (35, -20), base y -25, height 50
+      transform: { position: [87.5, -62.5, -50], rotationY: 0, scale: 62.5 },
+      fitHeight: true,
       preload: true,
     },
     {

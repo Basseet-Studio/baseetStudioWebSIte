@@ -117,11 +117,11 @@ const { lang: _lang = 'en' } = Astro.props
             <select id="cp-obj-select"><option value="">(none)</option></select>
           </label>
           <label class="cp__check"><input type="checkbox" id="cp-obj-force" /> Force visible</label>
-          <label>X <input type="range" data-obj="x" min="-80" max="80" step="0.1" value="0" /><span data-obj-val="x">0</span></label>
-          <label>Y <input type="range" data-obj="y" min="-40" max="40" step="0.1" value="0" /><span data-obj-val="y">0</span></label>
-          <label>Z <input type="range" data-obj="z" min="-80" max="80" step="0.1" value="0" /><span data-obj-val="z">0</span></label>
+          <label>X <input type="range" data-obj="x" min="-250" max="250" step="0.1" value="0" /><span data-obj-val="x">0</span></label>
+          <label>Y <input type="range" data-obj="y" min="-200" max="200" step="0.1" value="0" /><span data-obj-val="y">0</span></label>
+          <label>Z <input type="range" data-obj="z" min="-250" max="250" step="0.1" value="0" /><span data-obj-val="z">0</span></label>
           <label>Rot Y <input type="range" data-obj="rotationY" min="0" max="360" step="1" value="0" /><span data-obj-val="rotationY">0</span></label>
-          <label>Scale <input type="range" data-obj="scale" min="0.1" max="40" step="0.1" value="1" /><span data-obj-val="scale">1</span></label>
+          <label>Scale <input type="range" data-obj="scale" min="0.1" max="200" step="0.1" value="1" /><span data-obj-val="scale">1</span></label>
         </div>
         <div class="cp__shape-actions">
           <button type="button" class="cp__btn" id="cp-obj-refresh">Refresh list</button>

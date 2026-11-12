@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js'
 import { cloudFragmentShader, cloudVertexShader } from './cloud-shader'
 import { skyCompositeFragmentShader, skyCompositeVertexShader } from './sky-composite-shader'
 import { createCameraController } from './camera-controller'
@@ -196,6 +197,12 @@ export function initCloudscape(opts: {
   const mainScene = new THREE.Scene()
   mainScene.background = null
   mainScene.fog = new THREE.FogExp2(0x6fa8dc, 0.021)
+  // Soft studio reflections so glass/metal towers aren't black.
+  const pmrem = new THREE.PMREMGenerator(renderer)
+  const envTexture = pmrem.fromScene(new RoomEnvironment(), 0.04).texture
+  pmrem.dispose()
+  mainScene.environment = envTexture
+  ;(mainScene as THREE.Scene & { environmentIntensity?: number }).environmentIntensity = 0.35
 
   const ambientLight = new THREE.AmbientLight(0xffffff, 0.6)
   mainScene.add(ambientLight)
@@ -616,13 +623,15 @@ export function initCloudscape(opts: {
 
     const sceneFog = mainScene.fog
     if (sceneFog instanceof THREE.FogExp2) {
-      sceneFog.color.copy(scratch.skyColor)
-      sceneFog.density = fogDensity * 0.015
+      // Aerial haze on models: the photo's horizon colour (models render
+      // linear, the composite converts to sRGB -> convert the fog colour too).
+      sceneFog.color.copy(domeLight ? uSkyHorizon : scratch.skyColor).convertSRGBToLinear()
+      sceneFog.density = fogDensity * 0.03
     }
 
     directionalLight.position.copy(scratch.sunDir).multiplyScalar(20)
     directionalLight.intensity = lightIntensity
-    ambientLight.intensity = 0.35 + lightIntensity * 0.2
+    ambientLight.intensity = 0.6 + lightIntensity * 0.3
 
     const depthGroups = skipObjects
       ? { behind: [], middle: [], in_front: [] }
@@ -919,6 +928,7 @@ export function initCloudscape(opts: {
     cloudTarget?.dispose()
     behindTarget?.dispose()
     middleTarget?.dispose()
+    envTexture.dispose()
     emptyColorTexture.dispose()
     skyDome.dispose()
     backgroundMaterial.dispose()

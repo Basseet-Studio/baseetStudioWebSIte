@@ -23,6 +23,12 @@ uniform float uHasBackgroundColor;
 uniform sampler2D tMiddle;
 uniform float uHasMiddle;
 
+// Model passes render linear colour into render targets -> convert once.
+vec3 linToSrgb(vec3 c) {
+  c = max(c, vec3(0.0));
+  return mix(c * 12.92, 1.055 * pow(c, vec3(1.0 / 2.4)) - 0.055, step(vec3(0.0031308), c));
+}
+
 uniform vec3 uCameraPos;
 uniform vec3 uCameraTarget;
 uniform float uWorldScale;
@@ -104,7 +110,7 @@ void main() {
   // stopped at their depth, so cloud alpha here = clouds IN FRONT of them.
   if (uHasMiddle > 0.5) {
     vec4 mid = texture2D(tMiddle, vUv);
-    sky = mix(sky, mid.rgb, mid.a);
+    sky = mix(sky, linToSrgb(mid.rgb), mid.a);
   }
   vec4 clouds = texture2D(tClouds, vUv);
   vec3 col = sky * (1.0 - clouds.a) + clouds.rgb;
@@ -114,7 +120,7 @@ void main() {
   if (uHasBackgroundColor > 0.5) {
     vec4 behind = texture2D(tBackground, vUv);
     float cover = clamp(clouds.a + 0.08, 0.0, 1.0);
-    col = mix(col, behind.rgb, behind.a * (1.0 - cover));
+    col = mix(col, linToSrgb(behind.rgb), behind.a * (1.0 - cover));
   }
 
   gl_FragColor = vec4(col, 1.0);

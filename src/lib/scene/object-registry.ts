@@ -117,6 +117,27 @@ export function createObjectRegistry(deps: {
     }
   }
 
+  /** Softer glass, sharper textures at grazing angles. */
+  function tuneMaterials(root: THREE.Object3D): void {
+    root.traverse((child) => {
+      const mesh = child as THREE.Mesh
+      if (!mesh.isMesh) return
+      const mats = Array.isArray(mesh.material) ? mesh.material : [mesh.material]
+      for (const mat of mats) {
+        const std = mat as THREE.MeshStandardMaterial
+        if (typeof std.metalness === 'number') std.metalness = Math.min(std.metalness, 0.25)
+        if (typeof std.envMapIntensity === 'number') std.envMapIntensity = 0.45
+        for (const key of ['map', 'normalMap', 'roughnessMap', 'metalnessMap'] as const) {
+          const tex = (std as unknown as Record<string, THREE.Texture | null | undefined>)[key]
+          if (tex) {
+            tex.anisotropy = 8
+            tex.needsUpdate = true
+          }
+        }
+      }
+    })
+  }
+
   function loadOne(id: string): void {
     const entry = entries.get(id)
     if (!entry || entry.loaded || entry.loading) return
@@ -137,22 +158,39 @@ export function createObjectRegistry(deps: {
       (gltf) => {
         const cfg = entry.config
         const scene = gltf.scene
-        if (cfg.normalize !== false) {
-          const box = new deps.THREE.Box3().setFromObject(scene)
-          const size = new deps.THREE.Vector3()
-          box.getSize(size)
+        const box = new deps.THREE.Box3().setFromObject(scene)
+        const size = new deps.THREE.Vector3()
+        box.getSize(size)
+        const center = new deps.THREE.Vector3()
+        box.getCenter(center)
+
+        if (cfg.fitHeight === true) {
+          // Height -> 2 units (x scale), base on the origin, centred in XZ.
+          scene.position.x -= center.x
+          scene.position.y -= box.min.y
+          scene.position.z -= center.z
+          const inner = new deps.THREE.Group()
+          inner.add(scene)
+          inner.scale.setScalar(2 / Math.max(size.y, 0.0001))
+          wrapper.add(inner)
+          const h = 2 * (cfg.transform.scale ?? 1) * WORLD_SCALE
+          const k = h / Math.max(size.y, 0.0001)
+          sceneLog(
+            'object',
+            `${id} world h=${h.toFixed(0)} w=${(size.x * k).toFixed(0)} d=${(size.z * k).toFixed(0)}`,
+          )
+        } else if (cfg.normalize !== false) {
           const longest = Math.max(size.x, size.y, size.z, 0.0001)
-          const normalizeScale = 2 / longest
-          const center = new deps.THREE.Vector3()
-          box.getCenter(center)
           scene.position.sub(center)
           const inner = new deps.THREE.Group()
           inner.add(scene)
-          inner.scale.setScalar(normalizeScale)
+          inner.scale.setScalar(2 / longest)
           wrapper.add(inner)
         } else {
           wrapper.add(scene)
         }
+
+        tuneMaterials(scene)
         applyTransform(wrapper, cfg.transform)
         entry.loaded = true
         entry.loading = false

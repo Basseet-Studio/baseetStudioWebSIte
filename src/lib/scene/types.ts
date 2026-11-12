@@ -87,6 +87,8 @@ export interface SceneObject {
   transform: ObjectTransform
   preload?: boolean
   normalize?: boolean
+  /** Scale = height (2 units x scale), base sits on position. For huge skylines. */
+  fitHeight?: boolean
   bindAnchor?: string
   loadAt?: LoadAtConfig
 }

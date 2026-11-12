@@ -92,7 +92,7 @@ export function createPageTransitionBridge(deps: {
             ? exitState.camera
             : exitState?.camera || deps.cameraController.getEntryCamera()
         const toCam = transition.camera || deps.cameraController.getEntryCamera()
-        const duration = transition.durationMs || 1000
+        const duration = Math.max(transition.durationMs || 1000, 2200)
         const easing = EASING[transition.easing || 'easeInOutCubic'] || EASING.easeInOutCubic
         const lerp = runCameraLerp(
           deps.sceneRuntime,
@@ -151,6 +151,26 @@ export function createPageTransitionBridge(deps: {
   }
 }
 
+/** Page-to-page flight: arc up over the clouds, pitch toward the sky, widen fov. */
+const FLIGHT_ARC_MIN = 4
+const FLIGHT_ARC_MAX = 18
+function flightCamera(a: CameraPose, b: CameraPose, t: number): CameraPose {
+  const base = lerpCamera(a, b, t)
+  const d = Math.hypot(
+    b.position[0] - a.position[0],
+    b.position[1] - a.position[1],
+    b.position[2] - a.position[2],
+  )
+  const bump = Math.sin(Math.PI * t)
+  const arc = Math.min(FLIGHT_ARC_MAX, Math.max(FLIGHT_ARC_MIN, d * 0.35)) * bump
+  return {
+    ...base,
+    position: [base.position[0], base.position[1] + arc, base.position[2]],
+    target: [base.target[0], base.target[1] + arc * 1.4, base.target[2]],
+    fov: base.fov + 10 * bump,
+  }
+}
+
 function runCameraLerp(
   sceneRuntime: SceneRuntimeApi,
   fromCam: CameraPose,
@@ -186,7 +206,7 @@ function runCameraLerp(
       }
 
       const t = easeFn(Math.min((now - t0) / durationMs, 1))
-      sceneRuntime.applyCamera(lerpCamera(fromCam, toCam, t))
+      sceneRuntime.applyCamera(flightCamera(fromCam, toCam, t))
       sceneRuntime.renderFrame()
 
       if (t < 1) {
