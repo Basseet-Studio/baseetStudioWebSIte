@@ -27,7 +27,8 @@ export function resolveSceneConfig(pathname: string): SceneConfig {
   return defaultThreeAnchorSceneConfig
 }
 
-const LOCALE_PREFIXES = ['/ar', '/ur', '/hi', '/fil']
+// All non-default locales (was missing ms / ta / zh -> those pages got the default camera).
+const LOCALE_PREFIXES = ['/ar', '/ur', '/hi', '/fil', '/ms', '/ta', '/zh']
 
 function stripLocaleAndTrailingSlash(pathname: string): string {
   let p = pathname.replace(/\/$/, '') || '/'

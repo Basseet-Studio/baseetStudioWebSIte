@@ -7,15 +7,25 @@ import { editorDefaultClouds, editorDefaultLighting } from './editor-default'
  * The visitor's landmark stands at ORBIT_CENTER for the whole site:
  *   UAE (and anyone unknown) -> Dubai skyline
  *   Malaysia                 -> Petronas skyline
- * (picked at runtime by lib/scene/landmark.ts — both are registered, one shows)
+ *   Saudi Arabia             -> Riyadh skyline (Kingdom Centre, Al Faisaliah)
+ * (picked at runtime by lib/scene/landmark.ts — all registered, one shows)
  *
  * Every page is a slice of an orbit around it. Scrolling moves along that
  * page's slice; navigating flies around the circle to the next page's slice.
  * Only the angle / height / pitch change — the landmark never disappears.
  *
- *   cloud deck  y ≈ -2.4 … 3.4
+ *   cloud carpets (see lib/scene/cloud-shader.ts)
+ *     high  y ≈ 12.5 … 17.5   (patchy)
+ *     mid   y ≈ -2.4 … 3.3
+ *     low   y ≈ -16.5 … -9.5  (covers the satellite ground, with gaps)
  *   Dubai       height 70, base y -35 -> top y 35
  *   Petronas    height 50, base y -25 -> top y 25
+ *   Riyadh      height 52, base y -26 -> top y 26
+ *
+ * Camera heights: keep anchors OUT of the carpets. Good bands:
+ *   between low & mid  -8.5 … -4   ("under the deck")
+ *   between mid & high  4.5 … 11
+ *   above everything    19+
  *
  * Page slices (degrees around the landmark):
  *   home -40…60 · services 70…130 · projects 140…200 · clients 210…260
@@ -26,6 +36,7 @@ export const ORBIT_CENTER: Vec3 = [0, 0, 0]
 export const LANDMARK_IDS = {
   AE: 'dubai-skyline',
   MY: 'petronas-skyline',
+  SA: 'riyadh-skyline',
 } as const
 
 /** fitHeight: world height = scale x 0.8, world base y = position[1] x 0.4 */
@@ -45,6 +56,15 @@ export const LANDMARK_OBJECTS = [
     scope: 'global',
     cloudDepth: 'middle',
     transform: { position: [0, -62.5, 0], rotationY: 0, scale: 62.5 },
+    fitHeight: true,
+    preload: false,
+  },
+  {
+    id: LANDMARK_IDS.SA,
+    url: '/models/home/riyadh-skyline.glb',
+    scope: 'global',
+    cloudDepth: 'middle',
+    transform: { position: [0, -65, 0], rotationY: 0, scale: 65 },
     fitHeight: true,
     preload: false,
   },
@@ -102,7 +122,9 @@ export function buildOrbitScene(pageId: string, shots: OrbitShot[]): SceneConfig
       id: s.id,
       label: `${pageId} — ${s.id}`,
       atScrollProgress: s.at,
-      easing: 'linear' as const,
+      // Ease in/out per segment: the camera settles on each section and moves
+      // quickly between them, so it spends little time INSIDE a cloud carpet.
+      easing: 'easeInOutCubic' as const,
       camera: poses[i],
     })),
     objects: [...LANDMARK_OBJECTS],

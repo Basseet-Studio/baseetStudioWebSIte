@@ -7,7 +7,7 @@ import { createCameraController } from './camera-controller'
 import { createObjectRegistry, WORLD_SCALE } from './object-registry'
 import { createPageTransitionBridge } from './page-transition-bridge'
 import { createScrollDriver } from './scroll-driver'
-import { applyCameraMotion } from './camera-motion'
+import { applyCameraMotion, noteScrollProgress } from './camera-motion'
 import { initLandmark } from './landmark'
 import {
   isSceneDebugEnabled,
@@ -195,7 +195,8 @@ export function initCloudscape(opts: {
     : quality.renderScale
   let currentRenderScale = Math.min(baseRenderScale, renderScaleSteps[renderScaleSteps.length - 1])
 
-  const mainCamera = new THREE.PerspectiveCamera(config.entryCamera.fov, 1, 0.1, 200)
+  // far 400: the satellite ground under the low cloud carpet sits ~100-300 away.
+  const mainCamera = new THREE.PerspectiveCamera(config.entryCamera.fov, 1, 0.1, 400)
 
   const mainScene = new THREE.Scene()
   mainScene.background = null
@@ -228,7 +229,7 @@ export function initCloudscape(opts: {
       iTime: { value: 0 },
       tBackground: { value: null as THREE.Texture | null },
       tDepth: { value: null as THREE.Texture | null },
-      uCameraFar: { value: 200 },
+      uCameraFar: { value: 400 },
       uCameraNear: { value: 0.1 },
       uCameraPos: { value: new THREE.Vector3(0, 2, 10) },
       uCameraTarget: { value: new THREE.Vector3(0, 0, 0) },
@@ -784,6 +785,7 @@ export function initCloudscape(opts: {
 
   function onScrollProgress(progress: number): void {
     if (bridge.getIsTransitioning()) return
+    noteScrollProgress(progress)
     const evaluated = cameraController.evaluateAtProgress(progress)
     if (!cameraLocked) sceneRuntime.applyCamera(applyCameraMotion(evaluated.camera))
     if (!playgroundLocked) {
@@ -815,7 +817,8 @@ export function initCloudscape(opts: {
   const scrollDriver = createScrollDriver({
     onProgress: onScrollProgress,
     externalTick: true,
-    smoothing: 5,
+    // Lower = more glide after you stop scrolling.
+    smoothing: 3.5,
     continuous: true,
   })
 

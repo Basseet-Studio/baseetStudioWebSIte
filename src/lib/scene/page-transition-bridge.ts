@@ -4,6 +4,7 @@ import type { CameraPose, SceneConfig } from './types'
 import type { ObjectRegistry } from './object-registry'
 import type { ScrollDriver } from './scroll-driver'
 import { ORBIT_CENTER } from '../../content/data/scenes/world'
+import { applyViewportFraming, resetScrollMomentum } from './camera-motion'
 
 const EXIT_KEY = 'baseet:scene:exit'
 
@@ -83,6 +84,7 @@ export function createPageTransitionBridge(deps: {
     try {
       deps.sceneRuntime.setPageConfig(nextConfig)
       deps.scrollDriver.reset()
+      resetScrollMomentum()
 
       const transition = nextConfig.transition?.entry
       const exitState = readExitState()
@@ -92,7 +94,9 @@ export function createPageTransitionBridge(deps: {
           transition.from === 'exit-camera' && exitState?.camera
             ? exitState.camera
             : exitState?.camera || deps.cameraController.getEntryCamera()
-        const toCam = transition.camera || deps.cameraController.getEntryCamera()
+        const toCam = applyViewportFraming(
+          transition.camera || deps.cameraController.getEntryCamera(),
+        )
         const duration = flightDuration(fromCam, toCam, transition.durationMs || 1000)
         const easing = EASING[transition.easing || 'easeInOutCubic'] || EASING.easeInOutCubic
         const lerp = runCameraLerp(
@@ -152,9 +156,24 @@ export function createPageTransitionBridge(deps: {
   }
 }
 
-/** Page-to-page flight: orbit AROUND the landmark (polar interpolation), lifting over the clouds. */
+/**
+ * Page-to-page flight — a "swoop" around the landmark:
+ *  - orbits AROUND it (polar interpolation, shortest way round)
+ *  - pulls back and climbs mid-flight (long trips rise above the top carpet)
+ *  - the look target swings onto the landmark mid-flight so it's centred
+ *    while you travel, then settles back to the page's side framing
+ *  - small FOV breath for a sense of speed
+ */
 const FLIGHT_ARC_MIN = 3
-const FLIGHT_ARC_MAX = 14
+const FLIGHT_ARC_MAX = 16
+/** Peak altitude for long flights (above the high carpet ~12.5..17.5). */
+const FLIGHT_CEILING = 21
+/** Extra distance at mid-flight, as a fraction of the radius. */
+const FLIGHT_PULLBACK = 0.22
+/** 0..1 how much the look target swings onto the landmark mid-flight. */
+const FLIGHT_RECENTRE = 0.75
+/** Extra FOV at mid-flight (deg). */
+const FLIGHT_FOV = 7
 
 function polarOf(p: [number, number, number]): { a: number; r: number } {
   const dx = p[0] - ORBIT_CENTER[0]
@@ -169,10 +188,10 @@ function angleDelta(a: CameraPose, b: CameraPose): number {
   return d
 }
 
-/** Longer trips around the circle take longer (2.2s – 4.2s). */
+/** Longer trips around the circle take longer (2.2s – 4.4s). */
 function flightDuration(a: CameraPose, b: CameraPose, base: number): number {
   const deg = Math.abs(angleDelta(a, b)) * (180 / Math.PI)
-  return Math.min(4200, Math.max(2200, base, 1800 + deg * 12))
+  return Math.min(4400, Math.max(2200, base, 1800 + deg * 13))
 }
 
 function flightCamera(a: CameraPose, b: CameraPose, t: number): CameraPose {
@@ -180,23 +199,31 @@ function flightCamera(a: CameraPose, b: CameraPose, t: number): CameraPose {
   const pb = polarOf(b.position)
   const da = angleDelta(a, b)
   const ang = pa.a + da * t
-  const r = pa.r + (pb.r - pa.r) * t
   const bump = Math.sin(Math.PI * t)
   const arcLen = Math.abs(da) * ((pa.r + pb.r) / 2)
-  const lift = Math.min(FLIGHT_ARC_MAX, Math.max(FLIGHT_ARC_MIN, arcLen * 0.12)) * bump
+  // 0 for a short hop, 1 for a long trip around the circle.
+  const reach = Math.min(1, arcLen / 90)
+  const r = (pa.r + (pb.r - pa.r) * t) * (1 + FLIGHT_PULLBACK * reach * bump)
   const lerp = (x: number, y: number) => x + (y - x) * t
+
+  const baseY = lerp(a.position[1], b.position[1])
+  const lift = Math.min(FLIGHT_ARC_MAX, Math.max(FLIGHT_ARC_MIN, arcLen * 0.12))
+  // Long trips aim for the ceiling; short hops just arc a little.
+  const peak = Math.max(baseY + lift, FLIGHT_CEILING * reach + baseY * (1 - reach))
+  const y = baseY + (peak - baseY) * bump
+
+  const tyBase = lerp(a.target[1], b.target[1])
+  const recentre = FLIGHT_RECENTRE * bump
+  const tx = lerp(a.target[0], b.target[0])
+  const tz = lerp(a.target[2], b.target[2])
   return {
-    position: [
-      ORBIT_CENTER[0] + Math.sin(ang) * r,
-      lerp(a.position[1], b.position[1]) + lift,
-      ORBIT_CENTER[2] + Math.cos(ang) * r,
-    ],
+    position: [ORBIT_CENTER[0] + Math.sin(ang) * r, y, ORBIT_CENTER[2] + Math.cos(ang) * r],
     target: [
-      lerp(a.target[0], b.target[0]),
-      lerp(a.target[1], b.target[1]) + lift * 0.6,
-      lerp(a.target[2], b.target[2]),
+      tx + (ORBIT_CENTER[0] - tx) * recentre,
+      tyBase + (y - baseY) * 0.45,
+      tz + (ORBIT_CENTER[2] - tz) * recentre,
     ],
-    fov: lerp(a.fov, b.fov) + 8 * bump,
+    fov: lerp(a.fov, b.fov) + FLIGHT_FOV * bump,
   }
 }
 

@@ -1,21 +1,27 @@
 /**
  * Ported from tool-craft/clouds-playground/src/app/renderer/cloud-shader.ts
  * (Vanta.js CLOUDS raymarch). Site-specific additions:
- * - XZ coverage mask + two altitude bands (gaps of empty sky, not a density slab)
+ * - THREE CLOUD CARPETS at different altitudes (low / mid / high), each with
+ *   its own XZ coverage mask, so you see gaps through one carpet down to the
+ *   next and, through the low one, to the satellite ground.
+ * - Each carpet is marched only inside its own slab (analytic ray/slab
+ *   entry + exit), front-to-back, so the empty air between carpets costs
+ *   nothing. Order flips with the ray direction (down: high->mid->low).
+ * - Low carpet = lowest detail: fewer octaves, bigger soft blobs, fewer steps.
  * - uLightColor tints sunlight in integrate() / renderSkyClouds()
- * - Depth textures + background color from model pre-passes for behind/middle/in-front compositing
+ * - Depth texture from the model pre-pass stops the march at the landmark,
+ *   so towers poke through every carpet correctly.
+ *
+ * Altitudes (world units; shader = world x 0.4):
+ *   high carpet  ~ 12.5 .. 17.5  (patchy, thin)
+ *   mid carpet   ~ -2.4 .. 3.3   (the original deck, a bit more gappy)
+ *   low carpet   ~ -16.5 .. -9.5 (big soft blobs, mostly covers the ground)
+ * Keep camera anchor heights OUT of those ranges (see scenes/pages.ts).
  *
  * Split pipeline (see sky-composite-shader.ts):
  * - uCloudsOnly = 1 (runtime default): outputs ONLY clouds as premultiplied
  *   rgb + alpha into a low-res target. The sky photo is drawn full-res later.
  * - uCloudsOnly = 0: legacy single-pass path.
- *
- * Horizon seam fixes:
- * - The march starts where the ray ENTERS the cloud slab (analytic), so the
- *   step budget is spent inside the clouds and the deck reaches the horizon
- *   instead of stopping short and leaving an empty milky band.
- * - Distant clouds fade toward the photo's OWN horizon row at that azimuth,
- *   so the cloud sea melts into the photo instead of meeting it at a hard line.
  */
 
 export const cloudVertexShader = /* glsl */ `
@@ -99,16 +105,33 @@ float noise(vec3 x) {
 
 const float constantTime = 1000.0;
 
-const float kLowCoverFreq = 0.22;
-const float kHighCoverFreq = 0.55;
-const float kLowDensity = 1.15;
-const float kHighDensity = 0.55;
-const float kLowSpeedMul = 1.35;
-const float kHighSpeedMul = 0.55;
+// ---- Carpet tuning (shader units) ---------------------------------------
+// LOW (layer 0)
+const float kLowY = -5.2;
+const float kLowCoverFreq = 0.12;
+const float kLowCoverBias = 0.08;    // <0 = more coverage, >0 = more gaps
+const float kLowDensity = 1.0;
+const float kLowSpeedMul = 0.9;
+const float kLowClumpMul = 0.6;      // x uLowClumpScale
+const float kLowShade = 0.82;        // sits under two carpets: a bit darker
+// MID (layer 1) — the original deck: two sub-bands
+const float kMidLowY = -0.22;
+const float kMidHighY = 0.62;
+const float kMidLowCoverFreq = 0.22;
+const float kMidHighCoverFreq = 0.55;
+const float kMidCoverBias = 0.16;
+const float kMidLowDensity = 1.15;
+const float kMidHighDensity = 0.55;
+const float kMidLowSpeedMul = 1.35;
+const float kMidHighSpeedMul = 0.55;
+// HIGH (layer 2)
+const float kHighY = 6.0;
+const float kHighCoverFreq = 0.30;
+const float kHighCoverBias = 0.24;   // patchy
+const float kHighDensity = 0.5;
+const float kHighSpeedMul = 0.5;
+const float kHighShade = 1.05;
 
-// Cloud slab bounds (shader units) and max march distance.
-const float kSlabTop = 2.0;
-const float kSlabBottom = -3.0;
 const float kMaxT = 250.0;
 
 // Minimum sun elevation used for cloud lighting (sin of ~5 deg).
@@ -132,12 +155,12 @@ float detailFbm(in vec3 p, in int octaves, in float speedMul) {
   return f;
 }
 
-float coverageMask(in vec2 xz, in float freq, in float speedMul, in float yOffset) {
+float coverageMask(in vec2 xz, in float freq, in float speedMul, in float yOffset, in float bias) {
   vec2 wind = vec2(0.5, 1.0) * 0.25 * uSpeed * speedMul * (iTime + constantTime);
   vec2 q = xz * freq - wind;
   float n = 0.65 * noise(vec3(q.x, yOffset, q.y));
   n += 0.35 * noise(vec3(q.x * 2.03 + 17.1, yOffset + 3.7, q.y * 2.03));
-  float edge = mix(0.88, 0.34, clamp(uDensity, 0.0, 1.0));
+  float edge = mix(0.88, 0.34, clamp(uDensity, 0.0, 1.0)) + bias;
   return smoothstep(edge, edge + 0.20, n);
 }
 
@@ -155,6 +178,7 @@ float bandDensity(
   in int octaves,
   in float t,
   in float coverFreq,
+  in float coverBias,
   in float clumpScale,
   in float densScale,
   in float speedMul,
@@ -169,7 +193,7 @@ float bandDensity(
   }
   vec3 seeded = p;
   seeded.xz += seedShift();
-  float mask = coverageMask(seeded.xz, coverFreq * distFreq, speedMul, coverOffset);
+  float mask = coverageMask(seeded.xz, coverFreq * distFreq, speedMul, coverOffset, coverBias);
   if (mask < 0.01) {
     return 0.0;
   }
@@ -178,32 +202,63 @@ float bandDensity(
   return clamp(h * mask * densScale * detail, 0.0, 1.0);
 }
 
-float cloudDensity(in vec3 p, in int octaves, in float t) {
-  float spread = clamp(uVerticalSpread, 0.0, 1.0);
-  float yHalfLow = mix(0.38, 0.85, spread);
-  float yHalfHigh = mix(0.40, 0.80, spread);
+float spreadT() {
+  return clamp(uVerticalSpread, 0.0, 1.0);
+}
+float lowHalf() { return mix(1.0, 1.5, spreadT()); }
+float midLowHalf() { return mix(0.38, 0.85, spreadT()); }
+float midHighHalf() { return mix(0.40, 0.80, spreadT()); }
+float highHalf() { return mix(0.7, 1.1, spreadT()); }
+
+// Slab bounds per layer (x = bottom, y = top).
+vec2 layerSlab(in int layer) {
+  if (layer == 0) return vec2(kLowY - lowHalf(), kLowY + lowHalf());
+  if (layer == 1) {
+    return vec2(
+      min(kMidLowY - midLowHalf(), kMidHighY - midHighHalf()),
+      max(kMidLowY + midLowHalf(), kMidHighY + midHighHalf())
+    );
+  }
+  return vec2(kHighY - highHalf(), kHighY + highHalf());
+}
+
+float layerDensity(in int layer, in vec3 p, in int octaves, in float t) {
   float apart = max(uApart, 0.01);
-  float dLow = bandDensity(
+  if (layer == 0) {
+    return bandDensity(
+      p, octaves, t,
+      kLowCoverFreq * apart, kLowCoverBias, uLowClumpScale * kLowClumpMul, kLowDensity, kLowSpeedMul,
+      23.9, kLowY, lowHalf()
+    );
+  }
+  if (layer == 1) {
+    float dLow = bandDensity(
+      p, octaves, t,
+      kMidLowCoverFreq * apart, kMidCoverBias, uLowClumpScale, kMidLowDensity, kMidLowSpeedMul,
+      2.7, kMidLowY, midLowHalf()
+    );
+    float dHigh = bandDensity(
+      p, octaves, t,
+      kMidHighCoverFreq * apart, kMidCoverBias, uHighClumpScale, kMidHighDensity, kMidHighSpeedMul,
+      11.3, kMidHighY, midHighHalf()
+    );
+    return clamp(max(dLow, dHigh), 0.0, 1.0);
+  }
+  return bandDensity(
     p, octaves, t,
-    kLowCoverFreq * apart, uLowClumpScale, kLowDensity, kLowSpeedMul,
-    2.7, -0.22, yHalfLow
+    kHighCoverFreq * apart, kHighCoverBias, uHighClumpScale, kHighDensity, kHighSpeedMul,
+    41.7, kHighY, highHalf()
   );
-  float dHigh = bandDensity(
-    p, octaves, t,
-    kHighCoverFreq * apart, uHighClumpScale, kHighDensity, kHighSpeedMul,
-    11.3, 0.62, yHalfHigh
-  );
-  return clamp(max(dLow, dHigh), 0.0, 1.0);
 }
 
 // fogCol: smooth sky colour for this ray, matched to the photo's horizon.
-vec4 integrate(in vec4 sum, in float dif, in float den, in vec3 fogCol, in float t, in float highBand) {
+vec4 integrate(in vec4 sum, in float dif, in float den, in vec3 fogCol, in float t, in float highBand, in float shade) {
   float skyMix = clamp(uSkyMix, 0.0, 1.0);
   vec3 cloudShadowColor = uCloudColor * 0.5;
   vec3 baseSunlight = mix(vec3(1.0, 0.95, 0.85), vec3(1.0, 0.78, 0.55), mix(0.55, 0.28, highBand));
   vec3 sunlightColor = baseSunlight * uLightColor * uLightIntensity;
   vec3 cloudAmbient = mix(uCloudColor, uSkyZenith, 0.35 * skyMix);
-  vec3 lin = cloudAmbient * 1.4 + sunlightColor * dif;
+  vec3 lin = (cloudAmbient * 1.4 + sunlightColor * dif) * shade;
   vec4 col = vec4(mix(vec3(1.0, 0.95, 0.8), cloudShadowColor, den), den);
   col.rgb *= lin;
 
@@ -237,77 +292,95 @@ bool isSampleBehindScene(vec3 cloudPos, float sceneViewZ) {
   return sampleZ < sceneViewZ + uDepthBias;
 }
 
-bool marchStep(
+// Static per-pixel dither (hides step banding at the low-res cloud target).
+float stepDither() {
+  return fract(52.9829189 * fract(dot(gl_FragCoord.xy, vec2(0.06711056, 0.00583715))));
+}
+
+/**
+ * March one carpet between its slab entry/exit.
+ * Returns false when marching must stop for ALL carpets
+ * (opaque, or the landmark is in front of what's left).
+ */
+bool marchLayer(
+  in int layer,
   inout vec4 sum,
-  inout float t,
   in vec3 ro,
   in vec3 rd,
   in vec3 lightDir,
   in vec3 fogCol,
-  in int oct,
-  in float stepMul,
   in float sceneViewZ,
-  in bool useSceneDepth
+  in bool useSceneDepth,
+  in float q,
+  in float dither
 ) {
-  vec3 pos = ro + t * rd;
-  if (pos.y < kSlabBottom || pos.y > kSlabTop || sum.a > 0.99 || t > kMaxT) return false;
-  if (useSceneDepth && isSampleBehindScene(pos, sceneViewZ)) return false;
-  float den = cloudDensity(pos, oct, t);
-  if (den > 0.01) {
-    int lightOct = oct > 3 ? 3 : oct;
-    float dif = clamp((den - cloudDensity(pos + 0.3 * lightDir, lightOct, t)) / 0.45, 0.0, 1.0);
-    sum = integrate(sum, dif, den, fogCol, t, highBandWeight(pos.y));
+  vec2 slab = layerSlab(layer);
+  float t0;
+  float t1;
+  if (abs(rd.y) < 1e-5) {
+    if (ro.y < slab.x || ro.y > slab.y) return true;
+    t0 = 0.0;
+    t1 = kMaxT;
+  } else {
+    float ta = (slab.x - ro.y) / rd.y;
+    float tb = (slab.y - ro.y) / rd.y;
+    t0 = max(min(ta, tb), 0.0);
+    t1 = min(max(ta, tb), kMaxT);
   }
-  t += max(0.075, 0.02 * t) * stepMul;
+  if (t1 <= t0) return true;
+
+  int maxSteps;
+  int octCap;
+  float shade;
+  if (layer == 0) {
+    maxSteps = max(6, int(ceil(24.0 * q)));
+    octCap = q > 0.6 ? 3 : 2;
+    shade = kLowShade;
+  } else if (layer == 1) {
+    maxSteps = max(12, int(ceil(64.0 * q)));
+    octCap = max(2, int(ceil(5.0 * q)));
+    shade = 1.0;
+  } else {
+    maxSteps = max(6, int(ceil(18.0 * q)));
+    octCap = max(2, int(ceil(4.0 * q)));
+    shade = kHighShade;
+  }
+  float stepMul = mix(1.8, 1.0, q);
+  float minSpan = (t1 - t0) / float(maxSteps);
+
+  float t = t0 + max(0.075, 0.02 * t0) * stepMul * dither;
+  for (int i = 0; i < 64; i++) {
+    if (i >= maxSteps || t > t1) break;
+    if (sum.a > 0.99) return false;
+    vec3 pos = ro + t * rd;
+    if (useSceneDepth && isSampleBehindScene(pos, sceneViewZ)) return false;
+
+    int oct = t < 6.0 ? octCap : (t < 16.0 ? octCap - 1 : (t < 40.0 ? octCap - 2 : 2));
+    oct = max(2, oct);
+    float den = layerDensity(layer, pos, oct, t);
+    if (den > 0.01) {
+      int lightOct = oct > 3 ? 3 : oct;
+      float dif = clamp((den - layerDensity(layer, pos + 0.3 * lightDir, lightOct, t)) / 0.45, 0.0, 1.0);
+      float hb = layer == 2 ? 1.0 : (layer == 1 ? highBandWeight(pos.y) : 0.0);
+      sum = integrate(sum, dif, den, fogCol, t, hb, shade);
+    }
+    t += max(max(0.075, 0.02 * t) * stepMul, minSpan);
+  }
   return true;
 }
 
 vec4 raymarch(in vec3 ro, in vec3 rd, in vec3 fogCol, in float sceneViewZ, in bool useSceneDepth) {
   vec4 sum = vec4(0.0);
-
-  // Start where the ray enters the slab; skip rays that never reach it.
-  float t = 0.0;
-  if (ro.y > kSlabTop) {
-    if (rd.y > -1e-4) return sum;
-    t = (kSlabTop - ro.y) / rd.y;
-  } else if (ro.y < kSlabBottom) {
-    if (rd.y < 1e-4) return sum;
-    t = (kSlabBottom - ro.y) / rd.y;
-  }
-  if (t > kMaxT) return sum;
-  t += 0.01;
-
   float q = clamp(uQuality, 0.2, 1.0);
-  float stepMul = mix(1.8, 1.0, q);
-  int maxA = max(4, int(ceil(20.0 * q)));
-  int maxB = max(4, int(ceil(25.0 * q)));
-  int maxC = max(4, int(ceil(30.0 * q)));
-  int maxD = max(4, int(ceil(40.0 * q)));
-  int octA = max(2, int(ceil(5.0 * q)));
-  int octB = max(2, int(ceil(4.0 * q)));
-  int octC = max(2, int(ceil(3.0 * q)));
-  int octD = 2;
-
+  float dither = stepDither();
   vec3 lightDir = normalize(vec3(uSunDir.x, max(uSunDir.y, kMinSunY), uSunDir.z));
 
-  bool go = true;
-  for (int i = 0; i < 20; i++) {
-    if (i >= maxA || !go) break;
-    go = marchStep(sum, t, ro, rd, lightDir, fogCol, octA, stepMul, sceneViewZ, useSceneDepth);
+  // Front-to-back: looking down -> high, mid, low. Looking up -> low, mid, high.
+  bool down = rd.y < 0.0;
+  for (int k = 0; k < 3; k++) {
+    int layer = down ? 2 - k : k;
+    if (!marchLayer(layer, sum, ro, rd, lightDir, fogCol, sceneViewZ, useSceneDepth, q, dither)) break;
   }
-  for (int i = 0; i < 25; i++) {
-    if (i >= maxB || !go) break;
-    go = marchStep(sum, t, ro, rd, lightDir, fogCol, octB, stepMul, sceneViewZ, useSceneDepth);
-  }
-  for (int i = 0; i < 30; i++) {
-    if (i >= maxC || !go) break;
-    go = marchStep(sum, t, ro, rd, lightDir, fogCol, octC, stepMul, sceneViewZ, useSceneDepth);
-  }
-  for (int i = 0; i < 40; i++) {
-    if (i >= maxD || !go) break;
-    go = marchStep(sum, t, ro, rd, lightDir, fogCol, octD, stepMul, sceneViewZ, useSceneDepth);
-  }
-
   return clamp(sum, 0.0, 1.0);
 }
 

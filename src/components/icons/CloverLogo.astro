@@ -1,18 +1,34 @@
 ---
+// App bar brand mark — Baseet logo (balloon + clouds) from the Logo Kit.
+// File: public/brand/baseet-logo.png (made by fix9/apply.sh with sips, 96px tall = 3x).
+// Kept the old component name + props so AppBar.astro needs no changes.
 interface Props {
   class?: string
   width?: number
   height?: number
 }
 
-const { class: className = 'app-bar__logo-mark', width = 26, height = 26 } = Astro.props
+// Source is 1120 x 708 -> aspect 1.582
+const ASPECT = 1120 / 708
+const { class: className = 'app-bar__logo-mark', height = 30 } = Astro.props
+const width = Math.round(height * ASPECT)
 ---
 
-<svg class={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width={width} height={height} aria-hidden="true">
-  <rect width="256" height="256" fill="none"/>
-  <path d="M128,120s90-96,0-96S128,120,128,120Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/>
-  <path d="M128,120s-96-90-96,0S128,120,128,120Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/>
-  <path d="M128,120s-90,96,0,96S128,120,128,120Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/>
-  <path d="M128,120s96,90,96,0S128,120,128,120Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/>
-  <path d="M128,120s64,56,80,120" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/>
-</svg>
+<img
+  class:list={[className, 'baseet-logo']}
+  src="/brand/baseet-logo.png"
+  alt=""
+  width={width}
+  height={height}
+  decoding="async"
+  aria-hidden="true"
+  style={`width:${width}px;height:${height}px;`}
+/>
+
+<style is:global>
+  .baseet-logo {
+    display: block;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+</style>
