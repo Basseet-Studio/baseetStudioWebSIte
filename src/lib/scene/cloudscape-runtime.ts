@@ -68,6 +68,11 @@ let rafId: number | null = null
 
 /** Max device-pixel-ratio for the full-res sky / model pass, per tier. */
 const SKY_DPR_CAP: Record<string, number> = { high: 2, medium: 1.5, low: 1 }
+/** Night clouds: moonlit blue-grey body, cool moon light, minimum light. */
+const NIGHT_CLOUD_COLOR = new THREE.Color('#9aabd2')
+const NIGHT_CLOUD_MIX = 0.85
+const MOON_LIGHT_COLOR = new THREE.Color('#b8c6e8')
+const NIGHT_LIGHT_FLOOR = 0.7
 /** How far the cloud field streams past over a full page scroll. */
 const SCROLL_WIND = 30
 
@@ -590,6 +595,7 @@ export function initCloudscape(opts: {
     const domeLight = domeMix > 0 && domeSettings.sunFromSky ? skyDome.getLighting() : null
     const uSkyHorizon = bu.uSkyHorizon.value as THREE.Color
     const uSkyZenith = bu.uSkyZenith.value as THREE.Color
+    let night = 0
     if (domeLight) {
       // Light everything from the sky photo on screen (per frame, follows the hour).
       const lumOf = (c: [number, number, number]) => 0.299 * c[0] + 0.587 * c[1] + 0.114 * c[2]
@@ -603,28 +609,42 @@ export function initCloudscape(opts: {
       scratch.domeColor.setRGB(domeLight.sunColor[0], domeLight.sunColor[1], domeLight.sunColor[2])
       scratch.lightColor.lerp(scratch.domeColor, 0.65)
 
-      // Cloud body colour: white-ish by day, takes the sky's tones at dawn/dusk/night.
+      // Cloud body colour: white-ish by day, takes the sky's tones at dawn/dusk.
+      // (Night is handled by the moonlight block below — the old 0.8 lerp
+      // toward the dark night sky is what turned the clouds black.)
       scratch.domeColor.setRGB(
         Math.min(1, (domeLight.zenith[0] + domeLight.horizon[0]) * 0.9),
         Math.min(1, (domeLight.zenith[1] + domeLight.horizon[1]) * 0.9),
         Math.min(1, (domeLight.zenith[2] + domeLight.horizon[2]) * 0.9),
       )
-      scratch.cloudColor.lerp(scratch.domeColor, 0.2 + 0.6 * (1 - dayness))
+      scratch.cloudColor.lerp(scratch.domeColor, 0.2 + 0.3 * (1 - dayness))
 
       scratch.domeColor.setRGB(domeLight.horizon[0], domeLight.horizon[1], domeLight.horizon[2])
       scratch.skyColor.lerp(scratch.domeColor, 0.3 * domeMix)
 
-      // Page intensity is the daytime maximum; night drops to ~20%.
+      // Page intensity is the daytime maximum; night drops (moon floor below).
       lightIntensity =
         lightIntensity * (0.2 + 0.85 * dayness) + domeLight.sunStrength * 0.4 * dayness
 
       uSkyHorizon.setRGB(domeLight.horizon[0], domeLight.horizon[1], domeLight.horizon[2])
       uSkyZenith.setRGB(domeLight.zenith[0], domeLight.zenith[1], domeLight.zenith[2])
+      night = 1 - dayness
     } else {
       // Before photo analysis: a sky-blue gradient — NOT white (cloud colour),
       // which used to bleach the cloud haze toward white.
       uSkyHorizon.copy(scratch.skyColor)
       uSkyZenith.copy(scratch.skyColor).multiplyScalar(0.82)
+      const sc = scratch.skyColor
+      const lum = 0.299 * sc.r + 0.587 * sc.g + 0.114 * sc.b
+      const x = Math.min(1, Math.max(0, (lum - 0.06) / (0.42 - 0.06)))
+      night = 1 - x * x * (3 - 2 * x)
+    }
+
+    // Moonlight: at night clouds are soft blue-grey and lit, never black.
+    if (night > 0.001) {
+      scratch.cloudColor.lerp(NIGHT_CLOUD_COLOR, NIGHT_CLOUD_MIX * night)
+      scratch.lightColor.lerp(MOON_LIGHT_COLOR, 0.7 * night)
+      lightIntensity = Math.max(lightIntensity, NIGHT_LIGHT_FLOOR * night)
     }
 
     const sceneFog = mainScene.fog

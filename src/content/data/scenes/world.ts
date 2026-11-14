@@ -22,9 +22,10 @@ import { editorDefaultClouds, editorDefaultLighting } from './editor-default'
  *   Petronas    height 50, base y -25 -> top y 25
  *   Riyadh      height 52, base y -26 -> top y 26
  *
- * Camera heights: keep anchors OUT of the carpets. Good bands:
- *   between low & mid  -8.5 … -4   ("under the deck")
- *   between mid & high  4.5 … 11
+ * Camera heights: the camera NEVER goes below the mid deck.
+ *   CAMERA_FLOOR (5) is enforced in camera-motion.ts + page flights.
+ *   skim the deck       5 … 6
+ *   between mid & high  6 … 11
  *   above everything    19+
  *
  * Page slices (degrees around the landmark):
@@ -32,6 +33,9 @@ import { editorDefaultClouds, editorDefaultLighting } from './editor-default'
  *   contact 270…310 · other 320…350
  */
 export const ORBIT_CENTER: Vec3 = [0, 0, 0]
+
+/** Lowest camera altitude anywhere (just above the mid cloud deck top ~3.3). */
+export const CAMERA_FLOOR = 5
 
 export const LANDMARK_IDS = {
   AE: 'dubai-skyline',

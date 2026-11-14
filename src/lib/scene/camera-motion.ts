@@ -7,6 +7,8 @@
  *  3. Scroll momentum       scrolling fast pushes the FOV out a little and
  *                           dips the nose in the scroll direction, then it
  *                           eases back when you stop — feels like flying
+ *  5. Floor                 the camera never drops below CAMERA_FLOOR
+ *                           (stays above the mid cloud deck)
  *  4. Portrait framing      on phones the landmark is pulled back toward
  *                           the centre (the desktop "landmark right of the
  *                           text" offset pushes it off-screen on portrait)
@@ -14,7 +16,7 @@
  * Disabled for prefers-reduced-motion (portrait framing still applies).
  */
 import type { CameraPose } from './types'
-import { ORBIT_CENTER } from '../../content/data/scenes/world'
+import { CAMERA_FLOOR, ORBIT_CENTER } from '../../content/data/scenes/world'
 
 /** Tune here. Units are world units (camera positions in scene configs). */
 export const CAMERA_MOTION = {
@@ -104,8 +106,20 @@ function portraitAmount(): number {
   return x * CAMERA_MOTION.portraitRecentre
 }
 
-/** Portrait recentre only — also used during page flights. */
-export function applyViewportFraming(cam: CameraPose): CameraPose {
+/** Hard floor: never below the mid cloud deck. */
+export function clampCameraFloor(cam: CameraPose): CameraPose {
+  if (cam.position[1] >= CAMERA_FLOOR) return cam
+  const lift = CAMERA_FLOOR - cam.position[1]
+  return {
+    ...cam,
+    position: [cam.position[0], CAMERA_FLOOR, cam.position[2]],
+    target: [cam.target[0], cam.target[1] + lift, cam.target[2]],
+  }
+}
+
+/** Portrait recentre + floor — also used during page flights. */
+export function applyViewportFraming(input: CameraPose): CameraPose {
+  const cam = clampCameraFloor(input)
   const w = portraitAmount()
   if (w <= 0) return cam
   const [tx, ty, tz] = cam.target
@@ -161,10 +175,10 @@ export function applyCameraMotion(input: CameraPose): CameraPose {
   const pitch = -Math.sign(v) * ease * CAMERA_MOTION.speedPitch
 
   const tf = CAMERA_MOTION.targetFollow
-  return {
+  return clampCameraFloor({
     ...cam,
     position: [ox + rx * side, oy + up, oz + rz * side],
     target: [tx + rx * side * tf, ty + up * tf + pitch, tz + rz * side * tf],
     fov: cam.fov + ease * CAMERA_MOTION.speedFov,
-  }
+  })
 }

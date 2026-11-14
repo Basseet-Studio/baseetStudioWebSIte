@@ -1,6 +1,7 @@
 ---
-// App bar brand mark — Baseet logo (balloon + clouds) from the Logo Kit.
-// File: public/brand/baseet-logo.png (made by fix9/apply.sh with sips, 96px tall = 3x).
+// App bar brand mark — Baseet logo from the Logo Kit (public/brand/baseet-logo.png).
+// The PNG is used as a MASK and painted with currentColor, so it follows the
+// theme: dark navy by day, near-white at night (via --nav-text).
 // Kept the old component name + props so AppBar.astro needs no changes.
 interface Props {
   class?: string
@@ -14,21 +15,19 @@ const { class: className = 'app-bar__logo-mark', height = 30 } = Astro.props
 const width = Math.round(height * ASPECT)
 ---
 
-<img
+<span
   class:list={[className, 'baseet-logo']}
-  src="/brand/baseet-logo.png"
-  alt=""
-  width={width}
-  height={height}
-  decoding="async"
+  role="img"
   aria-hidden="true"
   style={`width:${width}px;height:${height}px;`}
-/>
+></span>
 
 <style is:global>
   .baseet-logo {
     display: block;
-    object-fit: contain;
     flex-shrink: 0;
+    background-color: currentColor;
+    -webkit-mask: url('/brand/baseet-logo.png') center / contain no-repeat;
+    mask: url('/brand/baseet-logo.png') center / contain no-repeat;
   }
 </style>

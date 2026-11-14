@@ -4,7 +4,7 @@ import type { CameraPose, SceneConfig } from './types'
 import type { ObjectRegistry } from './object-registry'
 import type { ScrollDriver } from './scroll-driver'
 import { ORBIT_CENTER } from '../../content/data/scenes/world'
-import { applyViewportFraming, resetScrollMomentum } from './camera-motion'
+import { applyViewportFraming, clampCameraFloor, resetScrollMomentum } from './camera-motion'
 
 const EXIT_KEY = 'baseet:scene:exit'
 
@@ -262,7 +262,7 @@ function runCameraLerp(
       }
 
       const t = easeFn(Math.min((now - t0) / durationMs, 1))
-      sceneRuntime.applyCamera(flightCamera(fromCam, toCam, t))
+      sceneRuntime.applyCamera(clampCameraFloor(flightCamera(fromCam, toCam, t)))
       sceneRuntime.renderFrame()
 
       if (t < 1) {

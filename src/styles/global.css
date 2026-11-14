@@ -11,8 +11,10 @@
     --bg-page: #f4f8fc;
     --bg-elevated: rgba(255, 255, 255, 0.7);
     --bg-elevated-strong: rgba(255, 255, 255, 0.9);
-    --text-primary: #171d1c;
-    --text-secondary: rgba(23, 29, 28, 0.72);
+    /* Text: one cool navy family that matches the sky + brand blue.
+       Solid colours (no alpha) so text never turns washy over the clouds. */
+    --text-primary: #0f1b2d;
+    --text-secondary: #2c3b52;
     --text-inverse: #ffffff;
     --border-soft: rgba(0, 0, 0, 0.12);
     --border-strong: rgba(0, 0, 0, 0.22);
@@ -49,16 +51,18 @@
     --vanta-cloud-shadow: #496bc1;
 
     /* Semantic tokens for neutral UI surfaces */
-    --heading-text: #1c1917;
-    --muted-text: #78716c;
+    --heading-text: #0f1b2d;
+    --muted-text: #34455f;
+    /* Soft glow behind text that sits straight on the sky / clouds. */
+    --text-halo: 0 0 18px rgba(255, 255, 255, 0.7), 0 1px 2px rgba(255, 255, 255, 0.5);
     --page-section-bg: #f8f7f5;
     --card-bg: #ffffff;
     --card-border: rgba(0, 0, 0, 0.06);
     --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
     --card-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.1);
-    --chip-bg: #f5f5f4;
-    --chip-text: #78716c;
-    --chip-border: #e7e5e4;
+    --chip-bg: #eef2f8;
+    --chip-text: #34455f;
+    --chip-border: #dbe3ee;
     --divider-color: rgba(0, 0, 0, 0.08);
     --gallery-border: rgba(0, 0, 0, 0.08);
     --gallery-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
@@ -114,8 +118,8 @@
     --bg-page: #0f1726;
     --bg-elevated: rgba(10, 16, 28, 0.68);
     --bg-elevated-strong: rgba(8, 12, 22, 0.82);
-    --text-primary: #ebeff8;
-    --text-secondary: rgba(235, 239, 248, 0.74);
+    --text-primary: #eef2fa;
+    --text-secondary: #c9d2e3;
     --text-inverse: #ffffff;
     --border-soft: rgba(255, 255, 255, 0.18);
     --border-strong: rgba(255, 255, 255, 0.3);
@@ -139,15 +143,16 @@
     --footer-chip-bg: rgba(255, 255, 255, 0.12);
 
     /* Semantic tokens for neutral UI surfaces (night) */
-    --heading-text: #ebeff8;
-    --muted-text: rgba(235, 239, 248, 0.62);
+    --heading-text: #eef2fa;
+    --muted-text: #b8c3d8;
+    --text-halo: 0 0 18px rgba(6, 10, 20, 0.75), 0 1px 2px rgba(6, 10, 20, 0.6);
     --page-section-bg: rgba(15, 23, 38, 0.4);
     --card-bg: rgba(10, 16, 28, 0.68);
     --card-border: rgba(255, 255, 255, 0.12);
     --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
     --card-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.5);
     --chip-bg: rgba(255, 255, 255, 0.08);
-    --chip-text: rgba(235, 239, 248, 0.74);
+    --chip-text: #c9d2e3;
     --chip-border: rgba(255, 255, 255, 0.1);
     --divider-color: rgba(255, 255, 255, 0.1);
     --gallery-border: rgba(255, 255, 255, 0.1);
@@ -419,12 +424,18 @@ h4,
         transform var(--transition-fast);
 }
 
-/* Logo mark in the app bar */
+/* Logo mark in the app bar (size comes from CloverLogo.astro; colour follows
+   the theme because the PNG is used as a mask over currentColor). */
 .app-bar__logo-mark {
-    width: 22px;
-    height: 22px;
     flex-shrink: 0;
     color: var(--nav-text, var(--text-primary));
+}
+
+/* Home: text that sits straight on the sky gets a soft halo so it reads
+   over bright clouds AND dark night sky. Cards have their own backgrounds,
+   so the halo is invisible there. */
+:is(body[data-page="home"] main, .hero) :is(p, h1, h2, h3, li, .hero__eyebrow, .hero__btn-label-mono) {
+    text-shadow: var(--text-halo);
 }
 
 .skip-to-content {

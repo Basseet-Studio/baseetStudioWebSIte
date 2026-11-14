@@ -7,9 +7,10 @@ import { buildOrbitScene, type OrbitShot } from './world'
  *
  * Each page has ONE signature move at its mid point, alternating:
  *   services  rise ABOVE the top carpet, towers spearing through it
- *   projects  dive UNDER the mid deck
+ *   projects  skim the top of the mid deck
  *   clients   rise above the top carpet
- *   contact   dive under the mid deck
+ *   contact   skim the mid deck
+ * Never below the mid deck (CAMERA_FLOOR 5 in world.ts).
  * Heights stay out of the carpets (see world.ts) at the anchors themselves.
  */
 function three(pageId: string, rows: Array<Omit<OrbitShot, 'id' | 'at'>>): OrbitShot[] {
@@ -26,7 +27,7 @@ export const SERVICES_SHOTS = three('services', [
 
 export const PROJECTS_SHOTS = three('projects', [
   { angle: 140, radius: 76, height: 7, lookY: 14, fov: 48 },
-  { angle: 170, radius: 56, height: -6, lookY: 10, fov: 58 },
+  { angle: 170, radius: 56, height: 5.5, lookY: 12, fov: 56 },
   { angle: 200, radius: 70, height: 9, lookY: 10, fov: 50 },
 ])
 
@@ -38,7 +39,7 @@ export const CLIENTS_SHOTS = three('clients', [
 
 export const CONTACT_SHOTS = three('contact', [
   { angle: 270, radius: 74, height: 9, lookY: 12, fov: 48 },
-  { angle: 290, radius: 58, height: -5, lookY: 12, fov: 56 },
+  { angle: 290, radius: 58, height: 5.5, lookY: 14, fov: 54 },
   { angle: 310, radius: 72, height: 8, lookY: 12, fov: 50 },
 ])
 
