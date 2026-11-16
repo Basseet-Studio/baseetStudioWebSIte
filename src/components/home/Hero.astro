@@ -3,6 +3,7 @@ import Icon from '../icons/Icon.astro'
 import { parseBold } from '../../utils/markup'
 import type { Lang } from '../../types'
 import { t } from '../../lib/i18n'
+import { localizeHref } from '../../lib/localize-href'
 
 interface Props {
   data: {
@@ -27,12 +28,12 @@ const titleHtml = parseBold(data.title)
     <p class="hero__subtitle">{data.text}</p>
 
     <div class="hero__cta">
-      <a href="/projects/" class="hero__btn">
+      <a href={localizeHref(lang, '/projects/')} class="hero__btn">
         <Icon name="rocket" size={18} color="currentColor" />
         {t('home_hero_cta_work', lang)}
         <Icon name="arrow-right" size={16} color="currentColor" class="icon-chevron" />
       </a>
-      <a href="/services/" class="hero__btn-label-mono">
+      <a href={localizeHref(lang, '/services/')} class="hero__btn-label-mono">
         {t('home_hero_cta_services', lang)}
       </a>
     </div>
@@ -161,6 +162,15 @@ const titleHtml = parseBold(data.title)
     border-color: var(--heading-text);
   }
 
+  /* BASEET_V2: mobile is stacked and centered, not desktop side framing. */
+  @media (max-width: 768px) {
+    .hero { align-items: flex-end; padding: 6rem 1rem 2rem; }
+    .hero__inner { text-align: center; margin-inline: auto; }
+    .hero__eyebrow { padding-inline-start: 0; }
+    .hero__subtitle { margin-inline: auto; }
+    .hero__cta { justify-content: center; width: 100%; }
+    .hero__title { font-size: clamp(2.1rem, 8vw, 3.4rem); }
+  }
   @media (max-width: 640px) {
     .hero {
       padding: 6rem 1rem 3.75rem;
@@ -169,7 +179,7 @@ const titleHtml = parseBold(data.title)
     .hero__cta {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
       gap: 1rem;
     }
 

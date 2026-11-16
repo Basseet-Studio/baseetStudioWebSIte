@@ -327,13 +327,15 @@ bool marchLayer(
     t0 = max(min(ta, tb), 0.0);
     t1 = min(max(ta, tb), kMaxT);
   }
-  if (t1 <= t0) return true;
-
-  int maxSteps;
+  if (t1 <= t0) return true;    float layerQ = q;
+    if (uQuality < 0.6) {
+      layerQ *= layer == 0 ? 0.7 : (layer == 2 ? 0.8 : 1.0);
+    }
+    int maxSteps;
   int octCap;
   float shade;
   if (layer == 0) {
-    maxSteps = max(6, int(ceil(24.0 * q)));
+    maxSteps = max(6, int(ceil(24.0 * layerQ)));
     octCap = q > 0.6 ? 3 : 2;
     shade = kLowShade;
   } else if (layer == 1) {
@@ -341,7 +343,7 @@ bool marchLayer(
     octCap = max(2, int(ceil(5.0 * q)));
     shade = 1.0;
   } else {
-    maxSteps = max(6, int(ceil(18.0 * q)));
+    maxSteps = max(6, int(ceil(18.0 * layerQ)));
     octCap = max(2, int(ceil(4.0 * q)));
     shade = kHighShade;
   }

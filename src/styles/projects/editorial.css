@@ -1,0 +1,37 @@
+/* BASEET_EDITORIAL_V1: product identity comes from the work, not the chrome. */
+.project-wrapper { --project-color:#496BC1 !important; --project-gradient:var(--bg-elevated) !important; }
+.project-wrapper .project-hero-wash { display:none !important; }
+.project-wrapper :is(.project-hero,.geeb-hero) { background:transparent !important; box-shadow:none !important; }
+.project-wrapper :is(.project-hero,.geeb-hero) h1 { font-family:var(--font-display) !important; color:var(--heading-text) !important; background:none !important; -webkit-text-fill-color:currentColor !important; }
+.project-wrapper :is(.project-hero,.geeb-hero) p { max-width:58ch; line-height:1.55; }
+.project-wrapper :is(.cta-btn--primary,.project-cta__button) { background:var(--color-primary) !important; color:#fff !important; box-shadow:none !important; }
+.project-wrapper :is(.glass-card,.project-feature-card,.project-faq,.project-testimonial) { box-shadow:none !important; backdrop-filter:none !important; border-color:var(--border-soft) !important; }
+.project-wrapper :is(.project-feature-card,.project-testimonial) { background:var(--bg-elevated) !important; }
+.project-wrapper :is(.project-gallery,.project-features,.project-feature-showcase) { max-width:1120px; margin-inline:auto; }
+.project-wrapper [data-animate] { animation:none !important; }
+.project-wrapper :is(.project-hero,.geeb-hero) > [aria-hidden="true"] { display:none !important; }
+.project-wrapper[data-project="photorestore-ai"] .project-gallery { max-width:1240px; }
+.project-wrapper[data-project="numu"] .project-gallery { max-width:880px; }
+.project-wrapper[data-project="moneybox"] .project-gallery { max-width:920px; }
+.project-wrapper[data-project="matrix"] .project-gallery { max-width:1240px; }
+.project-wrapper[data-project="invexo"] .project-gallery { max-width:1200px; }
+.project-wrapper[data-project="medev"] .project-gallery { max-width:1080px; }
+@media(max-width:768px) {
+ .project-wrapper :is(.project-hero,.geeb-hero) { padding-inline:20px !important; }
+ .project-wrapper :is(.project-hero,.geeb-hero) h1 { font-size:clamp(2rem,8vw,3rem) !important; overflow-wrap:anywhere; }
+ .project-wrapper :is(.project-hero,.geeb-hero) p { font-size:1rem !important; }
+}
+
+@media(min-width:900px) {
+ .project-wrapper[data-project="photorestore-ai"] .project-gallery { grid-template-columns:repeat(2,minmax(0,1fr)); }
+ .project-wrapper[data-project="moneybox"] .project-gallery { grid-template-columns:repeat(2,minmax(0,1fr)); gap:32px; }
+ .project-wrapper[data-project="numu"] .project-gallery { grid-template-columns:repeat(2,minmax(0,1fr)); gap:40px; }
+ .project-wrapper[data-project="matrix"] .project-gallery { grid-template-columns:repeat(2,minmax(0,1fr)); }
+ .project-wrapper[data-project="invexo"] .project-gallery { grid-template-columns:repeat(2,minmax(0,1fr)); }
+ .project-wrapper[data-project="jemeti"] .project-gallery { grid-template-columns:repeat(2,minmax(0,1fr)); }
+ .project-wrapper[data-project="medev"] .project-gallery { grid-template-columns:repeat(2,minmax(0,1fr)); }
+ .project-wrapper[data-project="medical-education-app"] .project-gallery { grid-template-columns:repeat(2,minmax(0,1fr)); }
+ .project-wrapper[data-project="nss-virtual-education-fair"] .project-gallery { grid-template-columns:repeat(2,minmax(0,1fr)); }
+ .project-wrapper[data-project="ordelo"] .project-gallery { grid-template-columns:repeat(2,minmax(0,1fr)); }
+ .project-wrapper[data-project="zyrn"] .project-gallery { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}

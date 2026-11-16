@@ -3,10 +3,9 @@
 // Injects --project-color and --project-gradient CSS custom properties
 // Passes project nav items to AppBar for adaptive navigation
 import Base from './Base.astro'
-import MoneyBoxDarkVeil from '../components/project/moneybox/MoneyBoxDarkVeil.astro'
-import NumuAurora from '../components/project/numu/NumuAurora.astro'
 import type { Lang, NavItem } from '../types'
 import '../styles/projects/shared.css'
+import '../styles/projects/editorial.css'
 
 interface Props {
   title: string
@@ -24,16 +23,13 @@ interface Props {
 const { title, description, slug, projectColor, projectGradient, projectName, projectIconClass, projectNavItems, projectNavMeta, lang = 'en' } = Astro.props
 ---
 
-<Base title={title} description={description} section="projects" lang={lang} projectName={projectName} projectColor={projectColor} projectIconClass={projectIconClass} slug={slug} projectNavItems={projectNavItems} projectNavMeta={projectNavMeta}>
+<Base title={title} description={description} section="projects" lang={lang} projectName={projectName} projectColor={'#496BC1'} projectIconClass={projectIconClass} slug={slug} projectNavItems={projectNavItems} projectNavMeta={projectNavMeta}>
   <div
-    style={`--project-color:${projectColor};--project-gradient:${projectGradient};`}
-    class="project-wrapper"
+    style={`--project-color:#496BC1;--project-gradient:var(--bg-elevated);`}
+    class="project-wrapper" data-project={slug}
   >
     {/* Soft, theme-aware colour band that fades out gradually as the user
         scrolls. See shared.css `.project-hero-wash` for the rationale. */}
-    <div class="project-hero-wash" aria-hidden="true"></div>
-    {slug === 'moneybox' && <MoneyBoxDarkVeil />}
-    {slug === 'numu' && <NumuAurora />}
     <slot />
   </div>
 </Base>

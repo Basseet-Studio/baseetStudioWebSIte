@@ -101,15 +101,15 @@
   "home_why_3_text": "We don't pad scope to pad the invoice. If a feature won't earn its place in the product, it doesn't go in. That's not a limitation — it's why our stuff stays cheap to run and easy to maintain a year later.",
   "home_why_4_title": "We build products with care",
   "home_why_4_text": "The products we make are built for performance and efficiency — not petty monetization or trendy features that don't earn their place. Our apps are meant to feel premium and well made. Try some of them on the App Store.",
-  "home_services_intro_title": "What we actually do",
-  "home_services_intro_lead": "Six capabilities, one small team. Whatever stage your product is at — an idea on a napkin, a live app that needs to scale, or an internal tool your staff currently run in a spreadsheet — the same people carry it from the first sketch to the thing you launch.",
+  "home_services_intro_title": "What we build",
+  "home_services_intro_lead": "Web, mobile and operations software, from design to launch.",
   "home_services_intro_link": "See the full breakdown",
   "home_projects_intro_title": "Some we built because we needed them. Some we built because we saw the need.",
   "home_projects_intro_lead": "Everything here is ours. Some of it we built because we needed it. Some of it we built because we saw the need for it.",
   "home_story_title": "Why Baseet exists",
-  "home_story_body": "While building apps and tools we needed ourselves for work, we noticed how most software gets built: maximum effort on features and ads, minimum effort on the person actually using it. That's backwards. Better intent makes better software, and software built with intent is worth more, not less. So we made a rule for ourselves: we don't add a feature unless it's needed. The simplest way to do something is the way we do it. Speed is the one exception, and only when the task genuinely needs it.",
+  "home_story_body": "We started by building tools we needed ourselves. That still guides us: solve the real problem, keep the useful parts, and leave out the rest.",
   "home_cta_title": "Building something?",
-  "home_cta_body": "Doesn't need to be fully formed. Bring the napkin sketch, the spreadsheet you've outgrown, or the app idea you've been sitting on — we'll tell you honestly what it needs.",
+  "home_cta_body": "Tell us what you want to build, improve or replace. We will help define the next step.",
   "home_cta_button": "Talk to us",
   "home_why_onboard": "Start your journey",
   "services_how_title": "We tell you what you need to know, when you need to know it — not everything at once.",
@@ -260,5 +260,6 @@
   "projects_view": "View project",
   "clients_hero_lead_short": "Here is what we built, and what changed for the teams using it.",
   "clients_meta_engagements": "Engagements",
-  "clients_view_case": "View case"
+  "clients_view_case": "View case",
+  "service_panel_label": "What we can deliver"
 }

@@ -101,15 +101,15 @@
   "home_why_3_text": "Hindi namin pinalalaki ang scope para lumaki ang invoice. Kung hindi karapat-dapat ang isang feature sa lugar nito sa produkto, hindi ito isasama. Hindi iyon limitasyon — iyon mismo ang dahilan kung bakit mura pa ring patakbuhin at madaling i-maintain ang gawa namin makalipas ang isang taon.",
   "home_why_4_title": "Maingat naming binubuo ang aming mga produkto",
   "home_why_4_text": "Ang mga produktong ginagawa namin ay binuo para sa performance at efficiency — hindi para sa mababaw na monetization o mga usong feature na walang tunay na silbi. Dapat ramdam na premium at maayos ang pagkakagawa ng aming mga app. Subukan ang ilan sa mga ito sa App Store.",
-  "home_services_intro_title": "Ang talagang ginagawa namin",
-  "home_services_intro_lead": "Anim na kakayahan, iisang maliit na team. Nasaan man ang produkto ninyo — ideyang nakasulat sa napkin, live na app na kailangang mag-scale, o internal tool na kasalukuyang pinapatakbo ng staff ninyo sa spreadsheet — ang parehong mga tao ang magdadala nito mula sa unang sketch hanggang sa ilulunsad ninyo.",
+  "home_services_intro_title": "Ano ang ginagawa namin",
+  "home_services_intro_lead": "Software para sa web, mobile at operasyon, mula disenyo hanggang paglulunsad.",
   "home_services_intro_link": "Tingnan ang buong detalye",
   "home_projects_intro_title": "Ang ilan ay binuo namin dahil kailangan namin. Ang ilan ay binuo namin dahil nakita namin ang pangangailangan.",
   "home_projects_intro_lead": "Amin ang lahat ng narito. Ang ilan ay binuo namin dahil kailangan namin ito. Ang ilan ay binuo namin dahil nakita naming may pangangailangan para dito.",
-  "home_story_title": "Bakit may Baseet",
-  "home_story_body": "Habang bumubuo kami ng mga app at tool na kailangan namin mismo sa trabaho, napansin namin kung paano binubuo ang karamihan ng software: todo ang effort sa features at ads, kakarampot sa taong talagang gumagamit nito. Baligtad iyon. Mas mabuting layunin, mas mabuting software — at ang software na binuo nang may layunin ay mas may halaga, hindi mas mababa. Kaya gumawa kami ng patakaran para sa sarili namin: hindi kami nagdadagdag ng feature maliban kung talagang kailangan. Ang pinakasimpleng paraan ng paggawa ng isang bagay ang paraan namin. Bilis lang ang tanging eksepsiyon, at kapag talagang hinihingi lang ito ng gawain.",
+  "home_story_title": "Bakit nabuo ang Baseet",
+  "home_story_body": "Nagsimula kami sa paggawa ng mga tool na kailangan namin mismo. Iyon pa rin ang gabay namin: lutasin ang tunay na problema, panatilihin ang kapaki-pakinabang, at alisin ang hindi kailangan.",
   "home_cta_title": "May binubuo ba kayo?",
-  "home_cta_body": "Hindi kailangang buo na. Dalhin ang napkin sketch, ang spreadsheet na hindi na sapat para sa inyo, o ang ideya ng app na matagal na ninyong inuupuan — sasabihin namin nang tapat kung ano ang kailangan nito.",
+  "home_cta_body": "Sabihin kung ano ang gusto mong buuin, pagandahin o palitan. Tutulong kaming linawin ang susunod na hakbang.",
   "home_cta_button": "Kausapin kami",
   "home_why_onboard": "Simulan ang inyong paglalakbay",
   "services_how_title": "Sinasabi namin ang kailangan ninyong malaman, kapag kailangan ninyo itong malaman — hindi lahat nang sabay-sabay.",
@@ -252,5 +252,6 @@
   "contact_form_studio_location_aria": "Lokasyon ng studio (malapit na)",
   "contact_form_submit": "Ipadala ang inquiry",
   "contact_form_signed": "Nilagdaan, sinelyuhan, naihatid na.",
-  "contact_form_priority": "Baseet · Airmail · Prayoridad"
+  "contact_form_priority": "Baseet · Airmail · Prayoridad",
+  "service_panel_label": "Ano ang maaari naming ihatid"
 }

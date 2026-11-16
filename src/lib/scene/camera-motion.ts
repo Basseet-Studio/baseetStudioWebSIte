@@ -17,6 +17,7 @@
  */
 import type { CameraPose } from './types'
 import { CAMERA_FLOOR, ORBIT_CENTER } from '../../content/data/scenes/world'
+import { landmarkCountry } from './landmark'
 
 /** Tune here. Units are world units (camera positions in scene configs). */
 export const CAMERA_MOTION = {
@@ -40,7 +41,7 @@ export const CAMERA_MOTION = {
   /** How fast the momentum effect builds / releases (per second). */
   speedFollow: 2.5,
   /** Portrait: 0 = keep desktop framing, 1 = landmark dead centre. */
-  portraitRecentre: 0.85,
+  portraitRecentre: 1,
 }
 
 let pointerX = 0
@@ -120,12 +121,22 @@ export function clampCameraFloor(cam: CameraPose): CameraPose {
 /** Portrait recentre + floor — also used during page flights. */
 export function applyViewportFraming(input: CameraPose): CameraPose {
   const cam = clampCameraFloor(input)
-  const w = portraitAmount()
-  if (w <= 0) return cam
-  const [tx, ty, tz] = cam.target
+  if (typeof window === 'undefined') return cam
+  const mobile = window.innerWidth <= 768
+  const malaysia = landmarkCountry() === 'MY'
+  const factor = malaysia ? 0.78 : 1
+  const position: CameraPose['position'] = [
+    ORBIT_CENTER[0] + (cam.position[0] - ORBIT_CENTER[0]) * factor,
+    cam.position[1],
+    ORBIT_CENTER[2] + (cam.position[2] - ORBIT_CENTER[2]) * factor,
+  ]
   return {
     ...cam,
-    target: [tx + (ORBIT_CENTER[0] - tx) * w, ty, tz + (ORBIT_CENTER[2] - tz) * w],
+    position,
+    target: [mobile ? ORBIT_CENTER[0] : cam.target[0],
+      malaysia ? 18 : cam.target[1],
+      mobile ? ORBIT_CENTER[2] : cam.target[2]],
+    fov: mobile ? Math.min(66, cam.fov + 4) : cam.fov,
   }
 }
 
@@ -172,7 +183,7 @@ export function applyCameraMotion(input: CameraPose): CameraPose {
     smoothY * CAMERA_MOTION.parallax * 0.5
 
   // Scrolling down (v > 0) dips the nose, scrolling up lifts it.
-  const pitch = -Math.sign(v) * ease * CAMERA_MOTION.speedPitch
+  const pitch = -Math.sign(v) * ease * CAMERA_MOTION.speedPitch * (coarse ? 0.25 : 1)
 
   const tf = CAMERA_MOTION.targetFollow
   return clampCameraFloor({

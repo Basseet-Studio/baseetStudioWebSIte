@@ -101,15 +101,15 @@
   "home_why_3_text": "我们不靠注水范围来注水账单。一个功能如果在产品里站不住，它就不会进去。这不是限制——这是为什么一年之后，我们做的东西仍然跑得便宜、改得轻松。",
   "home_why_4_title": "我们用心做产品",
   "home_why_4_text": "我们做的产品为性能和效率而生——不为琐碎的变现，也不为站不住的时髦功能。我们的应用就该有高级、做工好的感觉。去应用商店试试其中几款。",
-  "home_services_intro_title": "我们实际在做什么",
-  "home_services_intro_lead": "六项能力，一支小团队。无论你的产品在哪一步——餐巾纸上的想法、需要放大的线上应用，或是员工还在表格里跑的内部工具——都是同一拨人，从第一张草图扛到你发出去的那一天。",
+  "home_services_intro_title": "我们打造什么",
+  "home_services_intro_lead": "从设计到上线，涵盖网站、移动应用和业务运营软件。",
   "home_services_intro_link": "看完整拆解",
   "home_projects_intro_title": "有的是我们自己需要才做的。有的是我们看见了缺口才做的。",
   "home_projects_intro_lead": "这里的一切都是我们的。有的是我们自己需要才做的。有的是我们看见了需要才做的。",
-  "home_story_title": "巴西特为什么存在",
-  "home_story_body": "在为自己的工作做应用和工具时，我们看见多数软件是怎么被做出来的：力气堆在功能和广告上，用的人几乎分不到。这是反的。更好的意图做出更好的软件，而带着意图做的软件更值钱，不是更不值钱。所以我们给自己定了条规矩：不需要的功能，不加。最简单的做法，就是我们的做法。速度是唯一的例外，而且只有这件事真的需要快的时候才例外。",
+  "home_story_title": "Baseet 的起点",
+  "home_story_body": "我们最初为自己的工作打造工具。如今仍坚持同一个原则：解决真正的问题，保留有用的部分，去掉多余的东西。",
   "home_cta_title": "在做点什么？",
-  "home_cta_body": "不必已经成形。把餐巾纸草图、你已经用不下的表格，或是压了很久的应用想法带来——我们会老实说它需要什么。",
+  "home_cta_body": "告诉我们你想打造、改进或替换什么。我们会帮助你明确下一步。",
   "home_cta_button": "和我们谈谈",
   "home_why_onboard": "开始你的旅程",
   "services_how_title": "该知道的时候告诉你该知道的，而不是一次倒给你。",
@@ -252,5 +252,6 @@
   "contact_form_studio_location_aria": "工作室地址（即将公布）",
   "contact_form_submit": "寄出咨询",
   "contact_form_signed": "签好，封好，寄出。",
-  "contact_form_priority": "巴西特 · 航空信 · 优先"
+  "contact_form_priority": "巴西特 · 航空信 · 优先",
+  "service_panel_label": "我们能交付什么"
 }

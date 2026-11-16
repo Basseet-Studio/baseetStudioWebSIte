@@ -80,7 +80,7 @@ const perfItems = [
           {project.hero.cta_primary && (
             <a href={project.hero.cta_primary_link || '/contact/'}
               class="cta-btn--primary"
-              style={`background:${project.gradient};color:#08130f;`}>
+              style={`background:var(--color-primary);color:#08130f;`}>
               {project.hero.cta_primary}
             </a>
           )}
@@ -168,7 +168,7 @@ const perfItems = [
           <span class="mx-perf-image-label mx-mono">Hardware_Node_29</span>
         </div>
         <div data-animate="fade-up">
-          <span style={`display:inline-block;padding:6px 14px;border-radius:9999px;font-size:0.72rem;font-weight:600;background:color-mix(in srgb, ${project.color} 10%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 25%, transparent);margin-bottom:16px;`} class="mx-mono">
+          <span style={`display:inline-block;padding:6px 14px;border-radius:9999px;font-size:0.72rem;font-weight:600;background:color-mix(in srgb, ${project.color} 10%, transparent);color:var(--heading-text);border:1px solid color-mix(in srgb, ${project.color} 25%, transparent);margin-bottom:16px;`} class="mx-mono">
             Performance / Architecture
           </span>
           <h2 style="font-size:2rem;color:var(--heading-text);margin-bottom:16px;line-height:1.25;">

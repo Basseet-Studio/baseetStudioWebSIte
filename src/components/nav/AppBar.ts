@@ -5,7 +5,7 @@ import { bindLangSwitcher, closeLangSwitcher } from "./lang-switcher";
 
 const HIDE_THRESHOLD = 100;
 const HYSTERESIS = 50;
-const MOBILE_BREAKPOINT = 720;
+const MOBILE_BREAKPOINT = 1101;
 
 interface NavState {
   visible: boolean;

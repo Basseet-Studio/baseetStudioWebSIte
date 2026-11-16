@@ -83,7 +83,7 @@ const featureDetails = [
         <ul>
           {feature.bullets.map((b) => (
             <li>
-              <Icon name="check-circle" size={16} color={project.color} />
+              <Icon name="check-circle" size={16} color="var(--color-primary)" />
               <span>{b}</span>
             </li>
           ))}
@@ -96,7 +96,7 @@ const featureDetails = [
   ))}
 
   <section class="moneybox-section" style="text-align:center;">
-    <a href="/projects/moneybox/download/" class="cta-btn--primary" style={`background:${project.gradient};`}>Get the App</a>
+    <a href="/projects/moneybox/download/" class="cta-btn--primary" style={`background:var(--color-primary);`}>Get the App</a>
   </section>
 
   <script>

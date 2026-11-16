@@ -3,8 +3,8 @@
  * All tokens flip on [data-theme="night"].
  */
 :root {
-  --project-color: #B45309;
-  --project-gradient: linear-gradient(135deg, #B45309 0%, #F59E0B 100%);
+  --project-color: #496BC1;
+  --project-gradient: var(--bg-elevated);
 
   --geeb-ink: #1c1410;
   --geeb-cream: rgba(255, 251, 235, 0.5);

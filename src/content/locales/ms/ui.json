@@ -101,15 +101,15 @@
   "home_why_3_text": "Kami tak kembungkan skop untuk kembungkan invois. Kalau sesuatu ciri tak berbaloi dalam produk, ia tak masuk. Itu bukan batasan — sebab itulah kerja kami kekal murah dijalankan dan mudah diselenggara setahun kemudian.",
   "home_why_4_title": "Kami bina produk dengan cermat",
   "home_why_4_text": "Produk yang kami buat dibina untuk prestasi dan kecekapan — bukan pengewangan remeh atau ciri ikut tren yang tak berbaloi. Aplikasi kami patut terasa premium dan dibuat dengan baik. Cuba sebahagiannya di App Store.",
-  "home_services_intro_title": "Apa yang kami benar-benar buat",
-  "home_services_intro_lead": "Enam keupayaan, satu pasukan kecil. Apa pun tahap produk anda — idea di atas kertas, aplikasi yang sudah hidup dan perlu membesar, atau alat dalaman yang kakitangan anda masih jalankan dalam hamparan — orang yang sama membawanya dari lakaran pertama hingga benda yang anda lancarkan.",
+  "home_services_intro_title": "Apa yang kami bina",
+  "home_services_intro_lead": "Perisian web, mudah alih dan operasi, daripada reka bentuk hingga pelancaran.",
   "home_services_intro_link": "Lihat pecahan penuh",
   "home_projects_intro_title": "Ada yang kami bina kerana kami memerlukannya. Ada yang kami bina kerana kami nampak keperluannya.",
   "home_projects_intro_lead": "Semua di sini milik kami. Ada yang kami bina kerana kami memerlukannya. Ada yang kami bina kerana kami nampak keperluannya.",
-  "home_story_title": "Mengapa Baseet wujud",
-  "home_story_body": "Sambil membina aplikasi dan alat yang kami sendiri perlukan untuk kerja, kami perasan bagaimana kebanyakan perisian dibina: usaha maksimum pada ciri dan iklan, usaha minimum pada orang yang benar-benar menggunakannya. Itu terbalik. Niat yang lebih baik menghasilkan perisian yang lebih baik, dan perisian yang dibina dengan niat lebih bernilai, bukan kurang. Jadi kami buat peraturan untuk diri sendiri: kami tak tambah ciri melainkan ia diperlukan. Cara paling ringkas untuk buat sesuatu ialah cara kami buat. Kelajuan satu-satunya pengecualian, dan hanya bila tugas itu benar-benar memerlukannya.",
+  "home_story_title": "Mengapa Baseet ditubuhkan",
+  "home_story_body": "Kami bermula dengan membina alat yang kami sendiri perlukan. Prinsip itu masih menjadi panduan: selesaikan masalah sebenar, kekalkan yang berguna dan tinggalkan selebihnya.",
   "home_cta_title": "Sedang membina sesuatu?",
-  "home_cta_body": "Tak perlu lengkap. Bawa lakaran di atas kertas, hamparan yang sudah tak muat, atau idea aplikasi yang lama anda simpan — kami akan beritahu dengan jujur apa yang ia perlukan.",
+  "home_cta_body": "Beritahu kami apa yang ingin anda bina, tambah baik atau gantikan. Kami akan membantu menentukan langkah seterusnya.",
   "home_cta_button": "Bercakap dengan kami",
   "home_why_onboard": "Mulakan perjalanan anda",
   "services_how_title": "Kami beritahu apa yang anda perlu tahu, bila anda perlu tahu — bukan semuanya serentak.",
@@ -252,5 +252,6 @@
   "contact_form_studio_location_aria": "Lokasi studio (akan datang)",
   "contact_form_submit": "Hantar pertanyaan",
   "contact_form_signed": "Ditandatangani, dimeterai, dihantar.",
-  "contact_form_priority": "Baseet · Pos udara · Keutamaan"
+  "contact_form_priority": "Baseet · Pos udara · Keutamaan",
+  "service_panel_label": "Apa yang boleh kami hasilkan"
 }

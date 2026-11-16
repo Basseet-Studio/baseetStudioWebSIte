@@ -263,7 +263,7 @@ function runCameraLerp(
 
       const t = easeFn(Math.min((now - t0) / durationMs, 1))
       sceneRuntime.applyCamera(clampCameraFloor(flightCamera(fromCam, toCam, t)))
-      sceneRuntime.renderFrame()
+      /* Frame rendered by the main runtime loop. */
 
       if (t < 1) {
         rafId = requestAnimationFrame(frame)

@@ -137,7 +137,7 @@ const socialLinks = (['instagram', 'linkedin', 'github', 'twitter'] as const)
           <CloverLogo />
         </a>
         <span class="app-bar__logo-divider" aria-hidden="true"></span>
-        <a href={projectRoot} class="app-bar__project-mark" style={`color:${projectColor || 'var(--color-primary)'}`} aria-label={`${projectName || 'Project'} home`}>
+        <a href={projectRoot} class="app-bar__project-mark" title={projectName} style={`color:${projectColor || 'var(--color-primary)'}`} aria-label={`${projectName || 'Project'} home`}>
           {projectLogoSrc ? (
             <img src={projectLogoSrc} alt="" class="app-bar__project-logo" width="22" height="22" aria-hidden="true" />
           ) : (

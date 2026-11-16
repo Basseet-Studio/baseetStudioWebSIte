@@ -125,10 +125,10 @@ const next = siblings[0]
        hard-coded light/dark gradient on this section. -->
   <section class="subpage-hero">
     <div class="subpage-hero__inner">
-      <div class="subpage-hero__mark" style={`background:${project.gradient};`}>
+      <div class="subpage-hero__mark" style={`background:var(--color-primary);`}>
         <Icon name={pageIcon} size={28} color="white" />
       </div>
-      <span class="subpage-hero__eyebrow" style={`color:${project.color};`}>
+      <span class="subpage-hero__eyebrow" style={`color:var(--heading-text);`}>
         {project.name}
       </span>
       <h1 class="subpage-hero__title" data-animate="fade-up">{pageTitle}</h1>
@@ -168,7 +168,7 @@ const next = siblings[0]
                 ? `background:color-mix(in srgb, ${project.color} 8%, var(--card-window-bg));`
                 : (i > 0 ? `animation-delay:${i * 0.04}s;` : '')}
             >
-              <div class="subpage-bento__icon" style={`background:${project.gradient};`}>
+              <div class="subpage-bento__icon" style={`background:var(--color-primary);`}>
                 <Icon name={resolveIcon(feature.icon).name} size={22} color="white" />
               </div>
               <h3>{feature.title}</h3>
@@ -183,10 +183,10 @@ const next = siblings[0]
   {page === 'features' && !hasFeatures && (
     <section class="subpage-section">
       <div class="subpage-section__inner subpage-empty">
-        <Icon name="sparkle" size={36} color={project.color} />
+        <Icon name="sparkle" size={36} color="var(--color-primary)" />
         <h2>The full feature list is in flight</h2>
         <p>We are still polishing the details. Want a sneak peek? Get in touch and we will share what is coming.</p>
-        <a href="/contact/" class="subpage-btn subpage-btn--primary" style={`background:${project.gradient};`}>Request the rundown</a>
+        <a href="/contact/" class="subpage-btn subpage-btn--primary" style={`background:var(--color-primary);`}>Request the rundown</a>
       </div>
     </section>
   )}
@@ -207,10 +207,10 @@ const next = siblings[0]
   {page === 'faq' && !hasFaq && (
     <section class="subpage-section">
       <div class="subpage-section__inner subpage-empty">
-        <Icon name="question" size={36} color={project.color} />
+        <Icon name="question" size={36} color="var(--color-primary)" />
         <h2>No questions yet</h2>
         <p>We have not published a full FAQ for {project.name} yet. Reach out and we will answer anything you need to know.</p>
-        <a href="/contact/" class="subpage-btn subpage-btn--primary" style={`background:${project.gradient};`}>Ask us anything</a>
+        <a href="/contact/" class="subpage-btn subpage-btn--primary" style={`background:var(--color-primary);`}>Ask us anything</a>
       </div>
     </section>
   )}
@@ -224,7 +224,7 @@ const next = siblings[0]
           <div class="subpage-platforms" data-animate="fade-up">
             {project.platforms!.map(p => (
               <div class="subpage-platform card-window">
-                <div class="subpage-platform__icon" style={`background:color-mix(in srgb, ${project.color} 14%, var(--card-window-bg));color:${project.color};`}>
+                <div class="subpage-platform__icon" style={`background:color-mix(in srgb, ${project.color} 14%, var(--card-window-bg));color:var(--heading-text);`}>
                   <Icon name={resolveIcon(p.icon).name} size={26} color="currentColor" />
                 </div>
                 <div>
@@ -232,7 +232,7 @@ const next = siblings[0]
                   {p.version && <span class="subpage-platform__version">{p.version}</span>}
                 </div>
                 {p.link && p.link !== '#' && (
-                  <a href={p.link} class="subpage-btn subpage-btn--ghost" style={`color:${project.color};border-color:color-mix(in srgb, ${project.color} 35%, transparent);`}>
+                  <a href={p.link} class="subpage-btn subpage-btn--ghost" style={`color:var(--heading-text);border-color:color-mix(in srgb, ${project.color} 35%, transparent);`}>
                     Open
                     <Icon name="arrow-square-out" size={14} color="currentColor" />
                   </a>
@@ -241,19 +241,19 @@ const next = siblings[0]
             ))}
           </div>
           <div class="subpage-demo-cta" data-animate="fade-up">
-            <a href={localizeHref(lang, '/contact/')} class="subpage-btn subpage-btn--primary" style={`background:${project.gradient};`}>
+            <a href={localizeHref(lang, '/contact/')} class="subpage-btn subpage-btn--primary" style={`background:var(--color-primary);`}>
               {page === 'download' ? 'Join the waitlist' : 'Request a demo'}
             </a>
           </div>
           </>
         ) : (
           <div class="subpage-empty">
-            <Icon name={page === 'download' ? 'download' : 'play'} size={36} color={project.color} />
+            <Icon name={page === 'download' ? 'download' : 'play'} size={36} color="var(--color-primary)" />
             <h2>{page === 'download' ? 'Releasing soon' : 'Demo on request'}</h2>
             <p>{page === 'download'
               ? `${project.name} is heading to the stores. Join the waitlist and we will let you know the moment it is live.`
               : `We run personalised demos for serious teams. Tell us a bit about you and we will set one up.`}</p>
-            <a href={localizeHref(lang, '/contact/')} class="subpage-btn subpage-btn--primary" style={`background:${project.gradient};`}>
+            <a href={localizeHref(lang, '/contact/')} class="subpage-btn subpage-btn--primary" style={`background:var(--color-primary);`}>
               {page === 'download' ? 'Join the waitlist' : 'Request a demo'}
             </a>
           </div>
@@ -264,7 +264,7 @@ const next = siblings[0]
             <h3>Built with</h3>
             <div class="subpage-tech__list">
               {project.tech!.map(t => (
-                <span class="subpage-tech__chip" style={`background:color-mix(in srgb, ${project.color} 8%, transparent);color:${project.color};border-color:color-mix(in srgb, ${project.color} 20%, transparent);`}>{t}</span>
+                <span class="subpage-tech__chip" style={`background:color-mix(in srgb, ${project.color} 8%, transparent);color:var(--heading-text);border-color:color-mix(in srgb, ${project.color} 20%, transparent);`}>{t}</span>
               ))}
             </div>
           </div>
@@ -294,7 +294,7 @@ const next = siblings[0]
 
         <h2>Questions?</h2>
         <p>Reach out — we are happy to clarify anything.</p>
-        <a href="/contact/" class="subpage-btn subpage-btn--primary" style={`background:${project.gradient};`}>Get in touch</a>
+        <a href="/contact/" class="subpage-btn subpage-btn--primary" style={`background:var(--color-primary);`}>Get in touch</a>
       </div>
     </section>
   )}
@@ -304,10 +304,10 @@ const next = siblings[0]
     <section class="subpage-section">
       <div class="subpage-section__inner subpage-section__inner--narrow">
         <div class="subpage-pro-card card-window" data-animate="fade-up" style={`background:color-mix(in srgb, ${project.color} 8%, var(--card-window-bg));border-color:color-mix(in srgb, ${project.color} 25%, transparent);`}>
-          <Icon name="hard-hat" size={42} color={project.color} />
+          <Icon name="hard-hat" size={42} color="var(--color-primary)" />
           <h2>Join the {project.name} network</h2>
           <p>Apply below and our team will review your application within 48 hours.</p>
-          <a href="/contact/" class="subpage-btn subpage-btn--primary" style={`background:${project.gradient};`}>
+          <a href="/contact/" class="subpage-btn subpage-btn--primary" style={`background:var(--color-primary);`}>
             Apply now
             <Icon name="arrow-right" size={16} color="white" />
           </a>

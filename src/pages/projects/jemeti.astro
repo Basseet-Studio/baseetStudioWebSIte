@@ -30,11 +30,11 @@ const linkedClients = getClientsForProject(slug, lang)
   lang={lang}
 >
   <section class="project-hero project-hero--centered" data-animate="fade-up">
-    <a href={localizeHref(lang, '/projects/')} style={`display:inline-flex;align-items:center;gap:8px;color:${project.color};text-decoration:none;font-weight:500;margin-bottom:32px;`}>
+    <a href={localizeHref(lang, '/projects/')} style={`display:inline-flex;align-items:center;gap:8px;color:var(--heading-text);text-decoration:none;font-weight:500;margin-bottom:32px;`}>
       ← Back to Projects
     </a>
 
-    <div style={`width:80px;height:80px;border-radius:18px;background:${project.gradient};display:flex;align-items:center;justify-content:center;margin:0 auto 24px;box-shadow:0 10px 30px color-mix(in srgb, ${project.color} 25%, transparent);overflow:hidden;`}>
+    <div style={`width:80px;height:80px;border-radius:18px;background:var(--color-primary);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;box-shadow:none;overflow:hidden;`}>
       {project.icon ? (
         <img src={project.icon} alt="" width="48" height="48" style="display:block;" />
       ) : (
@@ -43,14 +43,14 @@ const linkedClients = getClientsForProject(slug, lang)
     </div>
 
     <h1 style="font-size:2.8rem;font-weight:700;color:var(--heading-text);margin-bottom:8px;font-family:var(--font-title);">{project.name}</h1>
-    <p style={`font-size:1.25rem;color:${project.color};font-weight:600;margin-bottom:32px;`}>{project.tagline}</p>
+    <p style={`font-size:1.25rem;color:var(--heading-text);font-weight:600;margin-bottom:32px;`}>{project.tagline}</p>
     <p style="font-size:1.1rem;color:var(--muted-text);max-width:600px;margin:0 auto 32px;line-height:1.7;">{project.hero.subtitle}</p>
 
     {project.hero.cta_primary && (
       <a
         href={project.hero.cta_primary_link || '/contact/'}
         class="cta-btn--primary"
-        style={`background:${project.gradient};`}
+        style={`background:var(--color-primary);`}
       >
         {project.hero.cta_primary}
       </a>

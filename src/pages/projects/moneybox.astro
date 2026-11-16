@@ -61,11 +61,11 @@ const featureShowcase: FeatureShowcaseItem[] = (project.features || []).map((f) 
     <section class="moneybox-hero">
       <div class="moneybox-hero__grid">
         <div>
-          <p style={`font-size:0.9rem;font-weight:600;color:${project.color};margin:0 0 1rem;`}>{project.tagline}</p>
+          <p style={`font-size:0.9rem;font-weight:600;color:var(--heading-text);margin:0 0 1rem;`}>{project.tagline}</p>
           <h1 class="moneybox-hero__title" style="font-family: var(--font-display);" data-animate="fade-up">{project.hero.title}</h1>
           <p class="moneybox-hero__subtitle" data-animate="fade-up">{project.hero.subtitle}</p>
           <div class="moneybox-hero__ctas" data-animate="fade-up">
-            <a href="/projects/moneybox/download/" class="cta-btn--primary" style={`background:${project.gradient};`}>
+            <a href="/projects/moneybox/download/" class="cta-btn--primary" style={`background:var(--color-primary);`}>
               {project.hero.cta_primary}
             </a>
             <a href="#features" class="cta-btn--secondary" style={`border-color:color-mix(in srgb, ${project.color} 25%, transparent);`}>
@@ -180,7 +180,7 @@ const featureShowcase: FeatureShowcaseItem[] = (project.features || []).map((f) 
     )}
 
     <section class="moneybox-section" style="text-align:center;">
-      <a href={androidUrl || '/projects/moneybox/download/'} class="cta-btn--primary" style={`background:${project.gradient};`}>Download MoneyBox</a>
+      <a href={androidUrl || '/projects/moneybox/download/'} class="cta-btn--primary" style={`background:var(--color-primary);`}>Download MoneyBox</a>
     </section>
   </main>
 

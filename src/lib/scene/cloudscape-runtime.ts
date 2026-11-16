@@ -656,8 +656,13 @@ export function initCloudscape(opts: {
     }
 
     directionalLight.position.copy(scratch.sunDir).multiplyScalar(20)
-    directionalLight.intensity = lightIntensity
-    ambientLight.intensity = 0.6 + lightIntensity * 0.3
+    const modelDay = 1 - night
+    directionalLight.color.copy(scratch.lightColor)
+    directionalLight.intensity = lightIntensity * (0.22 + 0.78 * modelDay)
+    ambientLight.color.set(night > 0.5 ? '#a8bce5' : '#ffffff')
+    ambientLight.intensity = 0.16 + 0.64 * modelDay
+    mainScene.environmentIntensity = 0.07 + 0.28 * modelDay
+    objectRegistry.setNightAmount(night)
 
     const depthGroups = skipObjects
       ? { behind: [], middle: [], in_front: [] }
@@ -801,13 +806,48 @@ export function initCloudscape(opts: {
     renderFrame,
   }
 
+  // BASEET_SCENE_MOBILE_V1: cold-load opening.
+  let openingDone = false
+  let openingStarted = 0
+  objectRoot.visible = false
+  function openingCamera(pose: CameraPose): CameraPose {
+    if (openingDone) return pose
+    if (cameraLocked || playgroundLocked) {
+      openingDone = true
+      objectRoot.visible = true
+      return pose
+    }
+    const ready = objectRegistry.getDebugEntries().some(entry => entry.loaded)
+    const now = performance.now()
+    if (ready && openingStarted === 0) {
+      openingStarted = now
+      objectRoot.visible = true
+    }
+    const raw = openingStarted === 0 ? 0 : Math.min(1, (now - openingStarted) / 1600)
+    const t = raw * raw * (3 - 2 * raw)
+    const dx = pose.target[0] - pose.position[0]
+    const dz = pose.target[2] - pose.position[2]
+    const distance = Math.max(30, Math.hypot(dx, dz))
+    const angle = (110 * Math.PI / 180) * (1 - t)
+    const c = Math.cos(angle)
+    const s = Math.sin(angle)
+    const skyY = pose.position[1] + distance * 0.85
+    const result: CameraPose = {
+      ...pose,
+      target: [pose.position[0] + dx * c - dz * s,
+        skyY + (pose.target[1] - skyY) * t,
+        pose.position[2] + dx * s + dz * c],
+    }
+    if (raw >= 1) openingDone = true
+    return result
+  }
   let bridge: ReturnType<typeof createPageTransitionBridge>
 
   function onScrollProgress(progress: number): void {
     if (bridge.getIsTransitioning()) return
     noteScrollProgress(progress)
     const evaluated = cameraController.evaluateAtProgress(progress)
-    if (!cameraLocked) sceneRuntime.applyCamera(applyCameraMotion(evaluated.camera))
+    if (!cameraLocked) sceneRuntime.applyCamera(openingCamera(applyCameraMotion(evaluated.camera)))
     if (!playgroundLocked) {
       sceneRuntime.applyClouds(evaluated.clouds)
       sceneRuntime.applyLighting(evaluated.lighting)
@@ -856,6 +896,8 @@ export function initCloudscape(opts: {
     listenersAttached = true
 
     document.addEventListener('astro:before-swap', () => {
+      openingDone = true
+      objectRoot.visible = true
       bridge.onBeforeSwap({
         exitCamera: sceneRuntime.getCurrentCamera(),
         exitProgress: scrollDriver.getProgress(),
@@ -894,7 +936,7 @@ export function initCloudscape(opts: {
           bridge.forceEndTransition()
           scrollDriver.tick({ force: true, source: 'page-load-recovery' })
         }
-      }, 3000)
+      }, 6000)
     })
 
     document.addEventListener('visibilitychange', () => {
@@ -924,7 +966,7 @@ export function initCloudscape(opts: {
       rafId = requestAnimationFrame(tick)
       if (paused) return
       scrollDriver.tick({ source: 'render-loop' })
-      if (now - lastDrawTime < frameInterval) return
+      if (now - lastDrawTime < frameInterval - 0.5) return
       lastDrawTime = now
       sceneRuntime.renderFrame()
     }
@@ -940,7 +982,7 @@ export function initCloudscape(opts: {
 
   resize()
   syncSkyTheme()
-  applyCamera(config.entryCamera)
+  applyCamera(openingCamera(config.entryCamera))
   renderFrame()
   sceneLog('boot', `entry camera z=${config.entryCamera.position[2]}`)
   scrollDriver.tick({ force: true, source: 'init' })

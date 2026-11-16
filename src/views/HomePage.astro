@@ -6,11 +6,8 @@ import Features from '../components/home/Features.astro'
 import ProximityProjects from '../components/home/ProximityProjects.astro'
 import Clients from '../components/home/Clients.astro'
 import Team from '../components/home/Team.astro'
-import Highlights from '../components/home/Highlights.astro'
-import WhyChoose from '../components/home/WhyChoose.astro'
 import OurStory from '../components/home/OurStory.astro'
 import HomeCta from '../components/home/HomeCta.astro'
-import ScrollSpacer from '../components/home/ScrollSpacer.astro'
 import { getHomeData } from '../lib/home'
 import { getClientsData } from '../lib/clients'
 import { SOURCE_SVGS } from '../lib/sourceSvgs'
@@ -31,16 +28,11 @@ const homeProjects = (homeData.projects ?? []).filter((p: { slug: string }) => S
 
 <Page title={studioFullName(lang)} description={description} section="home" lang={lang} flushHero>
   <Hero data={homeData.hero} lang={lang} />
-  <ScrollSpacer height="35vh" />
-  <WhyChoose lang={lang} />
-  <Highlights highlights={homeData.highlights} lang={lang} />
-  <ScrollSpacer height="30vh" />
-  <Features features={homeData.features} lang={lang} />
-  <ScrollSpacer height="25vh" />
+  <div data-scroll-anchor="home-highlights" data-scroll-anchor-progress="0.14" aria-hidden="true"></div>
   <ProximityProjects projects={homeProjects} lang={lang} />
+  <Features features={homeData.features} lang={lang} />
   <Clients clients={clientsData.clients} lang={lang} />
   <OurStory lang={lang} />
   <Team members={homeData.team} lang={lang} />
   <HomeCta lang={lang} />
-  <ScrollSpacer height="20vh" />
 </Page>

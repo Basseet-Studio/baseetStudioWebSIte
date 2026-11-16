@@ -4,7 +4,7 @@
     --nav-top-offset: 16px;
     --nav-max-width: 980px;
     --nav-side-padding: 32px;
-    --nav-mobile-breakpoint: 720px;
+    --nav-mobile-breakpoint: 1100px;
     --nav-transition: 300ms ease;
     --nav-bg: var(--bg-elevated);
     --nav-border: var(--border-soft);
@@ -567,7 +567,7 @@
     transform: translateX(-50%) translateY(calc(-100% - 32px));
 }
 
-@media (max-width: 720px) {
+@media (max-width: 1100px) {
     .app-bar--hidden {
         transform: translateX(-50%) translateY(calc(-100% + 6px));
     }
@@ -588,7 +588,7 @@
 
 /* =========== RESPONSIVE =========== */
 /* Compact inline nav: tighter padding so all links fit before the hamburger kicks in */
-@media (max-width: 860px) and (min-width: 721px) {
+@media (max-width: 1280px) and (min-width: 1101px) {
     .app-bar__inner {
         padding: 10px 16px;
         gap: 2px;
@@ -610,7 +610,7 @@
     }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 1100px) {
     .app-bar {
         max-width: calc(100vw - 30px);
     }
@@ -713,4 +713,33 @@ button:focus-visible {
 
 .skip-to-content:focus {
     left: 0;
+}
+
+/* BASEET_EDITORIAL_V1: width is allocated, not hidden by clipping. */
+.app-bar__inner { min-width:0; gap:10px; }
+.app-bar__project-mark { min-width:0; max-width:180px; flex:0 1 180px; color:var(--nav-text) !important; }
+.app-bar__project-name { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.app-bar__project-logo { object-fit:contain; flex-shrink:0; }
+.app-bar__links { min-width:0; }
+.app-bar__link { padding-inline:10px; }
+.app-bar__actions { gap:8px; }
+@media(max-width:1100px) {
+ .app-bar__inner { padding:10px 14px; flex-wrap:wrap; }
+ .app-bar__project-mark { flex:1 1 80px; max-width:160px; }
+ .app-bar__meta,.app-bar__social-links { display:none !important; }
+ .app-bar__mobile-toggle { display:flex !important; margin-inline-start:auto; }
+ .app-bar:not(.app-bar--mobile-expanded) .app-bar__links { display:none !important; }
+ .app-bar--mobile-expanded .app-bar__links { flex:1 0 100%; width:100%; max-height:65dvh; overflow-y:auto; }
+}
+@media(max-width:420px) {
+ .app-bar__project-mark { max-width:110px; }
+ .app-bar__actions { order:8; flex:1 0 100%; justify-content:flex-end; padding-block-start:4px; }
+ .app-bar__inner { gap:6px; }
+}
+
+@media(max-width:1100px) {
+ .app-bar--mobile-expanded .app-bar__inner { flex-direction:row !important; align-content:flex-start; height:100%; }
+ .app-bar--mobile-expanded .app-bar__links { order:9; flex:1 0 100%; max-height:48dvh; justify-content:flex-start; }
+ .app-bar--mobile-expanded .app-bar__meta { display:flex !important; flex-wrap:wrap; justify-content:center; flex:1 0 100%; order:10; padding:0; }
+ .app-bar--mobile-expanded .app-bar__actions { flex:0 1 auto; order:7; }
 }

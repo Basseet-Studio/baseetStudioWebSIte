@@ -40,6 +40,7 @@ export interface ObjectRegistry {
   setTransform: (id: string, transform: Partial<ObjectTransform>) => void
   /** Playground: force an object visible (and loaded) regardless of scroll. */
   setForceVisible: (id: string, force: boolean) => void
+  setNightAmount: (amount: number) => void
 }
 
 export function createObjectRegistry(deps: {
@@ -48,6 +49,20 @@ export function createObjectRegistry(deps: {
   parentGroup: THREE.Group
 }): ObjectRegistry {
   const entries = new Map<string, RegistryEntry>()
+  // BASEET_SCENE_MOBILE_V1
+  const nightMaterials = new Map<THREE.MeshStandardMaterial, { color: THREE.Color; intensity: number }>()
+  const nightAccentColor = new deps.THREE.Color('#ffd49a')
+  let previousNight = -1
+  function setNightAmount(amount: number): void {
+    const night = Math.max(0, Math.min(1, amount))
+    if (Math.abs(night - previousNight) < 0.01) return
+    previousNight = night
+    for (const [mat, base] of nightMaterials) {
+      if (mat.emissiveMap) mat.emissive.copy(nightAccentColor)
+      else mat.emissive.copy(base.color).lerp(nightAccentColor, night * 0.8)
+      mat.emissiveIntensity = mat.emissiveMap ? night * 3.2 : base.intensity + night * 0.55
+    }
+  }
   let loadQueue: string[] = []
   let activeLoads = 0
   let anchorsById = new Map<string, number>()
@@ -86,7 +101,7 @@ export function createObjectRegistry(deps: {
       if (mesh.isMesh) {
         mesh.geometry?.dispose()
         const mats = Array.isArray(mesh.material) ? mesh.material : [mesh.material]
-        mats.forEach((m) => m?.dispose())
+        mats.forEach((m) => { nightMaterials.delete(m as THREE.MeshStandardMaterial); m?.dispose() })
       }
     })
     entry.group = null
@@ -125,12 +140,43 @@ export function createObjectRegistry(deps: {
       const mats = Array.isArray(mesh.material) ? mesh.material : [mesh.material]
       for (const mat of mats) {
         const std = mat as THREE.MeshStandardMaterial
-        if (typeof std.metalness === 'number') std.metalness = Math.min(std.metalness, 0.25)
+        const materialName = `${mesh.name} ${mat.name}`.toLowerCase()
+          const facade = /window|glass|glazing|lantern|amber|globe|accent/.test(materialName)
+          const ground = /ground|terrain|water|sea|ocean|mountain|landscape/.test(materialName)
+          if (std.emissive && facade && !ground && !std.emissiveMap && std.map) {
+            // BASEET_V3: fallback window mask for legacy GLBs.
+            const canvas = document.createElement('canvas')
+            canvas.width = 256; canvas.height = 256
+            const ctx = canvas.getContext('2d')
+            if (ctx) {
+              ctx.fillStyle = '#000'; ctx.fillRect(0, 0, 256, 256)
+              ctx.fillStyle = '#ffbc66'
+              for (let row = 0; row < 8; row++) {
+                for (let col = 0; col < 12; col++) {
+                  if (((row * 17 + col * 13) % 11) < 5) {
+                    ctx.fillRect(col * 256 / 12 + 2, row * 32 + 5, 16, 21)
+                  }
+                }
+              }
+              const tex = new deps.THREE.CanvasTexture(canvas)
+              tex.colorSpace = deps.THREE.SRGBColorSpace
+              tex.wrapS = std.map.wrapS; tex.wrapT = std.map.wrapT
+              tex.repeat.copy(std.map.repeat); tex.offset.copy(std.map.offset)
+              tex.flipY = std.map.flipY
+              std.emissiveMap = tex
+              std.needsUpdate = true
+            }
+          }
+          if (std.emissive && facade && !ground && !nightMaterials.has(std)) {
+            nightMaterials.set(std, { color: std.emissive.clone(), intensity: std.emissiveIntensity ?? 1 })
+            previousNight = -1
+          }
+          if (typeof std.metalness === 'number') std.metalness = Math.min(std.metalness, 0.25)
         if (typeof std.envMapIntensity === 'number') std.envMapIntensity = 0.45
         for (const key of ['map', 'normalMap', 'roughnessMap', 'metalnessMap'] as const) {
           const tex = (std as unknown as Record<string, THREE.Texture | null | undefined>)[key]
           if (tex) {
-            tex.anisotropy = 8
+            tex.anisotropy = typeof window !== 'undefined' && (window.innerWidth < 1024 || window.matchMedia('(pointer: coarse)').matches) ? 2 : 8
             tex.needsUpdate = true
           }
         }
@@ -154,11 +200,27 @@ export function createObjectRegistry(deps: {
 
     const loader = new deps.GLTFLoader()
     loader.load(
-      entry.config.url,
+      typeof window !== 'undefined' && window.innerWidth <= 768 &&
+        /(?:dubai|petronas)-skyline\.glb/.test(entry.config.url)
+        ? entry.config.url.replace('-skyline.glb', '-skyline-mobile.glb')
+        : entry.config.url,
       (gltf) => {
         const cfg = entry.config
         const scene = gltf.scene
-        const box = new deps.THREE.Box3().setFromObject(scene)
+        // BASEET_V2: terrain must not determine landmark scale or centering.
+        scene.updateMatrixWorld(true)
+        const landmarkBox = new deps.THREE.Box3()
+        const referenceNames = id === 'petronas-skyline'
+          ? /^(PetronasTower[12]|PetronasDetail)/i
+          : id === 'dubai-skyline' ? /^(BurjKhalifa|BurjDetail)/i
+          : /Kingdom|Faisaliah/i
+        scene.traverse((node) => {
+          if ((node as THREE.Mesh).isMesh && referenceNames.test(node.name)) {
+            landmarkBox.union(new deps.THREE.Box3().setFromObject(node))
+          }
+        })
+        const box = landmarkBox.isEmpty()
+          ? new deps.THREE.Box3().setFromObject(scene) : landmarkBox
         const size = new deps.THREE.Vector3()
         box.getSize(size)
         const center = new deps.THREE.Vector3()
@@ -361,7 +423,7 @@ export function createObjectRegistry(deps: {
     getGroupsByDepth,
     setModelsVisibleForDepthPass,
     getTransform,
-    setTransform,
-    setForceVisible,
+    setTransform,      setForceVisible,
+      setNightAmount,
   }
 }

@@ -85,16 +85,16 @@ const packages = [
 <ProjectLayout title={`${project.name} — ${studioFullName(lang)}`} description={project.tagline} slug={project.slug} projectColor={project.color} projectGradient={project.gradient} projectName={project.name} projectIconClass={project.iconClass} projectNavItems={project.navItems} projectNavMeta={project.navMetaItems} lang={lang}>
 
   <section class="project-hero project-hero--centered">
-    <div style={`position:absolute;top:8%;right:10%;opacity:0.06;transform:rotate(20deg);color:${project.color};pointer-events:none;`}>
+    <div style={`position:absolute;top:8%;right:10%;opacity:0.06;transform:rotate(20deg);color:var(--heading-text);pointer-events:none;`}>
       <svg width="120" height="120" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
     </div>
-    <div style={`position:absolute;bottom:12%;left:8%;opacity:0.05;transform:rotate(-15deg);color:${project.color};pointer-events:none;`}>
+    <div style={`position:absolute;bottom:12%;left:8%;opacity:0.05;transform:rotate(-15deg);color:var(--heading-text);pointer-events:none;`}>
       <svg width="100" height="100" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
     </div>
 
     <div style="max-width:800px;margin:0 auto;position:relative;z-index:1;">
       <div style="display:flex;justify-content:center;margin-bottom:28px;" data-animate="fade-up">
-        <div style={`width:96px;height:96px;border-radius:24px;background:${project.gradient};display:flex;align-items:center;justify-content:center;box-shadow:0 12px 40px -10px color-mix(in srgb, ${project.color} 30%, transparent);`}>
+        <div style={`width:96px;height:96px;border-radius:24px;background:var(--color-primary);display:flex;align-items:center;justify-content:center;box-shadow:0 12px 40px -10px color-mix(in srgb, ${project.color} 30%, transparent);`}>
           <Icon name={resolveIcon(project.iconClass).name} size={40} color="white" />
         </div>
       </div>
@@ -102,13 +102,13 @@ const packages = [
       <h1 style="font-size:3.2rem;font-weight:700;color:var(--heading-text);margin-bottom:8px;letter-spacing:-0.02em;" data-animate="fade-up">
         {project.name}
       </h1>
-      <p style={`font-size:1.3rem;font-weight:600;color:${project.color};margin-bottom:24px;`} data-animate="fade-up">
+      <p style={`font-size:1.3rem;font-weight:600;color:var(--heading-text);margin-bottom:24px;`} data-animate="fade-up">
         {project.tagline}
       </p>
 
       <div style="margin-bottom:28px;" data-animate="fade-up">
-        <span style={`display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);`}>
-          <Icon name="check-circle" size={16} color={project.color} />
+        <span style={`display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:var(--heading-text);border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);`}>
+          <Icon name="check-circle" size={16} color="var(--color-primary)" />
           {statusLabel(project.status, lang)}
         </span>
       </div>
@@ -124,7 +124,7 @@ const packages = [
         {project.hero.cta_primary && (
           <a href={project.hero.cta_primary_link || '/contact/'}
             class="cta-btn--primary"
-            style={`background:${project.gradient};`}>
+            style={`background:var(--color-primary);`}>
             {project.hero.cta_primary}
           </a>
         )}
@@ -147,7 +147,7 @@ const packages = [
   {project.features && project.features.length > 0 && (
     <section id="features" style="padding:64px 24px;max-width:1200px;margin:0 auto;">
       <div style="text-align:center;margin-bottom:48px;" data-animate="fade-up">
-        <span style={`display:inline-block;padding:8px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);margin-bottom:16px;`}>
+        <span style={`display:inline-block;padding:8px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:var(--heading-text);border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);margin-bottom:16px;`}>
           Core Capabilities
         </span>
         <h2 style="font-size:2rem;margin-bottom:12px;color:var(--heading-text);">
@@ -167,7 +167,7 @@ const packages = [
 
   <section style="padding:64px 24px;max-width:1100px;margin:0 auto;">
     <div style="text-align:center;margin-bottom:40px;" data-animate="fade-up">
-      <span style={`display:inline-block;padding:8px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);margin-bottom:16px;`}>
+      <span style={`display:inline-block;padding:8px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:var(--heading-text);border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);margin-bottom:16px;`}>
         What Ordelo Can Be
       </span>
       <h2 style="font-size:2rem;margin-bottom:0;color:var(--heading-text);">
@@ -186,7 +186,7 @@ const packages = [
 
   <section style="padding:64px 24px;max-width:1200px;margin:0 auto;">
     <div style="text-align:center;margin-bottom:40px;" data-animate="fade-up">
-      <span style={`display:inline-block;padding:8px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);margin-bottom:16px;`}>
+      <span style={`display:inline-block;padding:8px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:var(--heading-text);border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);margin-bottom:16px;`}>
         Pain → Promise
       </span>
       <h2 style="font-size:2rem;margin-bottom:0;color:var(--heading-text);">
@@ -209,7 +209,7 @@ const packages = [
 
   <section style="padding:64px 24px;max-width:1200px;margin:0 auto;">
     <div style="text-align:center;margin-bottom:40px;" data-animate="fade-up">
-      <span style={`display:inline-block;padding:8px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:${project.color};border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);margin-bottom:16px;`}>
+      <span style={`display:inline-block;padding:8px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:var(--heading-text);border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);margin-bottom:16px;`}>
         Packages
       </span>
       <h2 style="font-size:2rem;margin-bottom:12px;color:var(--heading-text);">

@@ -3,6 +3,8 @@
 // Layout + shape from docs/refrences/nice-services.tsx; colors/fonts from the site tokens.
 
 import Icon from '../icons/Icon.astro'
+import { t } from '../../lib/i18n'
+import type { Lang } from '../../types'
 import { resolveIcon } from '../icons/iconMappings'
 
 interface SubService {
@@ -11,6 +13,7 @@ interface SubService {
 }
 
 interface Props {
+  lang?: Lang
   index: number
   title: string
   tagline?: string
@@ -25,6 +28,7 @@ interface Props {
 }
 
 const {
+  lang = 'en',
   index,
   title,
   tagline,
@@ -50,12 +54,19 @@ const reversed = index % 2 === 1
 >
   <div class="service-row__panel-col">
     <div class="service-row__panel card-window">
-      <div class="service-row__panel-gradient" style={`background:${gradient};`} aria-hidden="true"></div>
-      <span class="service-row__numeral" aria-hidden="true">{indexLabel}</span>
-      <div class="service-row__icon-badge" style={`background:${color};`}>
-        <Icon name={cat.name} variant={cat.variant} size={20} color="#fff" />
+      <div class="service-row__deliverables">
+        <div class="service-row__deliverable-head">
+          <Icon name={cat.name} variant={cat.variant} size={28} color="var(--color-primary)" />
+          <span>{t('service_panel_label', lang)}</span>
+        </div>
+        <h3>{title}</h3>
+        <ul>
+          {subServices.map((sub, i) => (
+            <li><span aria-hidden="true">{String(i + 1).padStart(2, '0')}</span><span>{sub.name}</span></li>
+          ))}
+        </ul>
+        <a href={href}>{ctaLabel}<Icon name={arrowIcon} size={16} color="currentColor" /></a>
       </div>
-      <span class="service-row__chip">Capability</span>
     </div>
   </div>
 
@@ -315,4 +326,12 @@ const reversed = index % 2 === 1
       transition: none;
     }
   }
+  .service-row__panel { aspect-ratio:auto; min-height:320px; justify-content:flex-start; }
+  .service-row__deliverables { width:100%; }
+  .service-row__deliverable-head { display:flex; align-items:center; gap:12px; color:var(--muted-text); font-size:.8rem; }
+  .service-row__deliverables h3 { font:600 clamp(1.5rem,3vw,2.2rem)/1.15 var(--font-display); margin:24px 0; color:var(--heading-text); }
+  .service-row__deliverables ul { list-style:none; padding:0; margin:0 0 28px; }
+  .service-row__deliverables li { display:grid; grid-template-columns:32px minmax(0,1fr); gap:12px; padding:16px 0; border-top:1px solid var(--border-soft); color:var(--text-primary); }
+  .service-row__deliverables li > span:first-child { color:var(--muted-text); font-size:.8rem; }
+  .service-row__deliverables a { display:inline-flex; gap:10px; align-items:center; color:var(--color-primary); text-decoration:none; }
 </style>

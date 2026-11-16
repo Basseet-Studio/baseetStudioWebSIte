@@ -75,6 +75,7 @@ const cardArrowIcon = copy.cardArrowIcon ?? arrowIcon
 <div class="services-rows">
   {categories.map((category, i) => (
     <ServiceRow
+      lang={lang}
       index={i + 1}
       title={category.title}
       tagline={category.tagline}

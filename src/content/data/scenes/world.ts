@@ -47,7 +47,7 @@ export const LANDMARK_IDS = {
 export const LANDMARK_OBJECTS = [
   {
     id: LANDMARK_IDS.AE,
-    url: '/models/home/dubai-skyline.glb',
+    url: '/models/home/dubai-skyline.glb?v=67a2f2d6a8a5',
     scope: 'global',
     cloudDepth: 'middle',
     transform: { position: [0, -87.5, 0], rotationY: 0, scale: 87.5 },
@@ -56,10 +56,10 @@ export const LANDMARK_OBJECTS = [
   },
   {
     id: LANDMARK_IDS.MY,
-    url: '/models/home/petronas-skyline.glb',
+    url: '/models/home/petronas-skyline.glb?v=4a398621becc',
     scope: 'global',
     cloudDepth: 'middle',
-    transform: { position: [0, -62.5, 0], rotationY: 0, scale: 62.5 },
+    transform: { position: [0, -32.5, 0], rotationY: 0, scale: 62.5 },
     fitHeight: true,
     preload: false,
   },

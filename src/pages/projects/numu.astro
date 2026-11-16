@@ -58,13 +58,13 @@ const featureShowcase: FeatureShowcaseItem[] = (project.features || []).map((f) 
     <section class="numu-hero">
       <div class="numu-hero__grid">
         <div class="numu-hero__copy">
-          <p style={`font-size:0.9rem;font-weight:600;color:${project.color};margin:0 0 1rem;`}>{project.tagline}</p>
+          <p style={`font-size:0.9rem;font-weight:600;color:var(--heading-text);margin:0 0 1rem;`}>{project.tagline}</p>
           <h1 class="numu-hero__title" style="font-family: var(--font-display);" data-animate="fade-up">
             Track habits, goals, and <span class="numu-hero__inline-pill" aria-hidden="true"></span> health — privately.
           </h1>
           <p class="numu-hero__subtitle" data-animate="fade-up">{project.hero.subtitle}</p>
           <div class="numu-hero__ctas" data-animate="fade-up">
-            <a href="/projects/numu/download/" class="cta-btn--primary" style={`background:${project.gradient};`}>
+            <a href="/projects/numu/download/" class="cta-btn--primary" style={`background:var(--color-primary);`}>
               {project.hero.cta_primary}
             </a>
             <a href="#features" class="cta-btn--secondary" style={`border-color:color-mix(in srgb, ${project.color} 30%, transparent);`}>
@@ -162,7 +162,7 @@ const featureShowcase: FeatureShowcaseItem[] = (project.features || []).map((f) 
     )}
 
     <section class="numu-section" style="text-align:center;">
-      <a href="/projects/numu/download/" class="cta-btn--primary" style={`background:${project.gradient};`}>Download Numu</a>
+      <a href="/projects/numu/download/" class="cta-btn--primary" style={`background:var(--color-primary);`}>Download Numu</a>
     </section>
   </main>
 
