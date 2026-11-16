@@ -9,8 +9,8 @@ interface Props {
   height?: number
 }
 
-// Source is 1120 x 708 -> aspect 1.582
-const ASPECT = 1120 / 708
+// Source mark is 640 x 377 (balloon + clouds from Logo Kit)
+const ASPECT = 640 / 377
 const { class: className = 'app-bar__logo-mark', height = 30 } = Astro.props
 const width = Math.round(height * ASPECT)
 ---

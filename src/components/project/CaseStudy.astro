@@ -1,0 +1,299 @@
+---
+// CaseStudy.astro — shared, restrained case-study layout for projects that
+// do not have a bespoke page. Identity comes from the project's own logo,
+// real screenshots and content. No decorative backgrounds, no generic icon
+// tiles, and no invented "results" copy: every block renders project data
+// only when that data exists.
+import ProjectLayout from '../../layouts/Project.astro'
+import ProjectIdentity from './ProjectIdentity.astro'
+import ProjectFAQ from './ProjectFAQ.astro'
+import ProjectCTA from './ProjectCTA.astro'
+import ProjectClients from './ProjectClients.astro'
+import GradientCTA from './GradientCTA.astro'
+import { screenshotSrc, usableLink } from '../../lib/project-brand'
+import { t } from '../../lib/i18n'
+import { studioFullName } from '../../lib/locale'
+import { localizeHref } from '../../lib/localize-href'
+import type { Lang } from '../../types'
+
+type FeatureStyle = 'grid' | 'steps' | 'index'
+
+interface Props {
+  project: any
+  lang?: Lang
+  /** How the feature list is composed for this product. */
+  featureStyle?: FeatureStyle
+  /** Phone screens (tall) or browser screens (wide). */
+  mediaKind?: 'mobile' | 'web'
+  /** Number of screenshots shown inside the hero (0 = text-led hero). */
+  heroScreens?: number
+  /** Use "Planned features" instead of "What it does". */
+  planned?: boolean
+  clients?: any[]
+}
+
+const {
+  project,
+  lang = 'en',
+  featureStyle = 'grid',
+  mediaKind = project.galleryType === 'web' ? 'web' : 'mobile',
+  heroScreens = 0,
+  planned = false,
+  clients = [],
+} = Astro.props
+
+const slug: string = project.slug
+const shots: string[] = (project.screenshots || []).map((s: string) => screenshotSrc(slug, s))
+const heroShots = shots.slice(0, heroScreens)
+const features: Array<{ title: string; description: string }> = project.features || []
+const faq: Array<{ question: string; answer: string }> = project.faq || []
+const tech: string[] = project.tech || []
+const platforms: Array<{ name: string; version?: string }> = project.platforms || []
+const contactHref = localizeHref(lang, '/contact/')
+
+function resolveHref(href?: string | null): string {
+  const v = usableLink(href)
+  if (!v) return contactHref
+  if (v.startsWith('/') && !v.startsWith('//')) return localizeHref(lang, v.endsWith('/') ? v : `${v}/`)
+  return v
+}
+const primaryHref = resolveHref(project.hero?.cta_primary_link)
+const primaryExternal = /^https?:/.test(primaryHref)
+const secondaryHref = usableLink(project.hero?.cta_secondary_link)
+
+// Minimal markdown → blocks (## / ### headings, paragraphs, "- " lists).
+type Block = { kind: 'h' | 'p' | 'ul'; text?: string; items?: string[] }
+function parseDescription(md: string): Block[] {
+  const blocks: Block[] = []
+  const clean = (s: string) => s.replace(/\*\*/g, '').replace(/\*/g, '').trim()
+  let para: string[] = []
+  let list: string[] = []
+  const flush = () => {
+    if (para.length) blocks.push({ kind: 'p', text: clean(para.join(' ')) })
+    if (list.length) blocks.push({ kind: 'ul', items: list.map(clean) })
+    para = []; list = []
+  }
+  for (const raw of (md || '').split('\n')) {
+    const line = raw.trim()
+    if (!line) { flush(); continue }
+    if (/^#{1,6}\s/.test(line)) { flush(); blocks.push({ kind: 'h', text: clean(line.replace(/^#+\s*/, '')) }); continue }
+    if (/^[-*]\s+/.test(line)) { if (para.length) { blocks.push({ kind: 'p', text: clean(para.join(' ')) }); para = [] } list.push(line.replace(/^[-*]\s+/, '')); continue }
+    if (list.length) { blocks.push({ kind: 'ul', items: list.map(clean) }); list = [] }
+    para.push(line)
+  }
+  flush()
+  // The first heading repeats the product name ("About X"); the hero already says that.
+  if (blocks[0]?.kind === 'h') blocks.shift()
+  return blocks
+}
+const overview = parseDescription(project.description || '')
+const featureHeading = planned ? t('project_planned_features', lang) : t('project_capabilities', lang)
+---
+
+<ProjectLayout
+  title={`${project.name} — ${studioFullName(lang)}`}
+  description={project.tagline}
+  slug={slug}
+  projectColor={project.color}
+  projectGradient={project.gradient}
+  projectName={project.name}
+  projectIconClass={project.iconClass}
+  projectNavItems={project.navItems}
+  projectNavMeta={project.navMetaItems}
+  lang={lang}
+>
+  <article class:list={['cs', `cs--${mediaKind}`, heroShots.length ? 'cs--media-hero' : 'cs--text-hero']}>
+    <header class="cs-hero">
+      <div class="cs-hero__copy">
+        <a class="cs-back" href={localizeHref(lang, '/projects/')}>
+          <span aria-hidden="true" class="cs-back__arrow">←</span>{t('project_back', lang)}
+        </a>
+        <ProjectIdentity slug={slug} name={project.name} tagline={project.tagline} status={project.status} lang={lang} />
+        {project.hero?.title && <p class="cs-hero__title">{project.hero.title}</p>}
+        {project.hero?.subtitle && <p class="cs-hero__lead">{project.hero.subtitle}</p>}
+        <div class="cs-hero__actions">
+          {project.hero?.cta_primary && (
+            <a class="cta-btn--primary" href={primaryHref} {...(primaryExternal ? { target: '_blank', rel: 'noopener' } : {})}>{project.hero.cta_primary}</a>
+          )}
+          {project.hero?.cta_secondary && secondaryHref && secondaryHref.startsWith('#') && (
+            <a class="cta-btn--secondary" href={secondaryHref}>{project.hero.cta_secondary}</a>
+          )}
+        </div>
+        {platforms.length > 0 && (
+          <dl class="cs-facts">
+            <div><dt>{t('project_platforms', lang)}</dt><dd>{platforms.map((p) => p.name).join(' · ')}</dd></div>
+          </dl>
+        )}
+      </div>
+      {heroShots.length > 0 && (
+        <div class="cs-hero__media" data-count={heroShots.length}>
+          {heroShots.map((src, i) => (
+            <img src={src} alt={t('project_screenshot_alt', lang, { name: project.name, n: String(i + 1), total: String(shots.length) })} loading="eager" decoding="async" />
+          ))}
+        </div>
+      )}
+    </header>
+
+    {overview.length > 0 && (
+      <section class="cs-section cs-overview" aria-labelledby={`${slug}-overview`}>
+        <h2 class="cs-label" id={`${slug}-overview`}>{t('project_overview', lang)}</h2>
+        <div class="cs-overview__body">
+          {overview.map((b) => (
+            b.kind === 'h' ? <h3>{b.text}</h3>
+            : b.kind === 'ul' ? <ul>{b.items!.map((it) => <li>{it}</li>)}</ul>
+            : <p>{b.text}</p>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {features.length > 0 && (
+      <section class="cs-section" id="features" aria-labelledby={`${slug}-features`}>
+        <h2 class="cs-label" id={`${slug}-features`}>{featureHeading}</h2>
+        <ol class:list={['cs-features', `cs-features--${featureStyle}`]}>
+          {features.map((f, i) => (
+            <li class="cs-feature">
+              <span class="cs-feature__num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+              <div>
+                <h3 class="cs-feature__title">{f.title}</h3>
+                <p class="cs-feature__desc">{f.description}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+    )}
+
+    {shots.length > heroShots.length && (
+      <section class="cs-section" id="gallery" aria-labelledby={`${slug}-screens`}>
+        <h2 class="cs-label" id={`${slug}-screens`}>{t('project_screens', lang)}</h2>
+        <div class="cs-gallery">
+          {shots.map((src, i) => (
+            <figure class="cs-gallery__item">
+              <img src={src} alt={t('project_screenshot_alt', lang, { name: project.name, n: String(i + 1), total: String(shots.length) })} loading="lazy" decoding="async" />
+            </figure>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {tech.length > 0 && (
+      <section class="cs-section cs-tech" aria-labelledby={`${slug}-tech`}>
+        <h2 class="cs-label" id={`${slug}-tech`}>{t('project_built_with', lang)}</h2>
+        <ul class="cs-tech__list">{tech.map((x) => <li>{x}</li>)}</ul>
+      </section>
+    )}
+
+    {clients.length > 0 && <ProjectClients clients={clients} projectColor={project.color} />}
+
+    {faq.length > 0 && (
+      <section class="cs-section cs-faq" id="faq" aria-labelledby={`${slug}-faq`}>
+        <h2 class="cs-label" id={`${slug}-faq`}>{t('project_questions', lang)}</h2>
+        <div class="cs-faq__list">
+          {faq.map((item) => <ProjectFAQ question={item.question} answer={item.answer} projectColor={project.color} />)}
+        </div>
+      </section>
+    )}
+  </article>
+
+  <GradientCTA
+    title={t('project_cta_interested_title', lang, { name: project.name })}
+    body={t('project_cta_interested_body', lang)}
+    ctaLabel={t('project_cta_get_in_touch', lang)}
+    ctaHref={contactHref}
+    gradient={project.gradient}
+    accentColor={project.color}
+    lang={lang}
+  />
+
+  <ProjectCTA status={project.status} platforms={project.platforms || []} links={project.links} lang={lang} />
+</ProjectLayout>
+
+<style>
+  .cs { max-width: 1120px; margin: 0 auto; padding: 120px 24px 24px; }
+  .cs-back {
+    display: inline-flex; align-items: center; gap: 8px; margin-bottom: 36px;
+    color: var(--muted-text); text-decoration: none; font-size: 0.9rem; font-weight: 500;
+  }
+  .cs-back:hover { color: var(--heading-text); }
+  :global([dir='rtl']) .cs-back__arrow { transform: scaleX(-1); display: inline-block; }
+
+  .cs-hero { display: grid; gap: 48px; align-items: center; padding-bottom: 72px; border-bottom: 1px solid var(--border-soft); }
+  .cs--media-hero .cs-hero { grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 960px) {
+    .cs--media-hero .cs-hero { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 64px; }
+  }
+  .cs--text-hero .cs-hero__copy { max-width: 760px; }
+  .cs-hero__title {
+    margin: 0 0 18px; font-family: var(--font-display); font-weight: 600;
+    font-size: clamp(2rem, 4.6vw, 3.4rem); line-height: 1.06; letter-spacing: -0.02em; color: var(--heading-text);
+  }
+  .cs-hero__lead { margin: 0 0 32px; max-width: 58ch; font-size: 1.1rem; line-height: 1.6; color: var(--muted-text); }
+  .cs-hero__actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  .cs-facts { margin: 32px 0 0; display: flex; gap: 32px; }
+  .cs-facts dt { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted-text); }
+  .cs-facts dd { margin: 4px 0 0; color: var(--heading-text); font-weight: 500; }
+
+  .cs-hero__media { display: grid; gap: 16px; align-items: end; }
+  .cs-hero__media img {
+    display: block; width: 100%; height: auto; border-radius: 16px;
+    border: 1px solid var(--border-soft); background: var(--bg-elevated);
+  }
+  .cs--mobile .cs-hero__media[data-count='2'] { grid-template-columns: 1fr 1fr; }
+  .cs--mobile .cs-hero__media[data-count='2'] img:nth-child(2) { transform: translateY(32px); }
+  .cs--mobile .cs-hero__media { max-width: 520px; justify-self: center; }
+
+  .cs-section { padding: 72px 0; border-bottom: 1px solid var(--border-soft); display: grid; gap: 28px; }
+  @media (min-width: 960px) {
+    .cs-section { grid-template-columns: 220px minmax(0, 1fr); gap: 48px; }
+  }
+  .cs-label {
+    margin: 0; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted-text); font-family: var(--font-body);
+  }
+  :global([lang^='ar']) .cs-label, :global([lang^='ur']) .cs-label,
+  :global([lang^='zh']) .cs-label, :global([lang^='hi']) .cs-label, :global([lang^='ta']) .cs-label {
+    letter-spacing: 0; text-transform: none; font-size: 0.95rem;
+  }
+
+  .cs-overview__body { max-width: 68ch; }
+  .cs-overview__body h3 { margin: 32px 0 10px; font-size: 1.15rem; font-weight: 600; color: var(--heading-text); font-family: var(--font-display); }
+  .cs-overview__body h3:first-child { margin-top: 0; }
+  .cs-overview__body p, .cs-overview__body li { color: var(--text-primary); line-height: 1.75; font-size: 1.02rem; }
+  .cs-overview__body p { margin: 0 0 14px; }
+  .cs-overview__body ul { margin: 0 0 14px; padding-inline-start: 1.2em; }
+
+  .cs-features { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+  .cs-feature { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 16px; padding: 22px 0; border-top: 1px solid var(--border-soft); }
+  .cs-feature:first-child { border-top: 0; padding-top: 0; }
+  .cs-feature__num { font-size: 0.8rem; font-variant-numeric: tabular-nums; color: var(--project-color, var(--muted-text)); padding-top: 4px; font-weight: 600; }
+  .cs-feature__title { margin: 0 0 6px; font-size: 1.08rem; font-weight: 600; color: var(--heading-text); }
+  .cs-feature__desc { margin: 0; color: var(--muted-text); line-height: 1.65; }
+  @media (min-width: 760px) {
+    .cs-features--grid { grid-template-columns: 1fr 1fr; column-gap: 40px; }
+    .cs-features--grid .cs-feature:nth-child(2) { border-top: 0; padding-top: 0; }
+    .cs-features--steps { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 28px; }
+    .cs-features--steps .cs-feature { grid-template-columns: 1fr; gap: 10px; border-top: 2px solid var(--border-soft); padding-top: 18px; }
+    .cs-features--steps .cs-feature:first-child { border-top: 2px solid var(--border-soft); padding-top: 18px; }
+    .cs-features--steps .cs-feature:nth-child(-n+3) { border-top-color: var(--project-color, var(--color-primary)); }
+  }
+
+  .cs-gallery { display: grid; gap: 20px; }
+  .cs--mobile .cs-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (min-width: 760px) { .cs--mobile .cs-gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .cs--web .cs-gallery { grid-template-columns: 1fr; }
+  @media (min-width: 900px) { .cs--web .cs-gallery { grid-template-columns: 1fr 1fr; } }
+  .cs-gallery__item { margin: 0; }
+  .cs-gallery__item img { display: block; width: 100%; height: auto; border-radius: 14px; border: 1px solid var(--border-soft); background: var(--bg-elevated); }
+
+  .cs-tech__list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .cs-tech__list li { padding: 6px 14px; border-radius: 999px; border: 1px solid var(--border-soft); color: var(--text-primary); font-size: 0.88rem; }
+  .cs-faq__list { display: flex; flex-direction: column; gap: 10px; max-width: 760px; }
+  .cs-faq { border-bottom: 0; }
+
+  @media (max-width: 640px) {
+    .cs { padding-top: 96px; }
+    .cs-section { padding: 56px 0; }
+    .cs--mobile .cs-hero__media[data-count='2'] img:nth-child(2) { transform: none; }
+  }
+</style>

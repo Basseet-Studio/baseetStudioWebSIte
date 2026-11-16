@@ -253,5 +253,21 @@
   "contact_form_submit": "أرسل استفسارك",
   "contact_form_signed": "موقّعة، مختومة، ومُرسلة.",
   "contact_form_priority": "بسيط · بريد جوي · أولوية",
-  "service_panel_label": "ما يمكننا تقديمه"
+  "service_panel_label": "ما يمكننا تقديمه",
+  "project_back": "كل المشاريع",
+  "project_overview": "نظرة عامة",
+  "project_capabilities": "ما الذي يقدمه",
+  "project_planned_features": "الميزات المخطط لها",
+  "project_screens": "الشاشات",
+  "project_built_with": "التقنيات المستخدمة",
+  "project_questions": "أسئلة شائعة",
+  "project_platforms": "المنصات",
+  "project_screenshot_alt": "شاشة {n} من {total} في {name}",
+  "project_cta_interested_title": "مهتم بـ {name}؟",
+  "project_cta_interested_body": "أخبرنا بما تحتاجه وسنشرح لك كل شيء خطوة بخطوة.",
+  "project_cta_get_in_touch": "تواصل معنا",
+  "service_example_label": "من أعمالنا",
+  "service_example_alt": "شاشة من {name}",
+  "service_workflow_label": "كيف يسير العمل",
+  "service_deliverables_label": "ما الذي تستلمه"
 }

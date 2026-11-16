@@ -1,6 +1,9 @@
 ---
 import '../../styles/projects/numu.css'
 import ProjectLayout from '../../layouts/Project.astro'
+import ProjectIdentity from '../../components/project/ProjectIdentity.astro'
+import { screenshotSrc } from '../../lib/project-brand'
+import { t } from '../../lib/i18n'
 import ProjectGallery from '../../components/project/ProjectGallery.astro'
 import ProjectFeatureShowcase from '../../components/project/ProjectFeatureShowcase.astro'
 import ProjectFAQ from '../../components/project/ProjectFAQ.astro'
@@ -24,7 +27,7 @@ const pillars = [
   { title: 'Islamic', desc: 'Prayer, fasting, and nafila tracking.', mediaLabel: 'Islamic module demo', span: '' },
 ]
 
-const marqueeModules = ['Habits', 'Goals', 'Tasks', 'Reminders', 'My Day', 'Health', 'Islamic', 'Backup']
+const heroShots = (project.screenshots || []).slice(0, 2).map((src) => screenshotSrc(project.slug, src))
 
 const stackCards = [
   { title: 'Morning habits', desc: '3 of 5 complete' },
@@ -58,10 +61,8 @@ const featureShowcase: FeatureShowcaseItem[] = (project.features || []).map((f) 
     <section class="numu-hero">
       <div class="numu-hero__grid">
         <div class="numu-hero__copy">
-          <p style={`font-size:0.9rem;font-weight:600;color:var(--heading-text);margin:0 0 1rem;`}>{project.tagline}</p>
-          <h1 class="numu-hero__title" style="font-family: var(--font-display);" data-animate="fade-up">
-            Track habits, goals, and <span class="numu-hero__inline-pill" aria-hidden="true"></span> health — privately.
-          </h1>
+          <ProjectIdentity slug={project.slug} name={project.name} tagline={project.tagline} status={project.status} lang={lang} headingLevel="p" />
+          <h1 class="numu-hero__title" style="font-family: var(--font-display);" data-animate="fade-up">{project.hero.title}</h1>
           <p class="numu-hero__subtitle" data-animate="fade-up">{project.hero.subtitle}</p>
           <div class="numu-hero__ctas" data-animate="fade-up">
             <a href="/projects/numu/download/" class="cta-btn--primary" style={`background:var(--color-primary);`}>
@@ -72,23 +73,13 @@ const featureShowcase: FeatureShowcaseItem[] = (project.features || []).map((f) 
             </a>
           </div>
         </div>
-        <div class="numu-hero__visual" data-animate="fade-up">
-          <div class="numu-hero__phone">My Day</div>
-          <div class="numu-hero__streak">
-            <div class="numu-hero__streak-value">90</div>
-            <div class="numu-hero__streak-label">day streak</div>
-          </div>
+        <div class="numu-hero__visual numu-hero__visual--screens" data-animate="fade-up">
+          {heroShots.map((src, i) => (
+            <img class="numu-hero__screen" src={src} alt={t('project_screenshot_alt', lang, { name: project.name, n: String(i + 1), total: String(project.screenshots?.length ?? heroShots.length) })} width="300" height="640" loading="eager" decoding="async" />
+          ))}
         </div>
       </div>
     </section>
-
-    <div class="numu-marquee" data-numu-marquee aria-hidden="true">
-      <div class="numu-marquee__track" data-numu-marquee-track>
-        {[...marqueeModules, ...marqueeModules].map((m) => (
-          <span class="numu-marquee__item">{m}</span>
-        ))}
-      </div>
-    </div>
 
     <section class="numu-section">
       <div class="numu-section__inner">
@@ -145,7 +136,7 @@ const featureShowcase: FeatureShowcaseItem[] = (project.features || []).map((f) 
     </section>
 
     {project.screenshots && project.screenshots.length > 0 && (
-      <ProjectGallery screenshots={project.screenshots} galleryType={project.galleryType || 'mobile'} projectSlug={project.slug} projectColor={project.color} projectName={project.name} />
+      <ProjectGallery screenshots={project.screenshots} galleryType={project.galleryType || 'mobile'} projectSlug={project.slug} projectColor={project.color} projectName={project.name} lang={lang} />
     )}
 
     {project.faq && project.faq.length > 0 && (

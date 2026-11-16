@@ -1,0 +1,60 @@
+---
+// ProjectIdentity.astro — the top-of-page identity for a project:
+// real logo (when one exists), product name, tagline and status.
+// Replaces the oversized coloured icon tile the pages used before.
+import { projectLogo } from '../../lib/project-brand'
+import { statusLabel } from '../../lib/i18n'
+import type { Lang } from '../../types'
+
+interface Props {
+  slug: string
+  name: string
+  tagline?: string
+  status?: string
+  lang?: Lang
+  align?: 'start' | 'center'
+  /** Render the name as the page h1 (default) or as a smaller label. */
+  headingLevel?: 'h1' | 'p'
+}
+
+const { slug, name, tagline, status, lang = 'en', align = 'start', headingLevel = 'h1' } = Astro.props
+const logo = projectLogo(slug)
+const Heading = headingLevel
+---
+
+<div class:list={['project-identity', `project-identity--${align}`]}>
+  <div class="project-identity__row">
+    {logo && (
+      <img class="project-identity__logo" src={logo} alt="" width="44" height="44" loading="eager" decoding="async" />
+    )}
+    <Heading class="project-identity__name">{name}</Heading>
+    {status && <span class="project-identity__status">{statusLabel(status, lang)}</span>}
+  </div>
+  {tagline && <p class="project-identity__tagline">{tagline}</p>}
+</div>
+
+<style>
+  .project-identity { display: grid; gap: 10px; margin-bottom: 28px; }
+  .project-identity--center { justify-items: center; text-align: center; }
+  .project-identity__row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .project-identity--center .project-identity__row { justify-content: center; }
+  .project-identity__logo {
+    width: 44px; height: 44px; object-fit: contain; display: block; flex: none;
+    border-radius: 12px;
+  }
+  .project-identity__name {
+    margin: 0; font-family: var(--font-display); font-weight: 600;
+    font-size: clamp(1.4rem, 2.4vw, 1.75rem); line-height: 1.1; letter-spacing: -0.01em;
+    color: var(--heading-text);
+  }
+  .project-identity__status {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 10px; border-radius: 999px; font-size: 0.75rem; font-weight: 600;
+    color: var(--muted-text); border: 1px solid var(--border-soft, var(--divider-color));
+  }
+  .project-identity__status::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--project-color, var(--color-primary));
+  }
+  .project-identity__tagline { margin: 0; color: var(--muted-text); font-size: 1rem; line-height: 1.5; }
+</style>

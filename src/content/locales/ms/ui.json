@@ -253,5 +253,21 @@
   "contact_form_submit": "Hantar pertanyaan",
   "contact_form_signed": "Ditandatangani, dimeterai, dihantar.",
   "contact_form_priority": "Baseet · Pos udara · Keutamaan",
-  "service_panel_label": "Apa yang boleh kami hasilkan"
+  "service_panel_label": "Apa yang boleh kami hasilkan",
+  "project_back": "Semua projek",
+  "project_overview": "Gambaran keseluruhan",
+  "project_capabilities": "Apa yang dilakukannya",
+  "project_planned_features": "Ciri yang dirancang",
+  "project_screens": "Skrin",
+  "project_built_with": "Dibina dengan",
+  "project_questions": "Soalan",
+  "project_platforms": "Platform",
+  "project_screenshot_alt": "Skrin {n} daripada {total} untuk {name}",
+  "project_cta_interested_title": "Berminat dengan {name}?",
+  "project_cta_interested_body": "Beritahu kami keperluan anda dan kami akan terangkan langkah demi langkah.",
+  "project_cta_get_in_touch": "Hubungi kami",
+  "service_example_label": "Daripada kerja kami",
+  "service_example_alt": "Skrin daripada {name}",
+  "service_workflow_label": "Cara ia berjalan",
+  "service_deliverables_label": "Apa yang anda terima"
 }

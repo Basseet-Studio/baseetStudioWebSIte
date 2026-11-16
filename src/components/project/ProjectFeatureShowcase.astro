@@ -60,8 +60,8 @@ const headingFont = fontHeading ? `'${fontHeading}', sans-serif` : 'var(--font-t
           <article class:list={['pfs__row', reverse && 'pfs__row--reverse']} data-animate="fade-up">
             <div class="pfs__copy">
               {icon && (
-                <div class="pfs__icon" style={`background:${projectGradient};`}>
-                  <Icon name={icon.name} variant={icon.variant} size={22} color="white" />
+                <div class="pfs__icon">
+                  <Icon name={icon.name} variant={icon.variant} size={20} color={projectColor} />
                 </div>
               )}
               <h3 class="pfs__row-title" style={`font-family:${headingFont};`}>{feature.title}</h3>
@@ -164,9 +164,10 @@ const headingFont = fontHeading ? `'${fontHeading}', sans-serif` : 'var(--font-t
   }
 
   .pfs__icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 14px;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    border: 1px solid var(--border-soft);
     display: inline-flex;
     align-items: center;
     justify-content: center;

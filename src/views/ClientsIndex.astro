@@ -221,6 +221,11 @@ const caseHref = (c: any) => localizeHref(lang, `/clients/${c.id}/`)
   }
   :global([dir='rtl']) .icon-chevron :global(svg) { transform: scaleX(-1); }
   @media (prefers-reduced-motion: reduce) { .card { transition: none; } .card:hover { transform: none; } }
+
+  /* Night: tinted small labels were hard to read over clouds. */
+  :global([data-theme='night']) .tag { color: #f4f7fc; background: rgba(8, 12, 22, 0.78); border: 1px solid color-mix(in srgb, var(--c) 60%, transparent); }
+  :global([data-theme='night']) .chip { background: rgba(8, 12, 22, 0.7); }
+  :global([data-theme='night']) .cl__chip { background: rgba(8, 12, 22, 0.72); color: #e3e9f3; }
 </style>
 
 <script>

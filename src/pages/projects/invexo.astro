@@ -1,7 +1,8 @@
 ---
-import { statusLabel } from '../../lib/i18n'
+import { statusLabel, t } from '../../lib/i18n'
 import '../../styles/projects/invexo.css'
 import ProjectLayout from '../../layouts/Project.astro'
+import ProjectIdentity from '../../components/project/ProjectIdentity.astro'
 import ProjectGallery from '../../components/project/ProjectGallery.astro'
 import ProjectCTA from '../../components/project/ProjectCTA.astro'
 import ProjectFeatureCard from '../../components/project/ProjectFeatureCard.astro'
@@ -45,24 +46,8 @@ const linkedClients = getClientsForProject(slug, lang)
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-16" style="max-width:1200px;margin:0 auto;">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;">
         <!-- Left: Content -->
-        <div style="text-align:left;">
-          <div style="display:flex;align-items:center;gap:20px;margin-bottom:32px;" data-animate="fade-up">
-            <div style={`width:80px;height:80px;border-radius:20px;background:var(--color-primary);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 40px -10px color-mix(in srgb, ${project.color} 31%, transparent);`}>
-              <Icon name={resolveIcon(project.iconClass).name} size={36} color="white" />
-            </div>
-            <div>
-              <h1 style="font-size:2.8rem;font-weight:800;color:var(--heading-text);font-family: var(--font-display);line-height:1.1;">{project.name}</h1>
-              <p style={`font-size:1.3rem;font-weight:600;color:var(--heading-text);margin-top:4px;`}>{project.tagline}</p>
-            </div>
-          </div>
-
-          <!-- Status Badge -->
-          <div style="margin-bottom:24px;" data-animate="fade-up">
-            <span style={`display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:var(--heading-text);border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);`}>
-              <Icon name="check-circle" size={16} color="var(--color-primary)" />
-              {statusLabel(project.status, lang)}
-            </span>
-          </div>
+        <div style="text-align:start;">
+          <ProjectIdentity slug={project.slug} name={project.name} tagline={project.tagline} status={project.status} lang={lang} align="start" />
 
           <h2 style="font-size:2rem;font-weight:700;color:var(--heading-text);margin-bottom:20px;line-height:1.3;" data-animate="fade-up">
             {project.hero.title}
@@ -165,25 +150,25 @@ const linkedClients = getClientsForProject(slug, lang)
 
   <!-- Bento Grid Features -->
   {project.features && project.features.length > 0 && (
-    <section id="features" style="padding:80px 24px;background:linear-gradient(to bottom, var(--page-section-bg), white);">
+    <section id="features" style="padding:80px 24px;background:transparent;">
       <div style="max-width:1200px;margin:0 auto;">
         <div style="text-align:center;margin-bottom:64px;" data-animate="fade-up">
           <span style={`display:inline-block;padding:8px 16px;border-radius:9999px;font-size:0.85rem;font-weight:600;background:color-mix(in srgb, ${project.color} 8%, transparent);color:var(--heading-text);border:1px solid color-mix(in srgb, ${project.color} 20%, transparent);margin-bottom:16px;`}>
-            {/* TODO: localise this later */ 'Features'}
+            {t('project_nav_features', lang)}
           </span>
-          <h2 style="font-size:2.2rem;font-weight:700;color:#1C1917;font-family: var(--font-display);">
-            {/* TODO: localise this later */ 'Key Features'}
+          <h2 style="font-size:2.2rem;font-weight:700;color:var(--heading-text);font-family: var(--font-display);">
+            {t('project_capabilities', lang)}
           </h2>
         </div>
 
         <div class="bento-grid">
           {project.features.map((feature, i) => (
             <div class={`bento-card ${i === 0 ? 'bento-large' : ''}`} data-animate="fade-up" style={i > 0 ? `animation-delay:${i * 0.05}s;` : ''}>
-              <div style={`width:48px;height:48px;border-radius:14px;background:var(--color-primary);display:flex;align-items:center;justify-content:center;margin-bottom:16px;`}>
-                <Icon name={resolveIcon(feature.icon).name} size={22} color="white" />
+              <div style="width:44px;height:44px;border-radius:12px;border:1px solid var(--border-soft);display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
+                <Icon name={resolveIcon(feature.icon).name} size={20} color="var(--project-color)" />
               </div>
-              <h3 style="font-size:1.15rem;font-weight:700;color:#1C1917;margin-bottom:8px;">{feature.title}</h3>
-              <p style="font-size:0.9rem;color:#57534E;line-height:1.6;">{feature.description}</p>
+              <h3 style="font-size:1.15rem;font-weight:700;color:var(--heading-text);margin-bottom:8px;">{feature.title}</h3>
+              <p style="font-size:0.9rem;color:var(--muted-text);line-height:1.6;">{feature.description}</p>
             </div>
           ))}
         </div>
@@ -192,15 +177,15 @@ const linkedClients = getClientsForProject(slug, lang)
   )}
 
   {project.screenshots && project.screenshots.length > 0 && (
-    <ProjectGallery screenshots={project.screenshots} galleryType={project.galleryType || 'mobile'} projectSlug={project.slug} projectColor={project.color} projectName={project.name} />
+    <ProjectGallery screenshots={project.screenshots} galleryType={project.galleryType || 'mobile'} projectSlug={project.slug} projectColor={project.color} projectName={project.name} lang={lang} />
   )}
 
   <!-- Tech Stack -->
   {project.tech && project.tech.length > 0 && (
-    <section style="padding:64px 24px;background:white;">
+    <section style="padding:64px 24px;background:transparent;">
       <div style="max-width:1200px;margin:0 auto;text-align:center;">
-        <h2 style="font-size:2rem;font-weight:700;color:#1C1917;margin-bottom:12px;font-family: var(--font-display);">
-          {/* TODO: localise this later */ 'Built With'}
+        <h2 style="font-size:2rem;font-weight:700;color:var(--heading-text);margin-bottom:12px;font-family: var(--font-display);">
+          {t('project_built_with', lang)}
         </h2>
         <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;max-width:700px;margin:32px auto 0;">
           {project.tech.map(tech => (
@@ -220,8 +205,8 @@ const linkedClients = getClientsForProject(slug, lang)
         {/* TODO: localise this later */ 'What People Say'}
       </h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(340px, 1fr));gap:24px;">
-        {project.testimonials.map(t => (
-          <ProjectTestimonial quote={t.quote} author={t.author} role={t.role} projectColor={project.color} projectGradient={project.gradient} />
+        {project.testimonials.map((item) => (
+          <ProjectTestimonial quote={item.quote} author={item.author} role={item.role} projectColor={project.color} projectGradient={project.gradient} />
         ))}
       </div>
     </section>
@@ -247,10 +232,10 @@ const linkedClients = getClientsForProject(slug, lang)
   <ProjectClients clients={linkedClients} projectColor={project.color} />
 
   <GradientCTA
-    title={`Interested in ${project.name}?`}
-    body="Get in touch and we will help you get started."
-    ctaLabel="Get in Touch"
-    ctaHref="/contact/"
+    title={t('project_cta_interested_title', lang, { name: project.name })}
+    body={t('project_cta_interested_body', lang)}
+    ctaLabel={t('project_cta_get_in_touch', lang)}
+    ctaHref={localizeHref(lang, '/contact/')}
     gradient={project.gradient}
     accentColor={project.color}
     lang={lang}

@@ -1,6 +1,7 @@
 ---
 import '../../styles/projects/moneybox.css'
 import ProjectLayout from '../../layouts/Project.astro'
+import ProjectIdentity from '../../components/project/ProjectIdentity.astro'
 import ProjectFAQ from '../../components/project/ProjectFAQ.astro'
 import ProjectFeatureShowcase from '../../components/project/ProjectFeatureShowcase.astro'
 import FeatureMedia from '../../components/project/FeatureMedia.astro'
@@ -20,8 +21,6 @@ if (!project) return Astro.redirect(localizeHref(lang, '/404'))
 
 const links: ProjectLinks = (linksData.projects.moneybox || project.links || {}) as ProjectLinks
 const androidUrl = links.android && links.android !== '#' ? links.android : project.links?.android
-
-const categories = ['Food', 'Transport', 'Bills', 'Shopping', 'Health', 'Entertainment', 'Savings', 'Other']
 
 const bentoItems = [
   { title: 'Savings Goals', desc: 'Set targets and watch progress with motivating visual charts.', mediaLabel: 'Savings goals demo', wide: true },
@@ -61,7 +60,7 @@ const featureShowcase: FeatureShowcaseItem[] = (project.features || []).map((f) 
     <section class="moneybox-hero">
       <div class="moneybox-hero__grid">
         <div>
-          <p style={`font-size:0.9rem;font-weight:600;color:var(--heading-text);margin:0 0 1rem;`}>{project.tagline}</p>
+          <ProjectIdentity slug={project.slug} name={project.name} tagline={project.tagline} status={project.status} lang={lang} headingLevel="p" />
           <h1 class="moneybox-hero__title" style="font-family: var(--font-display);" data-animate="fade-up">{project.hero.title}</h1>
           <p class="moneybox-hero__subtitle" data-animate="fade-up">{project.hero.subtitle}</p>
           <div class="moneybox-hero__ctas" data-animate="fade-up">
@@ -82,14 +81,6 @@ const featureShowcase: FeatureShowcaseItem[] = (project.features || []).map((f) 
         </div>
       </div>
     </section>
-
-    <div class="moneybox-marquee" data-moneybox-marquee aria-hidden="true">
-      <div class="moneybox-marquee__track" data-moneybox-marquee-track>
-        {[...categories, ...categories].map((cat) => (
-          <span class="moneybox-marquee__item">{cat}</span>
-        ))}
-      </div>
-    </div>
 
     <section class="moneybox-section">
       <div class="moneybox-section__inner">
@@ -112,7 +103,7 @@ const featureShowcase: FeatureShowcaseItem[] = (project.features || []).map((f) 
       <div class="moneybox-section__inner">
         <div class="moneybox-pin">
           <div class="moneybox-pin__title-wrap" data-moneybox-pin-title>
-            <h2 class="moneybox-section-title" style="font-family: var(--font-display);text-align:left;margin-bottom:1rem;">Watch your savings grow</h2>
+            <h2 class="moneybox-section-title" style="font-family: var(--font-display);text-align:start;margin-bottom:1rem;">Watch your savings grow</h2>
             <p style="color:var(--muted-text);line-height:1.7;margin:0;">Set goals, track progress, and stay motivated with visual charts.</p>
           </div>
           <div class="moneybox-pin__goals" data-moneybox-pin-content>

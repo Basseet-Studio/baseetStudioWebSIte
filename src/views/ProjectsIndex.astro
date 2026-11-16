@@ -8,6 +8,7 @@ import MoneyBoxPreview from '../components/projects/previews/MoneyBoxPreview.ast
 import NumuPreview from '../components/projects/previews/NumuPreview.astro'
 import BaseetIMSPreview from '../components/projects/previews/BaseetIMSPreview.astro'
 import { getProjectsForIndex } from '../lib/projects'
+import labExtra from '../content/data/work-lab-extra.json'
 import { t } from '../lib/i18n'
 import { localizeHref } from '../lib/localize-href'
 import type { Lang } from '../types'
@@ -21,11 +22,10 @@ const tt = (key: string, fallback: string): string => {
 const description = t('projects_description', lang)
 const projects = getProjectsForIndex(lang)
 
-const order = { anchor: 0, flagship: 1, more: 2 } as Record<string, number>
-const core = projects
-  .filter((p) => p.indexTier !== 'more')
-  .sort((a, b) => (order[a.indexTier ?? 'flagship'] ?? 1) - (order[b.indexTier ?? 'flagship'] ?? 1))
+// Order comes straight from projects.json (edit the file order to reorder).
+const core = projects.filter((p) => p.indexTier !== 'more')
 const lab = projects.filter((p) => p.indexTier === 'more')
+const labText: string[] = (labExtra.items ?? []).map((i: { name: string }) => i.name).filter(Boolean)
 
 const previewBg: Record<string, [string, string]> = {
   matrix: ['#f3f4f6', '#151820'],
@@ -42,7 +42,7 @@ function statusKey(status: string): string {
 const groups = [
   { label: '', items: core },
   { label: tt('projects_lab_label', 'Also in the lab'), items: lab },
-].filter((g) => g.items.length)
+].filter((g, i) => g.items.length || (i === 1 && labText.length))
 let rowIndex = 0
 ---
 
@@ -103,6 +103,17 @@ let rowIndex = 0
                       </a>
                     </div>
                   </div>
+                </div>
+              </li>
+            )
+          })}
+          {group.label && labText.map((name) => {
+            rowIndex += 1
+            return (
+              <li class="row row--static">
+                <div class="row__head row__head--static">
+                  <span class="row__num">{String(rowIndex).padStart(2, '0')}</span>
+                  <span class="row__name">{name}</span>
                 </div>
               </li>
             )
@@ -181,6 +192,26 @@ let rowIndex = 0
     .row__inner { grid-template-columns: 1fr; gap: 16px; padding: 0 6px; }
     .row.is-open .row__inner { padding: 0 6px 18px; }
   }
+  .row__head--static { cursor: default; grid-template-columns: 56px minmax(0, 1fr); }
+  .row--static:hover .row__name { color: var(--heading-text); }
+  @media (hover: hover) { .row--static:hover .row__head { padding-inline-start: 12px; } }
+
+  /* Night: the list sits straight on bright clouds. Give rows a quiet dark
+     backing and make the small text solid instead of tinted/translucent. */
+  :global([data-theme='night']) .work__list .row:not(.is-open) { background: rgba(10, 16, 28, 0.42); }
+  :global([data-theme='night']) .row__tagline { color: #dfe6f2; }
+  :global([data-theme='night']) .row__num { color: #c9d3e6; }
+  :global([data-theme='night']) .row__status {
+    color: #f4f7fc;
+    background: rgba(8, 12, 22, 0.78);
+    border: 1px solid color-mix(in srgb, var(--row-accent) 65%, transparent);
+    text-shadow: none;
+  }
+  :global([data-theme='night']) .row__chips li { color: #f4f7fc; background: rgba(8, 12, 22, 0.7); border: 1px solid color-mix(in srgb, var(--row-accent) 55%, transparent); }
+  :global([data-theme='night']) .row__plus::before,
+  :global([data-theme='night']) .row__plus::after { background: #dfe6f2; }
+  @media (max-width: 760px) { .row__head--static { grid-template-columns: 34px minmax(0, 1fr); } }
+
   :global([dir='rtl']) .icon-chevron :global(svg) { transform: scaleX(-1); }
   @media (prefers-reduced-motion: reduce) {
     .row__body, .row__inner, .row__head, .row__plus::before, .row__plus::after { transition: none; }
@@ -196,7 +227,7 @@ let rowIndex = 0
     cleanup?.()
     const root = document.querySelector<HTMLElement>('[data-work-list]')
     if (!root) return
-    const rows = Array.from(root.querySelectorAll<HTMLElement>('[data-row]'))
+    const rows = Array.from(root.querySelectorAll<HTMLElement>('[data-row]'))  // text-only lab rows have no data-row
     const teardownPreviews = initPreviewLoader(root)
     const offs: Array<() => void> = []
     const on = (el: EventTarget, ev: string, fn: EventListener, opts?: AddEventListenerOptions) => {

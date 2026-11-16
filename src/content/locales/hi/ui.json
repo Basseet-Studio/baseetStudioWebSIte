@@ -253,5 +253,21 @@
   "contact_form_submit": "पूछताछ भेजें",
   "contact_form_signed": "दस्तख़त हुए, मुहर लगी, भेज दिया गया।",
   "contact_form_priority": "Baseet · हवाई डाक · प्राथमिकता",
-  "service_panel_label": "हम क्या दे सकते हैं"
+  "service_panel_label": "हम क्या दे सकते हैं",
+  "project_back": "सभी प्रोजेक्ट",
+  "project_overview": "परिचय",
+  "project_capabilities": "यह क्या करता है",
+  "project_planned_features": "नियोजित फ़ीचर",
+  "project_screens": "स्क्रीन",
+  "project_built_with": "इस्तेमाल की गई तकनीक",
+  "project_questions": "सवाल",
+  "project_platforms": "प्लैटफ़ॉर्म",
+  "project_screenshot_alt": "{name} की स्क्रीन {n} / {total}",
+  "project_cta_interested_title": "{name} में रुचि है?",
+  "project_cta_interested_body": "हमें बताइए आपको क्या चाहिए, हम आपको पूरी जानकारी देंगे।",
+  "project_cta_get_in_touch": "संपर्क करें",
+  "service_example_label": "हमारे काम से",
+  "service_example_alt": "{name} की एक स्क्रीन",
+  "service_workflow_label": "काम कैसे होता है",
+  "service_deliverables_label": "आपको क्या मिलेगा"
 }

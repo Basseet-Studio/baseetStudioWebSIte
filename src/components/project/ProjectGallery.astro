@@ -1,4 +1,8 @@
 ---
+import { screenshotSrc } from '../../lib/project-brand'
+import { t } from '../../lib/i18n'
+import type { Lang } from '../../types'
+
 interface Props {
   screenshots: string[]
   galleryType: 'mobile' | 'web'
@@ -7,6 +11,7 @@ interface Props {
   projectName?: string
   /** Override the section title. Defaults to "Screenshots". */
   title?: string
+  lang?: Lang
 }
 
 const {
@@ -18,8 +23,10 @@ const {
   // P3 audit #38 — "Screenshots" was a hardcoded English string without the
   // TODO marker the rest of the project pages use. Now configurable so
   // the section title can be swapped when the i18n work lands.
-  title = 'Screenshots',
+  title,
+  lang = 'en',
 } = Astro.props
+const heading = title ?? t('project_screens', lang)
 const isWeb = galleryType === 'web'
 
 // Pulled from project data via the `projectName` prop. Fallback to the slug
@@ -29,14 +36,14 @@ const displayName = projectName || projectSlug
 
 <section id="gallery" style="padding:64px 24px;max-width:1200px;margin:0 auto;" data-animate="fade-up">
   <h2 style="text-align:center;font-size:2rem;margin-bottom:48px;color:var(--heading-text);">
-    {/* TODO: localise this later */ title}
+    {heading}
   </h2>
   <div class={`project-gallery project-gallery--${galleryType}`}>
     {screenshots.map((src, i) => (
       <div class="gallery-item">
         <img
-          src={`/images/projects/${projectSlug}/${src}`}
-          alt={`${displayName} — screenshot ${i + 1} of ${screenshots.length}`}
+          src={screenshotSrc(projectSlug, src)}
+          alt={t('project_screenshot_alt', lang, { name: displayName, n: String(i + 1), total: String(screenshots.length) })}
           loading="lazy"
           style="display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--gallery-border);box-shadow:var(--gallery-shadow);"
         />

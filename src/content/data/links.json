@@ -32,11 +32,11 @@
         "languages": ["en", "ms", "ta", "zh"],
         "defaultLanguage": "en",
         "contact": {
-          "phone": "",
-          "phone_display": "",
-          "phone_link": "",
-          "whatsapp": "",
-          "whatsapp_link": ""
+          "phone": "+60176042890",
+          "phone_display": "+60 17-604 2890",
+          "phone_link": "tel:+60176042890",
+          "whatsapp": "+60176042890",
+          "whatsapp_link": "https://wa.me/60176042890"
         }
       }
     }

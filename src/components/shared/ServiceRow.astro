@@ -25,6 +25,12 @@ interface Props {
   ctaLabel: string
   href: string
   arrowIcon?: string
+  /** This service's own workflow step titles (from services/<slug>.json). */
+  steps?: string[]
+  /** Concrete deliverable titles, used when no project imagery exists. */
+  deliverables?: string[]
+  /** Real project imagery that demonstrates the service. */
+  example?: { name: string; href: string; image: string } | null
 }
 
 const {
@@ -40,6 +46,9 @@ const {
   ctaLabel,
   href,
   arrowIcon = 'arrow-right',
+  steps = [],
+  deliverables = [],
+  example = null,
 } = Astro.props
 
 const cat = resolveIcon(iconClass || 'fas fa-circle')
@@ -53,20 +62,38 @@ const reversed = index % 2 === 1
   style={`--row-accent:${color};`}
 >
   <div class="service-row__panel-col">
-    <div class="service-row__panel card-window">
-      <div class="service-row__deliverables">
-        <div class="service-row__deliverable-head">
-          <Icon name={cat.name} variant={cat.variant} size={28} color="var(--color-primary)" />
-          <span>{t('service_panel_label', lang)}</span>
+    <div class:list={['service-row__panel', 'card-window', example ? 'service-row__panel--example' : 'service-row__panel--flow']}>
+      {example && (
+        <a class="service-row__example" href={example.href}>
+          <span class="service-row__example-frame">
+            <img src={example.image} alt={t('service_example_alt', lang, { name: example.name })} loading="lazy" decoding="async" />
+          </span>
+          <span class="service-row__example-caption">
+            <span class="service-row__kicker">{t('service_example_label', lang)}</span>
+            <span class="service-row__example-name">{example.name}<Icon name={arrowIcon} size={14} color="currentColor" /></span>
+          </span>
+        </a>
+      )}
+
+      {steps.length > 0 && (
+        <div class="service-row__flow">
+          <span class="service-row__kicker">{t('service_workflow_label', lang)}</span>
+          <ol class="service-row__steps">
+            {steps.map((step, i) => (
+              <li><span class="service-row__step-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span><span>{step}</span></li>
+            ))}
+          </ol>
         </div>
-        <h3>{title}</h3>
-        <ul>
-          {subServices.map((sub, i) => (
-            <li><span aria-hidden="true">{String(i + 1).padStart(2, '0')}</span><span>{sub.name}</span></li>
-          ))}
-        </ul>
-        <a href={href}>{ctaLabel}<Icon name={arrowIcon} size={16} color="currentColor" /></a>
-      </div>
+      )}
+
+      {!example && deliverables.length > 0 && (
+        <div class="service-row__receive">
+          <span class="service-row__kicker">{t('service_deliverables_label', lang)}</span>
+          <ul>
+            {deliverables.map((d) => <li>{d}</li>)}
+          </ul>
+        </div>
+      )}
     </div>
   </div>
 
@@ -326,12 +353,66 @@ const reversed = index % 2 === 1
       transition: none;
     }
   }
-  .service-row__panel { aspect-ratio:auto; min-height:320px; justify-content:flex-start; }
-  .service-row__deliverables { width:100%; }
-  .service-row__deliverable-head { display:flex; align-items:center; gap:12px; color:var(--muted-text); font-size:.8rem; }
-  .service-row__deliverables h3 { font:600 clamp(1.5rem,3vw,2.2rem)/1.15 var(--font-display); margin:24px 0; color:var(--heading-text); }
-  .service-row__deliverables ul { list-style:none; padding:0; margin:0 0 28px; }
-  .service-row__deliverables li { display:grid; grid-template-columns:32px minmax(0,1fr); gap:12px; padding:16px 0; border-top:1px solid var(--border-soft); color:var(--text-primary); }
-  .service-row__deliverables li > span:first-child { color:var(--muted-text); font-size:.8rem; }
-  .service-row__deliverables a { display:inline-flex; gap:10px; align-items:center; color:var(--color-primary); text-decoration:none; }
+  /* Visual card: real work + this service's workflow (never a copy of the text column). */
+  .service-row__panel {
+    aspect-ratio: auto;
+    min-height: 0;
+    padding: 24px;
+    display: grid;
+    gap: 24px;
+    align-content: start;
+    justify-content: stretch;
+  }
+  .service-row__kicker {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted-text);
+  }
+  :global(:is([lang^='ar'], [lang^='ur'], [lang^='zh'], [lang^='hi'], [lang^='ta'])) .service-row__kicker {
+    letter-spacing: 0;
+    text-transform: none;
+    font-size: 0.85rem;
+  }
+  .service-row__example { display: grid; gap: 14px; text-decoration: none; color: inherit; }
+  .service-row__example-frame {
+    display: block;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--border-soft);
+    background: var(--bg-elevated);
+    aspect-ratio: 4 / 3;
+  }
+  .service-row__example-frame img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+  .service-row__example-caption { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .service-row__example-name { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; color: var(--heading-text); }
+  .service-row__example:hover .service-row__example-name { color: var(--color-primary); }
+  :global([dir='rtl']) .service-row__example-name :global(svg) { transform: scaleX(-1); }
+
+  .service-row__flow { display: grid; gap: 14px; }
+  .service-row__steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; counter-reset: none; }
+  .service-row__steps li {
+    position: relative;
+    display: grid;
+    grid-template-columns: 28px minmax(0, 1fr);
+    gap: 12px;
+    padding: 9px 0;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+  }
+  .service-row__steps li + li { border-top: 1px solid var(--border-soft); }
+  .service-row__step-num { color: var(--muted-text); font-size: 0.78rem; font-variant-numeric: tabular-nums; padding-top: 2px; }
+  .service-row__panel--flow .service-row__steps li { padding: 12px 0; font-size: 1rem; }
+
+  .service-row__receive { display: grid; gap: 12px; padding-top: 4px; }
+  .service-row__receive ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .service-row__receive li {
+    padding: 6px 12px;
+    border-radius: 10px;
+    border: 1px dashed var(--border-soft);
+    color: var(--text-primary);
+    font-size: 0.88rem;
+  }
 </style>

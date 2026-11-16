@@ -183,15 +183,6 @@
   .geeb-hero { padding: 10rem 1.5rem 6rem; }
 }
 
-.geeb-hero__wash {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 70% 50% at 20% 0%, color-mix(in srgb, var(--project-color) 14%, transparent), transparent 65%),
-    radial-gradient(ellipse 40% 35% at 90% 70%, color-mix(in srgb, var(--project-color) 8%, transparent), transparent);
-  pointer-events: none;
-}
-
 .geeb-hero__split {
   position: relative;
   z-index: 1;

@@ -71,13 +71,6 @@ export function init(): void {
 
   scrollTriggers.push(...initFeatureMediaScrub())
 
-  const marquee = document.querySelector<HTMLElement>('[data-numu-marquee]')
-  const track = marquee?.querySelector<HTMLElement>('[data-numu-marquee-track]')
-  if (track) {
-    const width = track.scrollWidth / 2
-    const tween = gsap.to(track, { x: -width, duration: 25, ease: 'none', repeat: -1 })
-    scrollTriggers.push({ kill: () => tween.kill() } as ScrollTrigger)
-  }
 }
 
 export function destroy(): void {

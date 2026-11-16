@@ -1,0 +1,6 @@
+{
+  "_note": "Real project imagery shown beside each service on /services. Only list projects whose screenshots exist in /public. Services without an entry show their workflow and deliverables instead of imagery.",
+  "web": { "project": "ordelo", "screenshot": 0 },
+  "mobile": { "project": "numu", "screenshot": 0 },
+  "design": { "project": "photorestore-ai", "screenshot": 1 }
+}

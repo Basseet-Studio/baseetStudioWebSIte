@@ -261,5 +261,21 @@
   "clients_hero_lead_short": "Here is what we built, and what changed for the teams using it.",
   "clients_meta_engagements": "Engagements",
   "clients_view_case": "View case",
-  "service_panel_label": "What we can deliver"
+  "service_panel_label": "What we can deliver",
+  "project_back": "All projects",
+  "project_overview": "Overview",
+  "project_capabilities": "What it does",
+  "project_planned_features": "Planned features",
+  "project_screens": "Screens",
+  "project_built_with": "Built with",
+  "project_questions": "Questions",
+  "project_platforms": "Platforms",
+  "project_screenshot_alt": "{name} screen {n} of {total}",
+  "project_cta_interested_title": "Interested in {name}?",
+  "project_cta_interested_body": "Tell us what you need and we'll walk you through it.",
+  "project_cta_get_in_touch": "Get in touch",
+  "service_example_label": "From our work",
+  "service_example_alt": "Screen from {name}",
+  "service_workflow_label": "How it runs",
+  "service_deliverables_label": "What you receive"
 }

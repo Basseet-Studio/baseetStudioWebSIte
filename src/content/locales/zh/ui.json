@@ -253,5 +253,21 @@
   "contact_form_submit": "寄出咨询",
   "contact_form_signed": "签好，封好，寄出。",
   "contact_form_priority": "巴西特 · 航空信 · 优先",
-  "service_panel_label": "我们能交付什么"
+  "service_panel_label": "我们能交付什么",
+  "project_back": "全部项目",
+  "project_overview": "概览",
+  "project_capabilities": "功能",
+  "project_planned_features": "规划中的功能",
+  "project_screens": "界面",
+  "project_built_with": "技术栈",
+  "project_questions": "常见问题",
+  "project_platforms": "平台",
+  "project_screenshot_alt": "{name} 界面 {n}/{total}",
+  "project_cta_interested_title": "对 {name} 感兴趣？",
+  "project_cta_interested_body": "告诉我们您的需求，我们会为您详细说明。",
+  "project_cta_get_in_touch": "联系我们",
+  "service_example_label": "我们的作品",
+  "service_example_alt": "{name} 的界面",
+  "service_workflow_label": "工作流程",
+  "service_deliverables_label": "您将获得"
 }

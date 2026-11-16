@@ -135,3 +135,7 @@
   border-radius: 50%;
   background: var(--project-color);
 }
+
+/* Real product screen under the hero copy. */
+.ordelo-hero-shot { max-width: 1040px; margin: 56px auto 0; position: relative; z-index: 1; }
+.ordelo-hero-shot img { display: block; width: 100%; height: auto; border-radius: 16px; border: 1px solid var(--border-soft); background: var(--bg-elevated); }

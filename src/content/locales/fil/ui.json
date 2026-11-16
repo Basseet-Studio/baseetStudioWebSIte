@@ -253,5 +253,21 @@
   "contact_form_submit": "Ipadala ang inquiry",
   "contact_form_signed": "Nilagdaan, sinelyuhan, naihatid na.",
   "contact_form_priority": "Baseet · Airmail · Prayoridad",
-  "service_panel_label": "Ano ang maaari naming ihatid"
+  "service_panel_label": "Ano ang maaari naming ihatid",
+  "project_back": "Lahat ng proyekto",
+  "project_overview": "Pangkalahatang-ideya",
+  "project_capabilities": "Ano ang ginagawa nito",
+  "project_planned_features": "Mga nakaplanong feature",
+  "project_screens": "Mga screen",
+  "project_built_with": "Ginawa gamit ang",
+  "project_questions": "Mga tanong",
+  "project_platforms": "Mga platform",
+  "project_screenshot_alt": "Screen {n} ng {total} ng {name}",
+  "project_cta_interested_title": "Interesado sa {name}?",
+  "project_cta_interested_body": "Sabihin sa amin ang kailangan mo at ipapaliwanag namin ang lahat.",
+  "project_cta_get_in_touch": "Makipag-ugnayan",
+  "service_example_label": "Mula sa aming gawa",
+  "service_example_alt": "Screen mula sa {name}",
+  "service_workflow_label": "Paano ito tumatakbo",
+  "service_deliverables_label": "Ang matatanggap mo"
 }

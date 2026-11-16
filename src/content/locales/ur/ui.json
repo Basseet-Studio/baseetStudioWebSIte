@@ -253,5 +253,21 @@
   "contact_form_submit": "انکوائری بھیجیں",
   "contact_form_signed": "دستخط ہوئے، مہر لگی، روانہ ہو گیا۔",
   "contact_form_priority": "Baseet · ایئر میل · ترجیحی",
-  "service_panel_label": "ہم کیا فراہم کر سکتے ہیں"
+  "service_panel_label": "ہم کیا فراہم کر سکتے ہیں",
+  "project_back": "تمام پروجیکٹس",
+  "project_overview": "جائزہ",
+  "project_capabilities": "یہ کیا کرتا ہے",
+  "project_planned_features": "منصوبہ بند خصوصیات",
+  "project_screens": "اسکرینز",
+  "project_built_with": "استعمال شدہ ٹیکنالوجی",
+  "project_questions": "سوالات",
+  "project_platforms": "پلیٹ فارمز",
+  "project_screenshot_alt": "{name} کی اسکرین {n} از {total}",
+  "project_cta_interested_title": "{name} میں دلچسپی ہے؟",
+  "project_cta_interested_body": "ہمیں اپنی ضرورت بتائیں، ہم آپ کو پوری تفصیل سمجھا دیں گے۔",
+  "project_cta_get_in_touch": "رابطہ کریں",
+  "service_example_label": "ہمارے کام سے",
+  "service_example_alt": "{name} کی ایک اسکرین",
+  "service_workflow_label": "کام کیسے چلتا ہے",
+  "service_deliverables_label": "آپ کو کیا ملے گا"
 }

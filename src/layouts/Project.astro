@@ -1,6 +1,6 @@
 ---
 // Project.astro — Per-project layout wrapper extending Base.astro
-// Injects --project-color and --project-gradient CSS custom properties
+// Exposes the project accent as --project-color (accent use only)
 // Passes project nav items to AppBar for adaptive navigation
 import Base from './Base.astro'
 import type { Lang, NavItem } from '../types'
@@ -20,16 +20,19 @@ interface Props {
   lang?: Lang
 }
 
-const { title, description, slug, projectColor, projectGradient, projectName, projectIconClass, projectNavItems, projectNavMeta, lang = 'en' } = Astro.props
+const { title, description, slug, projectColor, projectName, projectIconClass, projectNavItems, projectNavMeta, lang = 'en' } = Astro.props
+const accent = /^#[0-9a-fA-F]{3,8}$/.test(projectColor || '') ? projectColor : '#496BC1'
 ---
 
 <Base title={title} description={description} section="projects" lang={lang} projectName={projectName} projectColor={'#496BC1'} projectIconClass={projectIconClass} slug={slug} projectNavItems={projectNavItems} projectNavMeta={projectNavMeta}>
+  {/* The project's own brand colour is exposed as a small accent only
+      (status dot, numbering, focus details). --project-gradient is a flat
+      colour so legacy "white text on gradient" elements stay readable.
+      No page-level wash or background effect is rendered here. */}
   <div
-    style={`--project-color:#496BC1;--project-gradient:var(--bg-elevated);`}
+    style={`--project-color:${accent};--project-gradient:${accent};`}
     class="project-wrapper" data-project={slug}
   >
-    {/* Soft, theme-aware colour band that fades out gradually as the user
-        scrolls. See shared.css `.project-hero-wash` for the rationale. */}
     <slot />
   </div>
 </Base>

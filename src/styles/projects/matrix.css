@@ -66,31 +66,6 @@
    }
    
    /* ══════════════════════════════════════════════════════════
-      Effect mount point — DotField + ShapeGrid canvases live inside
-      this container (see matrix-effects.ts). Keep it behind content
-      (z-index) and clipped to the hero.
-      ══════════════════════════════════════════════════════════ */
-   #matrix-fx {
-     position: absolute;
-     inset: 0;
-     z-index: 0;
-     overflow: hidden;
-     pointer-events: auto;
-   }
-   #matrix-page .matrix-fx-canvas {
-     position: absolute;
-     inset: 0;
-     width: 100%;
-     height: 100%;
-     display: block;
-     pointer-events: none;
-   }
-   #matrix-page .project-hero--centered > *:not(#matrix-fx) {
-     position: relative;
-     z-index: 1;
-   }
-   
-   /* ══════════════════════════════════════════════════════════
       Dashboard preview window (mac-chrome mockup under the hero)
       ══════════════════════════════════════════════════════════ */
    #matrix-page .mx-window {
@@ -346,3 +321,4 @@
      font-size: 0.7rem;
      color: var(--muted-text);
    }
+

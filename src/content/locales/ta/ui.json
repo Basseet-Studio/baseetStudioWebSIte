@@ -253,5 +253,21 @@
   "contact_form_submit": "விசாரணையை அனுப்பு",
   "contact_form_signed": "கையொப்பமிட்டு, முத்திரையிட்டு, சேர்த்துவிட்டோம்.",
   "contact_form_priority": "பேசீட் · விமான அஞ்சல் · முன்னுரிமை",
-  "service_panel_label": "நாங்கள் வழங்கக்கூடியவை"
+  "service_panel_label": "நாங்கள் வழங்கக்கூடியவை",
+  "project_back": "அனைத்து திட்டங்கள்",
+  "project_overview": "கண்ணோட்டம்",
+  "project_capabilities": "இது என்ன செய்கிறது",
+  "project_planned_features": "திட்டமிடப்பட்ட அம்சங்கள்",
+  "project_screens": "திரைகள்",
+  "project_built_with": "பயன்படுத்திய தொழில்நுட்பம்",
+  "project_questions": "கேள்விகள்",
+  "project_platforms": "தளங்கள்",
+  "project_screenshot_alt": "{name} திரை {n} / {total}",
+  "project_cta_interested_title": "{name} மீது ஆர்வமா?",
+  "project_cta_interested_body": "உங்கள் தேவையைச் சொல்லுங்கள்; நாங்கள் முழுமையாக விளக்குகிறோம்.",
+  "project_cta_get_in_touch": "தொடர்பு கொள்ளுங்கள்",
+  "service_example_label": "எங்கள் பணியிலிருந்து",
+  "service_example_alt": "{name} இலிருந்து ஒரு திரை",
+  "service_workflow_label": "பணி எப்படி நடக்கிறது",
+  "service_deliverables_label": "நீங்கள் பெறுவது"
 }

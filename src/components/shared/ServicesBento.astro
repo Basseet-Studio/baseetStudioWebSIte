@@ -10,6 +10,10 @@
 import Icon from '../icons/Icon.astro'
 import ServiceRow from './ServiceRow.astro'
 import ProcessPin from './ProcessPin.astro'
+import showcaseMap from '../../content/data/service-showcase.json'
+import { getService } from '../../lib/services'
+import { getProject } from '../../lib/projects'
+import { screenshotSrc } from '../../lib/project-brand'
 import { localizeHref } from '../../lib/localize-href'
 import { t } from '../../lib/i18n'
 import type { Lang } from '../../types'
@@ -67,6 +71,27 @@ interface Props {
 const { categories, process, cta, copy, lang = 'en' } = Astro.props
 const arrowIcon = copy.ctaArrowIcon ?? 'arrow-right'
 const cardArrowIcon = copy.cardArrowIcon ?? arrowIcon
+
+// Each row's visual card has its own job (no repeat of the copy column):
+// real project imagery when we have it, plus this service's own workflow;
+// otherwise the workflow and the concrete deliverables.
+const showcase = showcaseMap as Record<string, { project: string; screenshot?: number } | string>
+function rowExtras(slug: string) {
+  const detail: any = getService(slug, lang)
+  const steps: string[] = (detail?.process ?? []).map((st: any) => st.title).filter(Boolean)
+  const deliverables: string[] = (detail?.deliverables ?? []).map((d: any) => d.title).filter(Boolean).slice(0, 3)
+  const entry = showcase[slug]
+  let example: { name: string; href: string; image: string } | null = null
+  if (entry && typeof entry === 'object') {
+    const project: any = getProject(entry.project, lang)
+    const shots: string[] = project?.screenshots ?? []
+    const shot = shots[entry.screenshot ?? 0] ?? shots[0]
+    if (project && shot) {
+      example = { name: project.name, href: localizeHref(lang, `/projects/${project.slug}/`), image: screenshotSrc(project.slug, shot) }
+    }
+  }
+  return { steps, deliverables, example }
+}
 ---
 
 {/* =====================================================================
@@ -87,6 +112,7 @@ const cardArrowIcon = copy.cardArrowIcon ?? arrowIcon
       ctaLabel={copy.explore ?? 'Explore service'}
       href={localizeHref(lang, `/services/${category.slug}/`)}
       arrowIcon={cardArrowIcon}
+      {...rowExtras(category.slug)}
     />
   ))}
 </div>

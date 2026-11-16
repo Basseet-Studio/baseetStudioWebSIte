@@ -132,8 +132,8 @@
     --footer-bg: #131b28;
     --footer-border: rgba(255, 255, 255, 0.14);
     --footer-text-primary: rgba(255, 255, 255, 0.95);
-    --footer-text-muted: rgba(255, 255, 255, 0.72);
-    --footer-text-soft: rgba(255, 255, 255, 0.52);
+    --footer-text-muted: rgba(255, 255, 255, 0.86);
+    --footer-text-soft: rgba(255, 255, 255, 0.72);
 
     /* Vanta clouds: dim the sky and tint the cloud shadows for a moody night
      sky. The vanta-init.ts reads these vars at init time. */
@@ -144,16 +144,16 @@
 
     /* Semantic tokens for neutral UI surfaces (night) */
     --heading-text: #eef2fa;
-    --muted-text: #b8c3d8;
-    --text-halo: 0 0 18px rgba(6, 10, 20, 0.75), 0 1px 2px rgba(6, 10, 20, 0.6);
+    --muted-text: #d2dbea;
+    --text-halo: 0 0 14px rgba(6, 10, 20, 0.85), 0 1px 3px rgba(6, 10, 20, 0.8);
     --page-section-bg: rgba(15, 23, 38, 0.4);
     --card-bg: rgba(10, 16, 28, 0.68);
     --card-border: rgba(255, 255, 255, 0.12);
     --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
     --card-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.5);
     --chip-bg: rgba(255, 255, 255, 0.08);
-    --chip-text: #c9d2e3;
-    --chip-border: rgba(255, 255, 255, 0.1);
+    --chip-text: #e3e9f3;
+    --chip-border: rgba(255, 255, 255, 0.18);
     --divider-color: rgba(255, 255, 255, 0.1);
     --gallery-border: rgba(255, 255, 255, 0.1);
     --gallery-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
@@ -171,64 +171,15 @@
     --paper-line: rgba(240, 236, 225, 0.18);
 }
 
-/* Project pages: each project uses a light pastel hero gradient (set inline on
-   the hero <section>). In night mode that gradient is blinding against the
-   dark app bar / footer. Apply a dark wash over the project hero so the
-   gradient still shows but reads as a tinted band rather than a bright slab.
-   The wash sits ABOVE the gradient and BELOW the content (z-index 1).
-   pointer-events: none so it never blocks clicks. */
+/* Project pages: plain content wrapper. The former night-mode fixed
+   colour wash + radial halo (.project-wrapper::before) was removed at the
+   source; project identity now comes from logos, imagery and content. */
 .project-wrapper {
     position: relative;
 }
 .project-wrapper > * {
     position: relative;
     z-index: 2;
-}
-[data-theme="night"] .project-wrapper::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    /* Three stacked layers, all semi-transparent so the vanta clouds + floating
-     project animations (leaves, paper notes, kitchen, etc.) stay visible:
-       1. Project colour wash — a tinted top-to-bottom gradient in the project's
-          own colour, low opacity, so the project identity still reads.
-       2. Soft dark gradient — fades the upper third darker for hero contrast.
-       3. Radial halo behind the hero — a centred glow in the project colour. */
-    background:
-        linear-gradient(
-            180deg,
-            color-mix(
-                    in srgb,
-                    var(--project-color, var(--color-primary)) 22%,
-                    rgba(8, 12, 22, 0.55)
-                )
-                0%,
-            color-mix(
-                    in srgb,
-                    var(--project-color, var(--color-primary)) 10%,
-                    rgba(8, 12, 22, 0.35)
-                )
-                30%,
-            color-mix(
-                    in srgb,
-                    var(--project-color, var(--color-primary)) 18%,
-                    rgba(8, 12, 22, 0.5)
-                )
-                100%
-        ),
-        radial-gradient(
-            ellipse 70% 50% at 50% 25%,
-            color-mix(
-                    in srgb,
-                    var(--project-color, var(--color-primary)) 30%,
-                    transparent
-                )
-                0%,
-            transparent 70%
-        ),
-        rgba(8, 12, 22, 0.25);
-    pointer-events: none;
-    z-index: 1;
 }
 
 *,
@@ -435,6 +386,13 @@ h4,
    over bright clouds AND dark night sky. Cards have their own backgrounds,
    so the halo is invisible there. */
 :is(body[data-page="home"] main, .hero) :is(p, h1, h2, h3, li, .hero__eyebrow, .hero__btn-label-mono) {
+    text-shadow: var(--text-halo);
+}
+
+/* Night, every page: small text often sits directly on bright clouds.
+   Same halo the homepage already uses, applied site-wide in night mode only
+   (light mode is unchanged). Buttons and filled CTAs are skipped. */
+[data-theme="night"] main :is(p, li, dt, dd, small, label, figcaption, blockquote, h1, h2, h3, h4, span:not([class*="btn"]):not([class*="cta"]), a:not([class*="btn"]):not([class*="cta"])) {
     text-shadow: var(--text-halo);
 }
 

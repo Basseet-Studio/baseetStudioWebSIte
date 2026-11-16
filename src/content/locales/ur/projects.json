@@ -1,25 +1,5 @@
 [
   {
-    "slug": "matrix",
-    "name": "Matrix",
-    "tagline": "ایک پلیٹ فارم۔ آپ کے کاروبار کا ہر حصہ۔ ٹولز بدلنے کی کوئی تھکن نہیں۔",
-    "color": "#0891B2",
-    "gradient": "linear-gradient(135deg, #0891B2 0%, #22D3EE 100%)",
-    "status": "Coming Soon",
-    "iconClass": "fas fa-th-large",
-    "icon": null,
-    "platforms": [
-      {
-        "name": "Web",
-        "icon": "fas fa-globe"
-      }
-    ],
-    "indexTier": "anchor",
-    "previewImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=2000&q=80",
-    "previewVideo": null,
-    "previewInteractive": "matrix"
-  },
-  {
     "slug": "zyrn",
     "name": "Zyrn",
     "tagline": "آپ کا اسٹور۔ آپ کا برانڈ۔ آپ کے گاہک — جنہیں فوراً اطلاع ملتی ہے۔",
@@ -37,6 +17,30 @@
     "indexTier": "flagship",
     "previewImage": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=2000&q=80",
     "previewVideo": null
+  },
+  {
+    "slug": "numu",
+    "name": "Numu",
+    "tagline": "جو کرتے ہیں اس کا حساب رکھیں۔ وہ انسان بنیں جو آپ بننا چاہتے ہیں۔",
+    "color": "#AF52DE",
+    "gradient": "linear-gradient(135deg, #AF52DE 0%, #BF5AF2 100%)",
+    "status": "Coming Soon",
+    "iconClass": null,
+    "icon": "/images/projects/numu-icon.png",
+    "platforms": [
+      {
+        "name": "iOS",
+        "icon": "fab fa-apple"
+      },
+      {
+        "name": "Android",
+        "icon": "fab fa-android"
+      }
+    ],
+    "indexTier": "flagship",
+    "previewImage": "/images/projects/numu/1.png",
+    "previewVideo": null,
+    "previewInteractive": "numu"
   },
   {
     "slug": "ordelo",
@@ -70,6 +74,45 @@
     "previewVideo": null
   },
   {
+    "slug": "photorestore-ai",
+    "name": "PhotoRestore AI",
+    "tagline": "AI سے پرانی تصاویر بحال کریں۔",
+    "color": "#6366F1",
+    "gradient": "linear-gradient(135deg, #6366F1 0%, #818CF8 100%)",
+    "status": "Live",
+    "iconClass": "fas fa-wand-magic-sparkles",
+    "icon": null,
+    "platforms": [
+      {
+        "name": "Web",
+        "icon": "fas fa-globe"
+      }
+    ],
+    "indexTier": "flagship",
+    "previewImage": "/images/projects/photorestore-ai/1.png",
+    "previewVideo": null
+  },
+  {
+    "slug": "matrix",
+    "name": "Matrix",
+    "tagline": "ایک پلیٹ فارم۔ آپ کے کاروبار کا ہر حصہ۔ ٹولز بدلنے کی کوئی تھکن نہیں۔",
+    "color": "#0891B2",
+    "gradient": "linear-gradient(135deg, #0891B2 0%, #22D3EE 100%)",
+    "status": "Coming Soon",
+    "iconClass": "fas fa-th-large",
+    "icon": null,
+    "platforms": [
+      {
+        "name": "Web",
+        "icon": "fas fa-globe"
+      }
+    ],
+    "indexTier": "flagship",
+    "previewImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=2000&q=80",
+    "previewVideo": null,
+    "previewInteractive": "matrix"
+  },
+  {
     "slug": "moneybox",
     "name": "MoneyBox",
     "tagline": "آپ کا پیسہ، منظم۔",
@@ -88,20 +131,20 @@
         "icon": "fab fa-android"
       }
     ],
-    "indexTier": "flagship",
+    "indexTier": "more",
     "previewImage": "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=1600&q=80",
     "previewVideo": null,
     "previewInteractive": "moneybox"
   },
   {
-    "slug": "numu",
-    "name": "Numu",
-    "tagline": "جو کرتے ہیں اس کا حساب رکھیں۔ وہ انسان بنیں جو آپ بننا چاہتے ہیں۔",
-    "color": "#AF52DE",
-    "gradient": "linear-gradient(135deg, #AF52DE 0%, #BF5AF2 100%)",
+    "slug": "medical-education-app",
+    "name": "MAI",
+    "tagline": "AI پر مبنی طبی تعلیم کا پلیٹ فارم۔",
+    "color": "#0F766E",
+    "gradient": "linear-gradient(135deg, #0F766E 0%, #14B8A6 100%)",
     "status": "Coming Soon",
-    "iconClass": null,
-    "icon": "/images/projects/numu-icon.png",
+    "iconClass": "fas fa-stethoscope",
+    "icon": null,
     "platforms": [
       {
         "name": "iOS",
@@ -110,30 +153,18 @@
       {
         "name": "Android",
         "icon": "fab fa-android"
-      }
-    ],
-    "indexTier": "flagship",
-    "previewImage": "/images/projects/numu/1.png",
-    "previewVideo": null,
-    "previewInteractive": "numu"
-  },
-  {
-    "slug": "photorestore-ai",
-    "name": "PhotoRestore AI",
-    "tagline": "AI سے پرانی تصاویر بحال کریں۔",
-    "color": "#6366F1",
-    "gradient": "linear-gradient(135deg, #6366F1 0%, #818CF8 100%)",
-    "status": "Live",
-    "iconClass": "fas fa-wand-magic-sparkles",
-    "icon": null,
-    "platforms": [
+      },
       {
         "name": "Web",
         "icon": "fas fa-globe"
+      },
+      {
+        "name": "ڈیسک ٹاپ",
+        "icon": "fas fa-desktop"
       }
     ],
-    "indexTier": "flagship",
-    "previewImage": "/images/projects/photorestore-ai/1.png",
+    "indexTier": "more",
+    "previewImage": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1600&q=80",
     "previewVideo": null
   },
   {
@@ -154,7 +185,8 @@
     "indexTier": "flagship",
     "previewImage": "/images/projects/invexo/1.png",
     "previewVideo": null,
-    "previewInteractive": "invexo"
+    "previewInteractive": "invexo",
+    "indexHidden": true
   },
   {
     "slug": "jemeti",
@@ -201,38 +233,8 @@
     ],
     "indexTier": "more",
     "previewImage": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1600&q=80",
-    "previewVideo": null
-  },
-  {
-    "slug": "medical-education-app",
-    "name": "MAI",
-    "tagline": "AI پر مبنی طبی تعلیم کا پلیٹ فارم۔",
-    "color": "#0F766E",
-    "gradient": "linear-gradient(135deg, #0F766E 0%, #14B8A6 100%)",
-    "status": "Coming Soon",
-    "iconClass": "fas fa-stethoscope",
-    "icon": null,
-    "platforms": [
-      {
-        "name": "iOS",
-        "icon": "fab fa-apple"
-      },
-      {
-        "name": "Android",
-        "icon": "fab fa-android"
-      },
-      {
-        "name": "Web",
-        "icon": "fas fa-globe"
-      },
-      {
-        "name": "ڈیسک ٹاپ",
-        "icon": "fas fa-desktop"
-      }
-    ],
-    "indexTier": "more",
-    "previewImage": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1600&q=80",
-    "previewVideo": null
+    "previewVideo": null,
+    "indexHidden": true
   },
   {
     "slug": "medev",
